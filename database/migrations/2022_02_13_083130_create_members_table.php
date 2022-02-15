@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateMembersTable extends Migration
@@ -15,11 +16,12 @@ class CreateMembersTable extends Migration
     {
         Schema::create('members', function (Blueprint $table) {
             $table->id();
+            $table->string('user_id')->index()->nullable();
 
             //General
-            $table->string('firstname');
-            $table->string('lastname');
-            $table->string('email');
+            $table->string('firstname')->nullable();
+            $table->string('lastname')->nullable();
+            $table->string('email')->nullable();
             $table->string('company')->nullable();
             $table->string('jobTitle')->nullable();
             $table->date('age')->nullable();
@@ -48,8 +50,18 @@ class CreateMembersTable extends Migration
             $table->string('whatsApp')->nullable();
             $table->string('facebookMessenger')->nullable();
 
+
             $table->timestamps();
         });
+
+        DB::table('members')->insert([
+            'firstname' => 'Thomas',
+            'lastname' => 'Demeulenaere',
+            'email' => 'info@innova-webcreations.be',
+            'company' => 'Innova Webcreations',
+            'notes' => 'This is a default user',
+            // 'user_id', 1,
+        ]);
     }
 
     /**

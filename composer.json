@@ -24,7 +24,8 @@
         "mckenziearts/laravel-notify": "^2.2",
         "spatie/laravel-backup": "^6.16",
         "spatie/laravel-cookie-consent": "^2.12",
-        "spatie/laravel-google-calendar": "^3.4"
+        "spatie/laravel-google-calendar": "^3.4",
+        "werneckbh/laravel-qr-code": "^0.1.3"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",

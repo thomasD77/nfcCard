@@ -5,6 +5,9 @@
             <th scope="col">ID</th>
             <th scope="col">name</th>
             <th scope="col">email</th>
+            @canany(['is_superAdmin', 'is_admin'])
+                <th scope="col">role</th>
+            @endcanany
             <th scope="col">Registered</th>
             <th scope="col">Actions</th>
         </tr>
@@ -12,27 +15,53 @@
         <tbody>
         @if($members)
             @foreach($members as $member)
-                <tr>
-                    <td>{{$member->id ? $member->id : 'No ID'}}</td>
-                    <td>{{$member->lastname ? $member->lastname : ''}} {{ $member->firstname ? $member->firstname : '' }}</td>
-                    <td>{{$member->email ? $member->email : 'No email'}}</td>
-                    <td>{{$member->created_at ? $member->created_at->diffForHumans() : 'Not Verified'}}</td>
-                    <td>
-                        <div class="btn-group">
-                            <a href="{{route('members.edit', $member->id)}}">
-                                <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit member">
-                                    <i class="fa fa-fw fa-pencil-alt"></i>
-                                </button>
-                            </a>
-                            <button class="btn btn-sm btn-alt-secondary" wire:click="archiveMember({{$member->id}})"><i class="fa fa-archive"></i></button>
-                            <a href="{{route('members.show', $member->id)}}">
-                                <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Show member">
-                                    <i class="far fa-eye"></i>
-                                </button>
-                            </a>
-                        </div>
-                    </td>
-                </tr>
+                @if($active_user_role == 'client')
+                    @if($active_user == $member->user_id)
+                        <tr>
+                            <td>{{$member->id ? $member->id : 'No ID'}}</td>
+                            <td>{{$member->lastname ? $member->lastname : 'INNOVA-USER-' . $member->id}} {{ $member->firstname ? $member->firstname : '' }}</td>
+                            <td>{{$member->email ? $member->email : 'INNOVA@USER-' . $member->id}}</td>
+                            <td>{{$member->created_at ? $member->created_at->diffForHumans() : 'Not Verified'}}</td>
+                            <td>
+                                <div class="btn-group">
+                                    <a href="{{route('members.edit', $member->id)}}">
+                                        <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit member">
+                                            <i class="fa fa-fw fa-pencil-alt"></i>
+                                        </button>
+                                    </a>
+                                    <a href="{{route('members.show', $member->id)}}">
+                                        <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Show member">
+                                            <i class="far fa-eye"></i>
+                                        </button>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    @endif
+                @else
+                    <tr>
+                        <td>{{$member->id ? $member->id : 'No ID'}}</td>
+                        <td>{{$member->lastname ? $member->lastname : 'INNOVA-USER-' . $member->id}} {{ $member->firstname ? $member->firstname : '' }}</td>
+                        <td>{{$member->email ? $member->email : 'INNOVA@USER-' . $member->id}}</td>
+                        <td>{{$member->user ? $member->user->roles->first()->name : 'INNOVA-USER-' . $member->id}}</td>
+                        <td>{{$member->created_at ? $member->created_at->diffForHumans() : 'Not Verified'}}</td>
+                        <td>
+                            <div class="btn-group">
+                                <a href="{{route('members.edit', $member->id)}}">
+                                    <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit member">
+                                        <i class="fa fa-fw fa-pencil-alt"></i>
+                                    </button>
+                                </a>
+                                <button class="btn btn-sm btn-alt-secondary" wire:click="archiveMember({{$member->id}})"><i class="fa fa-archive"></i></button>
+                                <a href="{{route('members.show', $member->id)}}">
+                                    <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Show member">
+                                        <i class="far fa-eye"></i>
+                                    </button>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                @endif
             @endforeach
         @endif
         </tbody>

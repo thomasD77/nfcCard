@@ -11,6 +11,7 @@ class Member extends Model
 
     protected $fillable =
         [
+            'user_id',
             'firstname',
             'lastname',
             'company',
@@ -37,4 +38,9 @@ class Member extends Model
             'website',
             'archived'
         ];
+
+    public function user()
+    {
+        return $this->hasOne(User::class);
+    }
 }

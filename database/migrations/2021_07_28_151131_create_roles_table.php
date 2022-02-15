@@ -59,24 +59,6 @@ class CreateRolesTable extends Migration
             'created_at'=>Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),]);
 
-        DB::table('user_role')->insert([                                                                          // admin for Admin default account
-            'user_id' => '2',
-            'role_id' => '2',
-            'created_at'=>Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),]);
-
-        DB::table('user_role')->insert([                                                                          //dummy data - delete for livewebsite
-            'user_id' => '3',
-            'role_id' => '3',
-            'created_at'=>Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),]);
-
-        DB::table('user_role')->insert([                                                                          //dummy data - delete for livewebsite
-            'user_id' => '4',
-            'role_id' => '3',
-            'created_at'=>Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),]);
-
     }
 
     /**

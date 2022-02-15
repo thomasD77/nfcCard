@@ -52,6 +52,32 @@
     <!-- Page Content -->
     <div class="content container-fluid">
 
+
+        @can('is_superAdmin')
+        <div class="block block-rounded">
+            <div class="block-header block-header-default">
+                <h3>Members Generator</h3>
+            </div>
+            <div class="block-content block-content-full overflow-scroll">
+                <form class="col-4 mb-0" name="contactformulier"
+                      action="{{action('App\Http\Controllers\AdminMembersController@generate')}}" method="post">
+                    @csrf
+                    <div class="mb-4">
+
+                        <input type="number" class="form-control" name="member_number"
+                               placeholder="Enter your number">
+                    </div>
+
+                    <div class="mb-4">
+                        <button type="submit" class="btn btn-alt-primary">
+                            <i class="fa fa-paper-plane me-1 opacity-50"></i> Generate
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        @endcan
+
         <!-- Dynamic Table Full -->
         <div class="block block-rounded row">
             <div class="block-header block-header-default">

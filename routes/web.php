@@ -42,7 +42,8 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     //NFC Card routes
     Route::resource('members', App\Http\Controllers\AdminMembersController::class);
     Route::get('archive/members', 'App\Http\Controllers\AdminMembersController@archive')->name('members.archive');
-
+    Route::get('QRcode', 'App\Http\Controllers\AdminMembersController@QRcode')->name('members.QRcode');
+    Route::POST('generate/member', 'App\Http\Controllers\AdminMembersController@generate')->name('members.generate');
 
 
     //Page Routes

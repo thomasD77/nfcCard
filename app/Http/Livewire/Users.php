@@ -17,14 +17,13 @@ class Users extends Component
 
     public function render()
     {
-        $roles = ['superAdmin', 'admin', 'employee'];
+        $roles = ['superAdmin', 'admin', 'employee', 'client'];
 
         $users = User::with([ 'roles'])
             ->whereHas('roles', function($q) use($roles) {
             $q->whereIn('name', $roles);})
             ->where('archived', 0)
-            ->latest()
-            ->paginate(10);
+            ->paginate(25);
 
         return view('livewire.users', compact('users'));
     }

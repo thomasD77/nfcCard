@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->integer('member_id')->index()->nullable();
             $table->string('name');
             $table->string('username')->nullable();
             $table->string('email')->unique();
@@ -39,47 +40,13 @@ class CreateUsersTable extends Migration
             'username'=>'Thomas',
             'email'=>'info@innova-webcreations.be',
             'avatar_id'=> 1,
+            'member_id' => 1,
             'email_verified_at'=>Carbon::now()->format('Y-m-d H:i:s'),
             'password'=>bcrypt('@Skatemovies777'),
             'created_at'=>Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),
         ]);
 
-        DB::table('users')->insert([
-            'name'=>'Admin CMS',
-            'username'=>'Admin',
-            'email'=>'admin@cms.be',
-            //'avatar_id'=> 1,
-            'email_verified_at'=>Carbon::now()->format('Y-m-d H:i:s'),
-            'password'=>bcrypt('12345678'),
-            'created_at'=>Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),
-        ]);
-
-        DB::table('users')->insert([
-            'name'=>'Frank Welvaert',
-            'username'=>'Franky',
-            'email'=>'frank@test.be',
-            'loyal_id' => 1,
-            'source_id' => 1,
-            'email_verified_at'=>Carbon::now()->format('Y-m-d H:i:s'),
-            'password'=>bcrypt('12345678'),
-            'created_at'=>Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),
-        ]);
-
-        DB::table('users')->insert([
-            'name'=>'Rita Verstraete',
-            'username'=>'Rita',
-            'email'=>'rita@test.be',
-            //'avatar_id'=> 1,
-            'loyal_id' => 2,
-            'source_id' => 2,
-            'email_verified_at'=>Carbon::now()->format('Y-m-d H:i:s'),
-            'password'=>bcrypt('12345678'),
-            'created_at'=>Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),
-        ]);
     }
 
     /**

@@ -27,6 +27,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'loyal_id',
         'source_id',
         'archived',
+        'member_id',
     ];
 
     /**
@@ -47,6 +48,11 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function member()
+    {
+        return $this->hasOne(Member::class);
+    }
 
     public function roles()
     {
