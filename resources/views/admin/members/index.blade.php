@@ -77,7 +77,6 @@
                                     <input type="number" class="form-control" name="member_number"
                                            placeholder="Enter your number">
                                 </div>
-
                                 <div class="mb-4">
                                     <button type="submit" class="btn btn-alt-primary">
                                         <i class="fa fa-paper-plane me-1 opacity-50"></i> Generate
@@ -94,6 +93,7 @@
                     <div class="block block-rounded">
                         <div class="block-header block-header-default">
                             <h3>URL List Generator</h3>
+                            <p>Important to add the "https://" </p>
                         </div>
                         <div class="block-content block-content-full overflow-scroll">
                             <form class="col-6 mb-0" name="contactformulier"
@@ -103,6 +103,18 @@
 
                                     <input type="text" class="form-control" name="member_url"
                                            placeholder="Enter your url">
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="1" name="landingpage" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Landingpage
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="1" name="vCard" id="flexCheckChecked" checked>
+                                    <label class="form-check-label" for="flexCheckChecked">
+                                        vCard
+                                    </label>
                                 </div>
 
                                 <div class="mb-4">

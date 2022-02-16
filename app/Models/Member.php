@@ -38,6 +38,7 @@ class Member extends Model
             'website',
             'archived',
             'memberURL',
+            'memberVCard'
         ];
 
     public function user()

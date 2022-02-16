@@ -37,6 +37,7 @@ Route::get('/system/{page}', [App\Http\Controllers\SystemPageController::class, 
 Route::resource('submissions', App\Http\Controllers\AdminSubmissionController::class);
 
 Route::get('member/{id}', 'App\Http\Controllers\CardController@landingPageMember')->name('members.landingpage');
+Route::get('vCard/{id}', 'App\Http\Controllers\CardController@vCard')->name('members.vCard');
 
 
 // Backend Routes
