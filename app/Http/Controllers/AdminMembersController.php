@@ -271,4 +271,5 @@ class AdminMembersController extends Controller
 
         return redirect('/admin/members');
     }
+
 }

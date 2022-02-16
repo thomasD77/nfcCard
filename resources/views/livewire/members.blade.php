@@ -53,7 +53,7 @@
                                     </button>
                                 </a>
                                 <button class="btn btn-sm btn-alt-secondary" wire:click="archiveMember({{$member->id}})"><i class="fa fa-archive"></i></button>
-                                <a href="{{route('members.show', $member->id)}}">
+                                <a href="{{route('members.landingpage', $member->id)}}">
                                     <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Show member">
                                         <i class="far fa-eye"></i>
                                     </button>

@@ -36,7 +36,8 @@ class Member extends Model
             'whatsApp',
             'facebookMessenger',
             'website',
-            'archived'
+            'archived',
+            'memberURL',
         ];
 
     public function user()

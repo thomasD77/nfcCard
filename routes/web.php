@@ -36,6 +36,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/system/{page}', [App\Http\Controllers\SystemPageController::class, 'index'])->name('system');
 Route::resource('submissions', App\Http\Controllers\AdminSubmissionController::class);
 
+Route::get('member/{id}', 'App\Http\Controllers\CardController@landingPageMember')->name('members.landingpage');
+
 
 // Backend Routes
 Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(){
@@ -44,6 +46,9 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::get('archive/members', 'App\Http\Controllers\AdminMembersController@archive')->name('members.archive');
     Route::get('QRcode', 'App\Http\Controllers\AdminMembersController@QRcode')->name('members.QRcode');
     Route::POST('generate/member', 'App\Http\Controllers\AdminMembersController@generate')->name('members.generate');
+    Route::post('member/list', 'App\Http\Controllers\CardController@listGenerator')->name('members.listGenerator');
+
+
 
 
     //Page Routes

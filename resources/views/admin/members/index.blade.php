@@ -54,28 +54,70 @@
 
 
         @can('is_superAdmin')
-        <div class="block block-rounded">
-            <div class="block-header block-header-default">
-                <h3>Members Generator</h3>
+            <div class="mb-3">
+                <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    Member Generator
+                </a>
+                <a class="btn btn-secondary" data-bs-toggle="collapse" href="#collapseExampleList" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    List Generator
+                </a>
             </div>
-            <div class="block-content block-content-full overflow-scroll">
-                <form class="col-4 mb-0" name="contactformulier"
-                      action="{{action('App\Http\Controllers\AdminMembersController@generate')}}" method="post">
-                    @csrf
-                    <div class="mb-4">
+            <div class="collapse mb-5" id="collapseExample">
+                <div class="card card-body">
+                    <div class="block block-rounded">
+                        <div class="block-header block-header-default">
+                            <h3>Members Generator</h3>
+                        </div>
+                        <div class="block-content block-content-full overflow-scroll">
+                            <form class="col-4 mb-0" name="contactformulier"
+                                  action="{{action('App\Http\Controllers\AdminMembersController@generate')}}" method="post">
+                                @csrf
+                                <div class="mb-4">
 
-                        <input type="number" class="form-control" name="member_number"
-                               placeholder="Enter your number">
-                    </div>
+                                    <input type="number" class="form-control" name="member_number"
+                                           placeholder="Enter your number">
+                                </div>
 
-                    <div class="mb-4">
-                        <button type="submit" class="btn btn-alt-primary">
-                            <i class="fa fa-paper-plane me-1 opacity-50"></i> Generate
-                        </button>
+                                <div class="mb-4">
+                                    <button type="submit" class="btn btn-alt-primary">
+                                        <i class="fa fa-paper-plane me-1 opacity-50"></i> Generate
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                </form>
+                </div>
             </div>
-        </div>
+
+            <div class="collapse mb-5" id="collapseExampleList">
+                <div class="card card-body">
+                    <div class="block block-rounded">
+                        <div class="block-header block-header-default">
+                            <h3>URL List Generator</h3>
+                        </div>
+                        <div class="block-content block-content-full overflow-scroll">
+                            <form class="col-6 mb-0" name="contactformulier"
+                                  action="{{action('App\Http\Controllers\CardController@listGenerator')}}" method="post">
+                                @csrf
+                                <div class="mb-4">
+
+                                    <input type="text" class="form-control" name="member_url"
+                                           placeholder="Enter your url">
+                                </div>
+
+                                <div class="mb-4">
+                                    <button type="submit" class="btn btn-alt-primary">
+                                        <i class="fa fa-paper-plane me-1 opacity-50"></i> Generate
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
         @endcan
 
         <!-- Dynamic Table Full -->
