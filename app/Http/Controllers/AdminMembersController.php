@@ -20,7 +20,10 @@ class AdminMembersController extends Controller
     public function index()
     {
         //
-        return view('admin.members.index');
+        $member = Member::first();
+        $member_url = substr_replace($member->memberURL, "" ,-9) ;
+
+        return view('admin.members.index', compact('member_url', 'member'));
     }
 
     /**

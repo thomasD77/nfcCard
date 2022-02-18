@@ -28,12 +28,12 @@ class CardController extends Controller
         $members = Member::all();
         foreach ($members as $member)
         {
-            $member->memberURL = $member_url . 'member/' . $member->id;
-            $member->memberCustomURL = $member_url . 'member/custom/' . $member->id;
+            $member->memberURL = $member_url . '/member/' . $member->id;
+            $member->memberCustomURL = $member_url . '/member/custom/' . $member->id;
 
-            $member->membervCard = $member_url . 'vCard/' . $member->id;
+            $member->membervCard = $member_url . '/vCard/' . $member->id;
 
-            $member->memberQRcode = $member_url . 'QRcode/' . $member->id;
+            $member->memberQRcode = $member_url . '/QRcode/' . $member->id;
 
             $member->update();
         }

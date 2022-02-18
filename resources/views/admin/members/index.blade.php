@@ -59,7 +59,7 @@
                     Member Generator
                 </a>
                 <a class="btn btn-secondary" data-bs-toggle="collapse" href="#collapseExampleList" role="button" aria-expanded="false" aria-controls="collapseExample">
-                    List Generator
+                    URL Generator
                 </a>
                 <a class="btn btn-alt-warning" data-bs-toggle="collapse" href="#collapseExampleQRcode" role="button" aria-expanded="false" aria-controls="collapseExample">
                     QRcode Generator
@@ -96,7 +96,18 @@
                     <div class="block block-rounded">
                         <div class="block-header block-header-default">
                             <h3>URL List Generator</h3>
-                            <p>Important to add the "https://" </p>
+                        </div>
+                        <div class="block-header block-header-default">
+                            <div class="d-flex flex-column">
+                                <p>!!! Important to add the "https://" </p>
+                                <p>!!! Important NO "/" in the END </p>
+                                @if($member->memberURL != "")
+                                    <p>Current url is: {{ $member_url }}</p>
+                                @endif
+                            </div>
+
+                        </div>
+                        <div>
                         </div>
                         <div class="block-content block-content-full overflow-scroll">
                             <form class="col-6 mb-0" name="contactformulier"
@@ -106,6 +117,12 @@
 
                                     <input type="text" class="form-control" name="member_url"
                                            placeholder="Enter your url">
+                                </div>
+                                <div class="form-check mt-5">
+                                    <input class="form-check-input" type="checkbox" value="1" name="Excel" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Generate urls and print Excel file (choose here:)
+                                    </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value="1" name="landingpageDefault" id="flexCheckDefault">
@@ -120,7 +137,7 @@
                                     </label>
                                 </div>
                                 <div class="form-check mb-2">
-                                    <input class="form-check-input" type="checkbox" value="1" name="vCard" id="flexCheckChecked" checked>
+                                    <input class="form-check-input" type="checkbox" value="1" name="vCard" id="flexCheckChecked">
                                     <label class="form-check-label" for="flexCheckChecked">
                                         vCard
                                     </label>
@@ -132,12 +149,7 @@
                                     </label>
                                 </div>
 
-                                <div class="form-check mt-5">
-                                    <input class="form-check-input" type="checkbox" value="1" name="Excel" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Generate urls and print Excel file
-                                    </label>
-                                </div>
+
 
                                 <div class="my-4">
                                     <button type="submit" class="btn btn-alt-primary">
@@ -175,7 +187,7 @@
                                     </label>
                                 </div>
                                 <div class="form-check mb-2">
-                                    <input class="form-check-input" type="checkbox" value="1" name="vCard" id="flexCheckChecked" checked>
+                                    <input class="form-check-input" type="checkbox" value="1" name="vCard" id="flexCheckChecked">
                                     <label class="form-check-label" for="flexCheckChecked">
                                         vCard
                                     </label>
@@ -202,10 +214,9 @@
                 <h3 class="block-title">
                     Members
                 </h3>
-                @can('is_superAdmin')
-                <a href="{{route('members.create')}}"><button data-bs-toggle="tooltip" title="New Member" class="btn btn-alt-primary"><i class="fa fa-plus"></i></button></a>
-                @endcan
-
+{{--                @can('is_superAdmin')--}}
+{{--                <a href="{{route('members.create')}}"><button data-bs-toggle="tooltip" title="New Member" class="btn btn-alt-primary"><i class="fa fa-plus"></i></button></a>--}}
+{{--                @endcan--}}
                 @canany(['is_superAdmin', 'is_admin'])
                 <a href="{{route('members.archive')}}">
                     <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Archive">
