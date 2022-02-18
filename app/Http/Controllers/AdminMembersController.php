@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use LaravelQRCode\Facades\QRCode;
+use Spatie\Browsershot\Browsershot;
 
 class AdminMembersController extends Controller
 {
@@ -204,7 +205,7 @@ class AdminMembersController extends Controller
             'zip' => '12345-678'
         ];
 
-        $addresses = [$homeAddress, $wordAddress];
+        $addresses = [$homeAddress];
 
         // Phones
         $workPhone = [
@@ -223,13 +224,23 @@ class AdminMembersController extends Controller
             'cellPhone' => true
         ];
 
-        $phones = [$workPhone, $homePhone, $cellPhone];
+        $phones = [$workPhone];
 
-        return QRCode::vCard($firstName, $lastName, $title, $email, $addresses, $phones)
+
+
+
+        $file = public_path('qr.png');
+
+        $QRcode = QRCode::vCard($firstName, $lastName, $title, $email, $addresses, $phones)
             ->setErrorCorrectionLevel('H')
             ->setSize(4)
             ->setMargin(2)
-            ->svg();
+            ->png()
+            ->setOutfile($file);
+
+        return response($QRcode)->header('Content-type','image/png');
+
+
     }
 
     public function generate(Request $request)

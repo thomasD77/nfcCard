@@ -61,6 +61,9 @@
                 <a class="btn btn-secondary" data-bs-toggle="collapse" href="#collapseExampleList" role="button" aria-expanded="false" aria-controls="collapseExample">
                     List Generator
                 </a>
+                <a class="btn btn-alt-warning" data-bs-toggle="collapse" href="#collapseExampleQRcode" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    QRcode Generator
+                </a>
             </div>
             <div class="collapse mb-5" id="collapseExample">
                 <div class="card card-body">
@@ -105,9 +108,70 @@
                                            placeholder="Enter your url">
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="1" name="landingpage" id="flexCheckDefault">
+                                    <input class="form-check-input" type="checkbox" value="1" name="landingpageDefault" id="flexCheckDefault">
                                     <label class="form-check-label" for="flexCheckDefault">
-                                        Landingpage
+                                        Landingpage (default)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="1" name="landingpageCustom" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Landingpage (custom)
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="1" name="vCard" id="flexCheckChecked" checked>
+                                    <label class="form-check-label" for="flexCheckChecked">
+                                        vCard
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="1" name="QRcode" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                       QR-code
+                                    </label>
+                                </div>
+
+                                <div class="form-check mt-5">
+                                    <input class="form-check-input" type="checkbox" value="1" name="Excel" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Generate urls and print Excel file
+                                    </label>
+                                </div>
+
+                                <div class="my-4">
+                                    <button type="submit" class="btn btn-alt-primary">
+                                        <i class="fa fa-paper-plane me-1 opacity-50"></i> Generate
+                                    </button>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapse mb-5" id="collapseExampleQRcode">
+                <div class="card card-body">
+                    <div class="block block-rounded">
+                        <div class="block-header block-header-default">
+                            <h3>QRcode page generator</h3>
+                        </div>
+                        <div class="block-content block-content-full overflow-scroll">
+                            <form class="col-6 mb-0" name="contactformulier"
+                                  action="{{action('App\Http\Controllers\QRcodeController@QRcodeListWithParams')}}" target="_blank" method="post">
+                                @csrf
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="1" name="landingpageDefault" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Landingpage (default)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="1" name="landingpageCustom" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Landingpage (custom)
                                     </label>
                                 </div>
                                 <div class="form-check mb-2">
@@ -117,7 +181,7 @@
                                     </label>
                                 </div>
 
-                                <div class="mb-4">
+                                <div class="my-4">
                                     <button type="submit" class="btn btn-alt-primary">
                                         <i class="fa fa-paper-plane me-1 opacity-50"></i> Generate
                                     </button>

@@ -18,7 +18,9 @@ class CreateMembersTable extends Migration
             $table->id();
             $table->string('user_id')->index()->nullable();
             $table->string('memberURL')->default("");
-            $table->string('memberVcard')->default("");
+            $table->string('memberCustomURL')->default("");
+            $table->string('membervCard')->default("");
+            $table->string('memberQRcode')->nullable();
 
             //General
             $table->string('firstname')->nullable();

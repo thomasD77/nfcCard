@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Exports\MemberListExport;
 use App\Exports\SubmissionExport;
 use App\Models\Member;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use JeroenDesloovere\VCard\VCard;
 use Maatwebsite\Excel\Facades\Excel;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class CardController extends Controller
 {
@@ -26,19 +28,36 @@ class CardController extends Controller
         $members = Member::all();
         foreach ($members as $member)
         {
-            $member->memberURL = $member_url . 'member' . $member->id;
-            $member->membervCard = $member_url . 'vCard' . $member->id;
+            $member->memberURL = $member_url . 'member/' . $member->id;
+            $member->memberCustomURL = $member_url . 'member/custom/' . $member->id;
+
+            $member->membervCard = $member_url . 'vCard/' . $member->id;
+
+            $member->memberQRcode = $member_url . 'QRcode/' . $member->id;
 
             $member->update();
         }
 
 
-        $CheckboxValidation = [
-            'landingpage' => $request->landingpage ? "1" : "0",
-            'vCard' => $request->vCard ?  "1" : "0",
-        ];
+        if($request->Excel){
 
-        return Excel::download(new MemberListExport($CheckboxValidation), 'membersListURL.xlsx');
+            $CheckboxValidation = [
+                'landingpageDefault' => $request->landingpageDefault ? "1" : "0",
+                'landingpageCustom' => $request->landingpageCustom ? "1" : "0",
+                'vCard' => $request->vCard ?  "1" : "0",
+                'QRcode' => $request->QRcode ?  "1" : "0",
+            ];
+            \Brian2694\Toastr\Facades\Toastr::success('EXCEL Successfully Generated');
+            return Excel::download(new MemberListExport($CheckboxValidation), 'membersListURL.xlsx');
+        }
+
+
+        \Brian2694\Toastr\Facades\Toastr::success('URLS Successfully Generated');
+
+        return redirect('/admin/members');
+
+
+
 
     }
 

@@ -40,6 +40,7 @@ Route::get('member/{id}', 'App\Http\Controllers\CardController@landingPageMember
 Route::get('vCard/{id}', 'App\Http\Controllers\CardController@vCard')->name('members.vCard');
 
 
+
 // Backend Routes
 Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(){
     //NFC Card routes
@@ -48,6 +49,10 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::get('QRcode', 'App\Http\Controllers\AdminMembersController@QRcode')->name('members.QRcode');
     Route::POST('generate/member', 'App\Http\Controllers\AdminMembersController@generate')->name('members.generate');
     Route::post('member/list', 'App\Http\Controllers\CardController@listGenerator')->name('members.listGenerator');
+
+    Route::get('QRcodeList', 'App\Http\Controllers\QRcodeController@QRcodeList')->name('QRcodeList');
+    Route::post('QRcodeList', 'App\Http\Controllers\QRcodeController@QRcodeListWithParams')->name('QRcodeListCustom');
+
 
 
 

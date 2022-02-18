@@ -12,13 +12,17 @@ class MemberListExport implements FromCollection
     * @return \Illuminate\Support\Collection
     */
 
-    protected $landingpage;
+    protected $landingpageDefault;
+    protected $landingpageCustom;
     protected $vCard;
+    protected $QRcode;
 
     function __construct($checkboxValidation) {
 
-        $this->landingpage = $checkboxValidation['landingpage'];
+        $this->landingpageDefault = $checkboxValidation['landingpageDefault'];
+        $this->landingpageCustom = $checkboxValidation['landingpageCustom'];
         $this->vCard = $checkboxValidation['vCard'];
+        $this->QRcode = $checkboxValidation['QRcode'];
 
     }
 
@@ -27,41 +31,32 @@ class MemberListExport implements FromCollection
     {
         //
 
-        if($this->landingpage == "1" && $this->vCard == "0"){
-            $members = Member::query()
-                ->where('archived', 0)
-                ->where('id', '!=', 1)
-                ->select('id', 'memberURL')
-                ->get();
-            return $members;
+        $pages = ['id'];
+
+        if($this->landingpageDefault == "1" ){
+            $pages [] = 'memberURL';
         }
 
-        if($this->landingpage == "0" && $this->vCard == "1"){
-            $members = Member::query()
-                ->where('archived', 0)
-                ->where('id', '!=', 1)
-                ->select('id','memberVcard')
-                ->get();
-            return $members;
+        if($this->landingpageCustom == "1" ){
+            $pages [] = 'memberCustomURL';
         }
 
-        if($this->landingpage == "1" && $this->vCard == "1"){
-            $members = Member::query()
-                ->where('archived', 0)
-                ->where('id', '!=', 1)
-                ->select('id', 'memberURL', 'memberVcard')
-                ->get();
-            return $members;
+        if($this->vCard == "1" ){
+            $pages [] = 'membervCard';
         }
 
-        if($this->landingpage == "0" && $this->vCard == "0"){
-            $members = Member::query()
-                ->where('archived', 0)
-                ->where('id', '!=', 1)
-                ->select('id',)
-                ->get();
-            return $members;
+        if($this->QRcode == "1" ){
+            $pages [] = 'memberQRcode';
         }
+
+
+        $members = Member::query()
+            ->where('archived', 0)
+            ->where('id', '!=', 1)
+            ->select($pages)
+            ->get();
+        return $members;
+
 
     }
 }
