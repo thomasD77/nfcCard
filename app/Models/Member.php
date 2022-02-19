@@ -40,7 +40,8 @@ class Member extends Model
             'memberURL',
             'membervCard',
             'memberQRcode',
-            'memberCustomURL'
+            'memberCustomURL',
+            'avatar'
         ];
 
     public function user()

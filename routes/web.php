@@ -38,8 +38,10 @@ Route::resource('submissions', App\Http\Controllers\AdminSubmissionController::c
 
 
 //Public Routes for member information
-Route::get('member/{id}', 'App\Http\Controllers\CardController@landingPageMember')->name('members.landingpage');
+Route::get('member/{id}', 'App\Http\Controllers\CardController@landingPageMemberDefault')->name('members.landingpageDefault');
+Route::get('member/custom/{id}', 'App\Http\Controllers\CardController@landingPageMemberCustom')->name('members.landingpageCustom');
 Route::get('vCard/{id}', 'App\Http\Controllers\CardController@vCard')->name('members.vCard');
+Route::get('QRcode/{id}', 'App\Http\Controllers\CardController@QRcode')->name('members.QRcode');
 
 
 // Backend Routes
@@ -51,9 +53,6 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     //Routes for generating the URLS
     Route::POST('generate/member', 'App\Http\Controllers\AdminMembersController@generate')->name('members.generate');
     Route::post('member/list', 'App\Http\Controllers\CardController@listGenerator')->name('members.listGenerator');
-
-    //Routes for generating the QRcodes
-    Route::get('QRcode', 'App\Http\Controllers\AdminMembersController@QRcode')->name('members.QRcode');
 
     //Routes for listing the QRcodes
     Route::get('QRcodeList', 'App\Http\Controllers\QRcodeController@QRcodeList')->name('QRcodeList');

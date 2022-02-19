@@ -38,10 +38,21 @@
                 </div>
                 <div class="col-lg-10">
                     {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminMembersController@update', $member->id],
-                        'files'=>false])
+                        'files'=>true])
                    !!}
 
                     <p>General</p>
+                    <div class="mb-4">
+                        <label class="form-label">Your Avatar</label>
+                        <div class="mb-4">
+                            <img class="rounded-circle" height="150" width="150" src="{{$member->avatar ? asset('/card/avatars'). "/" . $member->avatar : 'http://placehold.it/62x62'}}" alt="{{$member->avatar}}">
+                        </div>
+                        <div class="form-group mb-4">
+                            {!! Form::label('avatar_id', 'Choose a new avatar:', ['class'=>'form-label']) !!}
+                            {!! Form::file('avatar_id',['class'=>'form-control']) !!}
+                        </div>
+                    </div>
+
                     <div class="form-group mb-4">
                         {!! Form::label('firstname','firstname:',['class'=>'form-label']) !!}
                         {!! Form::text('firstname',$member->firstname ,['class'=>'form-control']) !!}

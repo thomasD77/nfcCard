@@ -17,20 +17,18 @@ class MemberListExport implements FromCollection
     protected $vCard;
     protected $QRcode;
 
-    function __construct($checkboxValidation) {
-
+    function __construct($checkboxValidation)
+    {
         $this->landingpageDefault = $checkboxValidation['landingpageDefault'];
         $this->landingpageCustom = $checkboxValidation['landingpageCustom'];
         $this->vCard = $checkboxValidation['vCard'];
         $this->QRcode = $checkboxValidation['QRcode'];
-
     }
 
 
     public function collection()
     {
         //
-
         $pages = ['id'];
 
         if($this->landingpageDefault == "1" ){
@@ -56,7 +54,6 @@ class MemberListExport implements FromCollection
             ->select($pages)
             ->get();
         return $members;
-
-
     }
+
 }

@@ -2,13 +2,12 @@
     <table class="table table-striped table-hover table-vcenter fs-sm">
         <thead>
         <tr>
-            <th scope="col">ID</th>
+            <th scope="col">#</th>
             <th scope="col">name</th>
             <th scope="col">email</th>
             @canany(['is_superAdmin', 'is_admin'])
                 <th scope="col">role</th>
             @endcanany
-            <th scope="col">Registered</th>
             <th scope="col">Actions</th>
         </tr>
         </thead>
@@ -21,7 +20,6 @@
                             <td>{{$member->id ? $member->id : 'No ID'}}</td>
                             <td>{{$member->lastname ? $member->lastname : 'INNOVA-USER-' . $member->id}} {{ $member->firstname ? $member->firstname : '' }}</td>
                             <td>{{$member->email ? $member->email : 'INNOVA@USER-' . $member->id}}</td>
-                            <td>{{$member->created_at ? $member->created_at->diffForHumans() : 'Not Verified'}}</td>
                             <td>
                                 <div class="btn-group">
                                     <a href="{{route('members.edit', $member->id)}}">
@@ -44,7 +42,6 @@
                         <td>{{$member->lastname ? $member->lastname : 'INNOVA-USER-' . $member->id}} {{ $member->firstname ? $member->firstname : '' }}</td>
                         <td>{{$member->email ? $member->email : 'INNOVA@USER-' . $member->id}}</td>
                         <td>{{$member->user ? $member->user->roles->first()->name : 'INNOVA-USER-' . $member->id}}</td>
-                        <td>{{$member->created_at ? $member->created_at->diffForHumans() : 'Not Verified'}}</td>
                         <td>
                             <div class="btn-group">
                                 <a href="{{route('members.edit', $member->id)}}">
@@ -53,7 +50,7 @@
                                     </button>
                                 </a>
                                 <button class="btn btn-sm btn-alt-secondary" wire:click="archiveMember({{$member->id}})"><i class="fa fa-archive"></i></button>
-                                <a href="{{route('members.landingpage', $member->id)}}">
+                                <a href="{{route('members.landingpageDefault', $member->id)}}">
                                     <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Show member">
                                         <i class="far fa-eye"></i>
                                     </button>

@@ -26,6 +26,7 @@ class AdminMembersController extends Controller
         return view('admin.members.index', compact('member_url', 'member'));
     }
 
+
     /**
      * Show the form for creating a new resource.
      *
@@ -153,22 +154,18 @@ class AdminMembersController extends Controller
         $member->whatsApp = $request->whatsApp;
         $member->facebookMessenger = $request->facebookMessenger;
 
+
+        /** wegschrijven van de avatar **/
+        if($file = $request->file('avatar_id')){
+            $name = time(). $file->getClientOriginalName();
+            $file->move('card/avatars', $name);
+            $member->avatar = $name;
+        }
+
         $member->update();
 
         \Brian2694\Toastr\Facades\Toastr::success('Member Successfully Updated');
-
         return redirect('/admin/members');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 
     public function archive()
@@ -180,72 +177,8 @@ class AdminMembersController extends Controller
         return view('admin.members.archive', compact('members'));
     }
 
-    public function QRcode()
-    {
-        // Personal Information
-        $firstName = 'John';
-        $lastName = 'Doe';
-        $title = 'Mr.';
-        $email = 'john.doe@example.com';
 
-        // Addresses
-        $homeAddress = [
-            'type' => 'home',
-            'pref' => true,
-            'street' => '123 my street st',
-            'city' => 'My Beautiful Town',
-            'state' => 'LV',
-            'country' => 'Neverland',
-            'zip' => '12345-678'
-        ];
-        $wordAddress = [
-            'type' => 'work',
-            'pref' => false,
-            'street' => '123 my work street st',
-            'city' => 'My Dreadful Town',
-            'state' => 'LV',
-            'country' => 'Hell',
-            'zip' => '12345-678'
-        ];
-
-        $addresses = [$homeAddress];
-
-        // Phones
-        $workPhone = [
-            'type' => 'work',
-            'number' => '001 555-1234',
-            'cellPhone' => false
-        ];
-        $homePhone = [
-            'type' => 'home',
-            'number' => '001 555-4321',
-            'cellPhone' => false
-        ];
-        $cellPhone = [
-            'type' => 'work',
-            'number' => '001 9999-8888',
-            'cellPhone' => true
-        ];
-
-        $phones = [$workPhone];
-
-
-
-
-        $file = public_path('qr.png');
-
-        $QRcode = QRCode::vCard($firstName, $lastName, $title, $email, $addresses, $phones)
-            ->setErrorCorrectionLevel('H')
-            ->setSize(4)
-            ->setMargin(2)
-            ->png()
-            ->setOutfile($file);
-
-        return response($QRcode)->header('Content-type','image/png');
-
-
-    }
-
+    //This function will generate MEMBERS & USERS
     public function generate(Request $request)
     {
         $member_number = $request->member_number;
@@ -253,7 +186,6 @@ class AdminMembersController extends Controller
 
         $last_member = Member::max('id') + 1;
         $new_amount = $member_number + $member_count;
-
 
         for ($i = $last_member; $i <= $new_amount; $i++ )
         {
@@ -280,9 +212,7 @@ class AdminMembersController extends Controller
                 'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),]);
         }
 
-
         \Brian2694\Toastr\Facades\Toastr::success('Members Successfully Generated');
-
         return redirect('/admin/members');
     }
 
