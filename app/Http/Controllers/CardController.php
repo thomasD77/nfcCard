@@ -17,7 +17,7 @@ class CardController extends Controller
     public function landingPageMemberDefault($id)
     {
         $member = Member::findOrFail($id);
-        return view('front.members.show', compact('member'));
+        return view('front.landingspage_default.index', compact('member'));
     }
 
     //This will generate the CUSTOM landingpage
@@ -135,13 +135,13 @@ class CardController extends Controller
         $org = $member->company;
 
 
-        $QRcode = \LaravelQRCode\Facades\QRCode::vCard($firstName, $lastName, $title, $email, $addresses, $phones, $org)
+        $QRcode = \LaravelQRCode\Facades\QRCode::vCard($firstName, $lastName, $title, $email, $addresses, $phones)
             ->setErrorCorrectionLevel('H')
             ->setSize(2)
             ->setMargin(2)
             ->png();
 
         return $QRcode;
-    }
 
+    }
 }
