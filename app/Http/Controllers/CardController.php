@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\MemberListExport;
 use App\Exports\SubmissionExport;
 use App\Models\Member;
+use App\Models\Package;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use JeroenDesloovere\VCard\VCard;
@@ -142,6 +143,39 @@ class CardController extends Controller
             ->png();
 
         return $QRcode;
-
     }
+
+    public function choosePackage(Request $request)
+    {
+        $package_request = $request->flexRadioDefault;
+
+        $packages = Package::all();
+
+        foreach($packages as $package){
+            $package->value = 0;
+            $package->update();
+        }
+
+
+        if($package_request == 'custom'){
+            $package_current = Package::where('package', 'landingpageCustom')->first();
+            $package_current->value = 1;
+        }
+
+        if($package_request == 'default'){
+            $package_current = Package::where('package', 'landingpageDefault')->first();
+            $package_current->value = 1;
+        }
+
+        if($package_request == 'vCard'){
+            $package_current = Package::where('package', 'vCard')->first();
+            $package_current->value = 1;
+        }
+
+        $package_current->update();
+
+        return redirect('/admin');
+    }
+
+
 }

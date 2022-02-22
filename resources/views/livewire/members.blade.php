@@ -18,8 +18,8 @@
                     @if($active_user == $member->user_id)
                         <tr>
                             <td>{{$member->id ? $member->id : 'No ID'}}</td>
-                            <td>{{$member->lastname ? $member->lastname : 'INNOVA-USER-' . $member->id}} {{ $member->firstname ? $member->firstname : '' }}</td>
-                            <td>{{$member->email ? $member->email : 'INNOVA@USER-' . $member->id}}</td>
+                            <td>{{$member->lastname ? $member->lastname : 'MEMBER' . $member->id}} {{ $member->firstname ? $member->firstname : '' }}</td>
+                            <td>{{$member->email ? $member->email : 'MEMBER-' . $member->id}}</td>
                             <td>
                                 <div class="btn-group">
                                     <a href="{{route('members.edit', $member->id)}}">
@@ -39,9 +39,9 @@
                 @else
                     <tr>
                         <td>{{$member->id ? $member->id : 'No ID'}}</td>
-                        <td>{{$member->lastname ? $member->lastname : 'INNOVA-USER-' . $member->id}} {{ $member->firstname ? $member->firstname : '' }}</td>
-                        <td>{{$member->email ? $member->email : 'INNOVA@USER-' . $member->id}}</td>
-                        <td>{{$member->user ? $member->user->roles->first()->name : 'INNOVA-USER-' . $member->id}}</td>
+                        <td>{{$member->lastname ? $member->lastname : 'MEMBER-' . $member->id}} {{ $member->firstname ? $member->firstname : '' }}</td>
+                        <td>{{$member->email ? $member->email : 'MEMBER-' . $member->id}}</td>
+                        <td>{{$member->user ? $member->user->roles->first()->name : 'MEMBER' . $member->id}}</td>
                         <td>
                             <div class="btn-group">
                                 <a href="{{route('members.edit', $member->id)}}">

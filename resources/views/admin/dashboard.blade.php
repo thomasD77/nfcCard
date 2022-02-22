@@ -75,17 +75,37 @@
             <div class="col-md-6 col-xl-4">
                 <div class="block block-rounded">
                     <div class="block-header block-header-default">
-                        <h3 class="block-title">Company</h3>
+                        <h3 class="block-title">Package</h3>
                     </div>
                     <div class="block-content fs-sm text-muted">
-                        @if(isset($company))
-                            <p class="fw-bold">{{ $company->companyName }}</p>
-                            <p class="fw-bold">{{ $company->firstname }}</p>
-                            <p class="fw-bold">{{ $company->lastname }}</p>
-                            <p class="fw-bold">{{ $company->email }}</p>
-                            <p class="fw-bold">{{ $company->mobile }}</p>
-                            <p class="fw-bold">{{ $company->tagline }}</p>
-                        @endif
+                        <form class="col-6 mb-0" name="contactformulier"
+                              action="{{action('App\Http\Controllers\CardController@choosePackage')}}" method="post">
+                            @csrf
+                           <div class="form-check">
+                                <input class="form-check-input" type="radio" value="vCard" name="flexRadioDefault" id="flexRadioDefault1">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    vCard
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" value="custom" name="flexRadioDefault" id="flexRadioDefault2">
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Landingpage (custom)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" value="default" name="flexRadioDefault" id="flexRadioDefault2">
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Landingpage (default)
+                                </label>
+                            </div>
+                            <div class="my-4">
+                                <button type="submit" class="btn btn-alt-primary">
+                                    <i class="fa fa-paper-plane me-1 opacity-50"></i> Choose
+                                </button>
+                            </div>
+                        </form>
+                        <p>Current package: {{ $package }}</p>
                     </div>
                 </div>
             </div>
@@ -103,7 +123,6 @@
                                     $photo = \App\Models\Photo::where('credential_id', $company->id)->first();
                                 }
                             @endphp
-
                             @if(isset($photo))
                                 <input type="hidden" name="photo" value="{{$photo->id}}">
                                 <img class="rounded mt-2" height="200" width="200" src="{{$photo ? asset('images/form_credentials') . $photo->file : 'http://placehold.it/62x62'}}" alt="{{$company ? $company->firstname : ""}}">

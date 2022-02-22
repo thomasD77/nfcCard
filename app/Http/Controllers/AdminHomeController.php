@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CompanyCredential;
+use App\Models\Package;
 use App\Models\Photo;
 use App\Models\Role;
 use Illuminate\Http\Request;
@@ -32,7 +33,14 @@ class AdminHomeController extends Controller
         $test = Role::where('id', $user)->first();
         $company = CompanyCredential::latest()->first();
         $photos = Photo::all();
-        return view('admin.dashboard', compact('test', 'company', 'photos'));
+
+        $package = Package::where('value', 1)->first()->package;
+
+        if(! isset($package)){
+            $package = 'No package selected';
+        }
+
+        return view('admin.dashboard', compact('company', 'photos', 'package'));
     }
 
 }

@@ -47,7 +47,6 @@ class MemberListExport implements FromCollection
             $pages [] = 'memberQRcode';
         }
 
-
         $members = Member::query()
             ->where('archived', 0)
             ->where('id', '!=', 1)

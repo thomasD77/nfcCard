@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\MemberCredentialCardExport;
+use App\Exports\MemberListExport;
 use App\Models\Member;
+use App\Models\Order;
+use App\Models\Package;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use LaravelQRCode\Facades\QRCode;
+use Maatwebsite\Excel\Facades\Excel;
 use Spatie\Browsershot\Browsershot;
 
 class AdminMembersController extends Controller
@@ -109,7 +114,13 @@ class AdminMembersController extends Controller
     {
         //
         $member = Member::findOrFail($id);
-        return view('admin.members.edit', compact('member'));
+
+        $package = Package::where('value', 1)->first()->package;
+        if(! isset($package)){
+            $package = 'No package selected';
+        }
+
+        return view('admin.members.edit', compact('member', 'package'));
     }
 
     /**
@@ -190,9 +201,9 @@ class AdminMembersController extends Controller
         for ($i = $last_member; $i <= $new_amount; $i++ )
         {
             $user = new User();
-            $user->name = 'INNOVA-USER-' . $i;
-            $user->email = 'INNOVA@USER-' . $i;
-            $user->password = bcrypt('INNOVA-USER-' . $i);
+            $user->name = 'USER-' . $i;
+            $user->email = 'info@user-' . $i;
+            $user->password = bcrypt('USER-' . $i);
             $user->email_verified_at = Carbon::now()->format('Y-m-d H:i:s');
             $user->created_at = Carbon::now()->format('Y-m-d H:i:s');
             $user->updated_at = Carbon::now()->format('Y-m-d H:i:s');
@@ -200,6 +211,7 @@ class AdminMembersController extends Controller
 
             $member = new Member();
             $member->user_id = $user->id;
+            $member->lastname =  'MEMBER-' . $i;
             $member->save();
 
             $user->member_id = $member->id;
@@ -214,6 +226,30 @@ class AdminMembersController extends Controller
 
         \Brian2694\Toastr\Facades\Toastr::success('Members Successfully Generated');
         return redirect('/admin/members');
+    }
+
+    public function generateCredentialMemberList()
+    {
+        \Brian2694\Toastr\Facades\Toastr::success('List Successfully Generated');
+        return Excel::download(new MemberCredentialCardExport(), 'MemberCardList.xlsx');
+    }
+
+    public function searchMember(Request $request)
+    {
+        $member_value = $request->member;
+
+        $members = Member::where(function($q) use($member_value) {
+            $q->where('firstname', 'LIKE', '%' . $member_value . '%')
+                ->Orwhere('lastname', 'LIKE', '%' . $member_value . '%')
+                ->where('archived', 0);
+        })->get();
+
+        $member = Member::first();
+        $member_url = substr_replace($member->memberURL, "" ,-9) ;
+
+
+        return view('admin.members.search', compact('members', 'member', 'member_url'));
+
     }
 
 }
