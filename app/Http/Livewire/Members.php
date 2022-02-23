@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class Members extends Component
 {
-    public function archiveMember($id)
+   public function archiveMember($id)
     {
         $member = Member::findOrFail($id);
         $member->archived = 1;

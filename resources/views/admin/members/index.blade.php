@@ -54,20 +54,20 @@
         @can('is_superAdmin')
             <div class="mb-3">
                 <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                    Member Generator
+                    Member <i class="fa fa-list-ul ml-2"></i>
                 </a>
                 <a class="btn btn-secondary" data-bs-toggle="collapse" href="#collapseExampleList" role="button" aria-expanded="false" aria-controls="collapseExample">
-                    URL Generator
+                    URL <i class="fa fa-list-ul ml-2"></i>
                 </a>
                 <a class="btn btn-alt-warning" data-bs-toggle="collapse" href="#collapseExampleQRcode" role="button" aria-expanded="false" aria-controls="collapseExample">
-                    QRcode Generator
+                    QRcode <i class="fa fa-list-ul ml-2"></i>
                 </a>
             </div>
             <div class="collapse mb-5" id="collapseExample">
                 <div class="card card-body">
                     <div class="block block-rounded">
                         <div class="block-header block-header-default">
-                            <h3>Members Generator</h3>
+                            <h3> Members Generator</h3>
                         </div>
                         <div class="block-content block-content-full overflow-scroll">
                             <form class="col-4 mb-0" name="contactformulier"
@@ -157,7 +157,7 @@
                 <div class="card card-body">
                     <div class="block block-rounded">
                         <div class="block-header block-header-default">
-                            <h3>QRcode page generator</h3>
+                            <h3>QRcode</h3>
                         </div>
                         <div class="block-content block-content-full overflow-scroll">
                             <form class="col-6 mb-0" name="contactformulier"
@@ -195,39 +195,8 @@
             </div>
         @endcan
 
-        <!-- Dynamic Table Full -->
-        <div class="block block-rounded row">
-            <div class="block-header block-header-default d-flex justify-content-between">
-                <!-- Search Form (visible on larger screens) -->
-                <form class="d-none d-md-inline-block" action="{{action('App\Http\Controllers\AdminMembersController@searchMember')}}" method="POST">
-                    @csrf
-                    <div class="input-group input-group-sm">
-                        <input type="text" class="form-control form-control-alt" placeholder="Search.." id="page-header-search-input2" name="member">
-                        <span class="input-group-text border-0">
-                                    <i class="fa fa-fw fa-search"></i>
-                        </span>
-                    </div>
-                </form>
-                <!-- END Search Form -->
-                <div>
-                    <a class="btn btn-alt-success" role="button" href="{{ route('members.credentials') }}">
-                        Member List
-                    </a>
-                    @canany(['is_superAdmin', 'is_admin'])
-                        <a href="{{route('members.archive')}}">
-                            <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Archive">
-                                <i class="fa fa-archive "></i>
-                            </button>
-                        </a>
-                    @endcanany
-                </div>
-            </div>
-            <div class="block-content block-content-full overflow-scroll">
-                <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
-                @livewire('members')
-            </div>
-        </div>
-        <!-- END Dynamic Table Full -->
+            @livewire('members')
+
         @livewireScripts
     </div>
     <!-- END Page Content -->

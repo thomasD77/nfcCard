@@ -34,10 +34,13 @@ class AdminHomeController extends Controller
         $company = CompanyCredential::latest()->first();
         $photos = Photo::all();
 
-        $package = Package::where('value', 1)->first()->package;
+        $package = Package::where('value', 1)->first();
+
 
         if(! isset($package)){
             $package = 'No package selected';
+        }else{
+            $package = $package->package;
         }
 
         return view('admin.dashboard', compact('company', 'photos', 'package'));

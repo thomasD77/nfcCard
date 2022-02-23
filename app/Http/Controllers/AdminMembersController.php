@@ -10,6 +10,7 @@ use App\Models\Package;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use LaravelQRCode\Facades\QRCode;
 use Maatwebsite\Excel\Facades\Excel;
@@ -242,13 +243,15 @@ class AdminMembersController extends Controller
             $q->where('firstname', 'LIKE', '%' . $member_value . '%')
                 ->Orwhere('lastname', 'LIKE', '%' . $member_value . '%')
                 ->where('archived', 0);
-        })->get();
+        })->paginate(25);
 
         $member = Member::first();
         $member_url = substr_replace($member->memberURL, "" ,-9) ;
+        $active_user_role = Auth::user()->roles->first()->name;
+        $active_user = Auth::user()->id;
 
 
-        return view('admin.members.search', compact('members', 'member', 'member_url'));
+        return view('admin.members.search', compact('members', 'member', 'member_url', 'active_user_role', 'active_user'));
 
     }
 
