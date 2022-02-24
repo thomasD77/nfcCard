@@ -176,13 +176,13 @@
                         <!-- User Dropdown -->
                         <div class="dropdown d-inline-block ms-2">
                             <button type="button" class="btn btn-sm btn-alt-secondary d-flex align-items-center" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img class="rounded-circle" height="30" width="30"  src="{{Auth::user()->avatar ?  asset('/') . Auth::user()->avatar->file : 'http://placehold.it/62x62'}}" alt="Header Avatar">
+                                <img class="rounded-circle" height="30" width="30"  src="{{Auth::user()->avatar ?  asset('/') . Auth::user()->avatar->file : asset('/assets/front/img/Avatar-4.svg')}}" alt="Header Avatar">
                                 <span class="d-none d-sm-inline-block ms-2">{{ Auth::user() ? Auth::user()->name : "" }}</span>
                                 <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block ms-1 mt-1"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-md dropdown-menu-end p-0 border-0" aria-labelledby="page-header-user-dropdown">
                                 <div class="p-3 text-center bg-body-light border-bottom rounded-top">
-                                    <img class="img-avatar img-avatar48 img-avatar-thumb" height="62" width="62" src="{{ Auth::user()->avatar ?  asset('/') . Auth::user()->avatar->file : 'http://placehold.it/62x62' }}" alt="">
+                                    <img class="img-avatar img-avatar48 img-avatar-thumb" height="62" width="62" src="{{ Auth::user()->avatar ?  asset('/') . Auth::user()->avatar->file : asset('/assets/front/img/Avatar-4.svg') }}" alt="">
                                     <p class="mt-2 mb-0 fw-medium">{{ Auth::user() ? Auth::user()->name : "" }}</p>
                                     <p class="mb-0 text-muted fs-sm fw-medium">{{Auth::user() && Auth::user()->roles->first() ? Auth::user()->roles->first()->name : ""}}</p>
                                 </div>
@@ -222,18 +222,18 @@
                         <!-- END User Dropdown -->
 
                         <!-- Languages selection -->
-                        <div class="dropdown ms-3">
-                            <button class="btn btn-alt-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                {{ Config::get('languages')[App::getLocale()] }}
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                @foreach (Config::get('languages') as $lang => $language)
-                                    @if ($lang != App::getLocale())
-                                        <li><a class="dropdown-item" href="{{ route('lang.switch', $lang) }}"> {{$language}}</a></li>
-                                    @endif
-                                @endforeach
-                            </ul>
-                        </div>
+{{--                        <div class="dropdown ms-3">--}}
+{{--                            <button class="btn btn-alt-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">--}}
+{{--                                {{ Config::get('languages')[App::getLocale()] }}--}}
+{{--                            </button>--}}
+{{--                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">--}}
+{{--                                @foreach (Config::get('languages') as $lang => $language)--}}
+{{--                                    @if ($lang != App::getLocale())--}}
+{{--                                        <li><a class="dropdown-item" href="{{ route('lang.switch', $lang) }}"> {{$language}}</a></li>--}}
+{{--                                    @endif--}}
+{{--                                @endforeach--}}
+{{--                            </ul>--}}
+{{--                        </div>--}}
                         <!-- END Languages selection -->
 
                         <!-- Notifications Dropdown -->
@@ -377,10 +377,10 @@
                 <div class="content py-3">
                     <div class="row fs-sm">
                         <div class="col-sm-6 order-sm-2 py-1 text-center text-sm-end">
-                            Crafted with <i class="fa fa-heart text-danger"></i> by <a class="fw-semibold" href="https://1.envato.market/ydb" target="_blank">InnovA</a>
+                            Crafted with <i class="fa fa-heart text-danger"></i> by <a class="fw-semibold" href="https://innova-webcreations.be" target="_blank">INNOVA WEBCREATIONS</a>
                         </div>
                         <div class="col-sm-6 order-sm-1 py-1 text-center text-sm-start">
-                            <a class="fw-semibold" href="https://1.envato.market/AVD6j" target="_blank">InnovA</a> &copy; <span data-toggle="year-copy"></span>
+                            <a class="fw-semibold" href="https://innova-webcreations.be" target="_blank">INNOVA WEBCREATIONS</a> &copy; <span data-toggle="year-copy"></span>
                         </div>
                     </div>
                 </div>

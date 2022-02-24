@@ -57,13 +57,13 @@ use Illuminate\Support\Facades\Auth;
       <!-- User Dropdown -->
       <div class="dropdown d-inline-block ms-2">
         <button type="button" class="btn btn-sm btn-alt-secondary d-flex align-items-center" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img class="rounded-circle" height="30" width="30" src="<?php echo  Auth::user()->avatar ?  asset('/') . Auth::user()->avatar->file : 'http://placehold.it/62x62' ?>" alt="<?php echo Auth::user()->name; ?>">
+            <img class="rounded-circle" height="30" width="30" src="<?php echo  Auth::user()->avatar ?  asset('/') . Auth::user()->avatar->file : asset('/assets/front/img/Avatar-4.svg') ?>" alt="<?php echo Auth::user()->name; ?>">
             <span class="d-none d-sm-inline-block ms-2"><?php echo Auth::user()->name; ?></span>
           <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block ms-1 mt-1"></i>
         </button>
         <div class="dropdown-menu dropdown-menu-md dropdown-menu-end p-0 border-0" aria-labelledby="page-header-user-dropdown">
           <div class="p-3 text-center bg-body-light border-bottom rounded-top">
-              <img class="rounded-circle" height="62" width="62" src="<?php echo  Auth::user()->avatar ?  asset('/') . Auth::user()->avatar->file : 'http://placehold.it/62x62' ?>" alt="<?php echo Auth::user()->name; ?>">
+              <img class="rounded-circle" height="62" width="62" src="<?php echo  Auth::user()->avatar ?  asset('/') . Auth::user()->avatar->file : asset('/assets/front/img/Avatar-4.svg') ?>" alt="<?php echo Auth::user()->name; ?>">
               <p class="mt-2 mb-0 fw-medium"><?php echo Auth::user()->name; ?></p>
             <p class="mb-0 text-muted fs-sm fw-medium"><?php echo Auth::user() && Auth::user()->roles->first() ? Auth::user()->roles->first()->name : "" ?></p>
           </div>

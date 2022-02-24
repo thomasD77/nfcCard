@@ -27,11 +27,9 @@ class AdminMembersController extends Controller
     public function index()
     {
         //
-        $member = Member::first();
-        $member_url = substr_replace($member->memberURL, "" ,-9) ;
         $QRcode = \App\Models\QRCODE::first();
 
-        return view('admin.members.index', compact('member_url', 'member', 'QRcode'));
+        return view('admin.members.index', compact( 'QRcode'));
     }
 
 
@@ -312,9 +310,9 @@ class AdminMembersController extends Controller
         for ($i = $last_member; $i <= $new_amount; $i++ )
         {
             $user = new User();
-            $user->name = 'USER-' . $i;
+            $user->name = 'user-' . $i;
             $user->email = 'info@user-' . $i;
-            $user->password = bcrypt('USER-' . $i);
+            $user->password = bcrypt('info@user-' . $i);
             $user->email_verified_at = Carbon::now()->format('Y-m-d H:i:s');
             $user->created_at = Carbon::now()->format('Y-m-d H:i:s');
             $user->updated_at = Carbon::now()->format('Y-m-d H:i:s');

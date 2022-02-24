@@ -40,7 +40,6 @@ class CreateUsersTable extends Migration
             'username'=>'Thomas',
             'email'=>'info@innova-webcreations.be',
             'avatar_id'=> 1,
-            'member_id' => 1,
             'email_verified_at'=>Carbon::now()->format('Y-m-d H:i:s'),
             'password'=>bcrypt('@Skatemovies777'),
             'created_at'=>Carbon::now()->format('Y-m-d H:i:s'),

@@ -3,6 +3,7 @@
         <thead>
         <tr>
             <th scope="col">ID</th>
+            <th scope="col">avatar</th>
             <th scope="col">name</th>
             <th scope="col">email</th>
             <th scope="col">Registered</th>
@@ -14,6 +15,7 @@
             @foreach($members as $member)
                 <tr>
                     <td>{{$member->id ? $member->id : 'No ID'}}</td>
+                    <td><img class="rounded-circle" height="62" width="62" src="{{$member->avatar ? asset('/card/avatars') . "/" . $member->avatar : asset('/assets/front/img/Avatar-4.svg') }}" alt="{{$member->name}}"></td>
                     <td>{{$member->lastname ? $member->lastname : ''}} {{ $member->firstname ? $member->firstname : '' }}</td>
                     <td>{{$member->email ? $member->email : 'No email'}}</td>
                     <td>{{$member->created_at ? $member->created_at->diffForHumans() : 'Not Verified'}}</td>

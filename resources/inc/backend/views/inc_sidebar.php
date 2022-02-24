@@ -32,7 +32,7 @@ use Illuminate\Support\Facades\Auth;
       <span class="smini-visible">
         <i class="fa fa-circle-notch text-primary"></i>
       </span>
-      <span class="smini-hide fs-5 tracking-wider"><?php echo \App\Models\CompanyCredential::first()->companyName ?></span>
+      <span class="smini-hide fs-5 tracking-wider">Innova</span>
     </a>
     <!-- END Logo -->
 
@@ -132,189 +132,189 @@ use Illuminate\Support\Facades\Auth;
                       </a>
                   </li>
 
-                  <li class="nav-main-heading text-uppercase">Content</li>
-                  <li class="nav-main-item <?php echo request()->is('pages/*') ? ' open' : '' ?>">
-                      <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
-                          <i class="nav-main-link-icon far fa-id-badge"></i>
-                          <span class="nav-main-link-name ">Pages</span>
-                      </a>
-                      <ul class="nav-main-submenu">
-                          <li class="nav-main-item">
-                              <a class="nav-main-link<?php echo request()->is('pages/datatables') ? ' active' : '' ?>" href="<?php echo route('homePage.index') ?>">
-                                  <span class="nav-main-link-name">Home</span>
-                              </a>
-                          </li>
-                          <li class="nav-main-item">
-                              <a class="nav-main-link<?php echo request()->is('pages/slick') ? ' active' : '' ?>" href=" <?php echo route('disclaimer.index')  ?>">
-                                  <span class="nav-main-link-name">Disclaimer</span>
-                              </a>
-                          </li>
-                          <li class="nav-main-item">
-                              <a class="nav-main-link<?php echo request()->is('pages/slick') ? ' active' : '' ?>" href=" <?php echo route('privacy.index')  ?>">
-                                  <span class="nav-main-link-name">Privacy Policy</span>
-                              </a>
-                          </li>
-                          <li class="nav-main-item">
-                              <a class="nav-main-link<?php echo request()->is('pages/slick') ? ' active' : '' ?>" href=" <?php echo route('cookie.index')  ?>">
-                                  <span class="nav-main-link-name">Cookie Policy</span>
-                              </a>
-                          </li>
-                      </ul>
-                  </li>
-
-                  <li class="nav-main-heading text-uppercase">USER INTERFACE</li>
-                  <li class="nav-main-item <?php echo request()->is('pages/*') ? ' open' : '' ?>">
-                      <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
-                          <i class="nav-main-link-icon  fa fa-users"></i>
-                          <span class="nav-main-link-name ">Users</span>
-                      </a>
-                      <ul class="nav-main-submenu">
-                          <li class="nav-main-item">
-                              <a class="nav-main-link<?php echo request()->is('pages/datatables') ? ' active' : '' ?>" href="<?php echo route('users.index') ?>">
-                                  <span class="nav-main-link-name">Data</span>
-                              </a>
-                          </li>
-                          <li class="nav-main-item">
-                              <a class="nav-main-link<?php echo request()->is('pages/slick') ? ' active' : '' ?>" href=" <?php echo route('roles.index')  ?>">
-                                  <span class="nav-main-link-name">Roles</span>
-                              </a>
-                          </li>
-                      </ul>
-                  </li>
-
-                  <li class="nav-main-heading text-uppercase">AGENDA</li>
-                  <li class="nav-main-item <?php echo request()->is('pages/*') ? ' open' : '' ?>">
-                      <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
-                          <i class="nav-main-link-icon  far fa-calendar-alt"></i>
-                          <span class="nav-main-link-name ">Bookings</span>
-                      </a>
-                      <ul class="nav-main-submenu">
-                          <li class="nav-main-item">
-                              <a class="nav-main-link<?php echo request()->is('pages/datatables') ? ' active' : '' ?>" href="<?php echo route('bookings.index') ?>">
-                                  <span class="nav-main-link-name">List</span>
-                              </a>
-                          </li>
-                          <li class="nav-main-item">
-                              <a class="nav-main-link<?php echo request()->is('pages/slick') ? ' active' : '' ?>" href=" <?php echo route('bookings.agenda')  ?>">
-                                  <span class="nav-main-link-name">Agenda</span>
-                              </a>
-                          </li>
-                      </ul>
-                  </li>
-
-                  <li class="nav-main-heading text-uppercase">e-Commerce</li>
-                  <li class="nav-main-item <?php echo request()->is('pages/*') ? ' open' : '' ?>">
-                      <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
-                          <i class="nav-main-link-icon  fab fa-shopify"></i>
-                          <span class="nav-main-link-name ">Shop</span>
-                      </a>
-                      <ul class="nav-main-submenu">
-                          <li class="nav-main-item">
-                              <a class="nav-main-link<?php echo request()->is('pages/datatables') ? ' active' : '' ?>" href="<?php echo route('location.index') ?>">
-                                  <span class="nav-main-link-name">Locations</span>
-                              </a>
-                          </li>
-                          <li class="nav-main-item">
-                              <a class="nav-main-link<?php echo request()->is('pages/datatables') ? ' active' : '' ?>" href="<?php echo route('services.index') ?>">
-                                  <span class="nav-main-link-name">Services</span>
-                              </a>
-                          </li>
-                          <li class="nav-main-item">
-                              <a class="nav-main-link<?php echo request()->is('pages/datatables') ? ' active' : '' ?>" href="<?php echo route('service-categories.index') ?>">
-                                  <span class="nav-main-link-name">Categories</span>
-                              </a>
-                          </li>
-                          <li class="nav-main-item">
-                              <a class="nav-main-link<?php echo request()->is('pages/datatables') ? ' active' : '' ?>" href="<?php echo route('promos.index') ?>">
-                                  <span class="nav-main-link-name">Promos</span>
-                              </a>
-                          </li>
-                      </ul>
-                  </li>
-
-                  <li class="nav-main-heading text-uppercase">People</li>
-                  <li class="nav-main-item <?php echo request()->is('pages/*') ? ' open' : '' ?>">
-                      <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
-                          <i class="nav-main-link-icon far fa-gem"></i>
-                          <span class="nav-main-link-name ">Clients</span>
-                      </a>
-                      <ul class="nav-main-submenu">
-                          <li class="nav-main-item">
-                              <a class="nav-main-link<?php echo request()->is('pages/datatables') ? ' active' : '' ?>" href="<?php echo route('clients.index') ?>">
-                                  <span class="nav-main-link-name">List</span>
-                              </a>
-                          </li>
-                      </ul>
-                  </li>
-
-                  <li class="nav-main-heading text-uppercase">Publish</li>
-                  <li class="nav-main-item <?php echo request()->is('pages/*') ? ' open' : '' ?>">
-                      <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
-                          <i class="nav-main-link-icon fa fa-blog"></i>
-                          <span class="nav-main-link-name ">Blog</span>
-                      </a>
-                      <ul class="nav-main-submenu">
-                          <li class="nav-main-item">
-                              <a class="nav-main-link<?php echo request()->is('pages/datatables') ? ' active' : '' ?>" href="<?php echo route('posts.index') ?>">
-                                  <span class="nav-main-link-name">Posts</span>
-                              </a>
-                          </li>
-                          <li class="nav-main-item">
-                              <a class="nav-main-link<?php echo request()->is('pages/datatables') ? ' active' : '' ?>" href="<?php echo route('postcategories.index') ?>">
-                                  <span class="nav-main-link-name">Category</span>
-                              </a>
-                          </li>
-                          <li class="nav-main-item">
-                              <a class="nav-main-link<?php echo request()->is('pages/datatables') ? ' active' : '' ?>" href="<?php echo route('post.gallery') ?>">
-                                  <span class="nav-main-link-name">Gallery</span>
-                              </a>
-                          </li>
-                      </ul>
-                  </li>
-                  <li class="nav-main-item <?php echo request()->is('pages/*') ? ' open' : '' ?>">
-                      <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
-                          <i class="nav-main-link-icon far fa-question-circle"></i>
-                          <span class="nav-main-link-name ">FAQS</span>
-                      </a>
-                      <ul class="nav-main-submenu">
-                          <li class="nav-main-item">
-                              <a class="nav-main-link<?php echo request()->is('pages/datatables') ? ' active' : '' ?>" href="<?php echo route('faqs.index') ?>">
-                                  <span class="nav-main-link-name">List</span>
-                              </a>
-                          </li>
-                      </ul>
-                  </li>
-                  <li class="nav-main-item <?php echo request()->is('pages/*') ? ' open' : '' ?>">
-                      <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
-                          <i class="nav-main-link-icon fa fa-comment-dots"></i>
-                          <span class="nav-main-link-name ">Testimonials</span>
-                      </a>
-                      <ul class="nav-main-submenu">
-                          <li class="nav-main-item">
-                              <a class="nav-main-link<?php echo request()->is('pages/datatables') ? ' active' : '' ?>" href="<?php echo route('testimonials.index') ?>">
-                                  <span class="nav-main-link-name">List</span>
-                              </a>
-                          </li>
-                          <li class="nav-main-item">
-                              <a class="nav-main-link<?php echo request()->is('pages/datatables') ? ' active' : '' ?>" href="<?php echo route('testimonials.form') ?>">
-                                  <span class="nav-main-link-name">Form</span>
-                              </a>
-                          </li>
-                      </ul>
-                  </li>
-                  <li class="nav-main-item <?php echo request()->is('pages/*') ? ' open' : '' ?>">
-                      <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
-                          <i class="nav-main-link-icon fa fa-comment-dots"></i>
-                          <span class="nav-main-link-name ">Submissions</span>
-                      </a>
-                      <ul class="nav-main-submenu">
-                          <li class="nav-main-item">
-                              <a class="nav-main-link<?php echo request()->is('pages/datatables') ? ' active' : '' ?>" href="<?php echo route('submissions.index') ?>">
-                                  <span class="nav-main-link-name">List</span>
-                              </a>
-                          </li>
-                      </ul>
-                  </li>
+<!--                  <li class="nav-main-heading text-uppercase">Content</li>-->
+<!--                  <li class="nav-main-item --><?php //echo request()->is('pages/*') ? ' open' : '' ?><!--">-->
+<!--                      <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">-->
+<!--                          <i class="nav-main-link-icon far fa-id-badge"></i>-->
+<!--                          <span class="nav-main-link-name ">Pages</span>-->
+<!--                      </a>-->
+<!--                      <ul class="nav-main-submenu">-->
+<!--                          <li class="nav-main-item">-->
+<!--                              <a class="nav-main-link--><?php //echo request()->is('pages/datatables') ? ' active' : '' ?><!--" href="--><?php //echo route('homePage.index') ?><!--">-->
+<!--                                  <span class="nav-main-link-name">Home</span>-->
+<!--                              </a>-->
+<!--                          </li>-->
+<!--                          <li class="nav-main-item">-->
+<!--                              <a class="nav-main-link--><?php //echo request()->is('pages/slick') ? ' active' : '' ?><!--" href=" --><?php //echo route('disclaimer.index')  ?><!--">-->
+<!--                                  <span class="nav-main-link-name">Disclaimer</span>-->
+<!--                              </a>-->
+<!--                          </li>-->
+<!--                          <li class="nav-main-item">-->
+<!--                              <a class="nav-main-link--><?php //echo request()->is('pages/slick') ? ' active' : '' ?><!--" href=" --><?php //echo route('privacy.index')  ?><!--">-->
+<!--                                  <span class="nav-main-link-name">Privacy Policy</span>-->
+<!--                              </a>-->
+<!--                          </li>-->
+<!--                          <li class="nav-main-item">-->
+<!--                              <a class="nav-main-link--><?php //echo request()->is('pages/slick') ? ' active' : '' ?><!--" href=" --><?php //echo route('cookie.index')  ?><!--">-->
+<!--                                  <span class="nav-main-link-name">Cookie Policy</span>-->
+<!--                              </a>-->
+<!--                          </li>-->
+<!--                      </ul>-->
+<!--                  </li>-->
+<!---->
+<!--                  <li class="nav-main-heading text-uppercase">USER INTERFACE</li>-->
+<!--                  <li class="nav-main-item --><?php //echo request()->is('pages/*') ? ' open' : '' ?><!--">-->
+<!--                      <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">-->
+<!--                          <i class="nav-main-link-icon  fa fa-users"></i>-->
+<!--                          <span class="nav-main-link-name ">Users</span>-->
+<!--                      </a>-->
+<!--                      <ul class="nav-main-submenu">-->
+<!--                          <li class="nav-main-item">-->
+<!--                              <a class="nav-main-link--><?php //echo request()->is('pages/datatables') ? ' active' : '' ?><!--" href="--><?php //echo route('users.index') ?><!--">-->
+<!--                                  <span class="nav-main-link-name">Data</span>-->
+<!--                              </a>-->
+<!--                          </li>-->
+<!--                          <li class="nav-main-item">-->
+<!--                              <a class="nav-main-link--><?php //echo request()->is('pages/slick') ? ' active' : '' ?><!--" href=" --><?php //echo route('roles.index')  ?><!--">-->
+<!--                                  <span class="nav-main-link-name">Roles</span>-->
+<!--                              </a>-->
+<!--                          </li>-->
+<!--                      </ul>-->
+<!--                  </li>-->
+<!---->
+<!--                  <li class="nav-main-heading text-uppercase">AGENDA</li>-->
+<!--                  <li class="nav-main-item --><?php //echo request()->is('pages/*') ? ' open' : '' ?><!--">-->
+<!--                      <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">-->
+<!--                          <i class="nav-main-link-icon  far fa-calendar-alt"></i>-->
+<!--                          <span class="nav-main-link-name ">Bookings</span>-->
+<!--                      </a>-->
+<!--                      <ul class="nav-main-submenu">-->
+<!--                          <li class="nav-main-item">-->
+<!--                              <a class="nav-main-link--><?php //echo request()->is('pages/datatables') ? ' active' : '' ?><!--" href="--><?php //echo route('bookings.index') ?><!--">-->
+<!--                                  <span class="nav-main-link-name">List</span>-->
+<!--                              </a>-->
+<!--                          </li>-->
+<!--                          <li class="nav-main-item">-->
+<!--                              <a class="nav-main-link--><?php //echo request()->is('pages/slick') ? ' active' : '' ?><!--" href=" --><?php //echo route('bookings.agenda')  ?><!--">-->
+<!--                                  <span class="nav-main-link-name">Agenda</span>-->
+<!--                              </a>-->
+<!--                          </li>-->
+<!--                      </ul>-->
+<!--                  </li>-->
+<!---->
+<!--                  <li class="nav-main-heading text-uppercase">e-Commerce</li>-->
+<!--                  <li class="nav-main-item --><?php //echo request()->is('pages/*') ? ' open' : '' ?><!--">-->
+<!--                      <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">-->
+<!--                          <i class="nav-main-link-icon  fab fa-shopify"></i>-->
+<!--                          <span class="nav-main-link-name ">Shop</span>-->
+<!--                      </a>-->
+<!--                      <ul class="nav-main-submenu">-->
+<!--                          <li class="nav-main-item">-->
+<!--                              <a class="nav-main-link--><?php //echo request()->is('pages/datatables') ? ' active' : '' ?><!--" href="--><?php //echo route('location.index') ?><!--">-->
+<!--                                  <span class="nav-main-link-name">Locations</span>-->
+<!--                              </a>-->
+<!--                          </li>-->
+<!--                          <li class="nav-main-item">-->
+<!--                              <a class="nav-main-link--><?php //echo request()->is('pages/datatables') ? ' active' : '' ?><!--" href="--><?php //echo route('services.index') ?><!--">-->
+<!--                                  <span class="nav-main-link-name">Services</span>-->
+<!--                              </a>-->
+<!--                          </li>-->
+<!--                          <li class="nav-main-item">-->
+<!--                              <a class="nav-main-link--><?php //echo request()->is('pages/datatables') ? ' active' : '' ?><!--" href="--><?php //echo route('service-categories.index') ?><!--">-->
+<!--                                  <span class="nav-main-link-name">Categories</span>-->
+<!--                              </a>-->
+<!--                          </li>-->
+<!--                          <li class="nav-main-item">-->
+<!--                              <a class="nav-main-link--><?php //echo request()->is('pages/datatables') ? ' active' : '' ?><!--" href="--><?php //echo route('promos.index') ?><!--">-->
+<!--                                  <span class="nav-main-link-name">Promos</span>-->
+<!--                              </a>-->
+<!--                          </li>-->
+<!--                      </ul>-->
+<!--                  </li>-->
+<!---->
+<!--                  <li class="nav-main-heading text-uppercase">People</li>-->
+<!--                  <li class="nav-main-item --><?php //echo request()->is('pages/*') ? ' open' : '' ?><!--">-->
+<!--                      <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">-->
+<!--                          <i class="nav-main-link-icon far fa-gem"></i>-->
+<!--                          <span class="nav-main-link-name ">Clients</span>-->
+<!--                      </a>-->
+<!--                      <ul class="nav-main-submenu">-->
+<!--                          <li class="nav-main-item">-->
+<!--                              <a class="nav-main-link--><?php //echo request()->is('pages/datatables') ? ' active' : '' ?><!--" href="--><?php //echo route('clients.index') ?><!--">-->
+<!--                                  <span class="nav-main-link-name">List</span>-->
+<!--                              </a>-->
+<!--                          </li>-->
+<!--                      </ul>-->
+<!--                  </li>-->
+<!---->
+<!--                  <li class="nav-main-heading text-uppercase">Publish</li>-->
+<!--                  <li class="nav-main-item --><?php //echo request()->is('pages/*') ? ' open' : '' ?><!--">-->
+<!--                      <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">-->
+<!--                          <i class="nav-main-link-icon fa fa-blog"></i>-->
+<!--                          <span class="nav-main-link-name ">Blog</span>-->
+<!--                      </a>-->
+<!--                      <ul class="nav-main-submenu">-->
+<!--                          <li class="nav-main-item">-->
+<!--                              <a class="nav-main-link--><?php //echo request()->is('pages/datatables') ? ' active' : '' ?><!--" href="--><?php //echo route('posts.index') ?><!--">-->
+<!--                                  <span class="nav-main-link-name">Posts</span>-->
+<!--                              </a>-->
+<!--                          </li>-->
+<!--                          <li class="nav-main-item">-->
+<!--                              <a class="nav-main-link--><?php //echo request()->is('pages/datatables') ? ' active' : '' ?><!--" href="--><?php //echo route('postcategories.index') ?><!--">-->
+<!--                                  <span class="nav-main-link-name">Category</span>-->
+<!--                              </a>-->
+<!--                          </li>-->
+<!--                          <li class="nav-main-item">-->
+<!--                              <a class="nav-main-link--><?php //echo request()->is('pages/datatables') ? ' active' : '' ?><!--" href="--><?php //echo route('post.gallery') ?><!--">-->
+<!--                                  <span class="nav-main-link-name">Gallery</span>-->
+<!--                              </a>-->
+<!--                          </li>-->
+<!--                      </ul>-->
+<!--                  </li>-->
+<!--                  <li class="nav-main-item --><?php //echo request()->is('pages/*') ? ' open' : '' ?><!--">-->
+<!--                      <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">-->
+<!--                          <i class="nav-main-link-icon far fa-question-circle"></i>-->
+<!--                          <span class="nav-main-link-name ">FAQS</span>-->
+<!--                      </a>-->
+<!--                      <ul class="nav-main-submenu">-->
+<!--                          <li class="nav-main-item">-->
+<!--                              <a class="nav-main-link--><?php //echo request()->is('pages/datatables') ? ' active' : '' ?><!--" href="--><?php //echo route('faqs.index') ?><!--">-->
+<!--                                  <span class="nav-main-link-name">List</span>-->
+<!--                              </a>-->
+<!--                          </li>-->
+<!--                      </ul>-->
+<!--                  </li>-->
+<!--                  <li class="nav-main-item --><?php //echo request()->is('pages/*') ? ' open' : '' ?><!--">-->
+<!--                      <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">-->
+<!--                          <i class="nav-main-link-icon fa fa-comment-dots"></i>-->
+<!--                          <span class="nav-main-link-name ">Testimonials</span>-->
+<!--                      </a>-->
+<!--                      <ul class="nav-main-submenu">-->
+<!--                          <li class="nav-main-item">-->
+<!--                              <a class="nav-main-link--><?php //echo request()->is('pages/datatables') ? ' active' : '' ?><!--" href="--><?php //echo route('testimonials.index') ?><!--">-->
+<!--                                  <span class="nav-main-link-name">List</span>-->
+<!--                              </a>-->
+<!--                          </li>-->
+<!--                          <li class="nav-main-item">-->
+<!--                              <a class="nav-main-link--><?php //echo request()->is('pages/datatables') ? ' active' : '' ?><!--" href="--><?php //echo route('testimonials.form') ?><!--">-->
+<!--                                  <span class="nav-main-link-name">Form</span>-->
+<!--                              </a>-->
+<!--                          </li>-->
+<!--                      </ul>-->
+<!--                  </li>-->
+<!--                  <li class="nav-main-item --><?php //echo request()->is('pages/*') ? ' open' : '' ?><!--">-->
+<!--                      <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">-->
+<!--                          <i class="nav-main-link-icon fa fa-comment-dots"></i>-->
+<!--                          <span class="nav-main-link-name ">Submissions</span>-->
+<!--                      </a>-->
+<!--                      <ul class="nav-main-submenu">-->
+<!--                          <li class="nav-main-item">-->
+<!--                              <a class="nav-main-link--><?php //echo request()->is('pages/datatables') ? ' active' : '' ?><!--" href="--><?php //echo route('submissions.index') ?><!--">-->
+<!--                                  <span class="nav-main-link-name">List</span>-->
+<!--                              </a>-->
+<!--                          </li>-->
+<!--                      </ul>-->
+<!--                  </li>-->
 
 
 

@@ -8,7 +8,7 @@
                         </span>
 
 
-            <span class="smini-hide fs-5 tracking-wider"><?php use Illuminate\Support\Facades\Auth;echo Auth::user()->billing ? Auth::user()->billing->company : ""   ?></span>
+            <span class="smini-hide fs-5 tracking-wider">Innova</span>
         </a>
         <!-- END Logo -->
 
@@ -105,41 +105,41 @@
                     </a>
                 </li>
                 @can('is_superAdmin')
-                <li class="nav-main-heading">Content</li>
-                <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
-                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
-                        <i class="nav-main-link-icon far fa-id-badge"></i>
-                        <span class="nav-main-link-name">Pages</span>
-                    </a>
-                    <ul class="nav-main-submenu">
-                        <li class="nav-main-item">
-                            <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('homePage.index')}}">
-                                <span class="nav-main-link-name">Home</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="nav-main-submenu">
-                        <li class="nav-main-item">
-                            <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('disclaimer.index')}}">
-                                <span class="nav-main-link-name ms-3">Disclaimer</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="nav-main-submenu">
-                        <li class="nav-main-item">
-                            <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('privacy.index')}}">
-                                <span class="nav-main-link-name ms-3">Privacy Policy</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="nav-main-submenu">
-                        <li class="nav-main-item">
-                            <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('cookie.index')}}">
-                                <span class="nav-main-link-name ms-3">Cookie Policy</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+{{--                <li class="nav-main-heading">Content</li>--}}
+{{--                <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">--}}
+{{--                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">--}}
+{{--                        <i class="nav-main-link-icon far fa-id-badge"></i>--}}
+{{--                        <span class="nav-main-link-name">Pages</span>--}}
+{{--                    </a>--}}
+{{--                    <ul class="nav-main-submenu">--}}
+{{--                        <li class="nav-main-item">--}}
+{{--                            <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('homePage.index')}}">--}}
+{{--                                <span class="nav-main-link-name">Home</span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                    </ul>--}}
+{{--                    <ul class="nav-main-submenu">--}}
+{{--                        <li class="nav-main-item">--}}
+{{--                            <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('disclaimer.index')}}">--}}
+{{--                                <span class="nav-main-link-name ms-3">Disclaimer</span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                    </ul>--}}
+{{--                    <ul class="nav-main-submenu">--}}
+{{--                        <li class="nav-main-item">--}}
+{{--                            <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('privacy.index')}}">--}}
+{{--                                <span class="nav-main-link-name ms-3">Privacy Policy</span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                    </ul>--}}
+{{--                    <ul class="nav-main-submenu">--}}
+{{--                        <li class="nav-main-item">--}}
+{{--                            <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('cookie.index')}}">--}}
+{{--                                <span class="nav-main-link-name ms-3">Cookie Policy</span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                    </ul>--}}
+{{--                </li>--}}
                 @endcan
 
                 @can('is_superAdmin')
@@ -155,13 +155,13 @@
                                     <span class="nav-main-link-name">List</span>
                                 </a>
                             </li>
-                            @can('is_superAdmin')
-                                <li class="nav-main-item">
-                                    <a class="nav-main-link{{ request()->is('pages/slick') ? ' active' : '' }}" href="{{route('roles.index')}}">
-                                        <span class="nav-main-link-name">Roles</span>
-                                    </a>
-                                </li>
-                            @endcan
+{{--                            @can('is_superAdmin')--}}
+{{--                                <li class="nav-main-item">--}}
+{{--                                    <a class="nav-main-link{{ request()->is('pages/slick') ? ' active' : '' }}" href="{{route('roles.index')}}">--}}
+{{--                                        <span class="nav-main-link-name">Roles</span>--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+{{--                            @endcan--}}
                         </ul>
                     </li>
                 @endcan

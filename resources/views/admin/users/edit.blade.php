@@ -8,13 +8,13 @@
 <div class="bg-primary-dark" style="background-image: url({{asset('images/general/banner6.png')}}); background-size: cover  ; background-repeat: no-repeat ">
     <div class="content content-full text-center">
       <div class="my-3">
-          <img class="rounded-circle border border-white border border-3" height="80" width="80" src="{{$user->avatar ? asset('/') . $user->avatar->file : 'http://placehold.it/62x62'}}" alt="{{$user->name}}">
+          <img class="rounded-circle border border-white border border-3" height="80" width="80" src="{{$user->avatar ? asset('/') . $user->avatar->file : asset('/assets/front/img/Avatar-4.svg')}}" alt="{{$user->name}}">
       </div>
       <h1 class="h2 text-white mb-0">Edit Account</h1>
       <h2 class="h4 fw-normal text-white-75">
           <?php echo Auth::user()->name; ?>
       </h2>
-      <a class="btn btn-alt-secondary" href="{{ asset('/dashboard') }}">
+      <a class="btn btn-alt-secondary" href="{{ asset('/admin') }}">
         <i class="fa fa-fw fa-arrow-left text-danger"></i> Back to Dashboard
       </a>
     </div>
@@ -75,7 +75,7 @@
               <div class="mb-4">
                   <label class="form-label">Your Avatar</label>
                   <div class="mb-4">
-                      <img class="rounded-circle" height="80" width="80" src="{{$user->avatar ? asset('/') . $user->avatar->file : 'http://placehold.it/62x62'}}" alt="{{$user->name}}">
+                      <img class="rounded-circle" height="80" width="80" src="{{$user->avatar ? asset('/') . $user->avatar->file : asset('/assets/front/img/Avatar-4.svg')}}" alt="{{$user->name}}">
                   </div>
                   <div class="form-group mb-4">
                       {!! Form::label('avatar_id', 'Choose a new avatar:', ['class'=>'form-label']) !!}

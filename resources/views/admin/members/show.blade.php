@@ -8,7 +8,7 @@
 <div class="bg-primary-dark" style="background-image: url({{asset('images/general/banner6.png')}}); background-size: cover  ; background-repeat: no-repeat ">
         <div class="content content-full text-center">
             <div class="my-3">
-                <img class="rounded-circle border border-white border border-3" height="80" width="80" src="{{Auth::user()->avatar ? asset('/') . Auth::user()->avatar->file : 'http://placehold.it/62x62'}}" alt="{{Auth::user()->name}}">
+                <img class="rounded-circle border border-white border border-3" height="80" width="80" src="{{Auth::user()->avatar ? asset('/') . Auth::user()->avatar->file : asset('/assets/front/img/Avatar-4.svg')}}" alt="{{Auth::user()->name}}">
             </div>
             <h1 class="h2 text-white mb-0">Member</h1>
             <h2 class="h4 fw-normal text-white-75">

@@ -6,7 +6,7 @@
                         <span class="smini-visible">
                             <i class="fa fa-circle-notch text-primary"></i>
                         </span>
-            <span class="smini-hide fs-5 tracking-wider"><?php echo \App\Models\CompanyCredential::first()->companyName ?></span>
+            <span class="smini-hide fs-5 tracking-wider">INNOVA</span>
         </a>
         <!-- END Logo -->
 
@@ -103,19 +103,13 @@
                     </a>
                 </li>
                 <li class="nav-main-heading text-uppercase">My Card</li>
-                <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
-                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
-                        <i class="nav-main-link-icon  far fa-calendar-alt"></i>
-                        <span class="nav-main-link-name ">Members</span>
-                    </a>
-                    <ul class="nav-main-submenu">
-                        <li class="nav-main-item">
-                            <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('members.index')}}">
-                                <span class="nav-main-link-name">List</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+
+
+                        <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('members.index')}}">
+                            <i class="nav-main-link-icon  far fa-calendar-alt"></i><span class="nav-main-link-name">ACCOUNT</span>
+                        </a>
+
+
             </ul>
         </div>
         <!-- END Side Navigation -->

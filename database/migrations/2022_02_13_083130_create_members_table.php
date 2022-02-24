@@ -25,49 +25,40 @@ class CreateMembersTable extends Migration
             $table->string('memberQRcode')->default("");
 
             //General
-            $table->string('firstname')->default("MEMBER FIRSTNAME");
-            $table->string('lastname')->default("MEMBER LASTNAME");
-            $table->string('email')->default("MEMBER EMAIL");
-            $table->string('company')->default("MEMBER COMPANY");
-            $table->string('jobTitle')->default("MEMBER JOB TITLE");
+            $table->string('firstname')->default("MEMBER");
+            $table->string('lastname')->default("");
+            $table->string('email')->default("");
+            $table->string('company')->default("");
+            $table->string('jobTitle')->default("");
             $table->date('age')->default(Carbon::now()->format('Y-m-d'));
             $table->text('shortDescription')->nullable();
             $table->text('notes')->nullable();
-            $table->string('website')->default("MEMBER WEBSITE");
+            $table->string('website')->default("");
             $table->boolean('archived')->default(0);
 
             //Contacts
-            $table->string('mobile')->default("MEMBER MOBILE");
-            $table->string('mobileWork')->default("MEMBER MOBILE WORK");
-            $table->string('addressLine1')->default("MEMBER ADDRESS 1");
-            $table->string('addressLine2')->default("MEMBER ADDRESS 2");
+            $table->string('mobile')->default("");
+            $table->string('mobileWork')->default("");
+            $table->string('addressLine1')->default("");
+            $table->string('addressLine2')->default("");
 
-            $table->string('city')->default("MEMBER CITY");
-            $table->string('postalCode')->default("MEMBER POSTALCODE");
-            $table->string('country')->default("MEMBER COUNTRY");
+            $table->string('city')->default("");
+            $table->string('postalCode')->default("");
+            $table->string('country')->default("");
 
             //Socials
-            $table->string('facebook')->default("FACEBOOK");
-            $table->string('instagram')->default("INSTAGRAM");
-            $table->string('linkedIn')->default("LINKEDIN");
-            $table->string('twitter')->default("TWITTER");
-            $table->string('youTube')->default("YOUTUBE");
-            $table->string('tikTok')->default("TIKTOK");
-            $table->string('whatsApp')->default("WHATSAPP");
-            $table->string('facebookMessenger')->default("MESSENGER");
+            $table->string('facebook')->default("");
+            $table->string('instagram')->default("");
+            $table->string('linkedIn')->default("");
+            $table->string('twitter')->default("");
+            $table->string('youTube')->default("");
+            $table->string('tikTok')->default("");
+            $table->string('whatsApp')->default("");
+            $table->string('facebookMessenger')->default("");
 
 
             $table->timestamps();
         });
-
-        DB::table('members')->insert([
-            'firstname' => 'Thomas',
-            'lastname' => 'Demeulenaere',
-            'email' => 'info@innova-webcreations.be',
-            'company' => 'Innova Webcreations',
-            'notes' => 'This is a default user',
-            // 'user_id', 1,
-        ]);
     }
 
     /**

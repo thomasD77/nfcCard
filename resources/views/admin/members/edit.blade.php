@@ -175,7 +175,7 @@
                     <div class="mb-4">
                         <label class="form-label">Your Avatar</label>
                         <div class="mb-4">
-                            <img class="rounded-circle" height="150" width="150" src="{{$member->avatar ? asset('/card/avatars'). "/" . $member->avatar : 'http://placehold.it/62x62'}}" alt="{{$member->avatar}}">
+                            <img class="rounded-circle" height="150" width="150" src="{{$member->avatar ? asset('/card/avatars'). "/" . $member->avatar : asset('/assets/front/img/Avatar-4.svg')}}" alt="{{$member->avatar}}">
                         </div>
                         <div class="form-group mb-4">
                             {!! Form::label('avatar_id', 'Choose a new avatar:', ['class'=>'form-label']) !!}

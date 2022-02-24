@@ -51,6 +51,7 @@
     </div>
     <!-- END Hero -->
 
+    @canany(['is_superAdmin', 'is_admin'])
     <!-- Page Content -->
     <div class="content">
         <div class="row row-deck">
@@ -163,6 +164,9 @@
         </div>
     </div>
     <!-- END Page Content -->
+
+
+    @endcanany
 
 
 

@@ -1,21 +1,23 @@
 <!-- Dynamic Table Full -->
 <div class="block block-rounded row">
     <div class="block-header block-header-default d-flex justify-content-between">
-        <!-- Search Form (visible on larger screens) -->
-        <form class="d-none d-md-inline-block" action="{{action('App\Http\Controllers\AdminMembersController@searchMember')}}" method="POST">
-            @csrf
-            <div class="input-group input-group-sm">
-                <input type="text" class="form-control form-control-alt" placeholder="Search.." id="page-header-search-input2" name="member">
-                <span class="input-group-text border-0"><button class="border border-0" type="submit"><i class="fa fa-fw fa-search"></i></button></span>
-            </div>
-        </form>
-        <!-- END Search Form -->
+        @canany(['is_superAdmin', 'is_admin'])
+            <!-- Search Form (visible on larger screens) -->
+            <form class="d-none d-md-inline-block col-6" action="{{action('App\Http\Controllers\AdminMembersController@searchMember')}}" method="POST">
+                @csrf
+                <div class="input-group input-group-sm">
+                    <input type="text" class="form-control form-control-alt" placeholder="Search.." id="page-header-search-input2" name="member">
+                    <span class="input-group-text border-0"><button class="border border-0" type="submit"><i class="fa fa-fw fa-search"></i></button></span>
+                </div>
+            </form>
+            <!-- END Search Form -->
+        @endcanany
 
         <div>
-            <a class="btn btn-alt-success" role="button" href="{{ route('members.credentials') }}">
-                <i class="fa fa-print mr-2"></i> Member List
-            </a>
             @canany(['is_superAdmin', 'is_admin'])
+                <a class="btn btn-alt-warning" role="button" href="{{ route('members.credentials') }}">
+                    <i class="fa fa-print me-2"></i> Member List
+                </a>
                 <a href="{{route('members.archive')}}">
                     <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Archive">
                         <i class="fa fa-archive "></i>
@@ -32,6 +34,7 @@
                 <thead>
                 <tr>
                     <th scope="col">#</th>
+                    <th scope="col">avatar</th>
                     <th scope="col">name</th>
                     <th scope="col">email</th>
                     @canany(['is_superAdmin', 'is_admin'])
@@ -47,8 +50,9 @@
                             @if($active_user == $member->user_id)
                                 <tr>
                                     <td>{{$member->id ? $member->id : 'No ID'}}</td>
-                                    <td>{{$member->lastname ? $member->lastname : ""}} {{ $member->firstname ? $member->firstname : '' }}</td>
-                                    <td>{{$member->email ? $member->email : ""}}</td>
+                                    <td><img class="rounded-circle" height="62" width="62" src="{{$member->avatar ? asset('/card/avatars') . "/" . $member->avatar : asset('/assets/front/img/Avatar-4.svg') }}" alt="{{$member->name}}"></td>
+                                    <td>{{$member->lastname ? $member->lastname : "unknown"}} {{ $member->firstname ? $member->firstname : '' }}</td>
+                                    <td>{{$member->email ? $member->email : "unknown"}}</td>
                                     <td>
                                         <div class="btn-group">
                                             <a href="{{route('members.edit', $member->id)}}">
@@ -68,8 +72,9 @@
                         @else
                             <tr>
                                 <td>{{$member->id ? $member->id : 'No ID'}}</td>
-                                <td>{{$member->lastname ? $member->lastname : ""}} {{ $member->firstname ? $member->firstname : '' }}</td>
-                                <td>{{$member->email ? $member->email : ""}}</td>
+                                <td><img class="rounded-circle" height="62" width="62" src="{{$member->avatar ? asset('/card/avatars') . "/" . $member->avatar : asset('/assets/front/img/Avatar-4.svg') }}" alt="{{$member->name}}"></td>
+                                <td>{{$member->lastname ? $member->lastname : "unknown"}} {{ $member->firstname ? $member->firstname : '' }}</td>
+                                <td>{{$member->email ? $member->email : "unknown"}}</td>
 {{--                                <td>{{$member->user ? $member->user->roles->first()->name : ""}}</td>--}}
                                 <td>
                                     <div class="btn-group">
@@ -79,7 +84,7 @@
                                             </button>
                                         </a>
                                         <button class="btn btn-sm btn-alt-secondary" wire:click="archiveMember({{$member->id}})"><i class="fa fa-archive"></i></button>
-                                        <a href="{{route('members.landingpageDefault', $member->id)}}">
+                                        <a href="{{route('members.landingpageDefault', $member->id)}}" target="_blank">
                                             <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Show member">
                                                 <i class="far fa-eye"></i>
                                             </button>
@@ -93,9 +98,11 @@
                 </tbody>
             </table>
         </div>
-        <div class="d-flex justify-content-center">
-            {!! $members->links()  !!}
-        </div>
+        @canany(['is_superAdmin', 'is_admin'])
+            <div class="d-flex justify-content-center">
+                {!! $members->links()  !!}
+            </div>
+        @endcanany
 
     </div>
 </div>

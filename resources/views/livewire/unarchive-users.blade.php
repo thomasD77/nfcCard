@@ -18,7 +18,7 @@
                 <tr>
                     <td>{{$user->id ? $user->id : 'No ID'}}</td>
                     <td>{{$user->name ? $user->name : 'No Name'}}</td>
-                    <td><img class="rounded-circle" height="62" width="62" src="{{$user->avatar ? asset('/') . $user->avatar->file : 'http://placehold.it/62x62'}}" alt="{{$user->name}}"></td>
+                    <td><img class="rounded-circle" height="62" width="62" src="{{$user->avatar ? asset('/') . $user->avatar->file : asset('/assets/front/img/Avatar-3.svg') }}" alt="{{$user->name}}"></td>
                     <td>{{$user->email ? $user->email : 'No Email'}}</td>
                     <td>@foreach($user->roles as $role)
                             <span class="rounded-pill bg-info-light text-info p-2">{{$role->name ? $role->name : 'No Role'}}</span>

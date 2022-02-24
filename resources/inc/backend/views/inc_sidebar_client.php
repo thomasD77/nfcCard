@@ -32,7 +32,7 @@ use Illuminate\Support\Facades\Auth;
       <span class="smini-visible">
         <i class="fa fa-circle-notch text-primary"></i>
       </span>
-      <span class="smini-hide fs-5 tracking-wider"><?php echo \App\Models\CompanyCredential::first()->companyName ?></span>
+      <span class="smini-hide fs-5 tracking-wider">INNOVA</span>
     </a>
     <!-- END Logo -->
 
@@ -131,20 +131,20 @@ use Illuminate\Support\Facades\Auth;
                           <span class="nav-main-link-name">Dashboard</span>
                       </a>
                   </li>
-                  <li class="nav-main-heading text-uppercase">AGENDA</li>
-                  <li class="nav-main-item <?php echo request()->is('pages/*') ? ' open' : '' ?>">
-                      <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
-                          <i class="nav-main-link-icon  far fa-calendar-alt"></i>
-                          <span class="nav-main-link-name ">Bookings</span>
-                      </a>
-                      <ul class="nav-main-submenu">
-                          <li class="nav-main-item">
-                              <a class="nav-main-link<?php echo request()->is('pages/datatables') ? ' active' : '' ?>" href="<?php echo route('bookings.index') ?>">
-                                  <span class="nav-main-link-name">List</span>
-                              </a>
-                          </li>
-                      </ul>
-                  </li>
+<!--                  <li class="nav-main-heading text-uppercase">AGENDA</li>-->
+<!--                  <li class="nav-main-item --><?php //echo request()->is('pages/*') ? ' open' : '' ?><!--">-->
+<!--                      <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">-->
+<!--                          <i class="nav-main-link-icon  far fa-calendar-alt"></i>-->
+<!--                          <span class="nav-main-link-name ">Bookings</span>-->
+<!--                      </a>-->
+<!--                      <ul class="nav-main-submenu">-->
+<!--                          <li class="nav-main-item">-->
+<!--                              <a class="nav-main-link--><?php //echo request()->is('pages/datatables') ? ' active' : '' ?><!--" href="--><?php //echo route('bookings.index') ?><!--">-->
+<!--                                  <span class="nav-main-link-name">List</span>-->
+<!--                              </a>-->
+<!--                          </li>-->
+<!--                      </ul>-->
+<!--                  </li>-->
               </ul>
           </div>
       </ul>
