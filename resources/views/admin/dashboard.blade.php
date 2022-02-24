@@ -57,17 +57,14 @@
             <div class="col-md-6 col-xl-4">
                 <div class="block block-rounded">
                     <div class="block-header block-header-default">
-                        <h3 class="block-title">Welcome</h3>
+                        <h3 class="block-title">STAP 1: OUR URL</h3>
                     </div>
                     <div class="block-content fs-sm text-muted">
-                        <p>
-                            We’ve put everything together, so you can start working on your Laravel project as soon as possible! OneUI assets are integrated and work seamlessly with Laravel Mix, so you can use the npm scripts as you would in any other Laravel project.
+                        <p style="font-weight: bold">
+                            Current URL:
                         </p>
                         <p>
-                            Feel free to use any examples you like from the full HTML version to build your own pages.
-                        </p>
-                        <p>
-                            <strong>Wish you all the best and happy coding!</strong>
+                            {{ $currentURL->url }}
                         </p>
                     </div>
                 </div>
@@ -75,59 +72,91 @@
             <div class="col-md-6 col-xl-4">
                 <div class="block block-rounded">
                     <div class="block-header block-header-default">
-                        <h3 class="block-title">Package</h3>
+                        <h3 class="block-title">STAP 2: Package</h3>
+                        <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            <i class="fa fa-arrow-down"></i>
+                        </a>
                     </div>
                     <div class="block-content fs-sm text-muted">
-                        <form class="col-6 mb-0" name="contactformulier"
-                              action="{{action('App\Http\Controllers\CardController@choosePackage')}}" method="post">
-                            @csrf
-                           <div class="form-check">
-                                <input class="form-check-input" type="radio" value="vCard" name="flexRadioDefault" id="flexRadioDefault1">
-                                <label class="form-check-label" for="flexRadioDefault1">
-                                    vCard
-                                </label>
+                        <div class="collapse" id="collapseExample">
+                            <div class="card card-body border border-0">
+                                <form class="col-6 mb-0" name="contactformulier"
+                                      action="{{action('App\Http\Controllers\CardController@choosePackage')}}" method="post">
+                                    @csrf
+                                    <div class="form-check my-4">
+                                        <input class="form-check-input" type="radio" value="default" name="flexRadioDefault" id="flexRadioDefault2">
+                                        <label class="form-check-label" for="flexRadioDefault2">
+                                            Landingpage (default)
+                                        </label>
+                                    </div>
+                                    <div class="form-check my-4">
+                                        <input class="form-check-input" type="radio" value="custom" name="flexRadioDefault" id="flexRadioDefault2">
+                                        <label class="form-check-label" for="flexRadioDefault2">
+                                            Landingpage (custom)
+                                        </label>
+                                    </div>
+                                    <div class="form-check my-4">
+                                        <input class="form-check-input" type="radio" value="vCard" name="flexRadioDefault" id="flexRadioDefault1">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            vCard
+                                        </label>
+                                    </div>
+                                    <div class="my-4">
+                                        <button type="submit" class="btn btn-alt-primary">
+                                            <i class="fa fa-paper-plane me-1 opacity-50"></i> Choose
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" value="custom" name="flexRadioDefault" id="flexRadioDefault2">
-                                <label class="form-check-label" for="flexRadioDefault2">
-                                    Landingpage (custom)
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" value="default" name="flexRadioDefault" id="flexRadioDefault2">
-                                <label class="form-check-label" for="flexRadioDefault2">
-                                    Landingpage (default)
-                                </label>
-                            </div>
-                            <div class="my-4">
-                                <button type="submit" class="btn btn-alt-primary">
-                                    <i class="fa fa-paper-plane me-1 opacity-50"></i> Choose
-                                </button>
-                            </div>
-                        </form>
-                        <p>Current package: {{ $package }}</p>
+                        </div>
+
+                        <p style="font-weight: bold">Current package: </p>
+                        <p> {{ $package }} </p>
                     </div>
                 </div>
             </div>
             <div class="col-md-6 col-xl-4">
                 <div class="block block-rounded">
                     <div class="block-header block-header-default">
-                        <h3 class="block-title">Logo</h3>
-                        <h3 class="block-title">Logo</h3>
+                        <h3 class="block-title">STAP 3: QRcode</h3>
+                        <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseQR" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            <i class="fa fa-arrow-down"></i>
+                        </a>
                     </div>
-                    <div class="block-content d-flex justify-content-center align-items-center">
-                        @if(isset($photos))
-                            @php
-                                $company = \App\Models\CompanyCredential::find(1);
-                                if(isset($company)){
-                                    $photo = \App\Models\Photo::where('credential_id', $company->id)->first();
-                                }
-                            @endphp
-                            @if(isset($photo))
-                                <input type="hidden" name="photo" value="{{$photo->id}}">
-                                <img class="rounded mt-2" height="200" width="200" src="{{$photo ? asset('images/form_credentials') . $photo->file : 'http://placehold.it/62x62'}}" alt="{{$company ? $company->firstname : ""}}">
+                    <div class="block-content fs-sm text-muted">
+                        <div class="collapse" id="collapseQR">
+                            <div class="card card-body border border-0">
+                                <form class="col-6 mb-0" name="contactformulier"
+                                      action="{{action('App\Http\Controllers\QRcodeController@QRcodeSelect')}}" method="post">
+                                    @csrf
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" value="ja" name="flexRadioDefault" id="flexRadioDefault1">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Ja
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" value="nee" name="flexRadioDefault" id="flexRadioDefault2">
+                                        <label class="form-check-label" for="flexRadioDefault2">
+                                            Nee
+                                        </label>
+                                    </div>
+                                    <div class="my-4">
+                                        <button type="submit" class="btn btn-alt-primary">
+                                            <i class="fa fa-paper-plane me-1 opacity-50"></i> Choose
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <p style="font-weight: bold">QRcode status: </p>
+                            @if($QRcode->status == 0)
+                                <p>Nee</p>
                             @endif
-                        @endif
+                            @if($QRcode->status == 1)
+                                <p>Ja</p>
+                            @endif
                     </div>
                 </div>
             </div>
@@ -135,9 +164,7 @@
     </div>
     <!-- END Page Content -->
 
-{{--    @canany(['is_admin', 'is_superAdmin', 'is_client'])--}}
-{{--        @include('admin.includes.dash-blocks')--}}
-{{--    @endcanany--}}
+
 
 
 

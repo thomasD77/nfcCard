@@ -35,7 +35,7 @@
                     <th scope="col">name</th>
                     <th scope="col">email</th>
                     @canany(['is_superAdmin', 'is_admin'])
-                        <th scope="col">role</th>
+{{--                        <th scope="col">role</th>--}}
                     @endcanany
                     <th scope="col">Actions</th>
                 </tr>
@@ -47,8 +47,8 @@
                             @if($active_user == $member->user_id)
                                 <tr>
                                     <td>{{$member->id ? $member->id : 'No ID'}}</td>
-                                    <td>{{$member->lastname ? $member->lastname : 'MEMBER' . $member->id}} {{ $member->firstname ? $member->firstname : '' }}</td>
-                                    <td>{{$member->email ? $member->email : 'MEMBER-' . $member->id}}</td>
+                                    <td>{{$member->lastname ? $member->lastname : ""}} {{ $member->firstname ? $member->firstname : '' }}</td>
+                                    <td>{{$member->email ? $member->email : ""}}</td>
                                     <td>
                                         <div class="btn-group">
                                             <a href="{{route('members.edit', $member->id)}}">
@@ -68,9 +68,9 @@
                         @else
                             <tr>
                                 <td>{{$member->id ? $member->id : 'No ID'}}</td>
-                                <td>{{$member->lastname ? $member->lastname : 'MEMBER-' . $member->id}} {{ $member->firstname ? $member->firstname : '' }}</td>
-                                <td>{{$member->email ? $member->email : 'MEMBER-' . $member->id}}</td>
-                                <td>{{$member->user ? $member->user->roles->first()->name : 'MEMBER' . $member->id}}</td>
+                                <td>{{$member->lastname ? $member->lastname : ""}} {{ $member->firstname ? $member->firstname : '' }}</td>
+                                <td>{{$member->email ? $member->email : ""}}</td>
+{{--                                <td>{{$member->user ? $member->user->roles->first()->name : ""}}</td>--}}
                                 <td>
                                     <div class="btn-group">
                                         <a href="{{route('members.edit', $member->id)}}">

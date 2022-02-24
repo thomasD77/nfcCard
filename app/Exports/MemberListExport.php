@@ -12,46 +12,41 @@ class MemberListExport implements FromCollection
     * @return \Illuminate\Support\Collection
     */
 
-    protected $landingpageDefault;
-    protected $landingpageCustom;
-    protected $vCard;
-    protected $QRcode;
+    protected $package;
 
-    function __construct($checkboxValidation)
+
+    function __construct($package)
     {
-        $this->landingpageDefault = $checkboxValidation['landingpageDefault'];
-        $this->landingpageCustom = $checkboxValidation['landingpageCustom'];
-        $this->vCard = $checkboxValidation['vCard'];
-        $this->QRcode = $checkboxValidation['QRcode'];
+        $this->package = $package;
     }
 
 
     public function collection()
     {
         //
-        $pages = ['id'];
-
-        if($this->landingpageDefault == "1" ){
-            $pages [] = 'memberURL';
+        if($this->package == "landingpageDefault" ){
+            $package = 'memberURL';
         }
 
-        if($this->landingpageCustom == "1" ){
-            $pages [] = 'memberCustomURL';
+        if($this->package == "landingpageCustom" ){
+            $package = 'memberCustomURL';
         }
 
-        if($this->vCard == "1" ){
-            $pages [] = 'membervCard';
+        if($this->package == "vCard" ){
+            $package = 'membervCard';
         }
 
-        if($this->QRcode == "1" ){
-            $pages [] = 'memberQRcode';
+        if($this->package == "No package selected" ){
+            $package = 'id';
         }
+
 
         $members = Member::query()
             ->where('archived', 0)
             ->where('id', '!=', 1)
-            ->select($pages)
+            ->select($package)
             ->get();
+
         return $members;
     }
 

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Member;
+use App\Models\Package;
+use App\Models\QRCODE;
 use App\Models\QRcodeValidator;
+use App\Models\URL;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 
@@ -17,43 +20,61 @@ class QRcodeController extends Controller
             ->where('id', '!=', 1)
             ->get();
 
-        $QRcode = QRcodeValidator::first();
+        $QRcode = "";
 
-        return view('admin.members.code', compact('members', 'QRcode'));
+        return view('admin.members.code', compact('members', 'QRcode' ));
     }
 
-    public function QRcodeListWithParams(Request $request)
+    public function QRcodeListWithParams()
     {
+        $package = Package::where('value', 1)->first();
 
-        $QRcode = QRcodeValidator::first();
-
-        $QRcode->landingpaginaDefault = 0;
-        $QRcode->landingpaginaCustom = 0;
-        $QRcode->vCard = 0;
-        $QRcode->update();
-
-
-        if($request->landingpageDefault == "1" ){
-            $QRcode->landingpaginaDefault = 1;
+        if(! isset($package)){
+            $package = 'NoPackage';
+        }else{
+            $package = $package->package;
         }
 
-        if($request->landingpageCustom == "1" ){
-            $QRcode->landingpaginaCustom = 1;
+        if($package == "landingpageDefault" ){
+            $QRcode = 'default';
         }
 
-        if($request->vCard == "1" ){
-            $QRcode->vCard = 1;
+        if($package == "landingpageCustom" ){
+            $QRcode = 'custom';
         }
 
-        $QRcode->update();
+        if($package == "vCard" ){
+            $QRcode = 'vCard';
+        }
 
+        if($package == "NoPackage" ){
+            $QRcode = '';
+        }
 
         $members = Member::query()
             ->where('archived', 0)
             ->where('id', '!=', 1)
             ->get();
 
+
         return view::make('admin.members.code', compact('members', 'QRcode'));
+    }
+
+    public function QRcodeSelect(Request $request)
+    {
+        if($request->flexRadioDefault == 'ja'){
+            $status = 1;
+        }
+
+        if($request->flexRadioDefault == 'nee'){
+            $status = 0;
+        }
+
+        $QRcode = QRCODE::first();
+        $QRcode->status = $status;
+        $QRcode->update();
+
+        return redirect('/admin');
     }
 }
 

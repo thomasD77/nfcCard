@@ -5,13 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class QRcodeValidator extends Model
+class QRCODE extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'landingpaginaDefault',
-        'landingpaginaCustom',
-        'vCard'
+        'status'
     ];
 }

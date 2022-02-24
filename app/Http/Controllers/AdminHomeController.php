@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\CompanyCredential;
 use App\Models\Package;
 use App\Models\Photo;
+use App\Models\QRCODE;
 use App\Models\Role;
+use App\Models\URL;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,9 +35,9 @@ class AdminHomeController extends Controller
         $test = Role::where('id', $user)->first();
         $company = CompanyCredential::latest()->first();
         $photos = Photo::all();
+        $currentURL = URL::first();
 
         $package = Package::where('value', 1)->first();
-
 
         if(! isset($package)){
             $package = 'No package selected';
@@ -43,7 +45,9 @@ class AdminHomeController extends Controller
             $package = $package->package;
         }
 
-        return view('admin.dashboard', compact('company', 'photos', 'package'));
+        $QRcode = QRCODE::first();
+
+        return view('admin.dashboard', compact('company', 'photos', 'package', 'currentURL', 'QRcode'));
     }
 
 }

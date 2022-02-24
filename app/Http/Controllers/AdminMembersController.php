@@ -7,6 +7,7 @@ use App\Exports\MemberListExport;
 use App\Models\Member;
 use App\Models\Order;
 use App\Models\Package;
+use App\Models\URL;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -28,8 +29,9 @@ class AdminMembersController extends Controller
         //
         $member = Member::first();
         $member_url = substr_replace($member->memberURL, "" ,-9) ;
+        $QRcode = \App\Models\QRCODE::first();
 
-        return view('admin.members.index', compact('member_url', 'member'));
+        return view('admin.members.index', compact('member_url', 'member', 'QRcode'));
     }
 
 
@@ -116,9 +118,12 @@ class AdminMembersController extends Controller
         //
         $member = Member::findOrFail($id);
 
-        $package = Package::where('value', 1)->first()->package;
+        $package = Package::where('value', 1)->first();
+
         if(! isset($package)){
             $package = 'No package selected';
+        }else{
+            $package = $package->package;
         }
 
         return view('admin.members.edit', compact('member', 'package'));
@@ -136,36 +141,141 @@ class AdminMembersController extends Controller
         //
         $member = Member::findOrFail($id);
 
+
+
         //General
-        $member->firstname = $request->firstname;
-        $member->lastname = $request->lastname;
-        $member->email = $request->email;
-        $member->company = $request->company;
-        $member->age = $request->age;
-        $member->jobTitle = $request->jobTitle;
-        $member->shortDescription = $request->shortDescription;
-        $member->website = $request->website;
-        $member->notes = $request->notes;
+        if($request->firstname != null){
+            $member->firstname = $request->firstname;
+        }else{
+            $member->firstname = "MEMBER FIRSTNAME";
+        }
+
+        if($request->lastname != null){
+            $member->lastname = $request->lastname;
+        }else{
+            $member->lastname = "MEMBER LASTNAME";
+        }
+
+        if($request->email != null){
+            $member->email = $request->email;
+        }else{
+            $member->email = "MEMBER EMAIL";
+        }
+
+        if($request->company != null){
+            $member->company = $request->company;
+        }else{
+            $member->company = "MEMBER COMPANY";
+        }
+
+        if($request->age != null){
+            $member->age = $request->age;
+        }else{
+            $member->age = Carbon::now()->format('Y-m-d');
+        }
+
+        if($request->jobTitle != null){
+            $member->jobTitle = $request->jobTitle;
+        }else{
+            $member->jobTitle = "MEMBER JOB TITLE";
+        }
+
+        if($request->shortDescription != null){
+            $member->shortDescription = $request->shortDescription;
+        }else{
+            $member->shortDescription = "THIS IS DEFAULT TEXT";
+        }
+
+        if($request->website != null){
+            $member->website = $request->website;
+        }else{
+            $member->website = "MEMBER WEBSITE";
+        }
+
+        if($request->notes != null){
+            $member->notes = $request->notes;
+        }else{
+            $member->notes = "MEMBER NOTES";
+        }
 
         //Contact information
-        $member->mobileWork = $request->mobileWork;
-        $member->mobile = $request->mobile;
-        $member->addressLine1 = $request->addressLine1;
-        $member->addressLine2 = $request->addressLine2;
-        $member->city = $request->city;
-        $member->country = $request->country;
-        $member->postalCode = $request->postalCode;
+        if($request->mobileWork != null){
+            $member->mobileWork = $request->mobileWork;
+        }else{
+            $member->mobileWork = "MEMBER MOBILE WORK";
+        }
+        if($request->mobile != null){
+            $member->mobile = $request->mobile;
+        }else{
+            $member->mobile = "MEMBER MOBILE";
+        }
+        if($request->addressLine1 != null){
+            $member->addressLine1 = $request->addressLine1;
+        }else{
+            $member->addressLine1 = "MEMBER ADDRESS 1";
+        }
+        if($request->addressLine2 != null){
+            $member->addressLine2 = $request->addressLine2;
+        }else{
+            $member->addressLine2 = "MEMBER ADDRESS 2";
+        }
+        if($request->city != null){
+            $member->city = $request->city;
+        }else{
+            $member->city = "MEMBER CITY";
+        }
+        if($request->country != null){
+            $member->country = $request->country;
+        }else{
+            $member->country = "MEMBER COUNTRY";
+        }
+        if($request->postalCode != null){
+            $member->postalCode = $request->postalCode;
+        }else{
+            $member->postalCode = "MEMBER POSTALCODE";
+        }
 
         //Socials
-        $member->facebook = $request->facebook;
-        $member->instagram = $request->instagram;
-        $member->twitter = $request->twitter;
-        $member->youTube = $request->youTube;
-        $member->tikTok = $request->tikTok;
-        $member->linkedIn = $request->linkedIn;
-        $member->whatsApp = $request->whatsApp;
-        $member->facebookMessenger = $request->facebookMessenger;
-
+        if($request->facebook != null){
+            $member->facebook = $request->facebook;
+        }else{
+            $member->facebook = "MEMBER FACEBOOK";
+        }
+        if($request->instagram != null){
+            $member->instagram = $request->instagram;
+        }else{
+            $member->instagram = "MEMBER INSTAGRAM";
+        }
+        if($request->twitter != null){
+            $member->twitter = $request->twitter;
+        }else{
+            $member->twitter = "MEMBER TWITTER";
+        }
+        if($request->youTube != null){
+            $member->youTube = $request->youTube;
+        }else{
+            $member->youTube = "MEMBER YOUTUBE";
+        }
+        if($request->tikTok != null){
+            $member->tikTok = $request->tikTok;
+        }else{
+            $member->tikTok = "MEMBER TIKTOK";
+        }
+        if($request->linkedIn != null){
+            $member->linkedIn = $request->linkedIn;
+        }else{
+            $member->linkedIn = "MEMBER LINKEDIN";
+        }
+        if($request->whatsApp != null){
+            $member->whatsApp = $request->whatsApp;
+        }else{
+            $member->whatsApp = "MEMBER WHATSAPP";
+        }
+        if($request->facebookMessenger != null){
+            $member->facebookMessenger = $request->facebookMessenger;
+        }else{
+            $member->facebookMessenger = "MEMBER MESSENGER";
+        }
 
         /** wegschrijven van de avatar **/
         if($file = $request->file('avatar_id')){
@@ -210,9 +320,15 @@ class AdminMembersController extends Controller
             $user->updated_at = Carbon::now()->format('Y-m-d H:i:s');
             $user->save();
 
+
+            $url = URL::first()->url;
             $member = new Member();
+
             $member->user_id = $user->id;
-            $member->lastname =  'MEMBER-' . $i;
+            $member->memberURL = $url . '/member/' . $i;
+            $member->memberCustomURL = $url . '/member/custom/' . $i;
+            $member->membervCard = $url . '/vCard/' . $i;
+            $member->memberQRcode = $url . '/QRcode/' . $i;
             $member->save();
 
             $user->member_id = $member->id;

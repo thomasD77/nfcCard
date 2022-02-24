@@ -55,7 +55,7 @@ class CardController extends Controller
         $vcard->addAddress(null, null, $member->addressLine1, $member->city, null, $member->postalCode, $member->country);
         $vcard->addURL($member->website);
         //$vcard->addPhoto($member->avatar);
-        $vcard->addPhoto(asset('card/avatars/' . $member->avatar));
+        $vcard->addPhoto($member->avatar ? asset('card/avatars/' . $member->avatar) : asset('assets/front/img/avatar-2.svg'));
         $vcard->addNote($member->notes);
 
 
@@ -67,33 +67,16 @@ class CardController extends Controller
     //Generate the URLS for the MEBER ID's & export EXCEL file
     public function listGenerator(Request $request)
     {
-        $member_url = $request->member_url;
-        $members = Member::all();
+        $package = Package::where('value', 1)->first();
 
-        foreach ($members as $member)
-        {
-            $member->memberURL = $member_url . '/member/' . $member->id;
-            $member->memberCustomURL = $member_url . '/member/custom/' . $member->id;
-            $member->membervCard = $member_url . '/vCard/' . $member->id;
-            $member->memberQRcode = $member_url . '/QRcode/' . $member->id;
-
-            $member->update();
+        if(! isset($package)){
+            $package = 'No package selected';
+        }else{
+            $package = $package->package;
         }
 
-        if($request->Excel){
-            $CheckboxValidation = [
-                'landingpageDefault' => $request->landingpageDefault ? "1" : "0",
-                'landingpageCustom' => $request->landingpageCustom ? "1" : "0",
-                'vCard' => $request->vCard ?  "1" : "0",
-                'QRcode' => $request->QRcode ?  "1" : "0",
-            ];
-
-            \Brian2694\Toastr\Facades\Toastr::success('EXCEL Successfully Generated');
-            return Excel::download(new MemberListExport($CheckboxValidation), 'membersListURL.xlsx');
-        }
-
-        \Brian2694\Toastr\Facades\Toastr::success('URLS Successfully Generated');
-        return redirect('/admin/members');
+        \Brian2694\Toastr\Facades\Toastr::success('EXCEL Successfully Generated');
+        return Excel::download(new MemberListExport($package), 'membersListURL.xlsx');
     }
 
 
@@ -133,7 +116,7 @@ class CardController extends Controller
 
         $phones = [$workPhone, $cellPhone];
         $title = $member->jobTitle;
-        $org = $member->company;
+        //$org = $member->company;
 
 
         $QRcode = \LaravelQRCode\Facades\QRCode::vCard($firstName, $lastName, $title, $email, $addresses, $phones)

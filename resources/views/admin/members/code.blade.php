@@ -13,35 +13,33 @@
                 <table class="table table-striped table-hover table-vcenter fs-sm">
                     <thead>
                     <tr>
+                        @if($QRcode == 'default')
+                        <th scope="col">Default URL (this url needs to be programmed in the NFC Card)</th>
+                        @endif
+                        @if($QRcode == 'custom')
+                            <th scope="col">Custom URL (this url needs to be programmed in the NFC Card)</th>
+                        @endif
+                        @if($QRcode == 'vCard')
+                            <th scope="col">vCard URL (this url needs to be PROGRAMMED IN the NFC Card)</th>
+                        @endif
 
-                        @if($QRcode->landingpaginaDefault == 1)
-                        <th scope="col">Default URL</th>
-                        @endif
-                        @if($QRcode->landingpaginaCustom == 1)
-                            <th scope="col">Custom URL</th>
-                        @endif
-                        @if($QRcode->vCard == 1)
-                            <th scope="col">vCard URL</th>
-                        @endif
-
-                        <th scope="col">QR-code</th>
+                        <th scope="col">QR-code (this QRcode needs to be PRINTED ON the backside OF NFC Card)</th>
                     </tr>
                     </thead>
                     <tbody>
                     @if($members)
                         @foreach($members as $member)
                             <tr>
-                                @if($QRcode->landingpaginaDefault == 1)
+                                @if($QRcode == 'default')
                                     <td>{{$member->memberURL ? $member->memberURL : 'No URL'}}</td>
                                 @endif
-                                    @if($QRcode->landingpaginaCustom == 1)
+                                @if($QRcode == 'custom')
                                     <td>{{$member->memberCustomURL ? $member->memberCustomURL : 'No URL'}}</td>
                                 @endif
-                                    @if($QRcode->vCard == 1)
+                                @if($QRcode == 'vCard')
                                         <td>{{$member->membervCard ? $member->membervCard : 'No URL'}}</td>
                                 @endif
-                                {{--                                <td><img src="{{$member->memberQRcode ? $member->memberQRcode : 'No QRcode'}}" alt=""></td>--}}
-                                <td><img src="http://nfccard.loc/admin/QRcode" alt=""></td>
+                                <td><img src="{{ $member->memberQRcode }}" alt="QRcode"></td>
                             </tr>
                         @endforeach
                     @endif
