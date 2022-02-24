@@ -25,7 +25,7 @@ class CreateMembersTable extends Migration
             $table->string('memberQRcode')->default("");
 
             //General
-            $table->string('firstname')->default("MEMBER");
+            $table->string('firstname')->default("");
             $table->string('lastname')->default("");
             $table->string('email')->default("");
             $table->string('company')->default("");

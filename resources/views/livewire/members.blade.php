@@ -51,7 +51,7 @@
                                 <tr>
                                     <td>{{$member->id ? $member->id : 'No ID'}}</td>
                                     <td><img class="rounded-circle" height="62" width="62" src="{{$member->avatar ? asset('/card/avatars') . "/" . $member->avatar : asset('/assets/front/img/Avatar-4.svg') }}" alt="{{$member->name}}"></td>
-                                    <td>{{$member->lastname ? $member->lastname : "unknown"}} {{ $member->firstname ? $member->firstname : '' }}</td>
+                                    <td>{{$member->lastname ? $member->lastname : ""}} {{ $member->firstname ? $member->firstname : '' }}</td>
                                     <td>{{$member->email ? $member->email : "unknown"}}</td>
                                     <td>
                                         <div class="btn-group">
@@ -73,7 +73,7 @@
                             <tr>
                                 <td>{{$member->id ? $member->id : 'No ID'}}</td>
                                 <td><img class="rounded-circle" height="62" width="62" src="{{$member->avatar ? asset('/card/avatars') . "/" . $member->avatar : asset('/assets/front/img/Avatar-4.svg') }}" alt="{{$member->name}}"></td>
-                                <td>{{$member->lastname ? $member->lastname : "unknown"}} {{ $member->firstname ? $member->firstname : '' }}</td>
+                                <td>{{$member->lastname ? $member->lastname : ""}} {{ $member->firstname ? $member->firstname : '' }}</td>
                                 <td>{{$member->email ? $member->email : "unknown"}}</td>
 {{--                                <td>{{$member->user ? $member->user->roles->first()->name : ""}}</td>--}}
                                 <td>

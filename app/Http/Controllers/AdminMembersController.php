@@ -323,6 +323,7 @@ class AdminMembersController extends Controller
             $member = new Member();
 
             $member->user_id = $user->id;
+            $member->firstname = 'MEMBER' . "#" . $i;
             $member->memberURL = $url . '/member/' . $i;
             $member->memberCustomURL = $url . '/member/custom/' . $i;
             $member->membervCard = $url . '/vCard/' . $i;
