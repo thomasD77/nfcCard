@@ -97,7 +97,7 @@ class RegisterController extends Controller
         $member->card_id = $data['card_id'];
 
         $member->memberURL = $url . '/?' . $data['card_id'];
-        $member->memberQRcode = $url . '/QRcode'. '/?' . $data['card_id'];
+        $member->memberQRcode = $url . '/QRcode'. '/' . $data['card_id'];
 
         $member->save();
 

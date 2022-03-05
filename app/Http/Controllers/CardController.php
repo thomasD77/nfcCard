@@ -67,15 +67,13 @@ class CardController extends Controller
     //Generate the URLS for the MEBER ID's & export EXCEL file
     public function listGenerator(Request $request)
     {
-
-        \Brian2694\Toastr\Facades\Toastr::success('EXCEL Successfully Generated');
         return Excel::download(new MemberListExport(), 'membersListURL.xlsx');
     }
 
 
     public function QRcode($id)
     {
-        $member = Member::findOrfail($id);
+        $member = Member::where('card_id', $id)->first();
 
         // Personal Information
         $firstName = $member->firstname;

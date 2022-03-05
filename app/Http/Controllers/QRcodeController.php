@@ -17,47 +17,19 @@ class QRcodeController extends Controller
     {
         $members = Member::query()
             ->where('archived', 0)
-            ->where('id', '!=', 1)
             ->get();
 
-        $QRcode = "";
-
-        return view('admin.members.code', compact('members', 'QRcode' ));
+        return view('admin.members.code', compact('members' ));
     }
 
     public function QRcodeListWithParams()
     {
-        $package = Package::where('value', 1)->first();
-
-        if(! isset($package)){
-            $package = 'NoPackage';
-        }else{
-            $package = $package->package;
-        }
-
-        if($package == "landingpageDefault" ){
-            $QRcode = 'default';
-        }
-
-        if($package == "landingpageCustom" ){
-            $QRcode = 'custom';
-        }
-
-        if($package == "vCard" ){
-            $QRcode = 'vCard';
-        }
-
-        if($package == "NoPackage" ){
-            $QRcode = '';
-        }
 
         $members = Member::query()
             ->where('archived', 0)
-            ->where('id', '!=', 1)
             ->get();
 
-
-        return view::make('admin.members.code', compact('members', 'QRcode'));
+        return view::make('admin.members.code', compact('members'));
     }
 
     public function QRcodeSelect(Request $request)
