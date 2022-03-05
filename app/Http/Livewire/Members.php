@@ -25,7 +25,9 @@ class Members extends Component
             ->where('archived', 0)
             ->paginate(25);
 
-        return view('livewire.members', compact('members', 'active_user_role', 'active_user'));
+        $member = Member::where('user_id',$active_user)->first();
+
+        return view('livewire.members', compact('members', 'active_user_role', 'active_user', 'member'));
     }
 
 }

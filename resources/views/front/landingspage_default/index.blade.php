@@ -88,7 +88,7 @@
                 <div class="box box-content">
 
                         <a class="w-100" href="{{ route('members.vCard', $member->id ) }}"><button type="submit" class="btn w-100 mt-3"><i class="fa-solid fa-cloud-arrow-up mr-2"></i>SAVE ME</button></a>
-                    
+
                 </div>
             </div>
 
@@ -209,6 +209,9 @@
                 </div>
                 <!-- Footer -->
                 <footer class="footer"><a style="text-decoration: none; color: white" href="https://innova-webcreations.be">Innova Webcreations</a> © {{ now()->format('Y') }}</footer>
+                <footer class="footer">
+                    <a style="text-decoration: none; color: white" href="{{ asset('/login') }}">Login</a>
+                </footer>
             </div>
         </div>
     </div>

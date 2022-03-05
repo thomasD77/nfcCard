@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CompanyCredential;
+use App\Models\Member;
 use App\Models\Package;
 use App\Models\Photo;
 use App\Models\QRCODE;
@@ -47,7 +48,9 @@ class AdminHomeController extends Controller
 
         $QRcode = QRCODE::first();
 
-        return view('admin.dashboard', compact('company', 'photos', 'package', 'currentURL', 'QRcode'));
+        $member = Member::where('user_id',$user)->first();
+
+        return view('admin.dashboard', compact('company', 'photos', 'package', 'currentURL', 'QRcode', 'member'));
     }
 
 }

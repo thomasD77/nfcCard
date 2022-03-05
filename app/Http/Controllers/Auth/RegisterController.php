@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Member;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -76,36 +77,26 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
 
-        if(isset($data['client'])){                                                                                       //Is the new register from client register page?
+        $user = User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
 
-            $user = User::create([
-                'name' => $data['name'],
-                'email' => $data['email'],
-                'password' => Hash::make($data['password']),
-            ]);
+        DB::table('user_role')->insert([
+            'user_id' => $user->id,
+            'role_id' => '3',
+            'created_at'=>Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),]);
 
-            DB::table('user_role')->insert([                                                                      //Set Client ID in user_role migration
-                'user_id' => $user->id,
-                'role_id' => '3',
-                'created_at'=>Carbon::now()->format('Y-m-d H:i:s'),
-                'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),]);
+        $member = new Member();
+        $member->user_id = $user->id;
+        $member->card_id = $data['card_id'];
+        $member->save();
 
-            return $user;
-        }
-        else
-        {
-            $user = User::create([                                                                                      //Default we set Employee ID
-                'name' => $data['name'],
-                'email' => $data['email'],
-                'password' => Hash::make($data['password']),
-            ]);
-            DB::table('user_role')->insert([                                                                      //Set Employee ID in user_role migration
-                'user_id' => $user->id,
-                'role_id' => '4',
-                'created_at'=>Carbon::now()->format('Y-m-d H:i:s'),
-                'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),]);
+        $user->member_id = $member->id;
+        $user->save();
 
-            return $user;
-        }
+        return $user;
     }
 }

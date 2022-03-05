@@ -34,7 +34,7 @@
                                 <div class="py-3">
                                     <div class="mb-4">
                                         <input placeholder="name" id="name" type="text" class="form-control form-control-lg form-control-alt @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
+                                        <input placeholder="name" id="user_id" type="hidden" class="" name="card_id" value="{{ $url_card_id }}">
                                         @error('name')
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

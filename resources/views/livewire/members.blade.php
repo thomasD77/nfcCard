@@ -26,9 +26,9 @@
             @endcanany
         </div>
     </div>
+    @canany(['is_superAdmin', 'is_admin'])
     <div class="block-content block-content-full overflow-scroll">
         <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
-
         <div>
             <table class="table table-striped table-hover table-vcenter fs-sm">
                 <thead>
@@ -103,7 +103,41 @@
                 {!! $members->links()  !!}
             </div>
         @endcanany
-
     </div>
+    @endcanany
+
+
+    @can('is_client')
+    <div class="block-content block-content-full overflow-scroll">
+        <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
+
+        <div>
+            <table class="table table-striped table-hover table-vcenter fs-sm">
+                <thead>
+                <tr>
+                    <th scope="col">avatar</th>
+                    <th scope="col">name</th>
+                    <th scope="col">Edit</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><img class="rounded-circle" height="62" width="62" src="{{$member->avatar ? asset('/card/avatars') . "/" . $member->avatar : asset('/assets/front/img/Avatar-4.svg') }}" alt="{{$member->name}}"></td>
+                        <td>{{$member->lastname ? $member->lastname : ""}} {{ $member->firstname ? $member->firstname : '' }}</td>
+                        <td>
+                            <div class="btn-group">
+                                <a href="{{asset('/admin')}}">
+                                    <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit member">
+                                        <i class="fa fa-fw fa-pencil-alt"></i>
+                                    </button>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    @endcan
 </div>
 <!-- END Dynamic Table Full -->

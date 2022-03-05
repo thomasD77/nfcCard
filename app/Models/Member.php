@@ -12,6 +12,7 @@ class Member extends Model
     protected $fillable =
         [
             'user_id',
+            'card_id',
             'firstname',
             'lastname',
             'company',

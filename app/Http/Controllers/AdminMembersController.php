@@ -144,135 +144,99 @@ class AdminMembersController extends Controller
         //General
         if($request->firstname != null){
             $member->firstname = $request->firstname;
-        }else{
-            $member->firstname = "MEMBER FIRSTNAME";
         }
 
         if($request->lastname != null){
             $member->lastname = $request->lastname;
-        }else{
-            $member->lastname = "MEMBER LASTNAME";
         }
 
         if($request->email != null){
             $member->email = $request->email;
-        }else{
-            $member->email = "MEMBER EMAIL";
         }
 
         if($request->company != null){
             $member->company = $request->company;
-        }else{
-            $member->company = "MEMBER COMPANY";
         }
 
         if($request->age != null){
             $member->age = $request->age;
-        }else{
-            $member->age = Carbon::now()->format('Y-m-d');
         }
 
         if($request->jobTitle != null){
             $member->jobTitle = $request->jobTitle;
-        }else{
-            $member->jobTitle = "MEMBER JOB TITLE";
         }
 
         if($request->shortDescription != null){
             $member->shortDescription = $request->shortDescription;
-        }else{
-            $member->shortDescription = "THIS IS DEFAULT TEXT";
         }
 
         if($request->website != null){
             $member->website = $request->website;
-        }else{
-            $member->website = "MEMBER WEBSITE";
         }
 
         if($request->notes != null){
             $member->notes = $request->notes;
-        }else{
-            $member->notes = "MEMBER NOTES";
         }
 
         //Contact information
         if($request->mobileWork != null){
             $member->mobileWork = $request->mobileWork;
-        }else{
-            $member->mobileWork = "MEMBER MOBILE WORK";
         }
+
         if($request->mobile != null){
             $member->mobile = $request->mobile;
-        }else{
-            $member->mobile = "MEMBER MOBILE";
         }
         if($request->addressLine1 != null){
             $member->addressLine1 = $request->addressLine1;
-        }else{
-            $member->addressLine1 = "MEMBER ADDRESS 1";
         }
+
         if($request->addressLine2 != null){
             $member->addressLine2 = $request->addressLine2;
-        }else{
-            $member->addressLine2 = "MEMBER ADDRESS 2";
         }
+
         if($request->city != null){
             $member->city = $request->city;
-        }else{
-            $member->city = "MEMBER CITY";
         }
+
         if($request->country != null){
             $member->country = $request->country;
-        }else{
-            $member->country = "MEMBER COUNTRY";
         }
+
         if($request->postalCode != null){
             $member->postalCode = $request->postalCode;
-        }else{
-            $member->postalCode = "MEMBER POSTALCODE";
         }
 
         //Socials
         if($request->facebook != null){
             $member->facebook = $request->facebook;
-        }else{
-            $member->facebook = "MEMBER FACEBOOK";
         }
+
         if($request->instagram != null){
             $member->instagram = $request->instagram;
-        }else{
-            $member->instagram = "MEMBER INSTAGRAM";
         }
+
         if($request->twitter != null){
             $member->twitter = $request->twitter;
-        }else{
-            $member->twitter = "MEMBER TWITTER";
         }
+
         if($request->youTube != null){
             $member->youTube = $request->youTube;
-        }else{
-            $member->youTube = "MEMBER YOUTUBE";
         }
+
         if($request->tikTok != null){
             $member->tikTok = $request->tikTok;
-        }else{
-            $member->tikTok = "MEMBER TIKTOK";
         }
+
         if($request->linkedIn != null){
             $member->linkedIn = $request->linkedIn;
-        }else{
-            $member->linkedIn = "MEMBER LINKEDIN";
         }
+
         if($request->whatsApp != null){
             $member->whatsApp = $request->whatsApp;
-        }else{
-            $member->whatsApp = "MEMBER WHATSAPP";
         }
+
         if($request->facebookMessenger != null){
             $member->facebookMessenger = $request->facebookMessenger;
-        }else{
-            $member->facebookMessenger = "MEMBER MESSENGER";
         }
 
         /** wegschrijven van de avatar **/

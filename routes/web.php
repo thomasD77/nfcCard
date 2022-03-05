@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\CalenderController;
 use App\Http\Controllers\FullCalendarController;
+use App\Models\Member;
+use App\Models\User;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use \Spatie\GoogleCalendar\Event;
+use Spatie\GoogleCalendar\Event;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,8 +23,10 @@ use \Spatie\GoogleCalendar\Event;
 // General settings
 Auth::routes(['verify'=> true]);
 
-// Example Routes
-Route::view('/', 'landing');
+
+Route::get('/', 'App\Http\Controllers\DirectionController@getDirection')->name('direction');
+
+
 Route::match(['get', 'post'], '/dashboard', function(){
     return view('admin/dashboard');
 });

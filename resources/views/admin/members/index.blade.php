@@ -53,9 +53,9 @@
     <div class="content container-fluid">
         @can('is_superAdmin')
             <div class="mb-3">
-                <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                    Member <i class="ms-2 far fa-user"></i>
-                </a>
+{{--                <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">--}}
+{{--                    Member <i class="ms-2 far fa-user"></i>--}}
+{{--                </a>--}}
                 @if($QRcode->status != 1)
                     <a href="{{ route('members.listGenerator') }}" class="btn btn-alt-success">EXCEL<i class="far fa-file-excel ms-2"></i></a>
                 @endif
