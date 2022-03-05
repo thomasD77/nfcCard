@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Member;
+use App\Models\Package;
 use App\Models\User;
+use App\Models\vCard;
 use Illuminate\Http\Request;
 
 class DirectionController extends Controller
@@ -14,6 +16,16 @@ class DirectionController extends Controller
         //Get ID from URL
         $url = url()->full();
         $parts = parse_url($url);
+
+        $package = Package::where('value', 1)->first();
+
+        //Get package
+        if(! isset($package)){
+            $package = 'No package selected';
+        }else{
+            $package = $package->package;
+        }
+
 
         if(isset($parts['query']) !== false)
         {
@@ -36,9 +48,29 @@ class DirectionController extends Controller
 
         if($user){
 
-            return view( 'front.landingspage_default.index', compact('member'));
+            if($package == 'landingpageDefault')
+            {
+                return view( 'front.landingspage_default.index', compact('member'));
+            }
+            elseif ($package == 'landingpageCustom')
+            {
+                return view('front.members.show', compact('member'));
+            }
+            elseif ($package == 'vCard')
+            {
+                $vCard = new vCard();
+                $vCard->vCard($member->id);
+                return $vCard;
+            }
+            elseif ($package == 'No package selected')
+            {
+                return 'No package selected';
+            }
 
-        } else {
+
+        }
+        else
+        {
 
             return view( 'auth.register', compact('url_card_id'));
         }

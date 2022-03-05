@@ -20,23 +20,23 @@ use Illuminate\Support\Facades\Auth;
     <div class="d-flex align-items-center">
       <!-- Toggle Sidebar -->
       <!-- Layout API, functionality initialized in Template._uiApiLayout()-->
-      <button type="button" class="btn btn-sm btn-alt-secondary me-2 d-lg-none" data-toggle="layout" data-action="sidebar_toggle">
-        <i class="fa fa-fw fa-bars"></i>
-      </button>
+<!--      <button type="button" class="btn btn-sm btn-alt-secondary me-2 d-lg-none" data-toggle="layout" data-action="sidebar_toggle">-->
+<!--        <i class="fa fa-fw fa-bars"></i>-->
+<!--      </button>-->
       <!-- END Toggle Sidebar -->
 
       <!-- Toggle Mini Sidebar -->
       <!-- Layout API, functionality initialized in Template._uiApiLayout()-->
-      <button type="button" class="btn btn-sm btn-alt-secondary me-2 d-none d-lg-inline-block" data-toggle="layout" data-action="sidebar_mini_toggle">
-        <i class="fa fa-fw fa-ellipsis-v"></i>
-      </button>
+<!--      <button type="button" class="btn btn-sm btn-alt-secondary me-2 d-none d-lg-inline-block" data-toggle="layout" data-action="sidebar_mini_toggle">-->
+<!--        <i class="fa fa-fw fa-ellipsis-v"></i>-->
+<!--      </button>-->
       <!-- END Toggle Mini Sidebar -->
 
       <!-- Open Search Section (visible on smaller screens) -->
       <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-      <button type="button" class="btn btn-sm btn-alt-secondary d-md-none" data-toggle="layout" data-action="header_search_on">
-        <i class="fa fa-fw fa-search"></i>
-      </button>
+<!--      <button type="button" class="btn btn-sm btn-alt-secondary d-md-none" data-toggle="layout" data-action="header_search_on">-->
+<!--        <i class="fa fa-fw fa-search"></i>-->
+<!--      </button>-->
       <!-- END Open Search Section -->
 
       <!-- Search Form (visible on larger screens) -->
