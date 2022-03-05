@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Member;
+use App\Models\URL;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -76,6 +77,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $url = URL::first()->url;
+        $member = new Member();
 
         $user = User::create([
             'name' => $data['name'],
@@ -89,9 +92,13 @@ class RegisterController extends Controller
             'created_at'=>Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),]);
 
-        $member = new Member();
+
         $member->user_id = $user->id;
         $member->card_id = $data['card_id'];
+
+        $member->memberURL = $url . '/?' . $data['card_id'];
+        $member->memberQRcode = $url . '/QRcode'. '/?' . $data['card_id'];
+
         $member->save();
 
         $user->member_id = $member->id;

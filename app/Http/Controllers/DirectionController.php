@@ -67,7 +67,6 @@ class DirectionController extends Controller
                 return 'No package selected';
             }
 
-
         }
         else
         {

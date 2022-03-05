@@ -39,9 +39,7 @@ class Member extends Model
             'website',
             'archived',
             'memberURL',
-            'membervCard',
             'memberQRcode',
-            'memberCustomURL',
             'avatar'
         ];
 

@@ -16,7 +16,6 @@ class MemberCredentialCardExport implements FromCollection
         $credentials = ['firstname', 'lastname', 'email', 'company', 'age', 'jobTitle', 'mobile', 'website'];
         $members = Member::query()
             ->where('archived', 0)
-            ->where('id', '!=', 1)
             ->select($credentials)
             ->get();
 

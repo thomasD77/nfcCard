@@ -21,8 +21,6 @@ class CreateMembersTable extends Migration
             $table->integer('card_id')->nullable();
             $table->string('avatar')->default("");
             $table->string('memberURL')->default("");
-            $table->string('memberCustomURL')->default("");
-            $table->string('membervCard')->default("");
             $table->string('memberQRcode')->default("");
 
             //General

@@ -67,16 +67,9 @@ class CardController extends Controller
     //Generate the URLS for the MEBER ID's & export EXCEL file
     public function listGenerator(Request $request)
     {
-        $package = Package::where('value', 1)->first();
-
-        if(! isset($package)){
-            $package = 'No package selected';
-        }else{
-            $package = $package->package;
-        }
 
         \Brian2694\Toastr\Facades\Toastr::success('EXCEL Successfully Generated');
-        return Excel::download(new MemberListExport($package), 'membersListURL.xlsx');
+        return Excel::download(new MemberListExport(), 'membersListURL.xlsx');
     }
 
 
