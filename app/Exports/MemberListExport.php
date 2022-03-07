@@ -2,6 +2,7 @@
 
 namespace App\Exports;
 
+use App\Models\listUrl;
 use App\Models\Member;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use phpDocumentor\Reflection\Types\Collection;
@@ -16,8 +17,7 @@ class MemberListExport implements FromCollection
     public function collection()
     {
         //
-        $members = Member::query()
-            ->where('archived', 0)
+        $members = listUrl::query()
             ->select('id', 'memberURL')
             ->get();
 

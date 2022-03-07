@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Exports\MemberListExport;
 use App\Exports\SubmissionExport;
+use App\Models\listUrl;
 use App\Models\Member;
 use App\Models\Package;
+use App\Models\URL;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use JeroenDesloovere\VCard\VCard;
 use Maatwebsite\Excel\Facades\Excel;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -34,7 +37,7 @@ class CardController extends Controller
         // define vcard
         $vcard = new VCard();
 
-        $member = Member::findOrfail($id);
+        $member = Member::where('card_id', $id)->first();
 
         // define variables
         $lastname = $member->lastname;
@@ -75,40 +78,67 @@ class CardController extends Controller
     {
         $member = Member::where('card_id', $id)->first();
 
-        // Personal Information
-        $firstName = $member->firstname;
-        $lastName = $member->lastname;
-        $email = $member->email;
+        if(!$member){
+            $firstName = "";
+            $lastName = "";
+            $email = "";
+            $title = "";
 
-        // Addresses
-        $Address = [
-            'type' => 'work',
-            'pref' => true,
-            'street' => $member->addressLine1,
-            'city' => $member->city,
-            'state' => '',
-            'country' => $member->country,
-            'zip' => $member->postalCode
-        ];
+            $Address = [
+                'type' => "",
+                'pref' => true,
+                'street' => "",
+                'city' => "",
+                'state' => "",
+                'country' => "",
+                'zip' => ""
+            ];
+
+            $workPhone = [
+                'type' => "",
+                'number' => "",
+                'cellPhone' => true
+            ];
+            $cellPhone = [
+                'type' => "",
+                'number' => "",
+                'cellPhone' => true
+            ];
+        }
+        else
+        {
+            // Personal Information
+            $firstName = $member->firstname;
+            $lastName = $member->lastname;
+            $email = $member->email;
+            $title = $member->jobTitle;
+
+            // Addresses
+            $Address = [
+                'type' => 'work',
+                'pref' => true,
+                'street' => $member->addressLine1,
+                'city' => $member->city,
+                'state' => '',
+                'country' => $member->country,
+                'zip' => $member->postalCode
+            ];
+            // Phones
+            $workPhone = [
+                'type' => 'work',
+                'number' => $member->mobileWork,
+                'cellPhone' => true
+            ];
+            $cellPhone = [
+                'type' => 'home',
+                'number' => $member->mobile,
+                'cellPhone' => true
+            ];
+        }
 
         $addresses = [$Address];
-
-        // Phones
-        $workPhone = [
-            'type' => 'work',
-            'number' => $member->mobileWork,
-            'cellPhone' => true
-        ];
-        $cellPhone = [
-            'type' => 'home',
-            'number' => $member->mobile,
-            'cellPhone' => true
-        ];
-
         $phones = [$workPhone, $cellPhone];
-        $title = $member->jobTitle;
         //$org = $member->company;
-
 
         $QRcode = \LaravelQRCode\Facades\QRCode::vCard($firstName, $lastName, $title, $email, $addresses, $phones)
             ->setErrorCorrectionLevel('H')
@@ -151,5 +181,38 @@ class CardController extends Controller
         return redirect('/admin');
     }
 
+    public function generateCards(Request $request)
+    {
+        //Amount of Cards
+        $count = $request->card_number;
+
+        $project_url = URL::first()->url;
+        $cardURL = listUrl::all();
+
+
+        //If we have cards, we delete the old amount
+        if($cardURL->count() > 0)
+        {
+            foreach ($cardURL as $url)
+            {
+                $url->delete();
+            }
+        }
+
+        //Reset Database ID's
+        DB::table('list_urls')->truncate();
+
+
+        //Create new Card amount
+        for($i = 1; $i <= $count; $i++ ){
+            $cardURL = new listUrl();
+            $cardURL->memberURL = $project_url . '/?' . $i;
+            $cardURL->memberQRcode = $project_url . '/QRcode'. '/' . $i;
+            $cardURL->save();
+        }
+
+        return redirect('/admin');
+
+    }
 
 }

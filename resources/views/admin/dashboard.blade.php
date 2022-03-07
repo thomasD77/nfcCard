@@ -162,6 +162,61 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-6 col-xl-4">
+                <div class="block block-rounded">
+                    <div class="block-header block-header-default">
+                        <h3 class="block-title">STAP 4: How many Cards? </h3>
+                        <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseCards" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            <i class="fa fa-arrow-down"></i>
+                        </a>
+                    </div>
+                    <div class="block-content fs-sm text-muted pt-0">
+                        <div class="collapse" id="collapseCards">
+                            <div class="card card-body border border-0 pt-0">
+                                <form class="col-6 mb-0" name="contactformulier"
+                                      action="{{action('App\Http\Controllers\CardController@generateCards')}}" method="post">
+                                    @csrf
+                                    <div class="form-check my-4 px-0">
+                                        <label class="form-check-label mb-1">
+                                            Set your Card number
+                                        </label>
+                                        <input class="form-control" type="number" name="card_number" value="card_number">
+                                    </div>
+                                    <div class="my-4">
+                                        <button type="submit" class="btn btn-alt-primary">
+                                            <i class="fa fa-paper-plane me-1 opacity-50"></i> Generate
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="py-4">
+                            <p style="font-weight: bold">Current Cards: </p>
+                            <p> {{ $total_cards }} </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            @if($total_cards > 0)
+                <div class="col-md-6 col-xl-4">
+                    <div class="block block-rounded">
+                        <div class="block-header block-header-default">
+                            <h3 class="block-title">STAP 5: List Generator </h3>
+                        </div>
+                        <div class="block-content fs-sm text-muted pt-0">
+                            <div class="py-4">
+                                @if($QRcode->status != 1)
+                                    <a href="{{ route('members.listGenerator') }}" class="btn btn-alt-success">EXCEL<i class="far fa-file-excel ms-2"></i></a>
+                                @endif
+                                @if($QRcode->status == 1)
+                                    <a href="{{ route('QRcodeListCustom') }}" class="btn btn-alt-warning">QRcode<i class="fa fa-list-ul ms-2"></i></a>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
     <!-- END Page Content -->

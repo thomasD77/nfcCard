@@ -46,6 +46,7 @@ Route::get('member/{id}', 'App\Http\Controllers\CardController@landingPageMember
 Route::get('member/custom/{id}', 'App\Http\Controllers\CardController@landingPageMemberCustom')->name('members.landingpageCustom');
 Route::get('vCard/{id}', 'App\Http\Controllers\CardController@vCard')->name('members.vCard');
 Route::get('QRcode/{id}', 'App\Http\Controllers\CardController@QRcode')->name('members.QRcode');
+Route::post('generate/cards', 'App\Http\Controllers\CardController@generateCards')->name('generate.cards');
 
 
 // Backend Routes

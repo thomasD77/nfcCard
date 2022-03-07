@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CompanyCredential;
+use App\Models\listUrl;
 use App\Models\Member;
 use App\Models\Package;
 use App\Models\Photo;
@@ -50,7 +51,9 @@ class AdminHomeController extends Controller
 
         $member = Member::where('user_id',$user)->first();
 
-        return view('admin.dashboard', compact('company', 'photos', 'package', 'currentURL', 'QRcode', 'member'));
+        $total_cards = listUrl::all()->count();
+
+        return view('admin.dashboard', compact('company', 'photos', 'package', 'currentURL', 'QRcode', 'member', 'total_cards'));
     }
 
 }

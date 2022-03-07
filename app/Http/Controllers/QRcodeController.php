@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\listUrl;
 use App\Models\Member;
 use App\Models\Package;
 use App\Models\QRCODE;
 use App\Models\QRcodeValidator;
 use App\Models\URL;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 
@@ -24,10 +26,14 @@ class QRcodeController extends Controller
 
     public function QRcodeListWithParams()
     {
+        $members = listUrl::all();
 
-        $members = Member::query()
-            ->where('archived', 0)
-            ->get();
+
+        $pdf = PDF::loadView('admin.members.code', compact('members'));
+
+        return $pdf->download('myPDF');
+
+
 
         return view::make('admin.members.code', compact('members'));
     }

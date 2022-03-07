@@ -33,49 +33,21 @@
             <table class="table table-striped table-hover table-vcenter fs-sm">
                 <thead>
                 <tr>
-                    <th scope="col">#</th>
                     <th scope="col">avatar</th>
                     <th scope="col">name</th>
                     <th scope="col">email</th>
-                    @canany(['is_superAdmin', 'is_admin'])
-{{--                        <th scope="col">role</th>--}}
-                    @endcanany
+                    <th scope="col"># Card ID</th>
                     <th scope="col">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
                 @if($members)
                     @foreach($members as $member)
-                        @if($active_user_role == 'client')
-                            @if($active_user == $member->user_id)
-                                <tr>
-                                    <td>{{$member->id ? $member->id : 'No ID'}}</td>
-                                    <td><img class="rounded-circle" height="62" width="62" src="{{$member->avatar ? asset('/card/avatars') . "/" . $member->avatar : asset('/assets/front/img/Avatar-4.svg') }}" alt="{{$member->name}}"></td>
-                                    <td>{{$member->lastname ? $member->lastname : ""}} {{ $member->firstname ? $member->firstname : '' }}</td>
-                                    <td>{{$member->email ? $member->email : "unknown"}}</td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <a href="{{route('members.edit', $member->id)}}">
-                                                <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit member">
-                                                    <i class="fa fa-fw fa-pencil-alt"></i>
-                                                </button>
-                                            </a>
-                                            <a href="{{route('members.show', $member->id)}}">
-                                                <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Show member">
-                                                    <i class="far fa-eye"></i>
-                                                </button>
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endif
-                        @else
                             <tr>
-                                <td>{{$member->id ? $member->id : 'No ID'}}</td>
                                 <td><img class="rounded-circle" height="62" width="62" src="{{$member->avatar ? asset('/card/avatars') . "/" . $member->avatar : asset('/assets/front/img/Avatar-4.svg') }}" alt="{{$member->name}}"></td>
                                 <td>{{$member->lastname ? $member->lastname : ""}} {{ $member->firstname ? $member->firstname : '' }}</td>
                                 <td>{{$member->email ? $member->email : "unknown"}}</td>
-{{--                                <td>{{$member->user ? $member->user->roles->first()->name : ""}}</td>--}}
+                                <td>{{$member->card_id ? $member->card_id : 'No Card ID'}}</td>
                                 <td>
                                     <div class="btn-group">
                                         <a href="{{route('members.edit', $member->id)}}">
@@ -92,7 +64,6 @@
                                     </div>
                                 </td>
                             </tr>
-                        @endif
                     @endforeach
                 @endif
                 </tbody>

@@ -4,7 +4,7 @@
     <div class="block block-rounded row">
         <div class="block-header block-header-default">
             <h3 class="block-title">
-                Members
+                Card credentials
             </h3>
         </div>
         <div class="block-content block-content-full overflow-scroll">
@@ -14,8 +14,9 @@
                     <thead>
                     <tr>
                         <th scope="col">URL</th>
+                        <th scope="col">=> url needs to be programmed in the NFC card</th>
                         <th scope="col">QR-code</th>
-                        <th scope="col">this QRcode needs to be PRINTED ON the backside OF NFC Card</th>
+                        <th scope="col">=> QRcode needs to be PRINTED ON the backside OF NFC Card</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -23,6 +24,7 @@
                         @foreach($members as $member)
                             <tr>
                                 <td>{{$member->memberURL ? $member->memberURL : 'No URL'}}</td>
+                                <td></td>
                                 <td><img src="{{ $member->memberQRcode }}" alt="QRcode"></td>
                             </tr>
                         @endforeach
