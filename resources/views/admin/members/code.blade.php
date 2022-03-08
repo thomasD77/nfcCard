@@ -19,17 +19,18 @@
                         <th scope="col">=> QRcode needs to be PRINTED ON the backside OF NFC Card</th>
                     </tr>
                     </thead>
-                    <tbody>
                     @if($members)
                         @foreach($members as $member)
-                            <tr>
-                                <td>{{$member->memberURL ? $member->memberURL : 'No URL'}}</td>
-                                <td></td>
-                                <td><img src="{{ $member->memberQRcode }}" alt="QRcode"></td>
-                            </tr>
+                            <tbody>
+                                <tr>
+                                    <td>{{$member->memberURL ? $member->memberURL : 'No URL'}}</td>
+                                    <td></td>
+                                    <td><img class="my-3" src="{{ $member->memberQRcode }}" alt="QRcode"></td>
+                                </tr>
+                            </tbody>
+                            <br>
                         @endforeach
                     @endif
-                    </tbody>
                 </table>
             </div>
         </div>

@@ -76,77 +76,84 @@ class CardController extends Controller
 
     public function QRcode($id)
     {
-        $member = Member::where('card_id', $id)->first();
+        $currentURL = URL::first()->url;
 
-        if(!$member){
-            $firstName = "";
-            $lastName = "";
-            $email = "";
-            $title = "";
+        $QRcode_url = $currentURL . '/' . 'vCard' . '/' . $id;
 
-            $Address = [
-                'type' => "",
-                'pref' => true,
-                'street' => "",
-                'city' => "",
-                'state' => "",
-                'country' => "",
-                'zip' => ""
-            ];
-
-            $workPhone = [
-                'type' => "",
-                'number' => "",
-                'cellPhone' => true
-            ];
-            $cellPhone = [
-                'type' => "",
-                'number' => "",
-                'cellPhone' => true
-            ];
-        }
-        else
-        {
-            // Personal Information
-            $firstName = $member->firstname;
-            $lastName = $member->lastname;
-            $email = $member->email;
-            $title = $member->jobTitle;
-
-            // Addresses
-            $Address = [
-                'type' => 'work',
-                'pref' => true,
-                'street' => $member->addressLine1,
-                'city' => $member->city,
-                'state' => '',
-                'country' => $member->country,
-                'zip' => $member->postalCode
-            ];
-            // Phones
-            $workPhone = [
-                'type' => 'work',
-                'number' => $member->mobileWork,
-                'cellPhone' => true
-            ];
-            $cellPhone = [
-                'type' => 'home',
-                'number' => $member->mobile,
-                'cellPhone' => true
-            ];
-        }
-
-        $addresses = [$Address];
-        $phones = [$workPhone, $cellPhone];
-        //$org = $member->company;
-
-        $QRcode = \LaravelQRCode\Facades\QRCode::vCard($firstName, $lastName, $title, $email, $addresses, $phones)
-            ->setErrorCorrectionLevel('H')
-            ->setSize(2)
-            ->setMargin(2)
-            ->png();
+        $QRcode = QrCode::size(150)->backgroundColor(255,255,255)->generate($QRcode_url);
 
         return $QRcode;
+
+//        $member = Member::where('card_id', $id)->first();
+//        if(!$member){
+//            $firstName = "";
+//            $lastName = "";
+//            $email = "";
+//            $title = "";
+//
+//            $Address = [
+//                'type' => "",
+//                'pref' => true,
+//                'street' => "",
+//                'city' => "",
+//                'state' => "",
+//                'country' => "",
+//                'zip' => ""
+//            ];
+//
+//            $workPhone = [
+//                'type' => "",
+//                'number' => "",
+//                'cellPhone' => true
+//            ];
+//            $cellPhone = [
+//                'type' => "",
+//                'number' => "",
+//                'cellPhone' => true
+//            ];
+//        }
+//        else
+//        {
+//            // Personal Information
+//            $firstName = $member->firstname;
+//            $lastName = $member->lastname;
+//            $email = $member->email;
+//            $title = $member->jobTitle;
+//
+//            // Addresses
+//            $Address = [
+//                'type' => 'work',
+//                'pref' => true,
+//                'street' => $member->addressLine1,
+//                'city' => $member->city,
+//                'state' => '',
+//                'country' => $member->country,
+//                'zip' => $member->postalCode
+//            ];
+//            // Phones
+//            $workPhone = [
+//                'type' => 'work',
+//                'number' => $member->mobileWork,
+//                'cellPhone' => true
+//            ];
+//            $cellPhone = [
+//                'type' => 'home',
+//                'number' => $member->mobile,
+//                'cellPhone' => true
+//            ];
+//        }
+//
+//        $addresses = [$Address];
+//        $phones = [$workPhone, $cellPhone];
+//        //$org = $member->company;
+//
+//        $QRcode = \LaravelQRCode\Facades\QRCode::vCard($firstName, $lastName, $title, $email, $addresses, $phones)
+//            ->setErrorCorrectionLevel('H')
+//            ->setSize(2)
+//            ->setMargin(2)
+//            ->png();
+//
+//        return $QRcode;
     }
 
     public function choosePackage(Request $request)
