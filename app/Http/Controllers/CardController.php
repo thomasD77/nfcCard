@@ -60,7 +60,6 @@ class CardController extends Controller
         //$vcard->addPhoto($member->avatar ? asset('card/avatars/' . $member->avatar) : asset('/card/img/bg-vcard.png'));
         $vcard->addNote($member->notes);
 
-
         // return vcard as a download
         return $vcard->download();
     }
