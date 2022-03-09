@@ -87,7 +87,7 @@
                 </div>
                 <div class="box box-content">
 
-                        <a class="w-100" href="{{ route('members.vCard', $member->id ) }}"><button type="submit" class="btn_cstm save w-100 mt-3 p-4"><i class="fa-solid fa-cloud-arrow-up mr-2 "></i>SAVE ME</button></a>
+                        <a class="w-100" href="{{ route('members.vCard', $member->card_id ) }}"><button type="submit" class="btn_cstm save w-100 mt-3 p-4"><i class="fa-solid fa-cloud-arrow-up mr-2 "></i>SAVE ME</button></a>
 
                 </div>
             </div>
