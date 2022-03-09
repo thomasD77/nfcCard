@@ -8,7 +8,7 @@
         <th scope="col">Avatar</th>
         <th scope="col">Email</th>
         <th scope="col">Role</th>
-        <th scope="col">Registered</th>
+        <th scope="col">Card ID</th>
         @canany(['is_superAdmin', 'is_admin'])
         <th scope="col">Actions</th>
         @endcan
@@ -26,7 +26,7 @@
                         <span class="rounded-pill bg-info-light text-info p-2">{{$role->name ? $role->name : 'No Role'}}</span>
                     @endforeach
                 </td>
-                <td>{{$user->email_verified_at ? $user->email_verified_at->diffForHumans() : 'Not Verified'}}</td>
+                <td>{{$user->member ? '# ' . $user->member->card_id : 'No Card ID'}}</td>
                 @canany(['is_superAdmin', 'is_admin'])
                 <td>
                     <div class="btn-group">
