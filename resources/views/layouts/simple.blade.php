@@ -29,6 +29,10 @@
 
         <!-- Scripts -->
         <script>window.Laravel = {!! json_encode(['csrfToken' => csrf_token(),]) !!};</script>
+        <!-- PWA  -->
+        <meta name="theme-color" content="#6777ef"/>
+        <link rel="apple-touch-icon" href="{{ asset('images/innova_logo.png') }}">
+        <link rel="manifest" href="{{ asset('/manifest.json') }}">
     </head>
     <body>
         <!-- Page Container -->
@@ -94,5 +98,13 @@
         <!-- <script src="{{ asset('/js/laravel.app.js') }}"></script> -->
 
         @yield('js_after')
+        <script src="{{ asset('/sw.js') }}"></script>
+        <script>
+            if (!navigator.serviceWorker.controller) {
+                navigator.serviceWorker.register("/sw.js").then(function (reg) {
+                    console.log("Service worker has been registered for scope: " + reg.scope);
+                });
+            }
+        </script>
     </body>
 </html>

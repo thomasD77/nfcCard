@@ -87,7 +87,7 @@
                 </div>
                 <div class="box box-content">
 
-                        <a class="w-100" href="{{ route('members.vCard', $member->id ) }}"><button type="submit" class="btn w-100 mt-3"><i class="fa-solid fa-cloud-arrow-up mr-2"></i>SAVE ME</button></a>
+                        <a class="w-100" href="{{ route('members.vCard', $member->id ) }}"><button type="submit" class="btn_cstm save w-100 mt-3 p-4"><i class="fa-solid fa-cloud-arrow-up mr-2 "></i>SAVE ME</button></a>
 
                 </div>
             </div>
@@ -143,63 +143,63 @@
                                     @if($member->website)
                                         <!-- Website -->
                                         <div class="col-12 d-flex justify-content-center">
-                                            <a class="w-100" target="_blank" href="{{ $member->website }}"><button type="submit" class="btn w-100 mt-2"><i class="fa-solid fa-earth-africa mx-2"></i>Website</button></a>
+                                            <a class="w-100" target="_blank" href="{{ $member->website }}"><button type="submit" class="btn_cstm website w-100 mt-2"><i class="fa-solid fa-earth-africa mx-2"></i>Website</button></a>
                                         </div>
                                     @endif
 
                                     @if($member->facebook)
                                         <!-- Facebook -->
                                         <div class="col-12 d-flex justify-content-center">
-                                            <a class="w-100" target="_blank" href=""><button type="submit" class="btn w-100 mt-2"><i class="fa-brands fa-facebook mr-2"></i>Facebook</button></a>
+                                            <a class="w-100" target="_blank" href=""><button type="submit" class="btn_cstm facebook w-100 mt-2"><i class="fa-brands fa-facebook mr-2"></i>Facebook</button></a>
                                         </div>
                                     @endif
 
                                     @if($member->facebookMessenger)
                                         <!-- Messenger -->
                                         <div class="col-12 d-flex justify-content-center">
-                                            <a class="w-100" target="_blank" href=""><button type="submit" class="btn w-100 mt-2"><i class="fa-brands fa-facebook-messenger mx-2"></i>Messenger</button></a>
+                                            <a class="w-100" target="_blank" href=""><button type="submit" class="btn_cstm messenger w-100 mt-2"><i class="fa-brands  fa-facebook-messenger mx-2"></i>Messenger</button></a>
                                         </div>
                                     @endif
 
                                     @if($member->instagram)
                                         <!-- Instagram -->
                                         <div class="col-12 d-flex justify-content-center">
-                                             <a class="w-100" target="_blank" href=""><button type="submit" class="btn w-100 mt-2"><i class="fa-brands fa-instagram mx-2"></i>Instagram</button></a>
+                                             <a class="w-100" target="_blank" href=""><button type="submit" class="btn_cstm instagram w-100 mt-2"><i class="fa-brands  fa-instagram mx-2"></i>Instagram</button></a>
                                         </div>
                                     @endif
 
                                     @if($member->linkedIn)
                                         <!-- LinkedIn -->
                                         <div class="col-12 d-flex justify-content-center">
-                                             <a class="w-100" target="_blank" href=""><button type="submit" class="btn w-100 mt-2"><i class="fa-brands fa-linkedin-in mx-2"></i>LinkedIn</button></a>
+                                             <a class="w-100" target="_blank" href=""><button type="submit" class="btn_cstm w-100 linkedIn mt-2"><i class="fa-brands  fa-linkedin-in mx-2"></i>LinkedIn</button></a>
                                         </div>
                                     @endif
 
                                     @if($member->twitter)
                                         <!-- Twitter -->
                                         <div class="col-12 d-flex justify-content-center">
-                                             <a class="w-100" target="_blank" href=""><button type="submit" class="btn w-100 mt-2"><i class="fa-brands fa-twitter mx-2"></i>Twitter</button></a>
+                                             <a class="w-100" target="_blank" href=""><button type="submit" class="btn_cstm w-100 twitter mt-2"><i class="fa-brands  fa-twitter mx-2"></i>Twitter</button></a>
                                         </div>
                                     @endif
 
                                     @if($member->youTube)
                                         <!-- YouTube -->
                                         <div class="col-12 d-flex justify-content-center">
-                                            <a class="w-100" target="_blank" href=""> <button type="submit" class="w-100 btn mt-2"><i class="fa-brands fa-youtube mx-2"></i>YouTube</button></a>
+                                            <a class="w-100" target="_blank" href=""> <button type="submit" class="w-100 btn_cstm youTube mt-2"><i class="fa-brands fa-youtube mx-2"></i>YouTube</button></a>
                                         </div>
                                     @endif
 
                                     @if($member->tikTok)
                                         <!-- TikTok -->
                                         <div class="col-12 d-flex justify-content-center">
-                                            <a class="w-100" target="_blank" href=""> <button type="submit" class="btn w-100 mt-2"><i class="fa-brands fa-tiktok mx-2"></i>TikTok</button></a>
+                                            <a class="w-100" target="_blank" href=""> <button type="submit" class="btn_cstm tikTok w-100 mt-2"><i class="fa-brands fa-tiktok mx-2"></i>TikTok</button></a>
                                         </div>
                                     @endif
 
                                     @if($member->whatsApp)
                                         <!-- WhatsApp -->
                                         <div class="col-12 d-flex justify-content-center">
-                                             <a class="w-100" target="_blank" href=""><button type="submit" class="btn w-100 mt-2"><i class="fa-brands fa-whatsapp mx-2"></i>WhatsApp</button></a>
+                                             <a class="w-100" target="_blank" href=""><button type="submit" class="btn_cstm whatsApp w-100 mt-2"><i class="fa-brands fa-whatsapp mx-2"></i>WhatsApp</button></a>
                                         </div>
                                     @endif
                                 </div>

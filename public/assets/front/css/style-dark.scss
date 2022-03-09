@@ -228,14 +228,15 @@ select,
 
 
 // Button
-.btn {
-  background-image: $gradient-dark-accent;
-  color: $heading-dark-color;
+//.btn {
+//  background-image: $gradient-dark-accent;
+//  color: $heading-dark-color;
+//
+//  &:hover {
+//    color: $heading-dark-color;
+//  }
+//}
 
-  &:hover {
-    color: $heading-dark-color;
-  }
-}
 
 /* -----------------------------------------------------------------
     - Preloader

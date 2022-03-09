@@ -155,17 +155,57 @@ select option,
   border-bottom-color: #AEB0B8;
 }
 
-.btn {
-  background-image: linear-gradient(142.17deg, #0DA2FF 6.66%, #ff006a 91.48%);
-  color: #FCFCFC;
+.btn_cstm {
+    padding: 10px 0;
+    border-top-left-radius:15px;
+    border-top-right-radius:15px;
+    border-bottom-right-radius:15px;
+    border-bottom-left-radius:15px;
+    border: none;
+    color: white;
 }
+
+.save {
+    background-color: #383737;
+    font-weight: bold;
+}
+.facebook {
+    background-color: #3b5998
+}
+.instagram {
+    background-color: #c32aa3
+}
+.messenger {
+    background-color: #00aff0
+}
+.linkedIn {
+    background-color: #0a66c2
+}
+.twitter {
+    background-color: #1da1f2
+}
+.youTube {
+    background-color: #ff0000
+}
+.tikTok {
+    background-color: #010101
+}
+.whatsApp {
+    background-color: #25d366
+}
+.website {
+    background-color: #bd081c
+}
+
+
+
+
+
+
 .btn:hover {
   color: #FCFCFC;
 }
-/*.btn {*/
-/*    background-image: linear-gradient(142.17deg, #0DA2FF 6.66%, #0055FF 91.48%);*/
-/*    color: #FCFCFC;*/
-/*}*/
+
 
 /* -----------------------------------------------------------------
     - Preloader
