@@ -36,8 +36,8 @@ class CardController extends Controller
     {
         // define vcard
         $vcard = new VCard();
-
-        $member = Member::where('card_id', $id)->first();
+        
+        $member = Member::where('id', $id)->first();
 
         // define variables
         $lastname = $member->lastname;

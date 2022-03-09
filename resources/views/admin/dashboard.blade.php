@@ -194,7 +194,6 @@
                             <p style="font-weight: bold">Current Cards: </p>
                             <p> {{ $total_cards }} </p>
                         </div>
-
                     </div>
                 </div>
             </div>
