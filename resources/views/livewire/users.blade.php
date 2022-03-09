@@ -9,6 +9,7 @@
         <th scope="col">Email</th>
         <th scope="col">Role</th>
         <th scope="col">Card ID</th>
+        
         @canany(['is_superAdmin', 'is_admin'])
         <th scope="col">Actions</th>
         @endcan
