@@ -57,24 +57,7 @@ class CardController extends Controller
         $vcard->addPhoneNumber($member->mobile );
         $vcard->addAddress(null, null, $member->addressLine1, $member->city, null, $member->postalCode, $member->country);
         $vcard->addURL($member->website);
-        //$vcard->addPhoto($member->avatar);
-
-        if($member->avatar)
-        {
-            if ($member->avatar != "") {
-                $avatar = asset('card/avatars/' . $member->avatar);
-            }
-            else
-            {
-                $avatar = asset('/card/avatars/bg-vcard.png');
-            }
-        }
-        else
-        {
-            $avatar = asset('/card/avatars/bg-vcard.png');
-        }
-
-        $vcard->addPhoto($avatar);
+        $vcard->addPhoto($member->avatar ? asset('card/avatars/' . $member->avatar) : asset('/card/img/bg-vcard.png'));
         $vcard->addNote($member->notes);
 
 
