@@ -8,7 +8,7 @@
     "theme_color": "#6777ef",
     "icons": [
         {
-            "src": "innova_logo.png",
+            "src": "images/innova_logo.png",
             "sizes": "512x512",
             "type": "image/png",
             "purpose": "any maskable"
