@@ -31,7 +31,7 @@ class QRcodeController extends Controller
 
         $pdf = PDF::loadView('admin.members.code', compact('members'));
 
-        return $pdf->download('myPDF');
+        return $pdf->download('card-details.pdf');
 
 
 
