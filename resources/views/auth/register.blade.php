@@ -14,9 +14,9 @@
                         <h3 class="block-title">Create Account</h3>
                         <div class="block-options">
 {{--                            <a class="btn-block-option fs-sm" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#one-signup-terms">View Terms</a>--}}
-                            <a class="btn-block-option" href="{{ route('login') }}" data-bs-toggle="tooltip" data-bs-placement="left" title="Sign In">
-                                <i class="fa fa-sign-in-alt"></i>
-                            </a>
+{{--                            <a class="btn-block-option" href="{{ route('login') }}" data-bs-toggle="tooltip" data-bs-placement="left" title="Sign In">--}}
+{{--                                <i class="fa fa-sign-in-alt"></i>--}}
+{{--                            </a>--}}
                         </div>
                     </div>
                     <div class="block-content">

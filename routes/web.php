@@ -26,6 +26,10 @@ Auth::routes(['verify'=> true]);
 
 Route::get('/', 'App\Http\Controllers\DirectionController@getDirection')->name('direction');
 
+Route::get('/offline', function () {
+    return view('modules/laravelpwa/offline');
+});
+
 
 Route::match(['get', 'post'], '/dashboard', function(){
     return view('admin/dashboard');
