@@ -12,7 +12,7 @@ class Package extends Model
     protected $fillable = [
        'vCard',
        'landingpageDefault',
-       'landingpageCustom' ,
+       'landingpageCustom',
     ];
 
     public function listurls()

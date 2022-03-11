@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CompanyCredential;
 use App\Models\listUrl;
+use App\Models\Lock;
 use App\Models\Member;
 use App\Models\Package;
 use App\Models\Photo;
@@ -60,6 +61,8 @@ class AdminHomeController extends Controller
         $total_metal = listUrl::where('material_id', 2)->get()->count();
         $total_wood = listUrl::where('material_id', 3)->get()->count();
 
+        $lock = Lock::first();
+
         return view('admin.dashboard', compact('company',
             'photos',
             'package',
@@ -73,6 +76,7 @@ class AdminHomeController extends Controller
             'total_pvc',
             'total_metal',
             'total_wood',
+            'lock'
         ));
     }
 

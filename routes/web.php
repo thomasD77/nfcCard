@@ -68,7 +68,10 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::get('QRcodeListCustom', 'App\Http\Controllers\QRcodeController@QRcodeListWithParams')->name('QRcodeListCustom');
     Route::post('QRcodeSelect', 'App\Http\Controllers\QRcodeController@QRcodeSelect')->name('QRcodeSelect');
 
-    Route::post('package', 'App\Http\Controllers\CardController@choosePackage')->name('choosePackage');
+    Route::get('lock', 'App\Http\Controllers\CardController@lock')->name('lock');
+    Route::get('unlock', 'App\Http\Controllers\CardController@unlock')->name('unlock');
+
+
 
 
     //Page Routes

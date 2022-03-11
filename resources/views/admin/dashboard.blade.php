@@ -59,6 +59,21 @@
             <div class="col-md-6 col-xl-4">
                 <div class="block block-rounded">
                     <div class="block-header block-header-default">
+                        <h3 class="block-title">Welcome</h3>
+                    </div>
+                    <div class="block-content fs-sm text-muted ">
+                        <p>Card status: </p>
+                        @if($lock->status == 1)
+                            <a href="{{ route('lock') }}"><button class="btn btn-success"><i class="fa fa-lock"></i></button></a>
+                        @else
+                            <a href="{{ route('unlock') }}"><button class="btn btn-danger"><i class="fa fa-unlock"></i></button></a>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-4">
+                <div class="block block-rounded">
+                    <div class="block-header block-header-default">
                         <h3 class="block-title">STAP 1: OUR URL</h3>
                     </div>
                     <div class="block-content fs-sm text-muted">
@@ -74,53 +89,7 @@
             <div class="col-md-6 col-xl-4">
                 <div class="block block-rounded">
                     <div class="block-header block-header-default">
-                        <h3 class="block-title">STAP 2: Package</h3>
-                        <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                            <i class="fa fa-arrow-down"></i>
-                        </a>
-                    </div>
-                    <div class="block-content fs-sm text-muted">
-                        <div class="collapse" id="collapseExample">
-                            <div class="card card-body border border-0">
-                                <form class="col-6 mb-0" name="contactformulier"
-                                      action="{{action('App\Http\Controllers\CardController@choosePackage')}}" method="post">
-                                    @csrf
-                                    <div class="form-check my-4">
-                                        <input class="form-check-input" type="radio" value="default" name="flexRadioDefault" id="flexRadioDefault2">
-                                        <label class="form-check-label" for="flexRadioDefault2">
-                                            Landingpage (default)
-                                        </label>
-                                    </div>
-                                    <div class="form-check my-4">
-                                        <input class="form-check-input" type="radio" value="custom" name="flexRadioDefault" id="flexRadioDefault2">
-                                        <label class="form-check-label" for="flexRadioDefault2">
-                                            Landingpage (custom)
-                                        </label>
-                                    </div>
-                                    <div class="form-check my-4">
-                                        <input class="form-check-input" type="radio" value="vCard" name="flexRadioDefault" id="flexRadioDefault1">
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                            vCard
-                                        </label>
-                                    </div>
-                                    <div class="my-4">
-                                        <button type="submit" class="btn btn-alt-primary">
-                                            <i class="fa fa-paper-plane me-1 opacity-50"></i> Choose
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-                        <p style="font-weight: bold">Current package: </p>
-                        <p> {{ $package }} </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-xl-4">
-                <div class="block block-rounded">
-                    <div class="block-header block-header-default">
-                        <h3 class="block-title">STAP 3: QRcode</h3>
+                        <h3 class="block-title">STAP 2: QRcode</h3>
                         <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseQR" role="button" aria-expanded="false" aria-controls="collapseExample">
                             <i class="fa fa-arrow-down"></i>
                         </a>
@@ -165,10 +134,12 @@
             <div class="col-md-6 col-xl-4">
                 <div class="block block-rounded">
                     <div class="block-header block-header-default">
-                        <h3 class="block-title">STAP 4: How many Cards? </h3>
-                        <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseCards" role="button" aria-expanded="false" aria-controls="collapseExample">
-                            <i class="fa fa-arrow-down"></i>
-                        </a>
+                        <h3 class="block-title">STAP 3: How many Cards? </h3>
+                        @if($lock->status == 1)
+                            <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseCards" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                <i class="fa fa-arrow-down"></i>
+                            </a>
+                        @endif
                     </div>
                     <div class="block-content fs-sm text-muted pt-0">
                         <div class="collapse" id="collapseCards">
@@ -197,7 +168,7 @@
                         @if($total_custom > 0)
                             <div class="py-2">
                                 <p style="font-weight: bold">Custom Package(s): </p>
-                                <p> {{ $total_custom }} </p>
+                                <p > {{ $total_custom }} </p>
                             </div>
                         @endif
                         @if($total_default > 0)
@@ -237,7 +208,7 @@
                 <div class="col-md-6 col-xl-4">
                     <div class="block block-rounded">
                         <div class="block-header block-header-default">
-                            <h3 class="block-title">STAP 5: List Generator </h3>
+                            <h3 class="block-title">STAP 4: List Generator </h3>
                         </div>
                         <div class="block-content fs-sm text-muted pt-0">
                             <div class="py-4">
@@ -271,11 +242,6 @@
                 @if($package == 'vCard')
                     <div class="block-content">
                         <div class="row push">
-                            <div class="col-lg-2">
-                                <p class="fs-sm text-muted">
-                                    Here you can Update your Happy member.
-                                </p>
-                            </div>
                             <div class="col-lg-10">
                                 {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminMembersController@update', $member->id],
                                     'files'=>true])

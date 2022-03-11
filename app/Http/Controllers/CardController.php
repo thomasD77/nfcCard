@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\MemberListExport;
 use App\Exports\SubmissionExport;
 use App\Models\listUrl;
+use App\Models\Lock;
 use App\Models\Member;
 use App\Models\Package;
 use App\Models\URL;
@@ -154,37 +155,6 @@ class CardController extends Controller
 //        return $QRcode;
     }
 
-    public function choosePackage(Request $request)
-    {
-        $package_request = $request->flexRadioDefault;
-
-        $packages = Package::all();
-
-        foreach($packages as $package){
-            $package->value = 0;
-            $package->update();
-        }
-
-
-        if($package_request == 'custom'){
-            $package_current = Package::where('package', 'landingpageCustom')->first();
-            $package_current->value = 1;
-        }
-
-        if($package_request == 'default'){
-            $package_current = Package::where('package', 'landingpageDefault')->first();
-            $package_current->value = 1;
-        }
-
-        if($package_request == 'vCard'){
-            $package_current = Package::where('package', 'vCard')->first();
-            $package_current->value = 1;
-        }
-
-        $package_current->update();
-
-        return redirect('/admin');
-    }
 
     public function generateCards(Request $request)
     {
@@ -222,4 +192,21 @@ class CardController extends Controller
 
     }
 
+    public function lock()
+    {
+        $lock = Lock::first();
+        $lock->status = 0;
+        $lock->update();
+
+        return redirect('/admin');
+    }
+
+    public function unlock()
+    {
+        $lock = Lock::first();
+        $lock->status = 1;
+        $lock->update();
+
+        return redirect('/admin');
+    }
 }
