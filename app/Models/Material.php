@@ -19,5 +19,9 @@ class Material extends Model
         return $this->hasMany(listUrl::class);
     }
 
+    public function members()
+    {
+        return $this->hasMany(Member::class);
+    }
 
 }

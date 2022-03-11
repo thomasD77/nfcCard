@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\listUrl;
+use App\Models\Material;
 use App\Models\Member;
 use App\Models\URL;
 use App\Providers\RouteServiceProvider;
@@ -79,6 +81,7 @@ class RegisterController extends Controller
     {
         $url = URL::first()->url;
         $member = new Member();
+        $listURL = listUrl::where('id', $data['card_id'])->first();
 
         $user = User::create([
             'name' => $data['name'],
@@ -92,17 +95,22 @@ class RegisterController extends Controller
             'created_at'=>Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),]);
 
-
+        //Save member settings
         $member->user_id = $user->id;
         $member->card_id = $data['card_id'];
-
         $member->memberURL = $url . '/?' . $data['card_id'];
         $member->memberQRcode = $url . '/QRcode'. '/' . $data['card_id'];
-
+        $member->material_id = $listURL->material_id;
+        $member->package_id = $listURL->package_id;
         $member->save();
 
+        //Connect User with member
         $user->member_id = $member->id;
         $user->save();
+
+        //Connect ListURl with Member
+        $listURL->member_id = $member->id;
+        $listURL->save();
 
         return $user;
     }

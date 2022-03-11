@@ -18,6 +18,8 @@ class CreateMembersTable extends Migration
         Schema::create('members', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->index()->nullable();
+            $table->integer('package_id')->index()->default(2);
+            $table->integer('material_id')->index()->default(1);
             $table->integer('card_id')->nullable();
             $table->string('avatar')->default("");
             $table->string('memberURL')->default("");

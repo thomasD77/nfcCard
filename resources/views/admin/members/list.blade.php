@@ -63,6 +63,7 @@
                             <th scope="col">URL</th>
                             <th scope="col">Package</th>
                             <th scope="col">Material</th>
+                            <th scope="col">Member</th>
                             <th scope="col">Edit</th>
                         </tr>
                         </thead>
@@ -74,6 +75,7 @@
                                     <td>{{$url->memberURL ? $url->memberURL : ""}}</td>
                                     <td>{{$url->package ? $url->package->package : "No Package" }}</td>
                                     <td>{{$url->material ? $url->material->name : "No Material" }}</td>
+                                    <td>{{$url->member ? $url->member->lastname : "not-active" }} {{ $url->member ? $url->member->firstname : "" }}</td>
                                     <td>
                                         <!-- Button trigger modal -->
                                         <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal{{$url->id}}">
@@ -88,11 +90,8 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-
                                                         {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminMembersController@updateMembersList', $url->id],
-                                                               'files'=>false])
-                                                          !!}
-
+                                                               'files'=>false]) !!}
                                                         <div class="form-group mb-4">
                                                             <div class="d-flex justify-content-between align-items-center">
                                                                 {!! Form::label('loyal','Select Package:', ['class'=>'form-label']) !!}

@@ -10,6 +10,7 @@ class listUrl extends Model
     use HasFactory;
 
     protected $fillable = [
+        'member_id',
         'memberURL',
         'memberQRcode',
         'material_id',
@@ -26,6 +27,9 @@ class listUrl extends Model
         return $this->belongsTo(Material::class);
     }
 
-
+    public function member()
+    {
+        return $this->belongsTo(Member::class);
+    }
 
 }

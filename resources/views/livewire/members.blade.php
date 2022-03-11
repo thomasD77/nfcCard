@@ -33,10 +33,12 @@
             <table class="table table-striped table-hover table-vcenter fs-sm">
                 <thead>
                 <tr>
+                    <th scope="col"># Card ID</th>
                     <th scope="col">avatar</th>
                     <th scope="col">name</th>
                     <th scope="col">email</th>
-                    <th scope="col"># Card ID</th>
+                    <th scope="col">Package</th>
+                    <th scope="col">Material</th>
                     <th scope="col">Actions</th>
                 </tr>
                 </thead>
@@ -44,10 +46,12 @@
                 @if($members)
                     @foreach($members as $member)
                             <tr>
+                                <td>{{$member->card_id ? $member->card_id : 'No Card ID'}}</td>
                                 <td><img class="rounded-circle" height="62" width="62" src="{{$member->avatar ? asset('/card/avatars') . "/" . $member->avatar : asset('/assets/front/img/Avatar-4.svg') }}" alt="{{$member->name}}"></td>
                                 <td>{{$member->lastname ? $member->lastname : ""}} {{ $member->firstname ? $member->firstname : '' }}</td>
                                 <td>{{$member->email ? $member->email : "unknown"}}</td>
-                                <td>{{$member->card_id ? $member->card_id : 'No Card ID'}}</td>
+                                <td>{{$member->package ? $member->package->package : 'No Package'}}</td>
+                                <td>{{$member->material ? $member->material->name : 'No Material'}}</td>
                                 <td>
                                     <div class="btn-group">
                                         <a href="{{route('members.edit', $member->id)}}">
@@ -56,7 +60,7 @@
                                             </button>
                                         </a>
                                         <button class="btn btn-sm btn-alt-secondary" wire:click="archiveMember({{$member->id}})"><i class="fa fa-archive"></i></button>
-                                        <a href="{{route('members.landingpageDefault', $member->id)}}" target="_blank">
+                                        <a href="{{route('direction', $member->card_id)}}" target="_blank">
                                             <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Show member">
                                                 <i class="far fa-eye"></i>
                                             </button>
@@ -81,7 +85,6 @@
     @can('is_client')
     <div class="block-content block-content-full overflow-scroll">
         <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
-
         <div>
             <table class="table table-striped table-hover table-vcenter fs-sm">
                 <thead>

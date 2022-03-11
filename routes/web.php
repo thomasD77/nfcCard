@@ -20,38 +20,34 @@ use Spatie\GoogleCalendar\Event;
 |
 */
 
-// General settings
-Auth::routes(['verify'=> true]);
-
-
-Route::get('/', 'App\Http\Controllers\DirectionController@getDirection')->name('direction');
-
-Route::get('/offline', function () {
-    return view('modules/laravelpwa/offline');
-});
-
-
-Route::match(['get', 'post'], '/dashboard', function(){
-    return view('admin/dashboard');
-});
+//Frontend Routes
+Route::get('/system/{page}', [App\Http\Controllers\SystemPageController::class, 'index'])->name('system');
+Route::resource('submissions', App\Http\Controllers\AdminSubmissionController::class);
 Route::view('/pages/slick', 'pages.slick');
 Route::view('/pages/datatables', 'pages.datatables');
 Route::view('/pages/blank', 'pages.blank');
 Route::view('/register/client', 'auth.registerClient');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-//Frontend Routes
-Route::get('/system/{page}', [App\Http\Controllers\SystemPageController::class, 'index'])->name('system');
-Route::resource('submissions', App\Http\Controllers\AdminSubmissionController::class);
+
+// General settings
+Auth::routes(['verify'=> true]);
+
+//Routes PWA
+Route::get('/offline', function () {
+    return view('modules/laravelpwa/offline');
+});
+
+Route::match(['get', 'post'], '/dashboard', function(){
+    return view('admin/dashboard');
+});
 
 
 //Public Routes for member information
-Route::get('member/{id}', 'App\Http\Controllers\CardController@landingPageMemberDefault')->name('members.landingpageDefault');
-Route::get('member/custom/{id}', 'App\Http\Controllers\CardController@landingPageMemberCustom')->name('members.landingpageCustom');
+Route::get('/', 'App\Http\Controllers\DirectionController@getDirection')->name('direction');
 Route::get('vCard/{id}', 'App\Http\Controllers\CardController@vCard')->name('members.vCard');
 Route::get('QRcode/{id}', 'App\Http\Controllers\CardController@QRcode')->name('members.QRcode');
 Route::post('generate/cards', 'App\Http\Controllers\CardController@generateCards')->name('generate.cards');
-
 
 // Backend Routes
 Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(){

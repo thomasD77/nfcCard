@@ -13,6 +13,8 @@ class Member extends Model
         [
             'user_id',
             'card_id',
+            'package_id',
+            'material_id',
             'firstname',
             'lastname',
             'company',
@@ -46,5 +48,20 @@ class Member extends Model
     public function user()
     {
         return $this->hasOne(User::class);
+    }
+
+    public function package()
+    {
+        return $this->belongsTo(Package::class);
+    }
+
+    public function material()
+    {
+        return $this->belongsTo(Material::class);
+    }
+
+    public function listurl()
+    {
+        return $this->hasOne(listUrl::class);
     }
 }
