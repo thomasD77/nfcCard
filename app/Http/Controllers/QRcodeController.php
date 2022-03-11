@@ -27,15 +27,9 @@ class QRcodeController extends Controller
     public function QRcodeListWithParams()
     {
         $members = listUrl::all();
-
-
         $pdf = PDF::loadView('admin.members.code', compact('members'));
 
         return $pdf->download('card-details.pdf');
-
-
-
-        return view::make('admin.members.code', compact('members'));
     }
 
     public function QRcodeSelect(Request $request)
