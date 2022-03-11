@@ -16,6 +16,8 @@ class CreateListUrlsTable extends Migration
         Schema::create('list_urls', function (Blueprint $table) {
             $table->id();
             $table->string('memberURL');
+            $table->integer('material_id')->index();
+            $table->integer('package_id')->index();
             $table->string('memberQRcode');
             $table->timestamps();
         });

@@ -190,10 +190,46 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="py-4">
+                        <div class="py-2">
                             <p style="font-weight: bold">Current Cards: </p>
                             <p> {{ $total_cards }} </p>
                         </div>
+                        @if($total_custom > 0)
+                            <div class="py-2">
+                                <p style="font-weight: bold">Custom Package(s): </p>
+                                <p> {{ $total_custom }} </p>
+                            </div>
+                        @endif
+                        @if($total_default > 0)
+                            <div class="py-2">
+                                <p style="font-weight: bold">Default Package(s): </p>
+                                <p> {{ $total_default }} </p>
+                            </div>
+                        @endif
+                        @if($total_vCard > 0 )
+                            <div class="py-2">
+                                <p style="font-weight: bold">vCard Package(s): </p>
+                                <p> {{ $total_vCard }} </p>
+                            </div>
+                        @endif
+                        @if($total_pvc > 0 )
+                            <div class="py-2">
+                                <p style="font-weight: bold">PVC Card(s): </p>
+                                <p> {{ $total_pvc }} </p>
+                            </div>
+                        @endif
+                        @if($total_metal > 0 )
+                            <div class="py-2">
+                                <p style="font-weight: bold">Metal Card(s): </p>
+                                <p> {{ $total_metal }} </p>
+                            </div>
+                        @endif
+                        @if($total_wood > 0 )
+                            <div class="py-2">
+                                <p style="font-weight: bold">Wood Card(s): </p>
+                                <p> {{ $total_wood }} </p>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

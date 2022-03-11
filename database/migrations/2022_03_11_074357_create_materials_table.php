@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePackagesTable extends Migration
+class CreateMaterialsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,21 +14,20 @@ class CreatePackagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('packages', function (Blueprint $table) {
+        Schema::create('materials', function (Blueprint $table) {
             $table->id();
-            $table->string('package')->nullable();
-            $table->string('value')->default(0);
+            $table->string('name');
             $table->timestamps();
         });
 
-        DB::table('packages')->insert([
-             'package' =>'vCard',
+        DB::table('materials')->insert([
+            'name' => 'PVC'
         ]);
-        DB::table('packages')->insert([
-            'package' =>'Default',
+        DB::table('materials')->insert([
+            'name' => 'METAL'
         ]);
-        DB::table('packages')->insert([
-            'package' => 'Custom',
+        DB::table('materials')->insert([
+            'name' => 'WOOD'
         ]);
     }
 
@@ -39,6 +38,6 @@ class CreatePackagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('packages');
+        Schema::dropIfExists('materials');
     }
 }

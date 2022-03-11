@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Exports\MemberCredentialCardExport;
 use App\Exports\MemberListExport;
+use App\Models\listUrl;
+use App\Models\Material;
 use App\Models\Member;
 use App\Models\Order;
 use App\Models\Package;
@@ -332,6 +334,29 @@ class AdminMembersController extends Controller
 
         return view('admin.members.search', compact('members', 'member', 'member_url', 'active_user_role', 'active_user'));
 
+    }
+
+    public function membersList()
+    {
+
+        $urls = listUrl::with(['package', 'material'])->paginate(25);
+        $packages = Package::pluck('package', 'id');
+        $materials = Material::pluck('name', 'id');
+
+        return view ('admin.members.list', compact('urls', 'packages', 'materials'));
+    }
+
+    public function updateMembersList(Request $request)
+    {
+        $url = listUrl::findOrFail($request->url_id);
+
+        $url->material_id = $request->material_id;
+        $url->package_id = $request->package_id;
+
+        $url->update();
+
+        \Brian2694\Toastr\Facades\Toastr::success('Edit Card Successfully');
+        return redirect('/admin/members/list/gen');
     }
 
 }

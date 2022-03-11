@@ -213,6 +213,8 @@ class CardController extends Controller
             $cardURL = new listUrl();
             $cardURL->memberURL = $project_url . '/?' . $i;
             $cardURL->memberQRcode = $project_url . '/QRcode'. '/' . $i;
+            $cardURL->material_id = 1;
+            $cardURL->package_id = 2;
             $cardURL->save();
         }
 

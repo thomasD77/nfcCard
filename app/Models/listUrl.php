@@ -11,7 +11,21 @@ class listUrl extends Model
 
     protected $fillable = [
         'memberURL',
-        'memberQRcode'
+        'memberQRcode',
+        'material_id',
+        'package_id'
     ];
+
+    public function package()
+    {
+        return $this->belongsTo(Package::class);
+    }
+
+    public function material()
+    {
+        return $this->belongsTo(Material::class);
+    }
+
+
 
 }

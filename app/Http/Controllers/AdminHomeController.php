@@ -52,8 +52,28 @@ class AdminHomeController extends Controller
         $member = Member::where('user_id',$user)->first();
 
         $total_cards = listUrl::all()->count();
+        $total_custom = listUrl::where('package_id', 3)->get()->count();
+        $total_default = listUrl::where('package_id', 2)->get()->count();
+        $total_vCard = listUrl::where('package_id', 1)->get()->count();
 
-        return view('admin.dashboard', compact('company', 'photos', 'package', 'currentURL', 'QRcode', 'member', 'total_cards'));
+        $total_pvc = listUrl::where('material_id', 1)->get()->count();
+        $total_metal = listUrl::where('material_id', 2)->get()->count();
+        $total_wood = listUrl::where('material_id', 3)->get()->count();
+
+        return view('admin.dashboard', compact('company',
+            'photos',
+            'package',
+            'currentURL',
+            'QRcode',
+            'member',
+            'total_cards',
+            'total_custom',
+            'total_default',
+            'total_vCard',
+            'total_pvc',
+            'total_metal',
+            'total_wood',
+        ));
     }
 
 }
