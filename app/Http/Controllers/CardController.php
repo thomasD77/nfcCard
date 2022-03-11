@@ -13,6 +13,7 @@ use App\Models\URL;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use JeroenDesloovere\VCard\VCard;
 use Maatwebsite\Excel\Facades\Excel;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -161,33 +162,62 @@ class CardController extends Controller
     {
         //Amount of Cards
         $count = $request->card_number;
-
         $project_url = URL::first()->url;
         $cardURL = listUrl::all();
-
+        $max_id = listUrl::max('id');
 
         //If we have cards, we delete the old amount
         if($cardURL->count() > 0)
         {
-            foreach ($cardURL as $url)
+            if($count > $cardURL->count())
             {
-                $url->delete();
+                //Amount is more so we ADD
+                $count_diff = $count - $cardURL->count();
+
+                for($i = 1; $i <= $count_diff; $i++ ){
+                    $cardURL = new listUrl();
+                    $id = $i + $max_id;
+                    $cardURL->memberURL = $project_url . '/?' . $id;
+                    $cardURL->memberQRcode = $project_url . '/QRcode'. '/' . $id;
+                    $cardURL->material_id = 1;
+                    $cardURL->package_id = 2;
+                    $cardURL->save();
+                }
+            }
+            else
+            {
+                Session::flash('negative_number', 'You can not add a smaller card amount. This is for security reasons. We do not want to lose existing accounts. Thank you. ');
+                return redirect()->back();
+                //Amount is LESS so we RESTART
+//                foreach ($cardURL as $url)
+//                {
+//                    $url->delete();
+//                }
+//                //Reset Database ID's
+//                DB::table('list_urls')->truncate();
+//                //Create new Card amount
+//                for($i = 1; $i <= $count; $i++ ){
+//                    $cardURL = new listUrl();
+//                    $cardURL->memberURL = $project_url . '/?' . $i;
+//                    $cardURL->memberQRcode = $project_url . '/QRcode'. '/' . $i;
+//                    $cardURL->material_id = 1;
+//                    $cardURL->package_id = 2;
+//                    $cardURL->save();
+//                }
+            }
+        }else{
+            //First time generating
+            for($i = 1; $i <= $count; $i++ ){
+                $cardURL = new listUrl();
+                $cardURL->memberURL = $project_url . '/?' . $i;
+                $cardURL->memberQRcode = $project_url . '/QRcode'. '/' . $i;
+                $cardURL->material_id = 1;
+                $cardURL->package_id = 2;
+                $cardURL->save();
             }
         }
 
-        //Reset Database ID's
-        DB::table('list_urls')->truncate();
 
-
-        //Create new Card amount
-        for($i = 1; $i <= $count; $i++ ){
-            $cardURL = new listUrl();
-            $cardURL->memberURL = $project_url . '/?' . $i;
-            $cardURL->memberQRcode = $project_url . '/QRcode'. '/' . $i;
-            $cardURL->material_id = 1;
-            $cardURL->package_id = 2;
-            $cardURL->save();
-        }
 
         return redirect('/admin');
 

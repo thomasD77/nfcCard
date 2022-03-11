@@ -154,33 +154,18 @@
                                         <input class="form-control" type="number" name="card_number" value="card_number">
                                     </div>
                                     <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-alt-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <button type="submit" class="btn btn-alt-primary">
                                         <i class="fa fa-paper-plane me-1 opacity-50"></i> Generate
                                     </button>
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>If you generate again all current card information will be lost.</p>
-
-                                                    <button type="submit" class="btn btn-alt-primary">
-                                                        <i class="fa fa-paper-plane me-1 opacity-50"></i> Generate
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </form>
                             </div>
                         </div>
                         <div class="py-2">
                             <p style="font-weight: bold">Current Cards: </p>
                             <p> {{ $total_cards }} </p>
+                            @if(Session::has('negative_number'))
+                                <p class="alert alert-danger my-2">{{session('negative_number')}}</p>
+                            @endif
                         </div>
                         @if($total_custom > 0)
                             <div class="py-2">
