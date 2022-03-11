@@ -18,11 +18,11 @@
                 <a class="btn btn-alt-warning" role="button" href="{{ route('members.credentials') }}">
                     <i class="fa fa-print me-2"></i> Member List
                 </a>
-                <a href="{{route('members.archive')}}">
-                    <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Archive">
-                        <i class="fa fa-archive "></i>
-                    </button>
-                </a>
+{{--                <a href="{{route('members.archive')}}">--}}
+{{--                    <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Archive">--}}
+{{--                        <i class="fa fa-archive "></i>--}}
+{{--                    </button>--}}
+{{--                </a>--}}
             @endcanany
         </div>
     </div>
@@ -60,7 +60,7 @@
                                                 <i class="fa fa-fw fa-pencil-alt"></i>
                                             </button>
                                         </a>
-                                        <button class="btn btn-sm btn-alt-secondary" wire:click="archiveMember({{$member->id}})"><i class="fa fa-archive"></i></button>
+{{--                                        <button class="btn btn-sm btn-alt-secondary" wire:click="archiveMember({{$member->id}})"><i class="fa fa-archive"></i></button>--}}
                                         <a href="{{route('direction', $member->card_id)}}" target="_blank">
                                             <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Show member">
                                                 <i class="far fa-eye"></i>

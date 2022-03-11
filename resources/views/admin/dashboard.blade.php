@@ -62,11 +62,11 @@
                         <h3 class="block-title">Welcome</h3>
                     </div>
                     <div class="block-content fs-sm text-muted ">
-                        <p>Card status: </p>
+                        <p style="font-weight: bold">Card status: </p>
                         @if($lock->status == 1)
-                            <a href="{{ route('lock') }}"><button class="btn btn-success"><i class="fa fa-lock"></i></button></a>
+                            <a href="{{ route('lock') }}"><button class="btn btn-success"><i class="fa fa-unlock"></i></button></a>
                         @else
-                            <a href="{{ route('unlock') }}"><button class="btn btn-danger"><i class="fa fa-unlock"></i></button></a>
+                            <a href="{{ route('unlock') }}"><button class="btn btn-danger"><i class="fa fa-lock"></i></button></a>
                         @endif
                     </div>
                 </div>
@@ -153,10 +153,27 @@
                                         </label>
                                         <input class="form-control" type="number" name="card_number" value="card_number">
                                     </div>
-                                    <div class="my-4">
-                                        <button type="submit" class="btn btn-alt-primary">
-                                            <i class="fa fa-paper-plane me-1 opacity-50"></i> Generate
-                                        </button>
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-alt-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <i class="fa fa-paper-plane me-1 opacity-50"></i> Generate
+                                    </button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>If you generate again all current card information will be lost.</p>
+
+                                                    <button type="submit" class="btn btn-alt-primary">
+                                                        <i class="fa fa-paper-plane me-1 opacity-50"></i> Generate
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </form>
                             </div>

@@ -75,10 +75,12 @@
                 <div class="header__base-info">
                     @if($member->lastname || $member->firstname )
                         <h4 class="title titl--h4">{{ $member->lastname . " " . $member->firstname }}</h4>
+                        <br>
                     @endif
 
                     @if($member->company)
                         <h5 class="status">{{ $member->company }}</h5>
+                        <br>
                     @endif
 
                     @if($member->jobTitle)
@@ -208,7 +210,7 @@
                     </div>
                 </div>
                 <!-- Footer -->
-                <footer class="footer"><a style="text-decoration: none; color: white" href="https://innova-webcreations.be">Innova Webcreations</a> © {{ now()->format('Y') }}</footer>
+                <footer class="footer"><a style="text-decoration: none; color: white" href="https://innova-webcreations.be">SWAP</a> © {{ now()->format('Y') }}</footer>
                 <footer class="footer">
                     <a style="text-decoration: none; color: white" href="{{ asset('/login') }}">Login</a>
                 </footer>
