@@ -32,7 +32,7 @@ use Illuminate\Support\Facades\Auth;
       <span class="smini-visible">
         <i class="fa fa-circle-notch text-primary"></i>
       </span>
-      <span class="smini-hide fs-5 tracking-wider">Innova</span>
+      <span class="smini-hide fs-5 tracking-wider">SWAP</span>
     </a>
     <!-- END Logo -->
 

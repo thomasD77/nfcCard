@@ -33,7 +33,7 @@ class CreatePermissionsTable extends Migration
         DB::table('permissions')->insert(['name' => 'is_superAdmin']);                                            // DO NOT DELETE THIS DATA FOR LIVE WEBSITE
         DB::table('permissions')->insert(['name' => 'is_admin']);
         DB::table('permissions')->insert(['name' => 'is_client']);
-        DB::table('permissions')->insert(['name' => 'is_employee']);
+        //DB::table('permissions')->insert(['name' => 'is_employee']);
 
         DB::table('permission_role')->insert([                                                                    // DO NOT DELETE THIS DATA FOR LIVE WEBSITE
             'permission_id' => 1,
@@ -50,17 +50,13 @@ class CreatePermissionsTable extends Migration
             'role_id' => 3
         ]);
 
-        DB::table('permission_role')->insert([                                                                    // DO NOT DELETE THIS DATA FOR LIVE WEBSITE
-            'permission_id' => 4,
-            'role_id' => 4
-        ]);
+//        DB::table('permission_role')->insert([                                                                    // DO NOT DELETE THIS DATA FOR LIVE WEBSITE
+//            'permission_id' => 4,
+//            'role_id' => 4
+//        ]);
 
 
     }
-
-
-
-
 
     /**
      * Reverse the migrations.

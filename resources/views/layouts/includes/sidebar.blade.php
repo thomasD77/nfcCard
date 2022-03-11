@@ -176,7 +176,7 @@
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
                             <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('members.index')}}">
-                                <span class="nav-main-link-name">Holders</span>
+                                <span class="nav-main-link-name">List</span>
                             </a>
                         </li>
                         @can('is_superAdmin')

@@ -74,8 +74,8 @@ class AdminUsersController extends Controller
         $user = User::findOrfail($id);
         $roles = Role::pluck('name', 'id')
             ->all();
-        $seo = AccountSettings::first()->SEO;
-        return view('admin.users.edit', compact('user', 'roles', 'seo'));
+
+        return view('admin.users.edit', compact('user', 'roles'));
     }
 
     /**
