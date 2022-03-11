@@ -14,9 +14,9 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <!-- Icons -->
-        <link rel="shortcut icon" href="{{ asset('images/SWAP.png') }}">
-        <link rel="icon" sizes="192x192" type="image/png" href="{{ asset('images/SWAP.png') }}">
-        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/SWAP.png') }}">
+        <link rel="shortcut icon" href="{{ asset('images/SWAP2.png') }}">
+        <link rel="icon" sizes="192x192" type="image/png" href="{{ asset('images/SWAP2.png') }}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/SWAP2.png') }}">
 
         <!-- Fonts and Styles -->
         @yield('css_before')
@@ -31,7 +31,7 @@
         <script>window.Laravel = {!! json_encode(['csrfToken' => csrf_token(),]) !!};</script>
         <!-- PWA  -->
         <meta name="theme-color" content="#6777ef"/>
-        <link rel="apple-touch-icon" href="{{ asset('images/SWAP.png') }}">
+        <link rel="apple-touch-icon" href="{{ asset('images/SWAP2.png') }}">
         <link rel="manifest" href="{{ asset('/manifest.json') }}">
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,7 +39,7 @@
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <meta name="apple-mobile-web-app-title" content="SWAP">
-        <meta name="msapplication-TileImage" content="{{ asset('images/SWAP.png') }}">
+        <meta name="msapplication-TileImage" content="{{ asset('images/SWAP2.png') }}">
         <meta name="msapplication-TileColor" content="#FFFFFF">
     </head>
     <body>
