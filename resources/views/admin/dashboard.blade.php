@@ -252,6 +252,9 @@
             <div class="block block-rounded">
                 <div class="block-header block-header-default">
                     <h3 class="block-title">Member Profile</h3>
+                    <div>
+                        <p style="font-weight: bold">#Card ID: {{ $member->card_id }}</p>
+                    </div>
                 </div>
 
                 @if($member->package->package == 'vCard')

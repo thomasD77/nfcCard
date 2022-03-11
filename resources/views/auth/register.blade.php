@@ -63,10 +63,10 @@
                                         <input placeholder="confirm password" id="password-confirm" type="password" class="form-control form-control-lg form-control-alt" name="password_confirmation" required autocomplete="new-password">
                                     </div>
                                     <div class="mb-4">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="signup-terms" name="signup-terms">
-                                            <label class="form-check-label" for="signup-terms">I agree to Terms &amp; Conditions</label>
-                                        </div>
+{{--                                        <div class="form-check">--}}
+{{--                                            <input class="form-check-input" type="checkbox" value="" id="signup-terms" name="signup-terms">--}}
+{{--                                            <label class="form-check-label" for="signup-terms">I agree to Terms &amp; Conditions</label>--}}
+{{--                                        </div>--}}
                                     </div>
                                 </div>
                                 <div class="row mb-4">
