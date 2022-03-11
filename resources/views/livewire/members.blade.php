@@ -45,6 +45,7 @@
                 <tbody>
                 @if($members)
                     @foreach($members as $member)
+                        @if($member->user->archived == 0)
                             <tr>
                                 <td>{{$member->card_id ? $member->card_id : 'No Card ID'}}</td>
                                 <td><img class="rounded-circle" height="62" width="62" src="{{$member->avatar ? asset('/card/avatars') . "/" . $member->avatar : asset('/assets/front/img/Avatar-4.svg') }}" alt="{{$member->name}}"></td>
@@ -68,6 +69,7 @@
                                     </div>
                                 </td>
                             </tr>
+                        @endif
                     @endforeach
                 @endif
                 </tbody>

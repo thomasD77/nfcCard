@@ -19,7 +19,7 @@ class Users extends Component
     {
         $roles = ['superAdmin', 'admin', 'employee', 'client'];
 
-        $users = User::with([ 'roles'])
+        $users = User::with([ 'roles', 'member'])
             ->whereHas('roles', function($q) use($roles) {
             $q->whereIn('name', $roles);})
             ->where('archived', 0)

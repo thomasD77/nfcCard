@@ -75,7 +75,15 @@
                                     <td>{{$url->memberURL ? $url->memberURL : ""}}</td>
                                     <td>{{$url->package ? $url->package->package : "No Package" }}</td>
                                     <td>{{$url->material ? $url->material->name : "No Material" }}</td>
-                                    <td>{{$url->member ? $url->member->lastname : "not-active" }} {{ $url->member ? $url->member->firstname : "" }}</td>
+                                    @if($url->member)
+                                        @if($url->member->user->archived == 1)
+                                            <td><span class="rounded-pill btn-alt-warning p-2">archived</span></td>
+                                        @else
+                                            <td>{{$url->member ? $url->member->lastname : "not-active" }} {{ $url->member ? $url->member->firstname : "" }}</td>
+                                        @endif
+                                    @else
+                                        <td>{{$url->member ? $url->member->lastname : "not-active" }} {{ $url->member ? $url->member->firstname : "" }}</td>
+                                    @endif
                                     <td>
                                         <!-- Button trigger modal -->
                                         <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal{{$url->id}}">
