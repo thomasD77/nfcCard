@@ -256,16 +256,18 @@
                         <p style="font-weight: bold">#Card ID: {{ $member->card_id }}</p>
                     </div>
                 </div>
+                @if($member->user->archived == 0)
 
-                @if($member->package->package == 'vCard')
-                    @include('admin.members.includes.vCard')
+                    @if($member->package->package == 'vCard')
+                        @include('admin.members.includes.vCard')
 
-                @elseif($member->package->package == 'Default')
-                    @include('admin.members.includes.default')
+                    @elseif($member->package->package == 'Default')
+                        @include('admin.members.includes.default')
 
-                @elseif($member->package->package == "Custom")
-                    @include('admin.members.includes.custom')
+                    @elseif($member->package->package == "Custom")
+                        @include('admin.members.includes.custom')
 
+                    @endif
                 @endif
             </div>
             <!-- END member Profile -->
