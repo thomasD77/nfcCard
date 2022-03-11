@@ -116,7 +116,7 @@
                 </div>
             </div>
         @else
-            <p>Sorry, the admin blocked your account. Please contact him for this situation.</p>
+            <p class="p-2">Sorry, the admin blocked your account. Please contact him for this situation.</p>
         @endif
     @endcan
 </div>
