@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ListUrlExportView;
 use App\Exports\MemberListExport;
 use App\Exports\SubmissionExport;
 use App\Models\listUrl;
@@ -67,9 +68,9 @@ class CardController extends Controller
 
 
     //Generate the URLS for the MEBER ID's & export EXCEL file
-    public function listGenerator(Request $request)
+    public function listGenerator()
     {
-        return Excel::download(new MemberListExport(), 'membersListURL.xlsx');
+        return Excel::download(new ListUrlExportView(), 'card-list.xlsx');
     }
 
 
