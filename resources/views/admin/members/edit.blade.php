@@ -1,59 +1,89 @@
-<?php require '../resources/inc/_global/config.php'; ?>
-<?php require '../resources/inc/backend/config.php'; ?>
-<?php require '../resources/inc/_global/views/head_start.php'; ?>
-<?php require '../resources/inc/_global/views/head_end.php'; ?>
-<?php require '../resources/inc/_global/views/page_start.php'; ?>
+@extends('layouts.backend')
 
-<!-- Hero -->
-<div class="bg-primary-dark" style="background-image: url({{asset('images/general/banner6.png')}}); background-size: cover  ; background-repeat: no-repeat ">
-        <div class="content content-full text-center">
-            <div class="my-3">
-                <img class="rounded-circle border border-white border border-3" height="80" width="80" src="{{Auth::user()->avatar ? asset('/') . Auth::user()->avatar->file : 'http://placehold.it/62x62'}}" alt="{{Auth::user()->name}}">
+@section('css_before')
+    <!-- Page JS Plugins CSS -->
+    <link rel="stylesheet" href="{{ asset('js/plugins/datatables-bs5/dataTables.bootstrap5.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('js/plugins/datatables-buttons-bs5/buttons.bootstrap5.min.css') }}">
+@endsection
+
+@section('js_after')
+    <!-- jQuery (required for DataTables plugin) -->
+    <script src="{{ asset('js/lib/jquery.min.js') }}"></script>
+
+    <!-- Page JS Plugins -->
+    <script src="{{ asset('js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/datatables-bs5/dataTables.bootstrap5.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/datatables-buttons/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/datatables-buttons/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/datatables-buttons/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/datatables-buttons/buttons.flash.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/datatables-buttons/buttons.colVis.min.js') }}"></script>
+
+    <!-- Page JS Code -->
+    <script src="{{ asset('js/pages/tables_datatables.js') }}"></script>
+    @livewireStyles
+@endsection
+
+@section('content')
+    <!-- Hero -->
+    <div class="bg-body-light">
+        <div class="content content-full">
+            <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
+                <div class="flex-grow-1">
+                    <h1 class="h3 fw-bold mb-2">
+                        Edit Member
+                    </h1>
+                </div>
+                <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
+                    <ol class="breadcrumb breadcrumb-alt">
+                        <li class="breadcrumb-item">
+                            <a class="link-fx" href="javascript:void(0)">DataTable</a>
+                        </li>
+                        <li class="breadcrumb-item" aria-current="page">
+                            List
+                        </li>
+                    </ol>
+                </nav>
             </div>
-            <h1 class="h2 text-white mb-0">Update Member</h1>
-            <h2 class="h4 fw-normal text-white-75">
-                <?php echo Auth::user()->name; ?>
-            </h2>
-            <a class="btn btn-alt-secondary" href="{{ asset('/admin/members') }}">
-                <i class="fa fa-fw fa-arrow-left text-danger"></i> Back to Members
-            </a>
         </div>
-</div>
-<!-- END Hero -->
-
-<!-- Page Content -->
-<div class="content content-boxed">
+    </div>
+    <!-- END Hero -->
 
     <!-- Page Content -->
     <div class="content content-boxed">
-        <!-- member Profile -->
-        <div class="block block-rounded">
-            <div class="block-header block-header-default">
-                <h3 class="block-title">Member Profile</h3>
-                <div>
-                    <p style="font-weight: bold">#Card ID: {{ $member->card_id }}</p>
+
+        <!-- Page Content -->
+        <div class="content content-boxed">
+            <!-- member Profile -->
+            <div class="block block-rounded">
+                <div class="block-header block-header-default">
+                    <h3 class="block-title">Member Profile</h3>
+                    <div>
+                        <p style="font-weight: bold">#Card ID: {{ $member->card_id }}</p>
+                    </div>
                 </div>
-            </div>
-            @if($member->user->archived == 0)
+                @if($member->user->archived == 0)
 
-                @if($member->package->package == 'vCard')
-                    @include('admin.members.includes.vCard')
+                    @if($member->package->package == 'vCard')
+                        @include('admin.members.includes.vCard')
 
-                @elseif($member->package->package == 'Default')
-                    @include('admin.members.includes.default')
+                    @elseif($member->package->package == 'Default')
+                        @include('admin.members.includes.default')
 
-                @elseif($member->package->package == "Custom")
-                    @include('admin.members.includes.custom')
+                    @elseif($member->package->package == "Custom")
+                        @include('admin.members.includes.custom')
 
+                    @endif
+                @else
+                    <p class="p-2">Sorry, the admin blocked your account. Please contact him for this situation.</p>
                 @endif
-            @else
-                <p class="p-2">Sorry, the admin blocked your account. Please contact him for this situation.</p>
-            @endif
+            </div>
+            <!-- END member Profile -->
         </div>
-        <!-- END member Profile -->
-    </div>
-    <!-- END Page Content -->
+        <!-- END Page Content -->
 
-<?php require '../resources/inc/_global/views/page_end.php'; ?>
-<?php require '../resources/inc/_global/views/footer_start.php'; ?>
-<?php require '../resources/inc/_global/views/footer_end.php'; ?>
+
+@endsection
+
+
+

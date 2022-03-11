@@ -19,8 +19,8 @@
             opacity: 1.1;
         }
     </style>
-    @canany(['is_superAdmin', 'is_admin'])
 
+    @can('is_superAdmin')
     <!-- Hero -->
     <div class="bg-body-light">
         <div class="content content-full">
@@ -243,7 +243,7 @@
         </div>
     </div>
     <!-- END Page Content -->
-    @endcanany
+    @endcan
 
     @can('is_client')
         <!-- Page Content -->

@@ -89,7 +89,7 @@
                             @enderror
                         </div>
 
-                        @canany(['is_admin', 'is_superAdmin'])
+                        @can('is_superAdmin')
                             <div class="form-group mb-4">
                                 {!! Form::label('one-profile-edit-roles', 'Select Role:', ['class'=>'form-label']) !!}
                                 {!! Form::select('roles[]',$roles,$user->roles->pluck('id')->toArray(),['class'=>'form-control',])!!}

@@ -142,7 +142,7 @@
 {{--                </li>--}}
                 @endcan
 
-                @can('is_superAdmin')
+                @canany(['is_superAdmin', 'is_admin'])
                     <li class="nav-main-heading text-uppercase">ACCOUNT USERS</li>
                     <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
                         <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
@@ -164,7 +164,8 @@
 {{--                            @endcan--}}
                         </ul>
                     </li>
-                @endcan
+                @endcanany
+
 
 
                 <li class="nav-main-heading text-uppercase">Card Members</li>
