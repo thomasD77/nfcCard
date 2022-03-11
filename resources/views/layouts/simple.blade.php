@@ -38,8 +38,8 @@
         <meta name="theme-color" content="white"/>
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
-        <meta name="apple-mobile-web-app-title" content="Hello World">
-        <meta name="msapplication-TileImage" content="images/hello-icon-144.png">
+        <meta name="apple-mobile-web-app-title" content="SWAP">
+        <meta name="msapplication-TileImage" content="{{ asset('images/SWAP.png') }}">
         <meta name="msapplication-TileColor" content="#FFFFFF">
     </head>
     <body>

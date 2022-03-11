@@ -32,7 +32,7 @@
           <div class="row push">
           <div class="col-lg-4">
             <p class="fs-sm text-muted">
-              Your account’s vital info. Your username will be publicly visible.
+              Here you can change your account information. This will not influence your card information.
             </p>
           </div>
           <div class="col-lg-8 col-xl-5">

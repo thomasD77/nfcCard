@@ -41,7 +41,6 @@ class CreateMembersTable extends Migration
             $table->string('mobile')->default("");
             $table->string('mobileWork')->default("");
             $table->string('addressLine1')->default("");
-            $table->string('addressLine2')->default("");
 
             $table->string('city')->default("");
             $table->string('postalCode')->default("");
@@ -55,8 +54,6 @@ class CreateMembersTable extends Migration
             $table->string('youTube')->default("");
             $table->string('tikTok')->default("");
             $table->string('whatsApp')->default("");
-            $table->string('facebookMessenger')->default("");
-
 
             $table->timestamps();
         });

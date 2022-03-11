@@ -9,6 +9,7 @@ use App\Models\Material;
 use App\Models\Member;
 use App\Models\Order;
 use App\Models\Package;
+use App\Models\Photo;
 use App\Models\URL;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -18,6 +19,7 @@ use Illuminate\Support\Facades\DB;
 use LaravelQRCode\Facades\QRCode;
 use Maatwebsite\Excel\Facades\Excel;
 use Spatie\Browsershot\Browsershot;
+use Image;
 
 class AdminMembersController extends Controller
 {
@@ -141,8 +143,6 @@ class AdminMembersController extends Controller
         //
         $member = Member::findOrFail($id);
 
-
-
         //General
         if($request->firstname != null){
             $member->firstname = $request->firstname;
@@ -241,12 +241,35 @@ class AdminMembersController extends Controller
             $member->facebookMessenger = $request->facebookMessenger;
         }
 
-        /** wegschrijven van de avatar **/
+
+//        if($file = $request->file('avatar_id')){
+//
+//            $name = time(). $file->getClientOriginalName();
+//            $file->move('card/avatars', $name);
+//
+//            $path = 'card/avatars/' . $name;
+//            $image = Image::make($path);
+//            $image->resize(500,500);
+//            $image->save('card/avatars/' . $name);
+//            $member->avatar = $name;
+//        }
+
         if($file = $request->file('avatar_id')){
+
             $name = time(). $file->getClientOriginalName();
             $file->move('card/avatars', $name);
+
+            $path = 'card/avatars/' . $name;
+            $image = Image::make($path);
+            $image->orientate();
+            $image->resize(200,null, function ($constraint){
+                $constraint->upsize();
+                $constraint->aspectRatio();
+            });
+            $image->save('card/avatars/' . $name);
             $member->avatar = $name;
         }
+
 
         $member->update();
 

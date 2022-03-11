@@ -6,10 +6,10 @@
         <div class="hero-inner">
             <div class="content content-full text-center">
                 <h1 class="fw-bold mb-2">
-                    InnovA <span class="fw-normal">Beyond  <span class="text-city">Webcreation</span></span>
+                    SWAP <br><span class="fw-normal">Beyond  <span class="text-city">Contact Sharing</span></span>
                 </h1>
                 <p class="fs-lg fw-medium text-muted mb-4">
-                    Welcome to the Content Management System! Build something amazing!
+                    Welcome to the Content Management System! Let's explore!
                 </p>
                 <a class="btn btn-alt-primary" href="{{ route('admin.home') }}">
                     Enter Dashboard
