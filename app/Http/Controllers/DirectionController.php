@@ -30,14 +30,14 @@ class DirectionController extends Controller
         }
 
         //Check if ID is generated in the LIST
-        $listurl = listUrl::where('id', $url_card_id)->first();
+        $listurl = listUrl::where('id', $url_card_id)->select('id')->first();
         if(!$listurl)
         {
             return view( 'auth.card');
         }
 
         //Search Member with this Card ID
-        $member = Member::where('card_id', $url_card_id)->first();
+        $member = Member::where('card_id', $url_card_id)->select(['id', 'package_id'])->first();
         if(!$member)
         {
             return view( 'auth.register', compact('url_card_id'));
