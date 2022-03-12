@@ -37,7 +37,7 @@ class DirectionController extends Controller
         }
 
         //Search Member with this Card ID
-        $member = Member::where('card_id', $url_card_id)->select(['id', 'package_id'])->first();
+        $member = Member::where('card_id', $url_card_id)->first();
         if(!$member)
         {
             return view( 'auth.register', compact('url_card_id'));

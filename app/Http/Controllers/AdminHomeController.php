@@ -36,7 +36,6 @@ class AdminHomeController extends Controller
     {
         $user = Auth::user()->id;
         $test = Role::where('id', $user)->first();
-        $company = CompanyCredential::latest()->first();
         $photos = Photo::all();
         $currentURL = URL::first();
 
@@ -63,7 +62,7 @@ class AdminHomeController extends Controller
 
         $lock = Lock::first();
 
-        return view('admin.dashboard', compact('company',
+        return view('admin.dashboard', compact(
             'photos',
             'package',
             'currentURL',
