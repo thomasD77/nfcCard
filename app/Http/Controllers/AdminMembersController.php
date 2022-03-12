@@ -144,103 +144,193 @@ class AdminMembersController extends Controller
         $member = Member::findOrFail($id);
 
         //General
-        if($request->firstname != null){
+        if($request->firstname !== NULL)
+        {
             $member->firstname = $request->firstname;
         }
+        else
+        {
+            $member->firstname = "";
+        }
 
-        if($request->lastname != null){
+        if($request->lastname !== NULL)
+        {
             $member->lastname = $request->lastname;
         }
+        else
+        {
+            $member->lastname = "";
+        }
 
-        if($request->email != null){
+        if($request->email !== NULL)
+        {
             $member->email = $request->email;
         }
-
-        if($request->company != null){
-            $member->company = $request->company;
+        else
+        {
+            $member->email = "";
         }
 
-        if($request->age != null){
+        if($request->age !== NULL)
+        {
             $member->age = $request->age;
         }
+        else
+        {
+            $member->age = "";
+        }
 
-        if($request->jobTitle != null){
+        if($request->jobTitle !== NULL)
+        {
             $member->jobTitle = $request->jobTitle;
         }
+        else
+        {
+            $member->jobTitle = "";
+        }
 
-        if($request->shortDescription != null){
+        if($request->shortDescription !== NULL)
+        {
             $member->shortDescription = $request->shortDescription;
         }
-
-        if($request->website != null){
-            $member->website = $request->website;
+        else
+        {
+            $member->shortDescription = "";
         }
 
-        if($request->notes != null){
-            $member->notes = $request->notes;
+        if($request->website !== NULL)
+        {
+            $member->website = $request->website;
+        }
+        else
+        {
+            $member->website = "";
         }
 
         //Contact information
-        if($request->mobileWork != null){
+        if($request->mobileWork !== NULL)
+        {
             $member->mobileWork = $request->mobileWork;
         }
+        else
+        {
+            $member->mobileWork = "";
+        }
 
-        if($request->mobile != null){
+        if($request->mobile !== NULL)
+        {
             $member->mobile = $request->mobile;
         }
-        if($request->addressLine1 != null){
+        else
+        {
+            $member->mobile = "";
+        }
+
+        if($request->addressLine1 !== NULL)
+        {
             $member->addressLine1 = $request->addressLine1;
         }
-
-        if($request->addressLine2 != null){
-            $member->addressLine2 = $request->addressLine2;
+        else
+        {
+            $member->addressLine1 = "";
         }
 
-        if($request->city != null){
+        if($request->city !== NULL)
+        {
             $member->city = $request->city;
         }
-
-        if($request->country != null){
-            $member->country = $request->country;
+        else
+        {
+            $member->city = "";
         }
 
-        if($request->postalCode != null){
+        if($request->country !== NULL)
+        {
+            $member->country = $request->country;
+        }
+        else
+        {
+            $member->country = "";
+        }
+
+        if($request->postalCode !== NULL)
+        {
             $member->postalCode = $request->postalCode;
+        }
+        else
+        {
+            $member->postalCode = "";
         }
 
         //Socials
-        if($request->facebook != null){
+        if($request->facebook !== NULL)
+        {
             $member->facebook = $request->facebook;
         }
+        else
+        {
+            $member->facebook = "";
+        }
 
-        if($request->instagram != null){
+        if($request->instagram !== NULL)
+        {
             $member->instagram = $request->instagram;
         }
+        else
+        {
+            $member->instagram = "";
+        }
 
-        if($request->twitter != null){
+        if($request->twitter !== NULL)
+        {
             $member->twitter = $request->twitter;
         }
+        else
+        {
+            $member->twitter = "";
+        }
 
-        if($request->youTube != null){
+        if($request->youTube !== NULL)
+        {
             $member->youTube = $request->youTube;
         }
+        else
+        {
+            $member->youTube = "";
+        }
 
-        if($request->tikTok != null){
+        if($request->tikTok !== NULL)
+        {
             $member->tikTok = $request->tikTok;
         }
+        else
+        {
+            $member->tikTok = "";
+        }
 
-        if($request->linkedIn != null){
+        if($request->linkedIn !== NULL)
+        {
             $member->linkedIn = $request->linkedIn;
         }
+        else
+        {
+            $member->linkedIn = "";
+        }
 
-        if($request->whatsApp != null){
+        if($request->whatsApp !== NULL)
+        {
             $member->whatsApp = $request->whatsApp;
         }
-
-        if($request->facebookMessenger != null){
-            $member->facebookMessenger = $request->facebookMessenger;
+        else
+        {
+            $member->whatsApp = "";
         }
 
+        if($file = $request->file('avatar_id')){
+            $name = time(). $file->getClientOriginalName();
+            $file->move('card/avatars', $name);
+            $member->avatar = $name;
+        }
 
 //        if($file = $request->file('avatar_id')){
 //
@@ -249,26 +339,14 @@ class AdminMembersController extends Controller
 //
 //            $path = 'card/avatars/' . $name;
 //            $image = Image::make($path);
-//            $image->resize(500,500);
+//            $image->orientate();
+//            $image->resize(150, 150, function ($constraint){
+//                $constraint->upsize();
+//                $constraint->aspectRatio();
+//            });
 //            $image->save('card/avatars/' . $name);
 //            $member->avatar = $name;
 //        }
-
-        if($file = $request->file('avatar_id')){
-
-            $name = time(). $file->getClientOriginalName();
-            $file->move('card/avatars', $name);
-
-            $path = 'card/avatars/' . $name;
-            $image = Image::make($path);
-            $image->orientate();
-            $image->resize(200,null, function ($constraint){
-                $constraint->upsize();
-                $constraint->aspectRatio();
-            });
-            $image->save('card/avatars/' . $name);
-            $member->avatar = $name;
-        }
 
 
         $member->update();
