@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Member;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\Request;
 use Livewire\WithPagination;
@@ -11,6 +12,8 @@ class Members extends Component
 {
 
     use WithPagination;
+    public $pagination = 25;
+
 
     public function select($id)
     {
@@ -26,7 +29,6 @@ class Members extends Component
             $member->print = 1;
             $member->update();
         }
-
     }
 
 
@@ -39,10 +41,14 @@ class Members extends Component
 
     public function render()
     {
+
         $members = Member::with(['user', 'package', 'material'])
             ->where('archived', 0)
-            ->simplePaginate(2);
+            ->simplePaginate($this->pagination);
 
-        return view('livewire.members', compact('members'));
+        $active_user = Auth::user()->id;
+        $member = Member::where('user_id', $active_user)->first();
+
+        return view('livewire.members', compact('members', 'member'));
     }
 }
