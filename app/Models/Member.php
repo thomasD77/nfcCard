@@ -40,7 +40,8 @@ class Member extends Model
             'archived',
             'memberURL',
             'memberQRcode',
-            'avatar'
+            'avatar',
+            'print'
         ];
 
     public function user()

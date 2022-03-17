@@ -48,6 +48,7 @@ Route::get('/', 'App\Http\Controllers\DirectionController@getDirection')->name('
 Route::get('vCard/{id}', 'App\Http\Controllers\CardController@vCard')->name('members.vCard');
 Route::get('QRcode/{id}', 'App\Http\Controllers\CardController@QRcode')->name('members.QRcode');
 Route::post('generate/cards', 'App\Http\Controllers\CardController@generateCards')->name('generate.cards');
+Route::get('members/print', 'App\Http\Controllers\CardController@print')->name('print');
 
 // Backend Routes
 Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(){

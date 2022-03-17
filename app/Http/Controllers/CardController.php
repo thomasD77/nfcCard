@@ -240,4 +240,24 @@ class CardController extends Controller
 
         return redirect('/admin');
     }
+
+    public function print()
+    {
+        $ids = Member::where('print', 1)->select(['id'])->get();
+
+
+        $members = listUrl::whereIn('member_id', $ids)
+            ->get();
+
+        $pdf = PDF::loadView('admin.members.code', compact('members'));
+
+        $members = Member::select(['id', 'print'])->get();
+        foreach ($members as $member){
+            $member->print = 0;
+            $member->update();
+        }
+
+        return $pdf->download('card-details.pdf');
+
+    }
 }

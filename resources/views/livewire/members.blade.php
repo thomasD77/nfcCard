@@ -1,7 +1,7 @@
-<!-- Dynamic Table Full -->
+
 <div class="block block-rounded row">
-    <div class="block-header block-header-default d-flex justify-content-between">
-        @canany(['is_superAdmin', 'is_admin'])
+    <div class="block-content block-content-full overflow-scroll">
+        <div class="d-flex justify-content-between mb-5">
             <!-- Search Form (visible on larger screens) -->
             <form class="d-none d-md-inline-block col-6" action="{{action('App\Http\Controllers\AdminMembersController@searchMember')}}" method="POST">
                 @csrf
@@ -11,25 +11,19 @@
                 </div>
             </form>
             <!-- END Search Form -->
-        @endcanany
-
-        <div>
-            @canany(['is_superAdmin', 'is_admin'])
+            <div>
+                <!-- Member list  -->
                 <a class="btn btn-alt-warning" role="button" href="{{ route('members.credentials') }}">
                     <i class="fa fa-print me-2"></i> Member List
                 </a>
-{{--                <a href="{{route('members.archive')}}">--}}
-{{--                    <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Archive">--}}
-{{--                        <i class="fa fa-archive "></i>--}}
-{{--                    </button>--}}
-{{--                </a>--}}
-            @endcanany
+                <!-- END Member list -->
+                <a href="{{ route('print') }}" class="btn btn-alt-success">
+                    <i class="fa fa-print me-2"></i> PDF
+                </a>
+            </div>
         </div>
-    </div>
-    @canany(['is_superAdmin', 'is_admin'])
-    <div class="block-content block-content-full overflow-scroll">
-        <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
-        <div>
+        <div class="parent">
+            @include('admin.includes.flash')
             <table class="table table-striped table-hover table-vcenter fs-sm">
                 <thead>
                 <tr>
@@ -40,84 +34,48 @@
                     <th scope="col">Package</th>
                     <th scope="col">Material</th>
                     <th scope="col">Actions</th>
+                    <th scope="col">PDF</th>
                 </tr>
                 </thead>
                 <tbody>
                 @if($members)
                     @foreach($members as $member)
-                        @if($member->user->archived == 0)
-                            <tr>
-                                <td>{{$member->card_id ? $member->card_id : 'No Card ID'}}</td>
-                                <td><img class="rounded-circle" height="62" width="62" src="{{$member->avatar ? asset('/card/avatars') . "/" . $member->avatar : asset('/assets/front/img/Avatar-4.svg') }}" alt="{{$member->name}}"></td>
-                                <td>{{$member->lastname ? $member->lastname : ""}} {{ $member->firstname ? $member->firstname : '' }}</td>
-                                <td>{{$member->email ? $member->email : "unknown"}}</td>
-                                <td>{{$member->package ? $member->package->package : 'No Package'}}</td>
-                                <td>{{$member->material ? $member->material->name : 'No Material'}}</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a href="{{route('members.edit', $member->id)}}">
-                                            <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit member">
-                                                <i class="fa fa-fw fa-pencil-alt"></i>
-                                            </button>
-                                        </a>
-{{--                                        <button class="btn btn-sm btn-alt-secondary" wire:click="archiveMember({{$member->id}})"><i class="fa fa-archive"></i></button>--}}
-                                        <a href="{{route('direction', $member->card_id)}}" target="_blank">
-                                            <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Show member">
-                                                <i class="far fa-eye"></i>
-                                            </button>
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                        @endif
+                        <tr>
+                            <td>{{$member->card_id ? $member->card_id : 'No Card ID'}}</td>
+                            <td><img class="rounded-circle" height="62" width="62" src="{{$member->avatar ? asset('/card/avatars') . "/" . $member->avatar : asset('/assets/front/img/Avatar-4.svg') }}" alt="{{$member->name}}"></td>
+                            <td>{{$member->lastname ? $member->lastname : ""}} {{ $member->firstname ? $member->firstname : '' }}</td>
+                            <td>{{$member->email ? $member->email : "unknown"}}</td>
+                            <td>{{$member->package ? $member->package->package : 'No Package'}}</td>
+                            <td>{{$member->material ? $member->material->name : 'No Material'}}</td>
+                            <td>
+                                <div class="btn-group">
+                                    <a href="{{route('members.edit', $member->id)}}">
+                                        <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit member">
+                                            <i class="fa fa-fw fa-pencil-alt"></i>
+                                        </button>
+                                    </a>
+                                    <a href="{{route('direction', $member->card_id)}}" target="_blank">
+                                        <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Show member">
+                                            <i class="far fa-eye"></i>
+                                        </button>
+                                    </a>
+                                    <button class="btn btn-sm btn-alt-secondary" wire:click="archiveMember({{$member->id}})"><i class="fa fa-archive"></i></button>
+                                </div>
+                            </td>
+                            <td>
+                                <input type="checkbox"
+                                       @if($member->print == 1)  checked @endif
+                                       class="btn btn-sm btn-alt-secondary"
+                                       wire:click="select({{$member->id}})">
+                            </td>
+                        </tr>
                     @endforeach
                 @endif
                 </tbody>
             </table>
         </div>
-        @canany(['is_superAdmin', 'is_admin'])
-            <div class="d-flex justify-content-center">
-                {!! $members->links()  !!}
-            </div>
-        @endcanany
+        <div class="d-flex justify-content-center">
+            {!! $members->links()  !!}
+        </div>
     </div>
-    @endcanany
-
-
-    @can('is_client')
-        @if(Auth::user()->archived == 0)
-            <div class="block-content block-content-full overflow-scroll">
-                <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
-                <div>
-                    <table class="table table-striped table-hover table-vcenter fs-sm">
-                        <thead>
-                        <tr>
-                            <th scope="col">avatar</th>
-                            <th scope="col">name</th>
-                            <th scope="col">Edit</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><img class="rounded-circle" height="62" width="62" src="{{$member->avatar ? asset('/card/avatars') . "/" . $member->avatar : asset('/assets/front/img/Avatar-4.svg') }}" alt="{{$member->name}}"></td>
-                                <td>{{$member->lastname ? $member->lastname : ""}} {{ $member->firstname ? $member->firstname : '' }}</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a href="{{asset('/admin')}}">
-                                            <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit member">
-                                                <i class="fa fa-fw fa-pencil-alt"></i>
-                                            </button>
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        @else
-            <p class="p-2">Sorry, the admin blocked your account. Please contact him for this situation.</p>
-        @endif
-    @endcan
 </div>
-<!-- END Dynamic Table Full -->

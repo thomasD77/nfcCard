@@ -31,9 +31,7 @@ class AdminMembersController extends Controller
     public function index()
     {
         //
-        $QRcode = \App\Models\QRCODE::first();
-
-        return view('admin.members.index', compact( 'QRcode'));
+        return view('admin.members.index',);
     }
 
 

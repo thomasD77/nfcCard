@@ -17,6 +17,7 @@ class CreateMembersTable extends Migration
     {
         Schema::create('members', function (Blueprint $table) {
             $table->id();
+            $table->integer('print')->default(0);
             $table->integer('user_id')->index()->nullable();
             $table->integer('package_id')->index()->default(2);
             $table->integer('material_id')->index()->default(1);

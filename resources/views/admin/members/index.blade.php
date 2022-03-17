@@ -21,7 +21,7 @@
 
     <!-- Page JS Code -->
     <script src="{{ asset('js/pages/tables_datatables.js') }}"></script>
-    @livewireStyles
+
 @endsection
 
 @section('content')
@@ -73,7 +73,7 @@
 
             @livewire('members')
 
-        @livewireScripts
+
     </div>
     <!-- END Page Content -->
 @endsection
