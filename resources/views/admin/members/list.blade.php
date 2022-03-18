@@ -59,8 +59,9 @@
                     <table class="table table-striped table-hover table-vcenter fs-sm">
                         <thead>
                         <tr>
-                            <th scope="col"># ID</th>
-                            <th scope="col">URL</th>
+                            <th scope="col">#Card ID</th>
+                            <th scope="col">Card URL</th>
+                            <th scope="col">QRCODE URL</th>
                             <th scope="col">Package</th>
                             <th scope="col">Material</th>
                             <th scope="col">Member</th>
@@ -73,6 +74,15 @@
                                 <tr>
                                     <td>{{$url->id ? $url->id : 'No ID'}}</td>
                                     <td>{{$url->memberURL ? $url->memberURL : ""}}</td>
+                                    @if($url->custom_QR_url != "")
+                                        <td>
+                                            <span class="rounded-pill p-2 btn-success">CUSTOM</span>
+                                        </td>
+                                    @else
+                                        <td>
+                                            <span class="rounded-pill p-2 btn-primary">vCard</span>
+                                        </td>
+                                    @endif
                                     <td>{{$url->package ? $url->package->package : "No Package" }}</td>
                                     <td>{{$url->material ? $url->material->name : "No Material" }}</td>
                                     @if($url->member)
@@ -101,19 +111,32 @@
                                                         {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminMembersController@updateMembersList', $url->id],
                                                                'files'=>false]) !!}
                                                         <div class="form-group mb-4">
-                                                            <div class="d-flex justify-content-between align-items-center">
+                                                            <div class="d-flex flex-column mt-4">
                                                                 {!! Form::label('loyal','Select Package:', ['class'=>'form-label']) !!}
                                                                 {!! Form::select('package_id',$packages,$url->package->id,['class'=>'form-control'])!!}
                                                                 {!! Form::hidden('url_id',$url->id)!!}
                                                             </div>
-                                                            <div class="d-flex justify-content-between align-items-center mt-4">
+                                                            <div class="d-flex flex-column mt-4">
                                                                 {!! Form::label('loyal','Select Material:', ['class'=>'form-label']) !!}
                                                                 {!! Form::select('material_id',$materials,$url->material->id,['class'=>'form-control'])!!}
                                                             </div>
-                                                            <div class="d-flex justify-content-between align-items-center mt-4">
-                                                                <label class="form-label pe-3"> Custom url: </label>
-                                                                <input class="form-control" type="text" name="custom_url">
+                                                            <div class="d-flex flex-column mt-4">
+                                                                <a class="form-label text-dark d-flex justify-content-between" data-bs-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">
+                                                                    Custom Card url <i class="fa fa-arrow-down"></i>
+                                                                </a>
+                                                                <div class="collapse" id="collapseExample2">
+                                                                    <input class="form-control" type="text" name="custom_url" value="{{ $url->memberURL }}">                                                                </div>
                                                             </div>
+
+                                                            <div class="d-flex flex-column mt-4">
+                                                                <a class="form-label text-dark d-flex justify-content-between" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                                                    Custom QRCODE url <i class="fa fa-arrow-down"></i>
+                                                                </a>
+                                                                <div class="collapse" id="collapseExample">
+                                                                    <input class="form-control" type="text" value="{{ $url->custom_QR_url }}" name="input_QR_url">
+                                                                </div>
+                                                            </div>
+
                                                         </div>
 
                                                     </div>

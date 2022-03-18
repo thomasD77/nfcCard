@@ -451,6 +451,12 @@ class AdminMembersController extends Controller
         $url->material_id = $request->material_id;
         $url->package_id = $request->package_id;
         $url->memberURL = $request->custom_url;
+
+        if($request->input_QR_url)
+        {
+            $url->custom_QR_url = $request->input_QR_url;
+        }
+
         $url->update();
 
 

@@ -14,7 +14,8 @@ class listUrl extends Model
         'memberURL',
         'memberQRcode',
         'material_id',
-        'package_id'
+        'package_id',
+        'custom_QR_url'
     ];
 
     public function package()

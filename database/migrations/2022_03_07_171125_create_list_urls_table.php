@@ -19,6 +19,7 @@ class CreateListUrlsTable extends Migration
             $table->integer('member_id')->index()->nullable();
             $table->integer('material_id')->index();
             $table->integer('package_id')->index();
+            $table->string('custom_QR_url')->default("");
             $table->string('memberQRcode');
             $table->timestamps();
         });

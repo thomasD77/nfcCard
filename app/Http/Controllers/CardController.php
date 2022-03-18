@@ -77,13 +77,23 @@ class CardController extends Controller
 
     public function QRcode($id)
     {
-        $currentURL = URL::first()->url;
+        $Card_id = listUrl::findOrFail($id);
 
-        $QRcode_url = $currentURL . '/' . 'vCard' . '/' . $id;
+        //If there is a custom QR code URL
+        if($Card_id->custom_QR_url != "")
+        {
+            $QRcode_url = $Card_id->custom_QR_url;
+            $QRcode = QrCode::size(150)->backgroundColor(255,255,255)->generate($QRcode_url);
+            return $QRcode;
+        }
+        else
+        {
+            $currentURL = URL::first()->url;
+            $QRcode_url = $currentURL . '/' . 'vCard' . '/' . $id;
+            $QRcode = QrCode::size(150)->backgroundColor(255,255,255)->generate($QRcode_url);
+            return $QRcode;
+        }
 
-        $QRcode = QrCode::size(150)->backgroundColor(255,255,255)->generate($QRcode_url);
-
-        return $QRcode;
 
 //        $member = Member::where('card_id', $id)->first();
 //        if(!$member){
