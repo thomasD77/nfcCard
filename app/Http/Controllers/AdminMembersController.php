@@ -338,7 +338,7 @@ class AdminMembersController extends Controller
 //            $path = 'card/avatars/' . $name;
 //            $image = Image::make($path);
 //            $image->orientate();
-//            $image->resize(150, 150, function ($constraint){
+//            $image->resize(300, 300, function ($constraint){
 //                $constraint->upsize();
 //                $constraint->aspectRatio();
 //            });
@@ -450,6 +450,7 @@ class AdminMembersController extends Controller
         $url = listUrl::findOrFail($request->url_id);
         $url->material_id = $request->material_id;
         $url->package_id = $request->package_id;
+        $url->memberURL = $request->custom_url;
         $url->update();
 
 

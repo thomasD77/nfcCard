@@ -110,6 +110,10 @@
                                                                 {!! Form::label('loyal','Select Material:', ['class'=>'form-label']) !!}
                                                                 {!! Form::select('material_id',$materials,$url->material->id,['class'=>'form-control'])!!}
                                                             </div>
+                                                            <div class="d-flex justify-content-between align-items-center mt-4">
+                                                                <label class="form-label pe-3"> Custom url: </label>
+                                                                <input class="form-control" type="text" name="custom_url">
+                                                            </div>
                                                         </div>
 
                                                     </div>

@@ -1,6 +1,6 @@
 /* ------------------------------------------------
  Author: ArtStyles (Art)
- 
+
  Template Name: vCard 3
  version: 1.0.0
 ------------------------------------------------ */
@@ -28,7 +28,7 @@
  - Testimonials
  - Timeline
  - Other
- 
+
 ------------------------------------------------ */
 @import url(vendors/bootstrap.min.css);
 @import url(vendors/swiper.min.css);
@@ -841,8 +841,8 @@ button:focus {
   }
 }
 .header__photo-img {
-  height: 100%;
-  width: 100%;
+  height: auto;
+  width: auto;
 }
 .header__base-info {
   margin-left: 1.5rem;
