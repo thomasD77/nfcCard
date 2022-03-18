@@ -61,7 +61,9 @@
                         <tr>
                             <th scope="col">#Card ID</th>
                             <th scope="col">Card URL</th>
-                            <th scope="col">QRCODE URL</th>
+                            @if($QRcode->status == 1)
+                                <th scope="col">QRCODE URL</th>
+                            @endif
                             <th scope="col">Package</th>
                             <th scope="col">Material</th>
                             <th scope="col">Member</th>
@@ -74,14 +76,16 @@
                                 <tr>
                                     <td>{{$url->id ? $url->id : 'No ID'}}</td>
                                     <td>{{$url->memberURL ? $url->memberURL : ""}}</td>
-                                    @if($url->custom_QR_url != "")
-                                        <td>
-                                            <span class="rounded-pill p-2 btn-success">CUSTOM</span>
-                                        </td>
-                                    @else
-                                        <td>
-                                            <span class="rounded-pill p-2 btn-primary">vCard</span>
-                                        </td>
+                                    @if($QRcode->status == 1)
+                                        @if($url->custom_QR_url != "")
+                                            <td>
+                                                <span class="rounded-pill p-2 btn-success">CUSTOM</span>
+                                            </td>
+                                        @else
+                                            <td>
+                                                <span class="rounded-pill p-2 btn-primary">vCard</span>
+                                            </td>
+                                        @endif
                                     @endif
                                     <td>{{$url->package ? $url->package->package : "No Package" }}</td>
                                     <td>{{$url->material ? $url->material->name : "No Material" }}</td>
@@ -127,15 +131,16 @@
                                                                 <div class="collapse" id="collapseExample2">
                                                                     <input class="form-control" type="text" name="custom_url" value="{{ $url->memberURL }}">                                                                </div>
                                                             </div>
-
-                                                            <div class="d-flex flex-column mt-4">
-                                                                <a class="form-label text-dark d-flex justify-content-between" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                                                    Custom QRCODE url <i class="fa fa-arrow-down"></i>
-                                                                </a>
-                                                                <div class="collapse" id="collapseExample">
-                                                                    <input class="form-control" type="text" value="{{ $url->custom_QR_url }}" name="input_QR_url">
+                                                            @if($QRcode->status == 1)
+                                                                <div class="d-flex flex-column mt-4">
+                                                                    <a class="form-label text-dark d-flex justify-content-between" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                                                        Custom QRCODE url <i class="fa fa-arrow-down"></i>
+                                                                    </a>
+                                                                    <div class="collapse" id="collapseExample">
+                                                                        <input class="form-control" type="text" value="{{ $url->custom_QR_url }}" name="input_QR_url">
+                                                                    </div>
                                                                 </div>
-                                                            </div>
+                                                            @endif
 
                                                         </div>
 
