@@ -46,6 +46,16 @@ class CreateUsersTable extends Migration
             'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),
         ]);
 
+        DB::table('users')->insert([
+            'name'=>'SWAP',
+            'username'=>'SWAP',
+            'email'=>'info@swap-nfc.be',
+            'email_verified_at'=>Carbon::now()->format('Y-m-d H:i:s'),
+            'password'=>bcrypt('PasPop78?'),
+            'created_at'=>Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+
     }
 
     /**
