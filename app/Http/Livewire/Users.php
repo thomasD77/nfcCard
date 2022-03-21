@@ -25,6 +25,7 @@ class Users extends Component
             $q->whereIn('name', $roles);})
             ->where('archived', 0)
             ->where('id', '!=' ,1)
+            ->where('id', '!=' ,2)
             ->paginate(25);
 
         return view('livewire.users', compact('users'));
