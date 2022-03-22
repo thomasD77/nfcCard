@@ -12,8 +12,9 @@
                 <div class="block block-rounded mb-0">
                     <div class="block-header block-header-default">
                         <h3 class="block-title">Verify Your Email Address</h3>
+                        <span class="badge badge-pill bg-danger p-1 my-1"><p>Please check your SPAM inbox to find this verification Email! </p></span>
                     </div>
-                    <p class="text-danger my-1">Please check your SPAM inbox to find this verification Email! </p>
+
                     <div class="block-content">
                         <div class="p-sm-3 px-lg-4 px-xxl-5 py-lg-5">
                             <h1 class="h2 mb-1"><?php echo $one->name ; ?></h1>
