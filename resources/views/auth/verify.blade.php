@@ -13,6 +13,7 @@
                     <div class="block-header block-header-default">
                         <h3 class="block-title">Verify Your Email Address</h3>
                     </div>
+                    <p class="text-danger my-1">Please check your SPAM inbox to find this verification Email! </p>
                     <div class="block-content">
                         <div class="p-sm-3 px-lg-4 px-xxl-5 py-lg-5">
                             <h1 class="h2 mb-1"><?php echo $one->name ; ?></h1>
