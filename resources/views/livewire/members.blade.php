@@ -28,7 +28,7 @@
                     <!-- END Member list -->
                     @can('is_superAdmin')
                         <a href="{{ route('print') }}" class="btn btn-alt-success">
-                            <i class="fa fa-print me-2"></i> PDF
+                            <i class="fa fa-print me-2"></i>
                         </a>
                     @endcan
                 </div>
@@ -46,7 +46,7 @@
                         <th scope="col">Material</th>
                         <th scope="col">Actions</th>
                         @can('is_superAdmin')
-                            <th scope="col">PDF</th>
+                            <th scope="col"> <i class="fa fa-print me-2"></i></th>
                         @endcan
                     </tr>
                     </thead>
@@ -75,12 +75,12 @@
                                     </div>
                                 </td>
                                 @can('is_superAdmin')
-                                <td>
-                                    <input type="checkbox"
-                                           @if($member->print == 1)  checked @endif
-                                           class="btn btn-sm btn-alt-secondary"
-                                           wire:click="select({{$member->id}})">
-                                </td>
+                                        <td>
+                                            <input type="checkbox"
+                                                   @if($member->print == 1)  checked @endif
+                                                   class="btn btn-sm btn-alt-secondary"
+                                                   wire:click="select({{$member->id}})">
+                                        </td>
                                 @endcan
                             </tr>
                         @endforeach

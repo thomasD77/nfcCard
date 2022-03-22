@@ -49,6 +49,7 @@ class Members extends Component
         $active_user = Auth::user()->id;
         $member = Member::where('user_id', $active_user)->first();
 
+
         return view('livewire.members', compact('members', 'member'));
     }
 }

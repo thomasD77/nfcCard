@@ -15,7 +15,6 @@
                     <tr>
                         <th scope="col">URL</th>
                         <th scope="col">Material</th>
-                        <th scope="col">QR-code</th>
                     </tr>
                     </thead>
                     @if($members)
@@ -24,7 +23,6 @@
                                 <tr>
                                     <td>{{ $member->memberURL ? $member->memberURL : 'No URL' }}</td>
                                     <td>{{ $member->material->name }}</td>
-                                    <td>{{ $member->memberQRcode }}</td>
                                 </tr>
                             </tbody>
                             <br>

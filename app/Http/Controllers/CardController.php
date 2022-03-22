@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\ListUrlExportView;
 use App\Exports\MemberListExport;
+use App\Exports\MemberUrlExport;
 use App\Exports\SubmissionExport;
 use App\Models\listUrl;
 use App\Models\Lock;
@@ -253,21 +254,29 @@ class CardController extends Controller
 
     public function print()
     {
+        $QRcode = \App\Models\QRCODE::first();
+
         $ids = Member::where('print', 1)->select(['id'])->get();
-
-
         $members = listUrl::whereIn('member_id', $ids)
             ->get();
 
-        $pdf = PDF::loadView('admin.members.code', compact('members'));
+        if($QRcode->status == 1)
+        {
+            $pdf = PDF::loadView('admin.members.code', compact('members'));
 
-        $members = Member::select(['id', 'print'])->get();
-        foreach ($members as $member){
-            $member->print = 0;
-            $member->update();
+            $members = Member::select(['id', 'print'])->get();
+            foreach ($members as $member){
+                $member->print = 0;
+                $member->update();
+            }
+
+            return $pdf->download('card-details.pdf');
+        }
+        else
+        {
+            return Excel::download(new MemberUrlExport(), 'member-card-list.xlsx');
         }
 
-        return $pdf->download('card-details.pdf');
 
     }
 }

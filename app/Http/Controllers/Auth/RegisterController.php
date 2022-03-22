@@ -67,7 +67,6 @@ class RegisterController extends Controller
                     ->numbers()
                     ->symbols()
             ],
-
         ]);
     }
 
