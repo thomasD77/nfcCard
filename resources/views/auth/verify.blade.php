@@ -30,7 +30,7 @@
                                 <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.
                             </form>
                             <div class="my-2">
-                                <span class="badge badge-pill bg-danger p-1"><p>Please check your SPAM inbox to find this verification Email! </p></span>
+                                <span class="badge badge-pill bg-danger-light p-1"><p>Please check your SPAM inbox !!</p></span>
                             </div>
 
 
