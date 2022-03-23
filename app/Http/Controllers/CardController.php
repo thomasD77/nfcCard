@@ -6,6 +6,8 @@ use App\Exports\ListUrlExportView;
 use App\Exports\MemberListExport;
 use App\Exports\MemberUrlExport;
 use App\Exports\SubmissionExport;
+use App\Http\Requests\ContactRequest;
+use App\Models\Contact;
 use App\Models\listUrl;
 use App\Models\Lock;
 use App\Models\Member;
@@ -42,6 +44,7 @@ class CardController extends Controller
         $vcard = new VCard();
 
         $member = Member::where('card_id', $id)->first();
+
 
         // define variables
         $lastname = $member->lastname;
@@ -279,8 +282,25 @@ class CardController extends Controller
     }
 
 
-    public function saveInfo(Request $request, $id)
+    public function saveInfo(ContactRequest $request, $id)
     {
+        $contact = new Contact();
+        $contact->member_id = $id;
+        $contact->name = $request->name;
+        $contact->email = $request->email;
+
+        if($request->phone == "")
+        {
+            $contact->phone = "";
+        }
+        else
+        {
+            $contact->phone = $request->phone;
+        }
+
+        $contact->save();
+
+        $this->vCard($id);
 
     }
 

@@ -90,6 +90,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::get('archive/users', 'App\Http\Controllers\AdminUsersController@archive')->name('users.archive');
     Route::resource('roles', App\Http\Controllers\AdminRolesController::class);
     Route::resource('billing', App\Http\Controllers\AdminBillingController::class);
+    Route::resource('contacts', App\Http\Controllers\AdminContactsController::class);
 
     //Shop Routes
     Route::resource('products', App\Http\Controllers\AdminProductsController::class);

@@ -197,8 +197,23 @@ select option,
     background-color: #bd081c
 }
 
+.btn_close{
+    background-color: transparent;
+    border: none;
+    color: #b1b2c6;
+}
 
+.modal-content {
+    background-color: #2E2F36;
+}
 
+.input_modal {
+    background-color: #727384;
+}
+
+.modal-body {
+    border: none;
+}
 
 
 

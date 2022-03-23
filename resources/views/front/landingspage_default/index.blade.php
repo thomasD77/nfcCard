@@ -92,34 +92,51 @@
                     <button data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" class="btn_cstm save w-100 mt-3 p-4"><i class="fa-solid fa-cloud-arrow-up mr-2 "></i>SAVE ME</button>
 
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+                        <div class="modal-dialog mt-0">
+
                             <form class="row mb-0" name="contactformulier"
-                                  action="{{action('App\Http\Controllers\CardController@saveInfo', $member->id)}}"
+                                  action="{{action('App\Http\Controllers\CardController@saveInfo', $member->card_id)}}"
                                   method="post">
                                 @csrf
                                 <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h4 class="modal-title" id="exampleModalLabel">Let's Connect!</h4>
-                                        <p>Please fill in your information. I will send you a mail to talk later.</p>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <div class="d-flex justify-content-end me-3">
+                                        <button type="button" class="btn_close m-2" data-bs-dismiss="modal" aria-label="Close">X</button>
+                                    </div>
+                                    <div class="modal-header pt-5">
+                                        <div class="d-flex flex-column">
+                                            <h2 class="talk">Let's talk!</h2>
+                                            <p>Please fill in your information. I will send you a mail to talk later.</p>
+                                        </div>
+
                                     </div>
                                     <div class="modal-body">
-                                        <div class="mb-4">
+                                        <div class="mb-4 d-flex justify-content-start flex-column">
                                             <label class="form-label"
                                                    for="frontend-contact-firstname">Name</label>
-                                            <input type="text" class="form-control" name="name"
-                                                   placeholder="Enter your firstname..">
+                                            <input type="text" class="form-control input_modal" name="name"
+                                                   placeholder="Enter your name...">
+                                            @error('name')
+                                            <p class="text-danger mt-2"> {{ $message }}</p>
+                                            @enderror
                                         </div>
                                         <div class="mb-4">
                                             <label class="form-label" for="frontend-contact-email">Email</label>
-                                            <input type="email" class="form-control" name="email"
-                                                   placeholder="Enter your email..">
+                                            <input type="email" class="form-control input_modal" name="email"
+                                                   placeholder="Enter your email...">
+                                            @error('email')
+                                            <p class="text-danger mt-2"> {{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-4">
+                                            <label class="form-label" for="frontend-contact-email">Phone <span style="font-style: italic; font-size: 10px">(optional)</span></label>
+                                            <input type="text" class="form-control input_modal" name="phone"
+                                                   placeholder="Enter your phone...">
                                         </div>
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-alt-primary">
-                                            <i class="fa fa-paper-plane me-1 opacity-50"></i> Save
+                                    <div class="modal-footer mb-5 mt-1">
+                                        <button type="submit" class="btn_cstm input_modal w-100">
+                                            <i class="fa fa-paper-plane me-1 opacity-50"></i> SEND
                                         </button>
                                     </div>
                                 </div>

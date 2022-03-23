@@ -14,7 +14,8 @@ class Contact extends Model
           'member_id',
           'name',
           'email',
-          'phone'
+          'phone',
+          'archived'
         ];
 
 }
