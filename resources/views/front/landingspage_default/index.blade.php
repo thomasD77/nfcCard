@@ -45,7 +45,7 @@
     <!-- Mapbox-->
     <script src='https://api.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css' rel='stylesheet' />
-
+    <!-- CSS only -->
 </head>
 <body>
 <!-- Preloader -->
@@ -88,7 +88,44 @@
                     @endif
                 </div>
                 <div class="box box-content">
-                    <a class="w-100" href="{{ route('members.vCard', $member->card_id ) }}"><button type="submit" class="btn_cstm save w-100 mt-3 p-4"><i class="fa-solid fa-cloud-arrow-up mr-2 "></i>SAVE ME</button></a>
+                    <!-- Button trigger modal -->
+                    <button data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" class="btn_cstm save w-100 mt-3 p-4"><i class="fa-solid fa-cloud-arrow-up mr-2 "></i>SAVE ME</button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <form class="row mb-0" name="contactformulier"
+                                  action="{{action('App\Http\Controllers\CardController@saveInfo', $member->id)}}"
+                                  method="post">
+                                @csrf
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title" id="exampleModalLabel">Let's Connect!</h4>
+                                        <p>Please fill in your information. I will send you a mail to talk later.</p>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="mb-4">
+                                            <label class="form-label"
+                                                   for="frontend-contact-firstname">Name</label>
+                                            <input type="text" class="form-control" name="name"
+                                                   placeholder="Enter your firstname..">
+                                        </div>
+                                        <div class="mb-4">
+                                            <label class="form-label" for="frontend-contact-email">Email</label>
+                                            <input type="email" class="form-control" name="email"
+                                                   placeholder="Enter your email..">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-alt-primary">
+                                            <i class="fa fa-paper-plane me-1 opacity-50"></i> Save
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -218,5 +255,7 @@
 
 <!-- Mapbox init -->
 <script src="{{ asset('assets/front/js/mapbox.init.js') }}"></script>
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>

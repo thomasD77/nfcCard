@@ -276,7 +276,14 @@ class CardController extends Controller
         {
             return Excel::download(new MemberUrlExport(), 'member-card-list.xlsx');
         }
+    }
 
+
+    public function saveInfo(Request $request, $id)
+    {
 
     }
+
+
+
 }
