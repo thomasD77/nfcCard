@@ -299,8 +299,7 @@ class CardController extends Controller
         }
 
         $contact->save();
-
-        $this->vCard($id);
+        return redirect()->route('members.vCard', [$id]);
 
     }
 
