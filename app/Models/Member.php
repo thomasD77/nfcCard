@@ -63,4 +63,9 @@ class Member extends Model
     {
         return $this->hasOne(listUrl::class);
     }
+
+    public function contacts()
+    {
+        return $this->hasMany(Contact::class);
+    }
 }

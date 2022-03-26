@@ -18,6 +18,12 @@ class AdminContactsController extends Controller
         return view('admin.contacts.index');
     }
 
+    public function indexClients()
+    {
+        //
+        return view('admin.contacts.index-client');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -91,5 +97,14 @@ class AdminContactsController extends Controller
             ->paginate(25);
 
         return view('admin.contacts.archive', compact('contacts'));
+    }
+
+    public function archiveClients()
+    {
+        $contacts = Contact::where('archived', 1)
+            ->latest()
+            ->paginate(25);
+
+        return view('admin.contacts.archive-client', compact('contacts'));
     }
 }

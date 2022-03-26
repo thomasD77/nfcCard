@@ -1,5 +1,5 @@
-@canany(['is_superAdmin', 'is_admin'])
 <div>
+
     <!-- Dynamic Table Full -->
     <div class="block block-rounded row">
         <div class="block-header block-header-default">
@@ -17,13 +17,10 @@
             <label class="d-flex">
                 <input wire:model="datepicker" id="datepicker" type="date" class="form-control" id="" name="" placeholder="Select date contact" data-inline="month" data-enable-time="false">
                 <button wire:click="dateALL" class="btn btn-secondary rounded" type="button" data-bs-toggle="tooltip" title="Refresh"><i class="si si-refresh"></i></button>
-                <a href="{{route('contact.archive')}}">
-                    <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Archive">
-                        <i class="fa fa-archive "></i>
+                <a href="{{route('contacts.index.client')}}">
+                    <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="List">
+                        <i class="far fa-list-alt "></i>
                     </button>
-                </a>
-                <a href="{{ route('print.scans') }}" class="btn btn-alt-success">
-                    <i class="fa fa-print me-2"></i>
                 </a>
             </label>
         </div>
@@ -32,7 +29,6 @@
             <table class="table table-striped table-hover table-vcenter fs-sm">
                 <thead>
                 <tr>
-                    <th scope="col">CARD Holder</th>
                     <th scope="col">Name</th>
                     <th scope="col">E-mail</th>
                     <th scope="col">phone</th>
@@ -44,14 +40,12 @@
                 @if($contacts)
                     @foreach($contacts as $contact)
                         <tr>
-                            <td>{{$contact->member ? $contact->member->lastname : ''}} {{$contact->member ? $contact->member->firstname : ''}}</td>
                             <td>{{$contact->name ? $contact->name : 'No Name'}}</td>
                             <td><a href="mailto:{{$contact->mail}}"> {{$contact->email ? $contact->email : 'No Email'}}</a></td>
                             <td>{{$contact->phone ? $contact->phone : 'No Phone'}}</td>
-                            <td>{{$contact->created_at ? \Carbon\Carbon::parse($contact->created_at)->format('Y-M-d') : 'No Date'}}</td>
-                            <td>
+                            <td>{{$contact->created_at ? \Carbon\Carbon::parse($contact->created_at)->format('Y-M-d') : 'No Date'}}</td>                            <td>
                                 <div class="btn-group">
-                                    <button class="btn btn-sm btn-alt-secondary" wire:click="archiveContact({{$contact->id}})"><i class="fa fa-archive "></i></button>
+                                    <button class="btn btn-sm btn-alt-secondary" wire:click="unArchiveContact({{$contact->id}})"><i class="si si-refresh"></i></button>
                                 </div>
                             </td>
                         </tr>
@@ -66,6 +60,3 @@
     </div>
     <!-- END Dynamic Table Full -->
 </div>
-@endcanany
-
-

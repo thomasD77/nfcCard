@@ -18,4 +18,9 @@ class Contact extends Model
           'archived'
         ];
 
+    public function member()
+    {
+        return $this->belongsTo(Member::class);
+    }
+
 }

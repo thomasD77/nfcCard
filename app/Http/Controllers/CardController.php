@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\ListUrlExportView;
 use App\Exports\MemberListExport;
 use App\Exports\MemberUrlExport;
+use App\Exports\ScanListExport;
 use App\Exports\SubmissionExport;
 use App\Http\Requests\ContactRequest;
 use App\Models\Contact;
@@ -286,8 +287,10 @@ class CardController extends Controller
 
     public function saveInfo(ContactRequest $request, $id)
     {
+        $member = Member::where('card_id', $id)->first();
         $contact = new Contact();
-        $contact->member_id = $id;
+
+        $contact->member_id = $member->id;
         $contact->name = $request->name;
         $contact->email = $request->email;
 
@@ -303,6 +306,11 @@ class CardController extends Controller
         $contact->save();
         return redirect()->route('members.vCard', [$id]);
 
+    }
+
+    public function printScans()
+    {
+        return Excel::download(new ScanListExport(), 'scan-list.xlsx');
     }
 
 

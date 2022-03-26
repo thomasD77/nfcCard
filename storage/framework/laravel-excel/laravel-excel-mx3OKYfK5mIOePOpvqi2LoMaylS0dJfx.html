@@ -1,0 +1,1180 @@
+<!doctype html>
+<html lang="nl">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+        <title>SWAP</title>
+
+        <meta name="description" content="OneUI - Bootstrap 5 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
+        <meta name="author" content="pixelcave">
+        <meta name="robots" content="noindex, nofollow">
+
+        <!-- CSRF Token -->
+        <meta name="csrf-token" content="w2viLHtJgVhwaqvxUEAvrYRxTDv9lkO74Wa9ciSc">
+
+        <!-- Icons -->
+        <link rel="shortcut icon" href="http://nfccard.localhost/media/favicons/favicon.png">
+        <link rel="icon" sizes="192x192" type="image/png" href="http://nfccard.localhost/media/favicons/favicon-192x192.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="http://nfccard.localhost/media/favicons/apple-touch-icon-180x180.png">
+
+        <!-- Fonts and Styles -->
+            <!-- Page JS Plugins CSS -->
+    <link rel="stylesheet" href="http://nfccard.localhost/js/plugins/datatables-bs5/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="http://nfccard.localhost/js/plugins/datatables-buttons-bs5/buttons.bootstrap5.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+        <link rel="stylesheet" id="css-main" href="http://nfccard.localhost/css/oneui.css">
+
+        <!-- Laravel Toaster -->
+        <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+
+        <!-- You can include a specific file from public/css/themes/ folder to alter the default color theme of the template. eg: -->
+        <!-- <link rel="stylesheet" id="css-theme" href="http://nfccard.localhost/css/themes/amethyst.css"> -->
+        
+        <!-- Scripts -->
+        <script>window.Laravel = {"csrfToken":"w2viLHtJgVhwaqvxUEAvrYRxTDv9lkO74Wa9ciSc"};</script>
+        <!-- Livewire Styles -->
+<style >
+    [wire\:loading], [wire\:loading\.delay], [wire\:loading\.inline-block], [wire\:loading\.inline], [wire\:loading\.block], [wire\:loading\.flex], [wire\:loading\.table], [wire\:loading\.grid] {
+        display: none;
+    }
+
+    [wire\:loading\.delay\.shortest], [wire\:loading\.delay\.shorter], [wire\:loading\.delay\.short], [wire\:loading\.delay\.long], [wire\:loading\.delay\.longer], [wire\:loading\.delay\.longest] {
+        display:none;
+    }
+
+    [wire\:offline] {
+        display: none;
+    }
+
+    [wire\:dirty]:not(textarea):not(input):not(select) {
+        display: none;
+    }
+
+    input:-webkit-autofill, select:-webkit-autofill, textarea:-webkit-autofill {
+        animation-duration: 50000s;
+        animation-name: livewireautofill;
+    }
+
+    @keyframes livewireautofill { from {} }
+</style>
+
+    </head>
+    <body>
+        <!-- Page Container -->
+        <!--
+            Available classes for #page-container:
+
+        GENERIC
+
+            'remember-theme'                            Remembers active color theme between pages using localStorage (when set through color theme helper Template._uiHandleTheme())
+
+        SIDEBAR & SIDE OVERLAY
+
+            'sidebar-r'                                 Right Sidebar and left Side Overlay (default is left Sidebar and right Side Overlay)
+            'sidebar-mini'                              Mini hoverable Sidebar (screen width > 991px)
+            'sidebar-o'                                 Visible Sidebar by default (screen width > 991px)
+            'sidebar-o-xs'                              Visible Sidebar by default (screen width < 992px)
+            'sidebar-dark'                              Dark themed sidebar
+
+            'side-overlay-hover'                        Hoverable Side Overlay (screen width > 991px)
+            'side-overlay-o'                            Visible Side Overlay by default
+
+            'enable-page-overlay'                       Enables a visible clickable Page Overlay (closes Side Overlay on click) when Side Overlay opens
+
+            'side-scroll'                               Enables custom scrolling on Sidebar and Side Overlay instead of native scrolling (screen width > 991px)
+
+        HEADER
+
+            ''                                          Static Header if no class is added
+            'page-header-fixed'                         Fixed Header
+
+        HEADER STYLE
+
+            ''                                          Light themed Header
+            'page-header-dark'                          Dark themed Header
+
+        MAIN CONTENT LAYOUT
+
+            ''                                          Full width Main Content if no class is added
+            'main-content-boxed'                        Full width Main Content with a specific maximum width (screen width > 1200px)
+            'main-content-narrow'                       Full width Main Content with a percentage width (screen width > 1200px)
+
+        DARK MODE
+
+            'sidebar-dark page-header-dark dark-mode'   Enable dark mode (light sidebar/header is not supported with dark mode)
+        -->
+        <div id="page-container" class="sidebar-o enable-page-overlay sidebar-dark side-scroll page-header-fixed main-content-narrow">
+            <!-- Side Overlay-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- END Side Overlay -->
+
+            <!-- Sidebar -->
+            <!--
+                Sidebar Mini Mode - Display Helper classes
+
+                Adding 'smini-hide' class to an element will make it invisible (opacity: 0) when the sidebar is in mini mode
+                Adding 'smini-show' class to an element will make it visible (opacity: 1) when the sidebar is in mini mode
+                    If you would like to disable the transition animation, make sure to also add the 'no-transition' class to your element
+
+                Adding 'smini-hidden' to an element will hide it when the sidebar is in mini mode
+                Adding 'smini-visible' to an element will show it (display: inline-block) only when the sidebar is in mini mode
+                Adding 'smini-visible-block' to an element will show it (display: block) only when the sidebar is in mini mode
+            -->
+
+                            <nav id="sidebar" aria-label="Main Navigation">
+    <!-- Side Header -->
+    <div class="content-header">
+        <!-- Logo -->
+        <a class="font-semibold text-dual" href="">
+                        <span class="smini-visible">
+                            <i class="fa fa-circle-notch text-primary"></i>
+                        </span>
+
+
+            <span class="smini-hide fs-5 tracking-wider">SWAP</span>
+        </a>
+        <!-- END Logo -->
+
+        <!-- Extra -->
+        <div>
+            <!-- Dark Mode -->
+            <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+            <a class="btn btn-sm btn-alt-secondary" data-toggle="layout" data-action="dark_mode_toggle" href="javascript:void(0)">
+                <i class="far fa-moon"></i>
+            </a>
+            <!-- END Dark Mode -->
+
+            <!-- Options -->
+            <div class="dropdown d-inline-block ms-1">
+                <a class="btn btn-sm btn-alt-secondary" id="sidebar-themes-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
+                    <i class="far fa-circle"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end fs-sm smini-hide border-0" aria-labelledby="sidebar-themes-dropdown">
+                    <!-- Color Themes -->
+                    <!-- Layout API, functionality initialized in Template._uiHandleTheme() -->
+                    <a class="dropdown-item d-flex align-items-center justify-content-between font-medium" data-toggle="theme" data-theme="default" href="#">
+                        <span>Default</span>
+                        <i class="fa fa-circle text-default"></i>
+                    </a>
+                    <a class="dropdown-item d-flex align-items-center justify-content-between font-medium" data-toggle="theme" data-theme="http://nfccard.localhost/css/themes/amethyst.css" href="#">
+                        <span>Amethyst</span>
+                        <i class="fa fa-circle text-amethyst"></i>
+                    </a>
+                    <a class="dropdown-item d-flex align-items-center justify-content-between font-medium" data-toggle="theme" data-theme="http://nfccard.localhost/css/themes/city.css" href="#">
+                        <span>City</span>
+                        <i class="fa fa-circle text-city"></i>
+                    </a>
+                    <a class="dropdown-item d-flex align-items-center justify-content-between font-medium" data-toggle="theme" data-theme="http://nfccard.localhost/css/themes/flat.css" href="#">
+                        <span>Flat</span>
+                        <i class="fa fa-circle text-flat"></i>
+                    </a>
+                    <a class="dropdown-item d-flex align-items-center justify-content-between font-medium" data-toggle="theme" data-theme="http://nfccard.localhost/css/themes/modern.css" href="#">
+                        <span>Modern</span>
+                        <i class="fa fa-circle text-modern"></i>
+                    </a>
+                    <a class="dropdown-item d-flex align-items-center justify-content-between font-medium" data-toggle="theme" data-theme="http://nfccard.localhost/css/themes/smooth.css" href="#">
+                        <span>Smooth</span>
+                        <i class="fa fa-circle text-smooth"></i>
+                    </a>
+                    <!-- END Color Themes -->
+
+                    <div class="dropdown-divider"></div>
+
+                    <!-- Sidebar Styles -->
+                    <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                    <a class="dropdown-item fw-medium" data-toggle="layout" data-action="sidebar_style_light" href="javascript:void(0)">
+                        <span>Sidebar Light</span>
+                    </a>
+                    <a class="dropdown-item fw-medium" data-toggle="layout" data-action="sidebar_style_dark" href="javascript:void(0)">
+                        <span>Sidebar Dark</span>
+                    </a>
+                    <!-- END Sidebar Styles -->
+
+                    <div class="dropdown-divider"></div>
+
+                    <!-- Header Styles -->
+                    <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                    <a class="dropdown-item fw-medium" data-toggle="layout" data-action="header_style_light" href="javascript:void(0)">
+                        <span>Header Light</span>
+                    </a>
+                    <a class="dropdown-item fw-medium" data-toggle="layout" data-action="header_style_dark" href="javascript:void(0)">
+                        <span>Header Dark</span>
+                    </a>
+                    <!-- END Header Styles -->
+                </div>
+            </div>
+            <!-- END Options -->
+
+            <!-- Close Sidebar, Visible only on mobile screens -->
+            <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+            <a class="d-lg-none btn btn-sm btn-alt-secondary ms-1" data-toggle="layout" data-action="sidebar_close" href="javascript:void(0)">
+                <i class="fa fa-fw fa-times"></i>
+            </a>
+            <!-- END Close Sidebar -->
+        </div>
+        <!-- END Extra -->
+    </div>
+    <!-- END Side Header -->
+
+    <!-- Sidebar Scrolling -->
+    <div class="js-sidebar-scroll">
+        <!-- Side Navigation -->
+        <div class="content-side">
+            <ul class="nav-main">
+                <li class="nav-main-item">
+                    <a class="nav-main-link" href="http://nfccard.localhost/admin">
+                        <i class="nav-main-link-icon si si-cursor"></i>
+                        <span class="nav-main-link-name">Dashboard</span>
+                    </a>
+                </li>
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+                                    <li class="nav-main-heading text-uppercase">ACCOUNT USERS</li>
+                    <li class="nav-main-item">
+                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
+                            <i class="nav-main-link-icon  fa fa-users"></i>
+                            <span class="nav-main-link-name ">Users</span>
+                        </a>
+                        <ul class="nav-main-submenu">
+                            <li class="nav-main-item">
+                                <a class="nav-main-link" href="http://nfccard.localhost/admin/users">
+                                    <span class="nav-main-link-name">List</span>
+                                </a>
+                            </li>
+
+
+
+
+
+
+
+                        </ul>
+                    </li>
+                
+
+
+                <li class="nav-main-heading text-uppercase">Card Members</li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
+                        <i class="nav-main-link-icon far fa-list-alt"></i>
+                        <span class="nav-main-link-name ">Members</span>
+                    </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="http://nfccard.localhost/admin/members">
+                                <span class="nav-main-link-name">List</span>
+                            </a>
+                        </li>
+                                                                                                                <li class="nav-main-item">
+                                    <a class="nav-main-link" href="http://nfccard.localhost/admin/members/list/gen">
+                                        <span class="nav-main-link-name">Cards</span>
+                                    </a>
+                                </li>
+                                                                        </ul>
+                </li>
+
+                                <li class="nav-main-heading text-uppercase">SWAP SCANS</li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
+                        <i class="nav-main-link-icon far fa-list-alt"></i>
+                        <span class="nav-main-link-name ">Scans</span>
+                    </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link" href="http://nfccard.localhost/admin/contacts">
+                                <span class="nav-main-link-name">List</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </ul>
+        </div>
+        <!-- END Side Navigation -->
+    </div>
+    <!-- END Sidebar Scrolling -->
+</nav>
+<!-- END Sidebar -->
+            
+            
+            <!-- Header -->
+            <header id="page-header">
+                <!-- Header Content -->
+                <div class="content-header">
+                    <!-- Left Section -->
+                    <div class="d-flex align-items-center">
+                                                    <!-- Toggle Sidebar -->
+                            <!-- Layout API, functionality initialized in Template._uiApiLayout()-->
+                            <button type="button" class="btn btn-sm btn-alt-secondary me-2 d-lg-none" data-toggle="layout" data-action="sidebar_toggle">
+                                <i class="fa fa-fw fa-bars"></i>
+                            </button>
+                            <!-- END Toggle Sidebar -->
+
+                            <!-- Toggle Mini Sidebar -->
+                            <!-- Layout API, functionality initialized in Template._uiApiLayout()-->
+                            <button type="button" class="btn btn-sm btn-alt-secondary me-2 d-none d-lg-inline-block" data-toggle="layout" data-action="sidebar_mini_toggle">
+                                <i class="fa fa-fw fa-ellipsis-v"></i>
+                            </button>
+                            <!-- END Toggle Mini Sidebar -->
+
+                            <!-- Open Search Section (visible on smaller screens) -->
+                            <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                            <button type="button" class="btn btn-sm btn-alt-secondary d-md-none" data-toggle="layout" data-action="header_search_on">
+                                <i class="fa fa-fw fa-search"></i>
+                            </button>
+                            <!-- END Open Search Section -->
+                        
+
+                    </div>
+                    <!-- END Left Section -->
+
+                    <!-- Right Section -->
+                    <div class="d-flex align-items-center">
+                        <!-- User Dropdown -->
+                        <div class="dropdown d-inline-block ms-2">
+                            <button type="button" class="btn btn-sm btn-alt-secondary d-flex align-items-center" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img class="rounded-circle" height="30" width="30"  src="http://nfccard.localhost/assets/front/img/Avatar-4.svg" alt="Header Avatar">
+                                <span class="d-none d-sm-inline-block ms-2">SWAP</span>
+                                <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block ms-1 mt-1"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-md dropdown-menu-end p-0 border-0" aria-labelledby="page-header-user-dropdown">
+                                <div class="p-3 text-center bg-body-light border-bottom rounded-top">
+                                    <img class="img-avatar img-avatar48 img-avatar-thumb" height="62" width="62" src="http://nfccard.localhost/assets/front/img/Avatar-4.svg" alt="">
+                                    <p class="mt-2 mb-0 fw-medium">SWAP</p>
+                                    <p class="mb-0 text-muted fs-sm fw-medium">superAdmin</p>
+                                </div>
+                                <div class="p-2">
+
+
+
+
+                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="http://nfccard.localhost/admin/users/2/edit">
+                                        <span class="fs-sm fw-medium">Account</span>
+                                        <i class="far fa-user"></i>
+                                    </a>
+
+
+
+                                </div>
+                                <div role="separator" class="dropdown-divider m-0"></div>
+                                <div class="p-2">
+
+
+
+                                    <a class="dropdown-item" href="javascript:void(0)">
+                                        <a class="dropdown-item d-flex align-items-center justify-content-between w-100" href="http://nfccard.localhost/logout"
+                                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            Logout
+                                            <i class="fas fa-sign-out-alt"></i>
+                                        </a>
+
+                                        <form id="logout-form" action="http://nfccard.localhost/logout" method="POST" class="d-none bg-dark">
+                                            <input type="hidden" name="_token" value="w2viLHtJgVhwaqvxUEAvrYRxTDv9lkO74Wa9ciSc">                                        </form>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END User Dropdown -->
+
+                        <!-- Languages selection -->
+
+
+
+
+
+
+
+
+
+
+
+
+                        <!-- END Languages selection -->
+
+                        <!-- Notifications Dropdown -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <!-- END Notifications Dropdown -->
+
+                        <!-- Toggle Side Overlay -->
+                        <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+
+
+
+                        <!-- END Toggle Side Overlay -->
+                    </div>
+                    <!-- END Right Section -->
+                </div>
+                <!-- END Header Content -->
+
+                <!-- Header Search -->
+                <div id="page-header-search" class="overlay-header bg-body-extra-light">
+                    <div class="content-header">
+                        <form class="w-100" action="/dashboard" method="POST">
+                            <input type="hidden" name="_token" value="w2viLHtJgVhwaqvxUEAvrYRxTDv9lkO74Wa9ciSc">                            <div class="input-group">
+                                <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                                <button type="button" class="btn btn-alt-danger" data-toggle="layout" data-action="header_search_off">
+                                    <i class="fa fa-fw fa-times-circle"></i>
+                                </button>
+                                <input type="text" class="form-control" placeholder="Search or hit ESC.." id="page-header-search-input" name="page-header-search-input">
+                            </div>
+                        </form>
+                   </div>
+                </div>
+                <!-- END Header Search -->
+
+                <!-- Header Loader -->
+                <!-- Please check out the Loaders page under Components category to see examples of showing/hiding it -->
+                <div id="page-header-loader" class="overlay-header bg-body-extra-light">
+                    <div class="content-header">
+                        <div class="w-100 text-center">
+                            <i class="fa fa-fw fa-circle-notch fa-spin"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- END Header Loader -->
+            </header>
+            <!-- END Header -->
+
+
+            <!-- Main Container -->
+                <main id="main-container">
+                        <!-- Hero -->
+    <div class="bg-body-light">
+        <div class="content content-full">
+            <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
+                <div class="flex-grow-1">
+                    <h1 class="h3 fw-bold mb-2">
+                        Contacts
+                    </h1>
+                </div>
+                <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
+                    <ol class="breadcrumb breadcrumb-alt">
+                        <li class="breadcrumb-item">
+                            <a class="link-fx" href="javascript:void(0)">DataTable</a>
+                        </li>
+                        <li class="breadcrumb-item" aria-current="page">
+                            Contacts
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- END Hero -->
+
+    <!-- Page Content -->
+    <div class="content container-fluid">
+        <!-- Dynamic Table Full -->
+        <div class="block block-rounded row">
+            <div class="block-content block-content-full overflow-scroll">
+                <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
+                <div wire:id="6VHY8PaAxMsATEFAr5FO" wire:initial-data="{&quot;fingerprint&quot;:{&quot;id&quot;:&quot;6VHY8PaAxMsATEFAr5FO&quot;,&quot;name&quot;:&quot;contact&quot;,&quot;locale&quot;:&quot;nl&quot;,&quot;path&quot;:&quot;admin\/print\/scans&quot;,&quot;method&quot;:&quot;GET&quot;},&quot;effects&quot;:{&quot;listeners&quot;:[]},&quot;serverMemo&quot;:{&quot;children&quot;:[],&quot;errors&quot;:[],&quot;htmlHash&quot;:&quot;04b94251&quot;,&quot;data&quot;:{&quot;datepicker&quot;:&quot;&quot;},&quot;dataMeta&quot;:[],&quot;checksum&quot;:&quot;20cee57f0fa4f58b4b2474d08e087e72c5409395345547e4db3a2e3186fac19d&quot;}}">
+
+    <!-- Dynamic Table Full -->
+    <div class="block block-rounded row">
+        <div class="block-header block-header-default">
+            <h3 class="block-title">
+                contacts
+            </h3>
+
+            <label class="d-flex">
+                <input wire:model="datepicker" id="datepicker" type="date" class="form-control" id="" name="" placeholder="Select date contact" data-inline="month" data-enable-time="false">
+                <button wire:click="dateALL" class="btn btn-secondary rounded" type="button" data-bs-toggle="tooltip" title="Refresh"><i class="si si-refresh"></i></button>
+                <a href="http://nfccard.localhost/admin/archive/contacts">
+                    <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Archive">
+                        <i class="fa fa-archive "></i>
+                    </button>
+                </a>
+                <a href="http://nfccard.localhost/admin/print/scans" class="btn btn-alt-success">
+                    <i class="fa fa-print me-2"></i>
+                </a>
+            </label>
+        </div>
+        <div class="block-content block-content-full overflow-scroll">
+            <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
+            <table class="table table-striped table-hover table-vcenter fs-sm">
+                <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">E-mail</th>
+                    <th scope="col">phone</th>
+                    <th scope="col">Registered</th>
+                    <th scope="col">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                                                            <tr>
+                            <td>Thomas Demeulenaere</td>
+                            <td><a href="mailto:"> info@innova-webcreations.be</a></td>
+                            <td>+32474413669</td>
+                            <td>13 uur geleden</td>
+                            <td>
+                                <div class="btn-group">
+                                    <button class="btn btn-sm btn-alt-secondary" wire:click="archiveContact(26)"><i class="fa fa-archive "></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                                            <tr>
+                            <td>Thomas Demeulenaere</td>
+                            <td><a href="mailto:"> info@innova-webcreations.be</a></td>
+                            <td>+32474413669</td>
+                            <td>13 uur geleden</td>
+                            <td>
+                                <div class="btn-group">
+                                    <button class="btn btn-sm btn-alt-secondary" wire:click="archiveContact(25)"><i class="fa fa-archive "></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                                            <tr>
+                            <td>Thomas Demeulenaere</td>
+                            <td><a href="mailto:"> info@innova-webcreations.be</a></td>
+                            <td>+32474413669</td>
+                            <td>1 dag geleden</td>
+                            <td>
+                                <div class="btn-group">
+                                    <button class="btn btn-sm btn-alt-secondary" wire:click="archiveContact(24)"><i class="fa fa-archive "></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                                            <tr>
+                            <td>Thomas Demeulenaere</td>
+                            <td><a href="mailto:"> info@innova-webcreations.be</a></td>
+                            <td>+32474413669</td>
+                            <td>1 dag geleden</td>
+                            <td>
+                                <div class="btn-group">
+                                    <button class="btn btn-sm btn-alt-secondary" wire:click="archiveContact(23)"><i class="fa fa-archive "></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                                            <tr>
+                            <td>Thomas Demeulenaere</td>
+                            <td><a href="mailto:"> info@innova-webcreations.be</a></td>
+                            <td>+32474413669</td>
+                            <td>1 dag geleden</td>
+                            <td>
+                                <div class="btn-group">
+                                    <button class="btn btn-sm btn-alt-secondary" wire:click="archiveContact(22)"><i class="fa fa-archive "></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                                            <tr>
+                            <td>Thomas Demeulenaere</td>
+                            <td><a href="mailto:"> info@innova-webcreations.be</a></td>
+                            <td>+32474413669</td>
+                            <td>1 dag geleden</td>
+                            <td>
+                                <div class="btn-group">
+                                    <button class="btn btn-sm btn-alt-secondary" wire:click="archiveContact(21)"><i class="fa fa-archive "></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                                            <tr>
+                            <td>Thomas Demeulenaere</td>
+                            <td><a href="mailto:"> info@innova-webcreations.be</a></td>
+                            <td>+32474413669</td>
+                            <td>1 dag geleden</td>
+                            <td>
+                                <div class="btn-group">
+                                    <button class="btn btn-sm btn-alt-secondary" wire:click="archiveContact(20)"><i class="fa fa-archive "></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                                            <tr>
+                            <td>Thomas Demeulenaere</td>
+                            <td><a href="mailto:"> info@innova-webcreations.be</a></td>
+                            <td>+32474413669</td>
+                            <td>1 dag geleden</td>
+                            <td>
+                                <div class="btn-group">
+                                    <button class="btn btn-sm btn-alt-secondary" wire:click="archiveContact(19)"><i class="fa fa-archive "></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                                            <tr>
+                            <td>Thomas Demeulenaere</td>
+                            <td><a href="mailto:"> info@innova-webcreations.be</a></td>
+                            <td>+32474413669</td>
+                            <td>1 dag geleden</td>
+                            <td>
+                                <div class="btn-group">
+                                    <button class="btn btn-sm btn-alt-secondary" wire:click="archiveContact(18)"><i class="fa fa-archive "></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                                            <tr>
+                            <td>Thomas Demeulenaere</td>
+                            <td><a href="mailto:"> info@innova-webcreations.be</a></td>
+                            <td>+32474413669</td>
+                            <td>1 dag geleden</td>
+                            <td>
+                                <div class="btn-group">
+                                    <button class="btn btn-sm btn-alt-secondary" wire:click="archiveContact(17)"><i class="fa fa-archive "></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                                                    </tbody>
+            </table>
+        </div>
+        <div class="d-flex justify-content-center">
+            <nav>
+        <ul class="pagination">
+            
+                            <li class="page-item disabled" aria-disabled="true" aria-label="&laquo; Previous">
+                    <span class="page-link" aria-hidden="true">&lsaquo;</span>
+                </li>
+            
+            
+                            
+                
+                
+                                                                                        <li class="page-item active" aria-current="page"><span class="page-link">1</span></li>
+                                                                                                <li class="page-item"><a class="page-link" href="http://nfccard.localhost/admin/print/scans?page=2">2</a></li>
+                                                                                                <li class="page-item"><a class="page-link" href="http://nfccard.localhost/admin/print/scans?page=3">3</a></li>
+                                                                        
+            
+                            <li class="page-item">
+                    <a class="page-link" href="http://nfccard.localhost/admin/print/scans?page=2" rel="next" aria-label="Next &raquo;">&rsaquo;</a>
+                </li>
+                    </ul>
+    </nav>
+
+        </div>
+    </div>
+    <!-- END Dynamic Table Full -->
+</div>
+
+<!-- Livewire Component wire-end:6VHY8PaAxMsATEFAr5FO -->            </div>
+        </div>
+        <!-- END Dynamic Table Full -->
+        <!-- Livewire Scripts -->
+
+<script src="http://nfcCard.localhost/livewire/livewire.js?id=21fa1dd78491a49255cd" data-turbo-eval="false" data-turbolinks-eval="false" ></script>
+<script data-turbo-eval="false" data-turbolinks-eval="false" >
+    if (window.livewire) {
+	    console.warn('Livewire: It looks like Livewire\'s @livewireScripts JavaScript assets have already been loaded. Make sure you aren\'t loading them twice.')
+	}
+
+    window.livewire = new Livewire();
+    window.livewire.devTools(true);
+    window.Livewire = window.livewire;
+    window.livewire_app_url = 'http://nfcCard.localhost';
+    window.livewire_token = 'w2viLHtJgVhwaqvxUEAvrYRxTDv9lkO74Wa9ciSc';
+
+	/* Make sure Livewire loads first. */
+	if (window.Alpine) {
+	    /* Defer showing the warning so it doesn't get buried under downstream errors. */
+	    document.addEventListener("DOMContentLoaded", function () {
+	        setTimeout(function() {
+	            console.warn("Livewire: It looks like AlpineJS has already been loaded. Make sure Livewire\'s scripts are loaded before Alpine.\\n\\n Reference docs for more info: http://laravel-livewire.com/docs/alpine-js")
+	        })
+	    });
+	}
+
+	/* Make Alpine wait until Livewire is finished rendering to do its thing. */
+    window.deferLoadingAlpine = function (callback) {
+        window.addEventListener('livewire:load', function () {
+            callback();
+        });
+    };
+
+    let started = false;
+
+    window.addEventListener('alpine:initializing', function () {
+        if (! started) {
+            window.livewire.start();
+
+            started = true;
+        }
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        if (! started) {
+            window.livewire.start();
+
+            started = true;
+        }
+    });
+</script>
+    </div>
+    <!-- END Page Content -->
+                </main>
+            <!-- END Main Container -->
+
+
+            <!-- Footer -->
+            <footer id="page-footer" class="bg-body-light">
+                <div class="content py-3">
+                    <div class="row fs-sm">
+                        <div class="col-sm-6 order-sm-2 py-1 text-center text-sm-end">
+                            Crafted with <i class="fa fa-heart text-danger"></i> by <a class="fw-semibold" href="https://innova-webcreations.be" target="_blank">INNOVA WEBCREATIONS</a>
+                        </div>
+                        <div class="col-sm-6 order-sm-1 py-1 text-center text-sm-start">
+                            <a class="fw-semibold" href="https://innova-webcreations.be" target="_blank">SWAP</a> &copy; <span data-toggle="year-copy"></span>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- END Footer -->
+        </div>
+        <!-- END Page Container -->
+
+        <!--
+            OneUI JS
+
+            Core libraries and functionality
+        -->
+        <script src="http://nfccard.localhost/js/oneui.app.js"></script>
+
+        <!-- Laravel Scaffolding JS -->
+        <!-- <script src="http://nfccard.localhost/js/laravel.app.js"></script> -->
+
+
+            <!-- jQuery (required for DataTables plugin) -->
+    <script src="http://nfccard.localhost/js/lib/jquery.min.js"></script>
+
+    <!-- Page JS Plugins -->
+    <script src="http://nfccard.localhost/js/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="http://nfccard.localhost/js/plugins/datatables-bs5/dataTables.bootstrap5.min.js"></script>
+    <script src="http://nfccard.localhost/js/plugins/datatables-buttons/dataTables.buttons.min.js"></script>
+    <script src="http://nfccard.localhost/js/plugins/datatables-buttons/buttons.print.min.js"></script>
+    <script src="http://nfccard.localhost/js/plugins/datatables-buttons/buttons.html5.min.js"></script>
+    <script src="http://nfccard.localhost/js/plugins/datatables-buttons/buttons.flash.min.js"></script>
+    <script src="http://nfccard.localhost/js/plugins/datatables-buttons/buttons.colVis.min.js"></script>
+
+    <!-- Page JS Code -->
+    <script src="http://nfccard.localhost/js/pages/tables_datatables.js"></script>
+    <!-- Livewire Styles -->
+<style >
+    [wire\:loading], [wire\:loading\.delay], [wire\:loading\.inline-block], [wire\:loading\.inline], [wire\:loading\.block], [wire\:loading\.flex], [wire\:loading\.table], [wire\:loading\.grid] {
+        display: none;
+    }
+
+    [wire\:loading\.delay\.shortest], [wire\:loading\.delay\.shorter], [wire\:loading\.delay\.short], [wire\:loading\.delay\.long], [wire\:loading\.delay\.longer], [wire\:loading\.delay\.longest] {
+        display:none;
+    }
+
+    [wire\:offline] {
+        display: none;
+    }
+
+    [wire\:dirty]:not(textarea):not(input):not(select) {
+        display: none;
+    }
+
+    input:-webkit-autofill, select:-webkit-autofill, textarea:-webkit-autofill {
+        animation-duration: 50000s;
+        animation-name: livewireautofill;
+    }
+
+    @keyframes livewireautofill { from {} }
+</style>
+
+        <!-- Livewire Scripts -->
+
+<script src="http://nfcCard.localhost/livewire/livewire.js?id=21fa1dd78491a49255cd" data-turbo-eval="false" data-turbolinks-eval="false" ></script>
+<script data-turbo-eval="false" data-turbolinks-eval="false" >
+    if (window.livewire) {
+	    console.warn('Livewire: It looks like Livewire\'s @livewireScripts JavaScript assets have already been loaded. Make sure you aren\'t loading them twice.')
+	}
+
+    window.livewire = new Livewire();
+    window.livewire.devTools(true);
+    window.Livewire = window.livewire;
+    window.livewire_app_url = 'http://nfcCard.localhost';
+    window.livewire_token = 'w2viLHtJgVhwaqvxUEAvrYRxTDv9lkO74Wa9ciSc';
+
+	/* Make sure Livewire loads first. */
+	if (window.Alpine) {
+	    /* Defer showing the warning so it doesn't get buried under downstream errors. */
+	    document.addEventListener("DOMContentLoaded", function () {
+	        setTimeout(function() {
+	            console.warn("Livewire: It looks like AlpineJS has already been loaded. Make sure Livewire\'s scripts are loaded before Alpine.\\n\\n Reference docs for more info: http://laravel-livewire.com/docs/alpine-js")
+	        })
+	    });
+	}
+
+	/* Make Alpine wait until Livewire is finished rendering to do its thing. */
+    window.deferLoadingAlpine = function (callback) {
+        window.addEventListener('livewire:load', function () {
+            callback();
+        });
+    };
+
+    let started = false;
+
+    window.addEventListener('alpine:initializing', function () {
+        if (! started) {
+            window.livewire.start();
+
+            started = true;
+        }
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        if (! started) {
+            window.livewire.start();
+
+            started = true;
+        }
+    });
+</script>
+        <!-- Laravel Toastr -->
+        <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+        <script type="text/javascript"></script>
+
+        <!-- Session Flash Timer -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script>
+            setTimeout(function() {
+                $('#flash_message').fadeOut('fast');
+            }, 3000); // <-- time in milliseconds
+        </script>
+
+    </body>
+</html>

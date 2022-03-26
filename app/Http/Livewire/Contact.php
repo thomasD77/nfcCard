@@ -5,10 +5,14 @@ namespace App\Http\Livewire;
 use App\Models\User;
 use Illuminate\Support\Carbon;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Contact extends Component
 {
+    use WithPagination;
     public $datepicker = "";
+    public $pagination = 25;
+
 
     public function archiveContact($id)
     {
@@ -27,9 +31,10 @@ class Contact extends Component
     {
         if($this->datepicker == "")
         {
-            $contacts = \App\Models\Contact::where('archived', 0)
+            $contacts = \App\Models\Contact::with(['member'])
+                ->where('archived', 0)
                 ->latest()
-                ->paginate(10);
+                ->simplePaginate($this->pagination);
             return view('livewire.contact', compact('contacts'));
         }
         else
@@ -41,14 +46,12 @@ class Contact extends Component
 
             $year = $dateSub->year;
             $month = $dateSub->month;
-            $day = $dateSub->day;
 
-            $contacts = \App\Models\Contact::where('archived', 0)
-                ->whereMonth('created_at', $month)
-                ->whereYear('created_at', $year)
-                ->whereDay('created_at', $day)
-                ->paginate(10);
-
+                $contacts = \App\Models\Contact::with(['member'])
+                    ->where('archived', 0)
+                    ->whereMonth('created_at', $month)
+                    ->whereYear('created_at', $year)
+                    ->simplePaginate($this->pagination);
 
             return view('livewire.contact', compact('contacts'));
         }
