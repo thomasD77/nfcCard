@@ -61,206 +61,203 @@
 
 <main class="main">
     <!-- Header Image -->
-    <div class="header-image">
-        <div class="js-parallax" style="background-image: url({{asset('assets/front/img/bg-vcard.png')}});"></div>
-    </div>
+{{--    <div class="header-image">--}}
+{{--        <div class="js-parallax" style="background-image: url({{asset('assets/front/img/bg-vcard.png')}});"></div>--}}
+{{--    </div>--}}
 
     <div class="container gutter-top">
         <!-- Header -->
         <header class="header box">
-            <div class="header__left">
-                <div class="header__photo">
-                    <img class="header__photo-img" src=" {{ $member->avatar ? asset('card/avatars') . "/" . $member->avatar : asset('assets/front/img/main-photo.svg')}}" alt="{{ $member->firstname . $member->lastname }}">
-                </div>
-                <div class="header__base-info">
-                    @if($member->lastname || $member->firstname )
-                        <h4 class="title titl--h4">{{ $member->lastname . " " . $member->firstname }}</h4>
-                        <br>
-                    @endif
 
-                    @if($member->company)
-                        <h5 class="status">{{ $member->company }}</h5>
-                        <br>
-                    @endif
+            <form class="row mb-0" name="contactformulier"
+                  action="{{action('App\Http\Controllers\CardController@saveInfo', $member->card_id)}}"
+                  method="post">
+                @csrf
+                <div class="modal-content">
+                    <div class="d-flex justify-content-end me-3">
+                        <button type="button" class="btn_close m-2" data-bs-dismiss="modal" aria-label="Close">X</button>
+                    </div>
+                    <div class="modal-header pt-5">
+                        <div class="d-flex flex-column">
+                            <h2 class="talk">Let's talk!</h2>
+                            <p>Please fill in your information. I will send you a mail to talk later.</p>
+                        </div>
 
-                    @if($member->jobTitle)
-                        <div class="status">{{ $member->jobTitle }}</div>
-                    @endif
-                </div>
-                <div class="box box-content">
-                    <!-- Button trigger modal -->
-                    <button data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" class="btn_cstm save w-100 mt-3 p-4"><i class="fa-solid fa-cloud-arrow-up mr-2 "></i>SAVE ME</button>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-                        <div class="modal-dialog mt-0">
-
-                            <form class="row mb-0" name="contactformulier"
-                                  action="{{action('App\Http\Controllers\CardController@saveInfo', $member->card_id)}}"
-                                  method="post">
-                                @csrf
-                                <div class="modal-content">
-                                    <div class="d-flex justify-content-end me-3">
-                                        <button type="button" class="btn_close m-2" data-bs-dismiss="modal" aria-label="Close">X</button>
-                                    </div>
-                                    <div class="modal-header pt-5">
-                                        <div class="d-flex flex-column">
-                                            <h2 class="talk">Let's talk!</h2>
-                                            <p>Please fill in your information. I will send you a mail to talk later.</p>
-                                        </div>
-
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="mb-4 d-flex justify-content-start flex-column">
-                                            <label class="form-label"
-                                                   for="frontend-contact-firstname">Name</label>
-                                            <input type="text" class="form-control input_modal" name="name"
-                                                   placeholder="Enter your name...">
-                                            @error('name')
-                                            <p class="text-danger mt-2"> {{ $message }}</p>
-                                            @enderror
-                                        </div>
-                                        <div class="mb-4">
-                                            <label class="form-label" for="frontend-contact-email">Email</label>
-                                            <input type="email" class="form-control input_modal" name="email"
-                                                   placeholder="Enter your email...">
-                                            @error('email')
-                                            <p class="text-danger mt-2"> {{ $message }}</p>
-                                            @enderror
-                                        </div>
-                                        <div class="mb-4">
-                                            <label class="form-label" for="frontend-contact-email">Phone <span style="font-style: italic; font-size: 10px">(optional)</span></label>
-                                            <input type="text" class="form-control input_modal" name="phone"
-                                                   placeholder="Enter your phone...">
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer mb-5 mt-1">
-                                        <button type="submit" class="btn_cstm input_modal w-100">
-                                            <i class="fa fa-paper-plane me-1 opacity-50"></i> SEND
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-4 d-flex justify-content-start flex-column">
+                            <label class="form-label"
+                                   for="frontend-contact-firstname">Name</label>
+                            <input type="text" class="form-control input_modal" name="name"
+                                   placeholder="Enter your name...">
+                            @error('name')
+                            <p class="text-danger mt-2"> {{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label" for="frontend-contact-email">Email</label>
+                            <input type="email" class="form-control input_modal" name="email"
+                                   placeholder="Enter your email...">
+                            @error('email')
+                            <p class="text-danger mt-2"> {{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label" for="frontend-contact-email">Phone <span style="font-style: italic; font-size: 10px">(optional)</span></label>
+                            <input type="text" class="form-control input_modal" name="phone"
+                                   placeholder="Enter your phone...">
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="header__right">
-                <ul class="header__contact">
-                    @if($member->email)
-                        <li><span class="overhead">Email</span>{{ $member->email }}</li>
-                    @endif
-
-                    @if($member->mobileWork)
-                        <li><span class="overhead">Work Phone</span>{{ $member->mobileWork }}</li>
-                    @endif
-
-                    @if($member->mobile)
-                        <li><span class="overhead">Personal Phone</span>{{ $member->mobile }}</li>
-                    @endif
-                </ul>
-                <ul class="header__contact">
-                    @if($member->age)
-                        <li><span class="overhead">Birthday</span>{{ \Carbon\Carbon::parse($member->age)->format('Y-M-d') }}</li>
-                    @endif
-
-                    @if($member->addressLine1)
-                        <li><span class="overhead">Location</span>{{ $member->addressLine1 . ", " . $member->postalCode . ", " }}
-                            <br> {{ $member->city . ", " . $member->country  }}
-                        </li>
-                    @endif
-                </ul>
-            </div>
-        </header>
-
-        <div class="row sticky-parent">
-
-            <!-- Content -->
-            <div class="col-12 col-md-12 col-lg-10">
-                <div class="box box-content" id="content">
-
-                    <div class="content">
-                        <!-- ABOUT -->
-                        <div id="about-tab" class="tabcontent active">
-                            @if($member->notes)
-                                <div class="pb-0 pb-sm-2">
-                                    <h1 class="title title--h1 first-title title__separate">About Me</h1>
-                                        <p> {{ $member->notes }}</p>
-                                </div>
-                            @endif
-
-                            <!-- What -->
-                            <div class="mt-1">
-                                <h2 class="title title--h3">My Socials</h2>
-                                <div class="row">
-                                    @if($member->website)
-                                        <!-- Website -->
-                                        <div class="col-12 d-flex justify-content-center">
-                                            <a class="w-100" target="_blank" href="{{ $member->website }}"><button type="submit" class="btn_cstm website w-100 mt-2"><i class="fa-solid fa-earth-africa mx-2"></i>Website</button></a>
-                                        </div>
-                                    @endif
-
-                                    @if($member->facebook)
-                                        <!-- Facebook -->
-                                        <div class="col-12 d-flex justify-content-center">
-                                            <a class="w-100" target="_blank" href="{{ $member->facebook }}"><button type="submit" class="btn_cstm facebook w-100 mt-2"><i class="fa-brands fa-facebook mr-2"></i>Facebook</button></a>
-                                        </div>
-                                    @endif
-
-                                    @if($member->instagram)
-                                        <!-- Instagram -->
-                                        <div class="col-12 d-flex justify-content-center">
-                                             <a class="w-100" target="_blank" href="{{ $member->instagram }}"><button type="submit" class="btn_cstm instagram w-100 mt-2"><i class="fa-brands  fa-instagram mx-2"></i>Instagram</button></a>
-                                        </div>
-                                    @endif
-
-                                    @if($member->linkedIn)
-                                        <!-- LinkedIn -->
-                                        <div class="col-12 d-flex justify-content-center">
-                                             <a class="w-100" target="_blank" href="{{ $member->linkedIn }}"><button type="submit" class="btn_cstm w-100 linkedIn mt-2"><i class="fa-brands  fa-linkedin-in mx-2"></i>LinkedIn</button></a>
-                                        </div>
-                                    @endif
-
-                                    @if($member->twitter)
-                                        <!-- Twitter -->
-                                        <div class="col-12 d-flex justify-content-center">
-                                             <a class="w-100" target="_blank" href="{{ $member->twitter }}"><button type="submit" class="btn_cstm w-100 twitter mt-2"><i class="fa-brands  fa-twitter mx-2"></i>Twitter</button></a>
-                                        </div>
-                                    @endif
-
-                                    @if($member->youTube)
-                                        <!-- YouTube -->
-                                        <div class="col-12 d-flex justify-content-center">
-                                            <a class="w-100" target="_blank" href="{{ $member->youTube }}"> <button type="submit" class="w-100 btn_cstm youTube mt-2"><i class="fa-brands fa-youtube mx-2"></i>YouTube</button></a>
-                                        </div>
-                                    @endif
-
-                                    @if($member->tikTok)
-                                        <!-- TikTok -->
-                                        <div class="col-12 d-flex justify-content-center">
-                                            <a class="w-100" target="_blank" href="{{ $member->tikTok }}"> <button type="submit" class="btn_cstm tikTok w-100 mt-2"><i class="fa-brands fa-tiktok mx-2"></i>TikTok</button></a>
-                                        </div>
-                                    @endif
-
-                                    @if($member->whatsApp)
-                                        <!-- WhatsApp -->
-                                        <div class="col-12 d-flex justify-content-center">
-                                             <a class="w-100" target="_blank" href="{{ $member->whatsApp }}"><button type="submit" class="btn_cstm whatsApp w-100 mt-2"><i class="fa-brands fa-whatsapp mx-2"></i>WhatsApp</button></a>
-                                        </div>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
+                    <div class="modal-footer mb-5 mt-1">
+                        <button type="submit" class="btn_cstm input_modal w-100">
+                            <i class="fa fa-paper-plane me-1 opacity-50"></i> SEND
+                        </button>
                     </div>
                 </div>
-                <!-- Footer -->
-                <footer class="footer"><a style="text-decoration: none; color: white" href="https://innova-webcreations.be">SWAP</a> © {{ now()->format('Y') }}</footer>
-                <footer class="footer">
-                    <a style="text-decoration: none; color: white" href="{{ asset('/login') }}">Login</a>
-                </footer>
-            </div>
-        </div>
+            </form>
+
+{{--            <div class="header__left">--}}
+{{--                <div class="header__photo">--}}
+{{--                    <img class="header__photo-img" src=" {{ $member->avatar ? asset('card/avatars') . "/" . $member->avatar : asset('assets/front/img/main-photo.svg')}}" alt="{{ $member->firstname . $member->lastname }}">--}}
+{{--                </div>--}}
+{{--                <div class="header__base-info">--}}
+{{--                    @if($member->lastname || $member->firstname )--}}
+{{--                        <h4 class="title titl--h4">{{ $member->lastname . " " . $member->firstname }}</h4>--}}
+{{--                        <br>--}}
+{{--                    @endif--}}
+
+{{--                    @if($member->company)--}}
+{{--                        <h5 class="status">{{ $member->company }}</h5>--}}
+{{--                        <br>--}}
+{{--                    @endif--}}
+
+{{--                    @if($member->jobTitle)--}}
+{{--                        <div class="status">{{ $member->jobTitle }}</div>--}}
+{{--                    @endif--}}
+{{--                </div>--}}
+{{--                <div class="box box-content">--}}
+{{--                    <!-- Button trigger modal -->--}}
+{{--                    <button data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" class="btn_cstm save w-100 mt-3 p-4"><i class="fa-solid fa-cloud-arrow-up mr-2 "></i>SAVE ME</button>--}}
+
+{{--                    --}}
+{{--                </div>--}}
+{{--            </div>--}}
+
+{{--            <div class="header__right">--}}
+{{--                <ul class="header__contact">--}}
+{{--                    @if($member->email)--}}
+{{--                        <li><span class="overhead">Email</span>{{ $member->email }}</li>--}}
+{{--                    @endif--}}
+
+{{--                    @if($member->mobileWork)--}}
+{{--                        <li><span class="overhead">Work Phone</span>{{ $member->mobileWork }}</li>--}}
+{{--                    @endif--}}
+
+{{--                    @if($member->mobile)--}}
+{{--                        <li><span class="overhead">Personal Phone</span>{{ $member->mobile }}</li>--}}
+{{--                    @endif--}}
+{{--                </ul>--}}
+{{--                <ul class="header__contact">--}}
+{{--                    @if($member->age)--}}
+{{--                        <li><span class="overhead">Birthday</span>{{ \Carbon\Carbon::parse($member->age)->format('Y-M-d') }}</li>--}}
+{{--                    @endif--}}
+
+{{--                    @if($member->addressLine1)--}}
+{{--                        <li><span class="overhead">Location</span>{{ $member->addressLine1 . ", " . $member->postalCode . ", " }}--}}
+{{--                            <br> {{ $member->city . ", " . $member->country  }}--}}
+{{--                        </li>--}}
+{{--                    @endif--}}
+{{--                </ul>--}}
+{{--            </div>--}}
+{{--        </header>--}}
+
+{{--        <div class="row sticky-parent">--}}
+
+{{--            <!-- Content -->--}}
+{{--            <div class="col-12 col-md-12 col-lg-10">--}}
+{{--                <div class="box box-content" id="content">--}}
+
+{{--                    <div class="content">--}}
+{{--                        <!-- ABOUT -->--}}
+{{--                        <div id="about-tab" class="tabcontent active">--}}
+{{--                            @if($member->notes)--}}
+{{--                                <div class="pb-0 pb-sm-2">--}}
+{{--                                    <h1 class="title title--h1 first-title title__separate">About Me</h1>--}}
+{{--                                        <p> {{ $member->notes }}</p>--}}
+{{--                                </div>--}}
+{{--                            @endif--}}
+
+{{--                            <!-- What -->--}}
+{{--                            <div class="mt-1">--}}
+{{--                                <h2 class="title title--h3">My Socials</h2>--}}
+{{--                                <div class="row">--}}
+{{--                                    @if($member->website)--}}
+{{--                                        <!-- Website -->--}}
+{{--                                        <div class="col-12 d-flex justify-content-center">--}}
+{{--                                            <a class="w-100" target="_blank" href="{{ $member->website }}"><button type="submit" class="btn_cstm website w-100 mt-2"><i class="fa-solid fa-earth-africa mx-2"></i>Website</button></a>--}}
+{{--                                        </div>--}}
+{{--                                    @endif--}}
+
+{{--                                    @if($member->facebook)--}}
+{{--                                        <!-- Facebook -->--}}
+{{--                                        <div class="col-12 d-flex justify-content-center">--}}
+{{--                                            <a class="w-100" target="_blank" href="{{ $member->facebook }}"><button type="submit" class="btn_cstm facebook w-100 mt-2"><i class="fa-brands fa-facebook mr-2"></i>Facebook</button></a>--}}
+{{--                                        </div>--}}
+{{--                                    @endif--}}
+
+{{--                                    @if($member->instagram)--}}
+{{--                                        <!-- Instagram -->--}}
+{{--                                        <div class="col-12 d-flex justify-content-center">--}}
+{{--                                             <a class="w-100" target="_blank" href="{{ $member->instagram }}"><button type="submit" class="btn_cstm instagram w-100 mt-2"><i class="fa-brands  fa-instagram mx-2"></i>Instagram</button></a>--}}
+{{--                                        </div>--}}
+{{--                                    @endif--}}
+
+{{--                                    @if($member->linkedIn)--}}
+{{--                                        <!-- LinkedIn -->--}}
+{{--                                        <div class="col-12 d-flex justify-content-center">--}}
+{{--                                             <a class="w-100" target="_blank" href="{{ $member->linkedIn }}"><button type="submit" class="btn_cstm w-100 linkedIn mt-2"><i class="fa-brands  fa-linkedin-in mx-2"></i>LinkedIn</button></a>--}}
+{{--                                        </div>--}}
+{{--                                    @endif--}}
+
+{{--                                    @if($member->twitter)--}}
+{{--                                        <!-- Twitter -->--}}
+{{--                                        <div class="col-12 d-flex justify-content-center">--}}
+{{--                                             <a class="w-100" target="_blank" href="{{ $member->twitter }}"><button type="submit" class="btn_cstm w-100 twitter mt-2"><i class="fa-brands  fa-twitter mx-2"></i>Twitter</button></a>--}}
+{{--                                        </div>--}}
+{{--                                    @endif--}}
+
+{{--                                    @if($member->youTube)--}}
+{{--                                        <!-- YouTube -->--}}
+{{--                                        <div class="col-12 d-flex justify-content-center">--}}
+{{--                                            <a class="w-100" target="_blank" href="{{ $member->youTube }}"> <button type="submit" class="w-100 btn_cstm youTube mt-2"><i class="fa-brands fa-youtube mx-2"></i>YouTube</button></a>--}}
+{{--                                        </div>--}}
+{{--                                    @endif--}}
+
+{{--                                    @if($member->tikTok)--}}
+{{--                                        <!-- TikTok -->--}}
+{{--                                        <div class="col-12 d-flex justify-content-center">--}}
+{{--                                            <a class="w-100" target="_blank" href="{{ $member->tikTok }}"> <button type="submit" class="btn_cstm tikTok w-100 mt-2"><i class="fa-brands fa-tiktok mx-2"></i>TikTok</button></a>--}}
+{{--                                        </div>--}}
+{{--                                    @endif--}}
+
+{{--                                    @if($member->whatsApp)--}}
+{{--                                        <!-- WhatsApp -->--}}
+{{--                                        <div class="col-12 d-flex justify-content-center">--}}
+{{--                                             <a class="w-100" target="_blank" href="{{ $member->whatsApp }}"><button type="submit" class="btn_cstm whatsApp w-100 mt-2"><i class="fa-brands fa-whatsapp mx-2"></i>WhatsApp</button></a>--}}
+{{--                                        </div>--}}
+{{--                                    @endif--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <!-- Footer -->--}}
+{{--                <footer class="footer"><a style="text-decoration: none; color: white" href="https://innova-webcreations.be">SWAP</a> © {{ now()->format('Y') }}</footer>--}}
+{{--                <footer class="footer">--}}
+{{--                    <a style="text-decoration: none; color: white" href="{{ asset('/login') }}">Login</a>--}}
+{{--                </footer>--}}
+{{--            </div>--}}
+{{--        </div>--}}
     </div>
 </main>
 

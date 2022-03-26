@@ -16,6 +16,7 @@ use App\Models\URL;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use JeroenDesloovere\VCard\VCard;
 use Maatwebsite\Excel\Facades\Excel;
@@ -69,6 +70,7 @@ class CardController extends Controller
 
         // return vcard as a download
         return $vcard->download();
+
     }
 
 

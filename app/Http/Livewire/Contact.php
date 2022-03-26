@@ -2,17 +2,13 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\User;
 use Illuminate\Support\Carbon;
 use Livewire\Component;
 
 class Contact extends Component
 {
     public $datepicker = "";
-
-    public function dateALL()
-    {
-        $this->datepicker = "";
-    }
 
     public function archiveContact($id)
     {
@@ -21,7 +17,10 @@ class Contact extends Component
         $contact->update();
     }
 
-
+    public function dateALL()
+    {
+        $this->datepicker = "";
+    }
 
 
     public function render()

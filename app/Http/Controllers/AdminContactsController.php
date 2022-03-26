@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use Illuminate\Http\Request;
 
 class AdminContactsController extends Controller
@@ -81,5 +82,14 @@ class AdminContactsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function archive()
+    {
+        $contacts = Contact::where('archived', 1)
+            ->latest()
+            ->paginate(25);
+
+        return view('admin.contacts.archive', compact('contacts'));
     }
 }

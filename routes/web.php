@@ -91,6 +91,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::resource('roles', App\Http\Controllers\AdminRolesController::class);
     Route::resource('billing', App\Http\Controllers\AdminBillingController::class);
     Route::resource('contacts', App\Http\Controllers\AdminContactsController::class);
+    Route::get('archive/contacts', 'App\Http\Controllers\AdminContactsController@archive')->name('contact.archive');
 
     //Shop Routes
     Route::resource('products', App\Http\Controllers\AdminProductsController::class);

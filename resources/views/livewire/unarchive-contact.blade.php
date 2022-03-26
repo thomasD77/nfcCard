@@ -4,15 +4,15 @@
     <div class="block block-rounded row">
         <div class="block-header block-header-default">
             <h3 class="block-title">
-                contacts
+                Contacts
             </h3>
-{{--            <a class="btn btn-dark me-3" href="{{route('contacts.export')}}">Export to Excel</a>--}}
+            {{--            <a class="btn btn-dark me-3" href="{{route('contacts.export')}}">Export to Excel</a>--}}
             <label class="d-flex">
                 <input wire:model="datepicker" id="datepicker" type="date" class="form-control" id="" name="" placeholder="Select date contact" data-inline="month" data-enable-time="false">
                 <button wire:click="dateALL" class="btn btn-secondary rounded" type="button" data-bs-toggle="tooltip" title="Refresh"><i class="si si-refresh"></i></button>
-                <a href="{{route('contact.archive')}}">
-                    <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Archive">
-                        <i class="fa fa-archive "></i>
+                <a href="{{route('contacts.index')}}">
+                    <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="List">
+                        <i class="far fa-list-alt "></i>
                     </button>
                 </a>
             </label>
@@ -39,7 +39,7 @@
                             <td>{{$contact->created_at ? $contact->created_at->diffForhumans() : 'No Date'}}</td>
                             <td>
                                 <div class="btn-group">
-                                    <button class="btn btn-sm btn-alt-secondary" wire:click="archiveContact({{$contact->id}})"><i class="fa fa-archive "></i></button>
+                                    <button class="btn btn-sm btn-alt-secondary" wire:click="unArchiveContact({{$contact->id}})"><i class="si si-refresh"></i></button>
                                 </div>
                             </td>
                         </tr>
