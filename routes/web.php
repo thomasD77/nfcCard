@@ -95,6 +95,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::get('archive/contacts', 'App\Http\Controllers\AdminContactsController@archive')->name('contact.archive');
     Route::get('archive/contacts/client', 'App\Http\Controllers\AdminContactsController@archiveClients')->name('contact.archive-clients');
     Route::get('print/scans', 'App\Http\Controllers\CardController@printScans')->name('print.scans');
+    Route::get('print/scans/client', 'App\Http\Controllers\CardController@printScansClient')->name('print.scans.client');
 
     //Shop Routes
     Route::resource('products', App\Http\Controllers\AdminProductsController::class);

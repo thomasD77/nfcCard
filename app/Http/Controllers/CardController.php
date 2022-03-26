@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\ListUrlExportView;
 use App\Exports\MemberListExport;
 use App\Exports\MemberUrlExport;
+use App\Exports\ScanListClientExport;
 use App\Exports\ScanListExport;
 use App\Exports\SubmissionExport;
 use App\Http\Requests\ContactRequest;
@@ -311,6 +312,10 @@ class CardController extends Controller
     public function printScans()
     {
         return Excel::download(new ScanListExport(), 'scan-list.xlsx');
+    }
+    public function printScansClient()
+    {
+        return Excel::download(new ScanListClientExport(), 'scan-list.xlsx');
     }
 
 
