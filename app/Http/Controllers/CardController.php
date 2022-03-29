@@ -305,8 +305,8 @@ class CardController extends Controller
         }
 
         $contact->save();
-        return redirect()->route('members.vCard', [$id]);
 
+        $this->vCard($id);
     }
 
     public function printScans()

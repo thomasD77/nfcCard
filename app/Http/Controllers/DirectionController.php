@@ -44,7 +44,8 @@ class DirectionController extends Controller
         }
         if($member->package->package == 'Default')
         {
-            return view( 'front.landingspage_default.index', compact('member'));
+            $vCard = null;
+            return view( 'front.landingspage_default.index', compact('member', 'vCard'));
         }
         elseif ($member->package->package == 'Custom')
         {

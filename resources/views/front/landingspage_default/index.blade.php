@@ -89,12 +89,10 @@
                 </div>
                 <div class="box box-content">
                     <!-- Button trigger modal -->
-                    <button data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" class="btn_cstm save w-100 mt-3 p-4"><i class="fa-solid fa-cloud-arrow-up mr-2 "></i>SAVE ME</button>
-
+                    <button data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" class="btn_cstm save w-100 mt-3 p-3"><i class="fa fa-rotate mr-2 "></i>SWAP</button>
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
                         <div class="modal-dialog mt-0">
-
                             <form class="row mb-0" name="contactformulier"
                                   action="{{action('App\Http\Controllers\CardController@saveInfo', $member->card_id)}}"
                                   method="post">
@@ -103,12 +101,11 @@
                                     <div class="d-flex justify-content-end me-3">
                                         <button type="button" class="btn_close m-2" data-bs-dismiss="modal" aria-label="Close">X</button>
                                     </div>
-                                    <div class="modal-header pt-5">
+                                    <div class="modal-header pt-1">
                                         <div class="d-flex flex-column">
                                             <h2 class="talk">Let's talk!</h2>
                                             <p>Please fill in your information. I will send you a mail to talk later.</p>
                                         </div>
-
                                     </div>
                                     <div class="modal-body">
                                         <div class="mb-4 d-flex justify-content-start flex-column">
@@ -133,12 +130,21 @@
                                             <input type="text" class="form-control input_modal" name="phone"
                                                    placeholder="Enter your phone...">
                                         </div>
-                                    </div>
-                                    <div class="modal-footer mb-5 mt-1">
-                                        <button type="submit" class="btn_cstm input_modal w-100">
-                                            <i class="fa fa-paper-plane me-1 opacity-50"></i> SEND
+                                        <button id="closemodal" type="submit" class="btn_cstm input_modal mb-3 w-100">
+                                            <i class="fa fa-paper-plane me-1 opacity-50"></i> SWAP
                                         </button>
+                                        <div class="modal-footer mb-5 mt-3">
+                                            <h2 class="talk">Only Save</h2>
+                                            <p>If you only want to save my contact download here.</p>
+                                            <a href="{{ route('members.vCard', $member->card_id) }}"
+                                               id="closeNow"
+                                               style="text-decoration: none; color: white"
+                                               class="btn_cstm text-center input_modal w-100">
+                                                 <i class="fa fa-floppy-disk me-1 opacity-50"></i> SAVE
+                                            </a>
+                                        </div>
                                     </div>
+
                                 </div>
                             </form>
                         </div>
@@ -272,6 +278,16 @@
 
 <!-- Mapbox init -->
 <script src="{{ asset('assets/front/js/mapbox.init.js') }}"></script>
+<script>
+    $('#closemodal').click(function() {
+        $('#exampleModal').modal('hide');
+    });
+    $(document).ready(function(){
+        $('#closeNow').click(function(){
+            $('#exampleModal').modal('hide');
+        });
+    });
+</script>
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
