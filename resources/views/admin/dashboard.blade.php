@@ -207,7 +207,7 @@
                 </div>
             </div>
             @if($total_cards > 0)
-                <div class="col-md-6 col-xl-4">
+                <div class="col-md-3 col-xl-3">
                     <div class="block block-rounded">
                         <div class="block-header block-header-default">
                             <h3 class="block-title">STAP 4: List Generator </h3>
@@ -225,6 +225,40 @@
                     </div>
                 </div>
             @endif
+            <div class="col-md-9 col-xl-5">
+                <div class="block block-rounded">
+                    <div class="block-header block-header-default">
+                        <h3 class="block-title">STAP 5: Orders </h3>
+                    </div>
+                    <div class="block-content fs-sm text-muted pt-3">
+                        <form class="row mb-0" name="contactformulier"
+                              action="{{action('App\Http\Controllers\AdminOrderController@store')}}"
+                              method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="mb-4">
+                                <label class="form-label d-flex" for="frontend-contact-email"></label>
+                                <div class="d-flex">
+                                    <input type="file" class="form-control" id="frontend-contact-tagline"
+                                           name="order">
+                                    <button type="submit" class="btn btn-alt-primary">
+                                        Save
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        <div>
+                            @if($orders)
+                                @foreach($orders as $order)
+                                    <a href="{{ $order->file ? asset('orders') . "/" . $order->file : "" }}" class="d-flex justify-content-around">
+                                        <div>#</div><h5 class="mb-0">ORDER-{{ $order->id }}</h5><p class="mb-0">{{ \Carbon\Carbon::parse($order->created_at)->format('d-M-Y') }}</p>
+                                    </a>
+                                    <hr>
+                                @endforeach
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <!-- END Page Content -->

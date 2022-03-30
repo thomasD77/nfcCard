@@ -55,6 +55,7 @@ Route::get('members/print', 'App\Http\Controllers\CardController@print')->name('
 Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(){
     //Routes for CRUD members
     Route::resource('members', App\Http\Controllers\AdminMembersController::class);
+    Route::resource('orders', App\Http\Controllers\AdminOrderController::class);
     Route::get('archive/members', 'App\Http\Controllers\AdminMembersController@archive')->name('members.archive');
     Route::get('members/list/gen', 'App\Http\Controllers\AdminMembersController@membersList')->name('members.membersListGen');
     Route::patch('members/list/update', 'App\Http\Controllers\AdminMembersController@updateMembersList')->name('members.updateMembersList');

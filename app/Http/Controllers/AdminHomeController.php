@@ -6,6 +6,7 @@ use App\Models\CompanyCredential;
 use App\Models\listUrl;
 use App\Models\Lock;
 use App\Models\Member;
+use App\Models\Order;
 use App\Models\Package;
 use App\Models\Photo;
 use App\Models\QRCODE;
@@ -62,6 +63,8 @@ class AdminHomeController extends Controller
 
         $lock = Lock::first();
 
+        $orders = Order::all();
+
         return view('admin.dashboard', compact(
             'photos',
             'package',
@@ -75,7 +78,8 @@ class AdminHomeController extends Controller
             'total_pvc',
             'total_metal',
             'total_wood',
-            'lock'
+            'lock',
+            'orders'
         ));
     }
 
