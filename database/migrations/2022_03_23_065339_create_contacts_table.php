@@ -19,6 +19,7 @@ class CreateContactsTable extends Migration
             $table->string('name')->default("");
             $table->string('email')->default("");
             $table->string('phone')->default("");
+            $table->text('message')->default("");
             $table->boolean('archived')->default(0);
             $table->timestamps();
         });

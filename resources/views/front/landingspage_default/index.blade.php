@@ -126,9 +126,21 @@
                                             @enderror
                                         </div>
                                         <div class="mb-4">
-                                            <label class="form-label" for="frontend-contact-email">Phone <span style="font-style: italic; font-size: 10px">(optional)</span></label>
-                                            <input type="text" class="form-control input_modal" name="phone"
-                                                   placeholder="Enter your phone...">
+                                            <a style="color: #AEB0B8;" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                                <label class="form-label" for="frontend-contact-email">Phone <span style="font-style: italic; font-size: 10px">(optional)</span><i class=" mx-2 fa-solid fa-angles-down"></i></label>
+                                            </a>
+                                            <div class="collapse" id="collapseExample2">
+                                                <input type="text" class="form-control input_modal" name="phone"
+                                                       placeholder="Enter your phone...">
+                                            </div>
+                                        </div>
+                                        <div class="mb-4">
+                                            <a style="color: #AEB0B8" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                                <label class="form-label" for="frontend-contact-email">Message <span style="font-style: italic; font-size: 10px">(optional)</span><i class=" mx-2 fa-solid fa-angles-down"></i></label>
+                                            </a>
+                                            <div class="collapse" id="collapseExample">
+                                                <textarea name="message" placeholder="Enter your message... " class="form-control input_modal" id="" cols="5" rows="5"></textarea>
+                                            </div>
                                         </div>
                                         <button id="closemodal" type="submit" class="btn_cstm input_modal mb-3 w-100">
                                             <i class="fa fa-paper-plane me-1 opacity-50"></i> SWAP

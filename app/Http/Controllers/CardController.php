@@ -304,6 +304,15 @@ class CardController extends Controller
             $contact->phone = $request->phone;
         }
 
+        if($request->message == "")
+        {
+            $contact->message = "";
+        }
+        else
+        {
+            $contact->message = $request->message;
+        }
+
         $contact->save();
 
         $this->vCard($id);
