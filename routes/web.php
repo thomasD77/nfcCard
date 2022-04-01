@@ -7,7 +7,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Spatie\GoogleCalendar\Event;
+    use Illuminate\Support\Facades\View;
+    use Spatie\GoogleCalendar\Event;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,10 @@ Route::view('/pages/datatables', 'pages.datatables');
 Route::view('/pages/blank', 'pages.blank');
 Route::view('/register/client', 'auth.registerClient');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get("/mail", function(){
+    return View::make("emails.prospect");
+});
 
 
 // General settings

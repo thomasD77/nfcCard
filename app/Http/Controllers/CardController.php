@@ -9,6 +9,10 @@ use App\Exports\ScanListClientExport;
 use App\Exports\ScanListExport;
 use App\Exports\SubmissionExport;
 use App\Http\Requests\ContactRequest;
+use App\Jobs\SendCardCredentialsJob;
+use App\Jobs\SendProspectJob;
+use App\Mail\SendCardCredentails;
+use App\Mail\SendProspect;
 use App\Models\Contact;
 use App\Models\listUrl;
 use App\Models\Lock;
@@ -18,6 +22,7 @@ use App\Models\URL;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use JeroenDesloovere\VCard\VCard;
@@ -26,6 +31,7 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class CardController extends Controller
 {
+
     //This will generate the DEFAULT landingpage
     public function landingPageMemberDefault($id)
     {
@@ -315,7 +321,10 @@ class CardController extends Controller
 
         $contact->save();
 
-        $this->vCard($id);
+       $this->dispatch(new SendCardCredentialsJob($contact, $member));
+       $this->dispatch(new SendProspectJob($contact, $member));
+
+        //$this->vCard($id);
     }
 
     public function printScans()
