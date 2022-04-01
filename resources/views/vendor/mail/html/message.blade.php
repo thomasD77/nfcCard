@@ -2,8 +2,6 @@
 {{-- Header --}}
 @slot('header')
 @component('mail::header', ['url' => config('app.url')])
-    <h3>Leuke connectie! Bedankt om gegevens met mij uit te wisselen. Graag geef ik hier al mijn details in een mooi
-        overzicht. Aarzel niet om mij te contacteren! </h3>
 @endcomponent
 @endslot
 
