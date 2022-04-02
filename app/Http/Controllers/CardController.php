@@ -324,7 +324,7 @@ class CardController extends Controller
        $this->dispatch(new SendCardCredentialsJob($contact, $member));
        $this->dispatch(new SendProspectJob($contact, $member));
 
-        $this->vCard($id);
+        return redirect()->route('members.vCard', $id);
     }
 
     public function printScans()
