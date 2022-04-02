@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\MemberCredentialCardExport;
 use App\Exports\MemberListExport;
+use App\Http\Requests\MemberRequest;
 use App\Models\listUrl;
 use App\Models\Material;
 use App\Models\Member;
@@ -136,7 +137,7 @@ class AdminMembersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(MemberRequest $request, $id)
     {
         //
         $member = Member::findOrFail($id);

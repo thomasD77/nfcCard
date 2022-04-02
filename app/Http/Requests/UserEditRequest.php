@@ -27,6 +27,7 @@ class UserEditRequest extends FormRequest
             //
             'name'=>'required|max:150',
             'email'=>'required|max:150',
+            'username'=>'max:150',
         ];
     }
 

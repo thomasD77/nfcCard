@@ -17,11 +17,7 @@ class UnarchiveUsers extends Component
 
     public function render()
     {
-        $roles = ['superAdmin', 'admin', 'employee', 'client'];
-
         $users = User::with([ 'roles'])
-            ->whereHas('roles', function($q) use($roles) {
-            $q->whereIn('name', $roles);})
             ->where('archived', 1)
             ->latest()
             ->paginate(10);

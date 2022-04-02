@@ -121,7 +121,7 @@ class AdminUsersController extends Controller
 
         Session::flash('flash_message', 'User Successfully Updated');
 
-        return redirect('/admin/');
+        return redirect('/admin/users');
     }
 
     /**

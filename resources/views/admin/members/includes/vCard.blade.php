@@ -4,9 +4,19 @@
             {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminMembersController@update', $member->id],
                 'files'=>true])
            !!}
-            <p>General</p>
+            <p class="badge badge-pill bg-dark p-2 text-white">General</p>
+            <div class="mb-4">
+                <label class="form-label">Your Avatar</label>
+                <div class="mb-4">
+                    <img class="rounded-circle" height="150" width="150" src="{{$member->avatar ? asset('/card/avatars'). "/" . $member->avatar : asset('/assets/front/img/Avatar-4.svg')}}" alt="{{$member->avatar}}">
+                </div>
+                <div class="form-group mb-4">
+                    {!! Form::label('avatar_id', 'Choose a new avatar:', ['class'=>'form-label']) !!}
+                    {!! Form::file('avatar_id',['class'=>'form-control']) !!}
+                </div>
+            </div>
             <div class="form-group mb-4">
-                {!! Form::label('firstname','firstname:',['class'=>'form-label']) !!}
+                {!! Form::label('firstname','Firstname:',['class'=>'form-label']) !!}
                 {!! Form::text('firstname',$member->firstname ,['class'=>'form-control']) !!}
                 @error('firstname')
                 <p class="text-danger mt-2"> {{ $message }}</p>
@@ -21,7 +31,7 @@
             </div>
             <div class="form-group mb-4">
                 {!! Form::label('email','Email:',['class'=>'form-label']) !!}
-                {!! Form::text('email',$member->email ,['class'=>'form-control']) !!}
+                {!! Form::email('email',$member->email ,['class'=>'form-control']) !!}
                 @error('email')
                 <p class="text-danger mt-2"> {{ $message }}</p>
                 @enderror
@@ -34,7 +44,7 @@
                 @enderror
             </div>
             <div class="form-group mb-4">
-                {!! Form::label('age','Age:',['class'=>'form-label']) !!}
+                {!! Form::label('age','Birthday:',['class'=>'form-label']) !!}
                 {!! Form::date('age',$member->age ,['class'=>'form-control']) !!}
                 @error('age')
                 <p class="text-danger mt-2"> {{ $message }}</p>
@@ -48,7 +58,7 @@
                 @enderror
             </div>
             <div class="form-group mb-4">
-                {!! Form::label('website','Website (use "https://") :',['class'=>'form-label']) !!}
+                {!! Form::label('website','Website | example: https://innovawebcreations.be ',['class'=>'form-label']) !!}
                 {!! Form::text('website',$member->website ,['class'=>'form-control']) !!}
                 @error('website')
                 <p class="text-danger mt-2"> {{ $message }}</p>
@@ -61,15 +71,24 @@
                 <p class="text-danger mt-2"> {{ $message }}</p>
                 @enderror
             </div>
+
+            <p class="badge badge-pill bg-dark p-2 text-white">Contact information</p>
             <div class="form-group mb-4">
-                {!! Form::label('mobile','Mobile:',['class'=>'form-label']) !!}
+                {!! Form::label('mobileWork','Mobile work (+32474413669):',['class'=>'form-label']) !!}
+                {!! Form::text('mobileWork',$member->mobileWork ,['class'=>'form-control']) !!}
+                @error('mobileWork')
+                <p class="text-danger mt-2"> {{ $message }}</p>
+                @enderror
+            </div>
+            <div class="form-group mb-4">
+                {!! Form::label('mobile','Mobile (+32474413669):',['class'=>'form-label']) !!}
                 {!! Form::text('mobile',$member->mobile ,['class'=>'form-control']) !!}
                 @error('mobile')
                 <p class="text-danger mt-2"> {{ $message }}</p>
                 @enderror
             </div>
             <div class="form-group mb-4">
-                {!! Form::label('addressLine1','Address Line 1:',['class'=>'form-label']) !!}
+                {!! Form::label('addressLine1','Address (street and number):',['class'=>'form-label']) !!}
                 {!! Form::text('addressLine1',$member->addressLine1 ,['class'=>'form-control']) !!}
                 @error('addressLine1')
                 <p class="text-danger mt-2"> {{ $message }}</p>
@@ -83,7 +102,7 @@
                 @enderror
             </div>
             <div class="form-group mb-4">
-                {!! Form::label('postalCode','PostalCode:',['class'=>'form-label']) !!}
+                {!! Form::label('postalCode','Postal Code:',['class'=>'form-label']) !!}
                 {!! Form::text('postalCode',$member->postalCode ,['class'=>'form-control']) !!}
                 @error('postalCode')
                 <p class="text-danger mt-2"> {{ $message }}</p>

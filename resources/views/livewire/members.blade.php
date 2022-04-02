@@ -67,11 +67,13 @@
                                                 <i class="fa fa-fw fa-pencil-alt"></i>
                                             </button>
                                         </a>
+                                        @can('is_superAdmin')
                                         <a href="{{route('direction', $member->card_id)}}" target="_blank">
                                             <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Show member">
                                                 <i class="far fa-eye"></i>
                                             </button>
                                         </a>
+                                        @endcan
                                     </div>
                                 </td>
                                 @can('is_superAdmin')
@@ -123,11 +125,11 @@
                                             <i class="fa fa-fw fa-pencil-alt"></i>
                                         </button>
                                     </a>
-                                    <a href="{{route('direction', $member->card_id)}}" target="_blank">
-                                        <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Show member">
-                                            <i class="far fa-eye"></i>
-                                        </button>
-                                    </a>
+{{--                                    <a href="{{route('direction', $member->card_id)}}" target="_blank">--}}
+{{--                                        <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Show member">--}}
+{{--                                            <i class="far fa-eye"></i>--}}
+{{--                                        </button>--}}
+{{--                                    </a>--}}
                                 </div>
                             </td>
                         </tr>
