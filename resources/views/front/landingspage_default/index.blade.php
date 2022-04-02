@@ -87,7 +87,7 @@
                         <div class="status">{{ $member->jobTitle }}</div>
                     @endif
                 </div>
-                <div class="box box-content">
+                <div class="">
                     <!-- Button trigger modal -->
                     <button data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" class="btn_cstm save w-100 mt-3 p-3"><i class="fa fa-rotate mr-2 "></i>SWAP</button>
                     <!-- Modal -->
@@ -275,7 +275,7 @@
                 <!-- Footer -->
                 <footer class="footer"><a style="text-decoration: none; color: white" href="https://innova-webcreations.be">SWAP</a> © {{ now()->format('Y') }}</footer>
                 <footer class="footer">
-                    <a style="text-decoration: none; color: white" href="{{ asset('/login') }}">Login</a>
+                    <a style="text-decoration: none; color: black" class="badge badge-pill bg-white px-3 py-2" href="{{ asset('/login') }}">Login</a>
                 </footer>
             </div>
         </div>
