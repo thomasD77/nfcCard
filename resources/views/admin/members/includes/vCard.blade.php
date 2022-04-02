@@ -74,14 +74,14 @@
 
             <p class="badge badge-pill bg-dark p-2 text-white">Contact information</p>
             <div class="form-group mb-4">
-                {!! Form::label('mobileWork','Mobile work (+32474413669):',['class'=>'form-label']) !!}
+                {!! Form::label('mobileWork','Mobile work:',['class'=>'form-label']) !!}
                 {!! Form::text('mobileWork',$member->mobileWork ,['class'=>'form-control']) !!}
                 @error('mobileWork')
                 <p class="text-danger mt-2"> {{ $message }}</p>
                 @enderror
             </div>
             <div class="form-group mb-4">
-                {!! Form::label('mobile','Mobile (+32474413669):',['class'=>'form-label']) !!}
+                {!! Form::label('mobile','Mobile:',['class'=>'form-label']) !!}
                 {!! Form::text('mobile',$member->mobile ,['class'=>'form-control']) !!}
                 @error('mobile')
                 <p class="text-danger mt-2"> {{ $message }}</p>
