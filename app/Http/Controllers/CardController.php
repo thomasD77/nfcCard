@@ -294,37 +294,47 @@ class CardController extends Controller
 
     public function saveInfo(ContactRequest $request, $id)
     {
-        $member = Member::where('card_id', $id)->first();
-        $contact = new Contact();
+        if ($_POST['g-recaptcha-response'] != "") {
+            $secret = config('custom.RECAPTCHA_SECRET_KEY');
 
-        $contact->member_id = $member->id;
-        $contact->name = $request->name;
-        $contact->email = $request->email;
+            $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secret . '&response=' . $_POST['g-recaptcha-response']);
+            $responseData = json_decode($verifyResponse);
 
-        if($request->phone == "")
-        {
-            $contact->phone = "";
+            if ($responseData->success)
+            {
+                $member = Member::where('card_id', $id)->first();
+                $contact = new Contact();
+
+                $contact->member_id = $member->id;
+                $contact->name = $request->name;
+                $contact->email = $request->email;
+
+                if($request->phone == "")
+                {
+                    $contact->phone = "";
+                }
+                else
+                {
+                    $contact->phone = $request->phone;
+                }
+
+                if($request->message == "")
+                {
+                    $contact->message = "";
+                }
+                else
+                {
+                    $contact->message = $request->message;
+                }
+
+                $contact->save();
+
+                $this->dispatch(new SendCardCredentialsJob($contact, $member));
+                $this->dispatch(new SendProspectJob($contact, $member));
+            }
+            return redirect()->route('members.vCard', $id);
         }
-        else
-        {
-            $contact->phone = $request->phone;
-        }
-
-        if($request->message == "")
-        {
-            $contact->message = "";
-        }
-        else
-        {
-            $contact->message = $request->message;
-        }
-
-        $contact->save();
-
-       $this->dispatch(new SendCardCredentialsJob($contact, $member));
-       $this->dispatch(new SendProspectJob($contact, $member));
-
-        return redirect()->route('members.vCard', $id);
+        return redirect()->back();
     }
 
     public function printScans()

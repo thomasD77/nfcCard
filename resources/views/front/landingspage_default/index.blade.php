@@ -141,6 +141,17 @@
                                             <div class="collapse" id="collapseExample">
                                                 <textarea name="message" placeholder="Enter your message... " class="form-control input_modal" id="" cols="5" rows="5"></textarea>
                                             </div>
+                                            <style>
+                                                iframe {
+                                                    background-color: #282A2F;
+                                                }
+                                                .rc-anchor-container {
+                                                    color: #282A2F;
+                                                    background-color: #282A2F;
+                                                }
+                                            </style>
+                                                <div class="g-recaptcha my-3" id="g-recaptcha" data-sitekey="{{ config('custom.RECAPTCHA_SITE_KEY') }}"></div>
+
                                         </div>
                                         <button id="closemodal" type="submit" class="btn_cstm input_modal mb-3 w-100">
                                             <i class="fa fa-paper-plane me-1 opacity-50"></i> SWAP
@@ -156,9 +167,9 @@
                                             </a>
                                         </div>
                                     </div>
-
                                 </div>
                             </form>
+                            <script src="https://www.google.com/recaptcha/api.js"></script>
                         </div>
                     </div>
                 </div>
