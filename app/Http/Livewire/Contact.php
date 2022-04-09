@@ -12,6 +12,7 @@ class Contact extends Component
     use WithPagination;
     public $datepicker = "";
     public $pagination = 25;
+    public $datepicker_day = "";
 
 
     public function archiveContact($id)
@@ -46,12 +47,22 @@ class Contact extends Component
 
             $year = $dateSub->year;
             $month = $dateSub->month;
+            $day = $this->datepicker_day;
 
+            if($day != "") {
+                $contacts = \App\Models\Contact::with(['member'])
+                    ->where('archived', 0)
+                    ->whereMonth('created_at', $month)
+                    ->whereYear('created_at', $year)
+                    ->whereDay('created_at', $day)
+                    ->simplePaginate($this->pagination);
+            } else {
                 $contacts = \App\Models\Contact::with(['member'])
                     ->where('archived', 0)
                     ->whereMonth('created_at', $month)
                     ->whereYear('created_at', $year)
                     ->simplePaginate($this->pagination);
+            }
 
             return view('livewire.contact', compact('contacts'));
         }

@@ -15,7 +15,11 @@
                 <!-- End Pagination -->
             </div>
             <label class="d-flex">
-                <input wire:model="datepicker" id="datepicker" type="date" class="form-control" id="" name="" placeholder="Select date contact" data-inline="month" data-enable-time="false">
+                <div>
+                    <label class="mb-0 mx-2">Day:</label>
+                </div>
+                <input style="width: 55px" wire:model="datepicker_day"  class="form-control" type="number" max="31" min="1">
+                <input wire:model="datepicker" id="datepicker" type="month" class="form-control" id="" name="" placeholder="Select date contact" data-inline="month" data-enable-time="false">
                 <button wire:click="dateALL" class="btn btn-secondary rounded" type="button" data-bs-toggle="tooltip" title="Refresh"><i class="si si-refresh"></i></button>
                 <a href="{{route('contact.archive')}}">
                     <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Archive">
