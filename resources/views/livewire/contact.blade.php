@@ -37,9 +37,10 @@
                 <thead>
                 <tr>
                     <th scope="col">CARD Holder</th>
+                    <th scope="col">CARD Holder Company</th>
                     <th scope="col">Name</th>
                     <th scope="col">E-mail</th>
-                    <th scope="col">phone</th>
+                    <th scope="col">Details</th>
                     <th scope="col">Registered</th>
                     <th scope="col">Actions</th>
                 </tr>
@@ -48,10 +49,36 @@
                 @if($contacts)
                     @foreach($contacts as $contact)
                         <tr>
-                            <td>{{$contact->member ? $contact->member->lastname : ''}} {{$contact->member ? $contact->member->firstname : ''}}</td>
+                            <td><strong>{{$contact->member ? $contact->member->lastname : ''}} {{$contact->member ? $contact->member->firstname : ''}}</strong></td>
+                            <td><strong>{{$contact->member ? $contact->member->company : ''}}</strong></td>
                             <td>{{$contact->name ? $contact->name : 'No Name'}}</td>
                             <td><a href="mailto:{{$contact->mail}}"> {{$contact->email ? $contact->email : 'No Email'}}</a></td>
-                            <td>{{$contact->phone ? $contact->phone : 'No Phone'}}</td>
+                            <td><!-- Button trigger modal -->
+                                <button type="button" class="btn btn-alt-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    SWAP
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">SCAN DETAILS</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p><strong>Name:</strong></p>
+                                                <p>{{$contact->name ? $contact->name : 'No Name'}}</p>
+                                                <p><strong>Email:</strong></p>
+                                                <p>{{$contact->email ? $contact->email : 'No email'}}</p>
+                                                <p><strong>Phone:</strong></p>
+                                                <p>{{$contact->phone ? $contact->phone : 'No Phone'}}</p>
+                                                <p><strong>Message:</strong></p>
+                                                <p>{{$contact->message ? $contact->message : 'No message'}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div></td>
                             <td>{{$contact->created_at ? \Carbon\Carbon::parse($contact->created_at)->format('Y-M-d') : 'No Date'}}</td>
                             <td>
                                 <div class="btn-group">
