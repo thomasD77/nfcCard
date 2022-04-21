@@ -170,15 +170,6 @@ class AdminMembersController extends Controller
             $member->email = "";
         }
 
-        if($request->company !== NULL)
-        {
-            $member->company = $request->company;
-        }
-        else
-        {
-            $member->email = "";
-        }
-
         if($request->age !== NULL)
         {
             $member->age = $request->age;

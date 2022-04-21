@@ -14,7 +14,7 @@ class ScanListExport implements FromCollection
     {
         //
         $contacts = Contact::where('archived', 0)
-            ->select('id', 'name', 'email', 'phone', 'message')
+            ->select('id', 'name', 'email', 'phone')
             ->get();
 
         return $contacts;
