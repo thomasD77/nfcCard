@@ -336,6 +336,7 @@ class CardController extends Controller
         }
         return redirect()->back();
     }
+    
 
     public function printScans()
     {
