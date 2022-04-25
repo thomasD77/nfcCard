@@ -321,7 +321,7 @@ class CardController extends Controller
             return view( 'front.landingspage_default.index', compact('member', 'vCard'));
 
         }
-        if ($resultJson->score >= 0.3) {
+        if ($resultJson->score >= 0.1) {
 
             $member = Member::where('card_id', $id)->first();
             $contact = new Contact();
