@@ -141,16 +141,17 @@
                                             <div class="collapse" id="collapseExample">
                                                 <textarea name="message" placeholder="Enter your message... " class="form-control input_modal" id="" cols="5" rows="5"></textarea>
                                             </div>
-                                            <style>
-                                                iframe {
-                                                    background-color: #282A2F;
-                                                }
-                                                .rc-anchor-container {
-                                                    color: #282A2F;
-                                                    background-color: #282A2F;
-                                                }
-                                            </style>
-                                                <div class="g-recaptcha my-3" id="g-recaptcha" data-sitekey="{{ config('custom.RECAPTCHA_SITE_KEY') }}"></div>
+{{--                                            <style>--}}
+{{--                                                iframe {--}}
+{{--                                                    background-color: #282A2F;--}}
+{{--                                                }--}}
+{{--                                                .rc-anchor-container {--}}
+{{--                                                    color: #282A2F;--}}
+{{--                                                    background-color: #282A2F;--}}
+{{--                                                }--}}
+{{--                                            </style>--}}
+{{--                                                <div class="g-recaptcha my-3" id="g-recaptcha" data-sitekey="{{ config('custom.RECAPTCHA_SITE_KEY') }}"></div>--}}
+                                            <input type="hidden" name="recaptcha" id="recaptcha">
 
                                         </div>
                                         <button id="closemodal" type="submit" class="btn_cstm input_modal mb-3 w-100">
@@ -293,9 +294,19 @@
         </div>
     </div>
 </main>
-
 <div class="back-to-top"></div>
 <!-- JavaScripts -->
+<script src="https://www.google.com/recaptcha/api.js?render={{ config('custom.RECAPTCHA_SITE_KEY') }}"></script>
+<script>
+    grecaptcha.ready(function() {
+
+        grecaptcha.execute('{{ config('custom.RECAPTCHA_SITE_KEY') }}', {action: 'contact'}).then(function(token) {
+            if (token) {
+                document.getElementById('recaptcha').value = token;
+            }
+        });
+    });
+</script>
 <script src="{{ asset('assets/front/js/jquery-3.4.1.min.js') }}"></script>
 <script src="{{ asset('assets/front/js/plugins.min.js') }}"></script>
 <script src="{{ asset('assets/front/js/common.js') }}"></script>

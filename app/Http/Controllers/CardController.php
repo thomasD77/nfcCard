@@ -298,49 +298,71 @@ class CardController extends Controller
         $vCard = null;
         $member = Member::where('card_id', $id)->first();
 
-        if ($_POST['g-recaptcha-response'] != "") {
-            $secret = config('custom.RECAPTCHA_SECRET_KEY');
+        $url = 'https://www.google.com/recaptcha/api/siteverify';
+        $remoteip = $_SERVER['REMOTE_ADDR'];
+        $data = [
+            'secret' => config('custom.RECAPTCHA_SECRET_KEY'),
+            'response' => $request->get('recaptcha'),
+            'remoteip' => $remoteip
+        ];
+        $options = [
+            'http' => [
+                'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+                'method' => 'POST',
+                'content' => http_build_query($data)
+            ]
+        ];
+        $context = stream_context_create($options);
+        $result = file_get_contents($url, false, $context);
+        $resultJson = json_decode($result);
 
-            $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secret . '&response=' . $_POST['g-recaptcha-response']);
-            $responseData = json_decode($verifyResponse);
+        if ($resultJson->success != true) {
 
-            if ($responseData->success)
+            return view( 'front.landingspage_default.index', compact('member', 'vCard'));
+
+        }
+        if ($resultJson->score >= 0.3) {
+
+            $member = Member::where('card_id', $id)->first();
+            $contact = new Contact();
+
+            $contact->member_id = $member->id;
+            $contact->name = $request->name;
+            $contact->email = $request->email;
+
+            if($request->phone == "")
             {
-                $member = Member::where('card_id', $id)->first();
-                $contact = new Contact();
-
-                $contact->member_id = $member->id;
-                $contact->name = $request->name;
-                $contact->email = $request->email;
-
-                if($request->phone == "")
-                {
-                    $contact->phone = "";
-                }
-                else
-                {
-                    $contact->phone = $request->phone;
-                }
-
-                if($request->message == "")
-                {
-                    $contact->message = "";
-                }
-                else
-                {
-                    $contact->message = $request->message;
-                }
-
-                $contact->save();
-
-                $this->dispatch(new SendCardCredentialsJob($contact, $member));
-                $this->dispatch(new SendProspectJob($contact, $member));
+                $contact->phone = "";
             }
+            else
+            {
+                $contact->phone = $request->phone;
+            }
+
+            if($request->message == "")
+            {
+                $contact->message = "";
+            }
+            else
+            {
+                $contact->message = $request->message;
+            }
+
+            $contact->save();
+
+            $this->dispatch(new SendCardCredentialsJob($contact, $member));
+            $this->dispatch(new SendProspectJob($contact, $member));
 
             return view( 'front.landingspage_default.download', compact('member', 'vCard'));
 
+        } else {
+
+            return view( 'front.landingspage_default.index', compact('member', 'vCard'));
         }
-        return redirect()->back();
+
+
+
+
     }
 
 
