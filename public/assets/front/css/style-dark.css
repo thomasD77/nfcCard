@@ -155,13 +155,18 @@ select option,
   border-bottom-color: #AEB0B8;
 }
 
-.btn_cstm {
+.btn_cstm, .btn_cstm_download {
     padding: 10px 0;
     border-top-left-radius:15px;
     border-top-right-radius:15px;
     border-bottom-right-radius:15px;
     border-bottom-left-radius:15px;
     border: none;
+    color: white;
+}
+
+.btn_cstm_download {
+    background-color: forestgreen;
     color: white;
 }
 

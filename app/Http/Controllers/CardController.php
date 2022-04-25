@@ -295,7 +295,7 @@ class CardController extends Controller
 
     public function saveInfo(ContactRequest $request, $id)
     {
-        $vCard = "";
+        $vCard = null;
         $member = Member::where('card_id', $id)->first();
 
         if ($_POST['g-recaptcha-response'] != "") {
@@ -337,8 +337,7 @@ class CardController extends Controller
                 $this->dispatch(new SendProspectJob($contact, $member));
             }
 
-            $vCard = 'true';
-            return view( 'front.landingspage_default.index', compact('member', 'vCard'));
+            return view( 'front.landingspage_default.download', compact('member', 'vCard'));
 
         }
         return redirect()->back();
