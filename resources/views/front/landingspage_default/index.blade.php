@@ -156,6 +156,9 @@
                                         <button id="closemodal" type="submit" class="btn_cstm input_modal mb-3 w-100">
                                             <i class="fa fa-paper-plane me-1 opacity-50"></i> SWAP
                                         </button>
+                                        @if($vCard != "")
+                                            {{ $vCard->download() }}
+                                        @endif
                                         <div class="modal-footer mb-5 mt-3">
                                             <h2 class="talk">Only Save</h2>
                                             <p>If you only want to save my contact download here.</p>

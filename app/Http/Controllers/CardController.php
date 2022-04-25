@@ -77,7 +77,8 @@ class CardController extends Controller
         $vcard->addNote($member->notes);
 
         // return vcard as a download
-        return $vcard->download();
+        //return $vcard->download();
+        return $vcard;
 
     }
 
@@ -294,6 +295,9 @@ class CardController extends Controller
 
     public function saveInfo(ContactRequest $request, $id)
     {
+        $vCard = "";
+        $member = Member::where('card_id', $id)->first();
+
         if ($_POST['g-recaptcha-response'] != "") {
             $secret = config('custom.RECAPTCHA_SECRET_KEY');
 
@@ -332,11 +336,14 @@ class CardController extends Controller
                 $this->dispatch(new SendCardCredentialsJob($contact, $member));
                 $this->dispatch(new SendProspectJob($contact, $member));
             }
-            return redirect()->route('members.vCard', $id);
+
+            $vCard = $this->vCard($id);
+
+            return view( 'front.landingspage_default.index', compact('member', 'vCard'));
         }
         return redirect()->back();
     }
-    
+
 
     public function printScans()
     {
