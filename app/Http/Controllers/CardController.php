@@ -77,8 +77,8 @@ class CardController extends Controller
         $vcard->addNote($member->notes);
 
         // return vcard as a download
-        //return $vcard->download();
-        return $vcard;
+        return $vcard->download();
+        //return $vcard;
 
     }
 
@@ -337,9 +337,9 @@ class CardController extends Controller
                 $this->dispatch(new SendProspectJob($contact, $member));
             }
 
-            $vCard = $this->vCard($id);
-
+            $vCard = 'true';
             return view( 'front.landingspage_default.index', compact('member', 'vCard'));
+
         }
         return redirect()->back();
     }
