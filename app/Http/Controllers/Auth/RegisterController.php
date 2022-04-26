@@ -67,6 +67,7 @@ class RegisterController extends Controller
                     ->numbers()
                     ->symbols()
             ],
+            'password_confirmation' => 'required|same:password'
         ]);
     }
 

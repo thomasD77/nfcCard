@@ -78,7 +78,6 @@ class CardController extends Controller
 
         // return vcard as a download
         return $vcard->download();
-        //return $vcard;
 
     }
 
