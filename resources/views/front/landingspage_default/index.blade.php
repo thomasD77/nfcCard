@@ -91,6 +91,12 @@
                     <!-- Button trigger modal -->
                     <button data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" class="btn_cstm save w-100 mt-3 p-3"><i class="fa fa-rotate mr-2 "></i>SWAP</button>
                     <!-- Modal -->
+                    @error('name')
+                    <p class="text-danger mt-2 mb-0">Oops, something went wrong! </p>
+                    @enderror
+                    @error('email')
+                    <p class="text-danger">Please try again.</p>
+                    @enderror
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
                         <div class="modal-dialog mt-0">
                             <form class="row mb-0" name="contactformulier"

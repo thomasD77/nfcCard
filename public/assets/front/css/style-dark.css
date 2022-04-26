@@ -166,8 +166,15 @@ select option,
 }
 
 .btn_cstm_download {
-    background-color: forestgreen;
+    background-color: #38a138;
     color: white;
+    text-decoration: none;
+    list-style: none;
+}
+
+
+.grecaptcha-badge {
+    opacity:0;
 }
 
 .save {

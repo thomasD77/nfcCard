@@ -87,9 +87,13 @@
                         <div class="status">{{ $member->jobTitle }}</div>
                     @endif
                 </div>
-                <div class=" my-4">
-                    <a class="btn_cstm_download w-100 mt-3 p-3" href="{{ route('members.vCard', $member->card_id) }}"> <i class="fa fa-floppy-disk me-1 opacity-50"></i> Download</a>
-                </div>
+
+
+                <a class="btn_cstm_download p-3 text-center my-3" href="{{ route('members.vCard', $member->card_id) }}">Thank you!
+                    <br> Download my contacts here <br>
+                    <i class="fa fa-floppy-disk me-1 opacity-50"></i>
+                </a>
+
             </div>
 
             <div class="header__right">

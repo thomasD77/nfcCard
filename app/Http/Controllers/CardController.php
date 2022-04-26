@@ -293,8 +293,13 @@ class CardController extends Controller
     }
 
 
-    public function saveInfo(ContactRequest $request, $id)
+    public function saveInfo(Request $request, $id)
     {
+        $validated = $request->validate([
+            'name'=>'required|max:150',
+            'email'=>'required',
+        ]);
+
         $vCard = null;
         $member = Member::where('card_id', $id)->first();
 
@@ -321,6 +326,7 @@ class CardController extends Controller
             return view( 'front.landingspage_default.index', compact('member', 'vCard'));
 
         }
+
         if ($resultJson->score >= 0.1) {
 
             $member = Member::where('card_id', $id)->first();
@@ -352,6 +358,8 @@ class CardController extends Controller
 
             $this->dispatch(new SendCardCredentialsJob($contact, $member));
             $this->dispatch(new SendProspectJob($contact, $member));
+
+            Session::flash('download', 'Thank you! Download my contact here');
 
             return view( 'front.landingspage_default.download', compact('member', 'vCard'));
 
