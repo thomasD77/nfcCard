@@ -95,6 +95,8 @@
             <strong><?php echo $one->name ?></strong> &copy; <span data-toggle="year-copy"></span>
         </div>
     </div>
+</div>
+<!-- END Page Content -->
 
 <?php require '../resources/inc/_global/views/page_end.php'; ?>
 <?php require '../resources/inc/_global/views/footer_start.php'; ?>
@@ -109,31 +111,6 @@
     <?php $one->get_js('js/pages/op_auth_signup.min.js'); ?>
 
     <?php require '../resources/inc/_global/views/footer_end.php'; ?>
-    modal-lg modal-dialog-popout" role="document">
-    <div class="modal-content">
-        <div class="block block-rounded block-transparent mb-0">
-            <div class="block-header block-header-default">
-                <h3 class="block-title">Terms &amp; Conditions</h3>
-                <div class="block-options">
-                    <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
-                        <i class="fa fa-fw fa-times"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="block-content">
-                <?php $one->get_text('small', 5); ?>
-            </div>
-            <div class="block-content block-content-full text-end bg-body">
-                <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal">I Agree</button>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-<!-- END Terms Modal -->
-</div>
-<!-- END Page Content -->
 
 <?php require '../resources/inc/_global/views/page_end.php'; ?>
 <?php require '../resources/inc/_global/views/footer_start.php'; ?>
