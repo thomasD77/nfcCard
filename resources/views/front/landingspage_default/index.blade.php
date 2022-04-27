@@ -10,23 +10,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="format-detection" content="telephone=no"/>
     <meta name="format-detection" content="address=no"/>
-    <meta name="author" content="ArtTemplate" />
-    <meta name="description" content="vCard" />
+    <meta name="author" content="SWAP" />
+    <meta name="description" content="SWAP"/>
 
     <!-- Twitter data -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@ArtTemplates">
-    <meta name="twitter:title" content="vCard">
-    <meta name="twitter:description" content="vCard">
+    <meta name="twitter:title" content="SWAP">
+    <meta name="twitter:description" content="SWAP">
     <meta name="twitter:image" content="../assets/images/social.jpg">
 
     <!-- Open Graph data -->
-    <meta property="og:title" content="ArtTemplate" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="your url website" />
+    <meta property="og:title" content="SWAP" />
+    <meta property="og:type" content="Information sharing" />
+    <meta property="og:url" content="swap-nfc.be" />
     <meta property="og:image" content="../assets/images/social.jpg" />
-    <meta property="og:description" content="vCard" />
-    <meta property="og:site_name" content="vCard" />
+    <meta property="og:description" content="SWAP" />
+    <meta property="og:site_name" content="SWAP" />
 
     <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="144x144" href="../assets/images/favicons/apple-touch-icon-144x144.png">
@@ -212,10 +212,10 @@
             </div>
         </header>
 
-        <div class="row sticky-parent">
+        <div class="row">
 
             <!-- Content -->
-            <div class="col-12 col-md-12 col-lg-10">
+            <div class="col-12 col-md-8 offset-md-2">
                 <div class="box box-content" id="content">
 
                     <div class="content">
