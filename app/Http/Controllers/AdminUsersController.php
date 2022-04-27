@@ -116,12 +116,15 @@ class AdminUsersController extends Controller
         $user->email = $request->email;
         $user->update();
 
-        /** wegschrijven van de role in tussentabel **/
-        $user->roles()->sync($request->roles, true);
+        if($request->roles) {
+            /** wegschrijven van de role in tussentabel **/
+            $user->roles()->sync($request->roles, true);
+        }
+        
 
         Session::flash('flash_message', 'User Successfully Updated');
 
-        return redirect('/admin/users');
+        return redirect('/admin');
     }
 
     /**

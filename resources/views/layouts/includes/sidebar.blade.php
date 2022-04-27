@@ -195,7 +195,7 @@
                     </ul>
                 </li>
 
-                @can('is_superAdmin')
+
                 <li class="nav-main-heading text-uppercase">SWAP SCANS</li>
                 <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
@@ -210,7 +210,7 @@
                         </li>
                     </ul>
                 </li>
-                @endcan
+
 
 
 {{--                <li class="nav-main-heading text-uppercase">AGENDA</li>--}}
