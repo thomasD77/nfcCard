@@ -166,7 +166,9 @@ select option,
 }
 
 .btn_cstm_download {
-    background-color: #38a138;
+    background: rgb(140,200,147);
+    background: linear-gradient(34deg, rgba(140,200,147,1) 18%, rgba(135,199,133,1) 53%, rgba(132,199,125,1) 93%);
+
     color: white;
     text-decoration: none;
     list-style: none;
