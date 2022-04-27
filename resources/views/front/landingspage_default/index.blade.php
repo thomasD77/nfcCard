@@ -113,6 +113,7 @@
                                             <p>Please fill in your information. I will send you a mail to talk later.</p>
                                         </div>
                                     </div>
+
                                     <div class="modal-body">
                                         <div class="mb-4 d-flex justify-content-start flex-column">
                                             <label class="form-label"

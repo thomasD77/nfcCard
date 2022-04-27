@@ -11,6 +11,7 @@ use Livewire\WithPagination;
 class ContactClient extends Component
 {
     use WithPagination;
+
     public $datepicker = "";
     public $pagination = 25;
     public $datepicker_day = "";
@@ -32,11 +33,15 @@ class ContactClient extends Component
 
     public function render()
     {
+        $user_id = Auth::user()->member->id;
+
         if ($this->datepicker == "") {
             $contacts = \App\Models\Contact::with(['member'])
                 ->where('archived', 0)
+                ->where('member_id', $user_id)
                 ->latest()
                 ->simplePaginate($this->pagination);
+
             return view('livewire.contact-client', compact('contacts'));
         } else {
             ['datepicker' => $this->datepicker];
@@ -51,6 +56,7 @@ class ContactClient extends Component
             if ($day != "") {
                 $contacts = \App\Models\Contact::with(['member'])
                     ->where('archived', 0)
+                    ->where('member_id', $user_id)
                     ->whereMonth('created_at', $month)
                     ->whereYear('created_at', $year)
                     ->whereDay('created_at', $day)
@@ -58,6 +64,7 @@ class ContactClient extends Component
             } else {
                 $contacts = \App\Models\Contact::with(['member'])
                     ->where('archived', 0)
+                    ->where('member_id', $user_id)
                     ->whereMonth('created_at', $month)
                     ->whereYear('created_at', $year)
                     ->simplePaginate($this->pagination);
