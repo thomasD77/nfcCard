@@ -118,51 +118,54 @@
 
 
             <p class="badge badge-pill bg-dark p-2 text-white">Socials</p>
+            <p class="bg-warning-light p-2 rounded text-center">!! For these buttons to work it is important you use the correct username for all your socials.
+                <br> To be sure check the url on your desktop and past your username like requested !!</p>
+
             <div class="form-group mb-4">
                 {!! Form::label('facebook','Facebook',['class'=>'form-label']) !!}
-                {!! Form::text('facebook',$member->facebook ,['class'=>'form-control', 'placeholder' => 'Example: facebook.com/Innova-Webcreations-107384388503435']) !!}
+                {!! Form::text('facebook',$member->facebook ,['class'=>'form-control col-6', 'placeholder' => 'https://facebook.com/']) !!}
                 @error('facebook')
                 <p class="text-danger mt-2"> {{ $message }}</p>
                 @enderror
             </div>
             <div class="form-group mb-4">
                 {!! Form::label('instagram','Instagram',['class'=>'form-label']) !!}
-                {!! Form::text('instagram',$member->instagram ,['class'=>'form-control', 'placeholder' => 'Example: instagram.com/innovawebcreations/']) !!}
+                {!! Form::text('instagram',$member->instagram ,['class'=>'form-control', 'placeholder' => 'https://instagram.com/']) !!}
                 @error('instagram')
                 <p class="text-danger mt-2"> {{ $message }}</p>
                 @enderror
             </div>
             <div class="form-group mb-4">
                 {!! Form::label('twitter','Twitter',['class'=>'form-label']) !!}
-                {!! Form::text('twitter',$member->twitter ,['class'=>'form-control', 'placeholder' => 'Example: twitter.com/ElonMusk ']) !!}
+                {!! Form::text('twitter',$member->twitter ,['class'=>'form-control', 'placeholder' => 'https://twitter.com/']) !!}
                 @error('twitter')
                 <p class="text-danger mt-2"> {{ $message }}</p>
                 @enderror
             </div>
             <div class="form-group mb-4">
                 {!! Form::label('youTube','YouTube',['class'=>'form-label']) !!}
-                {!! Form::text('youTube',$member->youTube ,['class'=>'form-control' , 'placeholder' => 'Example: youtube.com/watch?v=UYmmnS-IxAE ']) !!}
+                {!! Form::text('youTube',$member->youTube ,['class'=>'form-control' , 'placeholder' => 'https://youtube.com/']) !!}
                 @error('youTube')
                 <p class="text-danger mt-2"> {{ $message }}</p>
                 @enderror
             </div>
             <div class="form-group mb-4">
                 {!! Form::label('linkedIn','LinkedIn',['class'=>'form-label']) !!}
-                {!! Form::text('linkedIn',$member->linkedIn ,['class'=>'form-control' , 'placeholder' => 'Example: linkedin.com/in/thomas-demeulenaere-39997662/']) !!}
+                {!! Form::text('linkedIn',$member->linkedIn ,['class'=>'form-control' , 'placeholder' => 'https://linkedin.com/in/']) !!}
                 @error('linkedIn')
                 <p class="text-danger mt-2"> {{ $message }}</p>
                 @enderror
             </div>
             <div class="form-group mb-4">
                 {!! Form::label('tikTok','TikTok',['class'=>'form-label']) !!}
-                {!! Form::text('tikTok',$member->tikTok ,['class'=>'form-control' , 'placeholder' => 'Example: tiktok.com/@elonxmusk']) !!}
+                {!! Form::text('tikTok',$member->tikTok ,['class'=>'form-control' , 'placeholder' => 'https://tiktok.com/']) !!}
                 @error('tikTok')
                 <p class="text-danger mt-2"> {{ $message }}</p>
                 @enderror
             </div>
             <div class="form-group mb-4">
                 {!! Form::label('whatsApp','WhatsApp',['class'=>'form-label']) !!}
-                {!! Form::text('whatsApp',$member->whatsApp ,['class'=>'form-control' , 'placeholder' => 'Example: wa.me/{phone number}']) !!}
+                {!! Form::text('whatsApp',$member->whatsApp ,['class'=>'form-control' , 'placeholder' => 'Example: +32474411556']) !!}
                 @error('whatsApp')
                 <p class="text-danger mt-2"> {{ $message }}</p>
                 @enderror

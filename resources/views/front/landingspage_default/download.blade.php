@@ -141,66 +141,66 @@
                             @endif
 
                             <!-- What -->
-                            <div class="mt-1">
-                                <h2 class="title title--h3">My Socials</h2>
-                                <div class="row">
+                                <div class="mt-1">
+                                    <h2 class="title title--h3">My Socials</h2>
+                                    <div class="row">
                                     @if($member->website)
                                         <!-- Website -->
-                                        <div class="col-12 d-flex justify-content-center">
-                                            <a class="w-100" target="_blank" href="{{ $member->website }}"><button type="submit" class="btn_cstm website w-100 mt-2"><i class="fa-solid fa-earth-africa mx-2"></i>Website</button></a>
-                                        </div>
+                                            <div class="col-12 d-flex justify-content-center">
+                                                <a class="w-100" target="_blank" href="https://{{ $member->website }}"><button type="submit" class="btn_cstm website w-100 mt-2"><i class="fa-solid fa-earth-africa mx-2"></i>Website</button></a>
+                                            </div>
                                     @endif
 
                                     @if($member->facebook)
                                         <!-- Facebook -->
-                                        <div class="col-12 d-flex justify-content-center">
-                                            <a class="w-100" target="_blank" href="{{ $member->facebook }}"><button type="submit" class="btn_cstm facebook w-100 mt-2"><i class="fa-brands fa-facebook mr-2"></i>Facebook</button></a>
-                                        </div>
+                                            <div class="col-12 d-flex justify-content-center">
+                                                <a class="w-100" target="_blank" href="https://facebook.com/{{ $member->facebook }}"><button type="submit" class="btn_cstm facebook w-100 mt-2"><i class="fa-brands fa-facebook mr-2"></i>Facebook</button></a>
+                                            </div>
                                     @endif
 
                                     @if($member->instagram)
                                         <!-- Instagram -->
-                                        <div class="col-12 d-flex justify-content-center">
-                                             <a class="w-100" target="_blank" href="{{ $member->instagram }}"><button type="submit" class="btn_cstm instagram w-100 mt-2"><i class="fa-brands  fa-instagram mx-2"></i>Instagram</button></a>
-                                        </div>
+                                            <div class="col-12 d-flex justify-content-center">
+                                                <a class="w-100" target="_blank" href="https://instagram.com/{{ $member->instagram }}"><button type="submit" class="btn_cstm instagram w-100 mt-2"><i class="fa-brands  fa-instagram mx-2"></i>Instagram</button></a>
+                                            </div>
                                     @endif
 
                                     @if($member->linkedIn)
                                         <!-- LinkedIn -->
-                                        <div class="col-12 d-flex justify-content-center">
-                                             <a class="w-100" target="_blank" href="{{ $member->linkedIn }}"><button type="submit" class="btn_cstm w-100 linkedIn mt-2"><i class="fa-brands  fa-linkedin-in mx-2"></i>LinkedIn</button></a>
-                                        </div>
+                                            <div class="col-12 d-flex justify-content-center">
+                                                <a class="w-100" target="_blank" href="https://linkedin.com/in/{{ $member->linkedIn }}"><button type="submit" class="btn_cstm w-100 linkedIn mt-2"><i class="fa-brands  fa-linkedin-in mx-2"></i>LinkedIn</button></a>
+                                            </div>
                                     @endif
 
                                     @if($member->twitter)
                                         <!-- Twitter -->
-                                        <div class="col-12 d-flex justify-content-center">
-                                             <a class="w-100" target="_blank" href="{{ $member->twitter }}"><button type="submit" class="btn_cstm w-100 twitter mt-2"><i class="fa-brands  fa-twitter mx-2"></i>Twitter</button></a>
-                                        </div>
+                                            <div class="col-12 d-flex justify-content-center">
+                                                <a class="w-100" target="_blank" href="https://twitter.com/{{ $member->twitter }}"><button type="submit" class="btn_cstm w-100 twitter mt-2"><i class="fa-brands  fa-twitter mx-2"></i>Twitter</button></a>
+                                            </div>
                                     @endif
 
                                     @if($member->youTube)
                                         <!-- YouTube -->
-                                        <div class="col-12 d-flex justify-content-center">
-                                            <a class="w-100" target="_blank" href="{{ $member->youTube }}"> <button type="submit" class="w-100 btn_cstm youTube mt-2"><i class="fa-brands fa-youtube mx-2"></i>YouTube</button></a>
-                                        </div>
+                                            <div class="col-12 d-flex justify-content-center">
+                                                <a class="w-100" target="_blank" href="https://youtube.com/{{ $member->youTube }}"> <button type="submit" class="w-100 btn_cstm youTube mt-2"><i class="fa-brands fa-youtube mx-2"></i>YouTube</button></a>
+                                            </div>
                                     @endif
 
                                     @if($member->tikTok)
                                         <!-- TikTok -->
-                                        <div class="col-12 d-flex justify-content-center">
-                                            <a class="w-100" target="_blank" href="{{ $member->tikTok }}"> <button type="submit" class="btn_cstm tikTok w-100 mt-2"><i class="fa-brands fa-tiktok mx-2"></i>TikTok</button></a>
-                                        </div>
+                                            <div class="col-12 d-flex justify-content-center">
+                                                <a class="w-100" target="_blank" href="https://tiktok.com/{{ $member->tikTok }}"> <button type="submit" class="btn_cstm tikTok w-100 mt-2"><i class="fa-brands fa-tiktok mx-2"></i>TikTok</button></a>
+                                            </div>
                                     @endif
 
                                     @if($member->whatsApp)
                                         <!-- WhatsApp -->
-                                        <div class="col-12 d-flex justify-content-center">
-                                             <a class="w-100" target="_blank" href="{{ $member->whatsApp }}"><button type="submit" class="btn_cstm whatsApp w-100 mt-2"><i class="fa-brands fa-whatsapp mx-2"></i>WhatsApp</button></a>
-                                        </div>
-                                    @endif
+                                            <div class="col-12 d-flex justify-content-center">
+                                                <a class="w-100" target="_blank" href="https://wa.me/{{ $member->whatsApp }}"><button type="submit" class="btn_cstm whatsApp w-100 mt-2"><i class="fa-brands fa-whatsapp mx-2"></i>WhatsApp</button></a>
+                                            </div>
+                                        @endif
+                                    </div>
                                 </div>
-                            </div>
                         </div>
                     </div>
                 </div>
