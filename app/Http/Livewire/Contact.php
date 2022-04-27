@@ -25,6 +25,7 @@ class Contact extends Component
     public function dateALL()
     {
         $this->datepicker = "";
+        $this->datepicker_day = "";
     }
 
 

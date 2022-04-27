@@ -15,7 +15,8 @@
                     <!-- End Pagination -->
                 </div>
                 <label class="d-flex">
-                    <input wire:model="datepicker" id="datepicker" type="date" class="form-control" id="" name="" placeholder="Select date contact" data-inline="month" data-enable-time="false">
+                    <input style="width: 65px" wire:model="datepicker_day"  class="form-control" type="number" max="31" min="1">
+                    <input wire:model="datepicker" id="datepicker" type="month" class="form-control" id="" name="" placeholder="Select date contact" data-inline="month" data-enable-time="false">
                     <button wire:click="dateALL" class="btn btn-secondary rounded" type="button" data-bs-toggle="tooltip" title="Refresh"><i class="si si-refresh"></i></button>
                     <a href="{{route('contact.archive-clients')}}">
                         <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Archive">
@@ -35,6 +36,7 @@
                         <th scope="col">Name</th>
                         <th scope="col">E-mail</th>
                         <th scope="col">phone</th>
+                        <th scope="col">Details</th>
                         <th scope="col">Registered</th>
                         <th scope="col">Actions</th>
                     </tr>
@@ -46,6 +48,32 @@
                                 <td>{{$contact->name ? $contact->name : 'No Name'}}</td>
                                 <td><a href="mailto:{{$contact->mail}}"> {{$contact->email ? $contact->email : 'No Email'}}</a></td>
                                 <td>{{$contact->phone ? $contact->phone : 'No Phone'}}</td>
+                                <td><!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-alt-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        SWAP
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">SCAN DETAILS</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p><strong>Name:</strong></p>
+                                                    <p>{{$contact->name ? $contact->name : 'No Name'}}</p>
+                                                    <p><strong>Email:</strong></p>
+                                                    <p>{{$contact->email ? $contact->email : 'No email'}}</p>
+                                                    <p><strong>Phone:</strong></p>
+                                                    <p>{{$contact->phone ? $contact->phone : 'No Phone'}}</p>
+                                                    <p><strong>Message:</strong></p>
+                                                    <p>{{$contact->message ? $contact->message : 'No message'}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div></td>
                                 <td>{{$contact->created_at ? \Carbon\Carbon::parse($contact->created_at)->format('Y-M-d') : 'No Date'}}</td>                                <td>
                                     <div class="btn-group">
                                         <button class="btn btn-sm btn-alt-secondary" wire:click="archiveContact({{$contact->id}})"><i class="fa fa-archive "></i></button>

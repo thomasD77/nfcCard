@@ -13,6 +13,7 @@ class ContactClient extends Component
     use WithPagination;
     public $datepicker = "";
     public $pagination = 25;
+    public $datepicker_day = "";
 
 
     public function archiveContact($id)
@@ -25,26 +26,19 @@ class ContactClient extends Component
     public function dateALL()
     {
         $this->datepicker = "";
+        $this->datepicker_day = "";
     }
 
 
     public function render()
     {
-        $user = Auth::user();
-        $member = Member::findOrFail($user->member_id);
-
-        if($this->datepicker == "")
-        {
+        if ($this->datepicker == "") {
             $contacts = \App\Models\Contact::with(['member'])
-                ->where('member_id', $member->id)
                 ->where('archived', 0)
                 ->latest()
                 ->simplePaginate($this->pagination);
-
             return view('livewire.contact-client', compact('contacts'));
-        }
-        else
-        {
+        } else {
             ['datepicker' => $this->datepicker];
 
             $date = $this->datepicker;
@@ -52,17 +46,24 @@ class ContactClient extends Component
 
             $year = $dateSub->year;
             $month = $dateSub->month;
+            $day = $this->datepicker_day;
 
-            $contacts = \App\Models\Contact::with(['member'])
-                ->where('member_id', $member->id)
-                ->where('archived', 0)
-                ->whereMonth('created_at', $month)
-                ->whereYear('created_at', $year)
-                ->simplePaginate($this->pagination);
-
+            if ($day != "") {
+                $contacts = \App\Models\Contact::with(['member'])
+                    ->where('archived', 0)
+                    ->whereMonth('created_at', $month)
+                    ->whereYear('created_at', $year)
+                    ->whereDay('created_at', $day)
+                    ->simplePaginate($this->pagination);
+            } else {
+                $contacts = \App\Models\Contact::with(['member'])
+                    ->where('archived', 0)
+                    ->whereMonth('created_at', $month)
+                    ->whereYear('created_at', $year)
+                    ->simplePaginate($this->pagination);
+            }
 
             return view('livewire.contact-client', compact('contacts'));
         }
-
     }
 }
