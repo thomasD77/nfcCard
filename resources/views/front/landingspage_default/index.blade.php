@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>vCard - About</title>
+    <title>SWAP - Let's Connect</title>
 
     <!-- Meta Data -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
