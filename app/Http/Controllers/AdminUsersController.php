@@ -192,5 +192,20 @@ class AdminUsersController extends Controller
         return view('admin.users.archive', compact('users'));
     }
 
+    public function searchUser(Request $request)
+    {
+        $user_value = $request->user;
+
+        $users = User::where(function($q) use($user_value) {
+            $q->where('name', 'LIKE', '%' . $user_value . '%')
+                ->Orwhere('username', 'LIKE', '%' . $user_value . '%')
+                ->where('archived', 0);
+        })->paginate(25);
+
+
+        return view('admin.users.search', compact('users'));
+
+    }
+
 
 }

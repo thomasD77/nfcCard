@@ -1,5 +1,14 @@
 <div class="parent">
     @include('admin.includes.flash')
+    <!-- Search Form (visible on larger screens) -->
+        <form class="d-none d-md-inline-block col-6" action="{{action('App\Http\Controllers\AdminUsersController@searchUser')}}" method="POST">
+            @csrf
+            <div class="input-group input-group-sm">
+                <input type="text" class="form-control form-control-alt" placeholder="Search for name..." id="page-header-search-input2" name="user">
+                <span class="input-group-text border-0"><button class="border border-0" type="submit"><i class="fa fa-fw fa-search"></i></button></span>
+            </div>
+        </form>
+        <!-- END Search Form -->
 <table class="table table-striped table-hover table-vcenter fs-sm">
     <thead>
     <tr>

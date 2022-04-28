@@ -94,6 +94,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     //User Routes
     Route::resource('users', App\Http\Controllers\AdminUsersController::class);
     Route::get('user/delete/{id}', 'App\Http\Controllers\AdminUsersController@delete')->name('users.delete');
+    Route::post('user/search', 'App\Http\Controllers\AdminUsersController@searchUser')->name('users.search');
     Route::get('archive/users', 'App\Http\Controllers\AdminUsersController@archive')->name('users.archive');
     Route::resource('roles', App\Http\Controllers\AdminRolesController::class);
     Route::resource('billing', App\Http\Controllers\AdminBillingController::class);

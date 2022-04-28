@@ -41,9 +41,8 @@
                         <th scope="col"># Card ID</th>
                         <th scope="col">avatar</th>
                         <th scope="col">name</th>
-                        <th scope="col">Package</th>
-                        <th scope="col">user account</th>
                         <th scope="col">Material</th>
+                        <th scope="col">user account</th>
                         <th scope="col">Actions</th>
                         @can('is_superAdmin')
                             <th scope="col"> <i class="fa fa-print me-2"></i></th>
@@ -57,9 +56,9 @@
                                 <td>{{$member->card_id ? $member->card_id : 'No Card ID'}}</td>
                                 <td><img class="rounded-circle" height="62" width="62" src="{{$member->avatar ? asset('/card/avatars') . "/" . $member->avatar : asset('/assets/front/img/Avatar-4.svg') }}" alt="{{$member->name}}"></td>
                                 <td>{{$member->lastname ? $member->lastname : ""}} {{ $member->firstname ? $member->firstname : '' }}</td>
-                                <td>{{$member->package ? $member->package->package : 'No Package'}}</td>
-                                <td>{{$member->user ? $member->user->name : "unknown"}}</td>
                                 <td>{{$member->material ? $member->material->name : 'No Material'}}</td>
+                                <td><a class="btn btn-outline-primary" href="{{ route('users.edit', $member->user->id) }}">{{$member->user ? $member->user->name : "unknown"}}</a></td>
+
                                 <td>
                                     <div class="btn-group">
                                         <a href="{{route('members.edit', $member->id)}}">
