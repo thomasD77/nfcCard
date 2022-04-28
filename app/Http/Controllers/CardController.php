@@ -358,7 +358,6 @@ class CardController extends Controller
             $this->dispatch(new SendCardCredentialsJob($contact, $member));
             $this->dispatch(new SendProspectJob($contact, $member));
 
-            Session::flash('download', 'Thank you! Download my contact here');
 
             return view( 'front.landingspage_default.download', compact('member', 'vCard'));
 
