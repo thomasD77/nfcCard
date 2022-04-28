@@ -296,7 +296,7 @@ class CardController extends Controller
     {
         $validated = $request->validate([
             'name'=>'required|max:150',
-            'email'=>'required',
+            'email'=>'required|max:150|email:rfc,dns'
         ]);
 
         $vCard = null;
