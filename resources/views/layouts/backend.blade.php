@@ -185,35 +185,34 @@
                                     <p class="mb-0 text-muted fs-sm fw-medium">{{Auth::user() && Auth::user()->roles->first() ? Auth::user()->roles->first()->name : ""}}</p>
                                 </div>
                                 <div class="p-2">
-{{--                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">--}}
-{{--                                        <span class="fs-sm fw-medium">Inbox</span>--}}
-{{--                                        <span class="badge rounded-pill bg-primary ms-2">3</span>--}}
-{{--                                    </a>--}}
+                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{ route('admin.home') }}">
+                                        <span class="fs-sm fw-medium">Dashboard</span>
+                                        <i class="nav-main-link-icon si si-cursor"></i>
+                                    </a>
+                                </div>
+                                <div role="separator" class="dropdown-divider m-0"></div>
+                                <div class="p-2">
+
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{route('users.edit', Auth::user() ? Auth::user()->id : "")}}">
                                         <span class="fs-sm fw-medium">Account</span>
                                         <i class="far fa-user"></i>
                                     </a>
-{{--                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">--}}
-{{--                                        <span class="fs-sm fw-medium">Settings</span>--}}
-{{--                                    </a>--}}
                                 </div>
                                 <div role="separator" class="dropdown-divider m-0"></div>
-                                <div class="p-2">
-{{--                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">--}}
-{{--                                        <span class="fs-sm fw-medium">Lock Account</span>--}}
-{{--                                    </a>--}}
-                                    <a class="dropdown-item" href="javascript:void(0)">
-                                        <a class="dropdown-item d-flex align-items-center justify-content-between w-100" href="{{ route('logout') }}"
-                                           onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
-                                            <i class="fas fa-sign-out-alt"></i>
-                                        </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none bg-dark">
-                                            @csrf
-                                        </form>
+                                <div class="p-2">
+
+                                    <a class="dropdown-item d-flex align-items-center justify-content-between w-100" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                        <i class="fas fa-sign-out-alt"></i>
                                     </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none bg-dark">
+                                        @csrf
+                                    </form>
+
                                 </div>
                             </div>
                         </div>

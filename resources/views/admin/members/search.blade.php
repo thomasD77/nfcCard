@@ -78,6 +78,7 @@
                             <th scope="col">#</th>
                             <th scope="col">name</th>
                             <th scope="col">email</th>
+                            <th scope="col">user account</th>
                             <th scope="col">role</th>
                             <th scope="col">Actions</th>
                         </tr>
@@ -89,6 +90,7 @@
                                     <td>{{$member->id ? $member->id : 'No ID'}}</td>
                                     <td>{{$member->lastname ? $member->lastname : ''}} {{ $member->firstname ? $member->firstname : '' }}</td>
                                     <td>{{$member->email ? $member->email : 'unknown'}}</td>
+                                    <td>{{$member->user ? $member->user->name : 'unknown'}}</td>
                                     <td>{{$member->user ? $member->user->roles->first()->name : 'No Role'}}</td>
                                     <td>
                                         <div class="btn-group">

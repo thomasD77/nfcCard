@@ -15,7 +15,7 @@
                 <form class="d-none d-md-inline-block col-6" action="{{action('App\Http\Controllers\AdminMembersController@searchMember')}}" method="POST">
                     @csrf
                     <div class="input-group input-group-sm">
-                        <input type="text" class="form-control form-control-alt" placeholder="Search.." id="page-header-search-input2" name="member">
+                        <input type="text" class="form-control form-control-alt" placeholder="Search for member name..." id="page-header-search-input2" name="member">
                         <span class="input-group-text border-0"><button class="border border-0" type="submit"><i class="fa fa-fw fa-search"></i></button></span>
                     </div>
                 </form>
@@ -41,8 +41,8 @@
                         <th scope="col"># Card ID</th>
                         <th scope="col">avatar</th>
                         <th scope="col">name</th>
-                        <th scope="col">email</th>
                         <th scope="col">Package</th>
+                        <th scope="col">user account</th>
                         <th scope="col">Material</th>
                         <th scope="col">Actions</th>
                         @can('is_superAdmin')
@@ -57,8 +57,8 @@
                                 <td>{{$member->card_id ? $member->card_id : 'No Card ID'}}</td>
                                 <td><img class="rounded-circle" height="62" width="62" src="{{$member->avatar ? asset('/card/avatars') . "/" . $member->avatar : asset('/assets/front/img/Avatar-4.svg') }}" alt="{{$member->name}}"></td>
                                 <td>{{$member->lastname ? $member->lastname : ""}} {{ $member->firstname ? $member->firstname : '' }}</td>
-                                <td>{{$member->email ? $member->email : "unknown"}}</td>
                                 <td>{{$member->package ? $member->package->package : 'No Package'}}</td>
+                                <td>{{$member->user ? $member->user->name : "unknown"}}</td>
                                 <td>{{$member->material ? $member->material->name : 'No Material'}}</td>
                                 <td>
                                     <div class="btn-group">

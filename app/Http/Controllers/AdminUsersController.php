@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserEditRequest;
 use App\Models\AccountSettings;
 use App\Models\Avatar;
+use App\Models\Member;
 use App\Models\Role;
 use App\Models\ServiceCategory;
 use App\Models\User;
@@ -127,15 +128,18 @@ class AdminUsersController extends Controller
         return redirect('/admin');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+
+    public function delete($id)
     {
         //
+        $member = Member::where('user_id', $id);
+        $member->delete();
+
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect('/admin/users');
+
     }
 
     public function updatePassword(Request $request, $id)

@@ -171,7 +171,57 @@
                         </div>
                     </div>
                 </div>
-                <!-- END Change Password -->
+            </div>
+        </div>
+
+        @canany(['is_superAdmin', 'is_admin'])
+        <!-- Delete User  -->
+        <div class="block block-rounded">
+            <div class="block-header block-header-default">
+                <h3 class="block-title">Delete User/ Reset Card</h3>
+            </div>
+            <div class="block-content">
+                <div class="row push">
+                    <div class="col-lg-4">
+                        <p class="fs-sm text-muted">
+                            Here you can delete this user and reset the CARD
+                        </p>
+                    </div>
+                    <div class="col-lg-8 col-xl-5">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            DELETE/RESET
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Delete User/ Reset Card</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you want to delete this user account? All the information will be lost forever.
+                                        The card data for this user will be deleted as well.
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <a href="{{ route('users.delete', $user->id) }}" class="btn btn-danger">DELETE</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END Delete User -->
+        @endcanany
+    </div>
+
+
+
 @endsection
 
 
