@@ -58,7 +58,7 @@
                 <form class="d-none d-md-inline-block" action="{{action('App\Http\Controllers\AdminMembersController@searchMember')}}" method="POST">
                     @csrf
                     <div class="input-group input-group-sm">
-                        <input type="text" class="form-control form-control-alt" placeholder="Search.." id="page-header-search-input2" name="member">
+                        <input type="text" class="form-control form-control-alt w-50" style="width: 50%" placeholder="Search for name..." id="page-header-search-input2" name="member">
                         <span class="input-group-text border-0"><button class="border border-0" type="submit"><i class="fa fa-fw fa-search"></i></button></span>
                     </div>
                 </form>

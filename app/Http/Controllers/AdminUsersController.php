@@ -194,12 +194,18 @@ class AdminUsersController extends Controller
 
     public function searchUser(Request $request)
     {
+        if(!$request->user) {
+            return redirect()->back();
+        }
+
         $user_value = $request->user;
 
         $users = User::where(function($q) use($user_value) {
             $q->where('name', 'LIKE', '%' . $user_value . '%')
                 ->Orwhere('username', 'LIKE', '%' . $user_value . '%')
-                ->where('archived', 0);
+                ->where('archived', 0)
+                ->where('id', '!=' ,1)
+                ->where('id', '!=' ,2);
         })->paginate(25);
 
 

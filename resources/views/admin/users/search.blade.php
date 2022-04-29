@@ -71,7 +71,7 @@
                     <form class="" action="{{action('App\Http\Controllers\AdminUsersController@searchUser')}}" method="POST">
                         @csrf
                         <div class="input-group input-group-sm">
-                            <input type="text" class="form-control form-control-alt w-100" style="width: 100%" placeholder="Search for name..." id="page-header-search-input2" name="member">
+                            <input type="text" class="form-control form-control-alt w-50" style="width: 50%" placeholder="Search for name..." id="page-header-search-input2" name="user">
                             <span class="input-group-text border-0"><button class="border border-0" type="submit"><i class="fa fa-fw fa-search"></i></button></span>
                         </div>
                     </form>
@@ -94,6 +94,7 @@
                         <tbody>
                         @if($users)
                             @foreach($users as $user)
+                                @if($user->id != 1)
                                 <tr>
                                     <td>{{$user->id ? $user->id : 'No ID'}}</td>
                                     <td>{{$user->name ? $user->name : 'No Name'}}</td>
@@ -116,6 +117,7 @@
                                         </td>
                                     @endcan
                                 </tr>
+                                @endif
                             @endforeach
                         @endif
                         </tbody>

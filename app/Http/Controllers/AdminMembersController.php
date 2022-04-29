@@ -427,6 +427,10 @@ class AdminMembersController extends Controller
 
     public function searchMember(Request $request)
     {
+        if(!$request->member) {
+            return redirect()->back();
+        }
+
         $member_value = $request->member;
 
         $members = Member::where(function($q) use($member_value) {
