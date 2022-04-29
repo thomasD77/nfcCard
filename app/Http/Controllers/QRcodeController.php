@@ -32,6 +32,21 @@ class QRcodeController extends Controller
         return $pdf->download('card-details.pdf');
     }
 
+
+    public function QRcodeListSelect()
+    {
+        $members = listUrl::where('print', 1)->get();
+        $pdf = PDF::loadView('admin.members.code', compact('members'));
+
+        foreach ($members as $member) {
+            $member->print = 0;
+            $member->update();
+        }
+
+        return $pdf->download('card-details.pdf');
+    }
+
+
     public function QRcodeSelect(Request $request)
     {
         if($request->flexRadioDefault == 'ja'){

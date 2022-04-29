@@ -74,6 +74,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     //Routes for listing the QRcodes
     Route::get('QRcodeList', 'App\Http\Controllers\QRcodeController@QRcodeList')->name('QRcodeList');
     Route::get('QRcodeListCustom', 'App\Http\Controllers\QRcodeController@QRcodeListWithParams')->name('QRcodeListCustom');
+    Route::get('QRcodeListSelect', 'App\Http\Controllers\QRcodeController@QRcodeListSelect')->name('QRcodeListSelect');
     Route::post('QRcodeSelect', 'App\Http\Controllers\QRcodeController@QRcodeSelect')->name('QRcodeSelect');
 
     Route::get('lock', 'App\Http\Controllers\CardController@lock')->name('lock');

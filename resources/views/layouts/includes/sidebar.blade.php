@@ -180,18 +180,6 @@
                                 <span class="nav-main-link-name">List</span>
                             </a>
                         </li>
-                        @can('is_superAdmin')
-                            @php
-                                $lock = \App\Models\Lock::first();
-                            @endphp
-                            @if($lock->status == 1)
-                                <li class="nav-main-item">
-                                    <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('members.membersListGen')}}">
-                                        <span class="nav-main-link-name">Cards</span>
-                                    </a>
-                                </li>
-                            @endif
-                        @endcan
                     </ul>
                 </li>
 
@@ -210,6 +198,21 @@
                         </li>
                     </ul>
                 </li>
+
+                @can('is_superAdmin')
+                    <li class="nav-main-heading text-uppercase"></li>
+                    @php
+                        $lock = \App\Models\Lock::first();
+                    @endphp
+                    @if($lock->status == 1)
+                        <li class="nav-main-heading text-uppercase">WORKING LIST</li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('members.membersListGen')}}">
+                                <span class="nav-main-link-name">Cards</span>
+                            </a>
+                        </li>
+                    @endif
+                @endcan
 
             </ul>
         </div>
