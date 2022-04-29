@@ -137,7 +137,7 @@
                                                                         Custom QRCODE url <i class="fa fa-arrow-down"></i>
                                                                     </a>
                                                                     <div class="collapse" id="collapseExample">
-                                                                        <input class="form-control" type="text" value="{{ $url->custom_QR_url }}" name="input_QR_url">
+                                                                        <input class="form-control" type="text" value="{{ $url->custom_QR_url ? $url->custom_QR_url : $url->memberQRcode  }}" name="input_QR_url">
                                                                     </div>
                                                                 </div>
                                                             @endif

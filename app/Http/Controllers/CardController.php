@@ -104,7 +104,7 @@ class CardController extends Controller
         else
         {
             $currentURL = URL::first()->url;
-            $QRcode_url = $currentURL . '/' . 'vCard' . '/' . $id;
+            $QRcode_url = $currentURL . '/?' . $id;
             $QRcode = QrCode::size(150)->backgroundColor(255,255,255)->generate($QRcode_url);
             return $QRcode;
         }
