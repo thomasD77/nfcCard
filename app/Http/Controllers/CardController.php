@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 use JeroenDesloovere\VCard\VCard;
 use Maatwebsite\Excel\Facades\Excel;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -298,6 +299,10 @@ class CardController extends Controller
             'name'=>'required|max:150',
             'email'=>'required|max:150|email:rfc,dns'
         ]);
+
+        // Store request to logs
+        Storage::disk('local')
+            ->put(time().'-SWAP.json', json_encode($validated));
 
         $vCard = null;
         $member = Member::where('card_id', $id)->first();
