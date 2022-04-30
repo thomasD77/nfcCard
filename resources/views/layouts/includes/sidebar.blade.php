@@ -200,7 +200,6 @@
                 </li>
 
                 @can('is_superAdmin')
-                    <li class="nav-main-heading text-uppercase"></li>
                     @php
                         $lock = \App\Models\Lock::first();
                     @endphp
