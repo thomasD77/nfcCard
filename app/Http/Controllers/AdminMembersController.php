@@ -451,13 +451,7 @@ class AdminMembersController extends Controller
 
     public function membersList()
     {
-
-        $urls = listUrl::with(['package', 'material', 'member'])->paginate(25);
-        $packages = Package::pluck('package', 'id');
-        $materials = Material::pluck('name', 'id');
-        $QRcode = \App\Models\QRCODE::first();
-
-        return view ('admin.members.list', compact('urls', 'packages', 'materials', 'QRcode'));
+        return view ('admin.members.list');
     }
 
     public function updateMembersList(Request $request)

@@ -35,16 +35,10 @@ class MembersGenerator extends Component
 
     public function render()
     {
-        $urls = listUrl::with(['package', 'material', 'member'])->paginate(25);
-        $packages = Package::pluck('package', 'id');
+        $urls = listUrl::with(['package', 'material', 'member'])->simplePaginate($this->pagination);
         $materials = Material::pluck('name', 'id');
         $QRcode = \App\Models\QRCODE::first();
 
-        $members = Member::with(['user', 'package', 'material'])
-            ->where('archived', 0)
-            ->simplePaginate($this->pagination);
-
-
-        return view ('livewire.members-generator', compact('urls', 'packages', 'materials', 'QRcode'));
+        return view ('livewire.members-generator', compact('urls',  'materials', 'QRcode'));
     }
 }
