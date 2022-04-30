@@ -207,12 +207,12 @@
                         <li class="nav-main-heading text-uppercase">WORKING LIST</li>
                         <li class="nav-main-item">
                             <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('members.membersListGen')}}">
+                                <i class="nav-main-link-icon far fa-list-alt"></i>
                                 <span class="nav-main-link-name">Cards</span>
                             </a>
                         </li>
                     @endif
                 @endcan
-
             </ul>
         </div>
         <!-- END Side Navigation -->

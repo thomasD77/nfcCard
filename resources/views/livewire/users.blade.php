@@ -12,24 +12,23 @@
 <table class="table table-striped table-hover table-vcenter fs-sm">
     <thead>
     <tr>
-        <th scope="col">ID</th>
+        <th scope="col">#</th>
         <th scope="col">Name</th>
+        <th scope="col"># User ID</th>
         <th scope="col">Avatar</th>
         <th scope="col">Email</th>
         <th scope="col">Role</th>
-        <th scope="col">Card ID</th>
-
-        @canany(['is_superAdmin', 'is_admin'])
+        <th scope="col"># Card ID</th>
         <th scope="col">Actions</th>
-        @endcan
     </tr>
     </thead>
     <tbody>
     @if($users)
         @foreach($users as $user)
             <tr>
-                <td>{{$user->id ? $user->id : 'No ID'}}</td>
+                <td>{{ $loop->index + 1  }}</td>
                 <td>{{$user->name ? $user->name : 'No Name'}}</td>
+                <td>{{$user->id ? $user->id : 'No ID'}}</td>
                 <td><img class="rounded-circle" height="62" width="62" src="{{$user->avatar ? asset('/') . $user->avatar->file : asset('/assets/front/img/avatar-2.svg') }}" alt="{{$user->name}}"></td>
                 <td>{{$user->email ? $user->email : 'No Email'}}</td>
                 <td>@foreach($user->roles as $role)
@@ -37,7 +36,6 @@
                     @endforeach
                 </td>
                 <td>{{$user->member ? '# ' . $user->member->card_id : 'No Card ID'}}</td>
-                @canany(['is_superAdmin', 'is_admin'])
                 <td>
                     <div class="btn-group">
                         <a href="{{route('users.edit', $user->id)}}">
@@ -48,7 +46,6 @@
                         <button class="btn btn-sm btn-alt-secondary" wire:click="archiveUser({{$user->id}})"><i class="fa fa-archive"></i></button>
                     </div>
                 </td>
-                @endcan
             </tr>
         @endforeach
     @endif

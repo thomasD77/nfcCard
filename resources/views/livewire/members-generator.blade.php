@@ -24,8 +24,9 @@
                 <table class="table table-striped table-hover table-vcenter fs-sm">
                     <thead>
                     <tr>
-                        <th scope="col">#Card ID</th>
+                        <th scope="col">#</th>
                         <th scope="col">Card URL</th>
+                        <th scope="col">#Card ID</th>
                         @if($QRcode->status == 1)
                             <th scope="col">QRCODE URL</th>
                         @endif
@@ -42,8 +43,9 @@
                     @if($urls)
                         @foreach($urls as $url)
                             <tr>
-                                <td>{{$url->id ? $url->id : 'No ID'}}</td>
+                                <td>{{ $loop->index + 1  }}</td>
                                 <td>{{$url->memberURL ? $url->memberURL : ""}}</td>
+                                <td>{{$url->id ? $url->id : 'No ID'}}</td>
                                 @if($QRcode->status == 1)
                                     @if($url->custom_QR_url != "")
                                         <td>
