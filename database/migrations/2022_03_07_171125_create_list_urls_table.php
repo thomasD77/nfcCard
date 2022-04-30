@@ -21,7 +21,7 @@ class CreateListUrlsTable extends Migration
             $table->integer('package_id')->index();
             $table->string('custom_QR_url')->default("");
             $table->string('memberQRcode');
-            $table->boolean('print')->default(0);
+            //$table->boolean('print')->default(0);
             $table->timestamps();
         });
     }

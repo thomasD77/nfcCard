@@ -29,7 +29,7 @@
                         @if($QRcode->status == 1)
                             <th scope="col">QRCODE URL</th>
                         @endif
-                        <th scope="col">Package</th>
+                        <th scope="col">Reservation</th>
                         <th scope="col">Material</th>
                         <th scope="col">Member</th>
                         <th scope="col">Edit</th>
@@ -55,13 +55,13 @@
                                         </td>
                                     @endif
                                 @endif
-                                <td>{{$url->package ? $url->package->package : "No Package" }}</td>
+                                <td>{{$url->reservation ? $url->reservation : "*no reservation" }}</td>
                                 <td>{{$url->material ? $url->material->name : "No Material" }}</td>
                                 @if($url->member)
                                     @if($url->member->user->archived == 1)
                                         <td><span class="rounded-pill btn-alt-warning p-2">archived</span></td>
                                     @else
-                                        <td>{{$url->member ? $url->member->lastname : "not-active" }} {{ $url->member ? $url->member->firstname : "" }}</td>
+                                        <td>{{$url->member ? $url->member->lastname : "*not-active" }} {{ $url->member ? $url->member->firstname : "" }}</td>
                                     @endif
                                 @else
                                     <td>{{$url->member ? $url->member->lastname : "not-active" }} {{ $url->member ? $url->member->firstname : "" }}</td>
@@ -83,11 +83,16 @@
                                                     {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminMembersController@updateMembersList', $url->id],
                                                            'files'=>false]) !!}
                                                     <div class="form-group mb-4">
-                                                        <div class="d-flex flex-column mt-4">
-                                                            {!! Form::label('loyal','Select Package:', ['class'=>'form-label']) !!}
-                                                            {!! Form::select('package_id',$packages,$url->package->id,['class'=>'form-control'])!!}
-                                                            {!! Form::hidden('url_id',$url->id)!!}
+                                                        <div class="form-group mb-4">
+                                                            {!! Form::label('one-profile-edit-email', 'Reservation for:', ['class'=>'form-label']) !!}
+                                                            {!! Form::text('reservation',$url->reservation,['class'=>'form-control']) !!}
+                                                            @error('email')
+                                                            <p class="text-danger mt-2"> {{ $message }}</p>
+                                                            @enderror
                                                         </div>
+
+                                                        {!! Form::hidden('url_id',$url->id)!!}
+
                                                         <div class="d-flex flex-column mt-4">
                                                             {!! Form::label('loyal','Select Material:', ['class'=>'form-label']) !!}
                                                             {!! Form::select('material_id',$materials,$url->material->id,['class'=>'form-control'])!!}

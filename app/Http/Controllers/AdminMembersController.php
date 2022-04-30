@@ -462,9 +462,14 @@ class AdminMembersController extends Controller
 
     public function updateMembersList(Request $request)
     {
+        $validated = $request->validate([
+            'reservation'=>'max:150',
+        ]);
+
         $url = listUrl::findOrFail($request->url_id);
+
         $url->material_id = $request->material_id;
-        $url->package_id = $request->package_id;
+        $url->reservation = $request->reservation;
         $url->memberURL = $request->custom_url;
 
         if($request->input_QR_url)
@@ -478,7 +483,6 @@ class AdminMembersController extends Controller
         $member = Member::where('card_id', $request->url_id)->first();
         if($member)
         {
-            $member->package_id = $url->package_id;
             $member->material_id = $url->material_id;
             $member->update();
         }
