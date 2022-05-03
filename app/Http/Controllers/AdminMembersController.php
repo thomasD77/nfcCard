@@ -464,6 +464,7 @@ class AdminMembersController extends Controller
 
         $url->material_id = $request->material_id;
         $url->reservation = $request->reservation;
+        $url->image = $request->image;
         $url->memberURL = $request->custom_url;
 
         if($request->input_QR_url)

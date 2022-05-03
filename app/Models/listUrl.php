@@ -17,7 +17,8 @@ class listUrl extends Model
         'package_id',
         'custom_QR_url',
         'print',
-        'reservation'
+        'reservation',
+        'image'
     ];
 
     public function package()

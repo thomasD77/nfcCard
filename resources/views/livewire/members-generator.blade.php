@@ -31,6 +31,7 @@
                             <th scope="col">QRCODE URL</th>
                         @endif
                         <th scope="col">Reservation</th>
+                        <th scope="col">Design</th>
                         <th scope="col">Material</th>
                         <th scope="col">Member</th>
                         <th scope="col">Edit</th>
@@ -53,11 +54,12 @@
                                         </td>
                                     @else
                                         <td>
-                                            <span class="rounded-pill p-2 btn-primary">vCard</span>
+                                            <span class="rounded-pill p-2 btn-primary">Default</span>
                                         </td>
                                     @endif
                                 @endif
                                 <td>{{$url->reservation ? $url->reservation : "*no reservation" }}</td>
+                                <td>{{$url->image ? $url->image : "*no image" }}</td>
                                 <td>{{$url->material ? $url->material->name : "No Material" }}</td>
                                 @if($url->member)
                                     @if($url->member->user->archived == 1)
@@ -88,7 +90,15 @@
                                                         <div class="form-group mb-4">
                                                             {!! Form::label('one-profile-edit-email', 'Reservation for:', ['class'=>'form-label']) !!}
                                                             {!! Form::text('reservation',$url->reservation,['class'=>'form-control']) !!}
-                                                            @error('email')
+                                                            @error('reservation')
+                                                            <p class="text-danger mt-2"> {{ $message }}</p>
+                                                            @enderror
+                                                        </div>
+
+                                                        <div class="form-group mb-4">
+                                                            {!! Form::label('one-profile-edit-email', 'Image:', ['class'=>'form-label']) !!}
+                                                            {!! Form::text('image',$url->image,['class'=>'form-control']) !!}
+                                                            @error('image')
                                                             <p class="text-danger mt-2"> {{ $message }}</p>
                                                             @enderror
                                                         </div>

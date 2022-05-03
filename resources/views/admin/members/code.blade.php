@@ -1,3 +1,24 @@
+<style>
+    .table {
+        width: 100%;
+    }
+    td {
+        border: 1px solid #000;
+    }
+    .QRcode {
+        margin-left: 15px;
+    }
+    .non {
+        border: none
+    }
+    .spacing {
+        margin: 25px 0;
+    }
+    .text {
+        text-align: center;
+    }
+</style>
+
 <!-- Page Content -->
 <div class="content container-fluid">
     <!-- Dynamic Table Full -->
@@ -7,36 +28,36 @@
                 Card credentials
             </h3>
         </div>
-        <div class="block-content block-content-full overflow-scroll">
-            <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
-            <div>
-                <table class="table table-striped table-hover table-vcenter fs-sm">
-                    <thead>
+        <table class="table table-striped table-hover table-vcenter fs-sm">
+            <thead>
+            <tr>
+                <th >URL <br> (printed in the NFC chip)</th>
+
+                <th >Card Material</th>
+
+                <th >Design FRONT <br> (printed or engraved)</th>
+
+                <th >QR-code BACK <br> (printed or engraved)</th>
+            </tr>
+            </thead>
+            <div class="spacing"></div>
+            @if($members)
+                @foreach($members as $member)
+                    <tbody>
                     <tr>
-                        <th scope="col">URL</th>
-                        <th scope="col">=> url needs to be programmed in the NFC card</th>
-                        <th scope="col">Material</th>
-                        <th scope="col">QR-code</th>
-                        <th scope="col">=> QRcode needs to be PRINTED ON the backside OF NFC Card</th>
+                        <td class="text">{{$member->memberURL ? $member->memberURL : 'No URL'}}</td>
+
+                        <td class="text">{{$member->material ? $member->material->name : 'No Material'}}</td>
+
+                        <td class="text">{{$member->image ? $member->image : 'No Image'}}</td>
+
+                        <td class="text non"><img class="QRcode" src="{{ $member->memberQRcode }}" alt="QRcode"></td>
                     </tr>
-                    </thead>
-                    @if($members)
-                        @foreach($members as $member)
-                            <tbody>
-                                <tr>
-                                    <td>{{$member->memberURL ? $member->memberURL : 'No URL'}}</td>
-                                    <td></td>
-                                    <td>{{$member->material ? $member->material->name : 'No Material'}}</td>
-                                    <td></td>
-                                    <td><img class="my-3" src="{{ $member->memberQRcode }}" alt="QRcode"></td>
-                                </tr>
-                            </tbody>
-                            <br>
-                        @endforeach
-                    @endif
-                </table>
-            </div>
-        </div>
+                    </tbody>
+                    <br>
+                @endforeach
+            @endif
+        </table>
     </div>
     <!-- END Dynamic Table Full -->
 </div>
