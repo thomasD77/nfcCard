@@ -72,6 +72,7 @@ class CardController extends Controller
         $vcard->addJobtitle($member->jobTitle);
         $vcard->addEmail($member->email);
         $vcard->addPhoneNumber($member->mobile );
+        $vcard->addPhoneNumber($member->mobileWork );
         $vcard->addAddress(null, null, $member->addressLine1, $member->city, null, $member->postalCode, $member->country);
         $vcard->addURL($member->website);
         //$vcard->addPhoto($member->avatar ? asset('card/avatars/' . $member->avatar) : asset('/card/img/bg-vcard.png'));
