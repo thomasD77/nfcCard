@@ -50,6 +50,7 @@ Route::match(['get', 'post'], '/dashboard', function(){
 
 //Public Routes for member information
 Route::get('/', 'App\Http\Controllers\DirectionController@getDirection')->name('direction');
+Route::get('/test', 'App\Http\Controllers\DirectionController@test')->name('test');
 Route::get('vCard/{id}', 'App\Http\Controllers\CardController@vCard')->name('members.vCard');
 Route::post('save/{id}', 'App\Http\Controllers\CardController@saveInfo')->name('members.saveInfo');
 Route::get('QRcode/{id}', 'App\Http\Controllers\CardController@QRcode')->name('members.QRcode');
