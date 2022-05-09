@@ -29,6 +29,7 @@ use Illuminate\Support\Facades\Storage;
 use JeroenDesloovere\VCard\VCard;
 use Maatwebsite\Excel\Facades\Excel;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Illuminate\Support\Facades\Redirect;
 
 class CardController extends Controller
 {
@@ -328,6 +329,7 @@ class CardController extends Controller
 
         if ($resultJson->success != true) {
 
+            Session::flash('recaptcha_error', 'ReCaptcha is blocking request. Please try again. ');
             return view( 'front.landingspage_default.index', compact('member', 'vCard'));
 
         }
@@ -364,11 +366,16 @@ class CardController extends Controller
             $this->dispatch(new SendCardCredentialsJob($contact, $member));
             $this->dispatch(new SendProspectJob($contact, $member));
 
+            if($request->session()->has('recaptcha_error')){
+                $request->session()->forget('recaptcha_error');
+            }
 
+            Session::forget('recaptcha_error');
             return view( 'front.landingspage_default.download', compact('member', 'vCard'));
 
         } else {
 
+            Session::flash('recaptcha_error', 'We think you are a bot. Please try again. ');
             return view( 'front.landingspage_default.index', compact('member', 'vCard'));
         }
 

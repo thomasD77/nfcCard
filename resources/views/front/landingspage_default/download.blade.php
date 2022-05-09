@@ -75,7 +75,8 @@
             
 
                 <a class="btn_cstm_download p-3 text-center my-3" style="color:white; text-decoration: none; list-style: none" href="{{ route('members.vCard', $member->card_id) }}">
-                Thank you for this amazing SWAP! <br>
+                <h3> Thank you for this amazing SWAP! </h3>
+                <br>
                 Right now you send your information to my inbox. <br><br> This way it's easy for me to contact you again. 
                 At this exact moment there is a mail comming your way with my information as well. 
                 <br><br>
