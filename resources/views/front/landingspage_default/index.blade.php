@@ -97,6 +97,9 @@
                     @error('email')
                     <p class="text-danger">Please try again.</p>
                     @enderror
+                    @if(Session::has('recaptcha_error'))
+                        <p class="text-danger">{{session('recaptcha_error')}}</p>
+                    @endif
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
                         <div class="modal-dialog mt-0">
                             <form class="row mb-0" name="contactformulier"
