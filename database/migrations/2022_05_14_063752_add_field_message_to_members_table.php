@@ -15,7 +15,7 @@ class AddFieldMessageToMembersTable extends Migration
     {
         Schema::table('members', function (Blueprint $table) {
             //
-            $table->string('titleMessage')->default("Thank you for the SWAP");
+            $table->string('titleMessage')->default("");
             $table->string('message')->default("");
         });
     }

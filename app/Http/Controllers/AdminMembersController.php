@@ -192,6 +192,15 @@ class AdminMembersController extends Controller
             $member->age = "";
         }
 
+        if($request->notes !== NULL)
+        {
+            $member->notes = $request->notes;
+        }
+        else
+        {
+            $member->notes = "";
+        }
+
         if($request->jobTitle !== NULL)
         {
             $member->jobTitle = $request->jobTitle;

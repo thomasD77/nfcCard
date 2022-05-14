@@ -59,7 +59,7 @@
             </div>
             <div class="form-group mb-4">
                 {!! Form::label('website','Website',['class'=>'form-label']) !!}
-                {!! Form::text('website',$member->website ,['class'=>'form-control', 'placeholder' => 'ex: https://innova-webcreations.be']) !!}
+                {!! Form::text('website',$member->website ,['class'=>'form-control', 'placeholder' => 'ex: innova-webcreations.be']) !!}
                 @error('website')
                 <p class="text-danger mt-2"> {{ $message }}</p>
                 @enderror
