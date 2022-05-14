@@ -79,7 +79,7 @@
                 <br>
                     {{ $member->message}}
                 <br>
-                <br> DOWNLOAD HERE <br>
+                <br> SAVE TO CONTACTS <br>
                     <i class="fa fa-2x fa-floppy-disk me-1 opacity-50"></i>
                 </a>
 
