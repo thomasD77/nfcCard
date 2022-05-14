@@ -116,6 +116,22 @@
                 @enderror
             </div>
 
+            <p class="badge badge-pill bg-dark p-2 text-white">Thank you message</p>
+            <div class="form-group mb-4">
+                {!! Form::label('titleMessage','Title',['class'=>'form-label']) !!}
+                {!! Form::text('titleMessage',$member->titleMessage ,['class'=>'form-control']) !!}
+                @error('titleMessage')
+                <p class="text-danger mt-2"> {{ $message }}</p>
+                @enderror
+            </div>
+            <div class="form-group mb-4">
+                {!! Form::label('message','Message:',['class'=>'form-label']) !!}
+                {!! Form::textarea('message',$member->message ,['class'=>'form-control']) !!}
+                @error('message')
+                <p class="text-danger mt-2"> {{ $message }}</p>
+                @enderror
+            </div>
+
 
             <p class="badge badge-pill bg-dark p-2 text-white">Socials</p>
             <p class="bg-warning-light p-2 rounded text-center">!! For these socials you need to copy the full url from your account. You can find this easily in your desktop browser !!</p>

@@ -229,7 +229,7 @@
                                     @if($member->website)
                                         <!-- Website -->
                                         <div class="col-12 d-flex justify-content-center">
-                                            <a class="w-100" target="_blank" href="{{$member->website }}"><button type="submit" class="btn_cstm website w-100 mt-2"><i class="fa-solid fa-earth-africa mx-2"></i>Website</button></a>
+                                            <a class="w-100" target="_blank" href="https://{{$member->website }}"><button type="submit" class="btn_cstm website w-100 mt-2"><i class="fa-solid fa-earth-africa mx-2"></i>Website</button></a>
                                         </div>
                                     @endif
 
