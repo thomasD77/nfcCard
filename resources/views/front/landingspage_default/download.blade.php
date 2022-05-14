@@ -76,13 +76,16 @@
 
                 <a class="btn_cstm_download p-3 text-center my-3" style="color:white; text-decoration: none; list-style: none" href="{{ route('members.vCard', $member->card_id) }}">
                 <h3> {{ $member->titleMessage }} </h3>
-                <br>
-                    {{ $member->message}}
-                <br>
+                @if($member->message)
+                    <br>
+                        {{ $member->message}}
+                    <br>
+                @endif
+
                 <br> SAVE TO CONTACTS <br>
                     <i class="fa fa-2x fa-floppy-disk me-1 opacity-50"></i>
                 </a>
-
+                
                 <a class="btn_cstm save p-3 text-center my-3" style="color:white; text-decoration: none; list-style: none" href="{{ route('direction', $member->card_id) }}">
                 <i class="fa fa-rotate mr-2"></i> Back to profile
                 </a>
