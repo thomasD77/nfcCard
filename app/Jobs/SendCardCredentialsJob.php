@@ -38,6 +38,7 @@ class SendCardCredentialsJob implements ShouldQueue
     public function handle()
     {
         //
-        Mail::to($this->contact->email)->send(new SendCardCredentails($this->member));
+        //Mail::to($this->contact->email)->send(new SendCardCredentails($this->member));
+        Mail::to($this->contact->email)->send(new test($this->member));
     }
 }
