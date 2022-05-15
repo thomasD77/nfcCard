@@ -35,6 +35,6 @@ class SendProspect extends Mailable
     {
         return $this->subject("Yes! A new connection is waiting for you")
             ->from($this->member->email)
-            ->view('emails.prospect');
+            ->markdown('emails.prospect');
     }
 }
