@@ -31,8 +31,6 @@ use Maatwebsite\Excel\Facades\Excel;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Support\Facades\Redirect;
 
-use App\Mail\test;
-
 class CardController extends Controller
 {
 
@@ -367,7 +365,7 @@ class CardController extends Controller
 
             $this->dispatch(new SendCardCredentialsJob($contact, $member));
             $this->dispatch(new SendProspectJob($contact, $member));
-            //Mail::to('thomas@ntriga.agency')->send(new test());
+            //Mail::to('thomas@ntriga.agency')->send(new SendCardCredentails($member));
 
             if($request->session()->has('recaptcha_error')){
                 $request->session()->forget('recaptcha_error');

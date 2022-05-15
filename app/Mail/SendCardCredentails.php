@@ -35,10 +35,9 @@ class SendCardCredentails extends Mailable
 //            ->from($this->member->email)
 //            ->view('emails.card-credentails');
 
-//        return $this->markdown('emails.card-credentails')
-//            ->from($this->member->email)
-//            ->with('member', $this->member);
+        return $this->markdown('emails.card-credentails');
+            
+         
 
-            return $this->markdown('emails.test-mail');
     }
 }
