@@ -38,11 +38,6 @@
 <h3 style="margin-top: 80px; margin-bottom: 5px">Aarzel niet om mij te contacteren! </h3>
 <h3>Graag tot binnenkort. </h3>
 
-<div style="margin-top: 200px">
-    <center>
-        © {{ date('Y') }} SWAP. @lang('All rights reserved.')
-    </center>
-</div>
 
 @endcomponent
 

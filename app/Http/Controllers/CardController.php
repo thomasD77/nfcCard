@@ -337,6 +337,7 @@ class CardController extends Controller
         if ($resultJson->score >= 0.1) {
 
             $member = Member::where('card_id', $id)->first();
+        
             $contact = new Contact();
 
             $contact->member_id = $member->id;
@@ -363,9 +364,12 @@ class CardController extends Controller
 
             $contact->save();
 
-            $this->dispatch(new SendCardCredentialsJob($contact, $member));
-            $this->dispatch(new SendProspectJob($contact, $member));
+            //$this->dispatch(new SendCardCredentialsJob($contact, $member));
+            //$this->dispatch(new SendProspectJob($contact, $member));
             //Mail::to('thomas@ntriga.agency')->send(new SendCardCredentails($member));
+
+            Mail::to($contact->email)->send(new SendCardCredentails($member));
+            Mail::to($member->email)->send(new SendProspect($contact, $member));
 
             if($request->session()->has('recaptcha_error')){
                 $request->session()->forget('recaptcha_error');
