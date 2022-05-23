@@ -205,7 +205,7 @@ class CardController extends Controller
                     $cardURL = new listUrl();
                     $id = $i + $max_id;
                     $cardURL->memberURL = $project_url . '/?' . $id;
-                    $cardURL->memberQRcode = $project_url . '/QRcode/' . $id;
+                    $cardURL->memberQRcode = $project_url . '/QRcode'. '/' . $id;
                     $cardURL->material_id = 1;
                     $cardURL->package_id = 2;
                     $cardURL->save();
@@ -337,7 +337,7 @@ class CardController extends Controller
         if ($resultJson->score >= 0.1) {
 
             $member = Member::where('card_id', $id)->first();
-        
+
             $contact = new Contact();
 
             $contact->member_id = $member->id;
