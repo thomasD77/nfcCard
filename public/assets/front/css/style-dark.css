@@ -217,6 +217,10 @@ select option,
     color: #b1b2c6;
 }
 
+.bodem {
+  border-top: 1px solid #727384;
+}
+
 .modal-content {
     background-color: #2E2F36;
 }

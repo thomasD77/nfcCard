@@ -78,6 +78,10 @@ class AdminMembersController extends Controller
         $member->country = $request->country;
         $member->postalCode = $request->postalCode;
 
+        //Thank you message
+        $member->titleMessage = $request->titleMessage;
+        $member->message = $request->message;
+
         //Socials
         $member->facebook = $request->facebook;
         $member->instagram = $request->instagram;
@@ -188,6 +192,15 @@ class AdminMembersController extends Controller
             $member->age = "";
         }
 
+        if($request->notes !== NULL)
+        {
+            $member->notes = $request->notes;
+        }
+        else
+        {
+            $member->notes = "";
+        }
+
         if($request->jobTitle !== NULL)
         {
             $member->jobTitle = $request->jobTitle;
@@ -214,6 +227,27 @@ class AdminMembersController extends Controller
         {
             $member->website = "";
         }
+
+
+        //Thank you message
+        if($request->titleMessage !== NULL)
+        {
+            $member->titleMessage = $request->titleMessage;
+        }
+        else
+        {
+            $member->titleMessage = "";
+        }
+
+        if($request->message !== NULL)
+        {
+            $member->message = $request->message;
+        }
+        else
+        {
+            $member->message = "";
+        }
+
 
         //Contact information
         if($request->mobileWork !== NULL)

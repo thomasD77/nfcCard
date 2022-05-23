@@ -136,13 +136,12 @@
                                             @enderror
                                         </div>
                                         <div class="mb-4">
-                                            <a style="color: #AEB0B8;" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                                <label class="form-label" for="frontend-contact-email">Phone <span style="font-style: italic; font-size: 10px">(optional)</span><i class=" mx-2 fa-solid fa-angles-down"></i></label>
-                                            </a>
-                                            <div class="collapse" id="collapseExample2">
-                                                <input type="text" class="form-control input_modal" name="phone"
-                                                       placeholder="Enter your phone...">
-                                            </div>
+                                           
+                                            <label class="form-label" for="frontend-contact-email">Phone</label>
+                                            
+                                            <input type="text" class="form-control input_modal" name="phone"
+                                            placeholder="Enter your phone...">
+                                            
                                         </div>
                                         <div class="mb-4">
                                             <a style="color: #AEB0B8" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -159,15 +158,22 @@
                                             <i class="fa fa-paper-plane me-1 opacity-50"></i> SWAP
                                         </button>
 
-                                        <div class="modal-footer mb-5 mt-3">
-                                            <h2 class="talk">Only Save</h2>
-                                            <p>If you only want to save my contact download here.</p>
+                                        <div class="bodem mb-5 pt-4 mt-5">
+
+                                            
+                                            <div class="">
+                                                <strong>Only Save</strong>
+                                                <p>If you only want to save my contact download here.</p>
+                                            </div>
+                                
                                             <a href="{{ route('members.vCard', $member->card_id) }}"
                                                id="closeNow"
                                                style="text-decoration: none; color: white"
-                                               class="btn_cstm text-center input_modal w-100">
-                                                 <i class="fa fa-floppy-disk me-1 opacity-50"></i> SAVE
+                                               class="btn_cstm input_modal p-2">
+                                                 <i class="fa fa-floppy-disk me-1 opacity-50"></i> SAVE 
                                             </a>
+                                            
+                                           
                                         </div>
                                     </div>
                                 </div>
@@ -229,7 +235,7 @@
                                     @if($member->website)
                                         <!-- Website -->
                                         <div class="col-12 d-flex justify-content-center">
-                                            <a class="w-100" target="_blank" href="{{$member->website }}"><button type="submit" class="btn_cstm website w-100 mt-2"><i class="fa-solid fa-earth-africa mx-2"></i>Website</button></a>
+                                            <a class="w-100" target="_blank" href="https://{{$member->website }}"><button type="submit" class="btn_cstm website w-100 mt-2"><i class="fa-solid fa-earth-africa mx-2"></i>Website</button></a>
                                         </div>
                                     @endif
 

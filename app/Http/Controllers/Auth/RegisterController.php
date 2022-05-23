@@ -102,6 +102,7 @@ class RegisterController extends Controller
         $member->memberQRcode = $url . '/QRcode'. '/' . $data['card_id'];
         $member->material_id = $listURL->material_id;
         $member->package_id = $listURL->package_id;
+        $member->titleMessage = "Thank you for this amazing SWAP";
         $member->save();
 
         //Connect User with member

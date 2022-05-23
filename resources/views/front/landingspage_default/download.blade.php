@@ -75,17 +75,17 @@
             
 
                 <a class="btn_cstm_download p-3 text-center my-3" style="color:white; text-decoration: none; list-style: none" href="{{ route('members.vCard', $member->card_id) }}">
-                <h3> Thank you for this amazing SWAP! </h3>
-                <br>
-                Right now you send your information to my inbox. <br><br> This way it's easy for me to contact you again. 
-                At this exact moment there is a mail comming your way with my information as well. 
-                <br><br>
-                Please if you want to get in tocuh, do not wait to call or email me. 
-                I'm looking forward to our connection. 
-                    <br><br> DOWNLOAD HERE <br>
+                <h3> {{ $member->titleMessage }} </h3>
+                @if($member->message)
+                    <br>
+                        {{ $member->message}}
+                    <br>
+                @endif
+
+                <br> SAVE TO CONTACTS <br>
                     <i class="fa fa-2x fa-floppy-disk me-1 opacity-50"></i>
                 </a>
-
+                
                 <a class="btn_cstm save p-3 text-center my-3" style="color:white; text-decoration: none; list-style: none" href="{{ route('direction', $member->card_id) }}">
                 <i class="fa fa-rotate mr-2"></i> Back to profile
                 </a>

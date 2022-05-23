@@ -42,7 +42,9 @@ class Member extends Model
             'memberURL',
             'memberQRcode',
             'avatar',
-            'print'
+            'print',
+            'titleMessage',
+            'message'
         ];
 
     public function user()

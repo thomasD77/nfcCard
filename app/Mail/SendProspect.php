@@ -33,8 +33,12 @@ class SendProspect extends Mailable
      */
     public function build()
     {
-        return $this->subject("Yes! A new connection is waiting for you")
+        // return $this->subject("Yes! A new connection is waiting for you")
+        //    ->from($this->member->email)
+        //    ->markdown('emails.prospect');
+
+            return $this->subject("Yes! A new connection is waiting for you")
             ->from($this->member->email)
-            ->view('emails.prospect');
+            ->markdown('emails.cardProspect');
     }
 }
