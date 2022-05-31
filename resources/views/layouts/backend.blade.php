@@ -6,9 +6,9 @@
 
         <title>SWAP</title>
 
-        <meta name="description" content="OneUI - Bootstrap 5 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
-        <meta name="author" content="pixelcave">
-        <meta name="robots" content="noindex, nofollow">
+        <meta name="description" content="SWAP - NFC">
+        <meta name="author" content="SWAP">
+{{--        <meta name="robots" content="noindex, nofollow">--}}
 
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -142,7 +142,7 @@
                 <div class="content-header">
                     <!-- Left Section -->
                     <div class="d-flex align-items-center">
-                        @canany(['is_superAdmin', 'is_admin'])
+
                             <!-- Toggle Sidebar -->
                             <!-- Layout API, functionality initialized in Template._uiApiLayout()-->
                             <button type="button" class="btn btn-sm btn-alt-secondary me-2 d-lg-none" data-toggle="layout" data-action="sidebar_toggle">
@@ -159,11 +159,11 @@
 
                             <!-- Open Search Section (visible on smaller screens) -->
                             <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                            <button type="button" class="btn btn-sm btn-alt-secondary d-md-none" data-toggle="layout" data-action="header_search_on">
-                                <i class="fa fa-fw fa-search"></i>
-                            </button>
+{{--                            <button type="button" class="btn btn-sm btn-alt-secondary d-md-none" data-toggle="layout" data-action="header_search_on">--}}
+{{--                                <i class="fa fa-fw fa-search"></i>--}}
+{{--                            </button>--}}
                             <!-- END Open Search Section -->
-                        @endcanany
+                      
 
 
                     </div>
