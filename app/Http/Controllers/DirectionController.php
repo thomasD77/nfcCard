@@ -59,12 +59,4 @@ class DirectionController extends Controller
         }
     }
 
-
-    public function test(){
-     
-        $member = Member::where('card_id', 1)->first();
-        $vCard = null;
-        return view( 'front.landingspage_default.download', compact('member', 'vCard'));
-    }
-
 }
