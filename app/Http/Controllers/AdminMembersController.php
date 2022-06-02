@@ -466,37 +466,4 @@ class AdminMembersController extends Controller
 
     }
 
-
-    public function updateMembersList(Request $request)
-    {
-        $validated = $request->validate([
-            'reservation'=>'max:150',
-        ]);
-
-        $url = listUrl::findOrFail($request->url_id);
-
-        $url->material_id = $request->material_id;
-        $url->reservation = $request->reservation;
-        $url->image = $request->image;
-        $url->memberURL = $request->custom_url;
-
-        if($request->input_QR_url)
-        {
-            $url->custom_QR_url = $request->input_QR_url;
-        }
-
-        $url->update();
-
-
-        $member = Member::where('card_id', $request->url_id)->first();
-        if($member)
-        {
-            $member->material_id = $url->material_id;
-            $member->update();
-        }
-
-        \Brian2694\Toastr\Facades\Toastr::success('Edit Card Successfully');
-        return redirect('/admin/members/list/gen');
-    }
-
 }

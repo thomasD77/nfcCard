@@ -61,13 +61,13 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     //Routes for generating SWAP CARD information
     Route::get('card-credentials', 'App\Http\Controllers\Cards\CardCredentialsController@cardCredentialsList')->name('card-credentials');
     Route::get('card-credentials-sheet-generator', 'App\Http\Controllers\Cards\CardCredentialsController@cardCredentialsSheetGenerator')->name('card-credentials-sheet-generator');
+    Route::patch('card-credentials-update-card', 'App\Http\Controllers\Cards\CardCredentialsController@updateCard')->name('card-credentials-update');
 
 
     //Routes for CRUD members
     Route::resource('members', App\Http\Controllers\AdminMembersController::class);
     Route::resource('orders', App\Http\Controllers\AdminOrderController::class);
     Route::get('archive/members', 'App\Http\Controllers\AdminMembersController@archive')->name('members.archive');
-    Route::patch('members/list/update', 'App\Http\Controllers\AdminMembersController@updateMembersList')->name('members.updateMembersList');
 
     //Routes for generating the URLS
     Route::POST('generate/member', 'App\Http\Controllers\AdminMembersController@generate')->name('members.generate');

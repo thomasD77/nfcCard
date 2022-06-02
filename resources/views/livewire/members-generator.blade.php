@@ -84,7 +84,7 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminMembersController@updateMembersList', $url->id],
+                                                {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\Cards\CardCredentialsController@updateCard', $url->id],
                                                        'files'=>false]) !!}
                                                 <div class="form-group mb-4">
                                                     <div class="form-group mb-4">
@@ -122,7 +122,7 @@
                                                                 Custom QRCODE url <i class="fa fa-arrow-down"></i>
                                                             </a>
                                                             <div class="collapse" id="collapseExample">
-                                                                <input class="form-control" type="text" value="{{ $url->custom_QR_url ? $url->custom_QR_url : $url->memberQRcode  }}" name="input_QR_url">
+                                                                <input class="form-control" type="text" value="{{ $url->custom_QR_url  }}" name="input_QR_url">
                                                             </div>
                                                         </div>
                                                     @endif
