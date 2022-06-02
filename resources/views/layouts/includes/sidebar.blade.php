@@ -206,7 +206,7 @@
                     @if($lock->status == 1)
                         <li class="nav-main-heading text-uppercase">WORKING LIST</li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('members.membersListGen')}}">
+                            <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('card-credentials')}}">
                                 <i class="nav-main-link-icon far fa-list-alt"></i>
                                 <span class="nav-main-link-name">Cards</span>
                             </a>

@@ -71,6 +71,8 @@
                     </div>
                 </div>
             </div>
+
+            <!-- START STAP 1 -->
             <div class="col-md-6 col-xl-4">
                 <div class="block block-rounded">
                     <div class="block-header block-header-default">
@@ -86,6 +88,9 @@
                     </div>
                 </div>
             </div>
+            <!-- END STAP 1 -->
+
+            <!-- START STAP 2 -->
             <div class="col-md-6 col-xl-4">
                 <div class="block block-rounded">
                     <div class="block-header block-header-default">
@@ -98,7 +103,7 @@
                         <div class="collapse" id="collapseQR">
                             <div class="card card-body border border-0">
                                 <form class="col-6 mb-0" name="contactformulier"
-                                      action="{{action('App\Http\Controllers\QRcodeController@QRcodeSelect')}}" method="post">
+                                      action="{{action('App\Http\Controllers\QRcodeController@QRcodeStatus')}}" method="post">
                                     @csrf
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" value="ja" name="flexRadioDefault" id="flexRadioDefault1">
@@ -131,6 +136,10 @@
                     </div>
                 </div>
             </div>
+            <!-- END STAP 2 -->
+
+
+            <!-- START STAP 3 -->
             <div class="col-md-6 col-xl-4">
                 <div class="block block-rounded">
                     <div class="block-header block-header-default">
@@ -145,7 +154,7 @@
                         <div class="collapse" id="collapseCards">
                             <div class="card card-body border border-0 pt-0">
                                 <form class="col-6 mb-0" name="contactformulier"
-                                      action="{{action('App\Http\Controllers\CardController@generateCards')}}" method="post">
+                                      action="{{action('App\Http\Controllers\Dashboard\CardListGenerator@generateListUrl')}}" method="post">
                                     @csrf
                                     <div class="form-check my-4 px-0">
                                         <label class="form-check-label mb-1">
@@ -206,26 +215,33 @@
                     </div>
                 </div>
             </div>
+            <!-- END STAP 3 -->
+
+
+            <!-- START STAP 4 -->
             @if($total_cards > 0)
-                <div class="col-md-3 col-xl-3">
+                <div class="col-md-4 col-xl-4">
                     <div class="block block-rounded">
                         <div class="block-header block-header-default">
-                            <h3 class="block-title">STAP 4: List Generator </h3>
+                            <h3 class="block-title">STAP 4: Sheet Generator </h3>
                         </div>
                         <div class="block-content fs-sm text-muted pt-0">
                             <div class="py-4">
                                 @if($QRcode->status != 1)
-                                    <a href="{{ route('members.listGenerator') }}" class="btn btn-alt-success">EXCEL<i class="far fa-file-excel ms-2"></i></a>
+                                    <a href="{{ route('sheetGenerator') }}" class="btn btn-alt-success">EXCEL<i class="far fa-file-excel ms-2"></i></a>
                                 @endif
                                 @if($QRcode->status == 1)
-                                    <a href="{{ route('QRcodeListCustom') }}" class="btn btn-alt-warning">QRcode<i class="fa fa-list-ul ms-2"></i></a>
+                                    <a href="{{ route('sheet.QRcode') }}" class="btn btn-alt-warning">QRcode<i class="fa fa-list-ul ms-2"></i></a>
                                 @endif
                             </div>
                         </div>
                     </div>
                 </div>
             @endif
-            <div class="col-md-9 col-xl-5">
+            <!-- END STAP 4 -->
+
+            <!-- START STAP 5 -->
+            <div class="col-md-4 col-xl-4">
                 <div class="block block-rounded">
                     <div class="block-header block-header-default">
                         <h3 class="block-title">STAP 5: Orders </h3>
@@ -259,6 +275,8 @@
                     </div>
                 </div>
             </div>
+            <!-- END STAP 5 -->
+
         </div>
     </div>
     <!-- END Page Content -->

@@ -374,23 +374,6 @@ class AdminMembersController extends Controller
             $member->avatar = $name;
         }
 
-//        if($file = $request->file('avatar_id')){
-//
-//            $name = time(). $file->getClientOriginalName();
-//            $file->move('card/avatars', $name);
-//
-//            $path = 'card/avatars/' . $name;
-//            $image = Image::make($path);
-//            $image->orientate();
-//            $image->resize(300, 300, function ($constraint){
-//                $constraint->upsize();
-//                $constraint->aspectRatio();
-//            });
-//            $image->save('card/avatars/' . $name);
-//            $member->avatar = $name;
-//        }
-
-
         $member->update();
 
         \Brian2694\Toastr\Facades\Toastr::success('Member Successfully Updated');
@@ -483,10 +466,6 @@ class AdminMembersController extends Controller
 
     }
 
-    public function membersList()
-    {
-        return view ('admin.members.list');
-    }
 
     public function updateMembersList(Request $request)
     {

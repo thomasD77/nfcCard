@@ -39,13 +39,13 @@ Route::get("/mail", function(){
 Auth::routes(['verify'=> true]);
 
 //Routes PWA
-Route::get('/offline', function () {
-    return view('modules/laravelpwa/offline');
-});
-
-Route::match(['get', 'post'], '/dashboard', function(){
-    return view('admin/dashboard');
-});
+//Route::get('/offline', function () {
+//    return view('modules/laravelpwa/offline');
+//});
+//
+//Route::match(['get', 'post'], '/dashboard', function(){
+//    return view('admin/dashboard');
+//});
 
 
 //Public Routes for member information
@@ -53,34 +53,40 @@ Route::get('/', 'App\Http\Controllers\DirectionController@getDirection')->name('
 Route::get('/test', 'App\Http\Controllers\DirectionController@test')->name('test');
 Route::get('vCard/{id}', 'App\Http\Controllers\CardController@vCard')->name('members.vCard');
 Route::post('save/{id}', 'App\Http\Controllers\CardController@saveInfo')->name('members.saveInfo');
-Route::get('QRcode/{id}', 'App\Http\Controllers\CardController@QRcode')->name('members.QRcode');
-Route::post('generate/cards', 'App\Http\Controllers\CardController@generateCards')->name('generate.cards');
+Route::get('QRcode/{id}', 'App\Http\Controllers\QRcode\QRcodeController@QRcode')->name('members.QRcode');
+Route::post('generate/cards', 'App\Http\Controllers\Dashboard\CardListGenerator@generateListUrl')->name('generate.cards');
 Route::get('members/print', 'App\Http\Controllers\CardController@print')->name('print');
 
 // Backend Routes
 Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(){
+    //Routes for generating SWAP CARD information
+    Route::get('card-credentials', 'App\Http\Controllers\Cards\CardCredentialsController@cardCredentialsList')->name('card-credentials');
+    Route::get('card-credentials-sheet-generator', 'App\Http\Controllers\Cards\CardCredentialsController@cardCredentialsSheetGenerator')->name('card-credentials-sheet-generator');
+
+
     //Routes for CRUD members
     Route::resource('members', App\Http\Controllers\AdminMembersController::class);
     Route::resource('orders', App\Http\Controllers\AdminOrderController::class);
     Route::get('archive/members', 'App\Http\Controllers\AdminMembersController@archive')->name('members.archive');
-    Route::get('members/list/gen', 'App\Http\Controllers\AdminMembersController@membersList')->name('members.membersListGen');
     Route::patch('members/list/update', 'App\Http\Controllers\AdminMembersController@updateMembersList')->name('members.updateMembersList');
 
     //Routes for generating the URLS
     Route::POST('generate/member', 'App\Http\Controllers\AdminMembersController@generate')->name('members.generate');
     Route::POST('search/member', 'App\Http\Controllers\AdminMembersController@searchMember')->name('members.search');
     Route::get('generate/member/credentials', 'App\Http\Controllers\AdminMembersController@generateCredentialMemberList')->name('members.credentials');
-    Route::get('member/list', 'App\Http\Controllers\CardController@listGenerator')->name('members.listGenerator');
+
 
     //Routes for listing the QRcodes
+    Route::post('QRcodeStatus', 'App\Http\Controllers\QRcodeController@QRcodeStatus')->name('QRcodeStatus');
     Route::get('QRcodeList', 'App\Http\Controllers\QRcodeController@QRcodeList')->name('QRcodeList');
-    Route::get('QRcodeListCustom', 'App\Http\Controllers\QRcodeController@QRcodeListWithParams')->name('QRcodeListCustom');
-    Route::get('QRcodeListSelect', 'App\Http\Controllers\QRcodeController@QRcodeListSelect')->name('QRcodeListSelect');
-    Route::post('QRcodeSelect', 'App\Http\Controllers\QRcodeController@QRcodeSelect')->name('QRcodeSelect');
 
-    Route::get('lock', 'App\Http\Controllers\CardController@lock')->name('lock');
-    Route::get('unlock', 'App\Http\Controllers\CardController@unlock')->name('unlock');
+    //General Routes
+    Route::get('lock', 'App\Http\Controllers\Dashboard\LockController@lock')->name('lock');
+    Route::get('unlock', 'App\Http\Controllers\Dashboard\LockController@unlock')->name('unlock');
 
+    //Routes for generating sheets
+    Route::get('sheet-QRcode', 'App\Http\Controllers\Dashboard\SheetGenerator@sheetQRcodeGenerator')->name('sheet.QRcode');
+    Route::get('sheet', 'App\Http\Controllers\Dashboard\SheetGenerator@sheetGenerator')->name('sheetGenerator');
 
 
 

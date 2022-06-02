@@ -163,7 +163,7 @@
 {{--                                <i class="fa fa-fw fa-search"></i>--}}
 {{--                            </button>--}}
                             <!-- END Open Search Section -->
-                      
+
 
 
                     </div>

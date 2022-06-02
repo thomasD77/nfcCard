@@ -14,40 +14,8 @@ use Illuminate\Support\Facades\View;
 
 class QRcodeController extends Controller
 {
-    //
-    public function QRcodeList()
-    {
-        $members = Member::query()
-            ->where('archived', 0)
-            ->get();
-
-        return view('admin.members.code', compact('members' ));
-    }
-
-    public function QRcodeListWithParams()
-    {
-        $members = listUrl::all();
-        $pdf = PDF::loadView('admin.members.code', compact('members'));
-
-        return $pdf->download('card-details.pdf');
-    }
-
-
-    public function QRcodeListSelect()
-    {
-        $members = listUrl::where('print', 1)->get();
-        $pdf = PDF::loadView('admin.members.code', compact('members'));
-
-        foreach ($members as $member) {
-            $member->print = 0;
-            $member->update();
-        }
-
-        return $pdf->download('card-details.pdf');
-    }
-
-
-    public function QRcodeSelect(Request $request)
+    //This is the option on the dashboard to select if the client wants QRcode on the SWAP cards
+    public function QRcodeStatus(Request $request)
     {
         if($request->flexRadioDefault == 'ja'){
             $status = 1;
@@ -61,7 +29,18 @@ class QRcodeController extends Controller
         $QRcode->status = $status;
         $QRcode->update();
 
-        return redirect('/admin');
+        return redirect()->route('admin.home');
     }
+
+    //
+    public function QRcodeList()
+    {
+        $members = Member::query()
+            ->where('archived', 0)
+            ->get();
+
+        return view('admin.members.code', compact('members' ));
+    }
+
 }
 

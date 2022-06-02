@@ -65,7 +65,7 @@
                 @enderror
             </div>
             <div class="form-group mb-4">
-                {!! Form::label('notes','Notes:',['class'=>'form-label']) !!}
+                {!! Form::label('notes','About me:',['class'=>'form-label']) !!}
                 {!! Form::textarea('notes',$member->notes ,['class'=>'form-control']) !!}
                 @error('notes')
                 <p class="text-danger mt-2"> {{ $message }}</p>

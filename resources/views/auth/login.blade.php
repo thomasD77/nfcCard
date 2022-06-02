@@ -16,11 +16,6 @@
                             @if (Route::has('password.request'))
                                 <a class="btn-block-option fs-sm" href="{{ route('password.request') }}">Forgot Password?</a>
                             @endif
-{{--                            @guest--}}
-{{--                                @if (Route::has('register'))--}}
-{{--                                    <a class="btn-block-option" data-bs-toggle="tooltip" data-bs-placement="left" title="New Account" href="{{ route('register') }}"><i class="fa fa-user-plus"></i></a>--}}
-{{--                                @endif--}}
-{{--                            @endguest--}}
                         </div>
                     </div>
                     <div class="block-content">
@@ -29,7 +24,6 @@
                             <p class="fw-medium text-muted">
                                 Welcome, please login.
                             </p>
-
                             <!-- Sign In Form -->
                             <!-- jQuery Validation (.js-validation-signin class is initialized in js/pages/op_auth_signin.min.js which was auto compiled from _js/pages/op_auth_signin.js) -->
                             <!-- For more info and examples you can check out https://github.com/jzaefferer/jquery-validation -->
@@ -71,7 +65,16 @@
                             </form>
                             <!-- END Sign In Form -->
 
+                            @php
+                                $url = \App\Models\URL::first();
+                            @endphp
 
+                            <div class=" bg-gray-light text-dark p-2 rounded text-center">
+                                <p class="fw-medium text-muted">
+                                    Reminder: if you want to login on your desktop please use following login: <br>
+                                </p>
+                                <a class="text-dark" href="{{ $url->url }}"><strong>{{ $url->url }}</strong></a>
+                            </div>
 
                         </div>
                     </div>
