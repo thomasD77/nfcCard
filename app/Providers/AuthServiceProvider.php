@@ -45,5 +45,16 @@ class AuthServiceProvider extends ServiceProvider
             $permission = 'is_employee';
             return $user = $user->permissions()->contains($permission);
         });
+
+        Gate::define('is_allowed', function ($user, $member){
+
+            if($member->user_id != $user->id){
+                return false;
+            }
+
+            return true;
+        });
+
+
     }
 }

@@ -49,6 +49,7 @@
     </div>
     <!-- END Hero -->
 
+    @can('is_allowed', $member)
     <!-- Page Content -->
     <div class="content content-boxed">
 
@@ -80,7 +81,9 @@
             </div>
             <!-- END member Profile -->
         </div>
-        <!-- END Page Content -->
+
+    <!-- END Page Content -->
+    @endcan
 
 @endsection
 
