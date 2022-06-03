@@ -46,9 +46,18 @@ class AuthServiceProvider extends ServiceProvider
             return $user = $user->permissions()->contains($permission);
         });
 
-        Gate::define('is_allowed', function ($user, $member){
+        Gate::define('is_member', function ($user, $member){
 
             if($member->user_id != $user->id){
+                return false;
+            }
+
+            return true;
+        });
+
+        Gate::define('is_user', function ($user, $current_user){
+
+            if($current_user->id != $user->id){
                 return false;
             }
 

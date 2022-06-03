@@ -49,7 +49,7 @@
     </div>
     <!-- END Hero -->
 
-    @can('is_allowed', $member)
+    @can('is_member', $member)
     <!-- Page Content -->
     <div class="content content-boxed">
 

@@ -49,6 +49,7 @@
     </div>
     <!-- END Hero -->
 
+    @can('is_user', $user)
     <!-- Page Content -->
     <div class="content content-boxed">
         <!-- User Profile -->
@@ -219,6 +220,7 @@
         <!-- END Delete User -->
         @endcanany
     </div>
+    @endcan
 
 
 
