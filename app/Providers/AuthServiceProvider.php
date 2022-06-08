@@ -48,7 +48,7 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('is_member', function ($user, $member){
 
-            if($member->user_id != $user->id){
+            if($member->user_id != $user->id && $user->roles->first()->name == 'client'){
                 return false;
             }
 
@@ -57,7 +57,7 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('is_user', function ($user, $current_user){
 
-            if($current_user->id != $user->id){
+            if($current_user->id != $user->id && $user->roles->first()->name == 'client'){
                 return false;
             }
 

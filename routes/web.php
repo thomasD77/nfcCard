@@ -91,12 +91,12 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
 
     //Page Routes
     Route::get('/', [App\Http\Controllers\AdminHomeController::class, 'index'])->name('admin.home');
-    Route::resource('credentials', App\Http\Controllers\AdminCompanyCredentialsController::class);
-    Route::resource('homePage', App\Http\Controllers\HomePageController::class);
-    Route::resource('disclaimer', App\Http\Controllers\DisclaimerController::class);
-    Route::resource('privacy', App\Http\Controllers\PrivacyController::class);
-    Route::resource('cookie', App\Http\Controllers\CookieController::class);
-    Route::resource('content', App\Http\Controllers\AdminContentController::class);
+//    Route::resource('credentials', App\Http\Controllers\AdminCompanyCredentialsController::class);
+//    Route::resource('homePage', App\Http\Controllers\HomePageController::class);
+//    Route::resource('disclaimer', App\Http\Controllers\DisclaimerController::class);
+//    Route::resource('privacy', App\Http\Controllers\PrivacyController::class);
+//    Route::resource('cookie', App\Http\Controllers\CookieController::class);
+//    Route::resource('content', App\Http\Controllers\AdminContentController::class);
 
     //User Routes
     Route::resource('users', App\Http\Controllers\AdminUsersController::class);
