@@ -35,7 +35,9 @@ class MembersGenerator extends Component
 
     public function render()
     {
-        $urls = listUrl::with(['package', 'material', 'member'])->simplePaginate($this->pagination);
+        $urls = listUrl::with(['package', 'material', 'member'])
+            ->simplePaginate($this->pagination);
+
         $materials = Material::pluck('name', 'id');
         $QRcode = \App\Models\QRCODE::first();
 

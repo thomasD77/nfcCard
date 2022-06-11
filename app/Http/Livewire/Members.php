@@ -12,7 +12,7 @@ class Members extends Component
 {
 
     use WithPagination;
-    public $pagination = 25;
+    public int $pagination = 25;
 
 
     public function select($id)

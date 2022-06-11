@@ -10,9 +10,9 @@ use Livewire\WithPagination;
 class Contact extends Component
 {
     use WithPagination;
-    public $datepicker = "";
-    public $pagination = 25;
-    public $datepicker_day = "";
+    public string $datepicker = "";
+    public int $pagination = 25;
+    public string $datepicker_day = "";
 
 
     public function archiveContact($id)

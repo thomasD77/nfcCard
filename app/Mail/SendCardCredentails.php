@@ -31,13 +31,7 @@ class SendCardCredentails extends Mailable
      */
     public function build()
     {
-//        return $this->subject("Hi Again! I have some information for you. ")
-//            ->from($this->member->email)
-//            ->view('emails.card-credentails');
-
         return $this->subject("Hi Again! I have some information for you.")
         ->markdown('emails.card-credentails');
-            
-
     }
 }
