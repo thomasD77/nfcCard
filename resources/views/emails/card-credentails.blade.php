@@ -37,7 +37,7 @@
 
 @if($member['facebook'] != "")
 <a href="{{ $member['facebook'] }}">
-    <img src="{{asset('images/socials/facebook.png')}}" width="50" height="50" alt="">
+    <img src="{{asset('images/socials/instagram.png')}}" width="50" height="50" alt="">
 </a>
 @endif
 
