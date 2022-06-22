@@ -183,7 +183,7 @@ class AdminMembersController extends Controller
             $member->company = "";
         }
 
-        
+
         if($request->age !== NULL)
         {
             $member->age = $request->age;
@@ -197,7 +197,6 @@ class AdminMembersController extends Controller
         {
             $member->notes = $request->notes;
         }
-        else
         {
             $member->notes = "";
         }

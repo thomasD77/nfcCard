@@ -105,7 +105,6 @@
                             <form class="row mb-0" name="contactformulier"
                                   action="{{action('App\Http\Controllers\CardController@saveInfo', $member->card_id)}}"
                                   method="post"
-                                  autocomplete="on"
                                 >
                                 @csrf
                                 <div class="modal-content">
@@ -123,27 +122,37 @@
                                         <div class="mb-4 d-flex justify-content-start flex-column">
                                             <label class="form-label"
                                                    for="frontend-contact-firstname">Name</label>
-                                            <input type="text" class="form-control input_modal" name="name"
-                                                   placeholder="Enter your name...">
+                                            <input type="text"
+                                                   class="form-control input_modal"
+                                                   name="name"
+                                                   placeholder="Enter your name..."
+                                                   autocomplete="name"
+                                            >
                                             @error('name')
                                             <p class="text-danger mt-2"> {{ $message }}</p>
                                             @enderror
                                         </div>
                                         <div class="mb-4">
                                             <label class="form-label" for="frontend-contact-email">Email</label>
-                                            <input type="email" class="form-control input_modal" name="email"
+                                            <input type="email"
+                                                   class="form-control input_modal"
+                                                   name="email"
+                                                   autocomplete="email"
                                                    placeholder="Enter your email...">
                                             @error('email')
                                             <p class="text-danger mt-2"> {{ $message }}</p>
                                             @enderror
                                         </div>
                                         <div class="mb-4">
-                                           
+
                                             <label class="form-label" for="frontend-contact-email">Phone</label>
-                                            
-                                            <input type="text" class="form-control input_modal" name="phone"
-                                            placeholder="Enter your phone...">
-                                            
+
+                                            <input type="text" class="form-control input_modal"
+                                                   name="phone"
+                                                   placeholder="Enter your phone..."
+                                                   autocomplete="phone"
+                                            >
+
                                         </div>
                                         <div class="mb-4">
                                             <a style="color: #AEB0B8" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -162,20 +171,20 @@
 
                                         <div class="bodem mb-5 pt-4 mt-5">
 
-                                            
+
                                             <div class="">
                                                 <strong>Only Save</strong>
                                                 <p>If you only want to save my contact download here.</p>
                                             </div>
-                                
+
                                             <a href="{{ route('members.vCard', $member->card_id) }}"
                                                id="closeNow"
                                                style="text-decoration: none; color: white"
                                                class="btn_cstm input_modal p-2">
-                                                 <i class="fa fa-floppy-disk me-1 opacity-50"></i> SAVE 
+                                                 <i class="fa fa-floppy-disk me-1 opacity-50"></i> SAVE
                                             </a>
-                                            
-                                           
+
+
                                         </div>
                                     </div>
                                 </div>
