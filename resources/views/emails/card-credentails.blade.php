@@ -35,11 +35,13 @@
 @endif
 
 
-<a href="{{ $member['facebook'] }}">
-    <img src="{{asset('images/socials/facebook.png')}}" width="50" height="50" alt="">
+<a href="https://{{$member->website }}">
+    <img src="{{asset('images/socials/website.png')}}" width="80" height="80" alt="">
 </a>
 
-
+<a href="{{ $member['facebook'] }}">
+    <img src="{{asset('images/socials/facebook.png')}}" width="80" height="80" alt="">
+</a>
 
 
 
