@@ -34,6 +34,12 @@
 <p>{{ $member['company'] }}</p>
 @endif
 
+@if($member['facebook'] != "")
+    <a href="{{ $member['facebook'] }}"><i class="fa-brands fa-facebook mr-2"></i></a>
+@endif
+
+
+
 
 <h3 style="margin-top: 80px; margin-bottom: 5px">Aarzel niet om mij te contacteren! </h3>
 <h3>Graag tot binnenkort. </h3>
