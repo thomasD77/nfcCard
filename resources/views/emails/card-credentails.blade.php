@@ -38,6 +38,8 @@
     <a href="{{ $member['facebook'] }}"><i class="fa-brands fa-facebook mr-2"></i></a>
 @endif
 
+<img src="{{asset('images/innova_logo.png')}}" alt="">
+
 
 
 
