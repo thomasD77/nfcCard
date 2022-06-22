@@ -104,7 +104,9 @@
                         <div class="modal-dialog mt-0">
                             <form class="row mb-0" name="contactformulier"
                                   action="{{action('App\Http\Controllers\CardController@saveInfo', $member->card_id)}}"
-                                  method="post">
+                                  method="post"
+                                  autocomplete="on"
+                                >
                                 @csrf
                                 <div class="modal-content">
                                     <div class="d-flex justify-content-end me-3">
