@@ -36,17 +36,21 @@
 
 @if($member['website'] != "")
 <a href="https://{{$member->website }}">
-    <img src="{{asset('images/socials/website.png')}}" width="80" height="80" alt="">
+    <img src="{{asset('images/socials/website.png')}}" width="50" height="50" alt="">
 </a>
 @endif
 
 @if($member['facebook'] != "")
 <a href="{{ $member['facebook'] }}">
-    <img src="{{asset('images/socials/facebook.png')}}" width="80" height="80" alt="">
+    <img src="{{asset('images/socials/facebook.png')}}" width="50" height="50" alt="">
 </a>
 @endif
 
-
+@if($member['instagram'] != "")
+    <a href="{{ $member['instagram'] }}">
+        <img src="{{asset('images/socials/instagram.png')}}" width="80" height="80" alt="">
+    </a>
+@endif
 
 
 
