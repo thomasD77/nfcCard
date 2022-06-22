@@ -34,30 +34,38 @@
 <p>{{ $member['company'] }}</p>
 @endif
 
+<div>
+    @if($member['instagram'] != "")
+        <a href="{{ $member['instagram'] }}">
+            <img src="{{asset('images/socials/instagram.png')}}" width="50" height="50" alt="">
+        </a>
+    @endif
+</div>
 
-@if($member['instagram'] != "")
-<a href="{{ $member['instagram'] }}">
-    <img src="{{asset('images/socials/instagram.png')}}" width="50" height="50" alt="">
-</a>
-@endif
+<div>
+    @if($member['instagram'] != "")
+        <a href="{{ $member['instagram'] }}">
+            <img src="{{asset('images/socials/instagram.png')}}" width="50" height="50" alt="">
+        </a>
+    @endif
+</div>
 
-@if($member['instagram'] != "")
-    <a href="{{ $member['instagram'] }}">
-        <img src="{{asset('images/socials/instagram.png')}}" width="50" height="50" alt="">
-    </a>
-@endif
+<div>
+    @if($member['instagram'] != "")
+        <a href="{{ $member['instagram'] }}">
+            <img src="{{asset('images/socials/instagram.png')}}" width="50" height="50" alt="">
+        </a>
+    @endif
+</div>
 
-@if($member['instagram'] != "")
-    <a href="{{ $member['instagram'] }}">
-        <img src="{{asset('images/socials/instagram.png')}}" width="50" height="50" alt="">
-    </a>
-@endif
+<div>
+    @if($member['instagram'] != "")
+        <a href="{{ $member['instagram'] }}">
+            <img src="{{asset('images/socials/instagram.png')}}" width="50" height="50" alt="">
+        </a>
+    @endif
+</div>
 
-@if($member['instagram'] != "")
-    <a href="{{ $member['instagram'] }}">
-        <img src="{{asset('images/socials/instagram.png')}}" width="50" height="50" alt="">
-    </a>
-@endif
 
 
 
