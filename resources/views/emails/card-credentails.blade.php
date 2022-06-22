@@ -34,41 +34,11 @@
 <p>{{ $member['company'] }}</p>
 @endif
 
-{{--@if($member['website'] != "")--}}
-{{--    <a href="https://{{$member->website }}">--}}
-{{--        <img src="{{asset('images/socials/website.png')}}" width="80" height="80" alt="">--}}
-{{--    </a>--}}
-{{--@endif--}}
-@if($member['facebook'] != "")
-    <a href="{{ $member['facebook'] }}">
-        <img src="{{asset('images/socials/facebook.png')}}" width="80" height="80" alt="">
-    </a>
-@endif
-{{--@if($member['instagram'] != "")--}}
-{{--    <a href="{{ $member['instagram'] }}">--}}
-{{--        <img src="{{asset('images/socials/instagram.png')}}" width="80" height="80" alt="">--}}
-{{--    </a>--}}
-{{--@endif--}}
-{{--@if($member['linkedIn'] != "")--}}
-{{--    <a href="{{ $member['linkedIn'] }}">--}}
-{{--        <img src="{{asset('images/socials/linkedin.png')}}" width="80" height="80" alt="">--}}
-{{--    </a>--}}
-{{--@endif--}}
-{{--@if($member['twitter'] != "")--}}
-{{--    <a href="{{ $member['twitter'] }}">--}}
-{{--        <img src="{{asset('images/socials/twitter.png')}}" width="80" height="80" alt="">--}}
-{{--    </a>--}}
-{{--@endif--}}
-{{--@if($member['tikTok'] != "")--}}
-{{--    <a href="{{ $member['tikTok'] }}">--}}
-{{--        <img src="{{asset('images/socials/tiktok.png')}}" width="80" height="80" alt="">--}}
-{{--    </a>--}}
-{{--@endif--}}
-{{--@if($member['whatsApp'] != "")--}}
-{{--    <a href="https://wa.me/{{ $member->whatsApp }}">--}}
-{{--        <img src="{{asset('images/socials/whatsapp.png')}}" width="80" height="80" alt="">--}}
-{{--    </a>--}}
-{{--@endif--}}
+
+<a href="{{ $member['facebook'] }}">
+    <img src="{{asset('images/socials/facebook.png')}}" width="50" height="50" alt="">
+</a>
+
 
 
 
