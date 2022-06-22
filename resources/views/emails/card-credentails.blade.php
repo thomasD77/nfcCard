@@ -36,7 +36,7 @@
 
 
 
-<div class="row">
+
 
     <div class="column">
         @if($member['instagram'] != "")
@@ -69,7 +69,7 @@
             </a>
         @endif
     </div>
-</div>
+
 
 
 
