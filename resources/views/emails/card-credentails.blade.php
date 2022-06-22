@@ -46,11 +46,13 @@
 </a>
 @endif
 
-@if($member['instagram'] != "")
-    <a href="{{ $member['instagram'] }}">
-        <img src="{{asset('images/socials/instagram.png')}}" width="80" height="80" alt="">
+@if($member['website'] != "")
+    <a href="{{ $member['website'] }}">
+        <img src="{{asset('images/socials/website.png')}}" width="50" height="50" alt="">
     </a>
 @endif
+
+
 
 
 
