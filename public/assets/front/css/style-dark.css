@@ -210,6 +210,9 @@ select option,
 .website {
     background-color: #bd081c
 }
+.custom {
+    background-color: rgba(255, 230, 0, 0.85)
+}
 
 .btn_close{
     background-color: transparent;

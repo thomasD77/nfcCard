@@ -300,6 +300,13 @@
                                              <a class="w-100" target="_blank" href="https://wa.me/{{ $member->whatsApp }}"><button type="submit" class="btn_cstm whatsApp w-100 mt-2"><i class="fa-brands fa-whatsapp mx-2"></i>WhatsApp</button></a>
                                         </div>
                                     @endif
+
+                                    @if($member->customField && $member->customText)
+                                        <!-- Custom -->
+                                        <div class="col-12 d-flex justify-content-center">
+                                            <a class="w-100" target="_blank" href="{{ $member->customField }}"><button type="submit" class="btn_cstm custom w-100 mt-2"><i class="fa-solid fa-play mx-2"></i>{{ $member->customText }}</button></a>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>

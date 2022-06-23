@@ -44,6 +44,8 @@ class MemberRequest extends FormRequest
             'tikTok'=>'max:90',
             'whatsApp'=>'max:90',
             'email'=>'max:90',
+            'customField'=>'max:90',
+            'customText'=>'max:30',
             'shortDescription'=>'max:390',
 
         ];

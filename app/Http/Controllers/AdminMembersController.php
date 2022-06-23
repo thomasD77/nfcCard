@@ -368,6 +368,24 @@ class AdminMembersController extends Controller
             $member->whatsApp = "";
         }
 
+        if($request->customField !== NULL)
+        {
+            $member->customField = $request->customField;
+        }
+        else
+        {
+            $member->customField = "";
+        }
+
+        if($request->customText !== NULL)
+        {
+            $member->customText = $request->customText;
+        }
+        else
+        {
+            $member->customText = "";
+        }
+
         if($file = $request->file('avatar_id')){
             $name = time(). $file->getClientOriginalName();
             $file->move('card/avatars', $name);

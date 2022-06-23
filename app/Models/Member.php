@@ -28,6 +28,8 @@ class Member extends Model
             'postalCode',
             'country',
             'jobTitle',
+            'customField',
+            'customText',
             'shortDescription',
             'notes',
             'facebook',
