@@ -15,6 +15,7 @@ class ContactClient extends Component
     public $datepicker = "";
     public $pagination = 25;
     public $datepicker_day = "";
+    public $name;
 
 
     public function archiveContact($id)
@@ -39,6 +40,7 @@ class ContactClient extends Component
             $contacts = \App\Models\Contact::with(['member'])
                 ->where('archived', 0)
                 ->where('member_id', $user_id)
+                ->where('name', 'LIKE', '%' . $this->name . '%')
                 ->latest()
                 ->simplePaginate($this->pagination);
 

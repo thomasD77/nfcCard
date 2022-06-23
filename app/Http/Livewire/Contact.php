@@ -13,6 +13,7 @@ class Contact extends Component
     public string $datepicker = "";
     public int $pagination = 25;
     public string $datepicker_day = "";
+    public $name;
 
 
     public function archiveContact($id)
@@ -36,6 +37,7 @@ class Contact extends Component
             $contacts = \App\Models\Contact::with(['member'])
                 ->where('archived', 0)
                 ->latest()
+                ->where('name', 'LIKE', '%' . $this->name . '%')
                 ->simplePaginate($this->pagination);
             return view('livewire.contact', compact('contacts'));
         }
@@ -67,6 +69,7 @@ class Contact extends Component
 
             return view('livewire.contact', compact('contacts'));
         }
+
 
     }
 }
