@@ -471,6 +471,7 @@ class AdminMembersController extends Controller
         $members = Member::where(function($q) use($member_value) {
             $q->where('firstname', 'LIKE', '%' . $member_value . '%')
                 ->Orwhere('lastname', 'LIKE', '%' . $member_value . '%')
+                ->Orwhere('referral', 'LIKE', '%' . $member_value . '%')
                 ->where('archived', 0);
         })->paginate(25);
 
