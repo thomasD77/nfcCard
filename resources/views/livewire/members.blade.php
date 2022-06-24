@@ -20,6 +20,9 @@
                     </div>
                 </form>
                 <!-- END Search Form -->
+                <!-- Search Form (visible on larger screens) -->
+                <input type="text" wire:model="member_value" class="form-control form-control-alt" placeholder="Search for member credentials..." id="page-header-search-input2" name="member">
+                <!-- END Search Form -->
                 <div>
                     <!-- Member list  -->
                     <a class="btn btn-alt-warning" role="button" href="{{ route('members.credentials') }}">

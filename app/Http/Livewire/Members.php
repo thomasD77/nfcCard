@@ -13,6 +13,7 @@ class Members extends Component
 
     use WithPagination;
     public int $pagination = 25;
+    public $member_value;
 
 
     public function select($id)
@@ -31,7 +32,6 @@ class Members extends Component
         }
     }
 
-
     public function archiveMember($id)
     {
         $member = Member::findOrFail($id);
@@ -41,10 +41,20 @@ class Members extends Component
 
     public function render()
     {
+        if($this->member_value){
+            $value = $this->member_value;
+            $members = Member::where(function($q) use($value) {
+                $q->where('firstname', 'LIKE', '%' . $value . '%')
+                    ->Orwhere('lastname', 'LIKE', '%' . $value . '%')
+                    ->Orwhere('referral', 'LIKE', '%' . $value . '%')
+                    ->where('archived', 0);
+            })->simplePaginate($this->pagination);
 
-        $members = Member::with(['user', 'package', 'material'])
-            ->where('archived', 0)
-            ->simplePaginate($this->pagination);
+        }else{
+            $members = Member::with(['user', 'package', 'material'])
+                ->where('archived', 0)
+                ->simplePaginate($this->pagination);
+        }
 
         $active_user = Auth::user()->id;
         $member = Member::where('user_id', $active_user)->first();
