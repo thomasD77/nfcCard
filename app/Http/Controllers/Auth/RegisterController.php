@@ -104,7 +104,7 @@ class RegisterController extends Controller
         $member->material_id = $listURL->material_id;
         $member->package_id = $listURL->package_id;
         $member->titleMessage = "Thank you for this amazing SWAP";
-        $member->referral = '#' . $faker->unique()->numberBetween($min = 1000, $max = 10000);
+        $member->referral = '#' . $faker->unique()->numberBetween($min = 10, $max = 100) . '-' . $faker->unique()->numberBetween($min = 10000, $max = 100000);
         $member->save();
 
         //Connect User with member
