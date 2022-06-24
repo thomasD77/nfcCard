@@ -12,16 +12,9 @@
                 </select>
                 <!-- End Pagination -->
                 <!-- Search Form (visible on larger screens) -->
-                <form class="d-none d-md-inline-block col-6" action="{{action('App\Http\Controllers\AdminMembersController@searchMember')}}" method="POST">
-                    @csrf
-                    <div class="input-group input-group-sm">
-                        <input type="text" class="form-control form-control-alt" placeholder="Search for member name..." id="page-header-search-input2" name="member">
-                        <span class="input-group-text border-0"><button class="border border-0" type="submit"><i class="fa fa-fw fa-search"></i></button></span>
-                    </div>
-                </form>
-                <!-- END Search Form -->
-                <!-- Search Form (visible on larger screens) -->
-                <input type="text" wire:model="member_value" class="form-control form-control-alt" placeholder="Search for member credentials..." id="page-header-search-input2" name="member">
+                <div class="d-none d-md-inline-block col-6">
+                    <input type="text" wire:model="member_value" class="form-control form-control-alt" placeholder="Search for member credentials..." id="page-header-search-input2" name="member">
+                </div>
                 <!-- END Search Form -->
                 <div>
                     <!-- Member list  -->
