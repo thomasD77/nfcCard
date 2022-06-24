@@ -82,6 +82,7 @@ class RegisterController extends Controller
         $url = URL::first()->url;
         $member = new Member();
         $listURL = listUrl::where('id', $data['card_id'])->first();
+        $faker = Faker\Factory::create();
 
         $user = User::create([
             'name' => $data['name'],
@@ -103,6 +104,7 @@ class RegisterController extends Controller
         $member->material_id = $listURL->material_id;
         $member->package_id = $listURL->package_id;
         $member->titleMessage = "Thank you for this amazing SWAP";
+        $member->referral = '#' . $faker->unique()->numberBetween($min = 1000, $max = 10000);
         $member->save();
 
         //Connect User with member

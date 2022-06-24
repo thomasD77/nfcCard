@@ -52,6 +52,29 @@
     @can('is_user', $user)
     <!-- Page Content -->
     <div class="content content-boxed">
+        <!-- Referral User  -->
+        <div class="block block-rounded">
+            <div class="block-header block-header-default">
+                <h3 class="block-title">Referral code </h3>
+            </div>
+            <div class="block-content">
+                <div class="row push">
+                    <div class="col-lg-4">
+                        <p class="fs-sm text-muted">
+                            Here you can see your referral code. Give this to people you know who wants a SWAP Card and get your 1 free year SWAP membership!
+                        </p>
+                    </div>
+                    <div class="col-lg-8 col-xl-5">
+                        <!-- Referral code -->
+                        <h5 class="badge badge-success text-white p-2">
+                            {{ $user->member ? $user->member->referral : "" }}
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END Delete User -->
+
         <!-- User Profile -->
         <div class="block block-rounded">
             <div class="block-header block-header-default">
