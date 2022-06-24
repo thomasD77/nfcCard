@@ -24,7 +24,7 @@ class AddReferralsToMembersTable extends Migration
 
         if($members){
             foreach ($members as $member){
-                $member->referral = '#' . $faker->unique()->numberBetween($min = 1000, $max = 10000);
+                $member->referral = '#' . $faker->unique()->numberBetween($min = 10, $max = 100) . '-' . $faker->unique()->numberBetween($min = 10000, $max = 100000);
                 $member->update();
             }
         }
