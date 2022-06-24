@@ -66,7 +66,7 @@
                     </div>
                     <div class="col-lg-8 col-xl-5">
                         <!-- Referral code -->
-                        <h5 class="badge badge-success text-white p-2">
+                        <h5 class="badge bg-success text-white p-2">
                             {{ $user->member ? $user->member->referral : "" }}
                         </h5>
                     </div>
