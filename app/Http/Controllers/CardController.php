@@ -59,32 +59,94 @@ class CardController extends Controller
 
 
         // define variables
-        $lastname = $member->lastname;
-        $firstname = $member->firstname;
+
+        if($state->lastname){
+            $lastname = $member->lastname;
+        }else {
+            $lastname = "";
+        }
+
+        if($state->lastname){
+            $firstname = $member->firstname;
+        }else {
+            $firstname = "";
+        }
+
         $additional = '';
         $prefix = '';
         $suffix = '';
 
         // add personal data
-        if($state->lastname){
-            $vcard->addName($lastname, $firstname, $additional, $prefix, $suffix);
+
+        $vcard->addName($lastname, $firstname, $additional, $prefix, $suffix);
+
+        if($state->age) {
+            $vcard->addBirthday($member->age);
         }
-        $vcard->addBirthday($member->age);
 
         // add work data
-        $vcard->addCompany($member->company);
-        $vcard->addJobtitle($member->jobTitle);
-        $vcard->addEmail($member->email);
-        $vcard->addPhoneNumber($member->mobile );
-        $vcard->addPhoneNumber($member->mobileWork );
-        $vcard->addAddress(null, null, $member->addressLine1, $member->city, null, $member->postalCode, $member->country);
-        $vcard->addURL($member->website);
+
+        if($state->company) {
+            $vcard->addCompany($member->company);
+        }
+
+        if($state->jobTitle) {
+            $vcard->addJobtitle($member->jobTitle);
+        }
+
+        if($state->email) {
+            $vcard->addEmail($member->email);
+        }
+
+        if($state->mobile) {
+            $vcard->addPhoneNumber($member->mobile);
+        }
+
+        if($state->mobileWork) {
+            $vcard->addPhoneNumber($member->mobileWork);
+        }
+
+
+        if($state->addressLine1){
+            $addressLine1 = $member->addressLine1;
+        }else {
+            $addressLine1 = "";
+        }
+
+        if($state->city){
+            $city = $member->city;
+        }else {
+            $city = "";
+        }
+
+        if($state->postalCode){
+            $postalCode = $member->postalCode;
+        }else {
+            $postalCode = "";
+        }
+
+        if($state->country){
+            $country = $member->country;
+        }else {
+            $country = "";
+        }
+
+
+        $vcard->addAddress(null, null, $addressLine1, $city, null, $postalCode, $country);
+
+
+        if($state->website) {
+            $vcard->addURL($member->website);
+        }
+
         //$vcard->addPhoto($member->avatar ? asset('card/avatars/' . $member->avatar) : asset('/card/img/bg-vcard.png'));
-        $vcard->addNote($member->notes);
+
+        if($state->notes) {
+            $vcard->addNote($member->notes);
+        }
 
         // return vcard as a download
         return $vcard->download();
-
     }
 
 
