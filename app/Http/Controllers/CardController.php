@@ -66,7 +66,7 @@ class CardController extends Controller
             $lastname = "";
         }
 
-        if($state->lastname){
+        if($state->firstname){
             $firstname = $member->firstname;
         }else {
             $firstname = "";

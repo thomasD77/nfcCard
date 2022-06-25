@@ -37,6 +37,7 @@
                         <th scope="col">#</th>
                         <th scope="col">avatar</th>
                         <th scope="col">name</th>
+                        <th scope="col">Company</th>
                         <th scope="col"># Card ID</th>
                         <th scope="col">Material</th>
                         <th scope="col">user account</th>
@@ -53,6 +54,7 @@
                                 <td>{{ $loop->index + 1  }}</td>
                                 <td><img class="rounded-circle" height="62" width="62" src="{{$member->avatar ? asset('/card/avatars') . "/" . $member->avatar : asset('/assets/front/img/Avatar-4.svg') }}" alt="{{$member->name}}"></td>
                                 <td>{{$member->lastname ? $member->lastname : ""}} {{ $member->firstname ? $member->firstname : '' }}</td>
+                                <td>{{$member->company ? $member->company : ""}}</td>
                                 <td>{{$member->card_id ? $member->card_id : 'No Card ID'}}</td>
                                 <td>{{$member->material ? $member->material->name : 'No Material'}}</td>
                                 <td><a class="btn btn-outline-primary" href="{{ route('users.edit', $member->user->id) }}">{{$member->user ? $member->user->name : "unknown"}}</a></td>
