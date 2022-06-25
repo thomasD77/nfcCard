@@ -11,6 +11,7 @@ use App\Models\Member;
 use App\Models\Order;
 use App\Models\Package;
 use App\Models\Photo;
+use App\Models\State;
 use App\Models\URL;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -145,8 +146,16 @@ class AdminMembersController extends Controller
     {
         //
         $member = Member::findOrFail($id);
+        $state = State::where('member_id', $member->id)->first();
+
 
         //General
+
+        if($request->check_firstname !== NULL){
+            $state->firstname = $request->check_firstname;
+        }else {
+            $state->firstname = 0;
+        }
         if($request->firstname !== NULL)
         {
             $member->firstname = $request->firstname;
@@ -156,6 +165,11 @@ class AdminMembersController extends Controller
             $member->firstname = "";
         }
 
+        if($request->check_lastname !== NULL){
+            $state->lastname = $request->check_lastname;
+        }else {
+            $state->lastname = 0;
+        }
         if($request->lastname !== NULL)
         {
             $member->lastname = $request->lastname;
@@ -165,6 +179,11 @@ class AdminMembersController extends Controller
             $member->lastname = "";
         }
 
+        if($request->check_email !== NULL){
+            $state->email = $request->check_email;
+        }else {
+            $state->email = 0;
+        }
         if($request->email !== NULL)
         {
             $member->email = $request->email;
@@ -174,6 +193,11 @@ class AdminMembersController extends Controller
             $member->email = "";
         }
 
+        if($request->check_company !== NULL){
+            $state->company = $request->check_company;
+        }else {
+            $state->company = 0;
+        }
         if($request->company !== NULL)
         {
             $member->company = $request->company;
@@ -184,6 +208,11 @@ class AdminMembersController extends Controller
         }
 
 
+        if($request->check_age !== NULL){
+            $state->age = $request->check_age;
+        }else {
+            $state->age = 0;
+        }
         if($request->age !== NULL)
         {
             $member->age = $request->age;
@@ -193,6 +222,11 @@ class AdminMembersController extends Controller
             $member->age = NULL;
         }
 
+        if($request->check_notes !== NULL){
+            $state->notes = $request->check_notes;
+        }else {
+            $state->notes = 0;
+        }
         if($request->notes !== NULL)
         {
             $member->notes = $request->notes;
@@ -201,6 +235,11 @@ class AdminMembersController extends Controller
             $member->notes = "";
         }
 
+        if($request->check_jobTitle !== NULL){
+            $state->jobTitle = $request->check_jobTitle;
+        }else {
+            $state->jobTitle = 0;
+        }
         if($request->jobTitle !== NULL)
         {
             $member->jobTitle = $request->jobTitle;
@@ -210,6 +249,11 @@ class AdminMembersController extends Controller
             $member->jobTitle = "";
         }
 
+        if($request->check_shortDescription !== NULL){
+            $state->shortDescription = $request->check_shortDescription;
+        }else {
+            $state->shortDescription = 0;
+        }
         if($request->shortDescription !== NULL)
         {
             $member->shortDescription = $request->shortDescription;
@@ -219,6 +263,11 @@ class AdminMembersController extends Controller
             $member->shortDescription = "";
         }
 
+        if($request->check_website !== NULL){
+            $state->website = $request->check_website;
+        }else {
+            $state->website = 0;
+        }
         if($request->website !== NULL)
         {
             $member->website = $request->website;
@@ -250,6 +299,11 @@ class AdminMembersController extends Controller
 
 
         //Contact information
+        if($request->check_mobileWork !== NULL){
+            $state->mobileWork = $request->check_mobileWork;
+        }else {
+            $state->mobileWork = 0;
+        }
         if($request->mobileWork !== NULL)
         {
             $member->mobileWork = $request->mobileWork;
@@ -259,6 +313,11 @@ class AdminMembersController extends Controller
             $member->mobileWork = "";
         }
 
+        if($request->check_mobile !== NULL){
+            $state->mobile = $request->check_mobile;
+        }else {
+            $state->mobile = 0;
+        }
         if($request->mobile !== NULL)
         {
             $member->mobile = $request->mobile;
@@ -268,6 +327,11 @@ class AdminMembersController extends Controller
             $member->mobile = "";
         }
 
+        if($request->check_addressLine1 !== NULL){
+            $state->addressLine1 = $request->check_addressLine1;
+        }else {
+            $state->addressLine1 = 0;
+        }
         if($request->addressLine1 !== NULL)
         {
             $member->addressLine1 = $request->addressLine1;
@@ -277,6 +341,11 @@ class AdminMembersController extends Controller
             $member->addressLine1 = "";
         }
 
+        if($request->check_city !== NULL){
+            $state->city = $request->check_city;
+        }else {
+            $state->city = 0;
+        }
         if($request->city !== NULL)
         {
             $member->city = $request->city;
@@ -286,6 +355,11 @@ class AdminMembersController extends Controller
             $member->city = "";
         }
 
+        if($request->check_country !== NULL){
+            $state->country = $request->check_country;
+        }else {
+            $state->country = 0;
+        }
         if($request->country !== NULL)
         {
             $member->country = $request->country;
@@ -295,6 +369,11 @@ class AdminMembersController extends Controller
             $member->country = "";
         }
 
+        if($request->check_postalCode !== NULL){
+            $state->postalCode = $request->check_postalCode;
+        }else {
+            $state->postalCode = 0;
+        }
         if($request->postalCode !== NULL)
         {
             $member->postalCode = $request->postalCode;
@@ -305,6 +384,11 @@ class AdminMembersController extends Controller
         }
 
         //Socials
+        if($request->check_facebook !== NULL){
+            $state->facebook = $request->check_facebook;
+        }else {
+            $state->facebook = 0;
+        }
         if($request->facebook !== NULL)
         {
             $member->facebook = $request->facebook;
@@ -314,6 +398,11 @@ class AdminMembersController extends Controller
             $member->facebook = "";
         }
 
+        if($request->check_instagram !== NULL){
+            $state->instagram = $request->check_instagram;
+        }else {
+            $state->instagram = 0;
+        }
         if($request->instagram !== NULL)
         {
             $member->instagram = $request->instagram;
@@ -323,6 +412,11 @@ class AdminMembersController extends Controller
             $member->instagram = "";
         }
 
+        if($request->check_twitter !== NULL){
+            $state->twitter = $request->check_twitter;
+        }else {
+            $state->twitter = 0;
+        }
         if($request->twitter !== NULL)
         {
             $member->twitter = $request->twitter;
@@ -332,6 +426,11 @@ class AdminMembersController extends Controller
             $member->twitter = "";
         }
 
+        if($request->check_youTube !== NULL){
+            $state->youTube = $request->check_youTube;
+        }else {
+            $state->youTube = 0;
+        }
         if($request->youTube !== NULL)
         {
             $member->youTube = $request->youTube;
@@ -341,6 +440,11 @@ class AdminMembersController extends Controller
             $member->youTube = "";
         }
 
+        if($request->check_tikTok !== NULL){
+            $state->tikTok = $request->check_tikTok;
+        }else {
+            $state->tikTok = 0;
+        }
         if($request->tikTok !== NULL)
         {
             $member->tikTok = $request->tikTok;
@@ -350,6 +454,11 @@ class AdminMembersController extends Controller
             $member->tikTok = "";
         }
 
+        if($request->check_linkedIn !== NULL){
+            $state->linkedIn = $request->check_linkedIn;
+        }else {
+            $state->linkedIn = 0;
+        }
         if($request->linkedIn !== NULL)
         {
             $member->linkedIn = $request->linkedIn;
@@ -359,6 +468,11 @@ class AdminMembersController extends Controller
             $member->linkedIn = "";
         }
 
+        if($request->check_whatsApp !== NULL){
+            $state->whatsApp = $request->check_whatsApp;
+        }else {
+            $state->whatsApp = 0;
+        }
         if($request->whatsApp !== NULL)
         {
             $member->whatsApp = $request->whatsApp;
@@ -368,6 +482,11 @@ class AdminMembersController extends Controller
             $member->whatsApp = "";
         }
 
+        if($request->check_customField !== NULL){
+            $state->customField = $request->check_customField;
+        }else {
+            $state->customField = 0;
+        }
         if($request->customField !== NULL)
         {
             $member->customField = $request->customField;
@@ -386,6 +505,11 @@ class AdminMembersController extends Controller
             $member->customText = "";
         }
 
+        if($request->check_avatar !== NULL){
+            $state->avatar = $request->check_avatar;
+        }else {
+            $state->avatar = 0;
+        }
         if($file = $request->file('avatar_id')){
             $name = time(). $file->getClientOriginalName();
             $file->move('card/avatars', $name);
@@ -393,6 +517,7 @@ class AdminMembersController extends Controller
         }
 
         $member->update();
+        $state->update();
 
         \Brian2694\Toastr\Facades\Toastr::success('Member Successfully Updated');
         return redirect('/admin/members');

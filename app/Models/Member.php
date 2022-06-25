@@ -73,4 +73,10 @@ class Member extends Model
     {
         return $this->hasMany(Contact::class);
     }
+
+    public function state()
+    {
+        return $this->hasOne(State::class);
+    }
+
 }

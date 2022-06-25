@@ -17,6 +17,7 @@ use App\Models\Contact;
 use App\Models\listUrl;
 use App\Models\Member;
 use App\Models\Package;
+use App\Models\State;
 use App\Models\URL;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
@@ -54,6 +55,7 @@ class CardController extends Controller
         $vcard = new VCard();
 
         $member = Member::where('card_id', $id)->first();
+        $state = State::where('member_id', $member->id)->first();
 
 
         // define variables
@@ -64,7 +66,9 @@ class CardController extends Controller
         $suffix = '';
 
         // add personal data
-        $vcard->addName($lastname, $firstname, $additional, $prefix, $suffix);
+        if($state->lastname){
+            $vcard->addName($lastname, $firstname, $additional, $prefix, $suffix);
+        }
         $vcard->addBirthday($member->age);
 
         // add work data

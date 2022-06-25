@@ -71,21 +71,23 @@
         <!-- Header -->
         <header class="header box">
             <div class="header__left">
-                <div class="header__photo">
-                    <img class="header__photo-img" src=" {{ $member->avatar ? asset('card/avatars') . "/" . $member->avatar : asset('assets/front/img/main-photo.svg')}}" alt="{{ $member->firstname . $member->lastname }}">
-                </div>
+                @if($member->state->avatar)
+                    <div class="header__photo">
+                        <img class="header__photo-img" src=" {{ $member->avatar ? asset('card/avatars') . "/" . $member->avatar : asset('assets/front/img/main-photo.svg')}}" alt="avatar">
+                    </div>
+                @endif
                 <div class="header__base-info">
-                    @if($member->lastname || $member->firstname )
-                        <h4 class="title titl--h4">{{ $member->lastname . " " . $member->firstname }}</h4>
+                    @if($member->lastname || $member->firstname)
+                        <h4 class="title titl--h4">@if($member->state->lastname){{ $member->lastname}}@endif @if($member->state->firstname){{ $member->firstname  }}@endif</h4>
                         <br>
                     @endif
 
-                    @if($member->company)
+                    @if($member->company && $member->state->company)
                         <h5 class="status">{{ $member->company }}</h5>
                         <br>
                     @endif
 
-                    @if($member->jobTitle)
+                    @if($member->jobTitle && $member->state->jobTitle)
                         <div class="status">{{ $member->jobTitle }}</div>
                     @endif
                 </div>
@@ -199,28 +201,31 @@
 
             <div class="header__right">
                 <ul class="header__contact">
-                    @if($member->email)
+                    @if($member->email && $member->state->email)
                         <li><span class="overhead">Email</span>{{ $member->email }}</li>
                     @endif
 
-                    @if($member->mobileWork)
+                    @if($member->mobileWork && $member->state->mobileWork)
                         <li><span class="overhead">Work Phone</span>{{ $member->mobileWork }}</li>
                     @endif
 
-                    @if($member->mobile)
+                    @if($member->mobile && $member->state->mobile)
                         <li><span class="overhead">Personal Phone</span>{{ $member->mobile }}</li>
                     @endif
                 </ul>
                 <ul class="header__contact">
-                    @if($member->age)
+                    @if($member->age && $member->state->age)
                         <li><span class="overhead">Birthday</span>{{ \Carbon\Carbon::parse($member->age)->format('Y-M-d') }}</li>
                     @endif
 
-                    @if($member->addressLine1)
-                        <li><span class="overhead">Location</span>{{ $member->addressLine1 . ", " . $member->postalCode . ", " }}
-                            <br> {{ $member->city . ", " . $member->country  }}
-                        </li>
-                    @endif
+                    <li><span class="overhead">Location</span>
+                        @if($member->addressLine1 && $member->state->addressLine1){{ $member->addressLine1 }} @endif
+                        @if($member->postalCode && $member->state->postalCode){{ $member->postalCode }}@endif
+                        <br>
+                        @if($member->city && $member->state->city){{ $member->city }}@endif
+                        @if($member->country && $member->state->country){{ $member->country }}@endif
+                    </li>
+
                 </ul>
             </div>
         </header>
@@ -234,7 +239,7 @@
                     <div class="content">
                         <!-- ABOUT -->
                         <div id="about-tab" class="tabcontent active">
-                            @if($member->notes)
+                            @if($member->notes && $member->state->notes)
                                 <div class="pb-0 pb-sm-2">
                                     <h1 class="title title--h1 first-title title__separate">About Me</h1>
                                         <p> {{ $member->notes }}</p>
@@ -245,63 +250,63 @@
                             <div class="mt-1">
                                 <h2 class="title title--h3">My Socials</h2>
                                 <div class="row">
-                                    @if($member->website)
+                                    @if($member->website && $member->state->website)
                                         <!-- Website -->
                                         <div class="col-12 d-flex justify-content-center">
                                             <a class="w-100" target="_blank" href="https://{{$member->website }}"><button type="submit" class="btn_cstm website w-100 mt-2"><i class="fa-solid fa-earth-africa mx-2"></i>Website</button></a>
                                         </div>
                                     @endif
 
-                                    @if($member->facebook)
+                                    @if($member->facebook && $member->state->facebook)
                                         <!-- Facebook -->
                                         <div class="col-12 d-flex justify-content-center">
                                             <a class="w-100" target="_blank" href="{{ $member->facebook }}"><button type="submit" class="btn_cstm facebook w-100 mt-2"><i class="fa-brands fa-facebook mr-2"></i>Facebook</button></a>
                                         </div>
                                     @endif
 
-                                    @if($member->instagram)
+                                    @if($member->instagram && $member->state->instagram)
                                         <!-- Instagram -->
                                         <div class="col-12 d-flex justify-content-center">
                                              <a class="w-100" target="_blank" href="{{ $member->instagram }}"><button type="submit" class="btn_cstm instagram w-100 mt-2"><i class="fa-brands  fa-instagram mx-2"></i>Instagram</button></a>
                                         </div>
                                     @endif
 
-                                    @if($member->linkedIn)
+                                    @if($member->linkedIn && $member->state->linkedIn)
                                         <!-- LinkedIn -->
                                         <div class="col-12 d-flex justify-content-center">
                                              <a class="w-100" target="_blank" href="{{ $member->linkedIn }}"><button type="submit" class="btn_cstm w-100 linkedIn mt-2"><i class="fa-brands  fa-linkedin-in mx-2"></i>LinkedIn</button></a>
                                         </div>
                                     @endif
 
-                                    @if($member->twitter)
+                                    @if($member->twitter && $member->state->twitter)
                                         <!-- Twitter -->
                                         <div class="col-12 d-flex justify-content-center">
                                              <a class="w-100" target="_blank" href="{{ $member->twitter }}"><button type="submit" class="btn_cstm w-100 twitter mt-2"><i class="fa-brands  fa-twitter mx-2"></i>Twitter</button></a>
                                         </div>
                                     @endif
 
-                                    @if($member->youTube)
+                                    @if($member->youTube && $member->state->youTube)
                                         <!-- YouTube -->
                                         <div class="col-12 d-flex justify-content-center">
                                             <a class="w-100" target="_blank" href="{{ $member->youTube }}"> <button type="submit" class="w-100 btn_cstm youTube mt-2"><i class="fa-brands fa-youtube mx-2"></i>YouTube</button></a>
                                         </div>
                                     @endif
 
-                                    @if($member->tikTok)
+                                    @if($member->tikTok && $member->state->tikTok)
                                         <!-- TikTok -->
                                         <div class="col-12 d-flex justify-content-center">
                                             <a class="w-100" target="_blank" href="{{ $member->tikTok }}"> <button type="submit" class="btn_cstm tikTok w-100 mt-2"><i class="fa-brands fa-tiktok mx-2"></i>TikTok</button></a>
                                         </div>
                                     @endif
 
-                                    @if($member->whatsApp)
+                                    @if($member->whatsApp && $member->state->whatsApp)
                                         <!-- WhatsApp -->
                                         <div class="col-12 d-flex justify-content-center">
                                              <a class="w-100" target="_blank" href="https://wa.me/{{ $member->whatsApp }}"><button type="submit" class="btn_cstm whatsApp w-100 mt-2"><i class="fa-brands fa-whatsapp mx-2"></i>WhatsApp</button></a>
                                         </div>
                                     @endif
 
-                                    @if($member->customField && $member->customText)
+                                    @if($member->customField && $member->customText && $member->state->customField)
                                         <!-- Custom -->
                                         <div class="col-12 d-flex justify-content-center">
                                             <a class="w-100" target="_blank" href="{{ $member->customField }}"><button type="submit" class="btn_cstm custom w-100 mt-2"><i class="fa-solid fa-play mx-2"></i>{{ $member->customText }}</button></a>

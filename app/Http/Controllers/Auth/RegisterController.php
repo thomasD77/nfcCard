@@ -9,6 +9,7 @@ use App\Models\Member;
 use App\Models\URL;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use Faker\Factory;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -82,7 +83,7 @@ class RegisterController extends Controller
         $url = URL::first()->url;
         $member = new Member();
         $listURL = listUrl::where('id', $data['card_id'])->first();
-        $faker = Faker\Factory::create();
+        $faker = Factory::create();
 
         $user = User::create([
             'name' => $data['name'],
@@ -106,6 +107,11 @@ class RegisterController extends Controller
         $member->titleMessage = "Thank you for this amazing SWAP";
         $member->referral = '#' . $faker->unique()->numberBetween($min = 10, $max = 100) . '-' . $faker->unique()->numberBetween($min = 10000, $max = 100000);
         $member->save();
+
+        //Make card state connection
+        DB::table('states')->insert([
+            'member_id'=> $member->id,
+        ]);
 
         //Connect User with member
         $user->member_id = $member->id;
