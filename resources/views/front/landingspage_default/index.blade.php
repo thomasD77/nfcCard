@@ -159,7 +159,7 @@
 
                                         </div>
                                         <div class="mb-4">
-                                            <a style="color: #AEB0B8" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                            <a style="color: #AEB0B8" data-toggle="collapsed" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                                                 <label class="form-label" for="frontend-contact-email">Message <span style="font-style: italic; font-size: 10px">(optional)</span><i class=" mx-2 fa-solid fa-angles-down"></i></label>
                                             </a>
                                             <div class="collapse" id="collapseExample">
@@ -170,7 +170,7 @@
 
                                         </div>
                                         <button id="closemodal" type="submit" class="btn_cstm input_modal mb-3 w-100">
-                                            <i class="fa fa-paper-plane me-1 opacity-50"></i> SWAP
+                                            <i class="fa fa-paper-plane me-1 opacity-50"></i> SEND
                                         </button>
 
                                         <div class="bodem mb-5 pt-4 mt-5">
