@@ -158,17 +158,17 @@
                                             >
 
                                         </div>
-                                        <div class="mb-4">
-                                            <a style="color: #AEB0B8" data-toggle="collapsed" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                                <label class="form-label" for="frontend-contact-email">Message <span style="font-style: italic; font-size: 10px">(optional)</span><i class=" mx-2 fa-solid fa-angles-down"></i></label>
-                                            </a>
-                                            <div class="collapse" id="collapseExample">
-                                                <textarea name="message" placeholder="Enter your message... " class="form-control input_modal" id="" cols="5" rows="5"></textarea>
-                                            </div>
 
-                                            <input type="hidden" name="recaptcha" id="recaptcha">
+                                        <div class="mb-4">
+
+                                            <label class="form-label" for="frontend-contact-email">Message</label>
+
+                                            <textarea name="message" placeholder="Enter your message... " class="form-control input_modal" id="" cols="5" rows="5"></textarea>
 
                                         </div>
+
+                                        <input type="hidden" name="recaptcha" id="recaptcha">
+
                                         <button id="closemodal" type="submit" class="btn_cstm input_modal mb-3 w-100">
                                             <i class="fa fa-paper-plane me-1 opacity-50"></i> SEND
                                         </button>
@@ -184,7 +184,7 @@
                                             <a href="{{ route('members.vCard', $member->card_id) }}"
                                                id="closeNow"
                                                style="text-decoration: none; color: white"
-                                               class="btn_cstm input_modal p-2">
+                                               class="btn_cstm input_modal p-3">
                                                  <i class="fa fa-floppy-disk me-1 opacity-50"></i> SAVE
                                             </a>
 
