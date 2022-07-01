@@ -51,9 +51,11 @@
 
     <!-- Page Content -->
     <div class="content container-fluid">
-
-        <img class="img-fluid" src="{{ Auth()->user()->member->memberQRcode }}" alt="QRcode">
-
+        <div class="row">
+            <div class="d-flex justify-content-center mt-5">
+                {{$QRcode}}
+            </div>
+        </div>
     </div>
     <!-- END Page Content -->
 @endsection

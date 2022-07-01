@@ -31,4 +31,29 @@ class QRcodeController extends Controller
             return $QRcode;
         }
     }
+
+    public function fancyQRcode($id)
+    {
+        $Card_id = listUrl::findOrFail($id);
+
+        //If there is a custom QR code URL
+        if($Card_id->custom_QR_url != "")
+        {
+            $QRcode_url = $Card_id->custom_QR_url;
+            $QRcode = QrCode::size(200)->backgroundColor(235,238,242)->generate($QRcode_url);
+
+            return view ('admin.members.qrcode', compact('QRcode'));
+        }
+        //Then we program the default URL for the profile
+        else
+        {
+            $currentURL = URL::first()->url;
+            $QRcode_url = $currentURL . '/?' . $id;
+            $QRcode = QrCode::size(200)->backgroundColor(235,238,242)->generate($QRcode_url);
+
+            return view ('admin.members.qrcode', compact('QRcode'));
+        }
+    }
+
+
 }

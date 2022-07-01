@@ -55,7 +55,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::resource('members', App\Http\Controllers\AdminMembersController::class);
     Route::resource('orders', App\Http\Controllers\AdminOrderController::class);
     Route::get('archive/members', 'App\Http\Controllers\AdminMembersController@archive')->name('members.archive');
-    Route::view('member/show/QRcode', 'admin.members.qrcode')->name('QRcode.show');
+    Route::get('member/QRcode/show/{id}', 'App\Http\Controllers\QRcode\QRcodeController@fancyQRcode')->name('show.QRcode');
 
     //Routes for generating the URLS
     Route::POST('generate/member', 'App\Http\Controllers\AdminMembersController@generate')->name('members.generate');
