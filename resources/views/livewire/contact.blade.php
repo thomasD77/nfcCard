@@ -82,6 +82,11 @@
                                                     <p>{{$contact->phone ? $contact->phone : 'No Phone'}}</p>
                                                     <p><strong>Message:</strong></p>
                                                     <p>{{$contact->message ? $contact->message : 'No message'}}</p>
+                                                    <hr>
+                                                    <div class="d-flex justify-content-between mb-2">
+                                                        <p><strong>My notes:</strong></p> <button class="btn btn-primary" wire:click="showNotes"> <i  class="fa fa-fw fa-pencil-alt"></i></button>
+                                                    </div>
+                                                    <p class="bg-light p-2">{{$contact->notes ? $contact->notes : 'No notes'}}</p>
                                                 </div>
                                                 @if($showNotes)
                                                     <div class="modal-body">
