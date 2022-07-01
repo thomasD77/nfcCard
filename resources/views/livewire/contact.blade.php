@@ -75,13 +75,13 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <p><strong>Name:</strong></p>
-                                                    <p>{{$contact->name ? $contact->name : 'No Name'}}</p>
+                                                    <p class="bg-light p-2">{{$contact->name ? $contact->name : 'No Name'}}</p>
                                                     <p><strong>Email:</strong></p>
-                                                    <p>{{$contact->email ? $contact->email : 'No email'}}</p>
+                                                    <p class="bg-light p-2">{{$contact->email ? $contact->email : 'No email'}}</p>
                                                     <p><strong>Phone:</strong></p>
-                                                    <p>{{$contact->phone ? $contact->phone : 'No Phone'}}</p>
+                                                    <p class="bg-light p-2">{{$contact->phone ? $contact->phone : 'No Phone'}}</p>
                                                     <p><strong>Message:</strong></p>
-                                                    <p>{{$contact->message ? $contact->message : 'No message'}}</p>
+                                                    <p class="bg-light p-2">{{$contact->message ? $contact->message : 'No message'}}</p>
                                                     <hr>
                                                     <div class="d-flex justify-content-between mb-2">
                                                         <p><strong>My notes:</strong></p> <button class="btn btn-primary" wire:click="showNotes"> <i  class="fa fa-fw fa-pencil-alt"></i></button>
