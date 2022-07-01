@@ -89,7 +89,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'business' => $data['business'],
+            'business' => $listURL->business,
         ]);
 
         DB::table('user_role')->insert([

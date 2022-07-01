@@ -52,6 +52,12 @@ class CardCredentialsController extends Controller
             $url->custom_QR_url = $request->input_QR_url;
         }
 
+        if(!$request->business){
+            $url->business = 0;
+        }else {
+            $url->business = 1;
+        }
+
         $url->update();
 
 

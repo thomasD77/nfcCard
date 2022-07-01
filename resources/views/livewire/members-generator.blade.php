@@ -87,6 +87,14 @@
                                                 {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\Cards\CardCredentialsController@updateCard', $url->id],
                                                        'files'=>false]) !!}
                                                 <div class="form-group mb-4">
+
+                                                    <div class="form-group mb-4">
+                                                        <label class="form-label">Business account:</label>
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input" value="1" name="business" type="checkbox" id="flexSwitchCheckDefault" @if($url->business) checked @endif>
+                                                        </div>
+                                                    </div>
+
                                                     <div class="form-group mb-4">
                                                         {!! Form::label('one-profile-edit-email', 'Reservation for:', ['class'=>'form-label']) !!}
                                                         {!! Form::text('reservation',$url->reservation,['class'=>'form-control']) !!}
