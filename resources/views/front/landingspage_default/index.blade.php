@@ -218,14 +218,15 @@
                         <li><span class="overhead">Birthday</span>{{ \Carbon\Carbon::parse($member->age)->format('Y-M-d') }}</li>
                     @endif
 
-                    <li><span class="overhead">Location</span>
-                        @if($member->addressLine1 && $member->state->addressLine1){{ $member->addressLine1 }} @endif
-                        @if($member->postalCode && $member->state->postalCode){{ $member->postalCode }}@endif
-                        <br>
-                        @if($member->city && $member->state->city){{ $member->city }}@endif
-                        @if($member->country && $member->state->country){{ $member->country }}@endif
-                    </li>
-
+                    @if($member->state->addressLine1 || $member->state->postalCode || $member->state->city || $member->state->country  )
+                        <li><span class="overhead">Location</span>
+                            @if($member->addressLine1 && $member->state->addressLine1){{ $member->addressLine1 }} @endif
+                            @if($member->postalCode && $member->state->postalCode){{ $member->postalCode }}@endif
+                            <br>
+                            @if($member->city && $member->state->city){{ $member->city }}@endif
+                            @if($member->country && $member->state->country){{ $member->country }}@endif
+                        </li>
+                    @endif
                 </ul>
             </div>
         </header>
