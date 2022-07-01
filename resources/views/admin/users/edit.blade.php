@@ -75,24 +75,6 @@
         </div>
         <!-- END Referral User -->
 
-        <!-- Business Account  -->
-        <div class="block block-rounded">
-            <div class="block-header block-header-default">
-                <h3 class="block-title">Business Account</h3>
-            </div>
-            <div class="block-content">
-                <div class="row push">
-                    <div class="col-lg-4">
-                        <p class="fs-sm text-muted">Here you can check/uncheck this user his business account</p>
-                    </div>
-                    <div class="col-lg-8 col-xl-5">
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- END Business Account -->
-
         <!-- User Profile -->
         <div class="block block-rounded">
             <div class="block-header block-header-default">
