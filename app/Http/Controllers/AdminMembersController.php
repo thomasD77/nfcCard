@@ -227,13 +227,7 @@ class AdminMembersController extends Controller
         }else {
             $state->notes = 0;
         }
-        if($request->notes !== NULL)
-        {
-            $member->notes = $request->notes;
-        }
-        {
-            $member->notes = "";
-        }
+        $member->notes = $request->notes;
 
         if($request->check_jobTitle !== NULL){
             $state->jobTitle = $request->check_jobTitle;
