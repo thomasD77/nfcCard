@@ -72,31 +72,28 @@
                 <div class="header__photo">
                     <img class="header__photo-img" src=" {{ $member->avatar ? asset('card/avatars') . "/" . $member->avatar : asset('assets/front/img/main-photo.svg')}}" alt="{{ $member->firstname . $member->lastname }}">
                 </div>
-            
 
-                <a class="btn_cstm_download p-3 text-center my-3" style="color:white; text-decoration: none; list-style: none" href="{{ route('members.vCard', $member->card_id) }}">
-                <h3> {{ $member->titleMessage }} </h3>
+                <h4> {{ $member->titleMessage }} </h4>
                 @if($member->message)
                     <br>
-                        {{ $member->message}}
+                    {{ $member->message}}
                     <br>
                 @endif
 
-                <br> SAVE TO CONTACTS <br>
+                <a class="btn_cstm_download p-3 text-center my-5" style="color:white; text-decoration: none; list-style: none" href="{{ route('members.vCard', $member->card_id) }}">
+                    <strong>SAVE HERE</strong><br>
                     <i class="fa fa-2x fa-floppy-disk me-1 opacity-50"></i>
                 </a>
-                
-                <a class="btn_cstm save p-3 text-center my-3" style="color:white; text-decoration: none; list-style: none" href="{{ route('direction', $member->card_id) }}">
-                <i class="fa fa-rotate mr-2"></i> Back to profile
-                </a>
 
+                <a class="btn_cstm save p-3 text-center my-3" style="color:white; text-decoration: none; list-style: none" href="{{ route('direction', $member->card_id) }}">
+                    <i class="fa fa-rotate mr-2"></i> Back to profile
+                </a>
 
             </div>
 
-            
         </header>
 
-    
+
     </div>
 </main>
 
