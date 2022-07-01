@@ -104,7 +104,6 @@
                 </li>
                 <li class="nav-main-heading text-uppercase">My Card</li>
 
-
                 <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('members.index')}}">
                     <i class="nav-main-link-icon  far fa-calendar-alt"></i><span class="nav-main-link-name">ACCOUNT</span>
                 </a>
@@ -125,6 +124,12 @@
                         </ul>
                     </li>
                 @endif
+
+                <li class="nav-main-heading text-uppercase">QRCODE</li>
+
+                <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('QRcode.show')}}">
+                    <img width="80px" height="800px" class="img-fluid" src="{{ asset('images/content/QRcode.png') }}" alt="QRcode">
+                </a>
 
             </ul>
         </div>

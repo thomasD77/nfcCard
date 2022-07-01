@@ -157,6 +157,7 @@
                             </button>
                             <!-- END Toggle Mini Sidebar -->
 
+
                             <!-- Open Search Section (visible on smaller screens) -->
                             <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
 {{--                            <button type="button" class="btn btn-sm btn-alt-secondary d-md-none" data-toggle="layout" data-action="header_search_on">--}}
@@ -168,6 +169,10 @@
 
                     </div>
                     <!-- END Left Section -->
+
+                    <a class="text-center nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('QRcode.show')}}">
+                        <img width="35px" height="35px" class="img-fluid" src="{{ asset('images/content/QRcode.png') }}" alt="QRcode">
+                    </a>
 
                     <!-- Right Section -->
                     <div class="d-flex align-items-center">
