@@ -40,7 +40,7 @@
                             <a class="link-fx" href="javascript:void(0)">DataTable</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            QRCODE 
+                            QRCODE
                         </li>
                     </ol>
                 </nav>
@@ -52,7 +52,7 @@
     <!-- Page Content -->
     <div class="content container-fluid">
 
-        <img src="{{ Auth()->user()->member->memberQRcode }}" alt="QRcode">
+        <img class="img-fluid" src="{{ Auth()->user()->member->memberQRcode }}" alt="QRcode">
 
     </div>
     <!-- END Page Content -->

@@ -127,7 +127,7 @@
 
                 <li class="nav-main-heading text-uppercase">QRCODE</li>
 
-                <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('QRcode.show')}}">
+                <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('members.QRcode', Auth()->user()->member->card_id)}}">
                     <img width="80px" height="800px" class="img-fluid" src="{{ asset('images/content/QRcode.png') }}" alt="QRcode">
                 </a>
 
