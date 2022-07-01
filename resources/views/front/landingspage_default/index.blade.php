@@ -174,9 +174,10 @@
 
                                         <input type="hidden" name="recaptcha" id="recaptcha">
 
-                                        <button id="closemodal" type="submit" class="btn_cstm input_modal mb-3 w-100">
+                                        <button id="closemodal" type="submit" class="btn_cstm input_modal w-100">
                                             <i class="fa fa-paper-plane me-1 opacity-50"></i> SEND
                                         </button>
+                                        <small class="mb-3 pl-2">*I agree to the terms and conditions by clicking send</small>
 
                                         <div class="bodem mb-5 pt-4 mt-5">
 
