@@ -31,7 +31,7 @@ class Contact extends Component
         $this->datepicker_day = "";
     }
 
-    public function saveNote(Contact $contact)
+    public function saveNote(\App\Models\Contact $contact)
     {
         $contact->notes = $this->notes;
         $contact->update();
