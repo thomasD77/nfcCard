@@ -29,6 +29,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'source_id',
         'archived',
         'member_id',
+        'business',
     ];
 
     /**

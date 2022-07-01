@@ -115,6 +115,14 @@ class AdminUsersController extends Controller
         $user->name = $request->name;
         $user->username = $request->username;
         $user->email = $request->email;
+
+
+        if(!$request->business){
+            $user->business = 0;
+        }else {
+            $user->business = 1;
+        }
+
         $user->update();
 
         if($request->roles) {

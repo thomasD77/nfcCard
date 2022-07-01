@@ -46,7 +46,8 @@ class Member extends Model
             'avatar',
             'print',
             'titleMessage',
-            'message'
+            'message',
+            'business'
         ];
 
     public function user()

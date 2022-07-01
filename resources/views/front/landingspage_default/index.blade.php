@@ -92,9 +92,14 @@
                     @endif
                 </div>
                 <div class="">
-                    <!-- Button trigger modal -->
-                    <button data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" class="btn_cstm save w-100 mt-3 p-3"><i class="fa fa-rotate mr-2 "></i>SWAP</button>
-                    <!-- Modal -->
+
+                    @if($member->user->business)
+                        <!-- Button trigger modal -->
+                        <button data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" class="btn_cstm save w-100 mt-3 p-3"><i class="fa fa-rotate mr-2 "></i>SWAP</button>
+                        <!-- Modal -->
+                    @endif
+
+
                     @error('name')
                     <p class="text-danger mt-2 mb-0">Oops, something went wrong! </p>
                     @enderror

@@ -109,7 +109,7 @@
                     <i class="nav-main-link-icon  far fa-calendar-alt"></i><span class="nav-main-link-name">ACCOUNT</span>
                 </a>
 
-                @if(Auth::user()->archived == 0)
+                @if(Auth::user()->archived == 0 && Auth::user()->business)
                     <li class="nav-main-heading text-uppercase">SWAP SCANS</li>
                     <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
                         <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">

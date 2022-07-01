@@ -73,7 +73,25 @@
                 </div>
             </div>
         </div>
-        <!-- END Delete User -->
+        <!-- END Referral User -->
+
+        <!-- Business Account  -->
+        <div class="block block-rounded">
+            <div class="block-header block-header-default">
+                <h3 class="block-title">Business Account</h3>
+            </div>
+            <div class="block-content">
+                <div class="row push">
+                    <div class="col-lg-4">
+                        <p class="fs-sm text-muted">Here you can check/uncheck this user his business account</p>
+                    </div>
+                    <div class="col-lg-8 col-xl-5">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END Business Account -->
 
         <!-- User Profile -->
         <div class="block block-rounded">
@@ -91,6 +109,15 @@
                         {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminUsersController@update',$user->id],
                       'files'=>true])
                        !!}
+                        @can('is_superAdmin')
+                            <div class="form-group mb-4">
+                                <label class="form-label">Business account:</label>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" value="1" name="business" type="checkbox" id="flexSwitchCheckDefault" @if($user->business) checked @endif>
+                                </div>
+                            </div>
+                        @endcan
+
                         <div class="form-group mb-4">
                             {!! Form::label('one-profile-edit-username', 'Username:',['class'=>'form-label']) !!}
                             {!! Form::text('username',$user->username ? $user->username : "" ,['class'=>'form-control']) !!}
