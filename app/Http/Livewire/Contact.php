@@ -14,6 +14,8 @@ class Contact extends Component
     public int $pagination = 25;
     public string $datepicker_day = "";
     public $name;
+    public $notes;
+    public $showNotes = false;
 
 
     public function archiveContact($id)
@@ -27,6 +29,22 @@ class Contact extends Component
     {
         $this->datepicker = "";
         $this->datepicker_day = "";
+    }
+
+    public function saveNote(Contact $contact)
+    {
+        $contact->notes = $this->notes;
+        $contact->update();
+        $this->showNotes = false;
+    }
+
+    public function showNotes()
+    {
+        if($this->showNotes){
+            $this->showNotes = false;
+        }else {
+            $this->showNotes = true;
+        }
     }
 
 

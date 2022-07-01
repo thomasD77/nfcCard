@@ -61,7 +61,7 @@
                                     </button>
 
                                     <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal{{$contact->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" wire:ignore.self id="exampleModal{{$contact->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -70,14 +70,27 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <p><strong>Name:</strong></p>
-                                                    <p>{{$contact->name ? $contact->name : 'No Name'}}</p>
+                                                    <p class="bg-light p-2">{{$contact->name ? $contact->name : 'No Name'}}</p>
                                                     <p><strong>Email:</strong></p>
-                                                    <p>{{$contact->email ? $contact->email : 'No email'}}</p>
+                                                    <p class="bg-light p-2">{{$contact->email ? $contact->email : 'No email'}}</p>
                                                     <p><strong>Phone:</strong></p>
-                                                    <p>{{$contact->phone ? $contact->phone : 'No Phone'}}</p>
+                                                    <p class="bg-light p-2">{{$contact->phone ? $contact->phone : 'No Phone'}}</p>
                                                     <p><strong>Message:</strong></p>
-                                                    <p>{{$contact->message ? $contact->message : 'No message'}}</p>
+                                                    <p class="bg-light p-2">{{$contact->message ? $contact->message : 'No message'}}</p>
+                                                    <hr>
+                                                    <div class="d-flex justify-content-between mb-2">
+                                                        <p><strong>My notes:</strong></p> <button class="btn btn-primary" wire:click="showNotes"> <i  class="fa fa-fw fa-pencil-alt"></i></button>
+                                                    </div>
+                                                    <p class="bg-light p-2">{{$contact->notes ? $contact->notes : 'No notes'}}</p>
                                                 </div>
+                                                @if($showNotes)
+                                                    <div class="modal-body">
+                                                        <form wire:submit.prevent="saveNote({{ $contact }})">
+                                                            <textarea type="text" class="form-control form-control-alt" placeholder="Type your note..." id="page-header-search-input2" wire:model="notes"></textarea>
+                                                            <button class="btn btn-primary mt-1" type="submit" >SAVE</button>
+                                                        </form>
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
                                     </div></td>

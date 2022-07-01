@@ -83,6 +83,14 @@
                                                     <p><strong>Message:</strong></p>
                                                     <p>{{$contact->message ? $contact->message : 'No message'}}</p>
                                                 </div>
+                                                @if($showNotes)
+                                                    <div class="modal-body">
+                                                        <form wire:submit.prevent="saveNote({{ $contact }})">
+                                                            <textarea type="text" class="form-control form-control-alt" placeholder="Type your note..." id="page-header-search-input2" wire:model="notes"></textarea>
+                                                            <button class="btn btn-primary mt-1" type="submit" >SAVE</button>
+                                                        </form>
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
                                     </div></td>

@@ -3,10 +3,12 @@
 namespace App\Http\Livewire;
 
 use App\Models\Member;
+use App\Models\Contact;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
+use phpDocumentor\Reflection\Types\Boolean;
 
 class ContactClient extends Component
 {
@@ -16,6 +18,8 @@ class ContactClient extends Component
     public $pagination = 25;
     public $datepicker_day = "";
     public $name;
+    public $notes;
+    public $showNotes = false;
 
 
     public function archiveContact($id)
@@ -29,6 +33,22 @@ class ContactClient extends Component
     {
         $this->datepicker = "";
         $this->datepicker_day = "";
+    }
+
+    public function saveNote(Contact $contact)
+    {
+        $contact->notes = $this->notes;
+        $contact->update();
+        $this->showNotes = false;
+    }
+
+    public function showNotes()
+    {
+        if($this->showNotes){
+            $this->showNotes = false;
+        }else {
+            $this->showNotes = true;
+        }
     }
 
 
