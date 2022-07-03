@@ -170,9 +170,11 @@
                     </div>
                     <!-- END Left Section -->
 
-                    <a class="text-center nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('show.QRcode', Auth()->user()->member->card_id)}}">
-                        <img width="35px" height="35px" class="img-fluid" src="{{ asset('images/content/QRcode.png') }}" alt="QRcode">
-                    </a>
+                    @if(isset(Auth()->user()->member))
+                        <a class="text-center nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('show.QRcode', Auth()->user()->member->card_id)}}">
+                            <img width="35px" height="35px" class="img-fluid" src="{{ asset('images/content/QRcode.png') }}" alt="QRcode">
+                        </a>
+                    @endif
 
                     <!-- Right Section -->
                     <div class="d-flex align-items-center">
