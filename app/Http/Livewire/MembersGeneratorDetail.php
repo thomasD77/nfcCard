@@ -4,18 +4,21 @@ namespace App\Http\Livewire;
 
 use App\Models\listUrl;
 use App\Models\Material;
-use App\Models\Member;
-use App\Models\Package;
 use App\Models\Team;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class MembersGenerator extends Component
+class MembersGeneratorDetail extends Component
 {
     use WithPagination;
     public $pagination = 25;
+
+    public Team $team;
+
+    public function mount(Team $team)
+    {
+        $this->team = $team;
+    }
 
 
     public function select($id)
@@ -34,12 +37,15 @@ class MembersGenerator extends Component
         }
     }
 
-
     public function render()
     {
-        $urls = DB::table('list_urls')->distinct('team_id')->pluck('team_id');
-        $teams = Team::whereIn('id', $urls)->paginate($this->pagination);
+        $urls = listUrl::with(['package', 'material', 'member'])
+            ->where('team_id', $this->team->id)
+            ->simplePaginate($this->pagination);
 
-        return view ('livewire.members-generator', compact('teams'));
+        $materials = Material::pluck('name', 'id');
+        $QRcode = \App\Models\QRCODE::first();
+
+        return view('livewire.members-generator-detail', compact('urls',  'materials', 'QRcode'));
     }
 }

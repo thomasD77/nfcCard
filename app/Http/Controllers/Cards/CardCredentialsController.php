@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Cards;
 use App\Http\Controllers\Controller;
 use App\Models\listUrl;
 use App\Models\Member;
+use App\Models\Team;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
@@ -14,6 +15,13 @@ class CardCredentialsController extends Controller
     public function cardCredentialsList()
     {
         return view ('admin.members.list');
+    }
+
+    public function cardCredentialsListDetail(Team $team)
+    {
+        $current_team = $team;
+
+        return view ('admin.members.list-detail', compact('current_team'));
     }
 
     //This is the function that will generate a sheet with all the (custom) SWAP CARD information that we need

@@ -21,4 +21,9 @@ class Team extends Model
     {
         return $this->hasOne(TeamAddress::class);
     }
+
+    public function teamUsers()
+    {
+        return $this->hasMany(User::class);
+    }
 }

@@ -47,6 +47,7 @@ Route::get('members/print', 'App\Http\Controllers\CardController@print')->name('
 Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(){
     //Routes for generating SWAP CARD information
     Route::get('card-credentials', 'App\Http\Controllers\Cards\CardCredentialsController@cardCredentialsList')->name('card-credentials');
+    Route::get('card-credentials/detail/{team}', 'App\Http\Controllers\Cards\CardCredentialsController@cardCredentialsListDetail')->name('card-credentials-details');
     Route::get('card-credentials-sheet-generator', 'App\Http\Controllers\Cards\CardCredentialsController@cardCredentialsSheetGenerator')->name('card-credentials-sheet-generator');
     Route::patch('card-credentials-update-card', 'App\Http\Controllers\Cards\CardCredentialsController@updateCard')->name('card-credentials-update');
 
