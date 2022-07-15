@@ -63,7 +63,6 @@ class AdminHomeController extends Controller
 
         $lock = Lock::first();
 
-        $orders = Order::all();
 
         return view('admin.dashboard', compact(
             'photos',
@@ -79,7 +78,6 @@ class AdminHomeController extends Controller
             'total_metal',
             'total_wood',
             'lock',
-            'orders'
         ));
     }
 

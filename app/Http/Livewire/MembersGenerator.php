@@ -39,7 +39,8 @@ class MembersGenerator extends Component
     {
         $urls = DB::table('list_urls')->distinct('team_id')->pluck('team_id');
         $teams = Team::whereIn('id', $urls)->paginate($this->pagination);
+        $ambassadors = Team::with('teamAddress')->where('archived', '=', 0)->pluck('name', 'id');
 
-        return view ('livewire.members-generator', compact('teams'));
+        return view ('livewire.members-generator', compact('teams', 'ambassadors'));
     }
 }

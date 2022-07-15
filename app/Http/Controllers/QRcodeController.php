@@ -14,25 +14,6 @@ use Illuminate\Support\Facades\View;
 
 class QRcodeController extends Controller
 {
-    //This is the option on the dashboard to select if the client wants QRcode on the SWAP cards
-    public function QRcodeStatus(Request $request)
-    {
-        if($request->flexRadioDefault == 'ja'){
-            $status = 1;
-        }
-
-        if($request->flexRadioDefault == 'nee'){
-            $status = 0;
-        }
-
-        $QRcode = QRCODE::first();
-        $QRcode->status = $status;
-        $QRcode->update();
-
-        return redirect()->route('admin.home');
-    }
-
-    //
     public function QRcodeList()
     {
         $members = Member::query()

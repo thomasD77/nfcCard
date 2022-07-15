@@ -12,7 +12,47 @@
             </select>
             <!-- End Pagination -->
             <div>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    Generate new <i class="fa fa-star text-warning-light"></i>
+                </button>
 
+                <!-- Modal -->
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">Generate your data here</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form class="col-6 mb-0" name="contactformulier"
+                                      action="{{action('App\Http\Controllers\Dashboard\CardListGenerator@generateListUrl')}}" method="post">
+                                    @csrf
+
+                                    <div class="form-check my-4 px-0">
+                                        <label class="form-check-label mb-1">How much cards do you need?</label>
+                                        <input class="form-control" type="number" name="card_number" value="card_number">
+                                    </div>
+
+                                    <div class="form-check my-4 px-0">
+                                        {!! Form::label('ambassador','Select company:', ['class'=>'form-label']) !!}
+                                        {!! Form::select('ambassador',$ambassadors,null,['class'=>'form-control', 'placeholder' => 'Select here...'])!!}
+                                    </div>
+
+                                    <!-- Button trigger modal -->
+                                    <button type="submit" class="btn btn-alt-primary">
+                                        <i class="fa fa-paper-plane me-1 opacity-50"></i> Generate
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Understood</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="parent">

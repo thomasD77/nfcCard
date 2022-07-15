@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\listUrl;
+use App\Models\Team;
 use App\Models\URL;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -18,6 +19,8 @@ class CardListGenerator extends Controller
         $project_url = URL::first()->url;
         $cardURL = listUrl::all();
         $max_id = listUrl::max('id');
+
+        dd($max_id);
 
         //If we have cards, we delete the old amount
         if($cardURL->count() > 0)
@@ -34,6 +37,9 @@ class CardListGenerator extends Controller
                     $cardURL->memberQRcode = $project_url . '/QRcode'. '/' . $id;
                     $cardURL->material_id = 1;
                     $cardURL->package_id = 2;
+
+                    $cardURL->team_id = $request->ambassador;
+
                     $cardURL->save();
                 }
             }
@@ -50,6 +56,9 @@ class CardListGenerator extends Controller
                 $cardURL->memberQRcode = $project_url . '/QRcode'. '/' . $i;
                 $cardURL->material_id = 1;
                 $cardURL->package_id = 2;
+
+                $cardURL->team_id = $request->ambassador;
+
                 $cardURL->save();
             }
         }

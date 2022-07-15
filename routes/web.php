@@ -54,7 +54,6 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
 
     //Routes for CRUD members
     Route::resource('members', App\Http\Controllers\AdminMembersController::class);
-    Route::resource('orders', App\Http\Controllers\AdminOrderController::class);
     Route::get('archive/members', 'App\Http\Controllers\AdminMembersController@archive')->name('members.archive');
     Route::get('member/QRcode/show/{id}', 'App\Http\Controllers\QRcode\QRcodeController@fancyQRcode')->name('show.QRcode');
 
@@ -71,12 +70,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
 
 
     //Routes for listing the QRcodes
-    Route::post('QRcodeStatus', 'App\Http\Controllers\QRcodeController@QRcodeStatus')->name('QRcodeStatus');
     Route::get('QRcodeList', 'App\Http\Controllers\QRcodeController@QRcodeList')->name('QRcodeList');
-
-    //General Routes
-    Route::get('lock', 'App\Http\Controllers\Dashboard\LockController@lock')->name('lock');
-    Route::get('unlock', 'App\Http\Controllers\Dashboard\LockController@unlock')->name('unlock');
 
     //Routes for generating sheets
     Route::get('sheet-QRcode', 'App\Http\Controllers\Dashboard\SheetGenerator@sheetQRcodeGenerator')->name('sheet.QRcode');

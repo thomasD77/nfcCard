@@ -56,88 +56,6 @@
     <!-- Page Content -->
     <div class="content">
         <div class="row row-deck">
-            <div class="col-md-6 col-xl-4">
-                <div class="block block-rounded">
-                    <div class="block-header block-header-default">
-                        <h3 class="block-title">Welcome</h3>
-                    </div>
-                    <div class="block-content fs-sm text-muted ">
-                        <p style="font-weight: bold">Card status: </p>
-                        @if($lock->status == 1)
-                            <a href="{{ route('lock') }}"><button class="btn btn-success"><i class="fa fa-unlock"></i></button></a>
-                        @else
-                            <a href="{{ route('unlock') }}"><button class="btn btn-danger"><i class="fa fa-lock"></i></button></a>
-                        @endif
-                    </div>
-                </div>
-            </div>
-
-            <!-- START STAP 1 -->
-            <div class="col-md-6 col-xl-4">
-                <div class="block block-rounded">
-                    <div class="block-header block-header-default">
-                        <h3 class="block-title">STAP 1: OUR URL</h3>
-                    </div>
-                    <div class="block-content fs-sm text-muted">
-                        <p style="font-weight: bold">
-                            Current URL:
-                        </p>
-                        <p>
-                            {{ $currentURL->url }}
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <!-- END STAP 1 -->
-
-            <!-- START STAP 2 -->
-            <div class="col-md-6 col-xl-4">
-                <div class="block block-rounded">
-                    <div class="block-header block-header-default">
-                        <h3 class="block-title">STAP 2: QRcode</h3>
-                        <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseQR" role="button" aria-expanded="false" aria-controls="collapseExample">
-                            <i class="fa fa-arrow-down"></i>
-                        </a>
-                    </div>
-                    <div class="block-content fs-sm text-muted">
-                        <div class="collapse" id="collapseQR">
-                            <div class="card card-body border border-0">
-                                <form class="col-6 mb-0" name="contactformulier"
-                                      action="{{action('App\Http\Controllers\QRcodeController@QRcodeStatus')}}" method="post">
-                                    @csrf
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" value="ja" name="flexRadioDefault" id="flexRadioDefault1">
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                            Ja
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" value="nee" name="flexRadioDefault" id="flexRadioDefault2">
-                                        <label class="form-check-label" for="flexRadioDefault2">
-                                            Nee
-                                        </label>
-                                    </div>
-                                    <div class="my-4">
-                                        <button type="submit" class="btn btn-alt-primary">
-                                            <i class="fa fa-paper-plane me-1 opacity-50"></i> Choose
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-                        <p style="font-weight: bold">QRcode status: </p>
-                            @if($QRcode->status == 0)
-                                <p>Nee</p>
-                            @endif
-                            @if($QRcode->status == 1)
-                                <p>Ja</p>
-                            @endif
-                    </div>
-                </div>
-            </div>
-            <!-- END STAP 2 -->
-
 
             <!-- START STAP 3 -->
             <div class="col-md-6 col-xl-4">
@@ -239,43 +157,6 @@
                 </div>
             @endif
             <!-- END STAP 4 -->
-
-            <!-- START STAP 5 -->
-            <div class="col-md-4 col-xl-4">
-                <div class="block block-rounded">
-                    <div class="block-header block-header-default">
-                        <h3 class="block-title">STAP 5: Orders </h3>
-                    </div>
-                    <div class="block-content fs-sm text-muted pt-3">
-                        <form class="row mb-0" name="contactformulier"
-                              action="{{action('App\Http\Controllers\AdminOrderController@store')}}"
-                              method="post" enctype="multipart/form-data">
-                            @csrf
-                            <div class="mb-4">
-                                <label class="form-label d-flex" for="frontend-contact-email"></label>
-                                <div class="d-flex">
-                                    <input type="file" class="form-control" id="frontend-contact-tagline"
-                                           name="order">
-                                    <button type="submit" class="btn btn-alt-primary">
-                                        Save
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                        <div>
-                            @if($orders)
-                                @foreach($orders as $order)
-                                    <a href="{{ $order->file ? asset('orders') . "/" . $order->file : "" }}" class="d-flex justify-content-around">
-                                        <div>#</div><h5 class="mb-0">ORDER-{{ $order->id }}</h5><p class="mb-0">{{ \Carbon\Carbon::parse($order->created_at)->format('d-M-Y') }}</p>
-                                    </a>
-                                    <hr>
-                                @endforeach
-                            @endif
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- END STAP 5 -->
 
         </div>
     </div>
