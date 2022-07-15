@@ -62,6 +62,10 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::POST('search/member', 'App\Http\Controllers\AdminMembersController@searchMember')->name('members.search');
     Route::get('generate/member/credentials', 'App\Http\Controllers\AdminMembersController@generateCredentialMemberList')->name('members.credentials');
 
+    //Routes for CRUD Teams
+    Route::resource('teams', App\Http\Controllers\AdminTeamsController::class);
+    Route::get('archive/teams', [App\Http\Controllers\AdminTeamsController::class, 'archive'])->name('teams.archive');
+
 
     //Routes for listing the QRcodes
     Route::post('QRcodeStatus', 'App\Http\Controllers\QRcodeController@QRcodeStatus')->name('QRcodeStatus');
