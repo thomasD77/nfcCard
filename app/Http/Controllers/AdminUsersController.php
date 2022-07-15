@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TeamRequest;
 use App\Http\Requests\UserEditRequest;
 use App\Models\AccountSettings;
 use App\Models\Avatar;
 use App\Models\Member;
 use App\Models\Role;
 use App\Models\ServiceCategory;
+use App\Models\Team;
+use App\Models\TeamAddress;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -73,10 +76,12 @@ class AdminUsersController extends Controller
     {
         //
         $user = User::findOrfail($id);
+        $role = $user->roles()->first();
+
         $roles = Role::pluck('name', 'id')
             ->all();
 
-        return view('admin.users.edit', compact('user', 'roles'));
+        return view('admin.users.edit', compact('user', 'roles', 'role'));
     }
 
     /**
@@ -219,6 +224,38 @@ class AdminUsersController extends Controller
 
         return view('admin.users.search', compact('users'));
 
+    }
+
+    public function updateTeam(TeamRequest $request, User $user)
+    {
+        $team = Team::where('id', $user->team->id)->first();
+
+        $team->name = $request->name;
+        $team->VAT = $request->VAT;
+        $team->description = $request->description;
+        $team->phone = $request->phone;
+
+        if($request->ambassador){
+            $ambassador = Team::where('id', $request->ambassador)->first();
+            $team->ambassador = $ambassador->name;
+        }else{
+            $team->ambassador = null;
+        }
+
+        $team->update();
+
+        $teamAddress = TeamAddress::where('team_id', $team->id)->first();
+        $teamAddress->street = $request->street;
+        $teamAddress->number = $request->number;
+        $teamAddress->zip = $request->zip;
+        $teamAddress->city = $request->city;
+        $teamAddress->country = $request->country;
+
+        $teamAddress->update();
+
+
+        \Brian2694\Toastr\Facades\Toastr::success('Team Successfully Updated');
+        return redirect('/admin');
     }
 
 

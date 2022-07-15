@@ -160,6 +160,137 @@
         </div>
         <!-- END User Profile -->
 
+        @if($user->team)
+        <!-- Team -->
+        <div class="block block-rounded">
+            <div class="block-header block-header-default">
+                <h3 class="block-title">Company</h3>
+            </div>
+            <div class="block-content">
+                <div class="row push">
+                    <div class="col-lg-4">
+                        <p class="fs-sm text-muted">
+                            Here is your company information.
+                        </p>
+                    </div>
+                    <div class="col-lg-8 col-xl-5">
+
+                        {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminUsersController@updateTeam',$user],
+                       'files'=>true])
+                        !!}
+
+                        <div class="form-group mb-4">
+                            {!! Form::label('one-profile-edit-email', 'Name:', ['class'=>'form-label']) !!}
+                            @if($role == 'client')
+                                {!! Form::text('name',$user->team->name,['class'=>'form-control', 'disabled']) !!}
+                            @else
+                                {!! Form::text('name',$user->team->name,['class'=>'form-control']) !!}
+                                @error('name')
+                                <p class="text-danger mt-2"> {{ $message }}</p>
+                                @enderror
+                            @endif
+                        </div>
+                        <div class="form-group mb-4">
+                            {!! Form::label('one-profile-edit-email', 'VAT:', ['class'=>'form-label']) !!}
+                            @if($role == 'client')
+                                {!! Form::text('VAT',$user->team->VAT,['class'=>'form-control', 'disabled']) !!}
+                            @else
+                                {!! Form::text('VAT',$user->team->VAT,['class'=>'form-control']) !!}
+                                @error('VAT')
+                                <p class="text-danger mt-2"> {{ $message }}</p>
+                                @enderror
+                            @endif
+                        </div>
+                        <div class="form-group mb-4">
+                            {!! Form::label('one-profile-edit-email', 'Phone:', ['class'=>'form-label']) !!}
+                            @if($role == 'client')
+                                {!! Form::text('phone',$user->team->phone,['class'=>'form-control', 'disabled']) !!}
+                            @else
+                                {!! Form::text('phone',$user->team->phone,['class'=>'form-control']) !!}
+                                @error('phone')
+                                <p class="text-danger mt-2"> {{ $message }}</p>
+                                @enderror
+                            @endif
+                        </div>
+                        <div class="form-group mb-4">
+                            {!! Form::label('one-profile-edit-email', 'Street:', ['class'=>'form-label']) !!}
+                            @if($role == 'client')
+                                {!! Form::text('street',$user->team->teamAddress->street,['class'=>'form-control', 'disabled']) !!}
+                            @else
+                                {!! Form::text('street',$user->team->teamAddress->street,['class'=>'form-control']) !!}
+                                @error('street')
+                                <p class="text-danger mt-2"> {{ $message }}</p>
+                                @enderror
+                            @endif
+                        </div>
+                        <div class="form-group mb-4">
+                            {!! Form::label('one-profile-edit-email', 'Number:', ['class'=>'form-label']) !!}
+                            @if($role == 'client')
+                                {!! Form::text('number',$user->team->teamAddress->number,['class'=>'form-control', 'disabled']) !!}
+                            @else
+                                {!! Form::text('number',$user->team->teamAddress->number,['class'=>'form-control']) !!}
+                                @error('number')
+                                <p class="text-danger mt-2"> {{ $message }}</p>
+                                @enderror
+                            @endif
+                        </div>
+                        <div class="form-group mb-4">
+                            {!! Form::label('one-profile-edit-email', 'Zip:', ['class'=>'form-label']) !!}
+                            @if($role == 'client')
+                                {!! Form::text('zip',$user->team->teamAddress->zip,['class'=>'form-control', 'disabled']) !!}
+                            @else
+                                {!! Form::text('zip',$user->team->teamAddress->zip,['class'=>'form-control']) !!}
+                                @error('zip')
+                                <p class="text-danger mt-2"> {{ $message }}</p>
+                                @enderror
+                            @endif
+                        </div>
+                        <div class="form-group mb-4">
+                            {!! Form::label('one-profile-edit-email', 'City:', ['class'=>'form-label']) !!}
+                            @if($role == 'client')
+                                {!! Form::text('city',$user->team->teamAddress->city,['class'=>'form-control', 'disabled']) !!}
+                            @else
+                                {!! Form::text('city',$user->team->teamAddress->city,['class'=>'form-control']) !!}
+                                @error('city')
+                                <p class="text-danger mt-2"> {{ $message }}</p>
+                                @enderror
+                            @endif
+                        </div>
+                        <div class="form-group mb-4">
+                            {!! Form::label('one-profile-edit-email', 'Country:', ['class'=>'form-label']) !!}
+                            @if($role == 'client')
+                                {!! Form::text('country',$user->team->teamAddress->country,['class'=>'form-control', 'disabled']) !!}
+                            @else
+                                {!! Form::text('country',$user->team->teamAddress->country,['class'=>'form-control']) !!}
+                                @error('country')
+                                <p class="text-danger mt-2"> {{ $message }}</p>
+                                @enderror
+                            @endif
+                        </div>
+                        <div class="form-group mb-4">
+                            {!! Form::label('one-profile-edit-email', 'Description:', ['class'=>'form-label']) !!}
+                            @if($role == 'client')
+                                {!! Form::text('description',$user->team->description,['class'=>'form-control', 'disabled']) !!}
+                            @else
+                                {!! Form::textarea('description',$user->team->description,['class'=>'form-control']) !!}
+                                @error('description')
+                                <p class="text-danger mt-2"> {{ $message }}</p>
+                                @enderror
+                            @endif
+                        </div>
+
+                        @if($role != 'client')
+                            {!! Form::submit('Update',['class'=>'btn btn-alt-primary']) !!}
+                        @endif
+
+                        {!! Form::close() !!}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
+
         <!-- Change Password -->
         <div class="block block-rounded">
             <div class="block-header block-header-default">
