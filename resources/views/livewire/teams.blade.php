@@ -21,7 +21,7 @@
                                 <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal{{$team->id}}">
                                     <i class="fa fa-fw fa-pencil-alt"></i>
                                 </button>
-                                <a href="{{route('team.users', Auth()->user()->team)}}">
+                                <a href="{{route('team.users', $team)}}">
                                     <button class="bt btn-sm btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="List users">
                                         <i class="fa fa-list-ul"></i>
                                     </button>

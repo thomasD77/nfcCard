@@ -158,6 +158,6 @@ class AdminTeamsController extends Controller
             ->where('archived', 0)
             ->get();
 
-        return view('admin.teams.users', compact('users'));
+        return view('admin.teams.users', compact('users', 'team'));
     }
 }
