@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\TeamRequest;
 use App\Models\Team;
 use App\Models\TeamAddress;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminTeamsController extends Controller
@@ -149,5 +150,14 @@ class AdminTeamsController extends Controller
             ->paginate(25);
 
         return view('admin.teams.archive', compact('teams'));
+    }
+
+    public function getUsers(Team $team)
+    {
+        $users = User::where('team_id', $team->id)
+            ->where('archived', 0)
+            ->get();
+
+        return view('admin.teams.users', compact('users'));
     }
 }

@@ -31,7 +31,7 @@
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
                 <div class="flex-grow-1">
                     <h1 class="h3 fw-bold mb-2">
-                        Teams
+                        Users
                     </h1>
                 </div>
                 <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
@@ -40,7 +40,7 @@
                             <a class="link-fx" href="javascript:void(0)">DataTable</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            Teams
+                            Users
                         </li>
                     </ol>
                 </nav>
@@ -55,21 +55,20 @@
         <div class="block block-rounded row">
             <div class="block-header block-header-default">
                 <h3 class="block-title">
-                    Archive teams
+                    Users
                 </h3>
-                <a href="{{route('teams.index')}}">
-                    <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="List">
-                        <i class="far fa-list-alt "></i>
+                <a href="{{route('users.archive')}}">
+                    @canany(['is_superAdmin', 'is_admin'])
+                    <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Archive">
+                        <i class="fa fa-archive "></i>
                     </button>
+                    @endcanany
                 </a>
             </div>
-
-            @can('is_superAdmin')
             <div class="block-content block-content-full overflow-scroll">
                 <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
-                @livewire('unarchive-teams')
+                @livewire('users')
             </div>
-            @endcan
         </div>
         <!-- END Dynamic Table Full -->
         @livewireScripts

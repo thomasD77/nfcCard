@@ -49,7 +49,7 @@
     </div>
     <!-- END Hero -->
 
-    @canany(['is_superAdmin', 'is_admin'])
+    @can('is_superAdmin')
     <!-- Page Content -->
     <div class="content container-fluid">
         <!-- Dynamic Table Full -->
@@ -63,11 +63,9 @@
                     <i class="fa fa-plus "></i>
                 </button>
                 <a href="{{route('teams.archive')}}">
-                    @canany(['is_superAdmin', 'is_admin'])
                     <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Archive">
                         <i class="fa fa-archive "></i>
                     </button>
-                    @endcanany
                 </a>
             </div>
             <!-- Modal -->
@@ -172,5 +170,5 @@
         @livewireScripts
     </div>
     <!-- END Page Content -->
-    @endcanany
+    @endcan
 @endsection

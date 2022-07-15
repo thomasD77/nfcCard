@@ -65,6 +65,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     //Routes for CRUD Teams
     Route::resource('teams', App\Http\Controllers\AdminTeamsController::class);
     Route::get('archive/teams', [App\Http\Controllers\AdminTeamsController::class, 'archive'])->name('teams.archive');
+    Route::get('team/users/{team}', [App\Http\Controllers\AdminTeamsController::class, 'getUsers'])->name('team.users');
 
 
     //Routes for listing the QRcodes
