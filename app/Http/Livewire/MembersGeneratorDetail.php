@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\listUrl;
 use App\Models\Material;
+use App\Models\Role;
 use App\Models\Team;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -39,13 +40,15 @@ class MembersGeneratorDetail extends Component
 
     public function render()
     {
-        $urls = listUrl::with(['package', 'material', 'member'])
+        $urls = listUrl::with(['package', 'material', 'member', 'listRole'])
             ->where('team_id', $this->team->id)
             ->simplePaginate($this->pagination);
 
         $materials = Material::pluck('name', 'id');
         $QRcode = \App\Models\QRCODE::first();
 
-        return view('livewire.members-generator-detail', compact('urls',  'materials', 'QRcode'));
+        $roles = Role::where('id', '!=', 1)->pluck('name','id');
+
+        return view('livewire.members-generator-detail', compact('urls',  'materials', 'QRcode', 'roles'));
     }
 }

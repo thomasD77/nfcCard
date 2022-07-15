@@ -54,6 +54,7 @@ class CardCredentialsController extends Controller
         $url->reservation = $request->reservation;
         $url->image = $request->image;
         $url->memberURL = $request->custom_url;
+        $url->role_id = $request->role_id;
 
         if($request->input_QR_url)
         {
@@ -77,6 +78,6 @@ class CardCredentialsController extends Controller
         }
 
         \Brian2694\Toastr\Facades\Toastr::success('Edit Card Successfully');
-        return redirect()->route('card-credentials');
+        return redirect()->back();
     }
 }

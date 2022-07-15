@@ -18,7 +18,9 @@ class listUrl extends Model
         'custom_QR_url',
         'print',
         'reservation',
-        'image'
+        'image',
+        'card_id',
+        'role_id',
     ];
 
     public function package()
@@ -34,6 +36,11 @@ class listUrl extends Model
     public function member()
     {
         return $this->belongsTo(Member::class);
+    }
+
+    public function listRole()
+    {
+        return $this->belongsTo(Role::class, 'role_id');
     }
 
 }

@@ -21,12 +21,14 @@
         </div>
         <div class="parent">
             @include('admin.includes.flash')
-            <table class="table table-striped table-hover table-vcenter fs-sm">
+            <table class="table table-hover table-vcenter fs-sm">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
 
                     <th scope="col">User</th>
+
+                    <th scope="col">Role</th>
 
                     <th scope="col">Material</th>
 
@@ -38,6 +40,8 @@
 
                     <th scope="col">Design</th>
 
+                    <th scope="col">Reservation</th>
+
                     <th scope="col">Edit</th>
 
                     @can('is_superAdmin')
@@ -48,17 +52,31 @@
                 <tbody>
                 @if($urls)
                     @foreach($urls as $url)
-                        <tr>
+                        @if(!isset($url->member->user->name))
+                            <tr class="bg-warning-light">
+                        @else
+                            <tr class="">
+                        @endif
                             <td>{{ $loop->index + 1  }}</td>
 
                             @if($url->member)
                                 @if($url->member->user->archived == 1)
                                     <td><span class="rounded-pill btn-alt-warning p-2">archived</span></td>
                                 @else
-                                    <td>{{$url->member->user ? $url->member->user->name : "*not-active" }}</td>
+                                    <td>{{$url->member->user ? $url->member->user->name : "{...}" }}</td>
                                 @endif
                             @else
-                                <td>{{$url->member ? $url->member->user->name : "*not-active" }}</td>
+                                <td>{{$url->member ? $url->member->user->name : "{...}" }}</td>
+                            @endif
+
+                            @if($url->member)
+                                @if($url->member->user->archived == 1)
+                                    <td><span class="rounded-pill btn-alt-warning p-2">archived</span></td>
+                                @else
+                                    <td>{{$url->listRole ? $url->listRole->name : "{...}" }}</td>
+                                @endif
+                            @else
+                                <td>{{$url->listRole ? $url->listRole->name : "{...}" }}</td>
                             @endif
 
                             <td>{{$url->material ? $url->material->name : "No Material" }}</td>
@@ -66,6 +84,8 @@
                             <td>{{$url->card_id ? $url->card_id : 'No ID'}}</td>
 
                             <td>{{$url->image ? $url->image : "*no image" }}</td>
+
+                            <td>{{$url->reservartion ? $url->reservartion : "*no reservartion" }}</td>
 
                             @if($QRcode->status == 1)
                                 @if($url->custom_QR_url != "")
@@ -120,12 +140,18 @@
                                                         @enderror
                                                     </div>
 
-                                                    {!! Form::hidden('url_id',$url->id)!!}
+                                                    <div class="d-flex flex-column mt-4">
+                                                        {!! Form::label('role','Select Role:', ['class'=>'form-label']) !!}
+                                                        {!! Form::select('role_id',$roles,$url->role_id,['class'=>'form-control'])!!}
+                                                    </div>
+
+                                                    {!! Form::hidden('url_id',$url->card_id)!!}
 
                                                     <div class="d-flex flex-column mt-4">
                                                         {!! Form::label('loyal','Select Material:', ['class'=>'form-label']) !!}
                                                         {!! Form::select('material_id',$materials,$url->material->id,['class'=>'form-control'])!!}
                                                     </div>
+
                                                     <div class="d-flex flex-column mt-4">
                                                         <a class="form-label text-dark d-flex justify-content-between" data-bs-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">
                                                             Custom Card url <i class="fa fa-arrow-down"></i>
@@ -157,9 +183,9 @@
                             </td>
                             <td>
                                 <input type="checkbox"
-                                       @if($url->print == 1)  checked @endif
-                                       class="btn btn-sm btn-alt-secondary"
-                                       wire:click="select({{$url->id}})">
+                                   @if($url->print == 1)  checked @endif
+                                   class="btn btn-sm btn-alt-secondary"
+                                   wire:click="select({{$url->id}})">
                             </td>
                         </tr>
                     @endforeach

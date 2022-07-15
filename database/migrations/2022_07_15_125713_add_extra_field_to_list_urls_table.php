@@ -17,6 +17,7 @@ class AddExtraFieldToListUrlsTable extends Migration
             //
             $table->unsignedBigInteger('team_id')->nullable()->index()->constrained();
             $table->integer('card_id')->nullable();
+            $table->integer('role_id')->nullable();
             $table->string('memberURL')->nullable()->change();
             $table->integer('material_id')->nullable()->change();
             $table->integer('package_id')->nullable()->change();

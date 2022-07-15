@@ -122,7 +122,7 @@
                 <li class="nav-main-heading text-uppercase">Card Profiles</li>
                 <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
                     <a class="nav-main-link" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="{{route('members.index')}}">
-                        <i class="nav-main-link-icon far fa-list-alt"></i>
+                        <i class="nav-main-link-icon fa fa-people-carry"></i>
                         <span class="nav-main-link-name ">Members</span>
                     </a>
                 </li>
@@ -130,7 +130,7 @@
                 <li class="nav-main-heading text-uppercase">SWAP SCANS</li>
                 <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
                     <a class="nav-main-link" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="{{route('contacts.index')}}">
-                        <i class="nav-main-link-icon far fa-list-alt"></i>
+                        <i class="nav-main-link-icon fa fa-brain"></i>
                         <span class="nav-main-link-name ">Scans</span>
                     </a>
                 </li>
@@ -139,7 +139,7 @@
                 <li class="nav-main-heading text-uppercase">SWAP SCANS</li>
                 <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
                     <a class="nav-main-link" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="{{route('team.contacts', Auth()->user()->team)}}">
-                        <i class="nav-main-link-icon far fa-list-alt"></i>
+                        <i class="nav-main-link-icon fa fa-brain"></i>
                         <span class="nav-main-link-name ">Scans</span>
                     </a>
                 </li>
@@ -149,7 +149,7 @@
                     <li class="nav-main-heading text-uppercase">WORKING LIST</li>
                     <li class="nav-main-item">
                         <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('card-credentials')}}">
-                            <i class="nav-main-link-icon far fa-list-alt"></i>
+                            <i class="nav-main-link-icon fa fa-chart-line"></i>
                             <span class="nav-main-link-name">Cards</span>
                         </a>
                     </li>

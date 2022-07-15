@@ -87,6 +87,7 @@ class RegisterController extends Controller
 
         $user = User::create([
             'name' => $data['name'],
+            'team_id' => $listURL->team_id,
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'business' => $listURL->business,
@@ -94,7 +95,7 @@ class RegisterController extends Controller
 
         DB::table('user_role')->insert([
             'user_id' => $user->id,
-            'role_id' => '3',
+            'role_id' => $listURL->role_id,
             'created_at'=>Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),]);
 

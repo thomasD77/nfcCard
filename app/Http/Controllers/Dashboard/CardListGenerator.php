@@ -32,6 +32,7 @@ class CardListGenerator extends Controller
 
         foreach ($updateCardURL as $url){
             $url->card_id = $url->id;
+            $url->role_id = 3;
             $url->memberURL = $project_url . '/?' . $url->id;
             $url->memberQRcode = $project_url . '/QRcode'. '/' . $url->id;
             $url->material_id = 1;
