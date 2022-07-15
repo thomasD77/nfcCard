@@ -16,7 +16,11 @@ class AddExtraFieldToListUrlsTable extends Migration
         Schema::table('list_urls', function (Blueprint $table) {
             //
             $table->unsignedBigInteger('team_id')->nullable()->index()->constrained();
-            $table->integer('card_id');
+            $table->integer('card_id')->nullable();
+            $table->string('memberURL')->nullable()->change();
+            $table->integer('material_id')->nullable()->change();
+            $table->integer('package_id')->nullable()->change();
+            $table->string('memberQRcode')->nullable()->change();
         });
     }
 

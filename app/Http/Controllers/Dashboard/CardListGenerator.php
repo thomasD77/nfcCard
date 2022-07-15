@@ -17,51 +17,28 @@ class CardListGenerator extends Controller
         //Amount of Cards
         $count = $request->card_number;
         $project_url = URL::first()->url;
-        $cardURL = listUrl::all();
-        $max_id = listUrl::max('id');
 
-        dd($max_id);
 
-        //If we have cards, we delete the old amount
-        if($cardURL->count() > 0)
-        {
-            if($count > $cardURL->count())
-            {
-                //Amount is more so we ADD
-                $count_diff = $count - $cardURL->count();
-
-                for($i = 1; $i <= $count_diff; $i++ ){
-                    $cardURL = new listUrl();
-                    $id = $i + $max_id;
-                    $cardURL->memberURL = $project_url . '/?' . $id;
-                    $cardURL->memberQRcode = $project_url . '/QRcode'. '/' . $id;
-                    $cardURL->material_id = 1;
-                    $cardURL->package_id = 2;
-
-                    $cardURL->team_id = $request->ambassador;
-
-                    $cardURL->save();
-                }
-            }
-            else
-            {
-                Session::flash('negative_number', 'You can not add a smaller card amount. This is for security reasons. We do not want to lose existing accounts. Thank you. ');
-                return redirect()->back();
-            }
-        }else {
-            //First time generating
-            for($i = 1; $i <= $count; $i++ ){
-                $cardURL = new listUrl();
-                $cardURL->memberURL = $project_url . '/?' . $i;
-                $cardURL->memberQRcode = $project_url . '/QRcode'. '/' . $i;
-                $cardURL->material_id = 1;
-                $cardURL->package_id = 2;
-
-                $cardURL->team_id = $request->ambassador;
-
-                $cardURL->save();
-            }
+        for($i = 1; $i <= $count; $i++ ){
+            $cardURL = new listUrl();
+            $cardURL->team_id = $request->ambassador;
+            $cardURL->save();
         }
-        return redirect('/admin');
+
+        $updateCardURL = listUrl::query()
+            ->where('team_id', $request->ambassador)
+            ->whereNull('memberURL')
+            ->get();
+
+        foreach ($updateCardURL as $url){
+            $url->card_id = $url->id;
+            $url->memberURL = $project_url . '/?' . $url->id;
+            $url->memberQRcode = $project_url . '/QRcode'. '/' . $url->id;
+            $url->material_id = 1;
+            $url->package_id = 2;
+            $url->update();
+        }
+
+        return redirect('/admin/card-credentials');
     }
 }

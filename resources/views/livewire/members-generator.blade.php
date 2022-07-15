@@ -26,7 +26,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form class="col-6 mb-0" name="contactformulier"
+                                <form class="col-8 mb-0" name="contactformulier"
                                       action="{{action('App\Http\Controllers\Dashboard\CardListGenerator@generateListUrl')}}" method="post">
                                     @csrf
 
@@ -41,14 +41,10 @@
                                     </div>
 
                                     <!-- Button trigger modal -->
-                                    <button type="submit" class="btn btn-alt-primary">
-                                        <i class="fa fa-paper-plane me-1 opacity-50"></i> Generate
+                                    <button type="submit" class="btn btn-alt-primary my-4">
+                                        <i class="fa fa-hourglass-start me-1 opacity-50"></i> GENERATE
                                     </button>
                                 </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Understood</button>
                             </div>
                         </div>
                     </div>
@@ -88,7 +84,7 @@
                             <td>
                                 <a href="{{route('card-credentials-details', $team)}}">
                                     <button class="bt btn-sm btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="List Company">
-                                        <i class="fa fa-fw fa-pencil-alt"></i>
+                                        <i class="fa fa-clipboard-list"></i>
                                     </button>
                                 </a>
                             </td>
