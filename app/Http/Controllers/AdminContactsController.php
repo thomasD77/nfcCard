@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminContactsController extends Controller
@@ -18,10 +19,11 @@ class AdminContactsController extends Controller
         return view('admin.contacts.index');
     }
 
-    public function indexClients()
+    public function indexClients(User $user)
     {
         //
-        return view('admin.contacts.index-client');
+        $list_user = $user;
+        return view('admin.contacts.index-client', compact('list_user'));
     }
 
     public function archive()

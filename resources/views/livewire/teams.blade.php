@@ -26,6 +26,11 @@
                                         <i class="fa fa-list-ul"></i>
                                     </button>
                                 </a>
+                                <a href="{{route('team.contacts', $team)}}">
+                                    <button class="bt btn-sm btn-info rounded" data-bs-toggle="tooltip" title="Scans">
+                                        <i class="fa fa-mouse"></i>
+                                    </button>
+                                </a>
                             </div>
                         </h3>
                         <!-- Modal -->
@@ -147,8 +152,6 @@
                 @endforeach
             @endif
         </div>
-
-
 </div>
 <div class="d-flex justify-content-center">
     {!! $teams->links()  !!}

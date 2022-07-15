@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TeamRequest;
+use App\Models\Contact;
 use App\Models\Team;
 use App\Models\TeamAddress;
 use App\Models\User;
@@ -159,5 +160,14 @@ class AdminTeamsController extends Controller
             ->get();
 
         return view('admin.teams.users', compact('users', 'team'));
+    }
+
+    public function getContacts(Team $team)
+    {
+        $contacts = Contact::where('id', $team->id)
+            ->where('archived', 0)
+            ->get();
+
+        return view('admin.teams.contacts', compact('contacts'));
     }
 }

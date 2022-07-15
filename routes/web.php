@@ -66,6 +66,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::resource('teams', App\Http\Controllers\AdminTeamsController::class);
     Route::get('archive/teams', [App\Http\Controllers\AdminTeamsController::class, 'archive'])->name('teams.archive');
     Route::get('team/users/{team}', [App\Http\Controllers\AdminTeamsController::class, 'getUsers'])->name('team.users');
+    Route::get('team/contact/{team}', [App\Http\Controllers\AdminTeamsController::class, 'getContacts'])->name('team.contacts');
 
 
     //Routes for listing the QRcodes
@@ -90,7 +91,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::post('user/search', 'App\Http\Controllers\AdminUsersController@searchUser')->name('users.search');
     Route::get('archive/users', 'App\Http\Controllers\AdminUsersController@archive')->name('users.archive');
     Route::resource('contacts', App\Http\Controllers\AdminContactsController::class);
-    Route::get('contact/client', 'App\Http\Controllers\AdminContactsController@indexClients')->name('contacts.index.client');
+    Route::get('contact/client/{user}', 'App\Http\Controllers\AdminContactsController@indexClients')->name('contacts.index.client');
     Route::get('archive/contacts', 'App\Http\Controllers\AdminContactsController@archive')->name('contact.archive');
     Route::get('archive/contacts/client', 'App\Http\Controllers\AdminContactsController@archiveClients')->name('contact.archive-clients');
     Route::get('print/scans', 'App\Http\Controllers\CardController@printScans')->name('print.scans');

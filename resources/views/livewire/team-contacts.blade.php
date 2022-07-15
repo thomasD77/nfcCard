@@ -39,9 +39,8 @@
             <table class="table table-striped table-hover table-vcenter fs-sm">
                 <thead>
                 <tr>
+                    <th scope="col">Card holder</th>
                     <th scope="col">Name</th>
-                    <th scope="col">E-mail</th>
-                    <th scope="col">phone</th>
                     <th scope="col">Details</th>
                     <th scope="col">Registered</th>
                     <th scope="col">Actions</th>
@@ -51,6 +50,7 @@
                 @if($contacts)
                     @foreach($contacts as $contact)
                         <tr>
+                            <td><strong>{{$contact->member ? $contact->member->lastname : ''}} {{$contact->member ? $contact->member->firstname : ''}}</strong></td>
                             <td>{{$contact->name ? $contact->name : 'No Name'}}</td>
                             <td><a href="mailto:{{$contact->mail}}"> {{$contact->email ? $contact->email : 'No Email'}}</a></td>
                             <td>{{$contact->phone ? $contact->phone : 'No Phone'}}</td>
@@ -70,10 +70,6 @@
                                             <div class="modal-body">
                                                 <p><strong>Name:</strong></p>
                                                 <p class="bg-light p-2">{{$contact->name ? $contact->name : 'No Name'}}</p>
-                                                <p><strong>Email:</strong></p>
-                                                <p class="bg-light p-2">{{$contact->email ? $contact->email : 'No email'}}</p>
-                                                <p><strong>Phone:</strong></p>
-                                                <p class="bg-light p-2">{{$contact->phone ? $contact->phone : 'No Phone'}}</p>
                                                 <p><strong>Message:</strong></p>
                                                 <p class="bg-light p-2">{{$contact->message ? $contact->message : 'No message'}}</p>
                                                 <hr>

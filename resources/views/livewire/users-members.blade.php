@@ -36,18 +36,25 @@
                                     <i class="fa fa-fw fa-pencil-alt"></i>
                                 </button>
                             </a>
-                            <button class="btn btn-sm btn-alt-secondary" wire:click="archiveUser({{$user->id}})"><i class="fa fa-archive"></i></button>
+                            <button class="btn btn-sm btn-alt-secondary" wire:click="archiveUser({{$user->id}})" data-bs-toggle="tooltip" title="Archive User">
+                                <i class="fa fa-archive"></i>
+                            </button>
                         </div>
                     </td>
                     <td>
                         <div class="card" style="width: 18rem;">
                             <div class="card-header d-flex justify-content-between">
                                <h5>{{ $user->member->firstname }} {{ $user->member->lastname }}</h5>
-                                <a href="{{route('members.edit', $user->member->id)}}">
-                                    <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit member">
-                                        <i class="fa fa-fw fa-pencil-alt"></i>
-                                    </button>
-                                </a>
+                                <div>
+                                    <a href="{{route('members.edit', $user->member->id)}}">
+                                        <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit member">
+                                            <i class="fa fa-fw fa-pencil-alt"></i>
+                                        </button>
+                                    </a>
+                                    <a href="{{ route('contacts.index.client', $user) }}" class="btn btn-sm btn-alt-info text-center" data-bs-toggle="tooltip" title="Scans">
+                                        <i class="fa fa-mouse"></i>
+                                    </a>
+                                </div>
                             </div>
                             <div class="card-body">
 
