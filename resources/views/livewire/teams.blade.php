@@ -1,25 +1,27 @@
 <div class="parent">
 @include('admin.includes.flash')
 <!-- Search Form (visible on larger screens) -->
-{{--    <form class="d-none d-md-inline-block col-6" action="{{action('App\Http\Controllers\AdminteamsController@searchteam')}}" method="POST">--}}
-{{--        @csrf--}}
-{{--        <div class="input-group input-group-sm">--}}
-{{--            <input type="text" class="form-control form-control-alt" placeholder="Search for name..." id="page-header-search-input2" name="team">--}}
-{{--            <span class="input-group-text border-0"><button class="border border-0" type="submit"><i class="fa fa-fw fa-search"></i></button></span>--}}
-{{--        </div>--}}
-{{--    </form>--}}
+    <div class="d-none d-md-inline-block col-4 mb-3">
+        <input type="text" wire:model="search" class="form-control form-control-alt" placeholder="Search for company..." id="page-header-search-input2" name="company">
+    </div>
     <!-- END Search Form -->
-
         <div class="row">
             @if($teams)
                 @foreach($teams as $team)
                     <div class="card col-md-6 col-xl-4 align-items-stretch my-2" style="border:none">
                         <h3 class="card-header d-flex justify-content-between">
+
                             {{ $team->name }}
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal{{$team->id}}">
-                                <i class="fa fa-fw fa-pencil-alt"></i>
-                            </button>
+
+                            <div>
+                                <button class="btn btn-sm btn-secondary rounded mx-2" wire:click="archiveTeam({{ $team }})" data-bs-toggle="tooltip" title="Archive">
+                                    <i class="fa fa-archive "></i>
+                                </button>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal{{$team->id}}">
+                                    <i class="fa fa-fw fa-pencil-alt"></i>
+                                </button>
+                            </div>
                         </h3>
                         <!-- Modal -->
                         {!! Form::open(['method'=>'PUT', 'action'=>['App\Http\Controllers\AdminTeamsController@update', $team->id],

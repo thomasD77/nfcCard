@@ -98,9 +98,37 @@ class AdminTeamsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TeamRequest $request, $id)
     {
         //
+        $team = Team::where('id', $id)->first();
+
+        $team->name = $request->name;
+        $team->VAT = $request->VAT;
+        $team->description = $request->description;
+        $team->phone = $request->phone;
+
+        if($request->ambassador){
+            $ambassador = Team::where('id', $request->ambassador)->first();
+            $team->ambassador = $ambassador->name;
+        }else{
+            $team->ambassador = null;
+        }
+
+        $team->update();
+
+        $teamAddress = TeamAddress::where('team_id', $team->id)->first();
+        $teamAddress->street = $request->street;
+        $teamAddress->number = $request->number;
+        $teamAddress->zip = $request->zip;
+        $teamAddress->city = $request->city;
+        $teamAddress->country = $request->country;
+
+        $teamAddress->update();
+
+
+        \Brian2694\Toastr\Facades\Toastr::success('Team Successfully Updated');
+        return redirect('/admin/teams');
     }
 
     /**
@@ -120,6 +148,6 @@ class AdminTeamsController extends Controller
             ->latest()
             ->paginate(25);
 
-        return view('admin.members.archive', compact('teams'));
+        return view('admin.teams.archive', compact('teams'));
     }
 }
