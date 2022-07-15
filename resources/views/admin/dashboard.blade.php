@@ -283,35 +283,53 @@
     @endcan
 
     @can('is_client')
-        <!-- Page Content -->
-        <div class="content content-boxed">
-            <!-- member Profile -->
-            <div class="block block-rounded">
-                <div class="block-header block-header-default">
-                    <h3 class="block-title">Member Profile</h3>
-                    <div>
-                        <p style="font-weight: bold">#Card ID: {{ $member->card_id }}</p>
-                    </div>
-                </div>
+        <div class="block block-rounded row">
+            <div class="block-content block-content-full overflow-scroll">
+
                 @if($member->user->archived == 0)
 
-                    @if($member->package->package == 'vCard')
-                        @include('admin.members.includes.vCard')
+                    @include('admin.includes.flash')
 
-                    @elseif($member->package->package == 'Default')
-                        @include('admin.members.includes.default')
+                    <div class="parent">
 
-                    @elseif($member->package->package == "Custom")
-                        @include('admin.members.includes.custom')
+                        <div class="card">
+                            <div class="d-flex justify-content-center my-2">
+                                <img class="rounded-circle" height=85 width="85" src="{{$member->avatar ? asset('/card/avatars') . "/" . $member->avatar : asset('/assets/front/img/Avatar-4.svg') }}" alt="{{$member->name}}">
 
-                    @endif
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $member->firstname }} {{ $member->lastname }}</h5>
+                                <p>{{ $member->email }}</p>
+                                <p>{{ $member->company }}</p>
+                                <p>{{ $member->jobTitle }}</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="{{route('members.edit', $member->id)}}">
+                                    <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit profile">
+                                        <i class="fa fa-fw fa-pencil-alt"></i>
+                                    </button>
+                                </a>
+                                <a href="{{route('direction', $member->card_id)}}" target="_blank">
+                                    <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Show page">
+                                        <i class="far fa-eye"></i>
+                                    </button>
+                                </a>
+                            </div>
+                            <div class="card-footer">
+                                <strong class="mx-2">Your referral code:</strong><span class="badge badge-pill p-2 bg-success">{{ $member->referral }}</span>
+                            </div>
+                        </div>
+
+                    </div>
+
                 @else
+
                     <p class="p-2">Sorry, the admin blocked your account. Please contact him for this situation.</p>
+
                 @endif
+
             </div>
-            <!-- END member Profile -->
         </div>
-        <!-- END Page Content -->
     @endcan
 
 

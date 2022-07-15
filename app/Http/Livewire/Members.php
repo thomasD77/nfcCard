@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Member;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\Request;
@@ -42,24 +43,31 @@ class Members extends Component
     public function render()
     {
         if($this->member_value){
+
             $value = $this->member_value;
+
             $members = Member::where(function($q) use($value) {
+
+                $team_id = Auth::user()->team->id;
+                $teamUsers = User::where('team_id', $team_id)->pluck('id');
+
                 $q->where('firstname', 'LIKE', '%' . $value . '%')
                     ->Orwhere('lastname', 'LIKE', '%' . $value . '%')
                     ->Orwhere('referral', 'LIKE', '%' . $value . '%')
+                    ->whereIn('user_id', $teamUsers)
                     ->where('archived', 0);
+
             })->simplePaginate($this->pagination);
 
         }else{
+            $team_id = Auth::user()->team->id;
+            $teamUsers = User::where('team_id', $team_id)->pluck('id');
             $members = Member::with(['user', 'package', 'material'])
+                ->whereIn('user_id', $teamUsers)
                 ->where('archived', 0)
                 ->simplePaginate($this->pagination);
         }
 
-        $active_user = Auth::user()->id;
-        $member = Member::where('user_id', $active_user)->first();
-
-
-        return view('livewire.members', compact('members', 'member'));
+        return view('livewire.members', compact('members'));
     }
 }

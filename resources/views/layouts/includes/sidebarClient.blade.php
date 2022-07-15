@@ -104,24 +104,17 @@
                 </li>
                 <li class="nav-main-heading text-uppercase">My Card</li>
 
-                <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('members.index')}}">
-                    <i class="nav-main-link-icon  far fa-calendar-alt"></i><span class="nav-main-link-name">ACCOUNT</span>
+                <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{ route('members.index') }}">
+                    <i class="nav-main-link-icon  far fa-calendar-alt"></i><span class="nav-main-link-name">Profile</span>
                 </a>
 
                 @if(Auth::user()->archived == 0 && Auth::user()->business)
-                    <li class="nav-main-heading text-uppercase">SWAP SCANS</li>
+                    <li class="nav-main-heading text-uppercase">Connections</li>
                     <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
-                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
+                        <a class="nav-main-link" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="{{route('contacts.index.client')}}">
                             <i class="nav-main-link-icon far fa-list-alt"></i>
                             <span class="nav-main-link-name ">Scans</span>
                         </a>
-                        <ul class="nav-main-submenu">
-                            <li class="nav-main-item">
-                                <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('contacts.index.client')}}">
-                                    <span class="nav-main-link-name">List</span>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
                 @endif
 

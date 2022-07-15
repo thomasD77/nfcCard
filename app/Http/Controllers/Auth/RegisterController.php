@@ -90,6 +90,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'business' => $listURL->business,
+            'team_id' => 1
         ]);
 
         DB::table('user_role')->insert([

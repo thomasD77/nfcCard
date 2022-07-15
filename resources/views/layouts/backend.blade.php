@@ -192,7 +192,7 @@
                                     <p class="mb-0 text-muted fs-sm fw-medium">{{Auth::user() && Auth::user()->roles->first() ? Auth::user()->roles->first()->name : ""}}</p>
                                 </div>
                                 <div class="p-2">
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{ route('admin.home') }}">
+                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{ asset('/admin') }}">
                                         <span class="fs-sm fw-medium">Dashboard</span>
                                         <i class="nav-main-link-icon si si-cursor"></i>
                                     </a>

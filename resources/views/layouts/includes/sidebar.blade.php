@@ -104,58 +104,14 @@
                         <span class="nav-main-link-name">Dashboard</span>
                     </a>
                 </li>
-                @can('is_superAdmin')
-{{--                <li class="nav-main-heading">Content</li>--}}
-{{--                <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">--}}
-{{--                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">--}}
-{{--                        <i class="nav-main-link-icon far fa-id-badge"></i>--}}
-{{--                        <span class="nav-main-link-name">Pages</span>--}}
-{{--                    </a>--}}
-{{--                    <ul class="nav-main-submenu">--}}
-{{--                        <li class="nav-main-item">--}}
-{{--                            <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('homePage.index')}}">--}}
-{{--                                <span class="nav-main-link-name">Home</span>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
-{{--                    </ul>--}}
-{{--                    <ul class="nav-main-submenu">--}}
-{{--                        <li class="nav-main-item">--}}
-{{--                            <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('disclaimer.index')}}">--}}
-{{--                                <span class="nav-main-link-name ms-3">Disclaimer</span>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
-{{--                    </ul>--}}
-{{--                    <ul class="nav-main-submenu">--}}
-{{--                        <li class="nav-main-item">--}}
-{{--                            <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('privacy.index')}}">--}}
-{{--                                <span class="nav-main-link-name ms-3">Privacy Policy</span>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
-{{--                    </ul>--}}
-{{--                    <ul class="nav-main-submenu">--}}
-{{--                        <li class="nav-main-item">--}}
-{{--                            <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('cookie.index')}}">--}}
-{{--                                <span class="nav-main-link-name ms-3">Cookie Policy</span>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
-{{--                    </ul>--}}
-{{--                </li>--}}
-                @endcan
 
                 @can('is_superAdmin')
                     <li class="nav-main-heading text-uppercase">ACCOUNTS</li>
                     <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
-                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
+                        <a class="nav-main-link" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="{{route('users.index')}}">
                             <i class="nav-main-link-icon  fa fa-users"></i>
                             <span class="nav-main-link-name ">Users</span>
                         </a>
-                        <ul class="nav-main-submenu">
-                            <li class="nav-main-item">
-                                <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('users.index')}}">
-                                    <span class="nav-main-link-name">List</span>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
                     <a href="{{route('teams.index')}}" class="nav-main-link" data-toggle="submenu" aria-haspopup="true" aria-expanded="true">
                         <i class="nav-main-link-icon  fa fa-users"></i>
@@ -163,19 +119,13 @@
                     </a>
                 @endcan
 
-                <li class="nav-main-heading text-uppercase">Card Members</li>
+
+                <li class="nav-main-heading text-uppercase">Card Profiles</li>
                 <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
-                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
+                    <a class="nav-main-link" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="{{route('members.index')}}">
                         <i class="nav-main-link-icon far fa-list-alt"></i>
                         <span class="nav-main-link-name ">Members</span>
                     </a>
-                    <ul class="nav-main-submenu">
-                        <li class="nav-main-item">
-                            <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('members.index')}}">
-                                <span class="nav-main-link-name">List</span>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
 
 

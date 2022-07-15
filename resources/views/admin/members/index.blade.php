@@ -71,8 +71,15 @@
     <!-- Page Content -->
     <div class="content container-fluid">
 
-            @livewire('members')
+            @if(Auth()->user()->roles->first()->name != 'client')
 
+                @livewire('members')
+
+            @else
+
+                @livewire('member-client')
+
+            @endif
 
     </div>
     <!-- END Page Content -->

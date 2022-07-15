@@ -101,16 +101,6 @@
                         @endcan
 
                         <div class="form-group mb-4">
-                            {!! Form::label('one-profile-edit-username', 'Username:',['class'=>'form-label']) !!}
-                            {!! Form::text('username',$user->username ? $user->username : "" ,['class'=>'form-control']) !!}
-                            @error('username')
-                            <p class="text-danger mt-2"> {{ $message }}</p>
-                            @enderror
-                            @if(Session::has('user_username'))
-                                <p class="alert alert-danger my-2">{{session('user_username')}}</p>
-                            @endif
-                        </div>
-                        <div class="form-group mb-4">
                             {!! Form::label('one-profile-edit-name', 'Name:', ['class'=>'form-label']) !!}
                             {!! Form::text('name',$user->name,['class'=>'form-control']) !!}
                             @error('name')
@@ -267,19 +257,16 @@
                                 @enderror
                             @endif
                         </div>
-                        <div class="form-group mb-4">
-                            {!! Form::label('one-profile-edit-email', 'Description:', ['class'=>'form-label']) !!}
-                            @if($role == 'client')
-                                {!! Form::text('description',$user->team->description,['class'=>'form-control', 'disabled']) !!}
-                            @else
+
+                        @if($role != 'client')
+                            <div class="form-group mb-4">
+                                {!! Form::label('one-profile-edit-email', 'Description:', ['class'=>'form-label']) !!}
                                 {!! Form::textarea('description',$user->team->description,['class'=>'form-control']) !!}
                                 @error('description')
                                 <p class="text-danger mt-2"> {{ $message }}</p>
                                 @enderror
-                            @endif
-                        </div>
-
-                        @if($role != 'client')
+                            </div>
+                        
                             {!! Form::submit('Update',['class'=>'btn btn-alt-primary']) !!}
                         @endif
 
