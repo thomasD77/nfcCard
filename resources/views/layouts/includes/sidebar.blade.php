@@ -143,7 +143,7 @@
                 @endcan
 
                 @canany(['is_superAdmin', 'is_admin'])
-                    <li class="nav-main-heading text-uppercase">ACCOUNT USERS</li>
+                    <li class="nav-main-heading text-uppercase">ACCOUNTS</li>
                     <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
                         <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
                             <i class="nav-main-link-icon  fa fa-users"></i>
@@ -155,15 +155,12 @@
                                     <span class="nav-main-link-name">List</span>
                                 </a>
                             </li>
-{{--                            @can('is_superAdmin')--}}
-{{--                                <li class="nav-main-item">--}}
-{{--                                    <a class="nav-main-link{{ request()->is('pages/slick') ? ' active' : '' }}" href="{{route('roles.index')}}">--}}
-{{--                                        <span class="nav-main-link-name">Roles</span>--}}
-{{--                                    </a>--}}
-{{--                                </li>--}}
-{{--                            @endcan--}}
                         </ul>
                     </li>
+                    <a href="{{route('teams.index')}}" class="nav-main-link" data-toggle="submenu" aria-haspopup="true" aria-expanded="true">
+                        <i class="nav-main-link-icon  fa fa-users"></i>
+                        <span class="nav-main-link-name ">Teams</span>
+                    </a>
                 @endcanany
 
 

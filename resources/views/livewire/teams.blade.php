@@ -118,15 +118,16 @@
                         <div class="card-body">
                             <strong>VAT: </strong><br>
                             <p>{{ $team->VAT }}</p>
+
                             <strong>Phone: </strong><br>
                             <p>{{ $team->phone }}</p>
-                        </div>
-                        <div class="card-body">
+
                             <strong>Address: </strong><br>
-                            <p>{{ $team->teamAddress ? $team->teamAddress->street : "" }} {{ $team->teamAddress ? $team->teamAddress->number : "" }}</p>
-                            <p>{{ $team->teamAddress ? $team->teamAddress->zip : "" }} {{ $team->teamAddress ? $team->teamAddress->city : "" }}</p>
-                            <p>{{ $team->teamAddress ? $team->teamAddress->country : "" }}</p>
+                            <p class="mb-1">{{ $team->teamAddress ? $team->teamAddress->street : "" }} {{ $team->teamAddress ? $team->teamAddress->number : "" }}</p>
+                            <p class="mb-1">{{ $team->teamAddress ? $team->teamAddress->zip : "" }} {{ $team->teamAddress ? $team->teamAddress->city : "" }}</p>
+                            <p class="mb-1">{{ $team->teamAddress ? $team->teamAddress->country : "" }}</p>
                         </div>
+
                         @if($team->ambassador)
                             <div class="card-body">
                                 <strong>Ambassador: </strong><br>

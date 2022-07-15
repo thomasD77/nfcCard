@@ -49,6 +49,7 @@
     </div>
     <!-- END Hero -->
 
+    @canany(['is_superAdmin', 'is_admin'])
     <!-- Page Content -->
     <div class="content container-fluid">
         <!-- Dynamic Table Full -->
@@ -171,4 +172,5 @@
         @livewireScripts
     </div>
     <!-- END Page Content -->
+    @endcanany
 @endsection

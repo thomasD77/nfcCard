@@ -64,10 +64,12 @@
                 </a>
             </div>
 
+            @canany(['is_superAdmin', 'is_admin'])
             <div class="block-content block-content-full overflow-scroll">
                 <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
                 @livewire('unarchive-teams')
             </div>
+            @endcanany
         </div>
         <!-- END Dynamic Table Full -->
         @livewireScripts
