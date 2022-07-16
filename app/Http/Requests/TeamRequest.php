@@ -35,7 +35,7 @@ class TeamRequest extends FormRequest
             'zip'=>'required|max:90',
             'country'=>'required|max:90',
 
-            'description'=>'max:390',
+            'description'=>'max:700',
         ];
     }
 }

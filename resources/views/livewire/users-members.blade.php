@@ -44,16 +44,22 @@
                     <td>
                         <div class="card" style="width: 18rem;">
                             <div class="card-header d-flex justify-content-between">
-                               <h5>{{ $user->member->firstname }} {{ $user->member->lastname }}</h5>
-                                <div>
-                                    <a href="{{route('members.edit', $user->member->id)}}">
-                                        <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit member">
-                                            <i class="fa fa-fw fa-pencil-alt"></i>
-                                        </button>
-                                    </a>
-                                    <a href="{{ route('contacts.index.client', $user) }}" class="btn btn-sm btn-alt-info text-center" data-bs-toggle="tooltip" title="Scans">
-                                        <i class="fa fa-mouse"></i>
-                                    </a>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <h5 class="">{{ $user->member->firstname }} {{ $user->member->lastname }}</h5>
+                                    </div>
+                                    <div class="col-md-4 d-flex">
+                                        <a href="{{route('members.edit', $user->member->id)}}">
+                                            <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit member">
+                                                <i class="fa fa-fw fa-pencil-alt"></i>
+                                            </button>
+                                        </a>
+                                        <div>
+                                            <a href="{{ route('contacts.index.client', $user) }}" class="btn btn-sm btn-alt-info text-center" data-bs-toggle="tooltip" title="Scans">
+                                                <i class="fa fa-mouse"></i>
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="card-body">

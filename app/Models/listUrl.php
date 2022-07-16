@@ -43,4 +43,9 @@ class listUrl extends Model
         return $this->belongsTo(Role::class, 'role_id');
     }
 
+    public function listTeam()
+    {
+        return $this->belongsTo(Team::class, 'team_id');
+    }
+
 }

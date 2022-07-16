@@ -12,11 +12,20 @@ class MemberUrlExport implements FromView
 {
     public function view(): View
     {
-        $ids = Member::where('print', 1)->select(['id'])->get();
-        $members = listUrl::whereIn('member_id', $ids)->select('id', 'memberURL', 'material_id')
+        $members = listUrl::query()
+            ->where('print', 1)
+            ->select([
+                'card_id',
+                'memberURL',
+                'material_id',
+                'role_id',
+                'business',
+                'image',
+                'reservation'
+            ])
             ->get();
 
-        $settings = Member::select(['id', 'print'])->get();
+        $settings = listUrl::select(['id', 'print'])->get();
         foreach ($settings as $member){
             $member->print = 0;
             $member->update();

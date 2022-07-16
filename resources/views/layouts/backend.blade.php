@@ -129,11 +129,15 @@
             -->
 
             @canany(['is_superAdmin', 'is_admin', 'is_employee'])
-                @include('layouts.includes.sidebar')
+
+                    @include('layouts.includes.sidebar')
+
             @endcanany
 
             @can('is_client')
-                @include('layouts.includes.sidebarClient')
+
+                    @include('layouts.includes.sidebarClient')
+
             @endcan
 
             <!-- Header -->
@@ -143,6 +147,7 @@
                     <!-- Left Section -->
                     <div class="d-flex align-items-center">
 
+                            @if(!Auth()->user()->archived)
                             <!-- Toggle Sidebar -->
                             <!-- Layout API, functionality initialized in Template._uiApiLayout()-->
                             <button type="button" class="btn btn-sm btn-alt-secondary me-2 d-lg-none" data-toggle="layout" data-action="sidebar_toggle">
@@ -156,6 +161,8 @@
                                 <i class="fa fa-fw fa-ellipsis-v"></i>
                             </button>
                             <!-- END Toggle Mini Sidebar -->
+                            @endif
+
 
 
                             <!-- Open Search Section (visible on smaller screens) -->
@@ -170,11 +177,13 @@
                     </div>
                     <!-- END Left Section -->
 
-                    @if(isset(Auth()->user()->member))
+                    @if(isset(Auth()->user()->member) && !Auth()->user()->archived)
                         <a class="text-center nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('show.QRcode', Auth()->user()->member->card_id)}}">
                             <img width="35px" height="35px" class="img-fluid" src="{{ asset('images/content/QRcode.png') }}" alt="QRcode">
                         </a>
                     @endif
+
+
 
                     <!-- Right Section -->
                     <div class="d-flex align-items-center">
@@ -197,14 +206,15 @@
                                         <i class="nav-main-link-icon si si-cursor"></i>
                                     </a>
                                 </div>
+                                @if(!Auth()->user()->archived)
                                 <div role="separator" class="dropdown-divider m-0"></div>
                                 <div class="p-2">
-
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{route('users.edit', Auth::user() ? Auth::user()->id : "")}}">
                                         <span class="fs-sm fw-medium">Account</span>
                                         <i class="far fa-user"></i>
                                     </a>
                                 </div>
+                                @endif
                                 <div role="separator" class="dropdown-divider m-0"></div>
 
                                 <div class="p-2">
@@ -223,6 +233,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <!-- END User Dropdown -->
 
                         <!-- Languages selection -->
@@ -335,8 +346,10 @@
                         <!-- END Toggle Side Overlay -->
                     </div>
                     <!-- END Right Section -->
+
                 </div>
                 <!-- END Header Content -->
+
 
                 <!-- Header Search -->
                 <div id="page-header-search" class="overlay-header bg-body-extra-light">

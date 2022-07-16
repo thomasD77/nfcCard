@@ -266,7 +266,7 @@
                                 <p class="text-danger mt-2"> {{ $message }}</p>
                                 @enderror
                             </div>
-                        
+
                             {!! Form::submit('Update',['class'=>'btn btn-alt-primary']) !!}
                         @endif
 

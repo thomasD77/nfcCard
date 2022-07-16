@@ -23,6 +23,7 @@ class DirectionController extends Controller
         if(isset($parts['query']) !== false)
         {
             $url_card_id = substr_replace($parts['query'], "", -1);
+            $url = listUrl::where('card_id', $url_card_id)->first();
         }
         else
         {
@@ -40,7 +41,7 @@ class DirectionController extends Controller
         $member = Member::where('card_id', $url_card_id)->first();
         if(!$member)
         {
-            return view( 'auth.register', compact('url_card_id'));
+            return view( 'auth.register', compact('url_card_id', 'url'));
         }
         if($member->package->package == 'Default')
         {

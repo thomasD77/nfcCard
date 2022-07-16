@@ -8,11 +8,18 @@ use Livewire\Component;
 
 class UsersMembers extends Component
 {
+    public function archiveUser($id)
+    {
+        $user = User::findOrFail($id);
+        $user->archived = 1;
+        $user->update();
+    }
+
     public function render()
     {
         $current_user = Auth::user()->id;
 
-        $users = User::with([ 'roles', 'member'])
+        $users = User::with([ 'roles', 'member', 'team'])
             ->where('archived', 0)
             ->where('id', '!=' ,1)
             ->where('id', '!=' ,2)

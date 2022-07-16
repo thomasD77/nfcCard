@@ -22,7 +22,7 @@ class Users extends Component
 
         $current_user = Auth::user()->id;
 
-        $users = User::with([ 'roles', 'member'])
+        $users = User::with([ 'roles', 'member', 'team'])
             ->where('archived', 0)
             ->where('id', '!=' ,1)
             ->where('id', '!=' ,2)

@@ -82,15 +82,13 @@ class RegisterController extends Controller
     {
         $url = URL::first()->url;
         $member = new Member();
-        $listURL = listUrl::where('id', $data['card_id'])->first();
+        $listURL = listUrl::where('card_id', $data['card_id'])->first();
         $faker = Factory::create();
 
         $user = User::create([
             'name' => $data['name'],
-            'team_id' => $listURL->team_id,
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'business' => $listURL->business,
         ]);
 
         DB::table('user_role')->insert([
@@ -117,6 +115,8 @@ class RegisterController extends Controller
 
         //Connect User with member
         $user->member_id = $member->id;
+        $user->team_id = $listURL->team_id;
+        $user->business = $listURL->business;
         $user->save();
 
         //Connect ListURl with Member

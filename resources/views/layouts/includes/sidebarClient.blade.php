@@ -1,4 +1,5 @@
 <nav id="sidebar" aria-label="Main Navigation">
+    @if(!Auth()->user()->archived)
     <!-- Side Header -->
     <div class="content-header">
         <!-- Logo -->
@@ -129,5 +130,6 @@
         <!-- END Side Navigation -->
     </div>
     <!-- END Sidebar Scrolling -->
+    @endif
 </nav>
 <!-- END Sidebar -->

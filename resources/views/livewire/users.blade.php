@@ -16,7 +16,6 @@
         <th scope="col">Avatar</th>
         <th scope="col">Name</th>
         <th scope="col">Company</th>
-        <th scope="col"># User ID</th>
         <th scope="col">Email</th>
         <th scope="col">Role</th>
         <th scope="col"># Card ID</th>
@@ -31,7 +30,6 @@
                 <td><img class="rounded-circle" height="62" width="62" src="{{$user->avatar ? asset('/') . $user->avatar->file : asset('/assets/front/img/avatar-2.svg') }}" alt="{{$user->name}}"></td>
                 <td>{{$user->name ? $user->name : 'No Name'}}</td>
                 <td>{{$user->team ? $user->team->name : 'No Company'}}</td>
-                <td>{{$user->id ? $user->id : 'No ID'}}</td>
                 <td>{{$user->email ? $user->email : 'No Email'}}</td>
                 <td>@foreach($user->roles as $role)
                         <span class="rounded-pill bg-info-light text-info p-2">{{$role->name ? $role->name : 'No Role'}}</span>

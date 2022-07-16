@@ -15,7 +15,7 @@ class AddExtraFieldToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->unsignedBigInteger('team_id')->nullable()->index()->constrained()->onDelete('cascade');
+            $table->integer('team_id')->nullable()->index();
         });
     }
 

@@ -152,28 +152,8 @@ class CardController extends Controller
 
     public function print()
     {
-        $QRcode = \App\Models\QRCODE::first();
-
-        $ids = Member::where('print', 1)->select(['id'])->get();
-        $members = listUrl::whereIn('member_id', $ids)
-            ->get();
-
-        if($QRcode->status == 1)
-        {
-            $pdf = PDF::loadView('admin.members.code', compact('members'));
-
-            $members = Member::select(['id', 'print'])->get();
-            foreach ($members as $member){
-                $member->print = 0;
-                $member->update();
-            }
-
-            return $pdf->download('card-details.pdf');
-        }
-        else
-        {
-            return Excel::download(new MemberUrlExport(), 'member-card-list.xlsx');
-        }
+        $filename = 'members_order_list_' . now()->format('Y-m-d') . '.xlsx' ;
+        return Excel::download(new MemberUrlExport(), "$filename");
     }
 
 

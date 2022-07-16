@@ -76,7 +76,7 @@ class AdminUsersController extends Controller
     {
         //
         $user = User::findOrfail($id);
-        $role = $user->roles()->first()->name;
+        $role = Auth()->user()->roles()->first()->name;
 
         $roles = Role::pluck('name', 'id')
             ->all();

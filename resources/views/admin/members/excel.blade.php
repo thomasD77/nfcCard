@@ -13,16 +13,26 @@
                 <table class="table table-striped table-hover table-vcenter fs-sm">
                     <thead>
                     <tr>
+                        <th scope="col"># Card ID</th>
                         <th scope="col">URL</th>
                         <th scope="col">Material</th>
+                        <th scope="col">Role</th>
+                        <th scope="col">Business</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Reservation</th>
                     </tr>
                     </thead>
                     @if($members)
                         @foreach($members as $member)
                             <tbody>
                                 <tr>
+                                    <td>{{ $member->card_id }}</td>
                                     <td>{{ $member->memberURL ? $member->memberURL : 'No URL' }}</td>
                                     <td>{{ $member->material->name }}</td>
+                                    <td>{{ $member->listRole->name }}</td>
+                                    <td>{{ $member->business }}</td>
+                                    <td>{{ $member->image }}</td>
+                                    <td>{{ $member->reservation }}</td>
                                 </tr>
                             </tbody>
                             <br>

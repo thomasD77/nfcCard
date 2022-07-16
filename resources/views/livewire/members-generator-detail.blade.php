@@ -13,8 +13,11 @@
             <!-- End Pagination -->
             <div>
 
-                <a href="{{ route('card-credentials-sheet-generator') }}" class="btn btn-alt-success">
+                <a href="{{ route('card-credentials-sheet-generator') }}" class="btn btn-alt-success" data-bs-toggle="tooltip" title="Supplier">
                     <i class="fa fa-print me-2"></i>
+                </a>
+                <a href="{{ route('print.list') }}" class="btn btn-alt-primary" data-bs-toggle="tooltip" title="Teamleader">
+                    <i class="fa fa-copy me-2"></i>
                 </a>
 
             </div>
@@ -33,10 +36,6 @@
                     <th scope="col">Material</th>
 
                     <th scope="col">#Card ID</th>
-
-                    @if($QRcode->status == 1)
-                        <th scope="col">QRCODE URL</th>
-                    @endif
 
                     <th scope="col">Design</th>
 
@@ -87,17 +86,6 @@
 
                             <td>{{$url->reservartion ? $url->reservartion : "*no reservartion" }}</td>
 
-                            @if($QRcode->status == 1)
-                                @if($url->custom_QR_url != "")
-                                    <td>
-                                        <span class="rounded-pill p-2 btn-success">CUSTOM</span>
-                                    </td>
-                                @else
-                                    <td>
-                                        <span class="rounded-pill p-2 btn-primary">Default</span>
-                                    </td>
-                                @endif
-                            @endif
 
                             <td>
                                 <!-- Button trigger modal -->
