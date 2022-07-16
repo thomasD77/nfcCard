@@ -46,20 +46,35 @@ class Members extends Component
 
             $value = $this->member_value;
 
-            $members = Member::where(function($q) use($value) {
+            //If superAdmin
+            if(Auth()->user()->roles->first()->name == 'superAdmin'){
+                $members = Member::where(function($q) use($value) {
+                    $q->where('firstname', 'LIKE', '%' . $value . '%')
+                        ->Orwhere('lastname', 'LIKE', '%' . $value . '%')
+                        ->Orwhere('referral', 'LIKE', '%' . $value . '%')
+                        ->where('archived', 0);
 
-                $team_id = Auth::user()->team->id;
-                $teamUsers = User::where('team_id', $team_id)->pluck('id');
+                })->simplePaginate($this->pagination);
+            }else {
+                $members = Member::where(function($q) use($value) {
 
-                $q->where('firstname', 'LIKE', '%' . $value . '%')
-                    ->Orwhere('lastname', 'LIKE', '%' . $value . '%')
-                    ->Orwhere('referral', 'LIKE', '%' . $value . '%')
-                    ->whereIn('user_id', $teamUsers)
-                    ->where('archived', 0);
+                    $team_id = Auth::user()->team->id;
+                    $teamUsers = User::where('team_id', $team_id)->pluck('id');
 
-            })->simplePaginate($this->pagination);
+                    $q->where('firstname', 'LIKE', '%' . $value . '%')
+                        ->Orwhere('lastname', 'LIKE', '%' . $value . '%')
+                        ->Orwhere('referral', 'LIKE', '%' . $value . '%')
+                        ->whereIn('user_id', $teamUsers)
+                        ->where('archived', 0);
 
-        }else{
+                })->simplePaginate($this->pagination);
+            }
+
+        }elseif(Auth()->user()->roles->first()->name == 'superAdmin'){
+            $members = Member::with(['user', 'package', 'material'])
+                ->where('archived', 0)
+                ->simplePaginate($this->pagination);
+        }else {
             $team_id = Auth::user()->team->id;
             $teamUsers = User::where('team_id', $team_id)->pluck('id');
             $members = Member::with(['user', 'package', 'material'])

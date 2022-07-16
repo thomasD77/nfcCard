@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\TeamRequest;
 use App\Models\Contact;
+use App\Models\Member;
 use App\Models\Team;
 use App\Models\TeamAddress;
 use App\Models\User;
@@ -20,7 +21,8 @@ class AdminTeamsController extends Controller
     {
         //
         $ambassadors = Team::with('teamAddress')->where('archived', '=', 0)->pluck('name', 'id');
-        return view('admin.teams.index', compact('ambassadors'));
+        $count = Team::where('archived', 0)->count();
+        return view('admin.teams.index', compact('ambassadors', 'count'));
     }
 
     /**
@@ -150,7 +152,9 @@ class AdminTeamsController extends Controller
             ->latest()
             ->paginate(25);
 
-        return view('admin.teams.archive', compact('teams'));
+        $count = Team::where('archived', 1)->count();
+
+        return view('admin.teams.archive', compact('teams', 'count'));
     }
 
     public function getUsers(Team $team)
@@ -159,15 +163,24 @@ class AdminTeamsController extends Controller
             ->where('archived', 0)
             ->get();
 
-        return view('admin.teams.users', compact('users', 'team'));
+        $count = User::where('team_id', $team->id)
+            ->where('archived', 0)
+            ->count();
+
+        return view('admin.teams.users', compact('users', 'team', 'count'));
     }
 
     public function getContacts(Team $team)
     {
-        $contacts = Contact::where('id', $team->id)
-            ->where('archived', 0)
-            ->get();
+        $team = $team;
 
-        return view('admin.teams.contacts', compact('contacts'));
+        $users = User::where('team_id', $team->id)->pluck('id');
+        $members = Member::whereIn('user_id', $users)->pluck('id');
+        $count = \App\Models\Contact::with(['member'])
+            ->where('archived', 0)
+            ->whereIn('member_id', $members)
+           ->count();
+
+        return view('admin.teams.contacts', compact('team', 'count'));
     }
 }

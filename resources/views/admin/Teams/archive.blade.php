@@ -55,7 +55,7 @@
         <div class="block block-rounded row">
             <div class="block-header block-header-default">
                 <h3 class="block-title">
-                    Archive teams
+                    Archive teams ({{ $count }})
                 </h3>
                 <a href="{{route('teams.index')}}">
                     <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="List">

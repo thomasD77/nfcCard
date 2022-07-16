@@ -22,11 +22,11 @@
                         <i class="fa fa-print me-2"></i> Member List
                     </a>
                     <!-- END Member list -->
-                    @can('is_superAdmin')
-                        <a href="{{ route('print') }}" class="btn btn-alt-success">
-                            <i class="fa fa-print me-2"></i>
-                        </a>
-                    @endcan
+{{--                    @can('is_superAdmin')--}}
+{{--                        <a href="{{ route('print') }}" class="btn btn-alt-success">--}}
+{{--                            <i class="fa fa-print me-2"></i>--}}
+{{--                        </a>--}}
+{{--                    @endcan--}}
                 </div>
             </div>
             <div class="parent">
@@ -58,7 +58,6 @@
                                 <td>{{$member->card_id ? $member->card_id : 'No Card ID'}}</td>
                                 <td>{{$member->material ? $member->material->name : 'No Material'}}</td>
                                 <td><a class="btn btn-outline-primary" href="{{ route('users.edit', $member->user->id) }}">{{$member->user ? $member->user->name : "unknown"}}</a></td>
-
                                 <td>
                                     <div class="btn-group">
                                         <a href="{{route('members.edit', $member->id)}}">

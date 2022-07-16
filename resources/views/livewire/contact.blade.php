@@ -59,7 +59,7 @@
                                 <td><strong>{{$contact->member ? $contact->member->lastname : ''}} {{$contact->member ? $contact->member->firstname : ''}}</strong></td>
                                 <td><strong>{{$contact->member ? $contact->member->company : ''}}</strong></td>
                                 <td>{{$contact->name ? $contact->name : 'No Name'}}</td>
-                                <td><a href="mailto:{{$contact->mail}}"> {{$contact->email ? $contact->email : 'No Email'}}</a></td>
+                                <td><a href="mailto:{{$contact->email}}"> {{$contact->email ? $contact->email : 'No Email'}}</a></td>
                                 <td><!-- Button trigger modal -->
                                     <button type="button" class="btn btn-alt-warning" data-bs-toggle="modal" data-bs-target="#exampleModal{{$contact->id}}">
                                         SWAP

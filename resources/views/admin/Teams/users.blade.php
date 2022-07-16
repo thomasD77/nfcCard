@@ -55,9 +55,9 @@
         <div class="block block-rounded row">
             <div class="block-header block-header-default">
                 <h3 class="block-title">
-                    Users
+                    Users ({{ $count }})
                 </h3>
-                <a href="{{route('users.archive')}}">
+                <a href="{{route('users.archive', ['team' => $team])}}">
                     @canany(['is_superAdmin', 'is_admin'])
                     <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Archive">
                         <i class="fa fa-archive "></i>

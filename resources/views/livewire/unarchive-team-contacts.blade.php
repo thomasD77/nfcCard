@@ -17,7 +17,7 @@
             <label class="d-flex">
                 <input wire:model="datepicker" id="datepicker" type="date" class="form-control" id="" name="" placeholder="Select date contact" data-inline="month" data-enable-time="false">
                 <button wire:click="dateALL" class="btn btn-secondary rounded" type="button" data-bs-toggle="tooltip" title="Refresh"><i class="si si-refresh"></i></button>
-                <a href="{{route('contacts.index')}}">
+                <a href="{{route('team.contacts', Auth()->user()->team)}}">
                     <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="List">
                         <i class="far fa-list-alt "></i>
                     </button>

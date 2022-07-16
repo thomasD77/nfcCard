@@ -128,6 +128,7 @@
                     </a>
                 </li>
 
+                @can('is_superAdmin')
                 <li class="nav-main-heading text-uppercase">SWAP SCANS</li>
                 <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
                     <a class="nav-main-link" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="{{route('contacts.index')}}">
@@ -135,15 +136,24 @@
                         <span class="nav-main-link-name ">Scans</span>
                     </a>
                 </li>
+                @endcan
 
                 @can('is_admin')
-                <li class="nav-main-heading text-uppercase">SWAP SCANS</li>
-                <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
-                    <a class="nav-main-link" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="{{route('team.contacts', Auth()->user()->team)}}">
-                        <i class="nav-main-link-icon fa fa-brain"></i>
-                        <span class="nav-main-link-name ">Scans</span>
-                    </a>
-                </li>
+                    @if(Auth::user()->archived == 0 && Auth::user()->business)
+                        <li class="nav-main-heading text-uppercase">SWAP SCANS</li>
+                        <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
+                            <a class="nav-main-link" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="{{route('team.contacts', Auth()->user()->team)}}">
+                                <i class="nav-main-link-icon fa fa-brain"></i>
+                                <span class="nav-main-link-name ">TEAM Scans</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
+                            <a class="nav-main-link" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="{{route('contacts.index.client', Auth()->user())}}">
+                                <i class="nav-main-link-icon far fa-list-alt"></i>
+                                <span class="nav-main-link-name ">MY Scans</span>
+                            </a>
+                        </li>
+                    @endif
                 @endcan
 
                 @can('is_superAdmin')

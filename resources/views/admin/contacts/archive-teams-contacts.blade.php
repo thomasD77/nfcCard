@@ -31,7 +31,7 @@
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
                 <div class="flex-grow-1">
                     <h1 class="h3 fw-bold mb-2">
-                        ALL SWAP SCANS ({{ $count }})
+                        {{ Auth()->user()->team ? Auth()->user()->team->name : "TEAM" }} - ARCHIVE
                     </h1>
                 </div>
                 <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
@@ -55,7 +55,7 @@
         <div class="block block-rounded row">
             <div class="block-content block-content-full overflow-scroll">
                 <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
-                @livewire('contact')
+                @livewire('unarchive-team-contacts')
             </div>
         </div>
         <!-- END Dynamic Table Full -->

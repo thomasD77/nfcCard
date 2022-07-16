@@ -24,6 +24,14 @@
                 <input style="width: 65px" wire:model="datepicker_day"  class="form-control" type="number" max="31" min="1">
                 <input wire:model="datepicker" id="datepicker" type="month" class="form-control" id="" name="" placeholder="Select date contact" data-inline="month" data-enable-time="false">
                 <button wire:click="dateALL" class="btn btn-secondary rounded" type="button" data-bs-toggle="tooltip" title="Refresh"><i class="si si-refresh"></i></button>
+{{--                @can('is_superAdmin')--}}
+{{--                    <a href="{{route('contact.archive', [ 'team' => $user->team ])}}">--}}
+{{--                        <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Archive">--}}
+{{--                            <i class="fa fa-archive"></i>--}}
+{{--                        </button>--}}
+{{--                    </a>--}}
+{{--                @endcan--}}
+
                 <a href="{{route('contact.archive-clients')}}">
                     <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Archive">
                         <i class="fa fa-archive "></i>
@@ -52,7 +60,7 @@
                     @foreach($contacts as $contact)
                         <tr>
                             <td>{{$contact->name ? $contact->name : 'No Name'}}</td>
-                            <td><a href="mailto:{{$contact->mail}}"> {{$contact->email ? $contact->email : 'No Email'}}</a></td>
+                            <td><a href="mailto:{{$contact->email}}"> {{$contact->email ? $contact->email : 'No Email'}}</a></td>
                             <td>{{$contact->phone ? $contact->phone : 'No Phone'}}</td>
                             <td><!-- Button trigger modal -->
                                 <button type="button" class="btn btn-alt-warning" data-bs-toggle="modal" data-bs-target="#exampleModal{{$contact->id}}">

@@ -20,7 +20,7 @@
         }
     </style>
 
-    @can('is_superAdmin')
+    @canany([ 'is_superAdmin', 'is_admin'])
     <!-- Hero -->
     <div class="bg-body-light">
         <div class="content content-full">
@@ -60,7 +60,7 @@
         </div>
     </div>
     <!-- END Page Content -->
-    @endcan
+    @endcanany
 
     @can('is_client')
         <div class="block block-rounded row">
@@ -83,18 +83,12 @@
                                 <p>{{ $member->company }}</p>
                                 <p>{{ $member->jobTitle }}</p>
                             </div>
-                            <div class="card-footer">
-                                <a href="{{route('members.edit', $member->id)}}">
-                                    <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit profile">
-                                        <i class="fa fa-fw fa-pencil-alt"></i>
-                                    </button>
-                                </a>
-                                <a href="{{route('direction', $member->card_id)}}" target="_blank">
-                                    <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Show page">
-                                        <i class="far fa-eye"></i>
-                                    </button>
-                                </a>
-                            </div>
+                            <a href="{{route('members.edit', $member->id)}}" class="btn-alt-secondary p-2 text-center" data-bs-toggle="tooltip" title="Edit profile">
+                                    Edit profile <i class="fa fa-fw fa-pencil-alt"></i>
+                            </a>
+                            <a href="{{route('direction', $member->card_id)}}" target="_blank" class="btn btn-sm btn-alt-primary p-2" data-bs-toggle="tooltip" title="Show page">
+                                    Show profile <i class="far fa-eye"></i>
+                            </a>
                             <div class="card-footer">
                                 <strong class="mx-2">Your referral code:</strong><span class="badge badge-pill p-2 bg-success">{{ $member->referral }}</span>
                             </div>

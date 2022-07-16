@@ -27,11 +27,39 @@ class TeamContacts extends Component
         $this->team = $team;
     }
 
+    public function archiveContact($id)
+    {
+        $contact = \App\Models\Contact::findOrFail($id);
+        $contact->archived = 1;
+        $contact->update();
+    }
+
+    public function dateALL()
+    {
+        $this->datepicker = "";
+        $this->datepicker_day = "";
+    }
+
+    public function saveNote(\App\Models\Contact $contact)
+    {
+        $contact->notes = $this->notes;
+        $contact->update();
+        $this->showNotes = false;
+    }
+
+    public function showNotes()
+    {
+        if($this->showNotes){
+            $this->showNotes = false;
+        }else {
+            $this->showNotes = true;
+        }
+    }
+
     public function render()
     {
         $users = User::where('team_id', $this->team->id)->pluck('id');
-        $members = Member::where('user_id', $users)->pluck('id');
-
+        $members = Member::whereIn('user_id', $users)->pluck('id');
 
         if ($this->datepicker == "") {
             $contacts = \App\Models\Contact::with(['member'])
@@ -69,7 +97,8 @@ class TeamContacts extends Component
                     ->whereIn('member_id', $members)
                     ->simplePaginate($this->pagination);
             }
-            return view('livewire.team-contacts');
+
+            return view('livewire.team-contacts', compact('contacts'));
 
         }
     }

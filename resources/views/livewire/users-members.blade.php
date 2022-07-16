@@ -42,7 +42,7 @@
                         </div>
                     </td>
                     <td>
-                        <div class="card" style="width: 18rem;">
+                        <div class="card shadow" style="border:none">
                             <div class="card-header d-flex justify-content-between">
                                 <div class="row">
                                     <div class="col-md-8">
@@ -63,7 +63,6 @@
                                 </div>
                             </div>
                             <div class="card-body">
-
                                 <h5 class="card-title">{{ $user->member->email }}</h5>
                                 <p class="card-text">{{ $user->member->company }}</p>
                                 <p class="card-text">{{ $user->member->material->name }}</p>

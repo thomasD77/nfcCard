@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Member;
+use App\Models\User;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -31,12 +32,18 @@ class UnarchiveContactClient extends Component
     public function render()
     {
         $user = Auth::user();
-        $member = Member::findOrFail($user->member_id);
+
+        if($user->roles->first()->name == 'superAdmin'){
+            $members = Member::where('archived', '=', 0)->pluck('id');
+        }else {
+            $users = User::where('team_id', $user->team_id)->pluck('id');
+            $members = Member::whereIn('user_id', $users)->where('archived', '=', 0)->pluck('id');
+        }
 
         if($this->datepicker == "")
         {
             $contacts = \App\Models\Contact::where('archived', 1)
-                ->where('member_id', $member->id)
+                ->whereIn('member_id', $members)
                 ->latest()
                 ->paginate($this->pagination);
             return view('livewire.unarchive-contact-client', compact('contacts'));
@@ -53,7 +60,7 @@ class UnarchiveContactClient extends Component
             $day = $dateSub->day;
 
             $contacts = \App\Models\Contact::where('archived', 1)
-                ->where('member_id', $member->id)
+                ->where('member_id', Auth()->user()->member_id)
                 ->whereMonth('created_at', $month)
                 ->whereYear('created_at', $year)
                 ->whereDay('created_at', $day)

@@ -28,7 +28,8 @@ class AdminUsersController extends Controller
     public function index()
     {
         //
-        return view('admin.users.index');
+        $count = User::where('archived', '=', 0)->count() - 2;
+        return view('admin.users.index', compact('count'));
     }
 
     /**
@@ -51,7 +52,6 @@ class AdminUsersController extends Controller
     public function store(Request $request)
     {
         //
-        dd($request);
     }
 
     /**
@@ -192,17 +192,18 @@ class AdminUsersController extends Controller
         return redirect()->back();
     }
 
-    public function archive()
+    public function archive(Request $request)
     {
-        $name = ['superAdmin', 'admin', 'employee'];
+        if($request->team){
+            $team = Team::where('id', $request->team)->first();
+            $count = User::where('archived', '=', 1)->where('team_id', $team->id ) ->count();
+        }else {
+            $team = null;
+            $count = User::where('archived', '=', 1)->count();
+        }
 
-        $users = User::whereHas('roles', function($q) use($name) {
-            $q->whereIn('name', $name);})
-            ->where('archived', 1)
-            ->latest()
-            ->paginate(10);
 
-        return view('admin.users.archive', compact('users'));
+        return view('admin.users.archive', compact('team', 'count'));
     }
 
     public function searchUser(Request $request)

@@ -7,6 +7,7 @@ use App\Exports\MemberListExport;
 use App\Exports\MemberUrlExport;
 use App\Exports\ScanListClientExport;
 use App\Exports\ScanListExport;
+use App\Exports\ScanListTeamExport;
 use App\Exports\SubmissionExport;
 use App\Http\Requests\ContactRequest;
 use App\Jobs\SendCardCredentialsJob;
@@ -259,6 +260,10 @@ class CardController extends Controller
     public function printScansClient()
     {
         return Excel::download(new ScanListClientExport(), 'scan-list.xlsx');
+    }
+    public function printScansTeam()
+    {
+        return Excel::download(new ScanListTeamExport(), 'scan-list.xlsx');
     }
 
 

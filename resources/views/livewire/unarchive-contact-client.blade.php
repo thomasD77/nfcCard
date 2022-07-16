@@ -41,7 +41,7 @@
                     @foreach($contacts as $contact)
                         <tr>
                             <td>{{$contact->name ? $contact->name : 'No Name'}}</td>
-                            <td><a href="mailto:{{$contact->mail}}"> {{$contact->email ? $contact->email : 'No Email'}}</a></td>
+                            <td><a href="mailto:{{$contact->email}}"> {{$contact->email ? $contact->email : 'No Email'}}</a></td>
                             <td>{{$contact->phone ? $contact->phone : 'No Phone'}}</td>
                             <td>{{$contact->created_at ? \Carbon\Carbon::parse($contact->created_at)->format('Y-M-d') : 'No Date'}}</td>                            <td>
                                 <div class="btn-group">

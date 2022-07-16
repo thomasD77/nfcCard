@@ -5,10 +5,11 @@
         <input type="text" wire:model="search" class="form-control form-control-alt" placeholder="Search for company..." id="page-header-search-input2" name="company">
     </div>
     <!-- END Search Form -->
+
         <div class="row">
             @if($teams)
                 @foreach($teams as $team)
-                    <div class="card col-md-6 col-xl-4 align-items-stretch my-2" style="border:none">
+                    <div class="card col-md-6 col-xl-4 align-items-stretch my-2 " style="border:none">
                         <h3 class="card-header d-flex justify-content-between">
 
                             {{ $team->name }}

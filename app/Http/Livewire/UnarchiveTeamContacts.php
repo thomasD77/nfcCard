@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\contact;
 use App\Models\Member;
 use App\Models\Team;
 use App\Models\User;
@@ -11,19 +10,18 @@ use Illuminate\Support\Carbon;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class UnarchiveContact extends Component
+class UnarchiveTeamContacts extends Component
 {
-    use WithPagination;
-    public $datepicker = "";
-    public $pagination = 25;
     public Team $team;
+    use WithPagination;
+    public string $datepicker = "";
+    public int $pagination = 25;
+    public string $datepicker_day = "";
+    public $name;
+    public $notes;
+    public $showNotes = false;
 
 
-    public function mount(Request $request){
-        if($request->team){
-            $this->team = Team::where('id', $request->team)->first();
-        }
-    }
 
     public function unArchiveContact($id)
     {
@@ -38,19 +36,28 @@ class UnarchiveContact extends Component
     }
 
 
+    public function saveNote(\App\Models\Contact $contact)
+    {
+        $contact->notes = $this->notes;
+        $contact->update();
+        $this->showNotes = false;
+    }
+
+    public function showNotes()
+    {
+        if($this->showNotes){
+            $this->showNotes = false;
+        }else {
+            $this->showNotes = true;
+        }
+    }
+
     public function render()
     {
-        if(isset($this->team)){
-            $users = User::where('team_id', $this->team->id )->pluck('id');
-            $members = Member::query()
-                ->where('archived', '=', 0)
-                ->whereIn('user_id', $users)
-                ->pluck('id');
-        }else {
-            $members = Member::query()
-                ->where('archived', '=', 0)
-                ->pluck('id');
-        }
+
+        $users = User::where('team_id', Auth()->user()->team->id)->pluck('id');
+        $members = Member::whereIn('user_id', $users)->pluck('id');
+
 
         if($this->datepicker == "")
         {
@@ -58,7 +65,7 @@ class UnarchiveContact extends Component
                 ->whereIn('member_id', $members)
                 ->latest()
                 ->simplePaginate($this->pagination);
-            return view('livewire.unarchive-contact', compact('contacts'));
+            return view('livewire.unarchive-team-contacts', compact('contacts'));
         }
         else
         {
@@ -79,7 +86,7 @@ class UnarchiveContact extends Component
                 ->simplePaginate($this->pagination);
 
 
-            return view('livewire.unarchive-contact', compact('contacts'));
+            return view('livewire.unarchive-team-contacts', compact('contacts'));
         }
 
     }

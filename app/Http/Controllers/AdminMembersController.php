@@ -33,7 +33,8 @@ class AdminMembersController extends Controller
     public function index()
     {
         //
-        return view('admin.members.index',);
+        $count = Member::count();
+        return view('admin.members.index', compact('count'));
     }
 
 

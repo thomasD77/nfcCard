@@ -73,13 +73,26 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::get('user/delete/{id}', 'App\Http\Controllers\AdminUsersController@delete')->name('users.delete');
     Route::post('user/search', 'App\Http\Controllers\AdminUsersController@searchUser')->name('users.search');
     Route::get('archive/users', 'App\Http\Controllers\AdminUsersController@archive')->name('users.archive');
+
     Route::resource('contacts', App\Http\Controllers\AdminContactsController::class);
-    Route::get('contact/client/{user}', 'App\Http\Controllers\AdminContactsController@indexClients')->name('contacts.index.client');
+
+
+    //This route will display all Contacts from given USER ID
+    Route::get('contact/client/{user}', 'App\Http\Controllers\AdminContactsController@indexClient')->name('contacts.index.client');
+
+
     Route::get('archive/contacts', 'App\Http\Controllers\AdminContactsController@archive')->name('contact.archive');
+
+    //This route will display all CONTACTS from AUTH user ID
     Route::get('archive/contacts/client', 'App\Http\Controllers\AdminContactsController@archiveClients')->name('contact.archive-clients');
+
+    Route::get('archive/team/contacts', 'App\Http\Controllers\AdminContactsController@archiveTeamContacts')->name('contact.archive-teams-contacts');
+
+
     Route::get('print/scans', 'App\Http\Controllers\CardController@printScans')->name('print.scans');
     Route::get('print/list', 'App\Http\Controllers\CardController@print')->name('print.list');
     Route::get('print/scans/client', 'App\Http\Controllers\CardController@printScansClient')->name('print.scans.client');
+    Route::get('print/scans/team', 'App\Http\Controllers\CardController@printScansTeam')->name('print.scans.team');
     Route::post('password/{id}', 'App\Http\Controllers\AdminUsersController@updatePassword');
 
 });

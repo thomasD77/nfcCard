@@ -32,7 +32,7 @@
                 @canany(['is_superAdmin', 'is_admin'])
                 <div class="flex-grow-1">
                     <h1 class="h3 fw-bold mb-2">
-                        Members
+                        ALL SWAP MEMBERS ({{ $count }})
                     </h1>
                 </div>
                 <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">

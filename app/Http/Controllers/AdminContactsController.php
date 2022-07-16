@@ -16,14 +16,21 @@ class AdminContactsController extends Controller
     public function index()
     {
         //
-        return view('admin.contacts.index');
+        $count = Contact::where('archived', '=', 0)->count();
+        return view('admin.contacts.index', compact('count'));
     }
 
-    public function indexClients(User $user)
+    public function indexClient(User $user)
     {
         //
-        $list_user = $user;
-        return view('admin.contacts.index-client', compact('list_user'));
+        $user = $user;
+
+        $count = \App\Models\Contact::with(['member'])
+            ->where('archived', 0)
+            ->where('member_id', $user->member_id)
+            ->count();
+
+        return view('admin.contacts.index-client', compact('user', 'count'));
     }
 
     public function archive()
@@ -32,15 +39,21 @@ class AdminContactsController extends Controller
             ->latest()
             ->paginate(25);
 
-        return view('admin.contacts.archive', compact('contacts'));
+        $count = Contact::where('archived', '=', 1)->count();
+
+        return view('admin.contacts.archive', compact('contacts', 'count'));
     }
 
     public function archiveClients()
     {
-        $contacts = Contact::where('archived', 1)
-            ->latest()
-            ->paginate(25);
 
-        return view('admin.contacts.archive-client', compact('contacts'));
+        return view('admin.contacts.archive-client');
+    }
+
+
+    public function archiveTeamContacts()
+    {
+
+        return view('admin.contacts.archive-teams-contacts');
     }
 }
