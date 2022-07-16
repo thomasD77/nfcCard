@@ -21,6 +21,13 @@ class UnarchiveTeamContacts extends Component
     public $notes;
     public $showNotes = false;
 
+    public function mount(Request $request)
+    {
+        if($request->team){
+            $team = Team::findOrfail($request->team);
+            $this->team = $team;
+        }
+    }
 
 
     public function unArchiveContact($id)
@@ -55,8 +62,12 @@ class UnarchiveTeamContacts extends Component
     public function render()
     {
 
-        $users = User::where('team_id', Auth()->user()->team->id)->pluck('id');
-        $members = Member::whereIn('user_id', $users)->pluck('id');
+        if(Auth()->user()->roles->first()->name == 'superAdmin'){
+            $members = Member::pluck('id');
+        }else {
+            $users = User::where('team_id', Auth()->user()->team->id)->pluck('id');
+            $members = Member::whereIn('user_id', $users)->pluck('id');
+        }
 
 
         if($this->datepicker == "")

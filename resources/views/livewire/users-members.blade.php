@@ -55,8 +55,8 @@
                                             </button>
                                         </a>
                                         <div>
-                                            <a href="{{ route('contacts.index.client', $user) }}" class="btn btn-sm btn-alt-info text-center" data-bs-toggle="tooltip" title="Scans">
-                                                <i class="fa fa-mouse"></i>
+                                            <a href="{{ route('contacts.index.client', $user) }}" class="btn btn-sm btn-alt-info text-center d-flex" data-bs-toggle="tooltip" title="Scans">
+                                                <i class="fa fa-mouse"></i><small class="px-1">{{ $user->member->contacts->count() }}</small>
                                             </a>
                                         </div>
                                     </div>

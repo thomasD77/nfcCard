@@ -25,7 +25,7 @@
                 <input wire:model="datepicker" id="datepicker" type="month" class="form-control" id="" name="" placeholder="Select date contact" data-inline="month" data-enable-time="false">
                 <button wire:click="dateALL" class="btn btn-secondary rounded" type="button" data-bs-toggle="tooltip" title="Refresh"><i class="si si-refresh"></i></button>
 
-                <a href="{{route('contact.archive-teams-contacts')}}">
+                <a href="{{route('contact.archive-teams-contacts', [ 'team' => $team ])}}">
                     <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Archive">
                         <i class="fa fa-archive "></i>
                     </button>

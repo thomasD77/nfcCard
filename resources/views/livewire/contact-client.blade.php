@@ -32,7 +32,7 @@
 {{--                    </a>--}}
 {{--                @endcan--}}
 
-                <a href="{{route('contact.archive-clients')}}">
+                <a href="{{route('contact.archive-clients', ['user' => $user ] )}}">
                     <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Archive">
                         <i class="fa fa-archive "></i>
                     </button>

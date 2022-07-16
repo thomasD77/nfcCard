@@ -46,14 +46,12 @@ class AdminContactsController extends Controller
 
     public function archiveClients()
     {
-
         return view('admin.contacts.archive-client');
     }
 
 
     public function archiveTeamContacts()
     {
-
         return view('admin.contacts.archive-teams-contacts');
     }
 }

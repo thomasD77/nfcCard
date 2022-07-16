@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Member;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -14,7 +15,15 @@ class UnarchiveContactClient extends Component
     use WithPagination;
     public $datepicker = "";
     public $pagination = 25;
+    public User $user;
 
+
+    public function mount(Request $request)
+    {
+        if($request->user){
+            $this->user = User::findOrFail($request->user);
+        }
+    }
 
     public function unArchiveContact($id)
     {
@@ -34,7 +43,9 @@ class UnarchiveContactClient extends Component
         $user = Auth::user();
 
         if($user->roles->first()->name == 'superAdmin'){
-            $members = Member::where('archived', '=', 0)->pluck('id');
+            $members = Member::where('user_id', $this->user->id)
+                ->where('archived', '=', 0)
+                ->pluck('id');
         }else {
             $users = User::where('team_id', $user->team_id)->pluck('id');
             $members = Member::whereIn('user_id', $users)->where('archived', '=', 0)->pluck('id');
@@ -46,6 +57,7 @@ class UnarchiveContactClient extends Component
                 ->whereIn('member_id', $members)
                 ->latest()
                 ->paginate($this->pagination);
+
             return view('livewire.unarchive-contact-client', compact('contacts'));
         }
         else
