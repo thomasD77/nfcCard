@@ -31,7 +31,7 @@ Auth::routes(['verify'=> true]);
 Route::get('/', 'App\Http\Controllers\DirectionController@getDirection')->name('direction');
 Route::get('vCard/{id}', 'App\Http\Controllers\CardController@vCard')->name('members.vCard');
 Route::post('save/{id}', 'App\Http\Controllers\CardController@saveInfo')->name('members.saveInfo');
-Route::get('QRcode/{id}', 'App\Http\Controllers\DirectionController@getDirection');
+Route::get('QRcode/{id}', 'App\Http\Controllers\DirectionController@getDirectionFromId');
 Route::get('QRcodeMember/{id}', 'App\Http\Controllers\QRcode\QRcodeController@QRcode')->name('members.QRcode');
 Route::post('generate/cards', 'App\Http\Controllers\Dashboard\CardListGenerator@generateListUrl')->name('generate.cards');
 Route::get('members/print', 'App\Http\Controllers\CardController@print')->name('print');
