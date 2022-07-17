@@ -63,8 +63,8 @@ class DirectionController extends Controller
     public function getDirectionFromId($id)
     {
         //Get ID from URL
-        $url = url()->full();
         $url_card_id = $id;
+        $url = listUrl::where('card_id', $url_card_id)->first();
 
         //Check if ID is generated in the LIST
         $listurl = listUrl::where('id', $url_card_id)->select('id')->first();
