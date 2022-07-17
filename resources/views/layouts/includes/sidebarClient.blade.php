@@ -119,12 +119,6 @@
                     </li>
                 @endif
 
-                <li class="nav-main-heading text-uppercase">QRCODE</li>
-
-                <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('show.QRcode', Auth()->user()->member->card_id)}}">
-                    <img width="80px" height="800px" class="img-fluid" src="{{ asset('images/content/QRcode.png') }}" alt="QRcode">
-                </a>
-
             </ul>
         </div>
         <!-- END Side Navigation -->
