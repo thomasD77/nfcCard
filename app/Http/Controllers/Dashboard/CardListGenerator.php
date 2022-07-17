@@ -34,7 +34,7 @@ class CardListGenerator extends Controller
             $url->card_id = $url->id;
             $url->role_id = 3;
             $url->memberURL = $project_url . '/?' . $url->id;
-            $url->memberQRcode = $project_url . '/QRcode'. '/' . $url->id;
+            $url->memberQRcode = $project_url . '/QRcodeMember'. '/' . $url->id;
             $url->material_id = 1;
             $url->package_id = 2;
             $url->update();

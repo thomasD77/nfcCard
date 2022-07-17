@@ -60,4 +60,40 @@ class DirectionController extends Controller
         }
     }
 
+    public function getDirectionFromId($id)
+    {
+        //Get ID from URL
+        $url = url()->full();
+        $url_card_id = $id;
+
+        //Check if ID is generated in the LIST
+        $listurl = listUrl::where('id', $url_card_id)->select('id')->first();
+        if(!$listurl)
+        {
+            return view( 'auth.card');
+        }
+
+        //Search Member with this Card ID
+        $member = Member::where('card_id', $url_card_id)->first();
+        if(!$member)
+        {
+            return view( 'auth.register', compact('url_card_id', 'url'));
+        }
+        if($member->package->package == 'Default')
+        {
+            $vCard = null;
+            return view( 'front.landingspage_default.index', compact('member', 'vCard'));
+        }
+        elseif ($member->package->package == 'Custom')
+        {
+            return view('front.members.show', compact('member'));
+        }
+        elseif ($member->package->package == 'vCard')
+        {
+            $vCard = new vCard();
+            $vCard->vCard($member->id);
+            return $vCard;
+        }
+    }
+
 }
