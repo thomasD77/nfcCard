@@ -47,8 +47,7 @@ class UnarchiveContactClient extends Component
                 ->where('archived', '=', 0)
                 ->pluck('id');
         }else {
-            $users = User::where('team_id', $user->team_id)->pluck('id');
-            $members = Member::whereIn('user_id', $users)->where('archived', '=', 0)->pluck('id');
+            $members = Member::where('user_id', $user->id)->where('archived', '=', 0)->pluck('id');
         }
 
         if($this->datepicker == "")
