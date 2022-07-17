@@ -56,6 +56,59 @@
     <!-- Page Content -->
     <div class="content">
         <div class="row row-deck mb-5 d-flex justify-content-center">
+
+            @can('is_superAdmin')
+            <div class="row">
+                <div class="col-md-6 col-xl-4 mb-4">
+                    <div class="block block-rounded block-themed shadow">
+                        <div class="block-header bg-default-dark">
+                            <h3 class="block-title">swap scans</h3>
+                            <div class="block-options">
+                                <a href="{{route('contacts.index')}}" class="text-white">
+                                    <i class="si si-settings"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="block-content">
+                            <h5><strong>{{ $scans }}</strong></h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-xl-4 mb-4">
+                    <div class="block block-rounded block-themed shadow">
+                        <div class="block-header bg-default-dark">
+                            <h3 class="block-title">swap Users</h3>
+                            <div class="block-options">
+                                <a href="{{route('users.index')}}" class="text-white">
+                                    <i class="si si-settings"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="block-content">
+                            <h5><strong>{{ $users }}</strong></h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-xl-4 mb-4">
+                    <div class="block block-rounded block-themed shadow">
+                        <div class="block-header bg-default-dark">
+                            <h3 class="block-title">swap companies</h3>
+                            <div class="block-options">
+                                <a href="{{route('teams.index')}}" class="text-white">
+                                    <i class="si si-settings"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="block-content">
+                            <h5><strong>{{ $teams }}</strong></h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endcan
+
             <img class="rounded shadow px-0" style="width: 70%" src="{{ asset('images/content/handshake.jpg') }}" alt="bg-image">
         </div>
     </div>
