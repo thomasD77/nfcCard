@@ -24,11 +24,12 @@ class Teams extends Component
                     ->Orwhere('VAT', 'LIKE', '%' . $value . '%')
                     ->Orwhere('phone', 'LIKE', '%' . $value . '%')
                     ->where('archived', '=', 0);
-            })->simplePaginate(25);
+            })->latest()->simplePaginate(25);
         }else {
             $teams = Team::query()
                 ->with('teamAddress')
                 ->where('archived', '=', 0)
+                ->latest()
                 ->simplePaginate(25);
         }
 
