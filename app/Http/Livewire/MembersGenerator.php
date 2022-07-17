@@ -42,6 +42,7 @@ class MembersGenerator extends Component
 
         $teams = Team::with('teamUsers')
             ->whereIn('id', $urls)
+            ->latest()
             ->paginate($this->pagination);
 
         $ambassadors = Team::with('teamAddress')
