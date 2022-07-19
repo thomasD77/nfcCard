@@ -55,7 +55,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::POST('search/member', 'App\Http\Controllers\AdminMembersController@searchMember')->name('members.search');
     Route::get('generate/member/credentials', 'App\Http\Controllers\AdminMembersController@generateCredentialMemberList')->name('members.credentials');
 
-    //Routes for CRUD Teams
+    //Routes for CRUD teams
     Route::resource('teams', App\Http\Controllers\AdminTeamsController::class);
     Route::get('archive/teams', [App\Http\Controllers\AdminTeamsController::class, 'archive'])->name('teams.archive');
     Route::get('team/users/{team}', [App\Http\Controllers\AdminTeamsController::class, 'getUsers'])->name('team.users');

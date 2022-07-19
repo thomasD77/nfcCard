@@ -84,7 +84,7 @@
 
                             <td>{{$url->image ? $url->image : "*no image" }}</td>
 
-                            <td>{{$url->reservartion ? $url->reservartion : "*no reservartion" }}</td>
+                            <td>{{$url->reservation ? $url->reservation : "*no reservation" }}</td>
 
 
                             <td>
