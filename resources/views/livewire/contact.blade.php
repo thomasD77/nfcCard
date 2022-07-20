@@ -48,6 +48,7 @@
                         <th scope="col">Name</th>
                         <th scope="col">E-mail</th>
                         <th scope="col">Details</th>
+                        <th scope="col">Status</th>
                         <th scope="col">Registered</th>
                         <th scope="col">Actions</th>
                     </tr>
@@ -98,7 +99,9 @@
                                                 @endif
                                             </div>
                                         </div>
-                                    </div></td>
+                                    </div>
+                                </td>
+                                <td>{{ $contact->status }}</td>
                                 <td>{{$contact->created_at ? \Carbon\Carbon::parse($contact->created_at)->format('Y-M-d') : 'No Date'}}</td>
                                 <td>
                                     <div class="btn-group">
