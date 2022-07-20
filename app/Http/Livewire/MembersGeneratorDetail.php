@@ -13,6 +13,7 @@ class MembersGeneratorDetail extends Component
 {
     use WithPagination;
     public $pagination = 25;
+    public $checkbox_active = false;
 
     public Team $team;
 
@@ -21,6 +22,28 @@ class MembersGeneratorDetail extends Component
         $this->team = $team;
     }
 
+    public function selectAll()
+    {
+        if($this->checkbox_active) {
+
+            $this->checkbox_active = false;
+            $urls = listUrl::where('team_id', $this->team->id)->select('id', 'print')->get();
+
+            foreach ($urls as $url) {
+                $url->print = 0;
+                $url->update();
+            }
+
+        }else {
+            $urls = listUrl::where('team_id', $this->team->id)->select('id', 'print')->get();
+
+            foreach ($urls as $url) {
+                $url->print = 1;
+                $url->update();
+            }
+            $this->checkbox_active = true;
+        }
+    }
 
     public function select($id)
     {

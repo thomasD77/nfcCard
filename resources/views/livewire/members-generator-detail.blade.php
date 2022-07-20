@@ -44,7 +44,12 @@
                     <th scope="col">Edit</th>
 
                     @can('is_superAdmin')
-                        <th scope="col"> <i class="fa fa-print me-2"></i></th>
+                        <th scope="col"> <i class="fa fa-print me-2"></i>
+                            <input type="checkbox"
+                                   @if($checkbox_active) checked @endif
+                                   class="btn btn-sm btn-alt-secondary"
+                                   wire:click="selectAll">
+                        </th>
                     @endcan
                 </tr>
                 </thead>
@@ -171,7 +176,7 @@
                             </td>
                             <td>
                                 <input type="checkbox"
-                                   @if($url->print == 1)  checked @endif
+                                   @if($url->print)  checked @endif
                                    class="btn btn-sm btn-alt-secondary"
                                    wire:click="select({{$url->id}})">
                             </td>
