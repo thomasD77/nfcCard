@@ -34,6 +34,7 @@ Route::post('save/{id}', 'App\Http\Controllers\CardController@saveInfo')->name('
 Route::get('QRcode/{id}', 'App\Http\Controllers\DirectionController@getDirectionFromId');
 Route::get('QRcodeMember/{id}', 'App\Http\Controllers\QRcode\QRcodeController@QRcode')->name('members.QRcode');
 Route::post('generate/cards', 'App\Http\Controllers\Dashboard\CardListGenerator@generateListUrl')->name('generate.cards');
+Route::post('generate/bulk/cards', 'App\Http\Controllers\Dashboard\CardListGenerator@bulkSelectListUrl')->name('bulk.cards');
 Route::get('members/print', 'App\Http\Controllers\CardController@print')->name('print');
 
 // Backend Routes

@@ -42,4 +42,36 @@ class CardListGenerator extends Controller
 
         return redirect('/admin/card-credentials');
     }
+
+    public function bulkSelectListUrl(Request $request)
+    {
+        $urls = listUrl::where('team_id', $request->team)
+            ->where('print', 1)
+            ->get();
+
+        foreach ($urls as $url) {
+            if($request->reservation) {
+                $url->reservation = $request->reservation;
+            }
+            if($request->design) {
+                $url->image = $request->design;
+            }
+            if($request->roles) {
+                $url->role_id = $request->roles;
+            }
+            if($request->materials) {
+                $url->material_id = $request->materials;
+            }
+
+            $url->print = 0;
+
+            $url->update();
+
+        }
+
+        \Brian2694\Toastr\Facades\Toastr::success('List Successfully Updated');
+        return redirect()->back();
+
+
+    }
 }

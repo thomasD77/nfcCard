@@ -2,6 +2,7 @@
 <div class="block block-rounded row">
     <div class="block-content block-content-full overflow-scroll">
         <div class="d-flex justify-content-between mb-5">
+
             <!-- Pagination Select-->
             <select wire:model="pagination" style="width: 80px" class="form-select mb-3 d-flex justify-content-end" aria-label="Default select example">
                 <option value="5">5</option>
@@ -11,6 +12,13 @@
                 <option value="100">100</option>
             </select>
             <!-- End Pagination -->
+
+            <!-- Search Form (visible on larger screens) -->
+            <div class="d-none d-md-inline-block col-6">
+                <input type="text" wire:model="company" class="form-control form-control-alt" placeholder="Search for company..." id="page-header-search-input2" name="company">
+            </div>
+            <!-- END Search Form -->
+
             <div>
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -50,8 +58,10 @@
                     </div>
                 </div>
             </div>
+
         </div>
         <div class="parent">
+
             @include('admin.includes.flash')
 
             <table class="table table-striped table-hover table-vcenter fs-sm">
@@ -61,7 +71,7 @@
 
                     <th scope="col">Company</th>
 
-                    <th scope="col">(Active) card holders</th>
+                    <th scope="col">Card holders</th>
 
                     <th scope="col">Registered</th>
 
@@ -73,11 +83,14 @@
                 @if($teams)
                     @foreach($teams as $team)
                         <tr>
-                            <td>{{ $loop->index + 1  }}</td>
+                            <td>{{ $team->id  }}</td>
 
                             <td>{{ $team->name }}</td>
 
-                            <td><span class="badge badge-pill bg-success p-3">{{ $team->teamUsers->count() }}</span></td>
+                            <td>
+                                <span class="badge badge-pill bg-info p-3">{{ $team->teamListUrls->count() }}</span>
+                                <span class="badge badge-pill bg-success p-3">{{ $team->teamUsers->count() }}</span>
+                            </td>
 
                             <td>{{ $team->created_at->format('Y-m-d') }}</td>
 

@@ -26,4 +26,9 @@ class Team extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    public function teamListUrls()
+    {
+        return $this->hasMany(listUrl::class);
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\listUrl;
 use App\Models\Material;
+use App\Models\Package;
 use App\Models\Role;
 use App\Models\Team;
 use Livewire\Component;
@@ -14,12 +15,22 @@ class MembersGeneratorDetail extends Component
     use WithPagination;
     public $pagination = 25;
     public $checkbox_active = false;
+    public $filter = false;
 
     public Team $team;
 
     public function mount(Team $team)
     {
         $this->team = $team;
+    }
+
+    public function toggleFilter()
+    {
+        if($this->filter){
+            $this->filter = false;
+        } else {
+            $this->filter = true;
+        }
     }
 
     public function selectAll()
@@ -72,6 +83,8 @@ class MembersGeneratorDetail extends Component
 
         $roles = Role::where('id', '!=', 1)->pluck('name','id');
 
-        return view('livewire.members-generator-detail', compact('urls',  'materials', 'QRcode', 'roles'));
+        $materials = Material::pluck('name', 'id');
+
+        return view('livewire.members-generator-detail', compact('urls',  'materials', 'QRcode', 'roles', 'materials'));
     }
 }

@@ -17,6 +17,7 @@ class MembersGenerator extends Component
 {
     use WithPagination;
     public $pagination = 25;
+    public $company;
 
 
     public function select($id)
@@ -40,14 +41,21 @@ class MembersGenerator extends Component
     {
         $urls = DB::table('list_urls')->distinct('team_id')->pluck('team_id');
 
-        $teams = Team::with('teamUsers')
-            ->whereIn('id', $urls)
-            ->latest()
-            ->paginate($this->pagination);
+        if($this->company){
+            $teams = Team::where('name', 'LIKE', '%' . $this->company . '%')
+                ->latest()
+                ->simplePaginate($this->pagination);
+        }else {
+            $teams = Team::with('teamUsers', 'teamListUrls')
+                ->whereIn('id', $urls)
+                ->latest()
+                ->simplePaginate($this->pagination);
+        }
 
         $ambassadors = Team::with('teamAddress')
             ->where('archived', '=', 0)
             ->pluck('name', 'id');
+
 
         return view ('livewire.members-generator', compact('teams', 'ambassadors'));
     }

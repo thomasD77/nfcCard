@@ -2,15 +2,24 @@
 <div class="block block-rounded row">
     <div class="block-content block-content-full overflow-scroll">
         <div class="d-flex justify-content-between mb-5">
-            <!-- Pagination Select-->
-            <select wire:model="pagination" style="width: 80px" class="form-select mb-3 d-flex justify-content-end" aria-label="Default select example">
-                <option value="5">5</option>
-                <option value="20">20</option>
-                <option selected value="25">25</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
-            </select>
-            <!-- End Pagination -->
+            <div class="d-flex">
+                <!-- Pagination Select-->
+                <select wire:model="pagination" style="width: 80px" class="form-select mb-3 d-flex justify-content-end" aria-label="Default select example">
+                    <option value="5">5</option>
+                    <option value="20">20</option>
+                    <option selected value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+                <!-- End Pagination -->
+
+                <div>
+                    <button wire:click="toggleFilter" type="button" class="btn btn-alt-primary mx-3">
+                        <i class="fa fa-filter mx-1 opacity-50"></i> Filter
+                    </button>
+                </div>
+            </div>
+
             <div>
 
                 <a href="{{ route('card-credentials-sheet-generator') }}" class="btn btn-alt-success" data-bs-toggle="tooltip" title="Supplier">
@@ -24,6 +33,48 @@
         </div>
         <div class="parent">
             @include('admin.includes.flash')
+
+            @if($filter)
+                <div class="card shadow mb-5" style="border: none">
+                    <form class="mb-0 card-body" name="contactformulier"
+                          action="{{action('App\Http\Controllers\Dashboard\CardListGenerator@bulkSelectListUrl')}}" method="post">
+                        @csrf
+
+                        <div class="row">
+
+                            <div class="form-check m-4 px-0 col-md-5">
+                                <label class="form-check-label mb-1">Reservation</label>
+                                <input class="form-control" type="text" name="reservation" value="">
+
+                                <input class="form-control" type="hidden" name="team" value="{{ $team->id }}">
+                            </div>
+
+                            <div class="form-check m-4 px-0 col-md-5">
+                                <label class="form-check-label mb-1">Design</label>
+                                <input class="form-control" type="text" name="design" value="">
+                            </div>
+
+                            <div class="form-check m-4 px-0 col-md-5">
+                                {!! Form::label('roles','Select role:', ['class'=>'form-label']) !!}
+                                {!! Form::select('roles',$roles,null,['class'=>'form-control', 'placeholder' => 'Select here...'])!!}
+                            </div>
+
+                            <div class="form-check m-4 px-0 col-md-5">
+                                {!! Form::label('materials','Select package:', ['class'=>'form-label']) !!}
+                                {!! Form::select('materials',$materials,null,['class'=>'form-control', 'placeholder' => 'Select here...'])!!}
+                            </div>
+                        </div>
+
+
+                        <!-- Button trigger modal -->
+                        <button type="submit" class="btn btn-alt-primary m-4">
+                            <i class="fa fa-arrow-circle-up me-1 opacity-50"></i> UPDATE
+                        </button>
+
+                    </form>
+                </div>
+            @endif
+
             <table class="table table-hover table-vcenter fs-sm">
                 <thead>
                 <tr>
