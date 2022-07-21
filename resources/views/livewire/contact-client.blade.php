@@ -51,6 +51,7 @@
                     <th scope="col">E-mail</th>
                     <th scope="col">phone</th>
                     <th scope="col">Details</th>
+                    <th scope="col">Status</th>
                     <th scope="col">Registered</th>
                     <th scope="col">Actions</th>
                 </tr>
@@ -63,12 +64,12 @@
                             <td><a href="mailto:{{$contact->email}}"> {{$contact->email ? $contact->email : 'No Email'}}</a></td>
                             <td>{{$contact->phone ? $contact->phone : 'No Phone'}}</td>
                             <td><!-- Button trigger modal -->
-                                <button type="button" class="btn btn-alt-warning" data-bs-toggle="modal" data-bs-target="#exampleModal{{$contact->id}}">
+                                <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#exampleModal{{$contact->id}}">
                                     SWAP
                                 </button>
 
                                 <!-- Modal -->
-                                <div class="modal fade" wire:ignore.self id="exampleModal{{$contact->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" wire:ignore.self id="exampleModal{{$contact->id}}" wire:key="{{ $contact->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -78,15 +79,30 @@
                                             <div class="modal-body">
                                                 <p><strong>Name:</strong></p>
                                                 <p class="bg-light p-2">{{$contact->name ? $contact->name : 'No Name'}}</p>
+
                                                 <p><strong>Email:</strong></p>
                                                 <p class="bg-light p-2">{{$contact->email ? $contact->email : 'No email'}}</p>
+
                                                 <p><strong>Phone:</strong></p>
                                                 <p class="bg-light p-2">{{$contact->phone ? $contact->phone : 'No Phone'}}</p>
+
                                                 <p><strong>Message:</strong></p>
                                                 <p class="bg-light p-2">{{$contact->message ? $contact->message : 'No message'}}</p>
+
+                                                <p class="mb-2"><strong>Status</strong></p>
+{{--                                                {!! Form::select('statusses',$statusses,null,['class'=>'form-control', 'placeholder' => 'Select here...'])!!}--}}
+
+                                                <select name="status" wire:model="status" wire:change="contact({{ $contact }})" class="form-control">
+                                                    <option value=''>choose status</option>
+                                                    @foreach($statusses as $status)
+                                                        <option value={{ $status->id }}>{{ $status->name }}</option>
+                                                    @endforeach
+                                                </select>
+
                                                 <hr>
+
                                                 <div class="d-flex justify-content-between mb-2">
-                                                    <p><strong>My notes:</strong></p> <button class="btn btn-primary" wire:click="showNotes"> <i  class="fa fa-fw fa-pencil-alt"></i></button>
+                                                    <p><strong>My notes:</strong></p> <button class="btn btn-sm btn-primary" wire:click="showNotes"> <i  class="fa fa-fw fa-pencil-alt"></i></button>
                                                 </div>
                                                 <p class="bg-light p-2">{{$contact->notes ? $contact->notes : 'No notes'}}</p>
                                             </div>
@@ -98,9 +114,33 @@
                                                     </form>
                                                 </div>
                                             @endif
+                                            <div class="card-body d-flex justify-content-end">
+                                                <button type="button" class=" btn btn-primary p-2 m-3" data-bs-dismiss="modal" aria-label="Close">Thanks</button>
+                                            </div>
                                         </div>
                                     </div>
+
                                 </div></td>
+                            <td>
+                                @if($contact->contactStatus)
+
+                                    <span class="badge badge-pill
+
+                                            @if($contact->contactStatus->id == 1) bg-dark
+                                            @elseif($contact->contactStatus->id == 2) bg-amethyst-lighter
+                                            @elseif($contact->contactStatus->id == 3) bg-amethyst-light
+                                            @elseif($contact->contactStatus->id == 4) bg-warning-light
+                                            @elseif($contact->contactStatus->id == 5) bg-success
+                                            @endif p-2">
+                                            {{ $contact->contactStatus->name }}
+                                    </span>
+
+                                @else
+
+                                    no status
+
+                                @endif
+                            </td>
                             <td>{{$contact->created_at ? \Carbon\Carbon::parse($contact->created_at)->format('Y-M-d') : 'No Date'}}</td>                                <td>
                                 <div class="btn-group">
                                     <button class="btn btn-sm btn-alt-secondary" wire:click="archiveContact({{$contact->id}})"><i class="fa fa-archive "></i></button>

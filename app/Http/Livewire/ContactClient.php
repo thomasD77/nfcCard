@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Member;
 use App\Models\Contact;
+use App\Models\Status;
 use App\Models\User;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -22,10 +23,17 @@ class ContactClient extends Component
     public $notes;
     public $showNotes = false;
     public User $user;
+    public $status;
+    public $contact;
 
     public function mount(User $user)
     {
         $this->user = $user;
+    }
+
+    public function contact(Contact $contact)
+    {
+        $this->contact = $contact;
     }
 
     public function archiveContact($id)
@@ -60,6 +68,11 @@ class ContactClient extends Component
 
     public function render()
     {
+        if($this->contact && $this->status){
+            $this->contact->status_id = $this->status;
+            $this->contact->update();
+        }
+
         //Check if USER is given in URL request
         if($this->user->member){
             $member_id = $this->user->member->id;
@@ -68,14 +81,16 @@ class ContactClient extends Component
         }
 
         if ($this->datepicker == "") {
-            $contacts = \App\Models\Contact::with(['member'])
+            $contacts = \App\Models\Contact::with(['member', 'contactStatus'])
                 ->where('archived', 0)
                 ->where('member_id', $member_id)
                 ->where('name', 'LIKE', '%' . $this->name . '%')
                 ->latest()
                 ->simplePaginate($this->pagination);
 
-            return view('livewire.contact-client', compact('contacts'));
+            $statusses = Status::all();
+
+            return view('livewire.contact-client', compact('contacts', 'statusses'));
         } else {
             ['datepicker' => $this->datepicker];
 
@@ -87,7 +102,7 @@ class ContactClient extends Component
             $day = $this->datepicker_day;
 
             if ($day != "") {
-                $contacts = \App\Models\Contact::with(['member'])
+                $contacts = \App\Models\Contact::with(['member', 'contactStatus'])
                     ->where('archived', 0)
                     ->where('member_id', $member_id)
                     ->whereMonth('created_at', $month)
@@ -103,7 +118,9 @@ class ContactClient extends Component
                     ->simplePaginate($this->pagination);
             }
 
-            return view('livewire.contact-client', compact('contacts'));
+            $statusses = Status::pluck('name', 'id');
+
+            return view('livewire.contact-client', compact('contacts', 'statusses'));
         }
     }
 }

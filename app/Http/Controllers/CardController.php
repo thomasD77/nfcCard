@@ -232,7 +232,11 @@ class CardController extends Controller
             //Mail::to('thomas@ntriga.agency')->send(new SendCardCredentails($member));
 
             Mail::to($contact->email)->send(new SendCardCredentails($member));
-            Mail::to($member->email)->send(new SendProspect($contact, $member));
+
+            if($member->email){
+                Mail::to($member->email)->send(new SendProspect($contact, $member));
+            }
+
 
             if($request->session()->has('recaptcha_error')){
                 $request->session()->forget('recaptcha_error');
