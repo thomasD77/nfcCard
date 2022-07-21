@@ -13,6 +13,13 @@
                     <option value="100">100</option>
                 </select>
                 <!-- End Pagination -->
+                <label for="">
+                    <input type="checkbox"
+                           class="btn btn-sm btn-alt-secondary"
+                           @if($scans) checked @endif
+                           wire:click="onlyMyScans">
+                    Only my scans
+                </label>
             </div>
             <label class="d-flex">
                 <input wire:model="datepicker" id="datepicker" type="date" class="form-control" id="" name="" placeholder="Select date contact" data-inline="month" data-enable-time="false">
@@ -29,6 +36,7 @@
             <table class="table table-striped table-hover table-vcenter fs-sm">
                 <thead>
                 <tr>
+                    <th scope="col">CARD Holder</th>
                     <th scope="col">Name</th>
                     <th scope="col">E-mail</th>
                     <th scope="col">phone</th>
@@ -40,6 +48,7 @@
                 @if($contacts)
                     @foreach($contacts as $contact)
                         <tr>
+                            <td><strong>{{$contact->member ? $contact->member->lastname : ''}} {{$contact->member ? $contact->member->firstname : ''}}</strong></td>
                             <td>{{$contact->name ? $contact->name : 'No Name'}}</td>
                             <td><a href="mailto:{{$contact->email}}"> {{$contact->email ? $contact->email : 'No Email'}}</a></td>
                             <td>{{$contact->phone ? $contact->phone : 'No Phone'}}</td>

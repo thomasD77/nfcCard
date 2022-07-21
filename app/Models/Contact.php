@@ -25,7 +25,7 @@ class Contact extends Model
         return $this->belongsTo(Member::class);
     }
 
-    public function status()
+    public function contactStatus()
     {
         return $this->belongsTo(Status::class, 'status_id');
     }

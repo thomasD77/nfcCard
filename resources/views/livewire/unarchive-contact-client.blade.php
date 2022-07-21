@@ -18,7 +18,7 @@
                 <input wire:model="datepicker" id="datepicker" type="date" class="form-control" id="" name="" placeholder="Select date contact" data-inline="month" data-enable-time="false">
                 <button wire:click="dateALL" class="btn btn-secondary rounded" type="button" data-bs-toggle="tooltip" title="Refresh"><i class="si si-refresh"></i></button>
 
-                    <a href="{{route('contacts.index.client', [ 'user' => $user ])}}">
+                    <a href="{{route('contacts.index.client', [ 'user' => Auth()->user() ])}}">
                         <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="List">
                             <i class="far fa-list-alt "></i>
                         </button>

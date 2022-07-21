@@ -63,7 +63,6 @@ class TeamContacts extends Component
 
         if ($this->datepicker == "") {
             $contacts = \App\Models\Contact::with(['member'])
-                ->where('archived', 0)
                 ->where('name', 'LIKE', '%' . $this->name . '%')
                 ->whereIn('member_id', $members)
                 ->latest()
@@ -83,7 +82,6 @@ class TeamContacts extends Component
 
             if ($day != "") {
                 $contacts = \App\Models\Contact::with(['member'])
-                    ->where('archived', 0)
                     ->whereMonth('created_at', $month)
                     ->whereYear('created_at', $year)
                     ->whereDay('created_at', $day)
@@ -91,7 +89,6 @@ class TeamContacts extends Component
                     ->simplePaginate($this->pagination);
             } else {
                 $contacts = \App\Models\Contact::with(['member'])
-                    ->where('archived', 0)
                     ->whereMonth('created_at', $month)
                     ->whereYear('created_at', $year)
                     ->whereIn('member_id', $members)

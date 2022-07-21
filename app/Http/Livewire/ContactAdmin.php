@@ -3,29 +3,28 @@
 namespace App\Http\Livewire;
 
 use App\Models\Member;
-use App\Models\Contact;
 use App\Models\User;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
-use phpDocumentor\Reflection\Types\Boolean;
 
-class ContactClient extends Component
+class ContactAdmin extends Component
 {
     use WithPagination;
-
-    public $datepicker = "";
-    public $pagination = 25;
-    public $datepicker_day = "";
+    public string $datepicker = "";
+    public int $pagination = 25;
+    public string $datepicker_day = "";
     public $name;
     public $notes;
     public $showNotes = false;
-    public User $user;
+    public $scans;
 
-    public function mount(User $user)
-    {
-        $this->user = $user;
+    public function onlyMyScans(){
+        if($this->scans){
+            $this->scans = false;
+        }else {
+            $this->scans = true;
+        }
     }
 
     public function archiveContact($id)
@@ -41,7 +40,7 @@ class ContactClient extends Component
         $this->datepicker_day = "";
     }
 
-    public function saveNote(Contact $contact)
+    public function saveNote(\App\Models\Contact $contact)
     {
         $contact->notes = $this->notes;
         $contact->update();
@@ -57,26 +56,29 @@ class ContactClient extends Component
         }
     }
 
-
     public function render()
     {
-        //Check if USER is given in URL request
-        if($this->user->member){
-            $member_id = $this->user->member->id;
+        if( $this->scans) {
+            $members = Member::where('user_id', Auth()->user()->id)->pluck('id');
+
         } else {
-            $member_id = Auth()->user()->member->id;
+            $team = Auth()->user()->team;
+            $users = User::where('team_id', $team->id)->pluck('id');
+            $members = Member::whereIn('user_id', $users)->where('archived', 0)->pluck('id');
         }
 
-        if ($this->datepicker == "") {
-            $contacts = \App\Models\Contact::with(['member'])
-                ->where('archived', 0)
-                ->where('member_id', $member_id)
-                ->where('name', 'LIKE', '%' . $this->name . '%')
-                ->latest()
-                ->simplePaginate($this->pagination);
 
-            return view('livewire.contact-client', compact('contacts'));
-        } else {
+        if($this->datepicker == "")
+        {
+            $contacts = \App\Models\Contact::with(['member', 'contactStatus'])
+                ->where('archived', 0)
+                ->whereIn('member_id', $members)
+                ->latest()
+                ->where('name', 'LIKE', '%' . $this->name . '%')
+                ->simplePaginate($this->pagination);
+            return view('livewire.contact-admin', compact('contacts'));
+        }
+        else {
             ['datepicker' => $this->datepicker];
 
             $date = $this->datepicker;
@@ -87,23 +89,22 @@ class ContactClient extends Component
             $day = $this->datepicker_day;
 
             if ($day != "") {
-                $contacts = \App\Models\Contact::with(['member'])
+                $contacts = \App\Models\Contact::with(['member', 'contactStatus'])
+                    ->whereIn('member_id', $members)
                     ->where('archived', 0)
-                    ->where('member_id', $member_id)
                     ->whereMonth('created_at', $month)
                     ->whereYear('created_at', $year)
                     ->whereDay('created_at', $day)
                     ->simplePaginate($this->pagination);
             } else {
-                $contacts = \App\Models\Contact::with(['member'])
+                $contacts = \App\Models\Contact::with(['member', 'contactStatus'])
+                    ->whereIn('member_id', $members)
                     ->where('archived', 0)
-                    ->where('member_id', $member_id)
                     ->whereMonth('created_at', $month)
                     ->whereYear('created_at', $year)
                     ->simplePaginate($this->pagination);
             }
-
-            return view('livewire.contact-client', compact('contacts'));
         }
+        return view('livewire.contact-admin');
     }
 }

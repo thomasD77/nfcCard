@@ -18,13 +18,6 @@ class UnarchiveContactClient extends Component
     public User $user;
 
 
-    public function mount(Request $request)
-    {
-        if($request->user){
-            $this->user = User::findOrFail($request->user);
-        }
-    }
-
     public function unArchiveContact($id)
     {
         $contact = \App\Models\Contact::findOrFail($id);

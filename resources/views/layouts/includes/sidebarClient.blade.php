@@ -112,7 +112,7 @@
                 @if(Auth::user()->archived == 0 && Auth::user()->business)
                     <li class="nav-main-heading text-uppercase">Connections</li>
                     <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
-                        <a class="nav-main-link" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="{{route('contacts.index.client', Auth()->user())}}">
+                        <a class="nav-main-link" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="{{route('contacts.index')}}">
                             <i class="nav-main-link-icon far fa-list-alt"></i>
                             <span class="nav-main-link-name ">Scans</span>
                         </a>

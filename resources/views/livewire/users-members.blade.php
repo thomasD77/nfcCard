@@ -11,6 +11,7 @@
             <th scope="col">Email</th>
             <th scope="col">Role</th>
             <th scope="col"># Card ID</th>
+            <th scope="col">Scans</th>
             <th scope="col">Actions</th>
             <th scope="col">Member profile</th>
         </tr>
@@ -29,6 +30,7 @@
                         @endforeach
                     </td>
                     <td>{{$user->member ? '# ' . $user->member->card_id : 'No Card ID'}}</td>
+                    <td><i class="fa fa-mouse"></i><small class="px-1">{{ $user->member->contacts->count() }}</small></td>
                     <td>
                         <div class="btn-group">
                             <a href="{{route('users.edit', $user->id)}}">
@@ -54,11 +56,6 @@
                                                 <i class="fa fa-fw fa-pencil-alt"></i>
                                             </button>
                                         </a>
-                                        <div>
-                                            <a href="{{ route('contacts.index.client', $user) }}" class="btn btn-sm btn-alt-info text-center d-flex" data-bs-toggle="tooltip" title="Scans">
-                                                <i class="fa fa-mouse"></i><small class="px-1">{{ $user->member->contacts->count() }}</small>
-                                            </a>
-                                        </div>
                                     </div>
                                 </div>
                             </div>

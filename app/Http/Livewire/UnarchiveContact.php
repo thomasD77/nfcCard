@@ -16,12 +16,13 @@ class UnarchiveContact extends Component
     use WithPagination;
     public $datepicker = "";
     public $pagination = 25;
-    public Team $team;
+    public $scans;
 
-
-    public function mount(Request $request){
-        if($request->team){
-            $this->team = Team::where('id', $request->team)->first();
+    public function onlyMyScans(){
+        if($this->scans){
+            $this->scans = false;
+        }else {
+            $this->scans = true;
         }
     }
 
@@ -37,24 +38,20 @@ class UnarchiveContact extends Component
         $this->datepicker = "";
     }
 
-
     public function render()
     {
-        if(isset($this->team)){
-            $users = User::where('team_id', $this->team->id )->pluck('id');
-            $members = Member::query()
-                ->where('archived', '=', 0)
-                ->whereIn('user_id', $users)
-                ->pluck('id');
-        }else {
-            $members = Member::query()
-                ->where('archived', '=', 0)
-                ->pluck('id');
+        if( $this->scans) {
+            $members = Member::where('user_id', Auth()->user()->id)->pluck('id');
+
+        } else {
+            $team = Auth()->user()->team;
+            $users = User::where('team_id', $team->id)->pluck('id');
+            $members = Member::whereIn('user_id', $users)->where('archived', 0)->pluck('id');
         }
 
         if($this->datepicker == "")
         {
-            $contacts = \App\Models\Contact::where('archived', 1)
+            $contacts = \App\Models\Contact::with('member')->where('archived', 1)
                 ->whereIn('member_id', $members)
                 ->latest()
                 ->simplePaginate($this->pagination);
@@ -71,7 +68,8 @@ class UnarchiveContact extends Component
             $month = $dateSub->month;
             $day = $dateSub->day;
 
-            $contacts = \App\Models\Contact::where('archived', 1)
+            $contacts = \App\Models\Contact::with('member')
+                ->where('archived', 1)
                 ->whereIn('member_id', $members)
                 ->whereMonth('created_at', $month)
                 ->whereYear('created_at', $year)

@@ -47,13 +47,11 @@ class Contact extends Component
         }
     }
 
-
     public function render()
     {
         if($this->datepicker == "")
         {
-            $contacts = \App\Models\Contact::with(['member'])
-                ->where('archived', 0)
+            $contacts = \App\Models\Contact::with(['member', 'contactStatus'])
                 ->latest()
                 ->where('name', 'LIKE', '%' . $this->name . '%')
                 ->simplePaginate($this->pagination);
@@ -71,15 +69,13 @@ class Contact extends Component
             $day = $this->datepicker_day;
 
             if($day != "") {
-                $contacts = \App\Models\Contact::with(['member'])
-                    ->where('archived', 0)
+                $contacts = \App\Models\Contact::with(['member', 'contactStatus'])
                     ->whereMonth('created_at', $month)
                     ->whereYear('created_at', $year)
                     ->whereDay('created_at', $day)
                     ->simplePaginate($this->pagination);
             } else {
-                $contacts = \App\Models\Contact::with(['member'])
-                    ->where('archived', 0)
+                $contacts = \App\Models\Contact::with(['member', 'contactStatus'])
                     ->whereMonth('created_at', $month)
                     ->whereYear('created_at', $year)
                     ->simplePaginate($this->pagination);

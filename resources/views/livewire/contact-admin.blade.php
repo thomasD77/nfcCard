@@ -13,6 +13,13 @@
                         <option value="100">100</option>
                     </select>
                     <!-- End Pagination -->
+                    <label for="">
+                        <input type="checkbox"
+                                class="btn btn-sm btn-alt-secondary"
+                                @if($scans) checked @endif
+                                wire:click="onlyMyScans">
+                        Only my scans
+                    </label>
                 </div>
                 <!-- Search Form (visible on larger screens) -->
                 <form class="d-none d-md-inline-block col-6">
@@ -25,14 +32,14 @@
                     <input style="width: 62px" wire:model="datepicker_day"  class="form-control" type="number" max="31" min="1">
                     <input wire:model="datepicker" id="datepicker" type="month" class="form-control" id="" name="" placeholder="Select date contact" data-inline="month" data-enable-time="false">
                     <button wire:click="dateALL" class="btn btn-secondary rounded" type="button" data-bs-toggle="tooltip" title="Refresh"><i class="si si-refresh"></i></button>
-{{--                    <a href="{{route('contact.archive')}}">--}}
-{{--                        <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Archive">--}}
-{{--                            <i class="fa fa-archive "></i>--}}
-{{--                        </button>--}}
-{{--                    </a>--}}
-{{--                    <a href="{{ route('print.scans') }}" class="btn btn-alt-success">--}}
-{{--                        <i class="fa fa-print me-2"></i>--}}
-{{--                    </a>--}}
+                    <a href="{{route('contact.archive')}}">
+                        <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Archive">
+                            <i class="fa fa-archive "></i>
+                        </button>
+                    </a>
+                    <a href="{{ route('print.scans') }}" class="btn btn-alt-success">
+                        <i class="fa fa-print me-2"></i>
+                    </a>
                 </label>
             </div>
             <div class="block-content block-content-full overflow-scroll">
@@ -41,12 +48,12 @@
                     <thead>
                     <tr>
                         <th scope="col">CARD Holder</th>
-                        <th scope="col">CARD Holder Company</th>
                         <th scope="col">Name</th>
                         <th scope="col">E-mail</th>
                         <th scope="col">Details</th>
                         <th scope="col">Status</th>
                         <th scope="col">Registered</th>
+                        <th scope="col">Actions</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -54,7 +61,6 @@
                         @foreach($contacts as $contact)
                             <tr>
                                 <td><strong>{{$contact->member ? $contact->member->lastname : ''}} {{$contact->member ? $contact->member->firstname : ''}}</strong></td>
-                                <td><strong>{{$contact->member ? $contact->member->company : ''}}</strong></td>
                                 <td>{{$contact->name ? $contact->name : 'No Name'}}</td>
                                 <td><a href="mailto:{{$contact->email}}"> {{$contact->email ? $contact->email : 'No Email'}}</a></td>
                                 <td><!-- Button trigger modal -->
@@ -99,11 +105,11 @@
                                 </td>
                                 <td>{{ $contact->contactStatus ? $contact->contactStatus->name : "no status" }}</td>
                                 <td>{{$contact->created_at ? \Carbon\Carbon::parse($contact->created_at)->format('Y-M-d') : 'No Date'}}</td>
-{{--                                <td>--}}
-{{--                                    <div class="btn-group">--}}
-{{--                                        <button class="btn btn-sm btn-alt-secondary" wire:click="archiveContact({{$contact->id}})"><i class="fa fa-archive "></i></button>--}}
-{{--                                    </div>--}}
-{{--                                </td>--}}
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-sm btn-alt-secondary" wire:click="archiveContact({{$contact->id}})"><i class="fa fa-archive "></i></button>
+                                    </div>
+                                </td>
                             </tr>
                         @endforeach
                     @endif

@@ -25,14 +25,14 @@
                 <input wire:model="datepicker" id="datepicker" type="month" class="form-control" id="" name="" placeholder="Select date contact" data-inline="month" data-enable-time="false">
                 <button wire:click="dateALL" class="btn btn-secondary rounded" type="button" data-bs-toggle="tooltip" title="Refresh"><i class="si si-refresh"></i></button>
 
-                <a href="{{route('contact.archive-teams-contacts', [ 'team' => $team ])}}">
-                    <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Archive">
-                        <i class="fa fa-archive "></i>
-                    </button>
-                </a>
-                <a href="{{ route('print.scans.team') }}" class="btn btn-alt-success">
-                    <i class="fa fa-print me-2"></i>
-                </a>
+{{--                <a href="{{route('contact.archive-teams-contacts', [ 'team' => $team ])}}">--}}
+{{--                    <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Archive">--}}
+{{--                        <i class="fa fa-archive "></i>--}}
+{{--                    </button>--}}
+{{--                </a>--}}
+{{--                <a href="{{ route('print.scans.team') }}" class="btn btn-alt-success">--}}
+{{--                    <i class="fa fa-print me-2"></i>--}}
+{{--                </a>--}}
             </label>
         </div>
         <div class="block-content block-content-full overflow-scroll">
@@ -42,9 +42,11 @@
                 <tr>
                     <th scope="col">Card holder</th>
                     <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone</th>
                     <th scope="col">Details</th>
                     <th scope="col">Registered</th>
-                    <th scope="col">Actions</th>
+{{--                    <th scope="col">Actions</th>--}}
                 </tr>
                 </thead>
                 <tbody>
@@ -90,11 +92,12 @@
                                         </div>
                                     </div>
                                 </div></td>
-                            <td>{{$contact->created_at ? \Carbon\Carbon::parse($contact->created_at)->format('Y-M-d') : 'No Date'}}</td>                                <td>
-                                <div class="btn-group">
-                                    <button class="btn btn-sm btn-alt-secondary" wire:click="archiveContact({{$contact->id}})"><i class="fa fa-archive "></i></button>
-                                </div>
-                            </td>
+                            <td>{{$contact->created_at ? \Carbon\Carbon::parse($contact->created_at)->format('Y-M-d') : 'No Date'}}</td>
+{{--                            <td>--}}
+{{--                                <div class="btn-group">--}}
+{{--                                    <button class="btn btn-sm btn-alt-secondary" wire:click="archiveContact({{$contact->id}})"><i class="fa fa-archive "></i></button>--}}
+{{--                                </div>--}}
+{{--                            </td>--}}
                         </tr>
                     @endforeach
                 @endif
