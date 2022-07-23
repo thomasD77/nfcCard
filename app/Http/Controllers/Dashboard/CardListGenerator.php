@@ -62,6 +62,9 @@ class CardListGenerator extends Controller
             if($request->materials) {
                 $url->material_id = $request->materials;
             }
+            if($request->types) {
+                $url->type_id = $request->types;
+            }
 
             $url->print = 0;
 

@@ -60,8 +60,13 @@
                             </div>
 
                             <div class="form-check m-4 px-0 col-md-5">
-                                {!! Form::label('materials','Select package:', ['class'=>'form-label']) !!}
+                                {!! Form::label('materials','Select material:', ['class'=>'form-label']) !!}
                                 {!! Form::select('materials',$materials,null,['class'=>'form-control', 'placeholder' => 'Select here...'])!!}
+                            </div>
+
+                            <div class="form-check m-4 px-0 col-md-5">
+                                {!! Form::label('types','Select type:', ['class'=>'form-label']) !!}
+                                {!! Form::select('types',$types,null,['class'=>'form-control', 'placeholder' => 'Select here...'])!!}
                             </div>
                         </div>
 
@@ -89,6 +94,8 @@
                     <th scope="col">#Card ID</th>
 
                     <th scope="col">Design</th>
+
+                    <th scope="col">Type</th>
 
                     <th scope="col">Reservation</th>
 
@@ -139,6 +146,22 @@
                             <td>{{$url->card_id ? $url->card_id : 'No ID'}}</td>
 
                             <td>{{$url->image ? $url->image : "*no image" }}</td>
+
+
+                            <td class="my-2 ms-3
+                                @if($url->listType)
+                                    badge badge-pill
+                                @if($url->listType->id == 1) bg-dark
+                                            @elseif($url->listType->id == 2) bg-amethyst
+                                            @elseif($url->listType->id == 3) bg-amethyst
+                                            @elseif($url->listType->id == 4) bg-warning
+                                            @elseif($url->listType->id == 5) bg-gray
+                                            @elseif($url->listType->id == 6) bg-success
+                                            @elseif($url->listType->id == 7) bg-modern-op
+                                            @elseif($url->listType->id == 7) bg-danger
+                                            @endif
+                                @endif
+                                ">{{$url->listType ? $url->listType->name  : "..." }} <br> <span class="my-5">{{ $url->webshop_order_id }}</span> </td>
 
                             <td>{{$url->reservation ? $url->reservation : "*no reservation" }}</td>
 
@@ -192,9 +215,25 @@
                                                     {!! Form::hidden('url_id',$url->card_id)!!}
 
                                                     <div class="d-flex flex-column mt-4">
-                                                        {!! Form::label('loyal','Select Material:', ['class'=>'form-label']) !!}
-                                                        {!! Form::select('material_id',$materials,$url->material->id,['class'=>'form-control'])!!}
+                                                        {!! Form::label('material_id','Select Material:', ['class'=>'form-label']) !!}
+                                                        {!! Form::select('material_id',$materials,$url->material_id,['class'=>'form-control'])!!}
                                                     </div>
+
+                                                    <div class="d-flex flex-column mt-4">
+                                                        {!! Form::label('type_id','Select type:', ['class'=>'form-label']) !!}
+                                                        {!! Form::select('type_id',$types,$url->type_id,['class'=>'form-control', 'placeholder' => 'Select here...'])!!}
+                                                    </div>
+
+{{--                                                    If webshop--}}
+                                                    @if($url->listType->id == 2 )
+                                                    <div class="form-group my-4">
+                                                        {!! Form::label('webshop_order_id', 'Webshop Order ID:', ['class'=>'form-label']) !!}
+                                                        {!! Form::text('webshop_order_id',$url->webshop_order_id,['class'=>'form-control']) !!}
+                                                        @error('webshop_order_id')
+                                                        <p class="text-danger mt-2"> {{ $message }}</p>
+                                                        @enderror
+                                                    </div>
+                                                    @endif
 
                                                     <div class="d-flex flex-column mt-4">
                                                         <a class="form-label text-dark d-flex justify-content-between" data-bs-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">

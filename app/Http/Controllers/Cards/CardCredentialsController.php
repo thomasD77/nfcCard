@@ -51,10 +51,12 @@ class CardCredentialsController extends Controller
         $url = listUrl::findOrFail($request->url_id);
 
         $url->material_id = $request->material_id;
+        $url->type_id = $request->type_id;
         $url->reservation = $request->reservation;
         $url->image = $request->image;
         $url->memberURL = $request->custom_url;
         $url->role_id = $request->role_id;
+        $url->webshop_order_id = $request->webshop_order_id;
 
         if($request->input_QR_url)
         {

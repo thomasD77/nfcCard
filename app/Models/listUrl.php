@@ -48,4 +48,9 @@ class listUrl extends Model
         return $this->belongsTo(Team::class, 'team_id');
     }
 
+    public function listType()
+    {
+        return $this->belongsTo(Type::class, 'type_id');
+    }
+
 }

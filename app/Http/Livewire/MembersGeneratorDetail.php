@@ -7,6 +7,7 @@ use App\Models\Material;
 use App\Models\Package;
 use App\Models\Role;
 use App\Models\Team;
+use App\Models\Type;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -74,7 +75,7 @@ class MembersGeneratorDetail extends Component
 
     public function render()
     {
-        $urls = listUrl::with(['package', 'material', 'member', 'listRole'])
+        $urls = listUrl::with(['package', 'material', 'member', 'listRole', 'listType'])
             ->where('team_id', $this->team->id)
             ->simplePaginate($this->pagination);
 
@@ -85,6 +86,8 @@ class MembersGeneratorDetail extends Component
 
         $materials = Material::pluck('name', 'id');
 
-        return view('livewire.members-generator-detail', compact('urls',  'materials', 'QRcode', 'roles', 'materials'));
+        $types = Type::pluck('name', 'id');
+
+        return view('livewire.members-generator-detail', compact('urls',  'materials', 'QRcode', 'roles', 'materials', 'types'));
     }
 }
