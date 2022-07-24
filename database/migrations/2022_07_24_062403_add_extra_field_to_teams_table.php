@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddExtraFieldWebshopContactsTable extends Migration
+class AddExtraFieldToTeamsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class AddExtraFieldWebshopContactsTable extends Migration
      */
     public function up()
     {
-        //
-        Schema::table('list_urls', function (Blueprint $table) {
+        Schema::table('teams', function (Blueprint $table) {
             //
             $table->integer('type_id')->default(1)->index();
-            $table->string('webshop_order_id')->nullable();
         });
     }
 
@@ -28,6 +26,8 @@ class AddExtraFieldWebshopContactsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('teams', function (Blueprint $table) {
+            //
+        });
     }
 }
