@@ -14,10 +14,24 @@
                 <!-- End Pagination -->
 
                 <div>
-                    <button wire:click="toggleFilter" type="button" class="btn btn-alt-primary mx-3">
-                        <i class="fa fa-filter mx-1 opacity-50"></i> Filter
+                    <button wire:click="toggleBulk" type="button" class="btn btn-alt-primary mx-3">
+                        <i class="fa fa-chart-line mx-1 opacity-50"></i> BULK
                     </button>
                 </div>
+            </div>
+
+            <!-- Search Form (visible on larger screens) -->
+            <div class="d-none d-md-inline-block col-6">
+                <input type="text" wire:model="filter" class="form-control form-control-alt" placeholder="Search for webshop id/user/reservation..." id="page-header-search-input2">
+            </div>
+            <!-- END Search Form -->
+
+            <div>
+                <label class="d-flex">
+                    <input style="width: 62px" wire:model="datepicker_day"  class="form-control" type="number" max="31" min="1">
+                    <input wire:model="datepicker" id="datepicker" type="month" class="form-control" id="" name="" placeholder="Select date contact" data-inline="month" data-enable-time="false">
+                    <button wire:click="dateALL" class="btn btn-secondary rounded" type="button" data-bs-toggle="tooltip" title="Refresh"><i class="si si-refresh"></i></button>
+                </label>
             </div>
 
             <div>
@@ -25,6 +39,7 @@
                 <a href="{{ route('card-credentials-sheet-generator') }}" class="btn btn-alt-success" data-bs-toggle="tooltip" title="Supplier">
                     <i class="fa fa-print me-2"></i>
                 </a>
+
                 <a href="{{ route('print.list') }}" class="btn btn-alt-primary" data-bs-toggle="tooltip" title="Teamleader">
                     <i class="fa fa-copy me-2"></i>
                 </a>
@@ -34,7 +49,7 @@
         <div class="parent">
             @include('admin.includes.flash')
 
-            @if($filter)
+            @if($bulk)
                 <div class="card shadow mb-5" style="border: none">
                     <form class="mb-0 card-body" name="contactformulier"
                           action="{{action('App\Http\Controllers\Dashboard\CardListGenerator@bulkSelectListUrl')}}" method="post">
@@ -97,6 +112,8 @@
                     <th scope="col">Type</th>
 
                     <th scope="col">Reservation</th>
+
+                    <th scope="col">Date</th>
 
                     <th scope="col">Edit</th>
 
@@ -163,6 +180,8 @@
                             </td>
 
                             <td>{{$url->reservation ? $url->reservation : "*no reservation" }}</td>
+
+                            <td>{{$url->created_at ? $url->created_at->format('d-M-Y') : "*no reservation" }}</td>
 
                             <td>
                                 <!-- Button trigger modal -->

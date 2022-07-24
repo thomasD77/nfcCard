@@ -8,6 +8,9 @@ use App\Models\Package;
 use App\Models\Role;
 use App\Models\Team;
 use App\Models\Type;
+use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Carbon;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -16,7 +19,12 @@ class MembersGeneratorDetail extends Component
     use WithPagination;
     public $pagination = 25;
     public $checkbox_active = false;
-    public $filter = false;
+    public $bulk = false;
+    public $filter;
+    public $ids = [];
+
+    public string $datepicker = "";
+    public string $datepicker_day = "";
 
     public Team $team;
 
@@ -25,35 +33,52 @@ class MembersGeneratorDetail extends Component
         $this->team = $team;
     }
 
-    public function toggleFilter()
+    public function toggleBulk()
     {
-        if($this->filter){
-            $this->filter = false;
+        if($this->bulk){
+            $this->bulk = false;
         } else {
-            $this->filter = true;
+            $this->bulk = true;
         }
+    }
+
+    public function dateALL()
+    {
+        $this->datepicker = "";
+        $this->datepicker_day = "";
     }
 
     public function selectAll()
     {
+
         if($this->checkbox_active) {
 
-            $this->checkbox_active = false;
-            $urls = listUrl::where('team_id', $this->team->id)->select('id', 'print')->get();
+            $urls = listUrl::whereIn('id', $this->ids)->where('team_id', $this->team->id)->select('id', 'print')->get();
 
             foreach ($urls as $url) {
                 $url->print = 0;
                 $url->update();
             }
 
+            $this->checkbox_active = false;
+            $this->ids = [];
+
         }else {
-            $urls = listUrl::where('team_id', $this->team->id)->select('id', 'print')->get();
+
+            if($this->ids == []){
+                $urls = listUrl::where('team_id', $this->team->id)->select('id', 'print')->get();
+            }else {
+                $urls = listUrl::whereIn('id', $this->ids)->where('team_id', $this->team->id)->select('id', 'print')->get();
+                $this->ids = [];
+            }
 
             foreach ($urls as $url) {
                 $url->print = 1;
                 $url->update();
             }
+
             $this->checkbox_active = true;
+
         }
     }
 
@@ -75,9 +100,56 @@ class MembersGeneratorDetail extends Component
 
     public function render()
     {
-        $urls = listUrl::with(['package', 'material', 'member', 'listRole', 'listType'])
-            ->where('team_id', $this->team->id)
-            ->simplePaginate($this->pagination);
+        $value = $this->filter;
+        if(isset($value)){
+            $urls = listUrl::query()
+                ->with(['package', 'material', 'member', 'listRole', 'listType'])
+                ->where(function ($q) use ($value) {
+                $q->where('webshop_order_id', 'LIKE', '%' . $value . '%')
+                    ->Orwhere('type_id', 'LIKE', '%' . $value . '%')
+                    ->Orwhere('reservation', 'LIKE', '%' . $value . '%');
+            })->latest()->simplePaginate($this->pagination);
+
+        } elseif($this->datepicker != "") {
+            ['datepicker' => $this->datepicker];
+
+            $date = $this->datepicker;
+            $dateSub = Carbon::parse($date);
+
+            $year = $dateSub->year;
+            $month = $dateSub->month;
+            $day = $this->datepicker_day;
+
+            if($day != "") {
+                $urls = listUrl::query()
+                    ->with(['package', 'material', 'member', 'listRole', 'listType'])
+                    ->whereMonth('created_at', $month)
+                    ->whereYear('created_at', $year)
+                    ->whereDay('created_at', $day)
+                    ->simplePaginate($this->pagination);
+
+                foreach ($urls as $url){
+                    $this->ids [] = $url->id;
+                }
+            }else {
+                $urls = listUrl::query()
+                    ->with(['package', 'material', 'member', 'listRole', 'listType'])
+                    ->whereMonth('created_at', $month)
+                    ->whereYear('created_at', $year)
+                    ->simplePaginate($this->pagination);
+
+                foreach ($urls as $url){
+                    $this->ids [] = $url->id;
+                }
+            }
+        } else {
+            $urls = listUrl::query()
+                ->with(['package', 'material', 'member', 'listRole', 'listType'])
+                ->where('team_id', $this->team->id)
+                ->latest()
+                ->simplePaginate($this->pagination);
+        }
+
 
         $materials = Material::pluck('name', 'id');
         $QRcode = \App\Models\QRCODE::first();
