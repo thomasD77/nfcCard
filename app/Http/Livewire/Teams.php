@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Team;
+use App\Models\Type;
 use Livewire\Component;
 
 class Teams extends Component
@@ -37,6 +38,8 @@ class Teams extends Component
             ->with('teamAddress')->where('archived', '=', 0)
             ->pluck('name', 'id');
 
-        return view('livewire.teams', compact('teams', 'ambassadors'));
+        $types = Type::pluck('name','id');
+
+        return view('livewire.teams', compact('teams', 'ambassadors', 'types'));
     }
 }

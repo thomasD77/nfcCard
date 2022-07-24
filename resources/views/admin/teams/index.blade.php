@@ -80,6 +80,10 @@
                         </div>
                         <div class="modal-body">
                             <div class="form-group mb-4">
+                                <div class="d-flex flex-column mb-4">
+                                    {!! Form::label('type_id','Select type:', ['class'=>'form-label']) !!}
+                                    {!! Form::select('type_id',$types,null,['class'=>'form-control', 'placeholder' => 'Select here...'])!!}
+                                </div>
                                 <div class="form-group mb-4">
                                     {!! Form::label('one-profile-edit-email', 'Name:', ['class'=>'form-label']) !!}
                                     {!! Form::text('name',null,['class'=>'form-control']) !!}

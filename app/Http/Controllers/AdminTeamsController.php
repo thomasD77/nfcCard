@@ -7,6 +7,7 @@ use App\Models\Contact;
 use App\Models\Member;
 use App\Models\Team;
 use App\Models\TeamAddress;
+use App\Models\Type;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,8 @@ class AdminTeamsController extends Controller
         //
         $ambassadors = Team::with('teamAddress')->where('archived', '=', 0)->pluck('name', 'id');
         $count = Team::where('archived', 0)->count();
-        return view('admin.teams.index', compact('ambassadors', 'count'));
+        $types = Type::pluck('name','id');
+        return view('admin.teams.index', compact('ambassadors', 'count', 'types'));
     }
 
     /**
@@ -55,6 +57,10 @@ class AdminTeamsController extends Controller
         if($request->ambassador){
             $ambassador = Team::where('id', $request->ambassador)->first();
             $team->ambassador = $ambassador->name;
+        }
+
+        if($request->type_id){
+            $team->type_id = $request->type_id;
         }
 
         $team->save();
@@ -117,6 +123,10 @@ class AdminTeamsController extends Controller
             $team->ambassador = $ambassador->name;
         }else{
             $team->ambassador = null;
+        }
+
+        if($request->type_id){
+            $team->type_id = $request->type_id;
         }
 
         $team->update();

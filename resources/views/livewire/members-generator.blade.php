@@ -67,13 +67,15 @@
             <table class="table table-striped table-hover table-vcenter fs-sm">
                 <thead>
                 <tr>
-                    <th scope="col">#</th>
+                    <th scope="col">#ID</th>
 
                     <th scope="col">Company</th>
 
                     <th scope="col">Card holders</th>
 
                     <th scope="col">Registered</th>
+
+                    <th scope="col">Type</th>
 
                     <th scope="col">Edit</th>
 
@@ -94,6 +96,21 @@
 
                             <td>{{ $team->created_at->format('Y-m-d') }}</td>
 
+                            <td ><span class="my-2 ms-3
+                                @if($team->typeListUrl)
+                                    badge badge-pill p-3
+                                    @if($team->typeListUrl->id == 1) bg-dark
+                                            @elseif($team->typeListUrl->id == 2) bg-amethyst
+                                            @elseif($team->typeListUrl->id == 3) bg-flat
+                                            @elseif($team->typeListUrl->id == 4) bg-warning
+                                            @elseif($team->typeListUrl->id == 5) bg-info
+                                            @elseif($team->typeListUrl->id == 6) bg-success
+                                            @elseif($team->typeListUrl->id == 7) bg-smooth
+                                            @elseif($team->typeListUrl->id == 8) bg-danger
+                                            @endif
+                                @endif
+                                    ">{{$team->typeListUrl ? $team->typeListUrl->name  : "..." }}</span>
+                            </td>
                             <td>
                                 <a href="{{route('card-credentials-details', $team)}}">
                                     <button class="bt btn-sm btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="List Company">

@@ -83,7 +83,6 @@
             <table class="table table-hover table-vcenter fs-sm">
                 <thead>
                 <tr>
-                    <th scope="col">#</th>
 
                     <th scope="col">User</th>
 
@@ -119,7 +118,6 @@
                         @else
                             <tr class="">
                         @endif
-                            <td>{{ $loop->index + 1  }}</td>
 
                             @if($url->member)
                                 @if($url->member->user->archived == 1)
@@ -153,18 +151,18 @@
                                     badge badge-pill
                                 @if($url->listType->id == 1) bg-dark
                                             @elseif($url->listType->id == 2) bg-amethyst
-                                            @elseif($url->listType->id == 3) bg-amethyst
+                                            @elseif($url->listType->id == 3) bg-flat
                                             @elseif($url->listType->id == 4) bg-warning
-                                            @elseif($url->listType->id == 5) bg-gray
+                                            @elseif($url->listType->id == 5) bg-info
                                             @elseif($url->listType->id == 6) bg-success
-                                            @elseif($url->listType->id == 7) bg-modern-op
-                                            @elseif($url->listType->id == 7) bg-danger
+                                            @elseif($url->listType->id == 7) bg-smooth
+                                            @elseif($url->listType->id == 8) bg-danger
                                             @endif
                                 @endif
-                                ">{{$url->listType ? $url->listType->name  : "..." }} <br> <span class="my-5">{{ $url->webshop_order_id }}</span> </td>
+                                ">{{$url->listType ? $url->listType->name  : "..." }} <br> <span class="my-5">{{ $url->webshop_order_id }}</span>
+                            </td>
 
                             <td>{{$url->reservation ? $url->reservation : "*no reservation" }}</td>
-
 
                             <td>
                                 <!-- Button trigger modal -->

@@ -31,4 +31,9 @@ class Team extends Model
     {
         return $this->hasMany(listUrl::class);
     }
+
+    public function typeListUrl()
+    {
+        return $this->belongsTo(Type::class, 'type_id');
+    }
 }
