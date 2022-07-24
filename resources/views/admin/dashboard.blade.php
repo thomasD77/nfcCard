@@ -145,6 +145,9 @@
                             <a href="{{route('show.QRcode', Auth()->user()->member->card_id)}}" class="btn btn-sm btn-alt-secondary p-2" data-bs-toggle="tooltip" title="QRcode">
                                 QRcode <img width="20px" height="20px" class="img-fluid" src="{{ asset('images/content/QRcode.png') }}" alt="QRcode">
                             </a>
+                            <a href="{{route('settings')}}" class="btn btn-sm btn-alt-primary p-2" data-bs-toggle="tooltip" title="Settings">
+                                Settings <i class="si si-settings"></i>
+                            </a>
                             <div class="card-footer">
                                 <strong class="mx-2">Your referral code:</strong><span class="badge badge-pill p-2 bg-success">{{ $member->referral }}</span>
                             </div>

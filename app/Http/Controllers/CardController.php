@@ -213,7 +213,7 @@ class CardController extends Controller
             }
             else
             {
-                $contact->phone = $request->phone;
+                $contact->phone = $request->landcode . $request->phone;
             }
 
             if($request->message == "")
@@ -223,6 +223,24 @@ class CardController extends Controller
             else
             {
                 $contact->message = $request->message;
+            }
+
+            if($request->company == "")
+            {
+                $contact->company = NULL;
+            }
+            else
+            {
+                $contact->company = $request->company;
+            }
+
+            if($request->VAT == "")
+            {
+                $contact->VAT = NULL;
+            }
+            else
+            {
+                $contact->VAT = $request->VAT;
             }
 
             $contact->save();

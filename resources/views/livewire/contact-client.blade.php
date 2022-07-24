@@ -77,17 +77,35 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <p><strong>Name:</strong></p>
-                                                <p class="bg-light p-2">{{$contact->name ? $contact->name : 'No Name'}}</p>
+                                                @if($contact->name)
+                                                    <p><strong>Name:</strong></p>
+                                                    <p class="bg-light p-2">{{$contact->name ? $contact->name : 'No Name'}}</p>
+                                                @endif
 
-                                                <p><strong>Email:</strong></p>
-                                                <p class="bg-light p-2">{{$contact->email ? $contact->email : 'No email'}}</p>
+                                                @if($contact->email)
+                                                    <p><strong>Email:</strong></p>
+                                                    <p class="bg-light p-2">{{$contact->email ? $contact->email : 'No email'}}</p>
+                                                @endif
 
-                                                <p><strong>Phone:</strong></p>
-                                                <p class="bg-light p-2">{{$contact->phone ? $contact->phone : 'No Phone'}}</p>
+                                                @if($contact->phone)
+                                                    <p><strong>Phone:</strong></p>
+                                                    <p class="bg-light p-2">{{$contact->phone ? $contact->phone : 'No Phone'}}</p>
+                                                @endif
 
-                                                <p><strong>Message:</strong></p>
-                                                <p class="bg-light p-2">{{$contact->message ? $contact->message : 'No message'}}</p>
+                                                @if($contact->company)
+                                                    <p><strong>Company:</strong></p>
+                                                    <p class="bg-light p-2">{{$contact->company ? $contact->company : ''}}</p>
+                                                @endif
+
+                                                @if($contact->VAT)
+                                                    <p><strong>VAT:</strong></p>
+                                                    <p class="bg-light p-2">{{$contact->VAT ? $contact->VAT : ''}}</p>
+                                                @endif
+
+                                                @if($contact->notes)
+                                                    <p><strong>Message:</strong></p>
+                                                    <p class="bg-light p-2">{{$contact->message ? $contact->message : 'No message'}}</p>
+                                                @endif
 
                                                 <p class="mb-2"><strong>Status</strong></p>
 {{--                                                {!! Form::select('statusses',$statusses,null,['class'=>'form-control', 'placeholder' => 'Select here...'])!!}--}}

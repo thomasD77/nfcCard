@@ -80,4 +80,9 @@ class Member extends Model
         return $this->hasOne(State::class);
     }
 
+    public function settings()
+    {
+        return $this->hasOne(Setting::class);
+    }
+
 }
