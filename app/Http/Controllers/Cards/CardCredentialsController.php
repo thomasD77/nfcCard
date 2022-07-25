@@ -26,17 +26,18 @@ class CardCredentialsController extends Controller
 
     //This is the function that will generate a sheet with all the (custom) SWAP CARD information that we need
     //to send to our supplier
-    public function cardCredentialsSheetGenerator()
+    public function cardCredentialsSheetGenerator($id)
     {
         $members = listUrl::where('print', 1)->get();
         $pdf = PDF::loadView('admin.members.code', compact('members'));
+        $team = Team::findOrFail($id);
 
         foreach ($members as $member) {
             $member->print = 0;
             $member->update();
         }
 
-        return $pdf->download('card-details.pdf');
+        return $pdf->download('card-details-' . $team->name . '.pdf');
     }
 
 

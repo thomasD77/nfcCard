@@ -43,7 +43,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     //Routes for generating SWAP CARD information
     Route::get('card-credentials', 'App\Http\Controllers\Cards\CardCredentialsController@cardCredentialsList')->name('card-credentials');
     Route::get('card-credentials/detail/{team}', 'App\Http\Controllers\Cards\CardCredentialsController@cardCredentialsListDetail')->name('card-credentials-details');
-    Route::get('card-credentials-sheet-generator', 'App\Http\Controllers\Cards\CardCredentialsController@cardCredentialsSheetGenerator')->name('card-credentials-sheet-generator');
+    Route::get('card-credentials-sheet-generator/{id}', 'App\Http\Controllers\Cards\CardCredentialsController@cardCredentialsSheetGenerator')->name('card-credentials-sheet-generator');
     Route::patch('card-credentials-update-card', 'App\Http\Controllers\Cards\CardCredentialsController@updateCard')->name('card-credentials-update');
 
 
@@ -93,7 +93,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
 
 
     Route::get('print/scans', 'App\Http\Controllers\CardController@printScans')->name('print.scans');
-    Route::get('print/list', 'App\Http\Controllers\CardController@print')->name('print.list');
+    Route::get('print/list/{id}', 'App\Http\Controllers\CardController@print')->name('print.list');
     Route::get('print/scans/client', 'App\Http\Controllers\CardController@printScansClient')->name('print.scans.client');
     Route::get('print/scans/team', 'App\Http\Controllers\CardController@printScansTeam')->name('print.scans.team');
     Route::post('password/{id}', 'App\Http\Controllers\AdminUsersController@updatePassword');

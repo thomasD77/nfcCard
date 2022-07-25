@@ -19,6 +19,7 @@ use App\Models\listUrl;
 use App\Models\Member;
 use App\Models\Package;
 use App\Models\State;
+use App\Models\Team;
 use App\Models\URL;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
@@ -151,9 +152,10 @@ class CardController extends Controller
     }
 
 
-    public function print()
+    public function print($id)
     {
-        $filename = 'members_order_list_' . now()->format('Y-m-d') . '.xlsx' ;
+        $team = Team::findOrFail($id);
+        $filename = 'members_order_list_'.  $team->name . "_"  . now()->format('d-m-Y') . '.xlsx' ;
         return Excel::download(new MemberUrlExport(), "$filename");
     }
 

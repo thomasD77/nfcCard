@@ -53,7 +53,12 @@ class MembersGeneratorDetail extends Component
 
         if($this->checkbox_active) {
 
-            $urls = listUrl::whereIn('id', $this->ids)->where('team_id', $this->team->id)->select('id', 'print')->get();
+            if($this->ids == []){
+                $urls = listUrl::where('team_id', $this->team->id)->select('id', 'print')->get();
+            }else {
+                $urls = listUrl::whereIn('id', $this->ids)->where('team_id', $this->team->id)->select('id', 'print')->get();
+                $this->ids = [];
+            }
 
             foreach ($urls as $url) {
                 $url->print = 0;

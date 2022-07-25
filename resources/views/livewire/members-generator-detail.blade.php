@@ -36,11 +36,11 @@
 
             <div>
 
-                <a href="{{ route('card-credentials-sheet-generator') }}" class="btn btn-alt-success" data-bs-toggle="tooltip" title="Supplier">
+                <a href="{{ route('card-credentials-sheet-generator', $urls->first()->team_id) }}" class="btn btn-alt-success" data-bs-toggle="tooltip" title="Supplier">
                     <i class="fa fa-print me-2"></i>
                 </a>
 
-                <a href="{{ route('print.list') }}" class="btn btn-alt-primary" data-bs-toggle="tooltip" title="Teamleader">
+                <a href="{{ route('print.list' , $urls->first()->team_id) }}" class="btn btn-alt-primary" data-bs-toggle="tooltip" title="Teamleader">
                     <i class="fa fa-copy me-2"></i>
                 </a>
 
