@@ -113,6 +113,11 @@ class RegisterController extends Controller
             'member_id'=> $member->id,
         ]);
 
+        //Make card setting connection
+        DB::table('settings')->insert([
+            'member_id'=> $member->id,
+        ]);
+
         //Connect User with member
         $user->member_id = $member->id;
         $user->team_id = $listURL->team_id;

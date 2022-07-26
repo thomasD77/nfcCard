@@ -128,92 +128,112 @@
                                     </div>
 
                                     <div class="modal-body">
-                                        @if($member->settings->name)
-                                            <div class="mb-4 d-flex justify-content-start flex-column">
-                                                <label class="form-label"
-                                                       for="frontend-contact-firstname">Name</label>
-                                                <input type="text"
-                                                       class="form-control input_modal"
-                                                       name="name"
-                                                       placeholder="Enter your name..."
-                                                       autocomplete="name"
-                                                >
-                                                @error('name')
-                                                <p class="text-danger mt-2"> {{ $message }}</p>
-                                                @enderror
-                                            </div>
+                                        @if($member->settings)
+                                            @if($member->settings->name)
+                                                <div class="mb-4 d-flex justify-content-start flex-column">
+                                                    <label class="form-label"
+                                                           for="frontend-contact-firstname">Name</label>
+                                                    <input type="text"
+                                                           class="form-control input_modal"
+                                                           name="name"
+                                                           placeholder="Enter your name..."
+                                                           autocomplete="name"
+                                                    >
+                                                    @error('name')
+                                                    <p class="text-danger mt-2"> {{ $message }}</p>
+                                                    @enderror
+                                                </div>
+                                            @endif
                                         @endif
 
-                                        @if($member->settings->email)
-                                            <div class="mb-4">
-                                                <label class="form-label" for="frontend-contact-email">Email</label>
-                                                <input type="email"
-                                                       class="form-control input_modal"
-                                                       name="email"
-                                                       autocomplete="email"
-                                                       placeholder="Enter your email...">
-                                                @error('email')
-                                                <p class="text-danger mt-2"> {{ $message }}</p>
-                                                @enderror
-                                            </div>
+                                        @if($member->settings)
+                                            @if($member->settings->email)
+                                                <div class="mb-4">
+                                                    <label class="form-label" for="frontend-contact-email">Email</label>
+                                                    <input type="email"
+                                                           class="form-control input_modal"
+                                                           name="email"
+                                                           autocomplete="email"
+                                                           placeholder="Enter your email...">
+                                                    @error('email')
+                                                    <p class="text-danger mt-2"> {{ $message }}</p>
+                                                    @enderror
+                                                </div>
+                                            @endif
                                         @endif
 
-                                        @if($member->settings->phone)
+                                        @if($member->settings)
+                                            @if($member->settings->phone)
                                                 <label class="form-label" for="frontend-contact-email">Phone</label>
-                                            <div class="mb-4 row">
-                                                    <select style="margin-left: 10px" class="form-select col-2" name="landcode" aria-label="Default select example">
-                                                        <option selected value="+32">+32</option>
-                                                        <option value="+31">+31</option>
-                                                        <option value="+33">+33</option>
-                                                        <option value="+49">+49</option>
-                                                    </select>
-                                                    <input type="text" style="margin-left: -27px" class="form-control input_modal col-10"
-                                                           name="phone"
-                                                           placeholder="Enter your phone..."
-                                                           autocomplete="phone">
-                                            </div>
+                                                <div class="mb-4 row">
+                                                        <div class="col-4 pr-0">
+{{--                                                            <select class="form-select" name="landcode" aria-label="Default select example">--}}
+{{--                                                                <option selected value="+32">+32</option>--}}
+{{--                                                                <option value="+31">+31</option>--}}
+{{--                                                                <option value="+33">+33</option>--}}
+{{--                                                                <option value="+49">+49</option>--}}
+{{--                                                            </select>--}}
+                                                            <input type="text" class="form-control input_modal"
+                                                                   name="phone"
+                                                                   placeholder="+32"
+                                                                   autocomplete="phone">
+                                                        </div>
+                                                        <div class="col-8 pl-0">
+                                                            <input type="text" class="form-control input_modal"
+                                                                   name="phone"
+                                                                   placeholder="Enter your phone..."
+                                                                   autocomplete="phone">
+                                                        </div>
+                                                </div>
+                                            @endif
                                         @endif
 
-                                        @if($member->settings->company)
-                                            <div class="mb-4 d-flex justify-content-start flex-column">
-                                                <label class="form-label"
-                                                       for="frontend-contact-firstname">Company</label>
-                                                <input type="text"
-                                                       class="form-control input_modal"
-                                                       name="company"
-                                                       placeholder="Enter your company..."
-                                                       autocomplete="name"
-                                                >
-                                                @error('company')
-                                                <p class="text-danger mt-2"> {{ $message }}</p>
-                                                @enderror
-                                            </div>
+                                        @if($member->settings)
+                                            @if($member->settings->company)
+                                                <div class="mb-4 d-flex justify-content-start flex-column">
+                                                    <label class="form-label"
+                                                           for="frontend-contact-firstname">Company</label>
+                                                    <input type="text"
+                                                           class="form-control input_modal"
+                                                           name="company"
+                                                           placeholder="Enter your company..."
+                                                           autocomplete="name"
+                                                    >
+                                                    @error('company')
+                                                    <p class="text-danger mt-2"> {{ $message }}</p>
+                                                    @enderror
+                                                </div>
+                                            @endif
                                         @endif
 
-                                        @if($member->settings->VAT)
-                                            <div class="mb-4 d-flex justify-content-start flex-column">
-                                                <label class="form-label"
-                                                       for="frontend-contact-firstname">VAT</label>
-                                                <input type="text"
-                                                       class="form-control input_modal"
-                                                       name="VAT"
-                                                       placeholder="Enter your VAT..."
-                                                       autocomplete="VAT"
-                                                >
-                                                @error('VAT')
-                                                <p class="text-danger mt-2"> {{ $message }}</p>
-                                                @enderror
-                                            </div>
+                                        @if($member->settings)
+                                            @if($member->settings->VAT)
+                                                <div class="mb-4 d-flex justify-content-start flex-column">
+                                                    <label class="form-label"
+                                                           for="frontend-contact-firstname">VAT</label>
+                                                    <input type="text"
+                                                           class="form-control input_modal"
+                                                           name="VAT"
+                                                           placeholder="Enter your VAT..."
+                                                           autocomplete="VAT"
+                                                    >
+                                                    @error('VAT')
+                                                    <p class="text-danger mt-2"> {{ $message }}</p>
+                                                    @enderror
+                                                </div>
+                                            @endif
                                         @endif
 
-                                        @if($member->settings->notes)
-                                        <div class="mb-4">
+                                        @if($member->settings)
+                                            @if($member->settings->notes)
+                                            <div class="mb-4">
 
-                                            <label class="form-label" for="frontend-contact-email">Message</label>
+                                                <label class="form-label" for="frontend-contact-email">Message</label>
 
-                                            <textarea name="message" placeholder="Enter your message for {{ $member->firstname }}... " class="form-control input_modal" id="" cols="5" rows="5"></textarea>
+                                                <textarea name="message" placeholder="Enter your message for {{ $member->firstname }}... " class="form-control input_modal" id="" cols="5" rows="5"></textarea>
 
-                                        </div>
+                                            </div>
+                                            @endif
                                         @endif
 
                                         <input type="hidden" name="recaptcha" id="recaptcha">
@@ -237,7 +257,6 @@
                                                class="btn_cstm input_modal p-3">
                                                  <i class="fa fa-floppy-disk me-1 opacity-50"></i> SAVE
                                             </a>
-
 
                                         </div>
                                     </div>
@@ -369,10 +388,17 @@
                     </div>
                 </div>
                 <!-- Footer -->
-                <footer class="footer"><a style="text-decoration: none; color: white" href="https://innova-webcreations.be">SWAP</a> © {{ now()->format('Y') }}</footer>
+
                 <footer class="footer">
-                    <a style="text-decoration: none; color: black" class="badge badge-pill bg-white px-3 py-2" href="{{ asset('/login') }}">Login</a>
+                    @guest
+                        <a style="text-decoration: none; color: black" class="badge badge-pill bg-white p-3 my-3 text-uppercase" href="{{ asset('/login') }}">Login</a>
+                    @endguest
+                    @auth
+                    <a style="text-decoration: none; color: black" class="badge badge-pill bg-white p-3 my-3 text-uppercase" href="{{ asset('/admin') }}">Dashboard</a>
+                    @endauth
                 </footer>
+
+                <footer class="footer"><a style="text-decoration: none; color: white" href="https://innova-webcreations.be">SWAP</a> © {{ now()->format('Y') }}</footer>
             </div>
         </div>
     </div>

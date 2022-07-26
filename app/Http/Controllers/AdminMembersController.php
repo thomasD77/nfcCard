@@ -515,7 +515,7 @@ class AdminMembersController extends Controller
         $state->update();
 
         \Brian2694\Toastr\Facades\Toastr::success('Member Successfully Updated');
-        return redirect('/admin/members');
+        return redirect('/admin/');
     }
 
     public function archive()
