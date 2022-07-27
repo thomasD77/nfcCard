@@ -166,7 +166,7 @@
                                             @if($member->settings->phone)
                                                 <label class="form-label" for="frontend-contact-email">Phone</label>
                                                 <div class="mb-4 row">
-                                                        <div class="col-4 pr-0">
+                                                        <div class="col-3 pr-0">
 {{--                                                            <select class="form-select" name="landcode" aria-label="Default select example">--}}
 {{--                                                                <option selected value="+32">+32</option>--}}
 {{--                                                                <option value="+31">+31</option>--}}
@@ -174,11 +174,11 @@
 {{--                                                                <option value="+49">+49</option>--}}
 {{--                                                            </select>--}}
                                                             <input type="text" class="form-control input_modal"
-                                                                   name="phone"
+                                                                   name="landcode"
                                                                    placeholder="+32"
                                                                    autocomplete="phone">
                                                         </div>
-                                                        <div class="col-8 pl-0">
+                                                        <div class="col-9 pl-0">
                                                             <input type="text" class="form-control input_modal"
                                                                    name="phone"
                                                                    placeholder="Enter your phone..."
