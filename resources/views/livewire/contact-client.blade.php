@@ -24,13 +24,6 @@
                 <input style="width: 65px" wire:model="datepicker_day"  class="form-control" type="number" max="31" min="1">
                 <input wire:model="datepicker" id="datepicker" type="month" class="form-control" id="" name="" placeholder="Select date contact" data-inline="month" data-enable-time="false">
                 <button wire:click="dateALL" class="btn btn-secondary rounded" type="button" data-bs-toggle="tooltip" title="Refresh"><i class="si si-refresh"></i></button>
-{{--                @can('is_superAdmin')--}}
-{{--                    <a href="{{route('contact.archive', [ 'team' => $user->team ])}}">--}}
-{{--                        <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Archive">--}}
-{{--                            <i class="fa fa-archive"></i>--}}
-{{--                        </button>--}}
-{{--                    </a>--}}
-{{--                @endcan--}}
 
                 <a href="{{route('contact.archive-clients', Auth()->user() )}}">
                     <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Archive">
@@ -162,6 +155,21 @@
                             <td>{{$contact->created_at ? \Carbon\Carbon::parse($contact->created_at)->format('Y-M-d') : 'No Date'}}</td>                                <td>
                                 <div class="btn-group">
                                     <button class="btn btn-sm btn-alt-secondary" wire:click="archiveContact({{$contact->id}})"><i class="fa fa-archive "></i></button>
+                                </div>
+                                <div class="btn-group">
+
+                                    @if(!Auth()->user()->contacts->isEmpty())
+                                        @foreach(Auth()->user()->contacts as $saved)
+                                            @if(!$saved->id == $contact->id)
+                                                <button class="btn btn-sm btn-alt-success"><i class="fa fa-check"></i></button>
+                                            @else
+                                                <button class="btn btn-sm btn-alt-info" wire:key="{{$contact->id}}" wire:click="toggleToContact({{$contact->id}})"><i class="far fa-address-book "></i></button>
+                                            @endif
+                                        @endforeach
+                                    @else
+                                        <button class="btn btn-sm btn-alt-info" wire:key="{{$contact->id}}" wire:click="toggleToContact({{$contact->id}})"><i class="far fa-address-book "></i></button>
+                                    @endif
+
                                 </div>
                             </td>
                         </tr>

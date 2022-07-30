@@ -117,6 +117,13 @@
                             <span class="nav-main-link-name ">Scans</span>
                         </a>
                     </li>
+
+                    <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
+                        <a class="nav-main-link" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="{{route('contacts.list')}}">
+                            <i class="nav-main-link-icon far fa-address-book"></i>
+                            <span class="nav-main-link-name ">Contacts</span>
+                        </a>
+                    </li>
                 @endif
 
             </ul>

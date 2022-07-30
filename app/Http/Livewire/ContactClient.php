@@ -31,6 +31,12 @@ class ContactClient extends Component
         $this->user = $user;
     }
 
+    public function toggleToContact(Contact $contact)
+    {
+        $user = Auth()->user();
+        $user->contacts()->sync($contact->id, false);
+    }
+
     public function contact(Contact $contact)
     {
         $this->contact = $contact;

@@ -78,6 +78,8 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::get('archive/users', 'App\Http\Controllers\AdminUsersController@archive')->name('users.archive');
 
     Route::resource('contacts', App\Http\Controllers\AdminContactsController::class);
+    Route::get('list', 'App\Http\Controllers\AdminUsersController@contactsList')->name('contacts.list');
+    Route::get('list/detail/{contact}', 'App\Http\Controllers\AdminUsersController@contactDetail')->name('contact.detail');
 
 
     //This route will display all Contacts from given USER ID

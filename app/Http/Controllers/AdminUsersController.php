@@ -6,6 +6,7 @@ use App\Http\Requests\TeamRequest;
 use App\Http\Requests\UserEditRequest;
 use App\Models\AccountSettings;
 use App\Models\Avatar;
+use App\Models\Contact;
 use App\Models\Member;
 use App\Models\Role;
 use App\Models\ServiceCategory;
@@ -257,6 +258,16 @@ class AdminUsersController extends Controller
 
         \Brian2694\Toastr\Facades\Toastr::success('Team Successfully Updated');
         return redirect('/admin');
+    }
+
+    public function contactsList()
+    {
+        return view('admin.contacts-list.index');
+    }
+
+    public function contactDetail(Contact $contact)
+    {
+        return view('admin.contacts-list.detail', compact('contact'));
     }
 
 
