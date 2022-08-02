@@ -157,19 +157,11 @@
                                     <button class="btn btn-sm btn-alt-secondary" wire:click="archiveContact({{$contact->id}})"><i class="fa fa-archive "></i></button>
                                 </div>
                                 <div class="btn-group">
-
-                                    @if(!Auth()->user()->contacts->isEmpty())
-                                        @foreach(Auth()->user()->contacts as $saved)
-                                            @if(!$saved->id == $contact->id)
-                                                <button class="btn btn-sm btn-alt-success"><i class="fa fa-check"></i></button>
-                                            @else
-                                                <button class="btn btn-sm btn-alt-info" wire:key="{{$contact->id}}" wire:click="toggleToContact({{$contact->id}})"><i class="far fa-address-book "></i></button>
-                                            @endif
-                                        @endforeach
+                                    @if(in_array($contact->id, $ids))
+                                        <button class="btn btn-sm btn-alt-success"><i class="fa fa-check"></i></button>
                                     @else
-                                        <button class="btn btn-sm btn-alt-info" wire:key="{{$contact->id}}" wire:click="toggleToContact({{$contact->id}})"><i class="far fa-address-book "></i></button>
+                                        <button class="btn btn-sm btn-alt-info" wire:key="{{ $contact->id }}" wire:click="toggleToContact({{$contact->id}})"><i class="far fa-address-book "></i></button>
                                     @endif
-
                                 </div>
                             </td>
                         </tr>

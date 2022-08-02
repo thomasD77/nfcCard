@@ -79,6 +79,19 @@ class ContactClient extends Component
             $this->contact->update();
         }
 
+        $statusses = Status::pluck('name', 'id');
+
+        $ids = [];
+        $contacts = Auth()->user()->contacts;
+
+        if($contacts) {
+            foreach ($contacts as $contact) {
+                $ids [] = $contact->id;
+            }
+        }
+
+
+
         //Check if USER is given in URL request
         if($this->user->member){
             $member_id = $this->user->member->id;
@@ -96,7 +109,7 @@ class ContactClient extends Component
 
             $statusses = Status::all();
 
-            return view('livewire.contact-client', compact('contacts', 'statusses'));
+            return view('livewire.contact-client', compact('contacts', 'statusses', 'ids'));
         } else {
             ['datepicker' => $this->datepicker];
 
@@ -124,9 +137,8 @@ class ContactClient extends Component
                     ->simplePaginate($this->pagination);
             }
 
-            $statusses = Status::pluck('name', 'id');
 
-            return view('livewire.contact-client', compact('contacts', 'statusses'));
+            return view('livewire.contact-client', compact('contacts', 'statusses', 'ids'));
         }
     }
 }

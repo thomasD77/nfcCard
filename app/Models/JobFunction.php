@@ -12,4 +12,6 @@ class JobFunction extends Model
     protected $fillable = [
         'name'
     ];
+
+
 }
