@@ -254,6 +254,18 @@
                 @enderror
             </div>
 
+            <div class="form-group mb-4">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="check_youtube_video" value="{{ 1 }}" @if($member->state->youtube_video) checked @endif>
+                    {!! Form::label('youtube_video','Youtube Video',['class'=>'form-label']) !!}
+                </div>
+                {!! Form::text('youtube_video',$member->youtube_video ,['class'=>'form-control' , 'placeholder' => 'https://www.youtube.com/watch?v=gg8gjO5pLps']) !!}
+                @error('Youtube_Video')
+                <p class="text-danger mt-2"> {{ $message }}</p>
+                @enderror
+            </div>
+
+
             <p class="badge badge-pill bg-dark p-2 text-white">Create your own button here: </p>
             <div class="form-group mb-4">
                 <div class="form-check">

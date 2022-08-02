@@ -93,6 +93,9 @@ class AdminMembersController extends Controller
         $member->whatsApp = $request->whatsApp;
         $member->facebookMessenger = $request->facebookMessenger;
 
+        $video = str_replace('watch?v=', 'embed/', $request->youtube_video);
+        $member->youtube_video = $video;
+
         $member->save();
 
         \Brian2694\Toastr\Facades\Toastr::success('Member Successfully Saved');
@@ -509,6 +512,21 @@ class AdminMembersController extends Controller
             $file->move('card/avatars', $name);
             $member->avatar = $name;
         }
+
+        if($request->check_youtube_video !== NULL){
+            $state->youtube_video = $request->youtube_video;
+        } else{
+            $state->youtube_video = 0;
+        }
+        if($request->youtube_video !== NULL)
+        {
+            $member->customText = $request->youtube_video;
+        }
+        else
+        {
+            $member->customText = "";
+        }
+
 
         $member->update();
         $state->update();

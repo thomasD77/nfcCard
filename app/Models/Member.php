@@ -47,7 +47,8 @@ class Member extends Model
             'print',
             'titleMessage',
             'message',
-            'business'
+            'business',
+            'youtube_video'
         ];
 
     public function user()
