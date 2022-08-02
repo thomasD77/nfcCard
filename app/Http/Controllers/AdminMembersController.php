@@ -514,19 +514,19 @@ class AdminMembersController extends Controller
         }
 
         if($request->check_youtube_video !== NULL){
-            $state->youtube_video = $request->youtube_video;
+            $state->youtube_video = 1;
         } else{
             $state->youtube_video = 0;
         }
         if($request->youtube_video !== NULL)
         {
-            $member->customText = $request->youtube_video;
+            $video = str_replace('watch?v=', 'embed/', $request->youtube_video);
+            $member->youtube_video = $video;
         }
         else
         {
-            $member->customText = "";
+            $member->youtube_video = "";
         }
-
 
         $member->update();
         $state->update();
