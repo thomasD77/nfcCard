@@ -371,7 +371,7 @@
                                     @endif
 
                                     @if($member->youtube_video && $member->state->youtube_video)
-                                        <div class="col-12 d-flex justify-content-center">
+                                        <div class="col-12 d-flex justify-content-center mt-3">
                                             <iframe src="{{ $member->youtube_video }}?rel=0&amp;autoplay=1&mute=1"
                                                     width="560" height="315" frameborder="0" allowfullscreen></iframe>
                                         </div>

@@ -2,11 +2,9 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class AddYoutubevideoToMembersTable extends Migration
+class AddExtraFieldYoutubeToMembersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,7 +14,6 @@ class AddYoutubevideoToMembersTable extends Migration
     public function up()
     {
         Schema::table('members', function (Blueprint $table) {
-
             //Youtube video
             $table->string('youtube_video')->default("");
         });
@@ -29,6 +26,8 @@ class AddYoutubevideoToMembersTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('members', function (Blueprint $table) {
+            //
+        });
     }
 }
