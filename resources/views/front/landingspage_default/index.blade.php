@@ -318,8 +318,15 @@
 
                             <!-- What -->
                             <div class="mt-1">
-                                <h2 class="title title--h3">My Socials</h2>
+
                                 <div class="row">
+                                    @if($member->youtube_video && $member->state->youtube_video)
+                                        <div class="col-12 d-flex justify-content-center my-3">
+                                            <iframe src="{{ $member->youtube_video }}?rel=0&amp;autoplay=1&mute=1"
+                                                    width="560" height="315" frameborder="0" allowfullscreen></iframe>
+                                        </div>
+                                    @endif
+
                                     @if($member->website && $member->state->website)
                                         <!-- Website -->
                                         <div class="col-12 d-flex justify-content-center">
@@ -382,6 +389,7 @@
                                             <a class="w-100" target="_blank" href="{{ $member->customField }}"><button type="submit" class="btn_cstm custom w-100 mt-2"><i class="fa-solid fa-play mx-2"></i>{{ $member->customText }}</button></a>
                                         </div>
                                     @endif
+
                                 </div>
                             </div>
                         </div>
