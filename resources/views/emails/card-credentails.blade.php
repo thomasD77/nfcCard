@@ -87,12 +87,9 @@
 </div>
 
 
-
-
-
-
-
-
+@component('mail::button', ['url' => 'https://portal.swap-nfc.be/login'])
+    <strong>SWAP APP</strong>
+@endcomponent
 
 
 
