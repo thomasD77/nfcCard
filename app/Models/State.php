@@ -35,6 +35,7 @@ class State extends Model
         'whatsApp',
         'avatar',
         'customField',
+        'youtube_video'
 
     ];
 
