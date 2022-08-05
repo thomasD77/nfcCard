@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\JobFunction;
+use App\Models\Location;
 use App\Models\Member;
 use App\Models\Note;
 use App\Models\Status;
@@ -59,6 +60,7 @@ class ContactDetail extends Component
         }
 
         $notes = Note::where('contact_id', $this->contact->id)->get();
+        $events = Location::where('contact_id', $this->contact->id)->get();
         $statusses = Status::pluck('name', 'id');
         $sectors = JobFunction::pluck('name', 'id');
 
@@ -66,6 +68,8 @@ class ContactDetail extends Component
             'referred_members',
             'notes',
             'statusses',
-            'sectors'));
+            'sectors',
+            'events'
+        ));
     }
 }
