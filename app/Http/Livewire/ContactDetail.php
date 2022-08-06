@@ -10,6 +10,7 @@ use App\Models\Status;
 use App\Models\User;
 use Livewire\Component;
 use \App\Models\Contact;
+use Livewire\WithPagination;
 
 class ContactDetail extends Component
 {
@@ -21,6 +22,7 @@ class ContactDetail extends Component
     public $status;
     public $sector;
 
+    use WithPagination;
 
     public function mount(Contact $contact)
     {
@@ -39,7 +41,7 @@ class ContactDetail extends Component
 
     public function deleteContact()
     {
-        $this->contact->delete();
+        Auth()->user()->contacts()->detach($this->contact->id);
 
         return redirect()->route('contacts.list');
     }
@@ -54,13 +56,14 @@ class ContactDetail extends Component
                 ->whereIn('user_id', $users)
                 ->whereNull('deleted_at')
                 ->where('id', '!=', $this->member->id)
-                ->get();
+                ->where('id', '!=', Auth()->user()->member->id)
+                ->simplePaginate(1);
         } else {
             $referred_members = [];
         }
 
-        $notes = Note::where('contact_id', $this->contact->id)->get();
-        $events = Location::where('contact_id', $this->contact->id)->get();
+        $notes = Note::where('contact_id', $this->contact->id)->latest()->simplePaginate(5);
+        $events = Location::where('contact_id', $this->contact->id)->latest()->simplePaginate(5);
         $statusses = Status::pluck('name', 'id');
         $sectors = JobFunction::pluck('name', 'id');
 
