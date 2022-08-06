@@ -1,15 +1,12 @@
 @can('is_client')
 
-
     <!-- Page Content -->
-    <div class="content content-boxed">
+    <div class="content content-boxed px-0">
         <!-- member Profile -->
         <div class="block block-rounded">
             <div class="block-header block-header-default">
                 <h3 class="block-title">Member Profile</h3>
-                <div>
-                    <p style="font-weight: bold">#Card ID: {{ $member->card_id }}</p>
-                </div>
+                <p class="text-muted" style="font-size: 12px">Here you can edit all the default settings for your profile</p>
             </div>
             @if($member->user->archived == 0)
 

@@ -1,7 +1,7 @@
 <div>
     <!-- Dynamic Table Full -->
     <div class="block block-rounded">
-        <div class="block-header block-header-default row px-0 py-3 px-md-5">
+        <div class="block-header block-header-default row px-0 py-3 px-md-3">
 
             <!-- Search Form  -->
             <form class="col-md-6">
@@ -195,9 +195,9 @@
                             <td><a href="mailto:{{$contact->email}}"> {{$contact->email ? $contact->email : 'No Email'}}</a></td>
                             <td>{{$contact->phone ? $contact->phone : 'No Phone'}}</td>
                             <td><!-- Button trigger modal -->
-                                <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#exampleModal2{{$contact->id}}">
-                                    SWAP
-                                </button>
+                                <a type="button" class="" data-bs-toggle="modal" data-bs-target="#exampleModal2{{$contact->id}}">
+                                    <img src="{{ asset('images/content/swap_log.png') }}" alt="logo" class="img-fluid" width="80" height="80">
+                                </a>
 
                                 <!-- Modal -->
                                 <div class="modal fade" wire:ignore.self id="exampleModal2{{$contact->id}}" wire:key="{{ $contact->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

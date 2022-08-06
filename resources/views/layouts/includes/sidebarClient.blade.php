@@ -103,9 +103,9 @@
                         <span class="nav-main-link-name">Dashboard</span>
                     </a>
                 </li>
-                <li class="nav-main-heading text-uppercase">My Card</li>
+                <li class="nav-main-heading text-uppercase">Settings</li>
 
-                <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{ route('members.index') }}">
+                <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('members.edit', Auth()->user()->member->id)}}">
                     <i class="nav-main-link-icon  far fa-calendar-alt"></i><span class="nav-main-link-name">Profile</span>
                 </a>
 
