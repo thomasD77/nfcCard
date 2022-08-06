@@ -31,7 +31,7 @@
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
                 <div class="flex-grow-1">
                     <h1 class="h3 fw-bold mb-2">
-                       My contacts
+                       Contacts
                     </h1>
                 </div>
                 <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
@@ -53,7 +53,7 @@
     <div class="content container-fluid">
         <!-- Dynamic Table Full -->
         <div class="block block-rounded row">
-            <div class="block-content block-content-full overflow-scroll">
+            <div class="block-content block-content-full overflow-scroll px-0 px-md-4">
                 <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
                 @livewire('contact-list')
             </div>

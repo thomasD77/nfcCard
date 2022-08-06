@@ -52,8 +52,12 @@
     <!-- Page Content -->
     <div class="content container-fluid">
         <div class="row">
-            <div class="d-flex justify-content-center mt-5">
-                {{$QRcode}}
+            <div class="d-flex justify-content-center">
+                <div class="card shadow my-5 p-3" style="border: none">
+                    <div class="card-body">
+                        {{$QRcode}}
+                    </div>
+                </div>
             </div>
         </div>
     </div>

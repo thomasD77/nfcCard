@@ -3,14 +3,14 @@
     <div class="content">
         <!-- Quick Actions -->
         <div class="row">
-            <div class="col-6">
-                <a class="block block-rounded block-link-shadow text-center">
+            <div class="col-md-6">
+                <a class="block block-rounded block-link-shadow text-center mb-0">
                     <div class="block-content block-content-full" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal{{$contact->id}}">
                         <div class="fs-2 fw-semibold text-dark">
                             <i class="fa fa-pencil-alt"></i>
                         </div>
                     </div>
-                    <div class="block-content py-2 bg-body-light" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal{{$contact->id}}">
+                    <div class="block-content py-2 bg-body-light"   type="button" data-bs-toggle="modal" data-bs-target="#exampleModal{{$contact->id}}">
                         <p class="fw-medium fs-sm text-muted mb-0">
                             Edit Contact
                         </p>
@@ -86,7 +86,8 @@
                     </div>
                 </a>
             </div>
-            <div class="col-6">
+
+            <div class="col-md-6 mt-3 mt-md-0">
                 <a class="block block-rounded block-link-shadow text-center" >
                     <div class="block-content block-content-full" data-bs-toggle="modal" data-bs-target="#exampleModal" style="cursor: pointer">
                         <div class="fs-2 fw-semibold text-danger">
@@ -143,21 +144,21 @@
             </div>
             <div class="block-content bg-body-light text-center">
                 <div class="row items-push text-uppercase">
-                    <div class="col-6 col-md-3">
+                    <div class="col-md-3">
                         <div class="fw-semibold text-dark mb-1">SWAP DATE</div>
                         <a class="link-fx fs-3 text-primary" >{{ $contact->created_at->format('d-M-Y') }}</a>
                     </div>
                     @if($contact->sector)
-                        <div class="col-6 col-md-3">
+                        <div class="col-md-3">
                             <div class="fw-semibold text-dark mb-1">Sector</div>
                             <a class="link-fx fs-3 text-primary" >{{ $contact->sector ? $contact->sector->name : "" }}</a>
                         </div>
                     @endif
-                    <div class="col-6 col-md-3">
+                    <div class="col-md-3">
                         <div class="fw-semibold text-dark mb-1">Notes</div>
                         <a class="link-fx fs-3 text-primary" >{{ $notes ? $notes->count() : 0 }}</a>
                     </div>
-                    <div class="col-6 col-md-3">
+                    <div class="col-md-3">
                         <div class="fw-semibold text-dark mb-1">Events</div>
                         <a class="link-fx fs-3 text-primary" >{{ $contact->events ? $contact->events->count() : 0 }}</a>
                     </div>
@@ -300,64 +301,68 @@
 
                 @if($events)
                     @foreach($events as $event)
-                        <div class="row">
-                            <div class="col-9 col-lg-9 py-2 mt-4">
-                                {{ $event->name }}
-                            </div>
-                            <div class="col-lg-2 d-none d-lg-block text-center py-2 mt-4">
-                                <strong>{{ \Carbon\Carbon::parse($event->date)->format('d-M-Y') }}</strong>
-                            </div>
-                            <div class="col-3 col-lg-1 d-flex justify-content-end py-2 mt-4">
-                                <div>
-                                    <button type="submit" class="btn btn-sm btn-alt-secondary" data-bs-toggle="modal" data-bs-target="#exampleModalNotes{{$event->id}}">
-                                        <i class="si si-pencil"></i>
-                                    </button>
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="exampleModalNotes{{$event->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-body">
-                                                    {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminContactsController@updateEventContact',$event->id]]) !!}
-                                                    <div class="my-4 col-md-4">
-                                                        <label for=""><strong>When?</strong></label>
-                                                        <input type="date"
-                                                               class="form-control"
-                                                               name="date"
-                                                               value="{{ $event->date }}"
-                                                        >
-                                                        @error('date')
-                                                        <p class="text-danger mt-2"> {{ $message }}</p>
-                                                        @enderror
-                                                    </div>
+                        <div class="card shadow my-3" style="border: none">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-9 py-2 mt-4">
+                                        {{ $event->name }}
+                                    </div>
+                                    <div class="col-lg-2 d-none d-lg-block text-center py-2 mt-4">
+                                        <strong>{{ \Carbon\Carbon::parse($event->date)->format('d-M-Y') }}</strong>
+                                    </div>
+                                    <div class="col-lg-1 d-flex justify-content-end py-2 mt-4">
+                                        <div>
+                                            <button type="submit" class="btn btn-sm btn-alt-secondary" data-bs-toggle="modal" data-bs-target="#exampleModalNotes{{$event->id}}">
+                                                <i class="si si-pencil"></i>
+                                            </button>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModalNotes{{$event->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-body">
+                                                            {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminContactsController@updateEventContact',$event->id]]) !!}
+                                                            <div class="my-4 col-md-4">
+                                                                <label for=""><strong>When?</strong></label>
+                                                                <input type="date"
+                                                                       class="form-control"
+                                                                       name="date"
+                                                                       value="{{ $event->date }}"
+                                                                >
+                                                                @error('date')
+                                                                <p class="text-danger mt-2"> {{ $message }}</p>
+                                                                @enderror
+                                                            </div>
 
-                                                    <div class="my-4">
-                                                        <label for=""><strong>Where?</strong></label>
-                                                        <textarea type="text"
-                                                                  class="form-control"
-                                                                  placeholder="Type your location/memories"
-                                                                  rows="4"
-                                                                  name="event"
-                                                        >{{ $event->name }}</textarea>
-                                                        @error('event')
-                                                        <p class="text-danger mt-2"> {{ $message }}</p>
-                                                        @enderror
-                                                    </div>
+                                                            <div class="my-4">
+                                                                <label for=""><strong>Where?</strong></label>
+                                                                <textarea type="text"
+                                                                          class="form-control"
+                                                                          placeholder="Type your location/memories"
+                                                                          rows="4"
+                                                                          name="event"
+                                                                >{{ $event->name }}</textarea>
+                                                                @error('event')
+                                                                <p class="text-danger mt-2"> {{ $message }}</p>
+                                                                @enderror
+                                                            </div>
 
-                                                    <div class="my-4">
-                                                        <button type="submit" class="btn btn-alt-primary">Update</button>
+                                                            <div class="my-4">
+                                                                <button type="submit" class="btn btn-alt-primary">Update</button>
+                                                            </div>
+                                                            {!! Form::close() !!}
+                                                        </div>
                                                     </div>
-                                                    {!! Form::close() !!}
                                                 </div>
                                             </div>
                                         </div>
+                                        <div>
+                                            {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\AdminContactsController@deleteEventContact',$event->id]]) !!}
+                                            <button type="submit" class="btn btn-sm btn-alt-danger"  data-bs-toggle="tooltip" title="Delete">
+                                                <i class="fa fa-fw fa-times text-danger"></i>
+                                            </button>
+                                            {!! Form::close() !!}
+                                        </div>
                                     </div>
-                                </div>
-                                <div>
-                                    {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\AdminContactsController@deleteEventContact',$event->id]]) !!}
-                                    <button type="submit" class="btn btn-sm btn-alt-danger"  data-bs-toggle="tooltip" title="Delete">
-                                        <i class="fa fa-fw fa-times text-danger"></i>
-                                    </button>
-                                    {!! Form::close() !!}
                                 </div>
                             </div>
                         </div>
@@ -417,52 +422,56 @@
 
                 @if($notes)
                     @foreach($notes as $note)
-                        <div class="row">
-                            <div class="col-9 col-lg-9 py-2 mt-4">
-                                {{ $note->name }}
-                            </div>
-                            <div class="col-lg-2 d-none d-lg-block text-center py-2 mt-4">
-                                <strong>{{ $note->created_at->format('d-M-Y') }}</strong>
-                            </div>
-                            <div class="col-3 col-lg-1 d-flex justify-content-end py-2 mt-4">
-                                <div>
+                        <div class="card shadow my-3" style="border: none">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-9 py-2 mt-4">
+                                        {{ $note->name }}
+                                    </div>
+                                    <div class="col-lg-2 d-none d-lg-block text-center py-2 mt-4">
+                                        <strong>{{ $note->created_at->format('d-M-Y') }}</strong>
+                                    </div>
+                                    <div class="col-lg-1 d-flex justify-content-end py-2 mt-4">
+                                        <div>
 
 
-                                    <button type="submit" class="btn btn-sm btn-alt-secondary" data-bs-toggle="modal" data-bs-target="#exampleModalNotes{{$note->id}}">
-                                        <i class="si si-pencil"></i>
-                                    </button>
+                                            <button type="submit" class="btn btn-sm btn-alt-secondary" data-bs-toggle="modal" data-bs-target="#exampleModalNotes{{$note->id}}">
+                                                <i class="si si-pencil"></i>
+                                            </button>
 
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="exampleModalNotes{{$note->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-body">
-                                                    {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminContactsController@updateNoteContact',$note->id]]) !!}
-                                                    <textarea type="text"
-                                                              class="form-control"
-                                                              placeholder="Type your note..."
-                                                              rows="4"
-                                                              name="notes"
-                                                    >{{ $note->name }}</textarea>
-                                                    @error('notes')
-                                                    <p class="text-danger mt-2"> {{ $message }}</p>
-                                                    @enderror
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModalNotes{{$note->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-body">
+                                                            {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminContactsController@updateNoteContact',$note->id]]) !!}
+                                                            <textarea type="text"
+                                                                      class="form-control"
+                                                                      placeholder="Type your note..."
+                                                                      rows="4"
+                                                                      name="notes"
+                                                            >{{ $note->name }}</textarea>
+                                                            @error('notes')
+                                                            <p class="text-danger mt-2"> {{ $message }}</p>
+                                                            @enderror
 
-                                                    <div class="my-4">
-                                                        <button type="submit" class="btn btn-alt-primary">Update</button>
+                                                            <div class="my-4">
+                                                                <button type="submit" class="btn btn-alt-primary">Update</button>
+                                                            </div>
+                                                            {!! Form::close() !!}
+                                                        </div>
                                                     </div>
-                                                    {!! Form::close() !!}
                                                 </div>
                                             </div>
                                         </div>
+                                        <div>
+                                            {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\AdminContactsController@deleteNoteContact',$note->id]]) !!}
+                                            <button type="submit" class="btn btn-sm btn-alt-danger"  data-bs-toggle="tooltip" title="Delete">
+                                                <i class="fa fa-fw fa-times text-danger"></i>
+                                            </button>
+                                            {!! Form::close() !!}
+                                        </div>
                                     </div>
-                                </div>
-                                <div>
-                                    {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\AdminContactsController@deleteNoteContact',$note->id]]) !!}
-                                    <button type="submit" class="btn btn-sm btn-alt-danger"  data-bs-toggle="tooltip" title="Delete">
-                                        <i class="fa fa-fw fa-times text-danger"></i>
-                                    </button>
-                                    {!! Form::close() !!}
                                 </div>
                             </div>
                         </div>
