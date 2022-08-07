@@ -57,7 +57,7 @@ class ContactDetail extends Component
                 ->whereNull('deleted_at')
                 ->where('id', '!=', $this->member->id)
                 ->where('id', '!=', Auth()->user()->member->id)
-                ->simplePaginate(1);
+                ->simplePaginate(3);
         } else {
             $referred_members = [];
         }
