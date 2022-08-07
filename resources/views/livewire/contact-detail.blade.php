@@ -228,10 +228,15 @@
                                         @endif
                                         <i class="far fa-envelope mb-2"></i> <a href="mailto:{{$member->email}}">{{ $member->email }}</a><br>
 
-                                        {{ $member->addressLine1 }}<br>
-                                        {{ $member->city }}, {{ $member->postalCode }}<br>
-                                        {{ $member->country }}<br><br>
+                                        @if($member->addressLine1)
+                                            {{ $member->addressLine1 }}<br>
+                                        @endif
 
+                                        @if($member->city){{ $member->city }},@endif @if($member->postalCode){{ $member->postalCode }},@endif
+
+                                        @if($member->country)
+                                            {{ $member->country }}<br><br>
+                                        @endif
                                     </address>
                                 </div>
                             </div>
