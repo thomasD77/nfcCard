@@ -146,7 +146,7 @@
                 <div class="form-group my-4">
                     <div class="form-check ps-0">
                         <div class="d-flex justify-content-between mb-2">
-                            {!! Form::label('website','Website',['class'=>'form-label']) !!}
+                            {!! Form::label('website','Website:',['class'=>'form-label']) !!}
                             <input class="form-check-input"
                                    type="checkbox"
                                    name="check_website"
@@ -195,60 +195,102 @@
 <div class="block-content">
     <div class="row push">
         <div class="col-lg-10 offset-lg-1">
+
             <div class="form-group mb-4">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="check_mobileWork" value="{{ 1 }}" @if($member->state->mobileWork) checked @endif>
-                    {!! Form::label('mobileWork','Mobile work:',['class'=>'form-label']) !!}
+                <div class="form-check ps-0 ">
+                    <div class="d-flex justify-content-between mb-2">
+                        {!! Form::label('mobileWork','Mobile work:',['class'=>'form-label']) !!}
+                        <input class="form-check-input"
+                               type="checkbox"
+                               name="check_mobileWork"
+                               style="width: 25px; height: 25px"
+                               value="{{ 1 }}" @if($member->state->mobileWork) checked @endif>
+                    </div>
                 </div>
                 {!! Form::text('mobileWork',$member->mobileWork ,['class'=>'form-control']) !!}
                 @error('mobileWork')
                 <p class="text-danger mt-2"> {{ $message }}</p>
                 @enderror
             </div>
-            <div class="form-group mb-4">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="check_mobile" value="{{ 1 }}" @if($member->state->mobile) checked @endif>
-                    {!! Form::label('mobile','Mobile:',['class'=>'form-label']) !!}
+
+            <div class="form-group my-4">
+                <div class="form-check ps-0 ">
+                    <div class="d-flex justify-content-between mb-2">
+                        {!! Form::label('mobile','Mobile:',['class'=>'form-label']) !!}
+                        <input class="form-check-input"
+                               type="checkbox"
+                               name="check_mobile"
+                               style="width: 25px; height: 25px"
+                               value="{{ 1 }}" @if($member->state->mobile) checked @endif>
+                    </div>
                 </div>
                 {!! Form::text('mobile',$member->mobile ,['class'=>'form-control']) !!}
                 @error('mobile')
                 <p class="text-danger mt-2"> {{ $message }}</p>
                 @enderror
             </div>
-            <div class="form-group mb-4">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="check_addressLine1" value="{{ 1 }}" @if($member->state->addressLine1) checked @endif>
-                    {!! Form::label('addressLine1','Address (street and number):',['class'=>'form-label']) !!}
+
+            <div class="form-group my-4">
+                <div class="form-check ps-0 ">
+                    <div class="d-flex justify-content-between mb-2">
+                        {!! Form::label('addressLine1','Address (street and number):',['class'=>'form-label']) !!}
+                        <input class="form-check-input"
+                               type="checkbox"
+                               name="check_addressLine1"
+                               style="width: 25px; height: 25px"
+                               value="{{ 1 }}" @if($member->state->addressLine1) checked @endif>
+                    </div>
                 </div>
                 {!! Form::text('addressLine1',$member->addressLine1 ,['class'=>'form-control']) !!}
                 @error('addressLine1')
                 <p class="text-danger mt-2"> {{ $message }}</p>
                 @enderror
             </div>
-            <div class="form-group mb-4">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="check_city" value="{{ 1 }}" @if($member->state->city) checked @endif>
-                    {!! Form::label('city','City:',['class'=>'form-label']) !!}
+
+            <div class="form-group my-4">
+                <div class="form-check ps-0 ">
+                    <div class="d-flex justify-content-between mb-2">
+                        {!! Form::label('city','City:',['class'=>'form-label']) !!}
+                        <input class="form-check-input"
+                               type="checkbox"
+                               name="check_city"
+                               style="width: 25px; height: 25px"
+                               value="{{ 1 }}" @if($member->state->city) checked @endif>
+                    </div>
                 </div>
                 {!! Form::text('city',$member->city ,['class'=>'form-control']) !!}
                 @error('city')
                 <p class="text-danger mt-2"> {{ $message }}</p>
                 @enderror
             </div>
-            <div class="form-group mb-4">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="check_postalCode" value="{{ 1 }}" @if($member->state->postalCode) checked @endif>
-                    {!! Form::label('postalCode','Postal Code:',['class'=>'form-label']) !!}
+
+            <div class="form-group my-4">
+                <div class="form-check ps-0 ">
+                    <div class="d-flex justify-content-between mb-2">
+                        {!! Form::label('postalCode','Postal Code:',['class'=>'form-label']) !!}
+                        <input class="form-check-input"
+                               type="checkbox"
+                               name="check_postalCode"
+                               style="width: 25px; height: 25px"
+                               value="{{ 1 }}" @if($member->state->postalCode) checked @endif>
+                    </div>
                 </div>
                 {!! Form::text('postalCode',$member->postalCode ,['class'=>'form-control']) !!}
                 @error('postalCode')
                 <p class="text-danger mt-2"> {{ $message }}</p>
                 @enderror
             </div>
-            <div class="form-group mb-4">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="check_country" value="{{ 1 }}" @if($member->state->country) checked @endif>
-                    {!! Form::label('country','Country:',['class'=>'form-label']) !!}
+
+            <div class="form-group my-4">
+                <div class="form-check ps-0 ">
+                    <div class="d-flex justify-content-between mb-2">
+                        {!! Form::label('country','Country:',['class'=>'form-label']) !!}
+                        <input class="form-check-input"
+                               type="checkbox"
+                               name="check_country"
+                               style="width: 25px; height: 25px"
+                               value="{{ 1 }}" @if($member->state->country) checked @endif>
+                    </div>
                 </div>
                 {!! Form::text('country',$member->country ,['class'=>'form-control']) !!}
                 @error('country')
@@ -256,35 +298,7 @@
                 @enderror
             </div>
         </div>
-    </div>
-</div>
 
-<!-- Thank you  -->
-<div style="padding-top: 25px;" class="bg-light spacer"></div>
-<div class="block-header block-header-default">
-    <div class="d-flex flex-column">
-        <h3 class="block-title">Thank you message:</h3>
-        <p class="text-muted mb-1" style="font-size: 12px">This text will be shown when someone has entered their details on your form</p>
-    </div>
-</div>
-<div class="block-content">
-    <div class="row push">
-        <div class="col-lg-10 offset-lg-1">
-            <div class="form-group mb-4">
-                {!! Form::label('titleMessage','Title',['class'=>'form-label']) !!}
-                {!! Form::text('titleMessage',$member->titleMessage ,['class'=>'form-control']) !!}
-                @error('titleMessage')
-                <p class="text-danger mt-2"> {{ $message }}</p>
-                @enderror
-            </div>
-            <div class="form-group mb-4">
-                {!! Form::label('message','Message:',['class'=>'form-label']) !!}
-                {!! Form::textarea('message',$member->message ,['class'=>'form-control']) !!}
-                @error('message')
-                <p class="text-danger mt-2"> {{ $message }}</p>
-                @enderror
-            </div>
-        </div>
     </div>
 </div>
 
@@ -314,70 +328,118 @@
             </div>
 
 
-            <div class="form-group mb-4">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="check_facebook" value="{{ 1 }}" @if($member->state->facebook) checked @endif>
-                    {!! Form::label('facebook','Facebook',['class'=>'form-label']) !!}
+            <div class="form-group my-4">
+                <div class="form-check ps-0">
+                    <div class="d-flex justify-content-between mb-2">
+                        {!! Form::label('facebook','Facebook:',['class'=>'form-label']) !!}
+                        <input class="form-check-input"
+                               type="checkbox"
+                               name="check_facebook"
+                               style="width: 25px; height: 25px"
+                               value="{{ 1 }}" @if($member->state->facebook) checked @endif>
+                    </div>
                 </div>
                 {!! Form::text('facebook',$member->facebook ,['class'=>'form-control col-6', 'placeholder' => 'ex: https://www.facebook.com/Innova-Webcreations-107384388503435']) !!}
                 @error('facebook')
                 <p class="text-danger mt-2"> {{ $message }}</p>
                 @enderror
             </div>
-            <div class="form-group mb-4">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="check_instagram" value="{{ 1 }}" @if($member->state->instagram) checked @endif>
-                    {!! Form::label('instagram','Instagram',['class'=>'form-label']) !!}
+
+            <div class="form-group my-4">
+                <div class="form-check ps-0">
+                    <div class="d-flex justify-content-between mb-2">
+                        {!! Form::label('instagram','Instagram:',['class'=>'form-label']) !!}
+                        <input class="form-check-input"
+                               type="checkbox"
+                               name="check_instagram"
+                               style="width: 25px; height: 25px"
+                               value="{{ 1 }}" @if($member->state->instagram) checked @endif>
+                    </div>
                 </div>
                 {!! Form::text('instagram',$member->instagram ,['class'=>'form-control', 'placeholder' => 'ex: https://www.instagram.com/innovawebcreations/']) !!}
                 @error('instagram')
                 <p class="text-danger mt-2"> {{ $message }}</p>
                 @enderror
             </div>
-            <div class="form-group mb-4">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="check_twitter" value="{{ 1 }}" @if($member->state->twitter) checked @endif>
-                    {!! Form::label('twitter','Twitter',['class'=>'form-label']) !!}
+
+            <div class="form-group my-4">
+                <div class="form-check ps-0">
+                    <div class="d-flex justify-content-between mb-2">
+                        {!! Form::label('twitter','Twitter:',['class'=>'form-label']) !!}
+                        <input class="form-check-input"
+                               type="checkbox"
+                               name="check_twitter"
+                               style="width: 25px; height: 25px"
+                               value="{{ 1 }}" @if($member->state->twitter) checked @endif>
+                    </div>
                 </div>
                 {!! Form::text('twitter',$member->twitter ,['class'=>'form-control', 'placeholder' => 'ex: https://twitter.com/elonmusk']) !!}
                 @error('twitter')
                 <p class="text-danger mt-2"> {{ $message }}</p>
                 @enderror
             </div>
-            <div class="form-group mb-4">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="check_youTube" value="{{ 1 }}" @if($member->state->youTube) checked @endif>
-                    {!! Form::label('youTube','Youtube',['class'=>'form-label']) !!}
+
+            <div class="form-group my-4">
+                <div class="form-check ps-0">
+                    <div class="d-flex justify-content-between mb-2">
+                        {!! Form::label('youTube','Youtube:',['class'=>'form-label']) !!}
+                        <input class="form-check-input"
+                               type="checkbox"
+                               name="check_youTube"
+                               style="width: 25px; height: 25px"
+                               value="{{ 1 }}" @if($member->state->youTube) checked @endif>
+                    </div>
                 </div>
                 {!! Form::text('youTube',$member->youTube ,['class'=>'form-control' , 'placeholder' => 'ex: https://www.youtube.com/watch?v=fsDmW1o6ufA']) !!}
                 @error('youTube')
                 <p class="text-danger mt-2"> {{ $message }}</p>
                 @enderror
             </div>
-            <div class="form-group mb-4">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="check_linkedIn" value="{{ 1 }}" @if($member->state->linkedIn) checked @endif>
-                    {!! Form::label('linkedIn','LinkedIn',['class'=>'form-label']) !!}
+
+            <div class="form-group my-4">
+                <div class="form-check ps-0">
+                    <div class="d-flex justify-content-between mb-2">
+                        {!! Form::label('linkedIn','LinkedIn:',['class'=>'form-label']) !!}
+                        <input class="form-check-input"
+                               type="checkbox"
+                               name="check_linkedIn"
+                               style="width: 25px; height: 25px"
+                               value="{{ 1 }}" @if($member->state->linkedIn) checked @endif>
+                    </div>
                 </div>
                 {!! Form::text('linkedIn',$member->linkedIn ,['class'=>'form-control' , 'placeholder' => 'ex: https://www.linkedin.com/in/thomas-demeulenaere-39997662/']) !!}
                 @error('linkedIn')
                 <p class="text-danger mt-2"> {{ $message }}</p>
                 @enderror
             </div>
-            <div class="form-group mb-4">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="check_tikTok" value="{{ 1 }}" @if($member->state->tikTok) checked @endif>
-                    {!! Form::label('tikTok','TikTok',['class'=>'form-label']) !!}
+
+            <div class="form-group my-4">
+                <div class="form-check ps-0">
+                    <div class="d-flex justify-content-between mb-2">
+                        {!! Form::label('tikTok','TikTok:',['class'=>'form-label']) !!}
+                        <input class="form-check-input"
+                               type="checkbox"
+                               name="check_tikTok"
+                               style="width: 25px; height: 25px"
+                               value="{{ 1 }}" @if($member->state->tikTok) checked @endif>
+                    </div>
                 </div>
                 {!! Form::text('tikTok',$member->tikTok ,['class'=>'form-control' , 'placeholder' => 'ex: https://www.tiktok.com/@elonxmusk']) !!}
                 @error('tikTok')
                 <p class="text-danger mt-2"> {{ $message }}</p>
                 @enderror
             </div>
-            <div class="form-group mb-4">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="check_whatsApp" value="{{ 1 }}" @if($member->state->whatsApp) checked @endif>
-                    {!! Form::label('whatsApp','WhatsApp',['class'=>'form-label']) !!}
+
+            <div class="form-group my-4">
+                <div class="form-check ps-0">
+                    <div class="d-flex justify-content-between mb-2">
+                        {!! Form::label('whatsApp','WhatsApp:',['class'=>'form-label']) !!}
+                        <input class="form-check-input"
+                               type="checkbox"
+                               name="check_whatsApp"
+                               style="width: 25px; height: 25px"
+                               value="{{ 1 }}" @if($member->state->whatsApp) checked @endif>
+                    </div>
                 </div>
                 {!! Form::text('whatsApp',$member->whatsApp ,['class'=>'form-control' , 'placeholder' => 'ex: +32474411556']) !!}
                 @error('whatsApp')
@@ -386,31 +448,69 @@
             </div>
 
             <p class="badge badge-pill bg-dark p-2 text-white">Create your own button here: </p>
-            <div class="form-group mb-4">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="check_customField" value="{{ 1 }}" @if($member->state->customField) checked @endif>
-                    {!! Form::label('CustomText','Button text',['class'=>'form-label']) !!}
+
+            <div class="form-group  my-4">
+                <div class="form-check ps-0">
+                    <div class="d-flex justify-content-between mb-2">
+                        {!! Form::label('CustomText','Button text:',['class'=>'form-label']) !!}
+                        <input class="form-check-input"
+                               type="checkbox"
+                               name="check_customField"
+                               style="width: 25px; height: 25px"
+                               value="{{ 1 }}" @if($member->state->customField) checked @endif>
+                    </div>
                 </div>
                 {!! Form::text('customText',$member->customText ,['class'=>'form-control']) !!}
                 @error('customText')
                 <p class="text-danger mt-2"> {{ $message }}</p>
                 @enderror
-                {!! Form::label('CustomField','Button link',['class'=>'form-label']) !!}
+                {!! Form::label('CustomField','Button link:',['class'=>'form-label']) !!}
                 {!! Form::text('customField',$member->customField ,['class'=>'form-control', 'placeholder' => 'ex: https://yourLinkHere']) !!}
                 @error('customField')
                 <p class="text-danger mt-2"> {{ $message }}</p>
                 @enderror
             </div>
-            <div class="d-flex justify-content-between">
-                <div class="form-group mr-1">
-                    <button type="submit" class="btn btn-alt-primary">Update</button>
-                </div>
 
-            </div>
         </div>
     </div>
 </div>
 
 <!-- Videos -->
+
+<!-- Thank you  -->
+<div style="padding-top: 25px;" class="bg-light spacer"></div>
+<div class="block-header block-header-default">
+    <div class="d-flex flex-column">
+        <h3 class="block-title">Thank you message:</h3>
+        <p class="text-muted mb-1" style="font-size: 12px">This text will be shown when someone has entered their details on your form</p>
+    </div>
+</div>
+<div class="block-content">
+    <div class="row push">
+        <div class="col-lg-10 offset-lg-1">
+            <div class="form-group my-4">
+                {!! Form::label('titleMessage','Title:',['class'=>'form-label']) !!}
+                {!! Form::text('titleMessage',$member->titleMessage ,['class'=>'form-control']) !!}
+                @error('titleMessage')
+                <p class="text-danger mt-2"> {{ $message }}</p>
+                @enderror
+            </div>
+            <div class="form-group my-4">
+                {!! Form::label('message','Message:',['class'=>'form-label']) !!}
+                {!! Form::textarea('message',$member->message ,['class'=>'form-control']) !!}
+                @error('message')
+                <p class="text-danger mt-2"> {{ $message }}</p>
+                @enderror
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-end">
+        <div class="form-group m-4">
+            <button type="submit" class="btn btn-alt-primary">Update</button>
+        </div>
+    </div>
+
+</div>
 
 {!! Form::close() !!}
