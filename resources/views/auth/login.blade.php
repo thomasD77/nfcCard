@@ -18,8 +18,8 @@
                             @endif
                         </div>
                     </div>
-                    <div class="block-content">
-                        <div class="p-sm-3 px-lg-4 px-xxl-5 py-lg-5">
+                    <div class="block-content pb-md-4">
+                        <div class="p-sm-3 px-lg-4 px-xxl-5 py-5">
                             <h1 class="h2 mb-1">Hi there!</h1>
                             <p class="fw-medium text-muted">
                                 Welcome, please login.
@@ -65,16 +65,16 @@
                             </form>
                             <!-- END Sign In Form -->
 
-                            @php
-                                $url = \App\Models\URL::first();
-                            @endphp
+{{--                            @php--}}
+{{--                                $url = \App\Models\URL::first();--}}
+{{--                            @endphp--}}
 
-                            <div class=" bg-gray-light text-dark p-2 rounded text-center">
-                                <p class="fw-medium text-muted">
-                                    Reminder: if you want to login on your desktop please use following login: <br>
-                                </p>
-                                <a class="text-dark" href="{{ $url->url }}"><strong>{{ $url->url }}</strong></a>
-                            </div>
+{{--                            <div class=" bg-gray-light text-dark p-2 rounded text-center">--}}
+{{--                                <p class="fw-medium text-muted">--}}
+{{--                                    Reminder: if you want to login on your desktop please use following login: <br>--}}
+{{--                                </p>--}}
+{{--                                <a class="text-dark" href="{{ $url->url }}"><strong>{{ $url->url }}</strong></a>--}}
+{{--                            </div>--}}
 
                         </div>
                     </div>

@@ -155,7 +155,7 @@
                             </div>
 
                             <div class="row px-2">
-                                <a href="{{route('members.edit', $member->id)}}" class="bg-light" data-bs-toggle="tooltip" title="Edit profile">
+                                <a href="{{route('members.edit', $member->id)}}" class="bg-light" >
                                     <div class="row py-3">
                                         <div class="col-4">
                                             <i class="fa fa-fw fa-pencil-alt text-dark" style="font-size: 45px"></i>
@@ -169,7 +169,7 @@
                             </div>
 
                             <div class="row px-2">
-                                <a href="{{route('direction', $member->card_id)}}" data-bs-toggle="tooltip" title="Show profile">
+                                <a href="{{route('direction', $member->card_id)}}" >
                                     <div class="row py-3">
                                         <div class="col-4">
                                             <i class="far fa-eye text-dark" style="font-size: 45px"></i>
@@ -183,7 +183,7 @@
                             </div>
 
                             <div class="row px-2">
-                                <a href="{{route('show.QRcode', Auth()->user()->member->card_id)}}" class="bg-light" data-bs-toggle="tooltip" title="QRcode">
+                                <a href="{{route('show.QRcode', Auth()->user()->member->card_id)}}" class="bg-light" >
                                     <div class="row py-3">
                                         <div class="col-4">
                                             <i class="fa fa-qrcode text-dark" style="font-size: 45px"></i>
@@ -197,7 +197,7 @@
                             </div>
 
                             <div class="row px-2">
-                                <a href="{{route('settings')}}" data-bs-toggle="tooltip" title="Settings">
+                                <a href="{{route('settings')}}">
                                     <div class="row py-3">
                                         <div class="col-4">
                                             <i class="si si-settings text-dark" style="font-size: 45px"></i>

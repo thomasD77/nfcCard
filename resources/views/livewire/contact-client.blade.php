@@ -180,7 +180,7 @@
                     <th scope="col">Name</th>
                     <th scope="col">E-mail</th>
                     <th scope="col">phone</th>
-                    <th scope="col">Details</th>
+                    <th class="text-center" scope="col">Details</th>
                     <th scope="col">Status</th>
                     <th scope="col">Registered</th>
                     <th scope="col">Actions</th>
@@ -194,7 +194,7 @@
                             <td>{{$contact->name ? $contact->name : 'No Name'}}</td>
                             <td><a href="mailto:{{$contact->email}}"> {{$contact->email ? $contact->email : 'No Email'}}</a></td>
                             <td>{{$contact->phone ? $contact->phone : 'No Phone'}}</td>
-                            <td><!-- Button trigger modal -->
+                            <td class="text-center"><!-- Button trigger modal -->
                                 <a type="button" class="" data-bs-toggle="modal" data-bs-target="#exampleModal2{{$contact->id}}">
                                     <img src="{{ asset('images/content/swap_log.png') }}" alt="logo" class="img-fluid" width="80" height="80">
                                 </a>

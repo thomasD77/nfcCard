@@ -36,8 +36,12 @@
                         @foreach($contacts as $contact)
                             <tbody>
                                 <tr>
-                                    <td><strong>{{$contact->name ? $contact->name : 'Unknown'}}</strong></td>
-                                    <td class="d-flex justify-content-end">
+                                    <td>
+                                        <a class="text-dark" href="{{ route('contact.detail', $contact->id) }}">
+                                            <strong>{{$contact->name ? $contact->name : 'Unknown'}}</strong>
+                                        </a>
+                                    </td>
+                                    <td class="d-flex justify-content-end pe-md-3">
                                         <a href="{{ route('contact.detail', $contact->id) }}">
                                             <i class="far fa-address-book text-dark" style="font-size: 25px"></i>
                                         </a>

@@ -182,13 +182,18 @@
 
         </div>
     </div>
+    <div class="d-flex justify-content-end">
+        <div class="form-group m-4">
+            <button type="submit" class="btn btn-alt-primary">Update</button>
+        </div>
+    </div>
 </div>
 
 <!-- Contact info -->
 <div style="padding-top: 25px;" class="bg-light spacer"></div>
 <div class="block-header block-header-default">
     <div class="d-flex flex-column">
-        <h3 class="block-title">Contact info:</h3>
+        <h3 class="block-title">Contact info</h3>
         <p class="text-muted mb-1" style="font-size: 12px">Here you can edit all the default settings for your profile</p>
     </div>
 </div>
@@ -300,13 +305,18 @@
         </div>
 
     </div>
+    <div class="d-flex justify-content-end">
+        <div class="form-group m-4">
+            <button type="submit" class="btn btn-alt-primary">Update</button>
+        </div>
+    </div>
 </div>
 
 <!-- Buttons -->
 <div style="padding-top: 25px;" class="bg-light spacer"></div>
 <div class="block-header block-header-default">
     <div class="d-flex flex-column">
-        <h3 class="block-title">Buttons:</h3>
+        <h3 class="block-title">Buttons</h3>
         <p class="text-muted mb-1" style="font-size: 12px">Insert all your personal links here.
         </p>
     </div>
@@ -317,10 +327,10 @@
 
             <div class="alert alert-dark fs-sm">
                 <a href="https://swap-nfc.be/manual/" target="_blank">
-                    <div class="d-md-flex justify-content-center align-items-center mt-2">
+                    <div class="d-md-flex align-items-center mt-2">
                         <p class="text-dark mb-0"> <i class="fa fa-fw fa-info me-1"></i>View our manual to successfully complete these functionalities: </p>
                         <p class="text-dark d-flex mt-3 mt-md-0 mb-0">
-                             <i class="fa fa-book me-1 text-center text-dark ms-md-4" style="font-size: 15px"></i>
+                             <i class="fa fa-book me-1 text-dark ms-md-4" style="font-size: 15px"></i>
                             SWAP MANUAL --  <strong>click here</strong>
                         </p>
                     </div>
@@ -447,7 +457,11 @@
                 @enderror
             </div>
 
-            <p class="badge badge-pill bg-dark p-2 text-white">Create your own button here: </p>
+            <div class="alert alert-dark fs-sm">
+                <div class="mt-2">
+                    <p class="mb-0"><i class="fa fa-fw fa-info me-1 mb-0"></i>Create your custom button. Insert the text and link.</p>
+                </div>
+            </div>
 
             <div class="form-group  my-4">
                 <div class="form-check ps-0">
@@ -473,13 +487,18 @@
 
         </div>
     </div>
+    <div class="d-flex justify-content-end">
+        <div class="form-group m-4">
+            <button type="submit" class="btn btn-alt-primary">Update</button>
+        </div>
+    </div>
 </div>
 
 <!-- Videos -->
 <div style="padding-top: 25px;" class="bg-light spacer"></div>
 <div class="block-header block-header-default">
     <div class="d-flex flex-column">
-        <h3 class="block-title">Video:</h3>
+        <h3 class="block-title">Video</h3>
         <p class="text-muted mb-1" style="font-size: 12px">Upload your video or add link. This will play automatically on your profile page.</p>
     </div>
 </div>
@@ -504,6 +523,11 @@
             </div>
         </div>
     </div>
+    <div class="d-flex justify-content-end">
+        <div class="form-group m-4">
+            <button type="submit" class="btn btn-alt-primary">Update</button>
+        </div>
+    </div>
 </div>
 
 
@@ -511,7 +535,7 @@
 <div style="padding-top: 25px;" class="bg-light spacer"></div>
 <div class="block-header block-header-default">
     <div class="d-flex flex-column">
-        <h3 class="block-title">Thank you message:</h3>
+        <h3 class="block-title">Thank you message</h3>
         <p class="text-muted mb-1" style="font-size: 12px">This text will be shown when someone has entered their details on your form</p>
     </div>
 </div>
