@@ -155,7 +155,21 @@
                             </div>
 
                             <div class="row px-2">
-                                <a href="{{route('members.edit', $member->id)}}" class="bg-light" >
+                                <a href="{{route('contacts.index')}}" class="bg-light">
+                                    <div class="row py-3">
+                                        <div class="col-4">
+                                            <i class="far fa-comments text-dark" style="font-size: 45px"></i>
+                                        </div>
+                                        <div class="col-8 ">
+                                            <p class="fw-semibold mb-0">SWAPS</p>
+                                            <span class="text-muted" style="font-size: 12px">Check your SWAPS here</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="row px-2">
+                                <a href="{{route('members.edit', $member->id)}}">
                                     <div class="row py-3">
                                         <div class="col-4">
                                             <i class="fa fa-fw fa-pencil-alt text-dark" style="font-size: 45px"></i>
@@ -169,7 +183,7 @@
                             </div>
 
                             <div class="row px-2">
-                                <a href="{{route('direction', $member->card_id)}}" >
+                                <a href="{{route('direction', $member->card_id)}}" class="bg-light">
                                     <div class="row py-3">
                                         <div class="col-4">
                                             <i class="far fa-eye text-dark" style="font-size: 45px"></i>
@@ -183,7 +197,7 @@
                             </div>
 
                             <div class="row px-2">
-                                <a href="{{route('show.QRcode', Auth()->user()->member->card_id)}}" class="bg-light" >
+                                <a href="{{route('show.QRcode', Auth()->user()->member->card_id)}}">
                                     <div class="row py-3">
                                         <div class="col-4">
                                             <i class="fa fa-qrcode text-dark" style="font-size: 45px"></i>
@@ -197,7 +211,7 @@
                             </div>
 
                             <div class="row px-2">
-                                <a href="{{route('settings')}}">
+                                <a href="{{route('settings')}}" class="bg-light">
                                     <div class="row py-3">
                                         <div class="col-4">
                                             <i class="si si-settings text-dark" style="font-size: 45px"></i>
