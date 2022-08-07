@@ -447,18 +447,6 @@
                 @enderror
             </div>
 
-            <div class="form-group mb-4">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="check_youtube_video" value="{{ 1 }}" @if($member->state->youtube_video) checked @endif>
-                    {!! Form::label('youtube_video','Youtube Video',['class'=>'form-label']) !!}
-                </div>
-                {!! Form::text('youtube_video',$member->youtube_video ,['class'=>'form-control' , 'placeholder' => 'https://www.youtube.com/watch?v=gg8gjO5pLps']) !!}
-                @error('Youtube_Video')
-                <p class="text-danger mt-2"> {{ $message }}</p>
-                @enderror
-            </div>
-
-
             <p class="badge badge-pill bg-dark p-2 text-white">Create your own button here: </p>
 
             <div class="form-group  my-4">
@@ -488,6 +476,36 @@
 </div>
 
 <!-- Videos -->
+<div style="padding-top: 25px;" class="bg-light spacer"></div>
+<div class="block-header block-header-default">
+    <div class="d-flex flex-column">
+        <h3 class="block-title">Video:</h3>
+        <p class="text-muted mb-1" style="font-size: 12px">Upload your video or add link. This will play automatically on your profile page.</p>
+    </div>
+</div>
+<div class="block-content">
+    <div class="row push">
+        <div class="col-lg-10 offset-lg-1">
+            <div class="form-group my-4">
+                <div class="form-check ps-0">
+                    <div class="d-flex justify-content-between mb-2">
+                        {!! Form::label('youtube_video','Video link:',['class'=>'form-label']) !!}
+                        <input class="form-check-input"
+                               type="checkbox"
+                               name="check_youtube_video"
+                               style="width: 25px; height: 25px"
+                               value="{{ 1 }}" @if($member->state->youtube_video) checked @endif>
+                    </div>
+                </div>
+                {!! Form::text('youtube_video',$member->youtube_video ,['class'=>'form-control' , 'placeholder' => 'https://www.youtube.com/watch?v=gg8gjO5pLps']) !!}
+                @error('Youtube_Video')
+                <p class="text-danger mt-2"> {{ $message }}</p>
+                @enderror
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <!-- Thank you  -->
 <div style="padding-top: 25px;" class="bg-light spacer"></div>
