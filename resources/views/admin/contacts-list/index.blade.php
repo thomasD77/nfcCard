@@ -31,7 +31,7 @@
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
                 <div class="flex-grow-1">
                     <h1 class="h3 fw-bold mb-2">
-                        Edit Profile
+                       Contacts
                     </h1>
                 </div>
                 <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
@@ -40,7 +40,7 @@
                             <a class="link-fx" href="javascript:void(0)">DataTable</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            Profile
+                            Contacts
                         </li>
                     </ol>
                 </nav>
@@ -49,40 +49,17 @@
     </div>
     <!-- END Hero -->
 
-    @can('is_member', $member)
     <!-- Page Content -->
-    <div class="content content-boxed px-0">
-
-        <!-- Page Content -->
-        <div class="content content-boxed">
-            <!-- member Profile -->
-            <div class="block block-rounded">
-                <div class="block-header block-header-default">
-                    <h3 class="block-title">Member Profile</h3>
-                </div>
-                @if($member->user->archived == 0)
-
-                    @if($member->package->package == 'vCard')
-                        @include('admin.members.includes.vCard')
-
-                    @elseif($member->package->package == 'Default')
-                        @include('admin.members.includes.default')
-
-                    @elseif($member->package->package == "Custom")
-                        @include('admin.members.includes.custom')
-
-                    @endif
-                @else
-                    <p class="p-2">Sorry, the admin blocked your account. Please contact him for this situation.</p>
-                @endif
+    <div class="content container-fluid">
+        <!-- Dynamic Table Full -->
+        <div class="block block-rounded row">
+            <div class="block-content block-content-full overflow-scroll px-0 px-md-4">
+                <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
+                @livewire('contact-list')
             </div>
-            <!-- END member Profile -->
         </div>
-
+        <!-- END Dynamic Table Full -->
+        @livewireScripts
+    </div>
     <!-- END Page Content -->
-    @endcan
-
 @endsection
-
-
-

@@ -29,8 +29,8 @@
                                 @csrf
                                 <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.
                             </form>
-                            <div class="mb-2 mt-4 d-flex justify-content-center">
-                                <span class="badge badge-pill bg-danger-light p-1"><p class="mb-0">Please check your SPAM inbox !!</p></span>
+                            <div class="mb-2 mt-4">
+                                <span class="badge badge-pill bg-danger-light p-2"><p class="mb-0">Please check your SPAM inbox !!</p></span>
                             </div>
 
 

@@ -30,4 +30,24 @@ class Contact extends Model
         return $this->belongsTo(Status::class, 'status_id');
     }
 
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_contact');
+    }
+
+    public function sector()
+    {
+        return $this->belongsTo(JobFunction::class, 'sector_id');
+    }
+
+    public function notes()
+    {
+        return $this->hasMany(Note::class);
+    }
+
+    public function events()
+    {
+        return $this->hasMany(Location::class, 'contact_id');
+    }
+
 }

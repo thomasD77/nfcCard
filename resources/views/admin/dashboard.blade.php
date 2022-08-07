@@ -116,8 +116,13 @@
     @endcanany
 
     @can('is_client')
-        <div class="block block-rounded row">
-            <div class="block-content block-content-full overflow-scroll">
+        <div class="block block-rounded row"
+             style="background-image: url('images/content/handshake.jpeg');
+             background-repeat: no-repeat;
+             height: 100%; width: 100%;
+             background-position: center;
+             background-size: cover">
+            <div class="block-content block-content-full ">
 
                 @if($member->user->archived == 0)
 
@@ -125,31 +130,88 @@
 
                     <div class="parent">
 
-                        <div class="card">
-                            <div class="d-flex justify-content-center my-2">
-                                <img class="rounded-circle" height=85 width="85" src="{{$member->avatar ? asset('/card/avatars') . "/" . $member->avatar : asset('/assets/front/img/Avatar-4.svg') }}" alt="{{$member->name}}">
+                        <div class="card shadow pt-4 col-md-6 offset-md-3 p-md-4 my-md-5" style="border: none">
 
+                            <div class="d-flex justify-content-center m-2">
+                                <img class="rounded-circle" height="150" width="150" src="{{$member->avatar ? asset('/card/avatars') . "/" . $member->avatar : asset('/assets/front/img/Avatar-4.svg') }}" alt="{{$member->name}}">
                             </div>
+
                             <div class="card-body">
-                                <h5 class="card-title">{{ $member->firstname }} {{ $member->lastname }}</h5>
-                                <p>{{ $member->email }}</p>
-                                <p>{{ $member->company }}</p>
-                                <p>{{ $member->jobTitle }}</p>
+                                <h4 class="card-title mb-4">{{ $member->firstname }} {{ $member->lastname }}</h4>
+                                <div class="row">
+                                    <i class="far fa-envelope col-1 pt-2"></i>
+                                    <p class="col-10">{{ $member->email }}</p>
+                                </div>
+
+                                <div class="row">
+                                    <i class="far fa-building col-1 pt-2"></i>
+                                    <p class="col-10">{{ $member->company }}</p>
+                                </div>
+
+                                <div class="row">
+                                    <i class="far fa-building col-1 pt-2"></i>
+                                    <p class="col-10">{{ $member->jobTitle }}</p>
+                                </div>
                             </div>
-                            <a href="{{route('members.edit', $member->id)}}" class="btn-alt-secondary p-2 text-center" data-bs-toggle="tooltip" title="Edit profile">
-                                    Edit profile <i class="fa fa-fw fa-pencil-alt"></i>
-                            </a>
-                            <a href="{{route('direction', $member->card_id)}}" target="_blank" class="btn btn-sm btn-alt-primary p-2" data-bs-toggle="tooltip" title="Show page">
-                                    Show profile <i class="far fa-eye"></i>
-                            </a>
-                            <a href="{{route('show.QRcode', Auth()->user()->member->card_id)}}" class="btn btn-sm btn-alt-secondary p-2" data-bs-toggle="tooltip" title="QRcode">
-                                QRcode <img width="20px" height="20px" class="img-fluid" src="{{ asset('images/content/QRcode.png') }}" alt="QRcode">
-                            </a>
-                            <a href="{{route('settings')}}" class="btn btn-sm btn-alt-primary p-2" data-bs-toggle="tooltip" title="Settings">
-                                Settings <i class="si si-settings"></i>
-                            </a>
-                            <div class="card-footer">
-                                <strong class="mx-2">Your referral code:</strong><span class="badge badge-pill p-2 bg-success">{{ $member->referral }}</span>
+
+                            <div class="row px-2">
+                                <a href="{{route('members.edit', $member->id)}}" class="bg-light" data-bs-toggle="tooltip" title="Edit profile">
+                                    <div class="row py-3">
+                                        <div class="col-4">
+                                            <i class="fa fa-fw fa-pencil-alt text-dark" style="font-size: 45px"></i>
+                                        </div>
+                                        <div class="col-8 ">
+                                            <p class="fw-semibold mb-0">Edit profile</p>
+                                            <span class="text-muted" style="font-size: 12px">click here to set up your profile</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="row px-2">
+                                <a href="{{route('direction', $member->card_id)}}" data-bs-toggle="tooltip" title="Show profile">
+                                    <div class="row py-3">
+                                        <div class="col-4">
+                                            <i class="far fa-eye text-dark" style="font-size: 45px"></i>
+                                        </div>
+                                        <div class="col-8 ">
+                                            <p class="fw-semibold mb-0">Show profile</p>
+                                            <span class="text-muted" style="font-size: 12px">click here to view your profile</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="row px-2">
+                                <a href="{{route('show.QRcode', Auth()->user()->member->card_id)}}" class="bg-light" data-bs-toggle="tooltip" title="QRcode">
+                                    <div class="row py-3">
+                                        <div class="col-4">
+                                            <i class="fa fa-qrcode text-dark" style="font-size: 45px"></i>
+                                        </div>
+                                        <div class="col-8 ">
+                                            <p class="fw-semibold mb-0">QRcode</p>
+                                            <span class="text-muted" style="font-size: 12px">Scan your QRcode here</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="row px-2">
+                                <a href="{{route('settings')}}" data-bs-toggle="tooltip" title="Settings">
+                                    <div class="row py-3">
+                                        <div class="col-4">
+                                            <i class="si si-settings text-dark" style="font-size: 45px"></i>
+                                        </div>
+                                        <div class="col-8 ">
+                                            <p class="fw-semibold mb-0">Settings</p>
+                                            <span class="text-muted" style="font-size: 12px">Check your settings here</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="card-footer bg-dark">
+                                <span class="mx-2 text-white">Your referral code:</span><span class="badge badge-pill p-2"><strong>{{ $member->referral }}</strong></span>
                             </div>
                         </div>
 
