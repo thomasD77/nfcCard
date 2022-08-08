@@ -12,11 +12,14 @@
             <!-- END Search Form -->
 
             <!-- Datepicker  -->
-{{--            <label class="d-flex p-2 col-md-4">--}}
-{{--                <input style="width: 65px" wire:model="datepicker_day"  class="form-control" type="number" max="31" min="1">--}}
-{{--                <input wire:model="datepicker" id="datepicker" type="month" class="form-control" id="" name="" placeholder="Select date contact" data-inline="month" data-enable-time="false">--}}
-{{--                <button wire:click="dateALL" class="btn btn-secondary rounded" type="button" data-bs-toggle="tooltip" title="Refresh"><i class="si si-refresh"></i></button>--}}
-{{--            </label>--}}
+            <div class=" d-md-block col-md-4">
+                <label class="d-flex p-2 ">
+                    <input style="width: 65px" wire:model="datepicker_day"  class="form-control" type="number" max="31" min="1">
+                    <input wire:model="datepicker" id="datepicker" type="month" class="form-control" id="" name="" placeholder="Select date contact" data-inline="month" data-enable-time="false">
+                    <button wire:click="dateALL" class="btn btn-secondary rounded" type="button" data-bs-toggle="tooltip" title="Refresh"><i class="si si-refresh"></i></button>
+                </label>
+            </div>
+
             <!-- Datepicker  -->
 
             <label class="d-flex p-2 justify-content-md-end col-md-2">
