@@ -2,7 +2,7 @@
 
     <!-- Dynamic Table Full -->
     <div class="block block-rounded row">
-        <div class="block-header block-header-default">
+        <div class="block-header block-header-default d-flex align-items-start">
             <div>
                 <!-- Pagination Select-->
                 <select wire:model="pagination" style="width: 80px" class="form-select mb-3 d-flex justify-content-end" aria-label="Default select example">
@@ -14,18 +14,21 @@
                 </select>
                 <!-- End Pagination -->
             </div>
-            <label class="d-flex">
-                <input wire:model="datepicker" id="datepicker" type="date" class="form-control" id="" name="" placeholder="Select date contact" data-inline="month" data-enable-time="false">
-                <button wire:click="dateALL" class="btn btn-secondary rounded" type="button" data-bs-toggle="tooltip" title="Refresh"><i class="si si-refresh"></i></button>
 
-                    <a href="{{route('contacts.index.client', [ 'user' => Auth()->user() ])}}">
-                        <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="List">
-                            <i class="far fa-list-alt "></i>
-                        </button>
-                    </a>
-
+            <label class=" d-none d-md-block">
+                <div class="d-flex">
+                    <input wire:model="datepicker" id="datepicker" type="date" class="form-control" id="" name="" placeholder="Select date contact" data-inline="month" data-enable-time="false">
+                    <button wire:click="dateALL" class="btn btn-secondary rounded" type="button" data-bs-toggle="tooltip" title="Refresh"><i class="si si-refresh"></i></button>
+                </div>
             </label>
+
+            <a href="{{route('contacts.index.client', [ 'user' => Auth()->user() ])}}">
+                <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="List">
+                    <i class="far fa-list-alt "></i>
+                </button>
+            </a>
         </div>
+
         <div class="block-content block-content-full overflow-scroll">
             <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
             <table class="table table-striped table-hover table-vcenter fs-sm">
@@ -56,6 +59,7 @@
                 </tbody>
             </table>
         </div>
+
         <div class="d-flex justify-content-center">
             {!! $contacts->links()  !!}
         </div>
