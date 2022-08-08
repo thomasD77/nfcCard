@@ -12,7 +12,7 @@
             <!-- END Search Form -->
 
             <!-- Datepicker  -->
-            <div class=" d-md-block col-md-4">
+            <div class="d-none d-md-block col-md-4">
                 <label class="d-flex p-2 ">
                     <input style="width: 65px" wire:model="datepicker_day"  class="form-control" type="number" max="31" min="1">
                     <input wire:model="datepicker" id="datepicker" type="month" class="form-control" id="" name="" placeholder="Select date contact" data-inline="month" data-enable-time="false">
