@@ -27,7 +27,7 @@ class DirectionController extends Controller
         }
         else
         {
-            return view( 'auth.login');
+            return view( 'landing');
         }
 
         //Check if ID is generated in the LIST
