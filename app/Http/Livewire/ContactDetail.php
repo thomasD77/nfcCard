@@ -24,6 +24,8 @@ class ContactDetail extends Component
 
     use WithPagination;
 
+    protected $paginationTheme = 'bootstrap';
+
     public function mount(Contact $contact)
     {
         $this->contact = $contact;
@@ -42,33 +44,18 @@ class ContactDetail extends Component
     public function deleteContact()
     {
         Auth()->user()->contacts()->detach($this->contact->id);
-
         return redirect()->route('contacts.list');
     }
 
 
-
     public function render()
     {
-        if(isset($this->member)) {
-            $users = User::where('team_id', $this->member->user->team_id)->pluck('id');
-            $referred_members = Member::query()
-                ->whereIn('user_id', $users)
-                ->whereNull('deleted_at')
-                ->where('id', '!=', $this->member->id)
-                ->where('id', '!=', Auth()->user()->member->id)
-                ->simplePaginate(3);
-        } else {
-            $referred_members = [];
-        }
-
-        $notes = Note::where('contact_id', $this->contact->id)->latest()->simplePaginate(5);
-        $events = Location::where('contact_id', $this->contact->id)->latest()->simplePaginate(5);
+        $notes = Note::where('contact_id', $this->contact->id)->count();
+        $events = Location::where('contact_id', $this->contact->id)->count();
         $statusses = Status::pluck('name', 'id');
         $sectors = JobFunction::pluck('name', 'id');
 
         return view('livewire.contact-detail', compact(
-            'referred_members',
             'notes',
             'statusses',
             'sectors',

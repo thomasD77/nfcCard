@@ -91,6 +91,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::PATCH('update/contact/{contact}', 'App\Http\Controllers\AdminContactsController@updateContact')->name('contact.update');
     Route::PATCH('create/note/contact/{contact}', 'App\Http\Controllers\AdminContactsController@createNoteContact')->name('contact.note.create');
     Route::PATCH('update/note/contact/{contact}', 'App\Http\Controllers\AdminContactsController@updateNoteContact')->name('contact.note.update');
+    Route::PATCH('update/shortnote/contact/{contact}', 'App\Http\Controllers\AdminContactsController@updateShortNoteContact')->name('contact.short.note.update');
     Route::POST('delete/note/contact/{contact}', 'App\Http\Controllers\AdminContactsController@deleteNoteContact')->name('contact.note.delete');
     Route::POST('create/event/contact/{contact}', 'App\Http\Controllers\AdminContactsController@createEventContact')->name('contact.event.create');
     Route::PATCH('update/event/contact/{contact}', 'App\Http\Controllers\AdminContactsController@updateEventContact')->name('contact.event.update');

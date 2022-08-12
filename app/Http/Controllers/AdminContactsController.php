@@ -65,6 +65,8 @@ class AdminContactsController extends Controller
     {
 
         $contact->name = $request->name;
+        $contact->email = $request->email;
+        $contact->phone = $request->phone;
 
         if($request->sector) {
             $contact->sector_id = $request->sector;
@@ -123,6 +125,17 @@ class AdminContactsController extends Controller
         \Brian2694\Toastr\Facades\Toastr::success('Event Successfully Created');
 
         $event->save();
+
+        return redirect()->back();
+    }
+
+    public function updateShortNoteContact(UpdateNoteContactRequest $request, $id)
+    {
+        $contact = Contact::findOrFail($id);
+        $contact->notes = $request->notes;
+        $contact->update();
+
+        \Brian2694\Toastr\Facades\Toastr::success('Short note Successfully Updated');
 
         return redirect()->back();
     }

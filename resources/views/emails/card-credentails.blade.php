@@ -95,6 +95,9 @@
 
 <h3 style="margin-top: 40px; margin-bottom: 5px">Aarzel niet om mij te contacteren! </h3>
 <h3>Graag tot binnenkort. </h3>
+<br>
+<a href="https://swap-nfc.be">www.swap-nfc.be</a>
+
 
 
 @endcomponent

@@ -175,7 +175,7 @@
 {{--                                                            </select>--}}
                                                             <input type="text" class="form-control input_modal"
                                                                    name="landcode"
-                                                                   placeholder="+32"
+                                                                   value="+32"
                                                                    autocomplete="phone">
                                                         </div>
                                                         <div class="col-9 pl-0">
@@ -405,8 +405,10 @@
                     <a style="text-decoration: none; color: black" class="badge badge-pill bg-white p-3 my-3 text-uppercase" href="{{ asset('/admin') }}">Dashboard</a>
                     @endauth
                 </footer>
-
-                <footer class="footer"><a style="text-decoration: none; color: white" href="https://innova-webcreations.be">SWAP</a> © {{ now()->format('Y') }}</footer>
+                <div class="d-flex justify-content-center">
+                    <a class="footer text-white mb-1 d-flex align-items-center" target="_blank" style="text-decoration: none" href="https://swap-nfc.be/"><i class="fa fa-globe px-2 fa-2x"></i> swap-nfc.be</a>
+                </div>
+{{--                <footer class="footer"><a style="text-decoration: none; color: white" href="https://innova-webcreations.be">SWAP</a> © {{ now()->format('Y') }}</footer>--}}
             </div>
         </div>
     </div>

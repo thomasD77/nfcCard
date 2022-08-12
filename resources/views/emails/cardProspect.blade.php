@@ -26,4 +26,7 @@
     <strong>SWAP APP</strong>
 @endcomponent
 
+<br>
+<a href="https://swap-nfc.be">www.swap-nfc.be</a>
+
 @endcomponent
