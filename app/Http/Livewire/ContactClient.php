@@ -137,6 +137,8 @@ class ContactClient extends Component
                     ->simplePaginate($this->pagination);
             }
 
+            $statusses = Status::all();
+
 
             return view('livewire.contact-client', compact('contacts', 'statusses', 'ids'));
         }

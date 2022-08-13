@@ -30,6 +30,7 @@ Auth::routes(['verify'=> true]);
 //Public Routes for member information
 Route::get('/', 'App\Http\Controllers\DirectionController@getDirection')->name('direction');
 Route::get('vCard/{id}', 'App\Http\Controllers\CardController@vCard')->name('members.vCard');
+Route::get('vCard/contact/{id}', 'App\Http\Controllers\CardController@vCardContact')->name('contact.vCard');
 Route::post('save/{id}', 'App\Http\Controllers\CardController@saveInfo')->name('members.saveInfo');
 Route::get('QRcode/{id}', 'App\Http\Controllers\DirectionController@getDirectionFromId');
 Route::get('QRcodeMember/{id}', 'App\Http\Controllers\QRcode\QRcodeController@QRcode')->name('members.QRcode');

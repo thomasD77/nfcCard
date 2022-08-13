@@ -108,12 +108,14 @@
                                                 <p class="mb-2"><strong>Status</strong></p>
                                                 {{--                                                {!! Form::select('statusses',$statusses,null,['class'=>'form-control', 'placeholder' => 'Select here...'])!!}--}}
 
-                                                <select name="status" wire:model="status" wire:change="contact({{ $contact }})" class="form-control">
-                                                    <option value=''>choose status</option>
-                                                    @foreach($statusses as $status)
-                                                        <option value={{ $status->id }}>{{ $status->name }}</option>
-                                                    @endforeach
-                                                </select>
+                                                @if($statusses)
+                                                    <select name="status" wire:model="status" wire:change="contact({{ $contact }})" class="form-control">
+                                                        <option value=''>choose status</option>
+                                                        @foreach($statusses as $status)
+                                                            <option value={{ $status->id }}>{{ $status->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                @endif
 
                                                 @if($contact->created_at)
                                                     <p><strong>Created at:</strong></p>

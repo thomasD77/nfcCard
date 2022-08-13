@@ -40,13 +40,18 @@
 
             <div>
 
+
+            @if($urls->first() != null )
                 <a href="{{ route('card-credentials-sheet-generator', $urls->first()->team_id) }}" class="btn btn-alt-success" data-bs-toggle="tooltip" title="Supplier">
                     <i class="fa fa-print me-2"></i>
                 </a>
+            @endif
 
+            @if($urls->first() != null )
                 <a href="{{ route('print.list' , $urls->first()->team_id) }}" class="btn btn-alt-primary" data-bs-toggle="tooltip" title="Teamleader">
                     <i class="fa fa-copy me-2"></i>
                 </a>
+            @endif
 
             </div>
         </div>

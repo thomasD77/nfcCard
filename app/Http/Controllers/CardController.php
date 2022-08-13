@@ -152,6 +152,56 @@ class CardController extends Controller
     }
 
 
+    public function vCardContact($id)
+    {
+        // define vcard
+        $vcard = new VCard();
+
+        $contact = Contact::findOrFail($id);
+        // define variables
+
+        if($contact->name){
+            $lastname = $contact->lastname;
+        }else {
+            $lastname = "";
+        }
+
+
+        $additional = '';
+        $prefix = '';
+        $suffix = '';
+
+        // add personal data
+
+        $vcard->addName($lastname, $additional, $prefix, $suffix);
+
+        // add work data
+
+        if($contact->company) {
+            $vcard->addCompany($contact->company);
+        }
+
+
+        if($contact->email) {
+            $vcard->addEmail($contact->email);
+        }
+
+        if($contact->phone) {
+            $vcard->addPhoneNumber($contact->phone);
+        }
+
+        if($contact->VAT) {
+            $vcard->addNote($contact->VAT);
+        }
+
+        if($contact->message) {
+            $vcard->addNote($contact->message);
+        }
+
+        // return vcard as a download
+        return $vcard->download();
+    }
+
     public function print($id)
     {
         $team = Team::findOrFail($id);

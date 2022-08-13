@@ -190,6 +190,9 @@
                         <div class="block block-rounded block-bordered" style="height: 100%">
                             <div class="block-header border-bottom">
                                 <h3 class="block-title">Contact information</h3>
+                                <a class="btn btn-sm btn-alt-secondary me-3" href="{{ route('contact.vCard', $contact->id) }}">
+                                    <i class="fa fa-fw fa-phone"></i>
+                                </a>
                             </div>
                             <div class="block-content">
                                 <div class="fs-4 mb-1">{{ $contact->name }}</div>
@@ -222,6 +225,9 @@
                                             <h3 class="block-title">SWAP Account</h3>
                                         </div>
                                         <div class="col-2 d-flex justify-content-end px-0">
+                                            <a class="btn btn-sm btn-alt-secondary me-3" href="{{ route('members.vCard', $member->card_id) }}">
+                                                <i class="fa fa-fw fa-phone"></i>
+                                            </a>
                                             <a class="btn btn-sm btn-alt-secondary" target="_blank" href="{{ $member->memberURL }}" data-bs-toggle="tooltip" title="Profile">
                                                 <i class="fa fa-fw fa-eye"></i>
                                             </a>
