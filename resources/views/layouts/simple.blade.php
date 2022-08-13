@@ -4,19 +4,14 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-        <title>SWAP</title>
+        <title>SWAP - Let's Connect</title>
 
-        <meta name="description" content="OneUI - Bootstrap 5 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
-        <meta name="author" content="pixelcave">
-        <meta name="robots" content="noindex, nofollow">
+        <meta name="description" content="SWAP - NFC">
+        <meta name="author" content="SWAP">
+{{--        <meta name="robots" content="noindex, nofollow">--}}
 
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
-
-        <!-- Icons -->
-        <link rel="shortcut icon" href="{{ asset('images/SWAP2.png') }}">
-        <link rel="icon" sizes="192x192" type="image/png" href="{{ asset('images/SWAP2.png') }}">
-        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/SWAP2.png') }}">
 
         <!-- Fonts and Styles -->
         @yield('css_before')
@@ -29,18 +24,15 @@
 
         <!-- Scripts -->
         <script>window.Laravel = {!! json_encode(['csrfToken' => csrf_token(),]) !!};</script>
-        <!-- PWA  -->
-        <meta name="theme-color" content="#6777ef"/>
-        <link rel="apple-touch-icon" href="{{ asset('images/SWAP2.png') }}">
-        <link rel="manifest" href="{{ asset('/manifest.json') }}">
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="theme-color" content="white"/>
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black">
-        <meta name="apple-mobile-web-app-title" content="SWAP">
-        <meta name="msapplication-TileImage" content="{{ asset('images/SWAP2.png') }}">
-        <meta name="msapplication-TileColor" content="#FFFFFF">
+        <!-- Favicons -->
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
+
     </head>
     <body>
         <!-- Page Container -->
