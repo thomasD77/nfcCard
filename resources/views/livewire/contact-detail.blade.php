@@ -140,9 +140,9 @@
                 <div class="py-4">
                     <div class="mb-3 row justify-content-center">
                         @if($member)
-                            <img class="rounded-circle img-fluid col-md-4 col-lg-2" src="{{$member->avatar ? asset('/card/avatars') . "/" . $member->avatar : asset('/assets/front/img/Avatar-4.svg') }}" alt="{{$member->name}}">
+                            <img class="rounded-circle" width="150" height="150" src="{{$member->avatar ? asset('/card/avatars') . "/" . $member->avatar : asset('/assets/front/img/Avatar-4.svg') }}" alt="{{$member->name}}">
                         @else
-                            <img class="rounded-circle img-fluid col-md-4 col-lg-2" src="{{ asset('/assets/front/img/Avatar-4.svg') }}" alt="">
+                            <img class="rounded-circle" width="150" height="150" src="{{ asset('/assets/front/img/Avatar-4.svg') }}" alt="">
                         @endif
                     </div>
                     <h1 class="fs-lg mb-0">

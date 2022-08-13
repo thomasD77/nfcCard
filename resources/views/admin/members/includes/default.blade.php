@@ -7,8 +7,8 @@
 
                 <!-- Avatar -->
                 <div class="my-3">
-                    <div class="mb-4 d-flex justify-content-center row">
-                        <img class="rounded-circle img-fluid col-md-6 col-lg-4"
+                    <div class="mb-4 d-flex justify-content-center">
+                        <img class="rounded-circle" width="150" height="150"
                              src="{{$member->avatar ? asset('/card/avatars'). "/" . $member->avatar : asset('/assets/front/img/Avatar-4.svg')}}"
                              alt="{{$member->avatar}}">
                     </div>
