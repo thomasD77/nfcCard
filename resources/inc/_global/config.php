@@ -28,8 +28,8 @@ $one                             = new Template(config('custom.GET_NAME'), '5.0'
 //                               : The data is added in the <head> section of the page
 $one->author                     = 'Demeulenaere Thomas';
 $one->robots                     = 'noindex, nofollow';
-$one->title                      = 'Backend Template - Bootstrap 5 Admin Template &amp; UI Framework';
-$one->description                = 'Backend Template - This is a empty CMS-SYSTEM for creating new projects';
+$one->title                      = 'SWAP NFC';
+$one->description                = 'Digital Handshake. A digital identity for everyone to share.';
 
 //                               : The url of your site, used in Open Graph Meta Data (eg 'https://example.com')
 $one->og_url_site                = '';
