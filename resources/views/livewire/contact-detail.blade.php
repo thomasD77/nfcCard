@@ -6,7 +6,7 @@
             <div class="col-md-6">
                 <a class="block block-rounded block-link-shadow text-center">
                     <div class="block-content block-content-full" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal{{$contact->id}}">
-                        <div class="fs-2 fw-semibold text-dark">
+                        <div class="fs-2 fw-semibold text-dark py-1 py-md-0">
                             <i class="fa fa-pencil-alt"></i>
                         </div>
                     </div>
