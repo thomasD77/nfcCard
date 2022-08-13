@@ -280,6 +280,8 @@
                     <!-- END Message -->
                 @endif
             </div>
+
+            @if($contact->notes)
             <div class="col-lg-6">
                 <!-- Short Note -->
                 <div class="block block-rounded">
@@ -321,6 +323,7 @@
                 <!-- END Message -->
             </div>
         </div>
+        @endif
 
 
     @livewire('contact-detail-reffered-members', [ 'contact' => $contact ])

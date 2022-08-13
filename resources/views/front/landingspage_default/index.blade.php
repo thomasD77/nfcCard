@@ -16,8 +16,8 @@
     <meta name="description" content="SWAP"/>
 
     <!-- Twitter data -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@ArtTemplates">
+    <meta name="twitter:card" content="SWAP">
+    <meta name="twitter:site" content="@SWAP">
     <meta name="twitter:title" content="SWAP">
     <meta name="twitter:description" content="SWAP">
     <meta name="twitter:image" content="../assets/images/social.jpg">
@@ -68,246 +68,256 @@
     </div>
 
     <div class="container gutter-top">
-        <!-- Header -->
-        <header class="header box">
-            <div class="header__left">
-                @if($member->state->avatar)
-                    <div class="header__photo">
-                        <img class="header__photo-img" src=" {{ $member->avatar ? asset('card/avatars') . "/" . $member->avatar : asset('assets/front/img/main-photo.svg')}}" alt="avatar">
-                    </div>
-                @endif
-                <div class="header__base-info">
-                    @if($member->lastname || $member->firstname)
-                        <h4 class="title titl--h4">@if($member->state->lastname){{ $member->lastname}}@endif @if($member->state->firstname){{ $member->firstname  }}@endif</h4>
-                        <br>
-                    @endif
 
-                    @if($member->company && $member->state->company)
-                        <h5 class="status">{{ $member->company }}</h5>
-                        <br>
-                    @endif
-
-                    @if($member->jobTitle && $member->state->jobTitle)
-                        <div class="status">{{ $member->jobTitle }}</div>
-                    @endif
-                </div>
-                <div class="">
-
-                    @if($member->user->business)
-                        <!-- Button trigger modal -->
-                        <button data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" class="btn_cstm save w-100 mt-3 p-3"><i class="fa fa-rotate mr-2 "></i>SWAP</button>
-                        <!-- Modal -->
-                    @endif
-
-                    <!-- Session flash-->
-                        @if(Session::has('existing_contact_message'))
-                            <p class="alert alert-info my-3">{{session('existing_contact_message')}}</p>
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <!-- Header -->
+                <header class="header box">
+                    <div class="header__left">
+                        @if($member->state->avatar)
+                            <div class="header__photo">
+                                <img class="header__photo-img" src=" {{ $member->avatar ? asset('card/avatars') . "/" . $member->avatar : asset('assets/front/img/main-photo.svg')}}" alt="avatar">
+                            </div>
                         @endif
-                    <!-- End Session flash -->
+                        <div class="header__base-info">
+
+                            @if($member->lastname || $member->firstname)
+                                <h4 class="title titl--h4">@if($member->state->lastname){{ $member->lastname}}@endif @if($member->state->firstname){{ $member->firstname  }}@endif</h4>
+                                <br>
+                            @endif
+
+                            @if($member->company && $member->state->company)
+                                <h5 class="status">{{ $member->company }}</h5>
+                                <br>
+                            @endif
+
+                            @if($member->jobTitle && $member->state->jobTitle)
+                                <div class="status">{{ $member->jobTitle }}</div>
+                            @endif
+
+                            <div class="">
+
+                                @if($member->user->business)
+                                    <!-- Button trigger modal -->
+                                        <button data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" class="btn_cstm save w-100 mt-3 p-3"><i class="fa fa-rotate mr-2 "></i>SWAP</button>
+                                        <!-- Modal -->
+                                @endif
+
+                                <!-- Session flash-->
+                                    @if(Session::has('existing_contact_message'))
+                                        <p class="alert alert-info my-3">{{session('existing_contact_message')}}</p>
+                                    @endif
+                                <!-- End Session flash -->
 
 
-                    @error('name')
-                    <p class="text-danger mt-2 mb-0">Oops, something went wrong! </p>
-                    @enderror
-                    @error('email')
-                    <p class="text-danger">Please try again.</p>
-                    @enderror
-                    @if(Session::has('recaptcha_error'))
-                        <p class="text-danger">{{session('recaptcha_error')}}</p>
-                    @endif
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-                        <div class="modal-dialog mt-0">
-                            <form class="row mb-0" name="contactformulier"
-                                  action="{{action('App\Http\Controllers\CardController@saveInfo', $member->card_id)}}"
-                                  method="post"
-                                >
-                                @csrf
-                                <div class="modal-content">
-                                    <div class="d-flex justify-content-end me-3">
-                                        <button type="button" class="btn_close m-2" data-bs-dismiss="modal" aria-label="Close">X</button>
-                                    </div>
-                                    <div class="modal-header pt-1">
-                                        <div class="d-flex flex-column">
-                                            <h2 class="talk">Let's talk!</h2>
-                                            <p>Please fill in your information. I will send you a mail to talk later.</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="modal-body">
-                                        @if($member->settings)
-                                            @if($member->settings->name)
-                                                <div class="mb-4 d-flex justify-content-start flex-column">
-                                                    <label class="form-label"
-                                                           for="frontend-contact-firstname">Name</label>
-                                                    <input type="text"
-                                                           class="form-control input_modal"
-                                                           name="name"
-                                                           placeholder="Enter your name..."
-                                                           autocomplete="name"
-                                                    >
-                                                    @error('name')
-                                                    <p class="text-danger mt-2"> {{ $message }}</p>
-                                                    @enderror
-                                                </div>
-                                            @endif
-                                        @endif
-
-                                        @if($member->settings)
-                                            @if($member->settings->email)
-                                                <div class="mb-4">
-                                                    <label class="form-label" for="frontend-contact-email">Email</label>
-                                                    <input type="email"
-                                                           class="form-control input_modal"
-                                                           name="email"
-                                                           autocomplete="email"
-                                                           placeholder="Enter your email...">
-                                                    @error('email')
-                                                    <p class="text-danger mt-2"> {{ $message }}</p>
-                                                    @enderror
-                                                </div>
-                                            @endif
-                                        @endif
-
-                                        @if($member->settings)
-                                            @if($member->settings->phone)
-                                                <label class="form-label" for="frontend-contact-email">Phone</label>
-                                                <div class="mb-4 row">
-                                                        <div class="col-3 pr-0">
-{{--                                                            <select class="form-select" name="landcode" aria-label="Default select example">--}}
-{{--                                                                <option selected value="+32">+32</option>--}}
-{{--                                                                <option value="+31">+31</option>--}}
-{{--                                                                <option value="+33">+33</option>--}}
-{{--                                                                <option value="+49">+49</option>--}}
-{{--                                                            </select>--}}
-                                                            <input type="text" class="form-control input_modal"
-                                                                   name="landcode"
-                                                                   value="+32"
-                                                                   autocomplete="phone">
+                                    @error('name')
+                                    <p class="text-danger mt-2 mb-0">Oops, something went wrong! </p>
+                                    @enderror
+                                    @error('email')
+                                    <p class="text-danger">Please try again.</p>
+                                    @enderror
+                                    @if(Session::has('recaptcha_error'))
+                                        <p class="text-danger">{{session('recaptcha_error')}}</p>
+                                    @endif
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+                                        <div class="modal-dialog mt-0">
+                                            <form class="row mb-0" name="contactformulier"
+                                                  action="{{action('App\Http\Controllers\CardController@saveInfo', $member->card_id)}}"
+                                                  method="post"
+                                            >
+                                                @csrf
+                                                <div class="modal-content">
+                                                    <div class="d-flex justify-content-end me-3">
+                                                        <button type="button" class="btn_close m-2" data-bs-dismiss="modal" aria-label="Close">X</button>
+                                                    </div>
+                                                    <div class="modal-header pt-1">
+                                                        <div class="d-flex flex-column">
+                                                            <h2 class="talk">Let's talk!</h2>
+                                                            <p>Please fill in your information. I will send you a mail to talk later.</p>
                                                         </div>
-                                                        <div class="col-9 pl-0">
-                                                            <input type="text" class="form-control input_modal"
-                                                                   name="phone"
-                                                                   placeholder="Enter your phone..."
-                                                                   autocomplete="phone">
+                                                    </div>
+
+                                                    <div class="modal-body">
+                                                        @if($member->settings)
+                                                            @if($member->settings->name)
+                                                                <div class="mb-4 d-flex justify-content-start flex-column">
+                                                                    <label class="form-label"
+                                                                           for="frontend-contact-firstname">Name</label>
+                                                                    <input type="text"
+                                                                           class="form-control input_modal"
+                                                                           name="name"
+                                                                           placeholder="Enter your name..."
+                                                                           autocomplete="name"
+                                                                    >
+                                                                    @error('name')
+                                                                    <p class="text-danger mt-2"> {{ $message }}</p>
+                                                                    @enderror
+                                                                </div>
+                                                            @endif
+                                                        @endif
+
+                                                        @if($member->settings)
+                                                            @if($member->settings->email)
+                                                                <div class="mb-4">
+                                                                    <label class="form-label" for="frontend-contact-email">Email</label>
+                                                                    <input type="email"
+                                                                           class="form-control input_modal"
+                                                                           name="email"
+                                                                           autocomplete="email"
+                                                                           placeholder="Enter your email...">
+                                                                    @error('email')
+                                                                    <p class="text-danger mt-2"> {{ $message }}</p>
+                                                                    @enderror
+                                                                </div>
+                                                            @endif
+                                                        @endif
+
+                                                        @if($member->settings)
+                                                            @if($member->settings->phone)
+                                                                <label class="form-label" for="frontend-contact-email">Phone</label>
+                                                                <div class="mb-4 row">
+                                                                    <div class="col-3 pr-0">
+                                                                        {{--                                                            <select class="form-select" name="landcode" aria-label="Default select example">--}}
+                                                                        {{--                                                                <option selected value="+32">+32</option>--}}
+                                                                        {{--                                                                <option value="+31">+31</option>--}}
+                                                                        {{--                                                                <option value="+33">+33</option>--}}
+                                                                        {{--                                                                <option value="+49">+49</option>--}}
+                                                                        {{--                                                            </select>--}}
+                                                                        <input type="text" class="form-control input_modal"
+                                                                               name="landcode"
+                                                                               value="+32"
+                                                                               autocomplete="phone">
+                                                                    </div>
+                                                                    <div class="col-9 pl-0">
+                                                                        <input type="text" class="form-control input_modal"
+                                                                               name="phone"
+                                                                               placeholder="Enter your phone..."
+                                                                               autocomplete="phone">
+                                                                    </div>
+                                                                </div>
+                                                            @endif
+                                                        @endif
+
+                                                        @if($member->settings)
+                                                            @if($member->settings->company)
+                                                                <div class="mb-4 d-flex justify-content-start flex-column">
+                                                                    <label class="form-label"
+                                                                           for="frontend-contact-firstname">Company</label>
+                                                                    <input type="text"
+                                                                           class="form-control input_modal"
+                                                                           name="company"
+                                                                           placeholder="Enter your company..."
+                                                                           autocomplete="name"
+                                                                    >
+                                                                    @error('company')
+                                                                    <p class="text-danger mt-2"> {{ $message }}</p>
+                                                                    @enderror
+                                                                </div>
+                                                            @endif
+                                                        @endif
+
+                                                        @if($member->settings)
+                                                            @if($member->settings->VAT)
+                                                                <div class="mb-4 d-flex justify-content-start flex-column">
+                                                                    <label class="form-label"
+                                                                           for="frontend-contact-firstname">VAT</label>
+                                                                    <input type="text"
+                                                                           class="form-control input_modal"
+                                                                           name="VAT"
+                                                                           placeholder="Enter your VAT..."
+                                                                           autocomplete="VAT"
+                                                                    >
+                                                                    @error('VAT')
+                                                                    <p class="text-danger mt-2"> {{ $message }}</p>
+                                                                    @enderror
+                                                                </div>
+                                                            @endif
+                                                        @endif
+
+                                                        @if($member->settings)
+                                                            @if($member->settings->notes)
+                                                                <div class="mb-4">
+
+                                                                    <label class="form-label" for="frontend-contact-email">Message</label>
+
+                                                                    <textarea name="message" placeholder="Enter your message for {{ $member->firstname }}... " class="form-control input_modal" id="" cols="5" rows="5"></textarea>
+
+                                                                </div>
+                                                            @endif
+                                                        @endif
+
+                                                        <input type="hidden" name="recaptcha" id="recaptcha">
+
+                                                        <button id="closemodal" type="submit" class="btn_cstm input_modal w-100">
+                                                            <i class="fa fa-paper-plane me-1 opacity-50"></i> SEND
+                                                        </button>
+                                                        <small class="mb-3 pl-2">*I agree to the terms and conditions by clicking send</small>
+
+                                                        <div class="bodem mb-5 pt-4 mt-5">
+
+
+                                                            <div class="">
+                                                                <strong>Only Save</strong>
+                                                                <p>If you only want to save my contact download here.</p>
+                                                            </div>
+
+                                                            <a href="{{ route('members.vCard', $member->card_id) }}"
+                                                               id="closeNow"
+                                                               style="text-decoration: none; color: white"
+                                                               class="btn_cstm input_modal p-3">
+                                                                <i class="fa fa-floppy-disk me-1 opacity-50"></i> SAVE
+                                                            </a>
+
                                                         </div>
+                                                    </div>
                                                 </div>
-                                            @endif
-                                        @endif
-
-                                        @if($member->settings)
-                                            @if($member->settings->company)
-                                                <div class="mb-4 d-flex justify-content-start flex-column">
-                                                    <label class="form-label"
-                                                           for="frontend-contact-firstname">Company</label>
-                                                    <input type="text"
-                                                           class="form-control input_modal"
-                                                           name="company"
-                                                           placeholder="Enter your company..."
-                                                           autocomplete="name"
-                                                    >
-                                                    @error('company')
-                                                    <p class="text-danger mt-2"> {{ $message }}</p>
-                                                    @enderror
-                                                </div>
-                                            @endif
-                                        @endif
-
-                                        @if($member->settings)
-                                            @if($member->settings->VAT)
-                                                <div class="mb-4 d-flex justify-content-start flex-column">
-                                                    <label class="form-label"
-                                                           for="frontend-contact-firstname">VAT</label>
-                                                    <input type="text"
-                                                           class="form-control input_modal"
-                                                           name="VAT"
-                                                           placeholder="Enter your VAT..."
-                                                           autocomplete="VAT"
-                                                    >
-                                                    @error('VAT')
-                                                    <p class="text-danger mt-2"> {{ $message }}</p>
-                                                    @enderror
-                                                </div>
-                                            @endif
-                                        @endif
-
-                                        @if($member->settings)
-                                            @if($member->settings->notes)
-                                            <div class="mb-4">
-
-                                                <label class="form-label" for="frontend-contact-email">Message</label>
-
-                                                <textarea name="message" placeholder="Enter your message for {{ $member->firstname }}... " class="form-control input_modal" id="" cols="5" rows="5"></textarea>
-
-                                            </div>
-                                            @endif
-                                        @endif
-
-                                        <input type="hidden" name="recaptcha" id="recaptcha">
-
-                                        <button id="closemodal" type="submit" class="btn_cstm input_modal w-100">
-                                            <i class="fa fa-paper-plane me-1 opacity-50"></i> SEND
-                                        </button>
-                                        <small class="mb-3 pl-2">*I agree to the terms and conditions by clicking send</small>
-
-                                        <div class="bodem mb-5 pt-4 mt-5">
-
-
-                                            <div class="">
-                                                <strong>Only Save</strong>
-                                                <p>If you only want to save my contact download here.</p>
-                                            </div>
-
-                                            <a href="{{ route('members.vCard', $member->card_id) }}"
-                                               id="closeNow"
-                                               style="text-decoration: none; color: white"
-                                               class="btn_cstm input_modal p-3">
-                                                 <i class="fa fa-floppy-disk me-1 opacity-50"></i> SAVE
-                                            </a>
-
+                                            </form>
+                                            <script src="https://www.google.com/recaptcha/api.js"></script>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
-                            <script src="https://www.google.com/recaptcha/api.js"></script>
+
                         </div>
+
                     </div>
-                </div>
+
+                    <div class="header__right">
+                        <ul class="header__contact">
+                            @if($member->email && $member->state->email)
+                                <li><span class="overhead">Email</span><a class="text-white" href="mailto:{{ $member->email }}">{{ $member->email }}</a></li>
+                            @endif
+
+                            @if($member->mobileWork && $member->state->mobileWork)
+                                <li><span class="overhead">Work Phone</span><a class="text-white" href="tel:{{ $member->mobileWork }}">{{ $member->mobileWork }}</a></li>
+                            @endif
+
+                            @if($member->mobile && $member->state->mobile)
+                                <li><span class="overhead">Personal Phone</span><a class="text-white" href="tel:{{ $member->mobile }}">{{ $member->mobile }}</a></li>
+                            @endif
+                        </ul>
+                        <ul class="header__contact">
+                            @if($member->age && $member->state->age)
+                                <li><span class="overhead">Birthday</span>{{ \Carbon\Carbon::parse($member->age)->format('Y-M-d') }}</li>
+                            @endif
+
+                            @if($member->state->addressLine1 || $member->state->postalCode || $member->state->city || $member->state->country  )
+                                <li><span class="overhead">Location</span>
+                                    @if($member->addressLine1 && $member->state->addressLine1){{ $member->addressLine1 }},
+                                    <br>@endif
+                                    @if($member->postalCode && $member->state->postalCode){{ $member->postalCode }}@endif
+                                    <br>
+                                    @if($member->city && $member->state->city){{ $member->city }}@endif
+                                    @if($member->country && $member->state->country){{ $member->country }}@endif
+                                </li>
+                            @endif
+                        </ul>
+                    </div>
+                </header>
             </div>
+        </div>
 
-            <div class="header__right">
-                <ul class="header__contact">
-                    @if($member->email && $member->state->email)
-                        <li><span class="overhead">Email</span>{{ $member->email }}</li>
-                    @endif
-
-                    @if($member->mobileWork && $member->state->mobileWork)
-                        <li><span class="overhead">Work Phone</span>{{ $member->mobileWork }}</li>
-                    @endif
-
-                    @if($member->mobile && $member->state->mobile)
-                        <li><span class="overhead">Personal Phone</span>{{ $member->mobile }}</li>
-                    @endif
-                </ul>
-                <ul class="header__contact">
-                    @if($member->age && $member->state->age)
-                        <li><span class="overhead">Birthday</span>{{ \Carbon\Carbon::parse($member->age)->format('Y-M-d') }}</li>
-                    @endif
-
-                    @if($member->state->addressLine1 || $member->state->postalCode || $member->state->city || $member->state->country  )
-                        <li><span class="overhead">Location</span>
-                            @if($member->addressLine1 && $member->state->addressLine1){{ $member->addressLine1 }} @endif
-                            @if($member->postalCode && $member->state->postalCode){{ $member->postalCode }}@endif
-                            <br>
-                            @if($member->city && $member->state->city){{ $member->city }}@endif
-                            @if($member->country && $member->state->country){{ $member->country }}@endif
-                        </li>
-                    @endif
-                </ul>
-            </div>
-        </header>
 
         <div class="row">
-
             <!-- Content -->
             <div class="col-12 col-md-8 offset-md-2">
                 <div class="box box-content" id="content">
