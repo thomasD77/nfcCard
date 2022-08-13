@@ -160,6 +160,14 @@
                                     </div>
                                 @endif
 
+                                @if($is_business)
+                                    <div class="row">
+                                        <i class="far fa-building col-1 pt-2"></i>
+                                        <p class="col-10">{{$scans}} Swaps</p>
+                                    </div>
+                                @endif
+
+
                             </div>
 
                             <div class="row px-2">
