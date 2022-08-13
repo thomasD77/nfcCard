@@ -138,11 +138,11 @@
         <div class="block block-rounded">
             <div class="block-content text-center">
                 <div class="py-4">
-                    <div class="mb-3">
+                    <div class="mb-3 row justify-content-center">
                         @if($member)
-                            <td><img class="rounded-circle" height="auto" width="200" src="{{$member->avatar ? asset('/card/avatars') . "/" . $member->avatar : asset('/assets/front/img/Avatar-4.svg') }}" alt="{{$member->name}}"></td>
+                            <img class="rounded-circle img-fluid col-md-4 col-lg-2" src="{{$member->avatar ? asset('/card/avatars') . "/" . $member->avatar : asset('/assets/front/img/Avatar-4.svg') }}" alt="{{$member->name}}">
                         @else
-                            <td><img class="rounded-circle" height="auto" width="200" src="{{ asset('/assets/front/img/Avatar-4.svg') }}" alt=""></td>
+                            <img class="rounded-circle img-fluid col-md-4 col-lg-2" src="{{ asset('/assets/front/img/Avatar-4.svg') }}" alt="">
                         @endif
                     </div>
                     <h1 class="fs-lg mb-0">
