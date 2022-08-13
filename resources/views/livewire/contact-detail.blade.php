@@ -140,9 +140,9 @@
                 <div class="py-4">
                     <div class="mb-3">
                         @if($member)
-                            <td><img class="rounded-circle" height="150" width="150" src="{{$member->avatar ? asset('/card/avatars') . "/" . $member->avatar : asset('/assets/front/img/Avatar-4.svg') }}" alt="{{$member->name}}"></td>
+                            <td><img class="rounded-circle" height="auto" width="200" src="{{$member->avatar ? asset('/card/avatars') . "/" . $member->avatar : asset('/assets/front/img/Avatar-4.svg') }}" alt="{{$member->name}}"></td>
                         @else
-                            <td><img class="rounded-circle" height="150" width="150" src="{{ asset('/assets/front/img/Avatar-4.svg') }}" alt=""></td>
+                            <td><img class="rounded-circle" height="auto" width="200" src="{{ asset('/assets/front/img/Avatar-4.svg') }}" alt=""></td>
                         @endif
                     </div>
                     <h1 class="fs-lg mb-0">

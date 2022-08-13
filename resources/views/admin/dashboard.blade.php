@@ -133,7 +133,7 @@
                         <div class="card shadow pt-4 col-md-6 offset-md-3 p-md-4 my-md-5" style="border: none">
 
                             <div class="d-flex justify-content-center m-2">
-                                <img class="rounded-circle" height="150" width="150" src="{{$member->avatar ? asset('/card/avatars') . "/" . $member->avatar : asset('/assets/front/img/Avatar-4.svg') }}" alt="{{$member->name}}">
+                                <img class="rounded-circle" height="auto" width="200" src="{{$member->avatar ? asset('/card/avatars') . "/" . $member->avatar : asset('/assets/front/img/Avatar-4.svg') }}" alt="{{$member->name}}">
                             </div>
 
                             <div class="card-body">
