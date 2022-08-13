@@ -8,6 +8,7 @@ use App\Models\Status;
 use App\Models\User;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 use Livewire\WithPagination;
 use phpDocumentor\Reflection\Types\Boolean;
@@ -34,7 +35,15 @@ class ContactClient extends Component
     public function toggleToContact(Contact $contact)
     {
         $user = Auth()->user();
-        $user->contacts()->sync($contact->id, false);
+
+        $contact = Contact::where('email', $contact->email)->first();
+
+        if($user->contacts->where('contact_id', $contact->id)){
+            Session::flash('contact_message', $contact->name . " " . 'is already in your contacts.');
+        } else {
+            $user->contacts()->sync($contact->id, false);
+        }
+
     }
 
     public function contact(Contact $contact)

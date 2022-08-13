@@ -48,6 +48,12 @@
             </div>
             <!-- End Pagination -->
 
+            <!-- Session flash-->
+            @if(Session::has('contact_message'))
+                <p class="alert alert-info my-3">{{session('contact_message')}}</p>
+            @endif
+            <!-- End Session flash -->
+
             <table class="table table-striped table-hover table-vcenter fs-sm">
                 <thead>
                 <tr>
@@ -178,6 +184,12 @@
                 </select>
             </div>
             <!-- End Pagination -->
+
+            <!-- Session flash-->
+            @if(Session::has('contact_message'))
+                <p class="alert alert-info my-3">{{session('contact_message')}}</p>
+            @endif
+            <!-- End Session flash -->
 
             <table class="table table-striped table-hover table-vcenter fs-sm">
                 <thead>

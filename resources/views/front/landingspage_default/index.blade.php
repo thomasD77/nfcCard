@@ -99,6 +99,12 @@
                         <!-- Modal -->
                     @endif
 
+                    <!-- Session flash-->
+                        @if(Session::has('existing_contact_message'))
+                            <p class="alert alert-info my-3">{{session('existing_contact_message')}}</p>
+                        @endif
+                    <!-- End Session flash -->
+
 
                     @error('name')
                     <p class="text-danger mt-2 mb-0">Oops, something went wrong! </p>

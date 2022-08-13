@@ -15,7 +15,7 @@ class ChangeFieldThankyouMessagesOnMembersTable extends Migration
     {
         //
         Schema::table('members', function (Blueprint $table) {
-            $table->text('message')->change();
+            $table->string('email')->unique()->change();
         });
     }
 

@@ -224,6 +224,13 @@ class CardController extends Controller
         $vCard = null;
         $member = Member::where('card_id', $id)->first();
 
+
+        $existing_contact = Contact::where('email', $request->email)->first();
+        if($existing_contact) {
+            Session::flash('existing_contact_message', 'No need to SWAP again...' . " " . $request->email . " " . 'is already a connection.');
+            return redirect()->back();
+        }
+
         $url = 'https://www.google.com/recaptcha/api/siteverify';
         $remoteip = $_SERVER['REMOTE_ADDR'];
         $data = [

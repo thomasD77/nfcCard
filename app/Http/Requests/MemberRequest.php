@@ -43,7 +43,7 @@ class MemberRequest extends FormRequest
             'youTube'=>'max:90',
             'tikTok'=>'max:90',
             'whatsApp'=>'max:90',
-            'email'=>'max:90',
+            'email'=>'max:90|unique:members',
             'customField'=>'max:90',
             'customText'=>'max:30',
             'shortDescription'=>'max:390',
