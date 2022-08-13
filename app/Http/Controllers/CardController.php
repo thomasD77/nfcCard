@@ -193,10 +193,7 @@ class CardController extends Controller
         if($contact->VAT) {
             $vcard->addNote($contact->VAT);
         }
-
-        if($contact->message) {
-            $vcard->addNote($contact->message);
-        }
+        
 
         // return vcard as a download
         return $vcard->download();

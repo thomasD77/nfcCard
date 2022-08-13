@@ -4,7 +4,7 @@
         <!-- Quick Actions -->
         <div class="row">
             <div class="col-md-6">
-                <a class="block block-rounded block-link-shadow text-center mb-0">
+                <a class="block block-rounded block-link-shadow text-center">
                     <div class="block-content block-content-full" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal{{$contact->id}}">
                         <div class="fs-2 fw-semibold text-dark">
                             <i class="fa fa-pencil-alt"></i>
