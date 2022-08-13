@@ -107,8 +107,8 @@ class AdminUsersController extends Controller
 
         /** wegschrijven van de avatar **/
         if($file = $request->file('avatar_id')){
-            $name = time(). $file->getClientOriginalName();
-            $file->move('media/avatars', $name);
+            $name = $file->getClientOriginalName();
+            //$file->move('media/avatars', $name);
             $avatar = Avatar::create(['file'=>$name]);
 
             $user = User::findOrFail($id);

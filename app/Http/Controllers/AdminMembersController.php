@@ -509,9 +509,10 @@ class AdminMembersController extends Controller
             $state->avatar = 0;
         }
         if($file = $request->file('avatar_id')){
-            $name = time(). $file->getClientOriginalName();
-            $file->move('card/avatars', $name);
-            $member->avatar = $name;
+            //$name = time(). $file->getClientOriginalName();
+            //$file->move('card/avatars', $name);
+            //$member->avatar = $name;
+            $member->avatar = $file->getClientOriginalName();
         }
 
         if($request->check_youtube_video !== NULL){
