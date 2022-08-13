@@ -41,47 +41,74 @@
                                         </div>
                                     @endif
                                     <div class="mb-4">
-                                        <input placeholder="name" id="name" type="text" class="form-control form-control-lg form-control-alt @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-                                        <input placeholder="name" id="user_id" type="hidden" class="" name="card_id" value="{{ $url_card_id }}">
+                                        <input placeholder="name"
+                                               id="name"
+                                               type="text"
+                                               class="form-control form-control-lg form-control-alt @error('name') is-invalid @enderror"
+                                               name="name" value="{{ old('name') }}"
+                                               autocomplete="name"
+                                               required
+                                               autofocus>
+
+                                        <input placeholder="name"
+                                               id="user_id"
+                                               type="hidden"
+                                               name="card_id"
+                                               value="{{ $url_card_id }}">
                                         @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                                         @enderror
                                     </div>
-                                    <div class="mb-4">
-                                        <input placeholder="email" id="email" type="email" class="form-control form-control-lg form-control-alt @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
+                                    <div class="mb-4">
+                                        <input placeholder="email"
+                                               id="email"
+                                               type="email"
+                                               required
+                                               class="form-control form-control-lg form-control-alt @error('email') is-invalid @enderror"
+                                               name="email" value="{{ old('email') }}"
+                                               autocomplete="email">
                                         @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                        </span>
+                                        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                                         @enderror
                                     </div>
-                                    <div class="mb-4">
-                                        <input placeholder="password" id="password" type="password" class="form-control form-control-lg form-control-alt @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
+                                    <div class="mb-4">
+                                        <div class="row">
+                                            <div class="col-9 col-md-10 pe-0">
+                                                <input placeholder="password"
+                                                       id="password"
+                                                       type="password"
+                                                       class="form-control form-control-lg form-control-alt @error('password') is-invalid @enderror"
+                                                       name="password"
+                                                       required
+                                                       autocomplete="new-password">
+                                            </div>
+                                            <div class="col-3 col-md-2">
+                                                <button type="button"
+                                                        class="form-control text-center"
+                                                        style="height: 100%"
+                                                        onclick="myFunction()">
+                                                    <i class="fa fa-eye"></i>
+                                                </button>
+                                            </div>
+                                        </div>
                                         @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                        </span>
+                                        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                                         @enderror
                                     </div>
-                                    <div class="mb-4">
-                                        <input placeholder="confirm password" id="password-confirm" type="password" class="form-control form-control-lg form-control-alt" name="password_confirmation" required autocomplete="new-password">
 
+                                    <div class="mb-4">
+                                        <input placeholder="confirm password"
+                                               id="password-confirm"
+                                               type="password"
+                                               required
+                                               class="form-control form-control-lg form-control-alt"
+                                               name="password_confirmation"
+                                               autocomplete="new-password">
                                         @error('password_confirmation')
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                        </span>
+                                        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                                         @enderror
-
-                                    </div>
-                                    <div class="mb-4">
-{{--                                        <div class="form-check">--}}
-{{--                                            <input class="form-check-input" type="checkbox" value="" id="signup-terms" name="signup-terms">--}}
-{{--                                            <label class="form-check-label" for="signup-terms">I agree to Terms &amp; Conditions</label>--}}
-{{--                                        </div>--}}
                                     </div>
                                 </div>
                                 <div class="row mb-4">
@@ -105,6 +132,17 @@
     </div>
 </div>
 <!-- END Page Content -->
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("password");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+</script>
 
 <?php require '../resources/inc/_global/views/page_end.php'; ?>
 <?php require '../resources/inc/_global/views/footer_start.php'; ?>
