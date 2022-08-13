@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\listUrl;
+use App\Models\Member;
 use App\Models\Team;
 use App\Models\URL;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -75,6 +77,28 @@ class CardListGenerator extends Controller
         \Brian2694\Toastr\Facades\Toastr::success('List Successfully Updated');
         return redirect()->back();
 
+    }
+
+    public function bulkDelete(Team $team)
+    {
+        $urls = listUrl::where('team_id', $team->id)
+            ->where('print', 1)
+            ->pluck('member_id');
+
+        $members = Member::whereIn('id', $urls)->get();
+
+        $users = User::whereIn('member_id', $members )->get();
+
+        foreach ($users as $user) {
+            $user->delete();
+        }
+
+        foreach ($members as $member) {
+            $member->delete();
+        }
+
+        \Brian2694\Toastr\Facades\Toastr::success('User(s) Successfully Deleted');
+        return redirect()->back();
 
     }
 }

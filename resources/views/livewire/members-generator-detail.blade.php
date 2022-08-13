@@ -92,6 +92,7 @@
                                 {!! Form::label('types','Select type:', ['class'=>'form-label']) !!}
                                 {!! Form::select('types',$types,null,['class'=>'form-control', 'placeholder' => 'Select here...'])!!}
                             </div>
+
                         </div>
 
 
@@ -101,6 +102,40 @@
                         </button>
 
                     </form>
+
+                    @if($urls->first() != null )
+                        <div class="form-check d-flex justify-content-end m-4">
+                            <a class="" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                <label style="cursor: pointer" class="form-label">Bulk delete user accounts?</label>
+                            </a>
+                            <div class="collapse mx-5" id="collapseExample">
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    DELETE/RESET
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Delete User(s)/ Reset Card</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Are you sure you want to delete this user account? All the information will be lost forever.
+                                                The card data for this user will be deleted as well.
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a href="{{ route('bulk.delete', $urls->first()->team_id) }}" class="btn btn-danger">DELETE</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    @endif
                 </div>
             @endif
 
@@ -145,25 +180,25 @@
                             <tr class="">
                         @endif
 
-                            @if($url->member)
-                                @if($url->member->user->archived == 1)
-                                    <td><span class="rounded-pill btn-alt-warning p-2">archived</span></td>
-                                @else
-                                    <td>{{$url->member->user ? $url->member->user->name : "{...}" }}</td>
-                                @endif
+                        @if($url->member)
+                            @if($url->member->user->archived == 1)
+                                <td><span class="rounded-pill btn-alt-warning p-2">archived</span></td>
                             @else
-                                <td>{{$url->member ? $url->member->user->name : "{...}" }}</td>
+                                <td>{{$url->member->user ? $url->member->user->name : "{...}" }}</td>
                             @endif
+                        @else
+                            <td>{{$url->member ? $url->member->user->name : "{...}" }}</td>
+                        @endif
 
-                            @if($url->member)
-                                @if($url->member->user->archived == 1)
-                                    <td><span class="rounded-pill btn-alt-warning p-2">archived</span></td>
-                                @else
-                                    <td>{{$url->listRole ? $url->listRole->name : "{...}" }}</td>
-                                @endif
+                        @if($url->member)
+                            @if($url->member->user->archived == 1)
+                                <td><span class="rounded-pill btn-alt-warning p-2">archived</span></td>
                             @else
                                 <td>{{$url->listRole ? $url->listRole->name : "{...}" }}</td>
                             @endif
+                        @else
+                            <td>{{$url->listRole ? $url->listRole->name : "{...}" }}</td>
+                        @endif
 
                             <td>{{$url->material ? $url->material->name : "No Material" }}</td>
 

@@ -112,7 +112,8 @@ class MembersGeneratorDetail extends Component
                 ->where(function ($q) use ($value) {
                 $q->where('webshop_order_id', 'LIKE', '%' . $value . '%')
                     ->Orwhere('type_id', 'LIKE', '%' . $value . '%')
-                    ->Orwhere('reservation', 'LIKE', '%' . $value . '%');
+                    ->Orwhere('reservation', 'LIKE', '%' . $value . '%')
+                    ->Orwhere('card_id', 'LIKE', '%' . $value . '%');
             })->latest()->simplePaginate($this->pagination);
 
         } elseif($this->datepicker != "") {

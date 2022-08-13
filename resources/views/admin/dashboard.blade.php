@@ -139,20 +139,27 @@
 
                             <div class="card-body">
                                 <h4 class="card-title mb-4">{{ $member->firstname }} {{ $member->lastname }}</h4>
-                                <div class="row">
-                                    <i class="far fa-envelope col-1 pt-2"></i>
-                                    <p class="col-10">{{ $member->email }}</p>
-                                </div>
+                                @if($member->email)
+                                    <div class="row">
+                                        <i class="far fa-envelope col-1 pt-2"></i>
+                                        <p class="col-10">{{ $member->email }}</p>
+                                    </div>
+                                @endif
 
-                                <div class="row">
-                                    <i class="far fa-building col-1 pt-2"></i>
-                                    <p class="col-10">{{ $member->company }}</p>
-                                </div>
+                                @if($member->company)
+                                    <div class="row">
+                                        <i class="far fa-building col-1 pt-2"></i>
+                                        <p class="col-10">{{ $member->company }}</p>
+                                    </div>
+                                @endif
 
-                                <div class="row">
-                                    <i class="far fa-building col-1 pt-2"></i>
-                                    <p class="col-10">{{ $member->jobTitle }}</p>
-                                </div>
+                                @if($member->jobTitle)
+                                    <div class="row">
+                                        <i class="far fa-building col-1 pt-2"></i>
+                                        <p class="col-10">{{ $member->jobTitle }}</p>
+                                    </div>
+                                @endif
+
                             </div>
 
                             <div class="row px-2">

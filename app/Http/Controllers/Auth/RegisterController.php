@@ -91,6 +91,13 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
+        if($listURL->team_id == 1) {
+            if( $listURL->card_id >= 187 &&  $listURL->card_id <= 286){
+                $user->email_verified_at = now();
+                $user->update();
+            }
+        }
+
         DB::table('user_role')->insert([
             'user_id' => $user->id,
             'role_id' => $listURL->role_id,
