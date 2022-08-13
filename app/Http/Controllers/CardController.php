@@ -191,7 +191,7 @@ class CardController extends Controller
         }
 
         if($contact->VAT) {
-            $vcard->addLabel($contact->VAT);
+            $vcard->addJobtitle($contact->VAT);
         }
 
         if($contact->message) {
