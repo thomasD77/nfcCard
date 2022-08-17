@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\MemberCredentialCardExport;
 use App\Exports\MemberListExport;
 use App\Http\Requests\MemberRequest;
+use App\Models\Banner;
 use App\Models\listUrl;
 use App\Models\Material;
 use App\Models\Member;
@@ -513,6 +514,22 @@ class AdminMembersController extends Controller
             //$file->move('card/avatars', $name);
             //$member->avatar = $name;
             $member->avatar = $file->getClientOriginalName();
+        }
+
+        if($request->check_banner !== NULL){
+            $state->banner = $request->check_banner;
+        }else {
+            $state->banner = 0;
+        }
+        /** wegscrijven van de banner */
+        if($file = $request->file('banner_id')){
+            $name = $file->getClientOriginalName();
+            $file->move('media/banners', $name);
+            $banner = Banner::create(['file'=>$name]);
+
+            $member = Member::findOrFail($id);
+            $member->banner_id = $banner->id;
+            $member->update();
         }
 
         if($request->check_youtube_video !== NULL){

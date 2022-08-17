@@ -199,6 +199,16 @@
                                 {!! Form::file('avatar_id',['class'=>'form-control']) !!}
                             </div>
                         </div>
+                        <div class="mb-4">
+                            <label class="form-label">Your Banner</label>
+                            <div class="mb-4">
+                                <img class="banner" height="100" width="200" src="{{$user->banner ? asset('/') . $user->banner->file : asset('/assets/front/img/bg-vcard.png')}}" alt="{{$user->name}}">
+                            </div>
+                            <div class="form-group mb-4">
+                                {!! Form::label('banner_id', 'Choose a new banner:', ['class'=>'form-label']) !!}
+                                {!! Form::file('banner_id',['class'=>'form-control']) !!}
+                            </div>
+                        </div>
 
                         <div class="d-flex justify-content-between">
                             <div class="form-group mr-1">
@@ -487,14 +497,6 @@
         cropper.destroy();
         cropper = null;
     });
-
-    $("#move-picture").on('click', function(){
-        cropper.setDragMode("move");
-    })
-
-    $("#move-crop").on('click', function(){
-        cropper.setDragMode('crop');
-    })
 
     $("#crop").click(function(){
         canvas = cropper.getCroppedCanvas({

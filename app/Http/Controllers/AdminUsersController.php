@@ -6,6 +6,7 @@ use App\Http\Requests\TeamRequest;
 use App\Http\Requests\UserEditRequest;
 use App\Models\AccountSettings;
 use App\Models\Avatar;
+use App\Models\Banner;
 use App\Models\Contact;
 use App\Models\Member;
 use App\Models\Role;
@@ -113,6 +114,17 @@ class AdminUsersController extends Controller
 
             $user = User::findOrFail($id);
             $user->avatar_id = $avatar->id;
+            $user->update();
+        }
+
+        /** wegscrijven van de banner */
+        if($file = $request->file('banner_id')){
+            $name = $file->getClientOriginalName();
+            $file->move('media/banners', $name);
+            $banner = Banner::create(['file'=>$name]);
+
+            $user = User::findOrFail($id);
+            $user->banner_id = $banner->id;
             $user->update();
         }
 
