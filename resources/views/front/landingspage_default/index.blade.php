@@ -176,26 +176,26 @@
                                                         @if($member->settings)
                                                             @if($member->settings->phone)
                                                                 <label class="form-label" for="frontend-contact-email">Phone</label>
-                                                                <div class="mb-4 row">
-                                                                    <div class="col-3 pr-0">
-                                                                        {{--                                                            <select class="form-select" name="landcode" aria-label="Default select example">--}}
-                                                                        {{--                                                                <option selected value="+32">+32</option>--}}
-                                                                        {{--                                                                <option value="+31">+31</option>--}}
-                                                                        {{--                                                                <option value="+33">+33</option>--}}
-                                                                        {{--                                                                <option value="+49">+49</option>--}}
-                                                                        {{--                                                            </select>--}}
-                                                                        <input type="text" class="form-control input_modal"
-                                                                               name="landcode"
-                                                                               value="+32"
-                                                                               autocomplete="phone">
-                                                                    </div>
-                                                                    <div class="col-9 pl-0">
-                                                                        <input type="text" class="form-control input_modal"
-                                                                               name="phone"
-                                                                               placeholder="Enter your phone..."
-                                                                               autocomplete="phone">
-                                                                    </div>
+                                                                <div class="mb-4">
+                                                                    <input type="text" class="form-control input_modal"
+                                                                           name="phone"
+                                                                           placeholder="ex: +32474413669"
+                                                                           autocomplete="phone">
                                                                 </div>
+{{--                                                                <div class="mb-4 row">--}}
+{{--                                                                    <div class="col-3 pr-0">--}}
+{{--                                                                        <input type="text" class="form-control input_modal"--}}
+{{--                                                                               name="landcode"--}}
+{{--                                                                               value="+32"--}}
+{{--                                                                               >--}}
+{{--                                                                    </div>--}}
+{{--                                                                    <div class="col-9 pl-0">--}}
+{{--                                                                        <input type="text" class="form-control input_modal"--}}
+{{--                                                                               name="phone"--}}
+{{--                                                                               placeholder="Enter your phone..."--}}
+{{--                                                                               autocomplete="phone">--}}
+{{--                                                                    </div>--}}
+{{--                                                                </div>--}}
                                                             @endif
                                                         @endif
 

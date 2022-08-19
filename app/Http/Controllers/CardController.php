@@ -272,7 +272,7 @@ class CardController extends Controller
             }
             else
             {
-                $contact->phone = $request->landcode . $request->phone;
+                $contact->phone = $request->phone;
             }
 
             if($request->message == "")
