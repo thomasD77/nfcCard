@@ -95,15 +95,6 @@ class AdminUsersController extends Controller
     public function update(UserEditRequest $request, $id)
     {
         //
-        $user = User::where('username', $request->username)
-            ->where('id', '!=', Auth::user()->id)
-            ->get();
-
-        if($user->isNotEmpty() && Auth::user()->roles->first()->name != 'superAdmin')
-        {
-            Session::flash('user_username', 'This Username is already taken. Please try again.');
-            return redirect()->back();
-        }
 
         /** wegschrijven van de avatar **/
         if($file = $request->file('avatar_id')){
@@ -123,10 +114,13 @@ class AdminUsersController extends Controller
         $user->email = $request->email;
 
 
-        if(!$request->business){
-            $user->business = 0;
-        }else {
-            $user->business = 1;
+        if(Auth()->user()->roles->first()->name != 'client') {
+
+            if(!$request->business){
+                $user->business = 0;
+            }else {
+                $user->business = 1;
+            }
         }
 
         $user->update();
