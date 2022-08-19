@@ -27,6 +27,10 @@ class ContactClient extends Component
     public $status;
     public $contact;
 
+    protected $listeners = [
+        'toggleRender' => '$refresh',
+    ];
+
     public function mount(User $user)
     {
         $this->user = $user;
@@ -36,13 +40,18 @@ class ContactClient extends Component
     {
         $user = Auth()->user();
 
-        $contact = Contact::where('email', $contact->email)->first();
+        $contacts = $user->contacts;
 
-        if($user->contacts->where('contact_id', $contact->id)){
-            Session::flash('contact_message', $contact->name . " " . 'is already in your contacts.');
-        } else {
-            $user->contacts()->sync($contact->id, false);
+        foreach ( $user->contacts as $item) {
+            if ($item->email == $contact->email) {
+                Session::flash('contact_message', $contact->name . " with " . $contact->email . " " . 'is already in your contacts.');
+                return redirect()->back();
+            }
         }
+
+        $user->contacts()->sync($contact->id, false);
+        Session::flash('contact_message_success', $contact->name . " with " . $contact->email . " " . 'is added in your contacts.');
+        return redirect()->to('/admin/contacts');
 
     }
 
@@ -98,8 +107,6 @@ class ContactClient extends Component
                 $ids [] = $contact->id;
             }
         }
-
-
 
         //Check if USER is given in URL request
         if($this->user->member){

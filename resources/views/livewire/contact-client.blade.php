@@ -189,6 +189,9 @@
             @if(Session::has('contact_message'))
                 <p class="alert alert-info my-3">{{session('contact_message')}}</p>
             @endif
+            @if(Session::has('contact_message_success'))
+                <p class="alert alert-success my-3">{{session('contact_message_success')}}</p>
+        @endif
             <!-- End Session flash -->
 
             <table class="table table-striped table-hover table-vcenter fs-sm">

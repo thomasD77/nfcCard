@@ -96,6 +96,8 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo(Team::class);
     }
 
+
+
     public function contacts()
     {
         return $this->belongsToMany(Contact::class, 'user_contact');
