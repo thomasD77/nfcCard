@@ -95,8 +95,7 @@ class AdminUsersController extends Controller
      */
     public function update(UserEditRequest $request, $id)
     {
-        //
-        $user = User::where('username', $request->username)
+        $user = User::where('username', $request->name)
             ->where('id', '!=', Auth::user()->id)
             ->get();
 
@@ -117,23 +116,11 @@ class AdminUsersController extends Controller
             $user->update();
         }
 
-        /** wegscrijven van de banner */
-        if($file = $request->file('banner_id')){
-            $name = $file->getClientOriginalName();
-            $file->move('media/banners', $name);
-            $banner = Banner::create(['file'=>$name]);
-
-            $user = User::findOrFail($id);
-            $user->banner_id = $banner->id;
-            $user->update();
-        }
-
         /** wegschrijven van de user gegevens **/
         $user = User::findOrFail($id);
         $user->name = $request->name;
         $user->username = $request->username;
         $user->email = $request->email;
-
 
         if(!$request->business){
             $user->business = 0;
@@ -142,7 +129,6 @@ class AdminUsersController extends Controller
         }
 
         $user->update();
-
         if($request->roles) {
             /** wegschrijven van de role in tussentabel **/
             $user->roles()->sync($request->roles, true);

@@ -199,16 +199,6 @@
                                 {!! Form::file('avatar_id',['class'=>'form-control']) !!}
                             </div>
                         </div>
-                        <div class="mb-4">
-                            <label class="form-label">Your Banner</label>
-                            <div class="mb-4">
-                                <img class="banner" height="100" width="200" src="{{$user->banner ? asset('/') . $user->banner->file : asset('/assets/front/img/bg-vcard.png')}}" alt="{{$user->name}}">
-                            </div>
-                            <div class="form-group mb-4">
-                                {!! Form::label('banner_id', 'Choose a new banner:', ['class'=>'form-label']) !!}
-                                {!! Form::file('banner_id',['class'=>'form-control']) !!}
-                            </div>
-                        </div>
 
                         <div class="d-flex justify-content-between">
                             <div class="form-group mr-1">
@@ -470,19 +460,25 @@
 
         if (files && files.length > 0) {
             file = files[0];
-            let ext = file.name.split(".")[1];
-            if(ext === "jpg" || ext === "jpeg" || ext === "png") {
-                if (URL) {
-                    done(URL.createObjectURL(file));
-                } else if (FileReader) {
-                    reader = new FileReader();
-                    reader.onload = function (e) {
-                        done(reader.result);
-                    };
-                    reader.readAsDataURL(file);
+            if(file.size <= 256000000) {
+                let ext = file.name.split(".")[1];
+                if (ext === "jpg" || ext === "jpeg" || ext === "png") {
+                    if (URL) {
+                        done(URL.createObjectURL(file));
+                    } else if (FileReader) {
+                        reader = new FileReader();
+                        reader.onload = function (e) {
+                            done(reader.result);
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                } else {
+                    $(e.target).val('');
+                    alert('Valid image types are (.jpg , .png , .jpeg)');
                 }
             } else{
-                alert('Valid image types are (.jpg , .png , .jpeg)');
+                $(e.target).val('');
+                alert('The image you want to upload is to big');
             }
         }
     });

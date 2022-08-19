@@ -8,7 +8,6 @@ class ImageCropperController extends Controller
 {
     public function upload(Request $request)
     {
-
         $nameExt = $this->getNameAndExt($request->name);
         $name = $nameExt['name'];
         $ext = $nameExt['ext'];

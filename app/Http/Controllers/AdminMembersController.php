@@ -523,13 +523,17 @@ class AdminMembersController extends Controller
         }
         /** wegscrijven van de banner */
         if($file = $request->file('banner_id')){
-            $name = $file->getClientOriginalName();
-            $file->move('media/banners', $name);
-            $banner = Banner::create(['file'=>$name]);
+            if($request->file('banner_id')->getSize() <= 256000000) {
+                $name = $file->getClientOriginalName();
+                $file->move('media/banners', $name);
+                $banner = Banner::create(['file' => $name]);
 
-            $member = Member::findOrFail($id);
-            $member->banner_id = $banner->id;
-            $member->update();
+                $member = Member::findOrFail($id);
+                $member->banner_id = $banner->id;
+            } else{
+                \Brian2694\Toastr\Facades\Toastr::error('Banner image to large');
+                return back();
+            }
         }
 
         if($request->check_youtube_video !== NULL){

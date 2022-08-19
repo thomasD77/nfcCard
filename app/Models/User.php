@@ -29,8 +29,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'source_id',
         'archived',
         'member_id',
-        'business',
-        'banner_id'
+        'business'
     ];
 
     /**
@@ -70,10 +69,6 @@ class User extends Authenticatable implements MustVerifyEmail
     public function avatar()
     {
         return $this->belongsTo(Avatar::class);
-    }
-    public function banner()
-    {
-        return $this->belongsTo(Banner::class);
     }
 
     public function posts()
