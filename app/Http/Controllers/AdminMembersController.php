@@ -23,6 +23,7 @@ use LaravelQRCode\Facades\QRCode;
 use Maatwebsite\Excel\Facades\Excel;
 use Spatie\Browsershot\Browsershot;
 use Image;
+use Illuminate\Support\Facades\File;
 
 class AdminMembersController extends Controller
 {
@@ -513,6 +514,7 @@ class AdminMembersController extends Controller
             //$name = time(). $file->getClientOriginalName();
             //$file->move('card/avatars', $name);
             //$member->avatar = $name;
+            File::delete('card/avatars/'.$member->avatar);
             $member->avatar = $file->getClientOriginalName();
         }
 
@@ -523,10 +525,12 @@ class AdminMembersController extends Controller
         }
         /** wegscrijven van de banner */
         if($file = $request->file('banner_id')){
-            if($request->file('banner_id')->getSize() <= 256000000) {
+            if($request->file('banner_id')->getSize() <= 2097152) {
                 $name = $file->getClientOriginalName();
                 $file->move('media/banners', $name);
                 $banner = Banner::create(['file' => $name]);
+
+                File::delete('media/banners/'.$name);
 
                 $member = Member::findOrFail($id);
                 $member->banner_id = $banner->id;

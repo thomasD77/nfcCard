@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Facades\File;
 
 class AdminUsersController extends Controller
 {
@@ -111,7 +112,14 @@ class AdminUsersController extends Controller
             //$file->move('media/avatars', $name);
             $avatar = Avatar::create(['file'=>$name]);
 
+
             $user = User::findOrFail($id);
+            $deleteAvatar = Avatar::findOrFail($user->avatar_id);
+            $deleteFile = $deleteAvatar->file;
+            if(substr($deleteFile,0,1) === "/"){
+                $deleteFile = substr($deleteFile,1);
+            }
+            File::delete($deleteFile);
             $user->avatar_id = $avatar->id;
             $user->update();
         }

@@ -694,7 +694,7 @@
 
         if (files && files.length > 0) {
             file = files[0];
-            if(file.size <= 256000000) {
+            if(file.size <= 2097152) {
                 let ext = file.name.split(".")[1];
                 if (ext === "jpg" || ext === "jpeg" || ext === "png") {
                     if (URL) {
@@ -708,11 +708,11 @@
                     }
                 } else {
                     $(e.target).val('');
-                    alert('Valid image types are (.jpg , .png , .jpeg)');
+                    //alert('Valid image types are (.jpg , .png , .jpeg)');
                 }
             } else{
                 $(e.target).val('');
-                alert('The image you want to upload is to big');
+                //alert('The image you want to upload is to big');
             }
         }
     });
@@ -762,10 +762,10 @@
                     success: function (data) {
                         if (data.success === "success") {
                             $modal.modal('hide');
-                            alert("success upload image (don't forget to save)");
+                            //alert("success upload image (don't forget to save)");
                         } else if (data.success === "no") {
                             $modal.modal('hide');
-                            alert('Valid image types are (.jpg , .png , .jpeg)');
+                            //alert('Valid image types are (.jpg , .png , .jpeg)');
                         }
                     }
                 });
