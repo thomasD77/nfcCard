@@ -188,6 +188,7 @@
                         <a class="text-center nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('show.QRcode', Auth()->user()->member->card_id)}}">
                             <img width="35px" height="35px" class="img-fluid" src="{{ asset('images/content/QRcode.png') }}" alt="QRcode">
                         </a>
+                        {{--<button data-href="{{$member->memberURL}}" id="to-clipboard"><i class="fa-solid fa-copy"></i></button> --}}
                     @endif
 
 
@@ -437,6 +438,17 @@
             setTimeout(function() {
                 $('#flash_message').fadeOut('fast');
             }, 3000); // <-- time in milliseconds
+        </script>
+        <script>
+            $("#to-clipboard").on('click', function(e){
+                let target = $(e.target);
+                if(target.hasClass("fa-solid fa-copy")){
+                    target = $(target).parent();
+                }
+                let text = $(target).attr("data-href");
+                /* Werkt blijkbaar enkel maar op een https en niet lokaal*/
+                navigator.clipboard.writeText(text);
+            })
         </script>
 
     </body>
