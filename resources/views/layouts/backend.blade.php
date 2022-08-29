@@ -188,7 +188,7 @@
                         <a class="text-center nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('show.QRcode', Auth()->user()->member->card_id)}}">
                             <img width="35px" height="35px" class="img-fluid" src="{{ asset('images/content/QRcode.png') }}" alt="QRcode">
                         </a>
-                        <button data-href="{{$member->memberURL}}" id="to-clipboard"><i class="fa-solid fa-copy"></i></button>
+{{--                        <button data-href="{{$member->memberURL}}" id="to-clipboard"><i class="fa-solid fa-copy"></i></button>--}}
                     @endif
 
 
