@@ -35,144 +35,144 @@
         </div>
 
         <!-- Table Mobile -->
-        <div class="d-md-none block-content block-content-full overflow-scroll px-1">
-            <!-- Pagination Select-->
-            <div class="d-flex justify-content-md-end">
-                <select wire:model="pagination" style="width: 80px" class="form-select " aria-label="Default select example">
-                    <option value="5">5</option>
-                    <option value="20">20</option>
-                    <option selected value="25">25</option>
-                    <option value="50">50</option>
-                    <option value="100">100</option>
-                </select>
-            </div>
-            <!-- End Pagination -->
+{{--        <div class="d-md-none block-content block-content-full overflow-scroll px-1">--}}
+{{--            <!-- Pagination Select-->--}}
+{{--            <div class="d-flex justify-content-md-end">--}}
+{{--                <select wire:model="pagination" style="width: 80px" class="form-select " aria-label="Default select example">--}}
+{{--                    <option value="5">5</option>--}}
+{{--                    <option value="20">20</option>--}}
+{{--                    <option selected value="25">25</option>--}}
+{{--                    <option value="50">50</option>--}}
+{{--                    <option value="100">100</option>--}}
+{{--                </select>--}}
+{{--            </div>--}}
+{{--            <!-- End Pagination -->--}}
 
-            <!-- Session flash-->
-            @if(Session::has('contact_message'))
-                <p class="alert alert-info my-3">{{session('contact_message')}}</p>
-            @endif
-            <!-- End Session flash -->
+{{--            <!-- Session flash-->--}}
+{{--            @if(Session::has('contact_message'))--}}
+{{--                <p class="alert alert-info my-3">{{session('contact_message')}}</p>--}}
+{{--            @endif--}}
+{{--            <!-- End Session flash -->--}}
 
-            <table class="table table-striped table-hover table-vcenter fs-sm">
-                <thead>
-                <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Details</th>
-                    <th scope="col">Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                @if($contacts)
-                    @foreach($contacts as $contact)
-                        <tr>
-                            <td>{{$contact->name ? $contact->name : 'No Name'}}</td>
-                            <td><!-- Button trigger modal -->
-                                <a type="button" data-bs-toggle="modal" data-bs-target="#exampleModal{{$contact->id}}">
-                                    <img src="{{ asset('images/content/swap_log.png') }}" alt="logo" class="img-fluid">
-                                </a>
+{{--            <table class="table table-striped table-hover table-vcenter fs-sm">--}}
+{{--                <thead>--}}
+{{--                <tr>--}}
+{{--                    <th scope="col">Name</th>--}}
+{{--                    <th scope="col">Details</th>--}}
+{{--                    <th scope="col">Actions</th>--}}
+{{--                </tr>--}}
+{{--                </thead>--}}
+{{--                <tbody>--}}
+{{--                @if($contacts)--}}
+{{--                    @foreach($contacts as $contact)--}}
+{{--                        <tr>--}}
+{{--                            <td>{{$contact->name ? $contact->name : 'No Name'}}</td>--}}
+{{--                            <td><!-- Button trigger modal -->--}}
+{{--                                <a type="button" data-bs-toggle="modal" data-bs-target="#exampleModal{{$contact->id}}">--}}
+{{--                                    <img src="{{ asset('images/content/swap_log.png') }}" alt="logo" class="img-fluid">--}}
+{{--                                </a>--}}
 
-                                <!-- Modal -->
-                                <div class="modal fade" wire:ignore.self id="exampleModal{{$contact->id}}" wire:key="{{ $contact->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">SCAN DETAILS</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                @if($contact->name)
-                                                    <p><strong>Name:</strong></p>
-                                                    <p class="bg-light p-2">{{$contact->name ? $contact->name : 'No Name'}}</p>
-                                                @endif
+{{--                                <!-- Modal -->--}}
+{{--                                <div class="modal fade" wire:ignore.self id="exampleModal{{$contact->id}}" wire:key="{{ $contact->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">--}}
+{{--                                    <div class="modal-dialog">--}}
+{{--                                        <div class="modal-content">--}}
+{{--                                            <div class="modal-header">--}}
+{{--                                                <h5 class="modal-title" id="exampleModalLabel">SCAN DETAILS</h5>--}}
+{{--                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="modal-body">--}}
+{{--                                                @if($contact->name)--}}
+{{--                                                    <p><strong>Name:</strong></p>--}}
+{{--                                                    <p class="bg-light p-2">{{$contact->name ? $contact->name : 'No Name'}}</p>--}}
+{{--                                                @endif--}}
 
-                                                @if($contact->email)
-                                                    <p><strong>Email:</strong></p>
-                                                    <p class="bg-light p-2">{{$contact->email ? $contact->email : 'No email'}}</p>
-                                                @endif
+{{--                                                @if($contact->email)--}}
+{{--                                                    <p><strong>Email:</strong></p>--}}
+{{--                                                    <p class="bg-light p-2">{{$contact->email ? $contact->email : 'No email'}}</p>--}}
+{{--                                                @endif--}}
 
-                                                @if($contact->phone)
-                                                    <p><strong>Phone:</strong></p>
-                                                    <p class="bg-light p-2">{{$contact->phone ? $contact->phone : 'No Phone'}}</p>
-                                                @endif
+{{--                                                @if($contact->phone)--}}
+{{--                                                    <p><strong>Phone:</strong></p>--}}
+{{--                                                    <p class="bg-light p-2">{{$contact->phone ? $contact->phone : 'No Phone'}}</p>--}}
+{{--                                                @endif--}}
 
-                                                @if($contact->company)
-                                                    <p><strong>Company:</strong></p>
-                                                    <p class="bg-light p-2">{{$contact->company ? $contact->company : ''}}</p>
-                                                @endif
+{{--                                                @if($contact->company)--}}
+{{--                                                    <p><strong>Company:</strong></p>--}}
+{{--                                                    <p class="bg-light p-2">{{$contact->company ? $contact->company : ''}}</p>--}}
+{{--                                                @endif--}}
 
-                                                @if($contact->VAT)
-                                                    <p><strong>VAT:</strong></p>
-                                                    <p class="bg-light p-2">{{$contact->VAT ? $contact->VAT : ''}}</p>
-                                                @endif
+{{--                                                @if($contact->VAT)--}}
+{{--                                                    <p><strong>VAT:</strong></p>--}}
+{{--                                                    <p class="bg-light p-2">{{$contact->VAT ? $contact->VAT : ''}}</p>--}}
+{{--                                                @endif--}}
 
-                                                @if($contact->notes)
-                                                    <p><strong>Message:</strong></p>
-                                                    <p class="bg-light p-2">{{$contact->message ? $contact->message : 'No message'}}</p>
-                                                @endif
+{{--                                                @if($contact->notes)--}}
+{{--                                                    <p><strong>Message:</strong></p>--}}
+{{--                                                    <p class="bg-light p-2">{{$contact->message ? $contact->message : 'No message'}}</p>--}}
+{{--                                                @endif--}}
 
-                                                <p class="mb-2"><strong>Status</strong></p>
-                                                {{--                                                {!! Form::select('statusses',$statusses,null,['class'=>'form-control', 'placeholder' => 'Select here...'])!!}--}}
+{{--                                                <p class="mb-2"><strong>Status</strong></p>--}}
+{{--                                                --}}{{--                                                {!! Form::select('statusses',$statusses,null,['class'=>'form-control', 'placeholder' => 'Select here...'])!!}--}}
 
-                                                @if($statusses)
-                                                    <select name="status" wire:model="status" wire:change="contact({{ $contact }})" class="form-control">
-                                                        <option value=''>choose status</option>
-                                                        @foreach($statusses as $status)
-                                                            <option value={{ $status->id }}>{{ $status->name }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                @endif
+{{--                                                @if($statusses)--}}
+{{--                                                    <select name="status" wire:model="status" wire:change="contact({{ $contact }})" class="form-control">--}}
+{{--                                                        <option value=''>choose status</option>--}}
+{{--                                                        @foreach($statusses as $status)--}}
+{{--                                                            <option value={{ $status->id }}>{{ $status->name }}</option>--}}
+{{--                                                        @endforeach--}}
+{{--                                                    </select>--}}
+{{--                                                @endif--}}
 
-                                                @if($contact->created_at)
-                                                    <p><strong>Created at:</strong></p>
-                                                    <p class="bg-light p-2">{{$contact->created_at ? $contact->created_at : 'No date'}}</p>
-                                                @endif
+{{--                                                @if($contact->created_at)--}}
+{{--                                                    <p class="mb-2 mt-3"><strong>Created at:</strong></p>--}}
+{{--                                                    <p class="bg-light p-2">{{$contact->created_at ? $contact->created_at : 'No date'}}</p>--}}
+{{--                                                @endif--}}
 
-                                                <hr>
+{{--                                                <hr>--}}
 
-                                                <div class="d-flex justify-content-between mb-2">
-                                                    <p><strong>My notes:</strong></p> <button class="btn btn-sm btn-primary" wire:click="showNotes"> <i  class="fa fa-fw fa-pencil-alt"></i></button>
-                                                </div>
-                                                <p class="bg-light p-2">{{$contact->notes ? $contact->notes : 'No notes'}}</p>
-                                            </div>
-                                            @if($showNotes)
-                                                <div class="modal-body">
-                                                    <form wire:submit.prevent="saveNote({{ $contact }})">
-                                                        <textarea type="text" class="form-control form-control-alt" placeholder="Type your note..." id="page-header-search-input2" wire:model="notes"></textarea>
-                                                        <button class="btn btn-primary mt-1" type="submit" >SAVE</button>
-                                                    </form>
-                                                </div>
-                                            @endif
-                                            <div class="card-body d-flex justify-content-end">
-                                                <button type="button" class=" btn btn-primary p-2 m-3" data-bs-dismiss="modal" aria-label="Close">Thanks</button>
-                                            </div>
-                                        </div>
-                                    </div>
+{{--                                                <div class="d-flex justify-content-between mb-2">--}}
+{{--                                                    <p><strong>My notes:</strong></p> <button class="btn btn-sm btn-primary" wire:click="showNotes"> <i  class="fa fa-fw fa-pencil-alt"></i></button>--}}
+{{--                                                </div>--}}
+{{--                                                <p class="bg-light p-2">{{$contact->notes ? $contact->notes : 'No notes'}}</p>--}}
+{{--                                            </div>--}}
+{{--                                            @if($showNotes)--}}
+{{--                                                <div class="modal-body">--}}
+{{--                                                    <form wire:submit.prevent="saveNote({{ $contact }})">--}}
+{{--                                                        <textarea type="text" class="form-control form-control-alt" placeholder="Type your note..." id="page-header-search-input2" wire:model="notes"></textarea>--}}
+{{--                                                        <button class="btn btn-primary mt-1" type="submit" >SAVE</button>--}}
+{{--                                                    </form>--}}
+{{--                                                </div>--}}
+{{--                                            @endif--}}
+{{--                                            <div class="card-body d-flex justify-content-end">--}}
+{{--                                                <button type="button" class=" btn btn-primary p-2 m-3" data-bs-dismiss="modal" aria-label="Close">Thanks</button>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
 
-                                </div>
-                            </td>
-                            <td>
-                                <div class="btn-group">
-                                    <button class="btn btn-sm btn-alt-secondary" wire:click="archiveContact({{$contact->id}})"><i class="fa fa-archive "></i></button>
-                                </div>
-                                <div class="btn-group">
-                                    @if(in_array($contact->id, $ids))
-                                        <button class="btn btn-sm btn-alt-success"><i class="fa fa-check"></i></button>
-                                    @else
-                                        <button class="btn btn-sm btn-alt-info" wire:key="{{ $contact->id }}" wire:click="toggleToContact({{$contact->id}})"><i class="far fa-address-book "></i></button>
-                                    @endif
-                                </div>
-                            </td>
-                        </tr>
-                    @endforeach
-                @endif
-                </tbody>
-            </table>
+{{--                                </div>--}}
+{{--                            </td>--}}
+{{--                            <td>--}}
+{{--                                <div class="btn-group">--}}
+{{--                                    <button class="btn btn-sm btn-alt-secondary" wire:click="archiveContact({{$contact->id}})"><i class="fa fa-archive "></i></button>--}}
+{{--                                </div>--}}
+{{--                                <div class="btn-group">--}}
+{{--                                    @if(in_array($contact->id, $ids))--}}
+{{--                                        <button class="btn btn-sm btn-alt-success"><i class="fa fa-check"></i></button>--}}
+{{--                                    @else--}}
+{{--                                        <button class="btn btn-sm btn-alt-info" wire:key="{{ $contact->id }}" wire:click="toggleToContact({{$contact->id}})"><i class="far fa-address-book "></i></button>--}}
+{{--                                    @endif--}}
+{{--                                </div>--}}
+{{--                            </td>--}}
+{{--                        </tr>--}}
+{{--                    @endforeach--}}
+{{--                @endif--}}
+{{--                </tbody>--}}
+{{--            </table>--}}
 
-        </div>
+{{--        </div>--}}
 
         <!-- Table Desktop -->
-        <div class="d-none d-md-block block-content block-content-full overflow-scroll px-1">
+        <div class="block-content block-content-full overflow-scroll px-1">
             <!-- Pagination Select-->
             <div class="d-flex justify-content-md-end">
                 <select wire:model="pagination" style="width: 80px" class="form-select " aria-label="Default select example">
@@ -229,27 +229,27 @@
                                             </div>
                                             <div class="modal-body">
                                                 @if($contact->name)
-                                                    <p><strong>Name:</strong></p>
+                                                    <p class="text-start"><strong>Name:</strong></p>
                                                     <p class="bg-light p-2">{{$contact->name ? $contact->name : 'No Name'}}</p>
                                                 @endif
 
                                                 @if($contact->email)
-                                                    <p><strong>Email:</strong></p>
+                                                    <p class="text-start"><strong>Email:</strong></p>
                                                     <p class="bg-light p-2">{{$contact->email ? $contact->email : 'No email'}}</p>
                                                 @endif
 
                                                 @if($contact->phone)
-                                                    <p><strong>Phone:</strong></p>
+                                                    <p class="text-start"><strong>Phone:</strong></p>
                                                     <p class="bg-light p-2">{{$contact->phone ? $contact->phone : 'No Phone'}}</p>
                                                 @endif
 
                                                 @if($contact->company)
-                                                    <p><strong>Company:</strong></p>
+                                                    <p class="text-start"><strong>Company:</strong></p>
                                                     <p class="bg-light p-2">{{$contact->company ? $contact->company : ''}}</p>
                                                 @endif
 
                                                 @if($contact->VAT)
-                                                    <p><strong>VAT:</strong></p>
+                                                    <p class="text-start"><strong>VAT:</strong></p>
                                                     <p class="bg-light p-2">{{$contact->VAT ? $contact->VAT : ''}}</p>
                                                 @endif
 
@@ -258,7 +258,12 @@
                                                     <p class="bg-light p-2">{{$contact->message ? $contact->message : 'No message'}}</p>
                                                 @endif
 
-                                                <p class="mb-2"><strong>Status</strong></p>
+                                                @if($contact->created_at)
+                                                    <p class="mb-2 mt-3 text-start"><strong>Created at:</strong></p>
+                                                    <p class="bg-light p-2">{{$contact->created_at ? $contact->created_at : 'No date'}}</p>
+                                                @endif
+
+                                                <p class="mb-2 text-start"><strong>Status</strong></p>
                                                 {{--                                                {!! Form::select('statusses',$statusses,null,['class'=>'form-control', 'placeholder' => 'Select here...'])!!}--}}
 
                                                 <select name="status" wire:model="status" wire:change="contact({{ $contact }})" class="form-control">
