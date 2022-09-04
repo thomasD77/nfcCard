@@ -216,7 +216,7 @@
                             <td>{{$contact->phone ? $contact->phone : 'No Phone'}}</td>
                             <td class="text-center"><!-- Button trigger modal -->
                                 <a type="button" class="" data-bs-toggle="modal" data-bs-target="#exampleModal2{{$contact->id}}">
-                                    <img src="{{ asset('images/content/swap_log.png') }}" alt="logo" class="img-fluid" width="80" height="80">
+                                    <img src="{{ asset('images/content/swap_log.png') }}" alt="logo" class="img-fluid" width="120" height="120">
                                 </a>
 
                                 <!-- Modal -->
