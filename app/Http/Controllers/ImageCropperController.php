@@ -23,12 +23,19 @@ class ImageCropperController extends Controller
         $image_base64 = base64_decode($image_parts[1]);
         $file = $folderPath . $name . '.' . $ext;
 
-        if(file_exists($file)){
-            unlink($file);
+        $teller = 0;
+        $checkFile = $file;
+        while(file_exists($checkFile)){
+            //unlink($file);
+            $teller++;
+            $exp = explode('.', $file);
+            $exp[0] .= "_" .$teller;
+            $checkFile = implode(".", $exp);
         }
+        $file = $checkFile;
         file_put_contents($file, $image_base64);
 
-        return response()->json(['success'=>'success', 'file' => $file]);
+        return response()->json(['success'=>'success', 'file' => $file, 'teller' => $teller]);
     }
 
     public function getNameAndExt($name)
