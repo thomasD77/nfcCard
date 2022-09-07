@@ -49,7 +49,7 @@ class AdminUsersController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -60,7 +60,7 @@ class AdminUsersController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -72,7 +72,7 @@ class AdminUsersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -90,58 +90,59 @@ class AdminUsersController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function update(UserEditRequest $request, $id)
+    public function update(UserEditRequest $request)
     {
-        $user = User::where('username', $request->name)
-            ->where('id', '!=', Auth::user()->id)
+        $user = User::where('email', $request->email)
+            //->where('id', '!=', Auth::user()->id)
             ->get();
-
-        if($user->isNotEmpty() && Auth::user()->roles->first()->name != 'superAdmin')
-        {
+        if ($user->isNotEmpty() && Auth::user()->roles->first()->name != 'superAdmin') {
             Session::flash('user_username', 'This Username is already taken. Please try again.');
             return redirect()->back();
         }
-
+        $user = $user[0];
         /** wegschrijven van de avatar **/
-        if($file = $request->file('avatar_id')){
+        if ($file = $request->file('avatar_id')) {
             $name = $file->getClientOriginalName();
-            //$file->move('media/avatars', $name);
-            $avatar = Avatar::create(['file'=>$name]);
-
-
-            $user = User::findOrFail($id);
-            $deleteAvatar = Avatar::findOrFail($user->avatar_id);
-            $deleteFile = $deleteAvatar->file;
-            if(substr($deleteFile,0,1) === "/"){
-                $deleteFile = substr($deleteFile,1);
+            if($request->changeAvatarName !== "0") {
+                $exp = explode('.', $name);
+                $exp[0] .= "_" . $request->changeAvatarName;
+                $name = implode('.', $exp);
             }
-            File::delete($deleteFile);
+            $avatar = Avatar::create(['file' => $name]);
+
+            if($user->avatar_id) {
+                $deleteAvatar = Avatar::find($user->avatar_id);
+                if($deleteAvatar) {
+                    $deleteFile = $deleteAvatar->file;
+                    if (substr($deleteFile, 0, 1) === "/") {
+                        $deleteFile = substr($deleteFile, 1);
+                    }
+                    File::delete($deleteFile);
+                }
+            }
             $user->avatar_id = $avatar->id;
             $user->update();
         }
 
         /** wegschrijven van de user gegevens **/
-        $user = User::findOrFail($id);
         $user->name = $request->name;
         $user->username = $request->username;
         $user->email = $request->email;
 
-        if(!$request->business){
+        if (!$request->business) {
             $user->business = 0;
-        }else {
+        } else {
             $user->business = 1;
         }
 
         $user->update();
-        if($request->roles) {
+        if ($request->roles) {
             /** wegschrijven van de role in tussentabel **/
             $user->roles()->sync($request->roles, true);
         }
-
 
         Session::flash('flash_message', 'User Successfully Updated');
 
@@ -201,10 +202,10 @@ class AdminUsersController extends Controller
 
     public function archive(Request $request)
     {
-        if($request->team){
+        if ($request->team) {
             $team = Team::where('id', $request->team)->first();
-            $count = User::where('archived', '=', 1)->where('team_id', $team->id ) ->count();
-        }else {
+            $count = User::where('archived', '=', 1)->where('team_id', $team->id)->count();
+        } else {
             $team = null;
             $count = User::where('archived', '=', 1)->count();
         }
@@ -215,18 +216,18 @@ class AdminUsersController extends Controller
 
     public function searchUser(Request $request)
     {
-        if(!$request->user) {
+        if (!$request->user) {
             return redirect()->back();
         }
 
         $user_value = $request->user;
 
-        $users = User::where(function($q) use($user_value) {
+        $users = User::where(function ($q) use ($user_value) {
             $q->where('name', 'LIKE', '%' . $user_value . '%')
                 ->Orwhere('username', 'LIKE', '%' . $user_value . '%')
                 ->where('archived', 0)
-                ->where('id', '!=' ,1)
-                ->where('id', '!=' ,2);
+                ->where('id', '!=', 1)
+                ->where('id', '!=', 2);
         })->paginate(25);
 
 
@@ -243,10 +244,10 @@ class AdminUsersController extends Controller
         $team->description = $request->description;
         $team->phone = $request->phone;
 
-        if($request->ambassador){
+        if ($request->ambassador) {
             $ambassador = Team::where('id', $request->ambassador)->first();
             $team->ambassador = $ambassador->name;
-        }else{
+        } else {
             $team->ambassador = null;
         }
 

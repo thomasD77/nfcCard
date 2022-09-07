@@ -199,6 +199,7 @@
                                 {!! Form::file('avatar_id',['class'=>'form-control']) !!}
                             </div>
                         </div>
+                        <input type="hidden" name="changeAvatarName" id="change-avatar-name" value="0">
 
                         <div class="d-flex justify-content-between">
                             <div class="form-group mr-1">
@@ -515,6 +516,7 @@
                     success: function(data){
                         if(data.success === "success"){
                             $modal.modal('hide');
+                            $("#change-avatar-name").val(data.teller);
                             //alert("success upload image (don't forget to save)");
                         } else if(data.success === "no"){
                             $modal.modal('hide');
