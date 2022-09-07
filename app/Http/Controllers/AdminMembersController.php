@@ -529,7 +529,7 @@ class AdminMembersController extends Controller
 
                 $ex_file = $member->banner->file;
                 File::delete(public_path($ex_file));
-                $name = $file->getClientOriginalName() ;
+                $name = now() . $file->getClientOriginalName() ;
                 $file->move('media/banners', $name);
                 $banner = Banner::create(['file' => $name]);
 
