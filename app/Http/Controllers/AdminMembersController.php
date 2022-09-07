@@ -526,13 +526,13 @@ class AdminMembersController extends Controller
         /** wegscrijven van de banner */
         if($file = $request->file('banner_id')){
             if($request->file('banner_id')->getSize() <= 2097152) {
-                $name = $file->getClientOriginalName();
+
+                $ex_file = $member->banner->file;
+                File::delete(public_path($ex_file));
+                $name = $file->getClientOriginalName() ;
                 $file->move('media/banners', $name);
                 $banner = Banner::create(['file' => $name]);
 
-                File::delete('media/banners/'.$name);
-
-                $member = Member::findOrFail($id);
                 $member->banner_id = $banner->id;
             } else{
                 \Brian2694\Toastr\Facades\Toastr::error('Banner image to large');
