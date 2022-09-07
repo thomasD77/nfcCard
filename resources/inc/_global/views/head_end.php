@@ -28,7 +28,7 @@
   <!-- END Stylesheets -->
 
     <!-- Laravel Toaster -->
-    <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
 </head>
 
 <body>
