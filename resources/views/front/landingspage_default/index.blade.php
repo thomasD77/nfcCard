@@ -20,13 +20,13 @@
     <meta name="twitter:site" content="@SWAP">
     <meta name="twitter:title" content="Personal profile">
     <meta name="twitter:description" content="This is my personal profile where you can find all my information. Let's get to know each other!">
-    <meta name="twitter:image" content="../assets/images/social.jpg">
+    <meta name="twitter:image" content="{{ asset('images/content/logo_swap.png') }}">
 
     <!-- Open Graph data -->
     <meta property="og:title" content="My personal profile" />
     <meta property="og:type" content="Information sharing" />
     <meta property="og:url" content="swap-nfc.be" />
-    <meta property="og:image" content="../assets/images/social.jpg"/>
+    <meta property="og:image" content="{{ asset('images/content/logo_swap.png') }}"/>
     <meta property="og:description" content="This is my personal profile where you can find all my information. Let's get to know each other!" />
     <meta property="og:site_name" content="SWAP NFC" />
 
