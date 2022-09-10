@@ -26,7 +26,7 @@
     <meta property="og:title" content="My personal profile" />
     <meta property="og:type" content="Information sharing" />
     <meta property="og:url" content="swap-nfc.be" />
-    <meta property="og:image" content="../card/avatars/{{ $member->avatar }}"/>
+    <meta property="og:image" content="../assets/images/social.jpg"/>
     <meta property="og:description" content="This is my personal profile where you can find all my information. Let's get to know each other!" />
     <meta property="og:site_name" content="SWAP NFC" />
 

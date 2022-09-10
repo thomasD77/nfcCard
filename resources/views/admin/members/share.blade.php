@@ -63,8 +63,12 @@
                 </div>
             </div>
             <div>
-                <button class="btn btn-secondary mb-2" data-href="{{Auth()->user()->member->memberURL}}" id="to-clipboard"><i class="far fa-copy pe-2"></i>Copy to clipboard</button>
-                <p class="mySuccess"><strong>Copied to clipboard!</strong></p>
+                <button class="btn btn-secondary mb-3"
+                        data-href="{{Auth()->user()->member->memberURL}}"
+                        id="to-clipboard">
+                    <i class="far fa-copy"></i>
+                </button>
+                <div class="alert-success p-2">Copied to clipboard!</div>
             </div>
         </div>
     </div>
