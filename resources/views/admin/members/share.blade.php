@@ -40,7 +40,7 @@
                             <a class="link-fx" href="javascript:void(0)">DataTable</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            QRCODE
+                            Your link
                         </li>
                     </ol>
                 </nav>
@@ -50,24 +50,21 @@
     <!-- END Hero -->
 
     <!-- Page Content -->
-    <div class="content container-fluid">
+    <div class="content container-fluid my-5">
         <div class="row">
-            <div class="d-flex justify-content-center">
+            <div class="">
                 <div class="alert alert-dark fs-sm">
                     <div class="mt-2">
                         <p class="mb-0">
                             <i class="fa fa-fw fa-info me-1 mb-0"></i>
-                            This is your personal QR code. When you share these with other people they will be sent directly to your profile page.
+                            Easily share your personal link from your profile with other people by copying it here
                         </p>
                     </div>
                 </div>
             </div>
-            <div class="d-flex justify-content-center">
-                <div class="card shadow my-5 p-3" style="border: none">
-                    <div class="card-body">
-                        {{$QRcode}}
-                    </div>
-                </div>
+            <div>
+                <button class="btn btn-secondary mb-2" data-href="{{Auth()->user()->member->memberURL}}" id="to-clipboard"><i class="far fa-copy pe-2"></i>Copy to clipboard</button>
+                <p class="mySuccess"><strong>Copied to clipboard!</strong></p>
             </div>
         </div>
     </div>

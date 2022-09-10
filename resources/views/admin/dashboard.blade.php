@@ -43,11 +43,6 @@
                         </li>
                     </ol>
                 </nav>
-                <div style="z-index: 99" id="flash_message">
-                    @if(Session::has('flash_message'))
-                        <p style="z-index: 5" class="alert bg-success my-2">{{session('flash_message')}}</p>
-                    @endif
-                </div>
             </div>
         </div>
     </div>
@@ -56,7 +51,6 @@
     <!-- Page Content -->
     <div class="content">
         <div class="row row-deck mb-5 d-flex justify-content-center">
-
             @can('is_superAdmin')
             <div class="row">
                 <div class="col-md-6 col-xl-4 mb-4">
@@ -124,11 +118,12 @@
              background-size: cover">
             <div class="block-content block-content-full ">
 
-                @if($member->user->archived == 0)
+            @if($member->user->archived == 0)
 
-                    @include('admin.includes.flash')
 
                     <div class="parent">
+
+                        @include('admin.includes.flash')
 
                         <div class="card shadow pt-4 col-md-6 offset-md-3 p-md-4 my-md-5" style="border: none">
 

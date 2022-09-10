@@ -18,6 +18,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use LaravelQRCode\Facades\QRCode;
 use Maatwebsite\Excel\Facades\Excel;
 use Spatie\Browsershot\Browsershot;
@@ -532,7 +533,7 @@ class AdminMembersController extends Controller
         $member->update();
         $state->update();
 
-        \Brian2694\Toastr\Facades\Toastr::success('Member Successfully Updated');
+        Session::flash('flash_message', 'Member Successfully Updated');
         return redirect('/admin/');
     }
 
@@ -621,6 +622,11 @@ class AdminMembersController extends Controller
 
         return view('admin.members.search', compact('members', 'member', 'member_url', 'active_user_role', 'active_user'));
 
+    }
+
+    public function share()
+    {
+        return view ('admin.members.share');
     }
 
 }

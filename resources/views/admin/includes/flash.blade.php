@@ -6,12 +6,8 @@
         position: absolute;
         top: 15px;
         right: 15px;
-        opacity: 0.9;
+        opacity: 0.7;
         color: white;
-    }
-    #flash_message:hover{
-        transform: scale(1.1);
-        opacity: 1.1;
     }
 </style>
 <div style="z-index: 99;" id="flash_message">

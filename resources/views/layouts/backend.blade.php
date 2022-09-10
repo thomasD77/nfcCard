@@ -185,8 +185,8 @@
                     <!-- END Left Section -->
 
                     @if(isset(Auth()->user()->member) && !Auth()->user()->archived)
-                        <a class="text-center nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('show.QRcode', Auth()->user()->member->card_id)}}">
-                            <img width="35px" height="35px" class="img-fluid" src="{{ asset('images/content/QRcode.png') }}" alt="QRcode">
+                        <a class="text-center nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('share')}}">
+                                <img width="35px" height="35px" class="img-fluid" src="{{ asset('images/content/share-nodes.png') }}" alt="QRcode">
                         </a>
                     @endif
 
@@ -434,9 +434,25 @@
         <!-- Session Flash Timer -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script>
+            $('.mySuccess').hide();
+
             setTimeout(function() {
                 $('#flash_message').fadeOut('fast');
             }, 3000); // <-- time in milliseconds
+        </script>
+        <script>
+            $("#to-clipboard").on('click', function(e){
+                let target = $(e.target);
+                if(target.hasClass("far fa-copy")){
+                    target = $(target).parent();
+                    var status = true;
+                }
+                let text = $(target).attr("data-href");
+                navigator.clipboard.writeText(text);
+                if(status) {
+                    $('.mySuccess').show().delay(2000).fadeOut();
+                }
+            })
         </script>
 
     </body>
