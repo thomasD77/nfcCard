@@ -421,6 +421,15 @@
                     @auth
                     <a style="text-decoration: none; color: black" class="badge badge-pill bg-white p-3 my-3 text-uppercase" href="{{ asset('/admin') }}">Dashboard</a>
                     @endauth
+                    <div>
+                        <button class="mb-3"
+                                style="background: none; border: none; cursor: pointer"
+                                data-href="{{$member->memberURL}}"
+                                id="to-clipboard">
+                            <img width="25px" height="25px" class="img-fluid far fa-copy" src="{{ asset('images/content/share-nodes-white.png') }}" alt="share">
+                        </button>
+                        <div class="alert-success p-2 rounded">Copied to clipboard!</div>
+                    </div>
                 </footer>
                 <div class="d-flex justify-content-center">
                     <a class="footer text-white mb-1 d-flex align-items-center" target="_blank" style="text-decoration: none" href="https://swap-nfc.be/"><i class="fa fa-globe px-2 fa-2x"></i> swap-nfc.be</a>
@@ -458,6 +467,22 @@
             $('#exampleModal').modal('hide');
         });
     });
+</script>
+<script>
+    $('.alert-success').hide();
+
+    $("#to-clipboard").on('click', function(e){
+        let target = $(e.target);
+        if(target.hasClass("far fa-copy")){
+            target = $(target).parent();
+            var status = true;
+        }
+        let text = $(target).attr("data-href");
+        navigator.clipboard.writeText(text);
+        if(status) {
+            $('.alert-success').show().delay(2000).fadeOut();
+        }
+    })
 </script>
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

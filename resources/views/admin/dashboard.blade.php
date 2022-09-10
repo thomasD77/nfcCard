@@ -133,7 +133,9 @@
                             </div>
 
                             <div class="card-body">
+
                                 <h4 class="card-title mb-4">{{ $member->firstname }} {{ $member->lastname }}</h4>
+
                                 @if($member->email)
                                     <div class="row">
                                         <i class="far fa-envelope col-1 pt-2"></i>
@@ -227,9 +229,16 @@
                                 </a>
                             </div>
 
-                            <div class="card-footer bg-dark">
-                                <span class="mx-2 text-white">Your referral code:</span><span class="badge badge-pill p-2"><strong>{{ $member->referral }}</strong></span>
+                            <div class="row px-2">
+                                <div class="card-footer bg-secondary">
+                                    <span class="text-white">Your card ID:</span><span class="badge badge-pill p-2"><strong>#{{ $member->card_id }}</strong></span>
+                                </div>
+
+                                <div class="card-footer bg-dark">
+                                    <span class="text-white">Your referral code:</span><span class="badge badge-pill p-2"><strong>{{ $member->referral }}</strong></span>
+                                </div>
                             </div>
+
                         </div>
 
                     </div>
