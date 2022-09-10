@@ -113,9 +113,7 @@ class AdminUsersController extends Controller
         $user->username = $request->username;
         $user->email = $request->email;
 
-
         if(Auth()->user()->roles->first()->name != 'client') {
-
             if(!$request->business){
                 $user->business = 0;
             }else {
@@ -130,6 +128,13 @@ class AdminUsersController extends Controller
             $user->roles()->sync($request->roles, true);
         }
 
+        $member = Member::where('user_id', $user->id)->first();
+        if(!$request->is_public) {
+            $member->is_public = 0;
+        }else {
+            $member->is_public = 1;
+        }
+        $member->update();
 
         Session::flash('flash_message', 'User Successfully Updated');
 

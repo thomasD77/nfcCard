@@ -4,7 +4,7 @@
         <!-- Quick Actions -->
         <div class="row">
 
-            <div class="col-md-6">
+            <div class="">
                 <a class="block block-rounded block-link-shadow text-center">
                     <div class="block-content block-content-full" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal{{$contact->id}}">
                         <div class="fs-2 fw-semibold text-dark py-1 py-md-0">
@@ -304,7 +304,7 @@
 
     @livewire('contact-detail-notes', [ 'contact' => $contact ])
 
-    <div class="col-md-6 mt-3 mt-md-0">
+    <div class="mt-3 mt-md-0">
             <a class="block block-rounded block-link-shadow text-center" >
                 <div class="block-content block-content-full" data-bs-toggle="modal" data-bs-target="#exampleModal" style="cursor: pointer">
                     <div class="fs-2 fw-semibold text-danger">

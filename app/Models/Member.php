@@ -48,7 +48,8 @@ class Member extends Model
             'titleMessage',
             'message',
             'business',
-            'youtube_video'
+            'youtube_video',
+            'is_public'
         ];
 
     public function user()

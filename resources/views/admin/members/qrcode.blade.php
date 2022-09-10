@@ -57,7 +57,7 @@
                     <div class="mt-2">
                         <p class="mb-0">
                             <i class="fa fa-fw fa-info me-1 mb-0"></i>
-                            This is your personal QR code. When you share these with other people they will be sent directly to your profile page.
+                            This is your personal QR-code. When you share these with other people they will be sent directly to your profile page.
                         </p>
                     </div>
                 </div>
