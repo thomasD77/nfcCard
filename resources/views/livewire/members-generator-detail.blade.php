@@ -190,7 +190,7 @@
                             <td>{{$url->member ? $url->member->user->name : "{...}" }}</td>
                         @endif
 
-                        @if($url->member)
+                        @if(isset($url->member->user))
                             @if($url->member->user->archived == 1)
                                 <td><span class="rounded-pill btn-alt-warning p-2">archived</span></td>
                             @else
