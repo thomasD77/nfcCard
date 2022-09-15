@@ -57,7 +57,15 @@
                                 <td>{{$member->company ? $member->company : ""}}</td>
                                 <td>{{$member->card_id ? $member->card_id : 'No Card ID'}}</td>
                                 <td>{{$member->material ? $member->material->name : 'No Material'}}</td>
-                                <td><a class="btn btn-outline-primary" href="{{ route('users.edit', $member->user->id) }}">{{$member->user ? $member->user->name : "unknown"}}</a></td>
+                                <td>
+                                    @if(isset($member->user))
+                                        <a class="btn btn-outline-primary" href="{{ route('users.edit', $member->user->id) }}">
+                                            {{$member->user ? $member->user->name : "unknown"}}
+                                        </a>
+                                    @else
+                                        unknown
+                                    @endif
+                                </td>
                                 <td>
                                     <div class="btn-group">
                                         <a href="{{route('members.edit', $member->id)}}">
