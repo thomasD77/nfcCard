@@ -180,14 +180,14 @@
                             <tr class="">
                         @endif
 
-                        @if($url->member)
+                        @if($url->member->user)
                             @if($url->member->user->archived == 1)
                                 <td><span class="rounded-pill btn-alt-warning p-2">archived</span></td>
                             @else
-                                <td>{{$url->member->user ? $url->member->user->name : "{...}" }}</td>
+                                <td>{{ $url->member->user->name }}</td>
                             @endif
                         @else
-                            <td>{{$url->member ? $url->member->user->name : "{...}" }}</td>
+                            <td> {...} </td>
                         @endif
 
                         @if(isset($url->member->user))
