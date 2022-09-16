@@ -6,8 +6,9 @@
         display: block;
         max-width: 100%;
     }
-    .hide-message{
-        display:none;
+
+    .hide-message {
+        display: none;
     }
 
     .preview {
@@ -18,7 +19,7 @@
         border: 1px solid red;
     }
 
-    .avatar_id .preview{
+    .avatar_id .preview {
         border-radius: 50%;
     }
 
@@ -128,7 +129,7 @@
                                    value="{{ 1 }}" @if($member->state->banner) checked @endif>
                         </div>
                     </div>
-                        {!! Form::file('banner_id',['class'=>'form-control crop-image']) !!}
+                    {!! Form::file('banner_id',['class'=>'form-control crop-image']) !!}
                 </div>
             </div>
             <!-- End Banner -->
@@ -632,6 +633,23 @@
             </div>
         </div>
     </div>
+    <div class="row push">
+        <div class="col-lg-10 offset-lg-1">
+            <div class="form-group mb-4">
+                <div class="form-check ps-0">
+                    <div class="d-flex justify-content-between mb-2">
+                        {!! Form::label('attachment_id', 'Video Attachment:', ['class'=>'form-label']) !!}
+                        <input class="form-check-input"
+                               type="checkbox"
+                               name="check_attachment"
+                               style="width: 25px; height: 25px"
+                               value="{{ 1 }}" @if($member->state->attachment) checked @endif>
+                    </div>
+                </div>
+                {!! Form::file('attachment_id',['class'=>'form-control']) !!}
+            </div>
+        </div>
+    </div>
     <div class="d-flex justify-content-end">
         <div class="form-group m-4">
             <button type="submit" class="btn btn-alt-primary">Update</button>
@@ -699,10 +717,10 @@
     $("body").on("change", ".crop-image", function (e) {
         let target = $(e.target);
         $(".modal-content").addClass($(target).attr('id'));
-        if($(target).attr('id') === "banner_id"){
+        if ($(target).attr('id') === "banner_id") {
             aspectRatio = 2;
             type = "banner";
-        } else{
+        } else {
             aspectRatio = 1;
             type = "avatar";
         }
@@ -717,7 +735,7 @@
 
         if (files && files.length > 0) {
             file = files[0];
-            if(file.size <= 2097152) {
+            if (file.size <= 2097152) {
                 let ext = file.name.split(".")[1];
                 if (ext === "jpg" || ext === "jpeg" || ext === "png") {
                     if (URL) {
@@ -733,23 +751,23 @@
                     $(target).val('');
                     $modal.modal('hide');
                     $(".modal-content").addClass(type + "_id");
-                    $("."+type + "-message").removeClass("hide-message");
-                    $("."+type + "-message").removeClass("alert-success");
-                    if(!$("."+type + "-message").hasClass('alert-danger')){
-                        $("."+type + "-message").toggleClass("alert-danger");
+                    $("." + type + "-message").removeClass("hide-message");
+                    $("." + type + "-message").removeClass("alert-success");
+                    if (!$("." + type + "-message").hasClass('alert-danger')) {
+                        $("." + type + "-message").toggleClass("alert-danger");
                     }
-                    $("."+type + "-message").text("Valid types jpg, jpeg and png");
+                    $("." + type + "-message").text("Valid types jpg, jpeg and png");
                 }
-            } else{
+            } else {
                 $(target).val('');
                 $modal.modal('hide');
                 $(".modal-content").addClass(type + "_id");
-                $("."+type + "-message").removeClass("hide-message");
-                $("."+type + "-message").removeClass("alert-success");
-                if(!$("."+type + "-message").hasClass('alert-danger')){
-                    $("."+type + "-message").toggleClass("alert-danger");
+                $("." + type + "-message").removeClass("hide-message");
+                $("." + type + "-message").removeClass("alert-success");
+                if (!$("." + type + "-message").hasClass('alert-danger')) {
+                    $("." + type + "-message").toggleClass("alert-danger");
                 }
-                $("."+type + "-message").text("Image is to big");
+                $("." + type + "-message").text("Image is to big");
                 //alert('The image you want to upload is to big');
             }
         }
@@ -781,7 +799,7 @@
             reader.onloadend = function () {
                 var base64data = reader.result;
                 let base = "card/avatars/";
-                if(type === "banner"){
+                if (type === "banner") {
                     base = "media/banners/";
                 }
                 $.ajax({
@@ -802,14 +820,14 @@
                         if (data.success === "success") {
                             $modal.modal('hide');
                             $(".modal-content").addClass(type + "_id");
-                            $("."+type + "-message").removeClass("hide-message");
-                            $("."+type + "-message").removeClass("alert-danger");
-                            if(!$("."+type + "-message").hasClass('alert-success')){
-                                $("."+type + "-message").toggleClass("alert-success");
+                            $("." + type + "-message").removeClass("hide-message");
+                            $("." + type + "-message").removeClass("alert-danger");
+                            if (!$("." + type + "-message").hasClass('alert-success')) {
+                                $("." + type + "-message").toggleClass("alert-success");
                             }
-                            $("."+type + "-message").text("Successfully updated");
+                            $("." + type + "-message").text("Successfully updated");
                             $("." + type + "-preview").attr("src", "/" + base + data.name);
-                            $("#"+type+'_id').val('');
+                            $("#" + type + '_id').val('');
                         } else if (data.success === "no") {
                             $modal.modal('hide');
                             $(".modal-content").addClass(type + "_id");

@@ -15,6 +15,7 @@ use App\Models\Photo;
 use App\Models\State;
 use App\Models\URL;
 use App\Models\User;
+use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -553,6 +554,24 @@ class AdminMembersController extends Controller
         else
         {
             $member->youtube_video = "";
+        }
+        if($request->check_video !== NULL){
+            $state->video = 1;
+        } else{
+            $state->video = 0;
+        }
+
+        if($file = $request->file('attachment_id')){
+            if($file->getSize() <= 2097152) {
+                if($member->video){
+                    File::delete(public_path($member->video->file));
+                }
+                $name = time() . $file->getClientOriginalName() ;
+                $file->move('media/videos', $name);
+                $video = Video::create(['file' => $name]);
+
+                $member->video_id = $video->id;
+            }
         }
 
         $member->update();

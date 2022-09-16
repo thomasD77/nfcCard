@@ -49,7 +49,8 @@ class Member extends Model
             'message',
             'business',
             'youtube_video',
-            'banner_id'
+            'banner_id',
+            'video_id'
         ];
 
     public function user()
@@ -70,6 +71,10 @@ class Member extends Model
     public function banner()
     {
         return $this->belongsTo(Banner::class);
+    }
+    public function video()
+    {
+        return $this->belongsTo(Video::class);
     }
 
     public function listurl()
