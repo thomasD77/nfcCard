@@ -510,13 +510,13 @@ class AdminMembersController extends Controller
         }else {
             $state->avatar = 0;
         }
-        if($file = $request->file('avatar_id')){
+        /*if($file = $request->file('avatar_id')){
             //$name = time(). $file->getClientOriginalName();
             //$file->move('card/avatars', $name);
             //$member->avatar = $name;
             File::delete('card/avatars/'.$member->avatar);
             $member->avatar = $file->getClientOriginalName();
-        }
+        }*/
 
         if($request->check_banner !== NULL){
             $state->banner = $request->check_banner;
@@ -524,7 +524,7 @@ class AdminMembersController extends Controller
             $state->banner = 0;
         }
         /** wegscrijven van de banner */
-        if($file = $request->file('banner_id')){
+        /*if($file = $request->file('banner_id')){
             if($request->file('banner_id')->getSize() <= 2097152) {
 
                 $ex_file = $member->banner->file;
@@ -538,7 +538,7 @@ class AdminMembersController extends Controller
                 \Brian2694\Toastr\Facades\Toastr::error('Banner image to large');
                 return back();
             }
-        }
+        }*/
 
         if($request->check_youtube_video !== NULL){
             $state->youtube_video = 1;

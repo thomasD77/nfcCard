@@ -104,7 +104,7 @@ class AdminUsersController extends Controller
         }
         $user = $user[0];
         /** wegschrijven van de avatar **/
-        if ($file = $request->file('avatar_id')) {
+        /*if ($file = $request->file('avatar_id')) {
             $name = $file->getClientOriginalName();
             if($request->changeAvatarName !== "0") {
                 $exp = explode('.', $name);
@@ -125,7 +125,7 @@ class AdminUsersController extends Controller
             }
             $user->avatar_id = $avatar->id;
             $user->update();
-        }
+        }*/
 
         /** wegschrijven van de user gegevens **/
         $user->name = $request->name;

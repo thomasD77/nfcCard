@@ -6,6 +6,9 @@
         display: block;
         max-width: 100%;
     }
+    .hide-message{
+        display:none;
+    }
 
     .preview {
         overflow: hidden;
@@ -13,6 +16,9 @@
         height: 200px;
         margin: 10px;
         border: 1px solid red;
+    }
+
+    .avatar_id .preview{
         border-radius: 50%;
     }
 
@@ -20,16 +26,16 @@
         max-width: 1000px !important;
     }
 
-    .cropper-face {
+    .avatar_id .cropper-face {
         border-radius: 50%;
         border: 5px dotted black;
     }
 
-    .cropper-crop-box, .cropper-view-box {
+    .avatar_id .cropper-container.cropper-bg .cropper-crop-box, .cropper-view-box {
         border-radius: 50%;
     }
 
-    .cropper-view-box {
+    .avatar_id .cropper-view-box {
         box-shadow: 0 0 0 1px #39f;
         outline: 0 !important;
     }
@@ -76,9 +82,14 @@
             <!-- Avatar -->
             <div class="my-3">
                 <div class="mb-4 d-flex justify-content-center">
-                    <img class="rounded-circle" width="160" height="160"
+                    <img class="rounded-circle avatar-preview" width="160" height="160"
                          src="{{$member->avatar ? asset('/card/avatars'). "/" . $member->avatar : asset('/assets/front/img/Avatar-4.svg')}}"
                          alt="{{$member->avatar}}">
+                </div>
+                <div class="d-flex justify-content-center">
+                    <div class="alert hide-message avatar-message" role="alert">
+                        This is a danger alert—check it out!
+                    </div>
                 </div>
                 <div class="form-group mb-4">
                     <div class="form-check ps-0">
@@ -91,7 +102,7 @@
                                    value="{{ 1 }}" @if($member->state->avatar) checked @endif>
                         </div>
                     </div>
-                    {!! Form::file('avatar_id',['class'=>'form-control']) !!}
+                    {!! Form::file('avatar_id',['class'=>'form-control crop-image']) !!}
                 </div>
             </div>
             <!-- End Avatar -->
@@ -99,9 +110,12 @@
             <!-- Start Banner -->
             <div class="my-3">
                 <div class="mb-4 d-flex justify-content-center">
-                    <img class="banner" width="300" height="150"
+                    <img class="banner banner-preview" width="300" height="150"
                          src="{{$member->banner ? asset('/'). $member->banner->file : asset('/assets/front/img/bg-vcard.png')}}"
                          alt="{{$member->name}}">
+                </div>
+                <div class="d-flex justify-content-center">
+                    <p class="alert banner-message hide-message">This is a message</p>
                 </div>
                 <div class="form-group mb-4">
                     <div class="form-check ps-0">
@@ -114,7 +128,7 @@
                                    value="{{ 1 }}" @if($member->state->banner) checked @endif>
                         </div>
                     </div>
-                        {!! Form::file('banner_id',['class'=>'form-control']) !!}
+                        {!! Form::file('banner_id',['class'=>'form-control crop-image']) !!}
                 </div>
             </div>
             <!-- End Banner -->
@@ -680,9 +694,18 @@
     var $modal = $('#modal');
     var image = document.getElementById('image');
     var cropper;
-
-    $("body").on("change", "#avatar_id", function (e) {
-
+    var aspectRatio = 1;
+    var type = "avatar";
+    $("body").on("change", ".crop-image", function (e) {
+        let target = $(e.target);
+        $(".modal-content").addClass($(target).attr('id'));
+        if($(target).attr('id') === "banner_id"){
+            aspectRatio = 2;
+            type = "banner";
+        } else{
+            aspectRatio = 1;
+            type = "avatar";
+        }
         var files = e.target.files;
         var done = function (url) {
             image.src = url;
@@ -707,11 +730,26 @@
                         reader.readAsDataURL(file);
                     }
                 } else {
-                    $(e.target).val('');
-                    //alert('Valid image types are (.jpg , .png , .jpeg)');
+                    $(target).val('');
+                    $modal.modal('hide');
+                    $(".modal-content").addClass(type + "_id");
+                    $("."+type + "-message").removeClass("hide-message");
+                    $("."+type + "-message").removeClass("alert-success");
+                    if(!$("."+type + "-message").hasClass('alert-danger')){
+                        $("."+type + "-message").toggleClass("alert-danger");
+                    }
+                    $("."+type + "-message").text("Valid types jpg, jpeg and png");
                 }
             } else{
-                $(e.target).val('');
+                $(target).val('');
+                $modal.modal('hide');
+                $(".modal-content").addClass(type + "_id");
+                $("."+type + "-message").removeClass("hide-message");
+                $("."+type + "-message").removeClass("alert-success");
+                if(!$("."+type + "-message").hasClass('alert-danger')){
+                    $("."+type + "-message").toggleClass("alert-danger");
+                }
+                $("."+type + "-message").text("Image is to big");
                 //alert('The image you want to upload is to big');
             }
         }
@@ -719,22 +757,16 @@
 
     $modal.on('shown.bs.modal', function () {
         cropper = new Cropper(image, {
-            aspectRatio: 1,
+            aspectRatio: aspectRatio,
             viewMode: 3,
             preview: '.preview'
         });
     }).on('hidden.bs.modal', function () {
         cropper.destroy();
         cropper = null;
+        $(".modal-content").removeClass("avatar_id");
+        $(".modal-content").removeClass("banner_id");
     });
-
-    $("#move-picture").on('click', function () {
-        cropper.setDragMode("move");
-    })
-
-    $("#move-crop").on('click', function () {
-        cropper.setDragMode('crop');
-    })
 
     $("#crop").click(function () {
         canvas = cropper.getCroppedCanvas({
@@ -748,7 +780,10 @@
             reader.readAsDataURL(blob);
             reader.onloadend = function () {
                 var base64data = reader.result;
-
+                let base = "card/avatars/";
+                if(type === "banner"){
+                    base = "media/banners/";
+                }
                 $.ajax({
                     type: "POST",
                     dataType: "json",
@@ -756,20 +791,35 @@
                     data: {
                         '_token': $('meta[name="_token"]').attr('content'),
                         'image': base64data,
-                        'name': $("#avatar_id").val(),
-                        "base": "card/avatars/"
+                        'name': $("#" + type + "_id").val(),
+                        "base": base,
+                        "type": type,
+                        'member_id': {{ $member->id }},
+                        "uploadType": 'member'
                     },
                     success: function (data) {
+                        console.log(data);
                         if (data.success === "success") {
                             $modal.modal('hide');
-                            //alert("success upload image (don't forget to save)");
+                            $(".modal-content").addClass(type + "_id");
+                            $("."+type + "-message").removeClass("hide-message");
+                            $("."+type + "-message").removeClass("alert-danger");
+                            if(!$("."+type + "-message").hasClass('alert-success')){
+                                $("."+type + "-message").toggleClass("alert-success");
+                            }
+                            $("."+type + "-message").text("Successfully updated");
+                            $("." + type + "-preview").attr("src", "/" + base + data.name);
+                            $("#"+type+'_id').val('');
                         } else if (data.success === "no") {
                             $modal.modal('hide');
+                            $(".modal-content").addClass(type + "_id");
                             //alert('Valid image types are (.jpg , .png , .jpeg)');
                         }
                     }
                 });
             }
+            $(".modal-content").removeClass("avatar_id");
+            $(".modal-content").removeClass("banner_id");
         });
     })
 

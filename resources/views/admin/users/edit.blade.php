@@ -32,6 +32,10 @@
             box-shadow: 0 0 0 1px #39f;
             outline: 0 !important;
         }
+        .hide-message{
+            display:none;
+        }
+
     </style>
     <!-- end cropper css -->
 @endsection
@@ -192,14 +196,16 @@
                         <div class="mb-4">
                             <label class="form-label">Your Avatar</label>
                             <div class="mb-4">
-                                <img class="rounded-circle" height="80" width="80" src="{{$user->avatar ? asset('/') . $user->avatar->file : asset('/assets/front/img/Avatar-4.svg')}}" alt="{{$user->name}}">
+                                <img class="rounded-circle avatar-preview" height="80" width="80" src="{{$user->avatar ? asset('/') . $user->avatar->file : asset('/assets/front/img/Avatar-4.svg')}}" alt="{{$user->name}}">
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <p class="alert avatar-message hide-message">This is a message</p>
                             </div>
                             <div class="form-group mb-4">
                                 {!! Form::label('avatar_id', 'Choose a new avatar:', ['class'=>'form-label']) !!}
                                 {!! Form::file('avatar_id',['class'=>'form-control']) !!}
                             </div>
                         </div>
-                        <input type="hidden" name="changeAvatarName" id="change-avatar-name" value="0">
 
                         <div class="d-flex justify-content-between">
                             <div class="form-group mr-1">
@@ -475,10 +481,24 @@
                     }
                 } else {
                     $(e.target).val('');
+                    $modal.modal('hide');
+                    $(".avatar-message").removeClass("hide-message");
+                    $(".avatar-message").removeClass("alert-success");
+                    if(!$(".avatar-message").hasClass('alert-danger')){
+                        $(".avatar-message").toggleClass("alert-danger");
+                    }
+                    $(".avatar-message").text("Valid types jpg, jpeg and png");
                     //alert('Valid image types are (.jpg , .png , .jpeg)');
                 }
             } else{
                 $(e.target).val('');
+                $modal.modal('hide');
+                $(".avatar-message").removeClass("hide-message");
+                $(".avatar-message").removeClass("alert-success");
+                if(!$(".avatar-message").hasClass('alert-danger')){
+                    $(".avatar-message").toggleClass("alert-danger");
+                }
+                $(".avatar-message").text("Image is to big");
                 //alert('The image you want to upload is to big');
             }
         }
@@ -512,11 +532,27 @@
                     type: "POST",
                     dataType: "json",
                     url: "/admin/image-cropper/upload",
-                    data: {'_token': $('meta[name="_token"]').attr('content'), 'image': base64data, 'name' :  $("#avatar_id").val(), 'base': 'media/avatars/'},
+                    data: {
+                        '_token': $('meta[name="_token"]').attr('content'),
+                        'image': base64data,
+                        'name' :  $("#avatar_id").val(),
+                        'base': 'media/avatars/',
+                        "type": "avatar",
+                        'user_id': {{ $user->id }},
+                        "uploadType": 'user'
+                    },
+
                     success: function(data){
                         if(data.success === "success"){
                             $modal.modal('hide');
-                            $("#change-avatar-name").val(data.teller);
+                            $(".avatar-preview").attr("src", "/media/avatars/" + data.name);
+                            $(".avatar-message").removeClass("hide-message");
+                            $(".avatar-message").removeClass("alert-danger");
+                            if(!$(".avatar-message").hasClass('alert-success')){
+                                $(".avatar-message").toggleClass("alert-success");
+                            }
+                            $(".avatar-message").text("Successfully updated");
+                            $("#avatar_id").val('');
                             //alert("success upload image (don't forget to save)");
                         } else if(data.success === "no"){
                             $modal.modal('hide');
