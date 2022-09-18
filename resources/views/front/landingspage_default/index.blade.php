@@ -65,7 +65,11 @@
 <main class="main">
     <!-- Header Image -->
     <div class="header-image">
-        <div class="js-parallax" style="background-image: url({{asset('assets/front/img/bg-vcard.png')}});"></div>
+        @if($member->state->banner)
+            <div class="js-parallax" style="background-image: url({{$member->banner ? asset('/') . $member->banner->file : asset('assets/front/img/bg-vcard.png')}});"></div>
+        @else
+            <div class="js-parallax" style="background-image: url({{asset('assets/front/img/bg-vcard.png')}});"></div>
+        @endif
     </div>
 
     <div class="container gutter-top">

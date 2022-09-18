@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\MemberCredentialCardExport;
 use App\Exports\MemberListExport;
 use App\Http\Requests\MemberRequest;
+use App\Models\Banner;
 use App\Models\listUrl;
 use App\Models\Material;
 use App\Models\Member;
@@ -14,6 +15,7 @@ use App\Models\Photo;
 use App\Models\State;
 use App\Models\URL;
 use App\Models\User;
+use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -23,6 +25,7 @@ use LaravelQRCode\Facades\QRCode;
 use Maatwebsite\Excel\Facades\Excel;
 use Spatie\Browsershot\Browsershot;
 use Image;
+use Illuminate\Support\Facades\File;
 
 class AdminMembersController extends Controller
 {
@@ -509,11 +512,35 @@ class AdminMembersController extends Controller
         }else {
             $state->avatar = 0;
         }
-        if($file = $request->file('avatar_id')){
-            $name = time(). $file->getClientOriginalName();
-            $file->move('card/avatars', $name);
-            $member->avatar = $name;
+        /*if($file = $request->file('avatar_id')){
+            //$name = time(). $file->getClientOriginalName();
+            //$file->move('card/avatars', $name);
+            //$member->avatar = $name;
+            File::delete('card/avatars/'.$member->avatar);
+            $member->avatar = $file->getClientOriginalName();
+        }*/
+
+        if($request->check_banner !== NULL){
+            $state->banner = $request->check_banner;
+        }else {
+            $state->banner = 0;
         }
+        /** wegscrijven van de banner */
+        /*if($file = $request->file('banner_id')){
+            if($request->file('banner_id')->getSize() <= 2097152) {
+
+                $ex_file = $member->banner->file;
+                File::delete(public_path($ex_file));
+                $name = now() . $file->getClientOriginalName() ;
+                $file->move('media/banners', $name);
+                $banner = Banner::create(['file' => $name]);
+
+                $member->banner_id = $banner->id;
+            } else{
+                \Brian2694\Toastr\Facades\Toastr::error('Banner image to large');
+                return back();
+            }
+        }*/
 
         if($request->check_youtube_video !== NULL){
             $state->youtube_video = 1;
@@ -528,6 +555,24 @@ class AdminMembersController extends Controller
         else
         {
             $member->youtube_video = "";
+        }
+        if($request->check_video !== NULL){
+            $state->video = 1;
+        } else{
+            $state->video = 0;
+        }
+
+        if($file = $request->file('attachment_id')){
+            if($file->getSize() <= 2097152) {
+                if($member->video){
+                    File::delete(public_path($member->video->file));
+                }
+                $name = time() . $file->getClientOriginalName() ;
+                $file->move('media/videos', $name);
+                $video = Video::create(['file' => $name]);
+
+                $member->video_id = $video->id;
+            }
         }
 
         $member->update();

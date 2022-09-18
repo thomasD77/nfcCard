@@ -49,7 +49,8 @@ class Member extends Model
             'message',
             'business',
             'youtube_video',
-            'is_public'
+            'banner_id',
+            'video_id'
         ];
 
     public function user()
@@ -65,6 +66,15 @@ class Member extends Model
     public function material()
     {
         return $this->belongsTo(Material::class);
+    }
+
+    public function banner()
+    {
+        return $this->belongsTo(Banner::class);
+    }
+    public function video()
+    {
+        return $this->belongsTo(Video::class);
     }
 
     public function listurl()

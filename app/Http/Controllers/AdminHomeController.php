@@ -38,9 +38,11 @@ class AdminHomeController extends Controller
      */
     public function index()
     {
-        $user = Auth::user()->id;
+        $user = Auth::user();
 
-        $member = Member::where('user_id',$user)->first();
+        $is_business = $user->business;
+
+        $member = Member::where('user_id',$user->id)->first();
 
         $scans = Contact::count();
 
@@ -49,7 +51,7 @@ class AdminHomeController extends Controller
         $teams = Team::count();
 
 
-        return view('admin.dashboard', compact('member', 'scans', 'users', 'teams'));
+        return view('admin.dashboard', compact('member', 'scans', 'users', 'teams', 'is_business'));
     }
 
 }
