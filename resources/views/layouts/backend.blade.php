@@ -186,9 +186,10 @@
 
                     @if(isset(Auth()->user()->member) && !Auth()->user()->archived)
                         <a class="text-center nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('share')}}">
-                            <img width="25px" height="25px" class="img-fluid" src="{{ asset('images/content/share-nodes.png') }}" alt="QRcode">
+                                <img width="25px" height="25px" class="img-fluid" src="{{ asset('images/content/share-nodes.png') }}" alt="QRcode">
                         </a>
                     @endif
+
 
 
                     <!-- Right Section -->
@@ -440,15 +441,17 @@
             }, 3000); // <-- time in milliseconds
         </script>
         <script>
-            $('.mySuccess').hide();
             $('.alert-success').hide();
 
-            setTimeout(function() {
-                $('#flash_message').fadeOut('fast');
+            $("#to-clipboard").on('click', function(e){
+                let target = $(e.target);
+                if(target.hasClass("far fa-copy")){
+                    target = $(target).parent();
+                    var status = true;
+                }
                 let text = $(target).attr("data-href");
                 navigator.clipboard.writeText(text);
                 if(status) {
-                    $('.mySuccess').show().delay(2000).fadeOut();
                     $('.alert-success').show().delay(2000).fadeOut();
                 }
             })
