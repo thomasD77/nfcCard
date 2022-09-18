@@ -513,7 +513,7 @@
                 if(!$(".avatar-message").hasClass('alert-danger')){
                     $(".avatar-message").toggleClass("alert-danger");
                 }
-                $(".avatar-message").text("Image is to big");
+                $(".avatar-message").text("Image is to large");
                 //alert('The image you want to upload is to big');
             }
         }

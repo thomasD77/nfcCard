@@ -767,7 +767,7 @@
                 if (!$("." + type + "-message").hasClass('alert-danger')) {
                     $("." + type + "-message").toggleClass("alert-danger");
                 }
-                $("." + type + "-message").text("Image is to big");
+                $("." + type + "-message").text("Image is to large");
                 //alert('The image you want to upload is to big');
             }
         }
