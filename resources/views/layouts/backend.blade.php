@@ -31,7 +31,7 @@
         <link rel="stylesheet" id="css-main" href="{{ asset('/css/oneui.css') }}">
 
         <!-- Laravel Toaster -->
-        <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+        <link rel="stylesheet" href="https://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
 
         <!-- You can include a specific file from public/css/themes/ folder to alter the default color theme of the template. eg: -->
         <!-- <link rel="stylesheet" id="css-theme" href="{{ asset('/css/themes/amethyst.css') }}"> -->
@@ -185,12 +185,10 @@
                     <!-- END Left Section -->
 
                     @if(isset(Auth()->user()->member) && !Auth()->user()->archived)
-                        <a class="text-center nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('show.QRcode', Auth()->user()->member->card_id)}}">
-                            <img width="35px" height="35px" class="img-fluid" src="{{ asset('images/content/QRcode.png') }}" alt="QRcode">
+                        <a class="text-center nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('share')}}">
+                            <img width="25px" height="25px" class="img-fluid" src="{{ asset('images/content/share-nodes.png') }}" alt="QRcode">
                         </a>
-                    <button data-href="{{Auth()->user()->member->memberURL}}" title="your-profile-link" id="to-clipboard"><i class="fa-solid fa-copy"></i></button>
                     @endif
-
 
 
                     <!-- Right Section -->
@@ -429,25 +427,30 @@
 
         @livewireScripts
         <!-- Laravel Toastr -->
-        <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+        <script src="https://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
         {!! Toastr::message() !!}
 
         <!-- Session Flash Timer -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script>
+            $('.alert-success').hide();
+
             setTimeout(function() {
                 $('#flash_message').fadeOut('fast');
             }, 3000); // <-- time in milliseconds
         </script>
         <script>
-            $("#to-clipboard").on('click', function(e){
-                let target = $(e.target);
-                if(target.hasClass("fa-solid fa-copy")){
-                    target = $(target).parent();
-                }
+            $('.mySuccess').hide();
+            $('.alert-success').hide();
+
+            setTimeout(function() {
+                $('#flash_message').fadeOut('fast');
                 let text = $(target).attr("data-href");
-                /* Werkt blijkbaar enkel maar op een https en niet lokaal*/
                 navigator.clipboard.writeText(text);
+                if(status) {
+                    $('.mySuccess').show().delay(2000).fadeOut();
+                    $('.alert-success').show().delay(2000).fadeOut();
+                }
             })
         </script>
 
