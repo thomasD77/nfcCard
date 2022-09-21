@@ -562,10 +562,10 @@ class AdminMembersController extends Controller
             $state->video = 0;
         }
 
-        if($file = $request->file('attachment_id')){
-            if($file->getSize() <= 2097152) {
+        if($file = $request->file('video_id')){
+            if($file->getSize() <= 20000000) {
                 if($member->video){
-                    File::delete(public_path($member->video->file));
+                    File::delete(public_path('media/videos/' . $member->video->file));
                 }
                 $name = time() . $file->getClientOriginalName() ;
                 $file->move('media/videos', $name);

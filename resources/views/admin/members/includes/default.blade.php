@@ -638,15 +638,15 @@
             <div class="form-group mb-4">
                 <div class="form-check ps-0">
                     <div class="d-flex justify-content-between mb-2">
-                        {!! Form::label('attachment_id', 'Video Attachment:', ['class'=>'form-label']) !!}
+                        {!! Form::label('video_id', 'Video Attachment:', ['class'=>'form-label']) !!}
                         <input class="form-check-input"
                                type="checkbox"
-                               name="check_attachment"
+                               name="check_video"
                                style="width: 25px; height: 25px"
-                               value="{{ 1 }}" @if($member->state->attachment) checked @endif>
+                               value="{{ 1 }}" @if($member->state->video) checked @endif>
                     </div>
                 </div>
-                {!! Form::file('attachment_id',['class'=>'form-control']) !!}
+                {!! Form::file('video_id',['class'=>'form-control', "accept"=>"video/mp4"]) !!}
             </div>
         </div>
     </div>
@@ -714,7 +714,7 @@
     var cropper;
     var aspectRatio = 1;
     var type = "avatar";
-    $("body").on("change", ".crop-image", function (e) {
+    $("body").on("change", "#avatar_id", function (e) {
         let target = $(e.target);
         $(".modal-content").addClass($(target).attr('id'));
         if ($(target).attr('id') === "banner_id") {
@@ -776,7 +776,7 @@
     $modal.on('shown.bs.modal', function () {
         cropper = new Cropper(image, {
             aspectRatio: aspectRatio,
-            viewMode: 3,
+            viewMode: 5,
             preview: '.preview'
         });
     }).on('hidden.bs.modal', function () {
@@ -816,7 +816,6 @@
                         "uploadType": 'member'
                     },
                     success: function (data) {
-                        console.log(data);
                         if (data.success === "success") {
                             $modal.modal('hide');
                             $(".modal-content").addClass(type + "_id");
