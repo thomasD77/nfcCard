@@ -26,6 +26,9 @@ class CheckFile
         $new = str_replace('+', '_', $new);
         $new = str_replace('`', '_', $new);
         $new = str_replace('|', '_', $new);
+        $new = str_replace(',', '_', $new);
+        $new = str_replace('(', '_', $new);
+        $new = str_replace(')', '_', $new);
         return str_replace('=', '_', $new);
 
     }
