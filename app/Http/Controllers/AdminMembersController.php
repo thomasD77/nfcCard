@@ -563,7 +563,7 @@ class AdminMembersController extends Controller
         }
 
         if($file = $request->file('video_id')){
-            if($file->getSize() <= 20000000) {
+            if($file->getSize() <= 200000000) {
                 if($member->video){
                     File::delete(public_path('media/videos/' . $member->video->file));
                 }
@@ -574,6 +574,12 @@ class AdminMembersController extends Controller
                 $member->video_id = $video->id;
             }
         }
+
+        /*if($request->front_style !== NULL){
+            $member->front_style = 'dark';
+        } else{
+            $member->front_style = 'light';
+        }*/
 
         $member->update();
         $state->update();
