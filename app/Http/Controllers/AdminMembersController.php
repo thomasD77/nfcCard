@@ -561,7 +561,6 @@ class AdminMembersController extends Controller
         } else{
             $state->video = 0;
         }
-
         if($file = $request->file('video_id')){
             if($file->getSize() <= 200000000) {
                 if($member->video){
@@ -572,14 +571,18 @@ class AdminMembersController extends Controller
                 $video = Video::create(['file' => $name]);
 
                 $member->video_id = $video->id;
+            } else{
+                Session::flash('flash_message', 'Member Successfully Updated');
+                //return redirect('/admin/members/' . $member->id . "/edit#videos");
+                return redirect()->to(url()->previous() . "#videos")->withErrors(['video_error' => "Video is to big, you can only upload up to 20mb"]);
             }
         }
 
-        /*if($request->front_style !== NULL){
+        if($request->front_style !== NULL){
             $member->front_style = 'dark';
         } else{
             $member->front_style = 'light';
-        }*/
+        }
 
         $member->update();
         $state->update();

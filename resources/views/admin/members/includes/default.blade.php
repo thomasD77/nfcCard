@@ -40,6 +40,89 @@
         box-shadow: 0 0 0 1px #39f;
         outline: 0 !important;
     }
+
+    /** Slider Styling **/
+
+    .slider {
+        border: none;
+        position: relative;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        width: 125px;
+    }
+
+    .slider-checkbox {
+        display: none;
+    }
+
+    .slider-label {
+        border: 2px solid #666;
+        border-radius: 20px;
+        cursor: pointer;
+        display: block;
+        overflow: hidden;
+    }
+
+    .slider-inner {
+        display: block;
+        margin-left: -100%;
+        transition: margin 0.3s ease-in 0s;
+        width: 200%;
+    }
+
+    .slider-inner:before,
+    .slider-inner:after {
+        box-sizing: border-box;
+        display: block;
+        float: left;
+        font-family: sans-serif;
+        font-size: 14px;
+        font-weight: bold;
+        height: 30px;
+        line-height: 30px;
+        padding: 0;
+        width: 50%;
+    }
+
+    .slider-inner:before {
+        background-color: #23262B;
+        color: #fff;
+        content: "DARK";
+        padding-left: .75em;
+    }
+
+    .slider-inner:after {
+        background-color: #eee;
+        color: #666;
+        content: "LIGHT";
+        padding-right: .75em;
+        text-align: right;
+    }
+
+    .slider-circle {
+        background-color: #23262B;
+        border: 2px solid #666;
+        border-radius: 20px;
+        bottom: 0;
+        display: block;
+        margin: 5px;
+        position: absolute;
+        right: 91px;
+        top: 0;
+        transition: all 0.3s ease-in 0s;
+        width: 20px;
+    }
+
+    .slider-checkbox:checked + .slider-label .slider-inner {
+        margin-left: 0;
+    }
+
+    .slider-checkbox:checked + .slider-label .slider-circle {
+        background-color: #eee;
+        right: 0;
+    }
 </style>
 <body>
 
@@ -134,6 +217,29 @@
             </div>
             <!-- End Banner -->
 
+            <!-- Frontend-style -->
+            <div class="form-group my-4">
+                <div class="form-check ps-0">
+                    <div class="d-flex justify-content-between mb-2">
+                        {!! Form::label('front_style','Front Style:',['class'=>'form-label']) !!}
+                    </div>
+                </div>
+                <div class="slider">
+                    <input type="checkbox" name="front_style" class="slider-checkbox" id="sliderSwitch" value="{{ 1 }}" @if($member->front_style === "dark") checked @endif>
+                    <label class="slider-label" for="sliderSwitch">
+                        <span class="slider-inner"></span>
+                        <span class="slider-circle"></span>
+                    </label>
+                </div>
+                {{--<div class="form-check form-switch">
+                    <p>Light</p>
+                    <input class="form-check-input"
+                           type="checkbox"
+                           name="front_style"
+                           value="{{ 1 }}" @if($member->front_style === "dark") checked @endif>
+                    <p>Dark</p>
+                </div>--}}
+            </div>
             <!-- Firstname -->
             <div class="form-group my-4">
                 <div class="form-check ps-0">
@@ -605,7 +711,7 @@
 
 <!-- Videos -->
 <div style="padding-top: 25px;" class="bg-light spacer"></div>
-<div class="block-header block-header-default">
+<div class="block-header block-header-default" id="videos">
     <div class="d-flex flex-column">
         <h3 class="block-title">Video</h3>
         <p class="text-muted mb-1" style="font-size: 12px">Upload your video or add link. This will play automatically
@@ -648,6 +754,13 @@
                 </div>
                 {!! Form::file('video_id',['class'=>'form-control', "accept"=>"video/mp4"]) !!}
             </div>
+            @if(!$errors->isEmpty())
+                @foreach ($errors->all('<p>:message</p>') as $input_error)
+                    <div class="alert alert-danger">
+                        {{ str_replace("</p>", "", str_replace("<p>", "", $input_error)) }}
+                    </div>
+                @endforeach
+            @endif
         </div>
     </div>
     <div class="d-flex justify-content-end">

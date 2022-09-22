@@ -1,7 +1,7 @@
 /* ------------------------------------------------
  Author: ArtStyles (Art)
- 
- Template Name: 
+
+ Template Name:
  version: 1.0.0
 ------------------------------------------------ */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap");
@@ -118,6 +118,126 @@ body {
   left: auto;
   right: 1.125rem;
 }
+
+
+
+.dropdown.dropup .dropdown-menu::before {
+    border-top: 0.375rem solid #33363D;
+}
+
+.tooltip-inner {
+    background-color: #AEB0B8;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.25), 0 0.125rem 1rem rgba(0, 0, 0, 0.5);
+}
+
+.bs-tooltip-top .arrow::before,
+.bs-tooltip-auto[x-placement^="top"] .arrow::before {
+    border-top-color: #AEB0B8;
+}
+
+.bs-tooltip-right .arrow::before,
+.bs-tooltip-auto[x-placement^="right"] .arrow::before {
+    border-right-color: #AEB0B8;
+}
+
+.bs-tooltip-left .arrow::before,
+.bs-tooltip-auto[x-placement^="left"] .arrow::before {
+    border-left-color: #AEB0B8;
+}
+
+.bs-tooltip-bottom .arrow::before,
+.bs-tooltip-auto[x-placement^="bottom"] .arrow::before {
+    border-bottom-color: #AEB0B8;
+}
+
+.btn_cstm, .btn_cstm_download {
+    padding: 10px 0;
+    border-top-left-radius:15px;
+    border-top-right-radius:15px;
+    border-bottom-right-radius:15px;
+    border-bottom-left-radius:15px;
+    border: none;
+    color: white;
+}
+
+.btn_cstm_download {
+    background: rgb(140,200,147);
+    background: linear-gradient(34deg, rgba(140,200,147,1) 18%, rgba(135,199,133,1) 53%, rgba(132,199,125,1) 93%);
+
+    color: white;
+    text-decoration: none;
+    list-style: none;
+}
+
+
+.grecaptcha-badge {
+    opacity:0;
+}
+
+.save {
+    background-color: #383737;
+    font-weight: bold;
+}
+.facebook {
+    background-color: #3b5998
+}
+.instagram {
+    background-color: #c32aa3
+}
+.messenger {
+    background-color: #00aff0
+}
+.linkedIn {
+    background-color: #0a66c2
+}
+.twitter {
+    background-color: #1da1f2
+}
+.youTube {
+    background-color: #ff0000
+}
+.tikTok {
+    background-color: #010101
+}
+.whatsApp {
+    background-color: #25d366
+}
+.website {
+    background-color: #bd081c
+}
+.custom {
+    background-color: rgba(255, 230, 0, 0.85)
+}
+
+.btn_close{
+    background-color: transparent;
+    border: none;
+    color: #b1b2c6;
+}
+
+.bodem {
+    border-top: 1px solid #727384;
+}
+
+.modal-content {
+    background-color: #2E2F36;
+}
+
+.input_modal {
+    background-color: #727384;
+}
+
+.modal-body {
+    border: none;
+}
+
+
+
+.btn:hover {
+    color: #FCFCFC;
+}
+
+
 
 /* -----------------------------------------------------------------
     - Preloader

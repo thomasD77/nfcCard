@@ -40,7 +40,11 @@
 
     <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/front/css/style.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/front/css/style-dark.css') }}"/>
+    @if($member->front_style === "dark")
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/front/css/style-dark.css') }}"/>
+    @else
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/front/css/style-rtl.css') }}"/>
+    @endif
 
     <!-- Add icon library -->
     <script src="https://kit.fontawesome.com/f6658138a8.js" crossorigin="anonymous"></script>
