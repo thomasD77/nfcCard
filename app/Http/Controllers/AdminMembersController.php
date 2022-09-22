@@ -572,9 +572,7 @@ class AdminMembersController extends Controller
 
                 $member->video_id = $video->id;
             } else{
-                Session::flash('flash_message', 'Member Successfully Updated');
-                //return redirect('/admin/members/' . $member->id . "/edit#videos");
-                return redirect()->to(url()->previous() . "#videos")->withErrors(['video_error' => "Video is to big, you can only upload up to 20mb"]);
+                return redirect()->to(url()->previous() . "#videos")->withErrors(['video_error' => "Video is to big, you can only upload up to 200mb"]);
             }
         }
 
