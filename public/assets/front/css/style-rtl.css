@@ -231,10 +231,17 @@ body {
     border: none;
 }
 
-
-
 .btn:hover {
     color: #FCFCFC;
+}
+
+.row{
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.text-white{
+    color:black !important;
 }
 
 

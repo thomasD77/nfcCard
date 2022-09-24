@@ -94,7 +94,7 @@
     }
 
     .slider-inner:after {
-        background-color: #eee;
+        background-color: transparent;
         color: #666;
         content: "LIGHT";
         padding-right: .75em;
@@ -120,7 +120,7 @@
     }
 
     .slider-checkbox:checked + .slider-label .slider-circle {
-        background-color: #eee;
+        background-color: white;
         right: 0;
     }
 </style>
@@ -829,6 +829,68 @@
         integrity="sha256-CgvH7sz3tHhkiVKh05kSUgG97YtzYNnWt6OXcmYzqHY=" crossorigin="anonymous"></script>
 <script>
 
+    $("body").on("change", "#banner_id", function (e) {
+        let target = $(e.target);
+        let files = e.target.files;
+        let file = files[0];
+        let ext = file.name.split(".")[1];
+        let base = "media/banners/";
+        let type = "banner";
+        if (file.size <= 2097152) {
+            if (ext === "jpg" || ext === "jpeg" || ext === "png") {
+                let reader = new FileReader();
+                reader.onload = function (e) {
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        url: "/admin/image-cropper/upload",
+                        data: {
+                            '_token': $('meta[name="_token"]').attr('content'),
+                            'image': reader.result,
+                            'name': $("#banner_id").val(),
+                            "base": base,
+                            "type": "banner",
+                            'member_id': {{ $member->id }},
+                            "uploadType": 'member'
+                        },
+                        success: function (data) {
+                            if (data.success === "success") {
+                                $("." + type + "-message").removeClass("hide-message");
+                                $("." + type + "-message").removeClass("alert-danger");
+                                if (!$("." + type + "-message").hasClass('alert-success')) {
+                                    $("." + type + "-message").toggleClass("alert-success");
+                                }
+                                $("." + type + "-message").text("Successfully updated");
+                                $("." + type + "-preview").attr("src", "/" + base + data.name);
+                                $("#" + type + '_id').val('');
+                            }
+                        }
+                    });
+                };
+                reader.readAsDataURL(file);
+            } else {
+                $(target).val('');
+                $("." + type + "-message").removeClass("hide-message");
+                $("." + type + "-message").removeClass("alert-success");
+                if (!$("." + type + "-message").hasClass('alert-danger')) {
+                    $("." + type + "-message").toggleClass("alert-danger");
+                }
+                $("." + type + "-message").text("Valid types jpg, jpeg and png");
+            }
+        } else{
+            $(target).val('');
+            $("." + type + "-message").removeClass("hide-message");
+            $("." + type + "-message").removeClass("alert-success");
+            if (!$("." + type + "-message").hasClass('alert-danger')) {
+                $("." + type + "-message").toggleClass("alert-danger");
+            }
+            $("." + type + "-message").text("The image you want to upload is to big");
+        }
+    });
+
+
+    /* AVATAR CROPPER */
+
     var $modal = $('#modal');
     var image = document.getElementById('image');
     var cropper;
@@ -887,7 +949,7 @@
                 if (!$("." + type + "-message").hasClass('alert-danger')) {
                     $("." + type + "-message").toggleClass("alert-danger");
                 }
-                $("." + type + "-message").text("Image is to large");
+                $("." + type + "-message").text("The image you want to upload is to big");
                 //alert('The image you want to upload is to big');
             }
         }
