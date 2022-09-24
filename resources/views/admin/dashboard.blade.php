@@ -196,7 +196,7 @@
                             </div>
 
                             <div class="row px-2">
-                                <a href="{{route('direction', $member->card_id)}}" class="bg-light">
+                                <a href="{{route('direction', $member->card_id)}}" target="_blank" class="bg-light">
                                     <div class="row py-3">
                                         <div class="col-4">
                                             <i class="far fa-eye text-dark" style="font-size: 45px"></i>
@@ -210,21 +210,35 @@
                             </div>
 
                             <div class="row px-2">
+                                <a href="{{route('stats')}}">
+                                    <div class="row py-3">
+                                        <div class="col-4">
+                                            <i class="fa fa-chart-line text-dark" style="font-size: 45px"></i>
+                                        </div>
+                                        <div class="col-8 ">
+                                            <p class="fw-semibold mb-0">Your numbers</p>
+                                            <span class="text-muted" style="font-size: 12px">click here to view your data/statistics</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="row px-2 bg-light">
                                 <a href="{{route('show.QRcode', Auth()->user()->member->card_id)}}">
                                     <div class="row py-3">
                                         <div class="col-4">
                                             <i class="fa fa-qrcode text-dark" style="font-size: 45px"></i>
                                         </div>
                                         <div class="col-8 ">
-                                            <p class="fw-semibold mb-0">QRcode</p>
-                                            <span class="text-muted" style="font-size: 12px">Scan your QRcode here</span>
+                                            <p class="fw-semibold mb-0">Qr-code</p>
+                                            <span class="text-muted" style="font-size: 12px">Scan your Qr-code here</span>
                                         </div>
                                     </div>
                                 </a>
                             </div>
 
                             <div class="row px-2">
-                                <a href="{{route('settings')}}" class="bg-light">
+                                <a href="{{route('settings')}}">
                                     <div class="row py-3">
                                         <div class="col-4">
                                             <i class="si si-settings text-dark" style="font-size: 45px"></i>

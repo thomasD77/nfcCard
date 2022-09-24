@@ -109,12 +109,12 @@
                     <i class="nav-main-link-icon  far fa-calendar-alt"></i><span class="nav-main-link-name">Profile</span>
                 </a>
 
-                @if(Auth::user()->archived == 0 && Auth::user()->business)
+                @if(Auth::user()->archived == 0)
                     <li class="nav-main-heading text-uppercase">Connections</li>
                     <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
                         <a class="nav-main-link" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="{{route('contacts.index')}}">
                             <i class="nav-main-link-icon far fa-list-alt"></i>
-                            <span class="nav-main-link-name ">SWAPS</span>
+                            <span class="nav-main-link-name ">Swaps</span>
                         </a>
                     </li>
 

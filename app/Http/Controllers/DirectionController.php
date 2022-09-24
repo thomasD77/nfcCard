@@ -46,6 +46,9 @@ class DirectionController extends Controller
         if($member->package->package == 'Default')
         {
             $vCard = null;
+            $count = $member->profile_views + 1;
+            $member->profile_views = $count;
+            $member->update();
             return view( 'front.landingspage_default.index', compact('member', 'vCard'));
         }
         elseif ($member->package->package == 'Custom')

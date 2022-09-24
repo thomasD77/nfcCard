@@ -38,6 +38,7 @@ Route::post('generate/cards', 'App\Http\Controllers\Dashboard\CardListGenerator@
 Route::post('generate/bulk/cards', 'App\Http\Controllers\Dashboard\CardListGenerator@bulkSelectListUrl')->name('bulk.cards');
 Route::get('bulk/delete/{team}', 'App\Http\Controllers\Dashboard\CardListGenerator@bulkDelete')->name('bulk.delete');
 Route::get('settings', 'App\Http\Controllers\Dashboard\SettingsController@index')->name('settings');
+Route::get('statistics', 'App\Http\Controllers\AdminStatisticsController@index')->name('stats');
 Route::get('members/print', 'App\Http\Controllers\CardController@print')->name('print');
 
 // Backend Routes

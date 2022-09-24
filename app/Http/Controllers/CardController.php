@@ -225,7 +225,10 @@ class CardController extends Controller
         $member = Member::where('card_id', $id)->first();
 
 
-        $existing_contact = Contact::where('email', $request->email)->first();
+        $existing_contact = Contact::where('member_id', $member->id)
+            ->where('email', $request->email)
+            ->first();
+
         if($existing_contact) {
             Session::flash('existing_contact_message', 'No need to SWAP again...' . " " . $request->email . " " . 'is already a connection.');
             return redirect()->back();

@@ -225,7 +225,8 @@
                     </div>
                 </div>
                 <div class="slider">
-                    <input type="checkbox" name="front_style" class="slider-checkbox" id="sliderSwitch" value="{{ 1 }}" @if($member->front_style === "dark") checked @endif>
+                    <input type="checkbox" name="front_style" class="slider-checkbox" id="sliderSwitch" value="{{ 1 }}"
+                           @if($member->front_style === "dark") checked @endif>
                     <label class="slider-label" for="sliderSwitch">
                         <span class="slider-inner"></span>
                         <span class="slider-circle"></span>

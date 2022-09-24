@@ -174,13 +174,16 @@
                             <p class="text-danger mt-2"> {{ $message }}</p>
                             @enderror
                         </div>
-                        <div class="form-group mb-4">
-                            {!! Form::label('one-profile-edit-email', 'E-mail:', ['class'=>'form-label']) !!}
-                            {!! Form::text('email',$user->email,['class'=>'form-control']) !!}
-                            @error('email')
-                            <p class="text-danger mt-2"> {{ $message }}</p>
-                            @enderror
-                        </div>
+
+                        @can('is_superAdmin')
+                            <div class="form-group mb-4">
+                                {!! Form::label('one-profile-edit-email', 'E-mail:', ['class'=>'form-label']) !!}
+                                {!! Form::text('email',$user->email,['class'=>'form-control']) !!}
+                                @error('email')
+                                <p class="text-danger mt-2"> {{ $message }}</p>
+                                @enderror
+                            </div>
+                        @endcan
 
                         @can('is_superAdmin')
                             <div class="form-group mb-4">
