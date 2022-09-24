@@ -175,6 +175,12 @@
                         This is a danger alert—check it out!
                     </div>
                 </div>
+                <div class="alert alert-dark fs-sm">
+                    <div class="mt-2">
+                        <p class="mb-0"><i class="fa fa-fw fa-info me-1 mb-0"></i>Don't forget! You can crop your image.
+                        </p>
+                    </div>
+                </div>
                 <div class="form-group mb-4">
                     <div class="form-check ps-0">
                         <div class="d-flex justify-content-between mb-2">
