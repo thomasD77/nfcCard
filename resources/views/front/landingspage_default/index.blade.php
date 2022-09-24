@@ -102,6 +102,15 @@
                                     <!-- Button trigger modal -->
                                         <button data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" class="btn_cstm save w-100 mt-3 p-3"><i class="fa fa-rotate mr-2 "></i>SWAP</button>
                                         <!-- Modal -->
+                                @else
+                                    <div class="py-4">
+                                        <a href="{{ route('members.vCard', $member->card_id) }}"
+                                           style="text-decoration: none; color: white"
+                                           class="btn_cstm save w-100 mt-5 p-3">
+                                            <i class="fa fa-floppy-disk me-1 opacity-50"></i> SAVE
+                                        </a>
+                                    </div>
+
                                 @endif
 
                                 <!-- Session flash-->

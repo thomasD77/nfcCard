@@ -1,3 +1,4 @@
+@if(Auth::user()->business)
 <div>
     <!-- Dynamic Table Full -->
     <div class="block block-rounded row">
@@ -58,5 +59,15 @@
     </div>
     <!-- END Dynamic Table Full -->
 </div>
+@else
+    <div class="alert alert-dark fs-sm">
+        <div class="mt-2">
+            <p class="mb-0"><i class="fa fa-fw fa-info me-1 mb-0"></i>
+                To view this data you need a business account. <br>
+                When this is active you can make add your connections in your contact list. You can add extra information to each contact to follow up easily.
+            </p>
+        </div>
+    </div>
+@endif
 
 
