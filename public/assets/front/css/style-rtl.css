@@ -8,11 +8,6 @@
 /* -----------------------------------------------------------------
     - General Styles
 ----------------------------------------------------------------- */
-body {
-  direction: rtl;
-  text-align: right;
-}
-
 .bg-triangles {
   background-position: right top, left bottom;
 }
@@ -23,10 +18,6 @@ body {
 .title-icon {
   margin-left: 0.5rem;
   margin-right: 0;
-}
-.title__separate::before, .title__separate::after {
-  left: auto;
-  right: 0;
 }
 
 @media only screen and (max-width: 991px) {
@@ -235,11 +226,6 @@ body {
     color: #FCFCFC;
 }
 
-.row{
-    align-items: center;
-    justify-content: flex-end;
-}
-
 .text-white{
     color:black !important;
 }
@@ -259,10 +245,7 @@ body {
 /* -----------------------------------------------------------------
     - Header
 ----------------------------------------------------------------- */
-.header__left {
-  padding-left: 1.875rem;
-  padding-right: 0;
-}
+
 .header__left::before {
   left: 0;
   right: auto;
@@ -276,18 +259,10 @@ body {
     right: auto;
   }
 }
-.header__right {
-  padding-left: 0;
-  padding-right: 1.875rem;
-}
 @media only screen and (max-width: 991px) {
   .header__right {
     padding-right: 0;
   }
-}
-.header__base-info {
-  margin-left: 0;
-  margin-right: 1.5rem;
 }
 @media only screen and (max-width: 991px) {
   .header__base-info {
