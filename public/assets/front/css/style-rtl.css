@@ -218,12 +218,26 @@
 .btn:hover {
     color: #FCFCFC;
 }
+.row{
+    align-items: center;
+    justify-content: flex-end;
+}
 
 .text-white{
     color:black !important;
 }
 
+input {
+    text-align: center;
+}
 
+::-webkit-input-placeholder {
+    text-align: left;
+}
+
+:-moz-placeholder {
+    text-align: left;
+}
 
 /* -----------------------------------------------------------------
     - Preloader

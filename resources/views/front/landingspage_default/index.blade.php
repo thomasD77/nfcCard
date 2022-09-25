@@ -381,15 +381,15 @@
 
                                 <div class="row">
 
-                                    @if($member->video && $member->state->video)
-                                        <div class="col-12 d-flex justify-content-center my-3">
-                                            <video width="560" height="315" controls muted autoplay>
-                                                <source src="{{asset('media/videos/' . $member->video->file)}}"
-                                                        type="video/mp4">
-                                                Your browser does not support the video tag.
-                                            </video>
-                                        </div>
-                                    @endif
+{{--                                    @if($member->video && $member->state->video)--}}
+{{--                                        <div class="col-12 d-flex justify-content-center my-3">--}}
+{{--                                            <video width="560" height="315" controls muted autoplay>--}}
+{{--                                                <source src="{{asset('media/videos/' . $member->video->file)}}"--}}
+{{--                                                        type="video/mp4">--}}
+{{--                                                Your browser does not support the video tag.--}}
+{{--                                            </video>--}}
+{{--                                        </div>--}}
+{{--                                    @endif--}}
 
                                     @if($member->youtube_video && $member->state->youtube_video)
                                         <div class="col-12 d-flex justify-content-center my-3">

@@ -746,30 +746,30 @@
             </div>
         </div>
     </div>
-    <div class="row push">
-        <div class="col-lg-10 offset-lg-1">
-            <div class="form-group mb-4">
-                <div class="form-check ps-0">
-                    <div class="d-flex justify-content-between mb-2">
-                        {!! Form::label('video_id', 'Video Attachment:', ['class'=>'form-label']) !!}
-                        <input class="form-check-input"
-                               type="checkbox"
-                               name="check_video"
-                               style="width: 25px; height: 25px"
-                               value="{{ 1 }}" @if($member->state->video) checked @endif>
-                    </div>
-                </div>
-                {!! Form::file('video_id',['class'=>'form-control', "accept"=>"video/mp4"]) !!}
-            </div>
-            @if(!$errors->isEmpty())
-                @foreach ($errors->all('<p>:message</p>') as $input_error)
-                    <div class="alert alert-danger">
-                        {{ str_replace("</p>", "", str_replace("<p>", "", $input_error)) }}
-                    </div>
-                @endforeach
-            @endif
-        </div>
-    </div>
+{{--    <div class="row push">--}}
+{{--        <div class="col-lg-10 offset-lg-1">--}}
+{{--            <div class="form-group mb-4">--}}
+{{--                <div class="form-check ps-0">--}}
+{{--                    <div class="d-flex justify-content-between mb-2">--}}
+{{--                        {!! Form::label('video_id', 'Video Attachment:', ['class'=>'form-label']) !!}--}}
+{{--                        <input class="form-check-input"--}}
+{{--                               type="checkbox"--}}
+{{--                               name="check_video"--}}
+{{--                               style="width: 25px; height: 25px"--}}
+{{--                               value="{{ 1 }}" @if($member->state->video) checked @endif>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                {!! Form::file('video_id',['class'=>'form-control', "accept"=>"video/mp4"]) !!}--}}
+{{--            </div>--}}
+{{--            @if(!$errors->isEmpty())--}}
+{{--                @foreach ($errors->all('<p>:message</p>') as $input_error)--}}
+{{--                    <div class="alert alert-danger">--}}
+{{--                        {{ str_replace("</p>", "", str_replace("<p>", "", $input_error)) }}--}}
+{{--                    </div>--}}
+{{--                @endforeach--}}
+{{--            @endif--}}
+{{--        </div>--}}
+{{--    </div>--}}
     <div class="d-flex justify-content-end">
         <div class="form-group m-4">
             <button type="submit" class="btn btn-alt-primary">Update</button>
