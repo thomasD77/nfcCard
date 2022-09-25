@@ -197,37 +197,38 @@
             </div>
             <!-- End Avatar -->
 
-{{--            <!-- Start Banner -->--}}
-{{--            <div class="my-3">--}}
-{{--                <div class="mb-4 d-flex justify-content-center">--}}
-{{--                    <img class="banner banner-preview" width="300" height="150"--}}
-{{--                         src="{{$member->banner ? asset('/'). $member->banner->file : asset('/assets/front/img/bg-vcard.png')}}"--}}
-{{--                         alt="{{$member->name}}">--}}
-{{--                </div>--}}
-{{--                <div class="d-flex justify-content-center">--}}
-{{--                    <p class="alert banner-message hide-message">This is a message</p>--}}
-{{--                </div>--}}
-{{--                <div class="form-group mb-4">--}}
-{{--                    <div class="form-check ps-0">--}}
-{{--                        <div class="d-flex justify-content-between mb-2">--}}
-{{--                            {!! Form::label('banner_id', 'Banner:', ['class'=>'form-label']) !!}--}}
-{{--                            <input class="form-check-input"--}}
-{{--                                   type="checkbox"--}}
-{{--                                   name="check_banner"--}}
-{{--                                   style="width: 25px; height: 25px"--}}
-{{--                                   value="{{ 1 }}" @if($member->state->banner) checked @endif>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    {!! Form::file('banner_id',['class'=>'form-control crop-image']) !!}--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--            <!-- End Banner -->--}}
+            <!-- Start Banner -->
+            <div class="my-3">
+                <div class="mb-4 d-flex justify-content-center">
+                    <img class="banner banner-preview" width="300" height="150"
+                         src="{{$member->banner ? asset('/'). $member->banner->file : asset('/assets/front/img/bg-vcard.png')}}"
+                         alt="{{$member->name}}">
+                </div>
+                <div class="d-flex justify-content-center">
+                    <p class="alert banner-message hide-message">This is a message</p>
+                </div>
+                <div class="form-group mb-4">
+                    <div class="form-check ps-0">
+                        <div class="d-flex justify-content-between mb-2">
+                            {!! Form::label('banner_id', 'Banner:', ['class'=>'form-label']) !!}
+                            <input class="form-check-input"
+                                   type="checkbox"
+                                   name="check_banner"
+                                   style="width: 25px; height: 25px"
+                                   value="{{ 1 }}" @if($member->state->banner) checked @endif>
+                        </div>
+                    </div>
+                    {!! Form::file('banner_id',['class'=>'form-control crop-image']) !!}
+                </div>
+            </div>
+            <!-- End Banner -->
+
 
             <!-- Frontend-style -->
             <div class="form-group my-4">
                 <div class="form-check ps-0">
                     <div class="d-flex justify-content-between mb-2">
-                        {!! Form::label('front_style','Profile style:',['class'=>'form-label']) !!}
+                        {!! Form::label('front_style','Front Style:',['class'=>'form-label']) !!}
                     </div>
                 </div>
                 <div class="slider">
