@@ -175,7 +175,7 @@
                                                                 <input type="text"
                                                                        class="form-control input_modal"
                                                                        name="name"
-                                                                       placeholder="Enter your name..."
+                                                                       placeholder="ex: John Doe"
                                                                        autocomplete="name"
                                                                 >
                                                                 @error('name')
