@@ -50,6 +50,14 @@ class AdminContactsController extends Controller
         return view('admin.contacts.archive', compact('contacts', 'count'));
     }
 
+    public function archiveContact(Contact $contact)
+    {
+        $contact->archived = 1;
+        $contact->update();
+
+        return view('admin.contacts.index');
+    }
+
     public function archiveClients()
     {
         return view('admin.contacts.archive-client');

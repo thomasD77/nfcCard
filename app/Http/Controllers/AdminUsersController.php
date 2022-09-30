@@ -267,15 +267,19 @@ class AdminUsersController extends Controller
         return redirect('/admin');
     }
 
-    public function contactsList()
-    {
-        return view('admin.contacts-list.index');
-    }
-
     public function contactDetail(Contact $contact)
     {
         return view('admin.contacts-list.detail', compact('contact'));
     }
 
+    public function archiveContact($id)
+    {
+        dd('test');
+        $contact = \App\Models\Contact::findOrFail($id);
+        $contact->archived = 1;
+        $contact->update();
+
+        return redirect('admin/contacts');
+    }
 
 }

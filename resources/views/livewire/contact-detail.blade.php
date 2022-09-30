@@ -22,7 +22,7 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">SCAN DETAILS</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">CONTACT INFO</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
@@ -76,14 +76,12 @@
                                     <p class="mb-2 mt-4" style="text-align: left"><strong>Status:</strong></p>
 
                                     <div class="form-group mb-4">
-                                        {!! Form::label('one-profile-edit-roles', 'choose status:', ['class'=>'form-label']) !!}
                                         {!! Form::select('status',$statusses,$contact->status_id,['class'=>'form-control',])!!}
                                     </div>
 
                                     <p class="mb-2 mt-4" style="text-align: left"><strong>Sector:</strong></p>
 
                                     <div class="form-group mb-4">
-                                        {!! Form::label('one-profile-edit-roles', 'choose sector:', ['class'=>'form-label']) !!}
                                         {!! Form::select('sector',$sectors,$contact->sector_id,['class'=>'form-control',])!!}
                                     </div>
 
@@ -305,35 +303,16 @@
     @livewire('contact-detail-notes', [ 'contact' => $contact ])
 
     <div class="mt-3 mt-md-0">
-            <a class="block block-rounded block-link-shadow text-center" >
+            <a href="{{ route('contact.archive.detail', $contact) }}" class="block block-rounded block-link-shadow text-center" >
                 <div class="block-content block-content-full" data-bs-toggle="modal" data-bs-target="#exampleModal" style="cursor: pointer">
-                    <div class="fs-2 fw-semibold text-danger">
-                        <i class="fa fa-times"></i>
+                    <div class="fs-2 fw-semibold text-dark">
+                        <i class="fa fa-archive"></i>
                     </div>
                 </div>
-                <div class="block-content py-2 bg-body-light" data-bs-toggle="modal" data-bs-target="#exampleModal" style="cursor: pointer">
-                    <p class="fw-medium fs-sm text-danger mb-0">
-                        Remove Contact
+                <div class="block-content py-2 bg-body-light" style="cursor: pointer">
+                    <p class="fw-medium fs-sm text-dark mb-0">
+                        Archive Contact
                     </p>
-                </div>
-
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Remove Contact</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                Are you sure you want to delete this contact account? All the information will be lost forever.
-                            </div>
-                            <div class="modal-footer" >
-                                <a type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</a>
-                                <a wire:click="deleteContact"  class="btn btn-danger">DELETE</a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </a>
         </div>
