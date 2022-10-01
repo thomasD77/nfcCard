@@ -406,6 +406,8 @@
 
         @yield('js_after')
 
+        @livewireScripts
+        
         <!-- Laravel Toastr -->
         <script src="https://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
         {!! Toastr::message() !!}
@@ -437,8 +439,6 @@
                 }
             })
         </script>
-
-        @livewireScripts
 
     </body>
 </html>
