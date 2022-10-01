@@ -8,6 +8,7 @@
                 <div class="flex-grow-1">
                     <h1 class="h3 fw-bold mb-2">
                         SWAP CONNECTIONS
+                        
                     </h1>
                     <p class="text-muted">Here you have an overview from all the Swap connections. Click on the eye button to see the details.</p>
                 </div>
