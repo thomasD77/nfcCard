@@ -26,11 +26,15 @@
             <!-- End Pagination -->
 
             <div class="col-md-2 mt-3 mt-md-0">
-                <input type="checkbox"
-                       class="btn btn-sm btn-alt-secondary"
-                       @if($scans) checked @endif
-                       wire:click="onlyMyScans">
-                Only my scans
+                <div class="form-check form-switch">
+                    <input class="form-check-input" value="1"
+                           name="is_public"
+                           type="checkbox"
+                           id="flexSwitchCheckDefault"
+                           @if($scans) checked @endif
+                           wire:click="onlyMyScans"
+                    > Show my scans only
+                </div>
             </div>
 
             <!-- Datepicker  -->
