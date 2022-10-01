@@ -26,7 +26,6 @@
         <div class="block-header block-header-default">
             <h3 class="block-title">
                 Card credentials
-
             </h3>
         </div>
         <table class="table table-striped table-hover table-vcenter fs-sm">

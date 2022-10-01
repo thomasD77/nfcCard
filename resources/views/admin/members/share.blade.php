@@ -14,7 +14,7 @@
                 <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-alt">
                         <li class="breadcrumb-item">
-                            <a class="link-fx" href="javascript:void(0)">DataTable</a>
+                            <a class="link-fx" href="{{ asset('/admin') }}">Dashboard</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
                             Your link
