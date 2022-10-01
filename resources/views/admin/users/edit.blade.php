@@ -151,6 +151,11 @@
                             @enderror
                         </div>
 
+                        <div class="form-group mb-4">
+                            {!! Form::label('one-profile-edit-name', 'E-mail:', ['class'=>'form-label']) !!}
+                            <input type="text" class="form-control" disabled value="{{ $user->email }}">
+                        </div>
+
                         @can('is_superAdmin')
                             <div class="form-group mb-4">
                                 {!! Form::label('one-profile-edit-email', 'E-mail:', ['class'=>'form-label']) !!}
