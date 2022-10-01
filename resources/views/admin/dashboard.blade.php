@@ -20,7 +20,7 @@
         }
     </style>
 
-    @canany([ 'is_superAdmin', 'is_admin'])
+    @can('is_superAdmin')
     <!-- Hero -->
     <div class="bg-body-light">
         <div class="content content-full">
@@ -51,7 +51,6 @@
     <!-- Page Content -->
     <div class="content">
         <div class="row row-deck mb-5 d-flex justify-content-center">
-            @can('is_superAdmin')
             <div class="row">
                 <div class="col-md-6 col-xl-4 mb-4">
                     <div class="block block-rounded block-themed shadow">
@@ -101,17 +100,15 @@
                     </div>
                 </div>
             </div>
-            @endcan
-
             <img class="rounded shadow px-0" style="width: 70%" src="{{ asset('images/content/handshake.jpg') }}" alt="bg-image">
         </div>
     </div>
     <!-- END Page Content -->
-    @endcanany
+    @endcan
 
-    @can('is_client')
-        <div class="block block-rounded row"
-             style="background-image: url('images/content/bg_screenshot.png');
+    @canany([ 'is_client', 'is_admin'])
+        <div class="block block-rounded row mb-0"
+             style="background-image: url('images/content/background_4.png');
              background-repeat: no-repeat;
              height: 100%; width: 100%;
              background-position: center;
@@ -127,36 +124,39 @@
 
                         <div class="card shadow pt-4 col-md-6 offset-md-3 p-md-4 my-md-5" style="border: none">
 
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card-body">
 
-                            <div class="d-flex justify-content-center m-2">
-                                <img class="rounded-circle" width="150" height="150" src="{{$member->avatar ? asset('/card/avatars') . "/" . $member->avatar : asset('/assets/front/img/Avatar-4.svg') }}" alt="{{$member->name}}">
-                            </div>
+                                        <h4 class="card-title mb-4">{{ $member->firstname }} {{ $member->lastname }}</h4>
 
-                            <div class="card-body">
+                                        @if($member->email)
+                                            <div class="row">
+                                                <i class="far fa-envelope col-1 pt-2"></i>
+                                                <p class="col-10">{{ $member->email }}</p>
+                                            </div>
+                                        @endif
 
-                                <h4 class="card-title mb-4">{{ $member->firstname }} {{ $member->lastname }}</h4>
+                                        @if($member->company)
+                                            <div class="row">
+                                                <i class="far fa-building col-1 pt-2"></i>
+                                                <p class="col-10">{{ $member->company }}</p>
+                                            </div>
+                                        @endif
 
-                                @if($member->email)
-                                    <div class="row">
-                                        <i class="far fa-envelope col-1 pt-2"></i>
-                                        <p class="col-10">{{ $member->email }}</p>
+                                        @if($member->jobTitle)
+                                            <div class="row">
+                                                <i class="far fa-compass col-1 pt-2"></i>
+                                                <p class="col-10">{{ $member->jobTitle }}</p>
+                                            </div>
+                                        @endif
+
                                     </div>
-                                @endif
+                                </div>
 
-                                @if($member->company)
-                                    <div class="row">
-                                        <i class="far fa-building col-1 pt-2"></i>
-                                        <p class="col-10">{{ $member->company }}</p>
-                                    </div>
-                                @endif
-
-                                @if($member->jobTitle)
-                                    <div class="row">
-                                        <i class="far fa-building col-1 pt-2"></i>
-                                        <p class="col-10">{{ $member->jobTitle }}</p>
-                                    </div>
-                                @endif
-
+                                <div class="col-md-6 d-flex justify-content-center mb-5 my-md-4">
+                                    <img class="rounded-circle" width="150" height="150" src="{{$member->avatar ? asset('/card/avatars') . "/" . $member->avatar : asset('/assets/front/img/Avatar-4.svg') }}" alt="{{$member->name}}">
+                                </div>
                             </div>
 
                             <div class="row px-2">
@@ -216,7 +216,7 @@
                             </div>
 
                             <div class="row px-2">
-                                <a href="{{route('show.QRcode', Auth()->user()->member->card_id)}}}" target="_blank" class="bg-light">
+                                <a href="{{route('show.QRcode', Auth()->user()->member->card_id)}}}" class="bg-light">
                                     <div class="row py-3">
                                         <div class="col-4">
                                             <i class="fa fa-qrcode text-dark" style="font-size: 45px"></i>
@@ -265,7 +265,7 @@
 
             </div>
         </div>
-    @endcan
+    @endcanany
 
 
 

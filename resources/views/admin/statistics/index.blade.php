@@ -10,14 +10,20 @@
     <script>
         var swaps = <?php echo json_encode($swaps); ?>;
         var views = <?php echo json_encode($views); ?>;
-        var contacts = <?php echo json_encode($contacts); ?>;
+        var team_scans = <?php echo json_encode($team_scans); ?>;
 
-        var xValues = ["Swaps", "Profile views", "Contacts"];
-        var yValues = [swaps, views, contacts];
+        if(team_scans){
+            var xValues = ["Swaps", "Profile views", "Team Swaps"];
+            var yValues = [swaps, views, team_scans];
+        }else {
+            var xValues = ["Swaps", "Profile views"];
+            var yValues = [swaps, views];
+        }
+
         var barColors = [
             "#1a1dc7",
+            "#62639c",
             "rgba(21,148,150,0.8)",
-            "#6356b4",
         ];
 
         new Chart("myChart", {
@@ -49,11 +55,12 @@
                     <h1 class="h3 fw-bold mb-2">
                         Statistics
                     </h1>
+                    <p class="text-muted">Check your data here! Get a clear overview on your networking. </p>
                 </div>
                 <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-alt">
                         <li class="breadcrumb-item">
-                            <a class="link-fx" href="javascript:void(0)">DataTable</a>
+                            <a class="link-fx" href="{{ asset('/admin') }}">Dashboard</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
                             statistics
@@ -76,7 +83,6 @@
             </div>
 
             <canvas id="myChart" class="mb-5" style="width:100%;max-width:900px"></canvas>
-
 
         </div>
         <!-- END Dynamic Table Full -->

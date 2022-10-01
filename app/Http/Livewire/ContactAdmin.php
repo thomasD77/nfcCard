@@ -2,9 +2,11 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Contact;
 use App\Models\Member;
 use App\Models\User;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -58,9 +60,10 @@ class ContactAdmin extends Component
 
     public function render()
     {
-        if( $this->scans) {
-            $members = Member::where('user_id', Auth()->user()->id)->pluck('id');
+        $member = "";
 
+        if($this->scans) {
+            $member = Auth()->user()->member->id;
         } else {
             $team = Auth()->user()->team;
             $users = User::where('team_id', $team->id)->pluck('id');
@@ -70,13 +73,25 @@ class ContactAdmin extends Component
 
         if($this->datepicker == "")
         {
-            $contacts = \App\Models\Contact::with(['member', 'contactStatus'])
-                ->where('archived', 0)
-                ->whereIn('member_id', $members)
-                ->latest()
-                ->where('name', 'LIKE', '%' . $this->name . '%')
-                ->simplePaginate($this->pagination);
-            return view('livewire.contact-admin', compact('contacts'));
+            if(!$member){
+                $contacts = \App\Models\Contact::with(['member', 'contactStatus'])
+                    ->where('archived', 0)
+                    ->whereIn('member_id', $members)
+                    ->latest()
+                    ->where('name', 'LIKE', '%' . $this->name . '%')
+                    ->simplePaginate($this->pagination);
+                return view('livewire.contact-admin', compact('contacts'));
+            }
+            else {
+                $contacts = \App\Models\Contact::with(['member', 'contactStatus'])
+                    ->where('archived', 0)
+                    ->where('member_id', Auth::user()->member->id)
+                    ->latest()
+                    ->where('name', 'LIKE', '%' . $this->name . '%')
+                    ->simplePaginate($this->pagination);
+                return view('livewire.contact-admin', compact('contacts'));
+            }
+
         }
         else {
             ['datepicker' => $this->datepicker];

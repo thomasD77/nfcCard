@@ -57,6 +57,7 @@
                     @foreach($contacts as $contact)
                         <tr>
                             <td>{{$contact->name ? $contact->name : 'No Name'}}</td>
+
                             <td><a style="{{$contact->email ? '' : 'color:black'}}" href="mailto:{{$contact->email ? $contact->email : '#'}}"> {{$contact->email ? $contact->email : 'x'}}</a></td>
 
                             <td><a style="{{$contact->phone ? '' : 'color:black'}}" href="{{$contact->phone ? $contact->phone : '#'}}">{{$contact->phone ? $contact->phone : 'x'}}</a></td>

@@ -66,22 +66,27 @@
                                         <p class="bg-light p-2">{{$contact->VAT ? $contact->VAT : ''}}</p>
                                     @endif
 
-                                    @if($contact->notes)
-                                        <p class="mb-2 mt-4" style="text-align: left"><strong>Message:</strong></p>
-                                        <p class="bg-light p-2">{{$contact->message ? $contact->message : 'No message'}}</p>
-                                    @endif
-
                                     <p class="mb-2 mt-4" style="text-align: left"><strong>Status:</strong></p>
-
                                     <div class="form-group mb-4">
                                         {!! Form::select('status',$statusses,$contact->status_id,['class'=>'form-control',])!!}
                                     </div>
 
                                     <p class="mb-2 mt-4" style="text-align: left"><strong>Sector:</strong></p>
-
                                     <div class="form-group mb-4">
                                         {!! Form::select('sector',$sectors,$contact->sector_id,['class'=>'form-control',])!!}
                                     </div>
+
+                                    <p class="mb-2 mt-4" style="text-align: left"><strong>Short note:</strong></p>
+                                    <textarea type="text"
+                                              class="form-control"
+                                              placeholder="Type your note..."
+                                              rows="4"
+                                              name="notes"
+                                    >{{ $contact->notes }}</textarea>
+                                    @error('notes')
+                                    <p class="text-danger mt-2"> {{ $message }}</p>
+                                    @enderror
+
 
                                     <div class="card-body d-flex justify-content-end pe-0">
                                         <button type="submit" style="background-color: #1F2A37; border: 1px solid #1F2A37" class="btn btn-primary p-2">Update</button>
@@ -234,20 +239,20 @@
         <!-- END Addresses -->
 
         <div class="row">
-            <div class="col-lg-6">
-                @if($contact->message)
-                <!-- Message -->
-                    <div class="block block-rounded">
-                        <div class="block-header block-header-default">
-                            <h3 class="block-title">Message</h3>
+            @if($contact->message)
+                <div class="col-lg-6">
+                    <!-- Message -->
+                        <div class="block block-rounded">
+                            <div class="block-header block-header-default">
+                                <h3 class="block-title">Message</h3>
+                            </div>
+                            <div class="block-content p-2 p-lg-4">
+                                {{ $contact->message }}
+                            </div>
                         </div>
-                        <div class="block-content p-2 p-lg-4">
-                            {{ $contact->message }}
-                        </div>
-                    </div>
                     <!-- END Message -->
-                @endif
-            </div>
+                </div>
+            @endif
 
             @if($contact->notes)
             <div class="col-lg-6">

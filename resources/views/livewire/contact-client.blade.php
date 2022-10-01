@@ -52,8 +52,6 @@
         </div>
 
         <div class="block-content block-content-full overflow-scroll px-1">
-
-
             <!-- Session flash-->
             @if(Session::has('contact_message'))
                 <p class="alert alert-info my-3">{{session('contact_message')}}</p>

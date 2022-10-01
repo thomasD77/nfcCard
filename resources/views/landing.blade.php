@@ -1,23 +1,17 @@
 @extends('layouts.simple')
 
 @section('content')
-    <style>
-        .card:hover {
-            transform: scale(1.05);
-            transition: all .3s ease-in-out;
-        }
-    </style>
     <!-- Hero -->
-    <div class="hero bg-body-extra-light overflow-hidden"  style="background-image: url('images/content/handshake.jpeg');
+    <div class="hero bg-body-extra-light overflow-hidden"  style="background-image: url('images/content/background_3.png');
              background-repeat: no-repeat;
              background-position: center;
              background-size: cover">
         <div class="hero-inner">
             <div class="content content-full text-center">
                 <div class="row">
-                    <div class="col-md-6 offset-md-3">
-                        <div class="card py-5 pb-0 shadow" style="border: none; ">
-                            <h1 class="fw-bold mb-2">
+                    <div class="col-md-4 offset-md-4">
+                        <div class="card p-5 pb-0 shadow" style="border: none; ">
+                            <h1 class="fw-bold mb-4">
                                 Welcome to the world of SWAP!
                             </h1>
                             <p class="fs-lg  text-muted mb-4">
@@ -28,9 +22,9 @@
 
                             </p>
                             <div>
-                                <a class="btn btn-alt-primary" href="{{ route('admin.home') }}">
+                                <a class="btn btn-alt-primary text-white" style="background-color: #1F2A37; border: 1px solid #1F2A37" href="{{ route('admin.home') }}">
                                     Enter Dashboard
-                                    <i class="fa fa-fw fa-arrow-right opacity-50 ms-1"></i>
+                                    <i class="fa fa-fw fa-arrow-right ms-1 text-white"></i>
                                 </a>
                             </div>
                             <div class="pt-5">
