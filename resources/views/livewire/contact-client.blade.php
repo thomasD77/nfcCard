@@ -128,16 +128,16 @@
         </div>
     </div>
     <!-- END Dynamic Table Full -->
-</div>
-@else
-    <div class="alert alert-dark fs-sm">
-        <div class="mt-2">
-            <p class="mb-0"><i class="fa fa-fw fa-info me-1 mb-0"></i>
-                To view this data you need a business account. <br>
-                When this is active you can make connections with your profile that you exchange. All data will be displayed here with a filter to search and find easily.
-            </p>
+    @else
+        <div class="alert alert-dark fs-sm">
+            <div class="mt-2">
+                <p class="mb-0"><i class="fa fa-fw fa-info me-1 mb-0"></i>
+                    To view this data you need a business account. <br>
+                    When this is active you can make connections with your profile that you exchange. All data will be displayed here with a filter to search and find easily.
+                </p>
+            </div>
         </div>
-    </div>
+    @endif
+</div>
 
-@endif
 
