@@ -41,6 +41,8 @@
         <script>window.Laravel = {!! json_encode(['csrfToken' => csrf_token(),]) !!};</script>
 
         @livewireStyles
+        <link rel="stylesheet"
+              href="{{ mix('css/app.css') }}">
     </head>
     <body>
         <!-- Page Container -->
@@ -405,7 +407,7 @@
         <!-- <script src="{{ asset('/js/laravel.app.js') }}"></script> -->
 
         @yield('js_after')
-
+        <script src="{{ mix('js/app.js') }}"></script>
         @livewireScripts
 
         <!-- Laravel Toastr -->
