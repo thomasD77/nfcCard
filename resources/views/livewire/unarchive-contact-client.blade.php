@@ -66,7 +66,7 @@
 
                             <td>
                                 <div class="btn-group">
-                                    <button class="btn btn-sm btn-alt-secondary" wire:click="unArchiveContact({{$contact->id}})"><i class="si si-refresh"></i></button>
+                                    <button class="btn btn-alt-secondary" wire:click="unArchiveContact({{$contact->id}})"><i class="si si-refresh"></i></button>
                                 </div>
                             </td>
                         </tr>

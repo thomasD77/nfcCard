@@ -79,7 +79,7 @@
                             <td>{{$contact->created_at ? \Carbon\Carbon::parse($contact->created_at)->format('d-M-Y') : 'x'}}</td>
                             <td>
                                 <div class="btn-group">
-                                    <button class="btn btn-sm btn-alt-secondary" wire:click="unArchiveContact({{$contact->id}})"><i class="si si-refresh"></i></button>
+                                    <button class="btn btn-alt-secondary" wire:click="unArchiveContact({{$contact->id}})"><i class="si si-refresh"></i></button>
                                 </div>
                             </td>
                         </tr>
