@@ -80,7 +80,7 @@ class ContactAdmin extends Component
                     ->latest()
                     ->where('name', 'LIKE', '%' . $this->name . '%')
                     ->simplePaginate($this->pagination);
-                return view('livewire.contact-admin', compact('contacts'));
+                    return view('livewire.contact-admin', compact('contacts'));
             }
             else {
                 $contacts = \App\Models\Contact::with(['member', 'contactStatus'])
@@ -89,7 +89,7 @@ class ContactAdmin extends Component
                     ->latest()
                     ->where('name', 'LIKE', '%' . $this->name . '%')
                     ->simplePaginate($this->pagination);
-                return view('livewire.contact-admin', compact('contacts'));
+                    return view('livewire.contact-admin', compact('contacts'));
             }
 
         }
@@ -104,20 +104,50 @@ class ContactAdmin extends Component
             $day = $this->datepicker_day;
 
             if ($day != "") {
-                $contacts = \App\Models\Contact::with(['member', 'contactStatus'])
-                    ->whereIn('member_id', $members)
-                    ->where('archived', 0)
-                    ->whereMonth('created_at', $month)
-                    ->whereYear('created_at', $year)
-                    ->whereDay('created_at', $day)
-                    ->simplePaginate($this->pagination);
+                if(!$member){
+                    $contacts = \App\Models\Contact::with(['member', 'contactStatus'])
+                        ->where('archived', 0)
+                        ->whereIn('member_id', $members)
+                        ->whereMonth('created_at', $month)
+                        ->whereYear('created_at', $year)
+                        ->whereDay('created_at', $day)
+                        ->where('name', 'LIKE', '%' . $this->name . '%')
+                        ->simplePaginate($this->pagination);
+                    return view('livewire.contact-admin', compact('contacts'));
+                }
+                else {
+                    $contacts = \App\Models\Contact::with(['member', 'contactStatus'])
+                        ->where('archived', 0)
+                        ->where('member_id', Auth::user()->member->id)
+                        ->whereMonth('created_at', $month)
+                        ->whereYear('created_at', $year)
+                        ->whereDay('created_at', $day)
+                        ->where('name', 'LIKE', '%' . $this->name . '%')
+                        ->simplePaginate($this->pagination);
+                    return view('livewire.contact-admin', compact('contacts'));
+                }
+
             } else {
-                $contacts = \App\Models\Contact::with(['member', 'contactStatus'])
-                    ->whereIn('member_id', $members)
-                    ->where('archived', 0)
-                    ->whereMonth('created_at', $month)
-                    ->whereYear('created_at', $year)
-                    ->simplePaginate($this->pagination);
+                if(!$member){
+                    $contacts = \App\Models\Contact::with(['member', 'contactStatus'])
+                        ->where('archived', 0)
+                        ->whereIn('member_id', $members)
+                        ->whereMonth('created_at', $month)
+                        ->whereYear('created_at', $year)
+                        ->where('name', 'LIKE', '%' . $this->name . '%')
+                        ->simplePaginate($this->pagination);
+                    return view('livewire.contact-admin', compact('contacts'));
+                }
+                else {
+                    $contacts = \App\Models\Contact::with(['member', 'contactStatus'])
+                        ->where('archived', 0)
+                        ->where('member_id', Auth::user()->member->id)
+                        ->whereMonth('created_at', $month)
+                        ->whereYear('created_at', $year)
+                        ->where('name', 'LIKE', '%' . $this->name . '%')
+                        ->simplePaginate($this->pagination);
+                    return view('livewire.contact-admin', compact('contacts'));
+                }
             }
         }
         return view('livewire.contact-admin');
