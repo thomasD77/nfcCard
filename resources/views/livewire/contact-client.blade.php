@@ -3,10 +3,10 @@
     <!-- Dynamic Table Full -->
     <div class="block block-rounded">
         <div class="block-header block-header-default row px-0 py-3 px-md-3" style="background-color: transparent">
-            <button class="btn btn-primary" style="background-color: #1F2A37; border: 1px solid #1F2A37" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            <button class="btn btn-primary" style="background-color: #1F2A37; border: 1px solid #1F2A37" wire:ignore.self type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                 <i class="fa fa-filter me-2"></i> Click for search/filter options
             </button>
-            <div class="collapse" id="collapseExample">
+            <div class="collapse" id="collapseExample" wire:ignore.self>
                 <div class="row card-body px-0">
                     <!-- Search Form  -->
                     <form class="col-md-6 px-0 py-2">
