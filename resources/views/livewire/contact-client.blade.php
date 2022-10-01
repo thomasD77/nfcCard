@@ -3,104 +3,58 @@
     <!-- Dynamic Table Full -->
     <div class="block block-rounded">
         <div class="block-header block-header-default row px-0 py-3 px-md-3" style="background-color: transparent">
+            <button class="btn btn-primary" style="background-color: #1F2A37; border: 1px solid #1F2A37" wire:ignore.self type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                <i class="fa fa-filter me-2"></i> Click for search/filter options
+            </button>
+            <div class="collapse" id="collapseExample" wire:ignore.self>
+                <div class="row card-body px-0">
+                    <!-- Search Form  -->
+                    <form class="col-md-6 px-0 py-2">
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control form-control-alt" placeholder="Search for name..." id="page-header-search-input2" wire:model="name">
+                        </div>
+                    </form>
+                    <!-- END Search Form -->
 
-            <!-- Search Form  -->
-            <form class="col-md-6 px-0 py-2">
-                <div class="input-group input-group-sm">
-                    <input type="text" class="form-control form-control-alt" placeholder="Search for name..." id="page-header-search-input2" wire:model="name">
+                    <!-- Datepicker  -->
+                    <div class="col-md-5 offset-md-1 my-4 my-md-0 px-0">
+                        <label class="d-flex py-2">
+                            <label class="d-flex align-items-center text-muted d-none d-md-block pt-2" style="font-size: 10px">DAY</label>
+                            <input style="width: 65px" wire:model="datepicker_day"  class="form-control" type="number" max="31" min="1">
+                            <label class="d-flex align-items-center text-muted ms-1 d-none d-md-block pt-2" style="font-size: 10px">MONTH/YEAR</label>
+                            <input wire:model="datepicker" id="datepicker" type="month" class="form-control" id="" name="" placeholder="Select date contact" data-inline="month" data-enable-time="false">
+                            <button wire:click="dateALL" class="btn btn-secondary rounded" type="button" data-bs-toggle="tooltip" title="Refresh"><i class="si si-refresh"></i></button>
+                        </label>
+                    </div>
+                    <!-- Datepicker  -->
+
+                    <div class="d-flex justify-content-start justify-content-md-end px-0">
+
+                        <a href="{{route('contact.archive-clients', Auth()->user() )}}">
+                            <button class="btn btn-secondary rounded me-2" data-bs-toggle="tooltip" title="Archive">
+                                <i class="fa fa-archive "></i>
+                            </button>
+                        </a>
+
+                        <a href="{{ route('print.scans.client') }}" class="btn btn-alt-success me-2">
+                            <i class="fa fa-print mx-1"></i>
+                        </a>
+
+                        <!-- Pagination Select-->
+                        <div class="d-flex justify-content-md-end">
+                            <select wire:model="pagination" style="width: 80px" class="form-select " aria-label="Default select example">
+                                <option value="5">5</option>
+                                <option value="20">20</option>
+                                <option selected value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                        </div>
+                        <!-- End Pagination -->
                 </div>
-            </form>
-            <!-- END Search Form -->
-
-            <!-- Datepicker  -->
-            <div class="col-md-5 offset-md-1 my-4 my-md-0 px-0">
-                <label class="d-flex py-2">
-                    <label class="d-flex align-items-center text-muted d-none d-md-block pt-2" style="font-size: 10px">DAY</label>
-                    <input style="width: 65px" wire:model="datepicker_day"  class="form-control" type="number" max="31" min="1">
-                    <label class="d-flex align-items-center text-muted ms-1 d-none d-md-block pt-2" style="font-size: 10px">MONTH/YEAR</label>
-                    <input wire:model="datepicker" id="datepicker" type="month" class="form-control" id="" name="" placeholder="Select date contact" data-inline="month" data-enable-time="false">
-                    <button wire:click="dateALL" class="btn btn-secondary rounded" type="button" data-bs-toggle="tooltip" title="Refresh"><i class="si si-refresh"></i></button>
-                </label>
             </div>
-            <!-- Datepicker  -->
 
-            <div class="d-flex justify-content-start justify-content-md-end px-0">
-
-                <a href="{{route('contact.archive-clients', Auth()->user() )}}">
-                    <button class="btn btn-secondary rounded me-2" data-bs-toggle="tooltip" title="Archive">
-                        <i class="fa fa-archive "></i>
-                    </button>
-                </a>
-
-                <a href="{{ route('print.scans.client') }}" class="btn btn-alt-success me-2">
-                    <i class="fa fa-print mx-1"></i>
-                </a>
-
-                <!-- Pagination Select-->
-                <div class="d-flex justify-content-md-end">
-                    <select wire:model="pagination" style="width: 80px" class="form-select " aria-label="Default select example">
-                        <option value="5">5</option>
-                        <option value="20">20</option>
-                        <option selected value="25">25</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                    </select>
-                </div>
-                <!-- End Pagination -->
-                
-
-{{--            <button class="btn btn-primary" style="background-color: #1F2A37; border: 1px solid #1F2A37" wire:ignore.self type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">--}}
-{{--                <i class="fa fa-filter me-2"></i> Click for search/filter options--}}
-{{--            </button>--}}
-{{--            <div class="collapse" id="collapseExample" wire:ignore.self>--}}
-{{--                <div class="row card-body px-0">--}}
-{{--                    <!-- Search Form  -->--}}
-{{--                    <form class="col-md-6 px-0 py-2">--}}
-{{--                        <div class="input-group input-group-sm">--}}
-{{--                            <input type="text" class="form-control form-control-alt" placeholder="Search for name..." id="page-header-search-input2" wire:model="name">--}}
-{{--                        </div>--}}
-{{--                    </form>--}}
-{{--                    <!-- END Search Form -->--}}
-
-{{--                    <!-- Datepicker  -->--}}
-{{--                    <div class="col-md-5 offset-md-1 my-4 my-md-0 px-0">--}}
-{{--                        <label class="d-flex py-2">--}}
-{{--                            <label class="d-flex align-items-center text-muted d-none d-md-block pt-2" style="font-size: 10px">DAY</label>--}}
-{{--                            <input style="width: 65px" wire:model="datepicker_day"  class="form-control" type="number" max="31" min="1">--}}
-{{--                            <label class="d-flex align-items-center text-muted ms-1 d-none d-md-block pt-2" style="font-size: 10px">MONTH/YEAR</label>--}}
-{{--                            <input wire:model="datepicker" id="datepicker" type="month" class="form-control" id="" name="" placeholder="Select date contact" data-inline="month" data-enable-time="false">--}}
-{{--                            <button wire:click="dateALL" class="btn btn-secondary rounded" type="button" data-bs-toggle="tooltip" title="Refresh"><i class="si si-refresh"></i></button>--}}
-{{--                        </label>--}}
-{{--                    </div>--}}
-{{--                    <!-- Datepicker  -->--}}
-
-{{--                    <div class="d-flex justify-content-start justify-content-md-end px-0">--}}
-
-{{--                        <a href="{{route('contact.archive-clients', Auth()->user() )}}">--}}
-{{--                            <button class="btn btn-secondary rounded me-2" data-bs-toggle="tooltip" title="Archive">--}}
-{{--                                <i class="fa fa-archive "></i>--}}
-{{--                            </button>--}}
-{{--                        </a>--}}
-
-{{--                        <a href="{{ route('print.scans.client') }}" class="btn btn-alt-success me-2">--}}
-{{--                            <i class="fa fa-print mx-1"></i>--}}
-{{--                        </a>--}}
-
-{{--                        <!-- Pagination Select-->--}}
-{{--                        <div class="d-flex justify-content-md-end">--}}
-{{--                            <select wire:model="pagination" style="width: 80px" class="form-select " aria-label="Default select example">--}}
-{{--                                <option value="5">5</option>--}}
-{{--                                <option value="20">20</option>--}}
-{{--                                <option selected value="25">25</option>--}}
-{{--                                <option value="50">50</option>--}}
-{{--                                <option value="100">100</option>--}}
-{{--                            </select>--}}
-{{--                        </div>--}}
-{{--                        <!-- End Pagination -->--}}
-{{--                </div>--}}
-{{--            </div>--}}
-
-{{--            </div>--}}
+            </div>
         </div>
 
         <div class="block-content block-content-full overflow-scroll px-1">
