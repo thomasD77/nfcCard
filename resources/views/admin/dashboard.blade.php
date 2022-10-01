@@ -111,7 +111,7 @@
 
     @can('is_client')
         <div class="block block-rounded row"
-             style="background-image: url('images/content/handshake.jpeg');
+             style="background-image: url('images/content/bg_screenshot.png');
              background-repeat: no-repeat;
              height: 100%; width: 100%;
              background-position: center;
@@ -215,14 +215,14 @@
                                 </a>
                             </div>
 
-                            <div class="row px-2 bg-light">
-                                <a href="{{route('show.QRcode', Auth()->user()->member->card_id)}}">
+                            <div class="row px-2">
+                                <a href="{{route('show.QRcode', Auth()->user()->member->card_id)}}}" target="_blank" class="bg-light">
                                     <div class="row py-3">
                                         <div class="col-4">
                                             <i class="fa fa-qrcode text-dark" style="font-size: 45px"></i>
                                         </div>
                                         <div class="col-8 ">
-                                            <p class="fw-semibold mb-0">Qr-code</p>
+                                            <p class="fw-semibold mb-0">QR-code</p>
                                             <span class="text-muted" style="font-size: 12px">Scan your Qr-code here</span>
                                         </div>
                                     </div>

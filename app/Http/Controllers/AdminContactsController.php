@@ -55,6 +55,8 @@ class AdminContactsController extends Controller
         $contact->archived = 1;
         $contact->update();
 
+        \Brian2694\Toastr\Facades\Toastr::success('Contact Successfully Archived');
+
         return view('admin.contacts.index');
     }
 

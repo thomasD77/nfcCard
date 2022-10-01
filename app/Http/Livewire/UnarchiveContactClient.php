@@ -15,6 +15,7 @@ class UnarchiveContactClient extends Component
     use WithPagination;
     public $datepicker = "";
     public $pagination = 25;
+    public $datepicker_day = "";
     public User $user;
 
 
@@ -28,6 +29,7 @@ class UnarchiveContactClient extends Component
     public function dateALL()
     {
         $this->datepicker = "";
+        $this->datepicker_day = "";
     }
 
 
@@ -61,15 +63,26 @@ class UnarchiveContactClient extends Component
 
             $year = $dateSub->year;
             $month = $dateSub->month;
-            $day = $dateSub->day;
 
-            $contacts = \App\Models\Contact::where('archived', 1)
-                ->where('member_id', Auth()->user()->member_id)
-                ->whereMonth('created_at', $month)
-                ->whereYear('created_at', $year)
-                ->whereDay('created_at', $day)
-                ->simplePaginate($this->pagination);
 
+            if ($this->datepicker_day != "") {
+                $contacts = \App\Models\Contact::with(['member'])
+                    ->where('archived', 1)
+                    ->where('member_id', Auth()->user()->member_id)
+                    ->whereMonth('created_at', $month)
+                    ->whereYear('created_at', $year)
+                    ->whereDay('created_at', $this->datepicker_day)
+                    ->simplePaginate($this->pagination);
+
+            } else {
+
+                $contacts = \App\Models\Contact::with(['member'])
+                    ->where('archived', 1)
+                    ->where('member_id', Auth()->user()->member_id)
+                    ->whereMonth('created_at', $month)
+                    ->whereYear('created_at', $year)
+                    ->simplePaginate($this->pagination);
+            }
 
             return view('livewire.unarchive-contact-client', compact('contacts'));
         }

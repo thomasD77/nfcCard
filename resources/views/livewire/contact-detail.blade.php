@@ -3,8 +3,7 @@
     <div class="content">
         <!-- Quick Actions -->
         <div class="row">
-
-            <div class="">
+            <div>
                 <a class="block block-rounded block-link-shadow text-center">
                     <div class="block-content block-content-full" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal{{$contact->id}}">
                         <div class="fs-2 fw-semibold text-dark py-1 py-md-0">
@@ -21,9 +20,9 @@
                     <div class="modal fade" wire:ignore.self id="exampleModal{{$contact->id}}" wire:key="{{ $contact->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">CONTACT INFO</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <div class="modal-header" style="background-color: #1F2A37">
+                                    <h5 class="modal-title text-white" id="exampleModalLabel">CONTACT INFO</h5>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminContactsController@updateContact',$contact->id]]) !!}
@@ -57,7 +56,6 @@
                                         </div>
                                     @endif
 
-
                                     @if($contact->company)
                                         <p class="mb-2 mt-4" style="text-align: left"><strong>Company:</strong></p>
                                         <p class="bg-light p-2">{{$contact->company ? $contact->company : ''}}</p>
@@ -85,8 +83,8 @@
                                         {!! Form::select('sector',$sectors,$contact->sector_id,['class'=>'form-control',])!!}
                                     </div>
 
-                                    <div class="card-body d-flex justify-content-end">
-                                        <button type="submit" class=" btn btn-primary p-2 m-3">Update</button>
+                                    <div class="card-body d-flex justify-content-end pe-0">
+                                        <button type="submit" style="background-color: #1F2A37; border: 1px solid #1F2A37" class="btn btn-primary p-2">Update</button>
                                     </div>
 
                                     {!! Form::close() !!}
@@ -161,7 +159,7 @@
                             <div class="block-header border-bottom">
                                 <h3 class="block-title">Contact information</h3>
                                 <a class="btn btn-sm btn-alt-secondary me-3" href="{{ route('contact.vCard', $contact->id) }}">
-                                    <i class="fa fa-fw fa-phone"></i>
+                                    <i class="fa fa-download"></i>
                                 </a>
                             </div>
                             <div class="block-content">
@@ -296,13 +294,13 @@
         @endif
 
 
-    @livewire('contact-detail-reffered-members', [ 'contact' => $contact ])
+        @livewire('contact-detail-reffered-members', [ 'contact' => $contact ])
 
-    @livewire('contact-detail-events', [ 'contact' => $contact ])
+        @livewire('contact-detail-events', [ 'contact' => $contact ])
 
-    @livewire('contact-detail-notes', [ 'contact' => $contact ])
+        @livewire('contact-detail-notes', [ 'contact' => $contact ])
 
-    <div class="mt-3 mt-md-0">
+        <div class="mt-3 mt-md-0">
             <a href="{{ route('contact.archive.detail', $contact) }}" class="block block-rounded block-link-shadow text-center" >
                 <div class="block-content block-content-full" data-bs-toggle="modal" data-bs-target="#exampleModal" style="cursor: pointer">
                     <div class="fs-2 fw-semibold text-dark">

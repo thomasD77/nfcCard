@@ -339,11 +339,11 @@ class CardController extends Controller
 
     public function printScans()
     {
-        return Excel::download(new ScanListExport(), 'scan-list.xlsx');
+        return Excel::download(new ScanListExport(), 'swap-connections.xlsx');
     }
     public function printScansClient()
     {
-        return Excel::download(new ScanListClientExport(), 'scan-list.xlsx');
+        return Excel::download(new ScanListClientExport(), 'swap-connections.xlsx');
     }
     public function printScansTeam()
     {

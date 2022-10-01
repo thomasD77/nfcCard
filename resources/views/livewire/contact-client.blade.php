@@ -13,7 +13,7 @@
             <!-- END Search Form -->
 
             <!-- Datepicker  -->
-            <div class="col-md-6">
+            <div class="col-md-6 my-4 my-md-0">
                 <label class="d-flex py-2">
                     <input style="width: 65px" wire:model="datepicker_day"  class="form-control" type="number" max="31" min="1">
                     <input wire:model="datepicker" id="datepicker" type="month" class="form-control" id="" name="" placeholder="Select date contact" data-inline="month" data-enable-time="false">
@@ -22,7 +22,7 @@
             </div>
             <!-- Datepicker  -->
 
-            <label class="d-flex justify-content-md-end">
+            <div class="d-flex justify-content-start justify-content-md-end ps-0">
 
                 <a href="{{route('contact.archive-clients', Auth()->user() )}}">
                     <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Archive">
@@ -46,7 +46,7 @@
                 </div>
                 <!-- End Pagination -->
 
-            </label>
+            </div>
         </div>
 
         <div class="block-content block-content-full overflow-scroll px-1">
