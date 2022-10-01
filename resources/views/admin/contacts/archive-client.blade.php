@@ -35,8 +35,6 @@
                 @livewire('unarchive-contact-client')
             </div>
         </div>
-        <!-- END Dynamic Table Full -->
-        @livewireScripts
     </div>
     <!-- END Page Content -->
 @endsection
