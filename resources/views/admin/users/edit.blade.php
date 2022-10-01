@@ -185,12 +185,13 @@
                             </div>
                         @endcan
 
-                        @can('is_superAdmin')
+                        @canany(['is_superAdmin', 'is_admin'])
                             <div class="form-group mb-4">
                                 {!! Form::label('one-profile-edit-roles', 'Select Role:', ['class'=>'form-label']) !!}
                                 {!! Form::select('roles[]',$roles,$user->roles->pluck('id')->toArray(),['class'=>'form-control',])!!}
                             </div>
-                        @endcan
+                        @endcanany
+
 
                         @can('is_client')
                             <input type="hidden" name="roles" value="3">

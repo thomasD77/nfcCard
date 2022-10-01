@@ -15,7 +15,9 @@
             <!-- Datepicker  -->
             <div class="col-md-6 my-4 my-md-0">
                 <label class="d-flex py-2">
+                    <label class="d-flex align-items-center text-muted d-none d-md-block pt-2" style="font-size: 10px">DAY</label>
                     <input style="width: 65px" wire:model="datepicker_day"  class="form-control" type="number" max="31" min="1">
+                    <label class="d-flex align-items-center text-muted ms-1 d-none d-md-block pt-2" style="font-size: 10px">MONTH/YEAR</label>
                     <input wire:model="datepicker" id="datepicker" type="month" class="form-control" id="" name="" placeholder="Select date contact" data-inline="month" data-enable-time="false">
                     <button wire:click="dateALL" class="btn btn-secondary rounded" type="button" data-bs-toggle="tooltip" title="Refresh"><i class="si si-refresh"></i></button>
                 </label>

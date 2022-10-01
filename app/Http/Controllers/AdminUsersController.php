@@ -81,7 +81,7 @@ class AdminUsersController extends Controller
         $user = User::findOrfail($id);
         $role = Auth()->user()->roles()->first()->name;
 
-        $roles = Role::pluck('name', 'id')
+        $roles = Role::where('id', '!=', 1 )->pluck('name', 'id')
             ->all();
 
         return view('admin.users.edit', compact('user', 'roles', 'role'));
