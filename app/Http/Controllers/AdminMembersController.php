@@ -6,6 +6,7 @@ use App\Exports\MemberCredentialCardExport;
 use App\Exports\MemberListExport;
 use App\Http\Requests\MemberRequest;
 use App\Models\Banner;
+use App\Models\Button;
 use App\Models\listUrl;
 use App\Models\Material;
 use App\Models\Member;
@@ -559,7 +560,7 @@ class AdminMembersController extends Controller
 
                 $member->video_id = $video->id;
             } else{
-                return redirect()->to(url()->previous() . "#videos")->withErrors(['video_error' => "Video is to big, you can only upload up to 200mb"]);
+                return redirect()->to(url()->previous() . "#videos")->withErrors(['video_error' => "Video is to large, you can only upload up to 200mb"]);
             }
         }
 
@@ -568,6 +569,27 @@ class AdminMembersController extends Controller
         } else{
             $member->front_style = 'light';
         }
+
+
+        $buttons = Button::where('member_id', $member->id)->get();
+
+        foreach ($buttons as $button){
+            if(!$request->has('state_button_' . $button->id)){
+                $button->state = 0;
+            }else {
+                $button->state = 1;
+            }
+            if($request->has('multiple_button_name_' . $button->id)){
+                $var = 'multiple_button_name_' . $button->id;
+                $button->name = $request->$var;
+            }
+            if($request->has('multiple_button_link_' . $button->id)){
+                $var = 'multiple_button_link_' . $button->id;
+                $button->link = $request->$var;
+            }
+            $button->update();
+        }
+
 
         $member->update();
         $state->update();

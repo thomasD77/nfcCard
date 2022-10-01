@@ -498,6 +498,24 @@
                                         </div>
                                     @endif
 
+                                    @if($buttons)
+                                        @foreach($buttons as $button)
+                                            @if($button->state)
+                                                <!-- Multiple custom buttons -->
+                                                <div class="col-12 d-flex justify-content-center">
+                                                    <a class="w-100" target="_blank" href="{{ $button->link }}">
+                                                        @php
+                                                            $color = '#' . substr(md5(rand()), 0, 6);
+                                                        @endphp
+                                                        <button style="background-color: {{ $color }}" type="submit" class="btn_cstm w-100 mt-2"><i
+                                                                class="fa fa-link mx-2"></i>{{ $button->name }}
+                                                        </button>
+                                                    </a>
+                                                </div>
+                                            @endif
+                                        @endforeach
+                                    @endif
+
                                 </div>
                             </div>
                         </div>

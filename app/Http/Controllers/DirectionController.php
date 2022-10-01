@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Button;
 use App\Models\listUrl;
 use App\Models\Member;
 use App\Models\Package;
@@ -49,7 +50,8 @@ class DirectionController extends Controller
             $count = $member->profile_views + 1;
             $member->profile_views = $count;
             $member->update();
-            return view( 'front.landingspage_default.index', compact('member', 'vCard'));
+            $buttons = Button::where('member_id', $member->id)->get();
+            return view( 'front.landingspage_default.index', compact('member', 'vCard', 'buttons'));
         }
         elseif ($member->package->package == 'Custom')
         {

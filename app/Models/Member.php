@@ -97,4 +97,9 @@ class Member extends Model
         return $this->hasOne(Setting::class);
     }
 
+    public function buttons()
+    {
+        return $this->hasMany(Button::class);
+    }
+
 }

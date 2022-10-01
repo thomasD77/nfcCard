@@ -1,6 +1,5 @@
 {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminMembersController@update', $member->id],'files'=>true])!!}
 
-
 <style type="text/css">
     img {
         display: block;
@@ -701,6 +700,8 @@
                 <p class="text-danger mt-2"> {{ $message }}</p>
                 @enderror
             </div>
+
+            @livewire('button')
 
         </div>
     </div>
