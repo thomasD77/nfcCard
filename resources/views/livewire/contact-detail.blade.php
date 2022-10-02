@@ -171,16 +171,16 @@
                                 <div class="fs-4 mb-1">{{ $contact->name }}</div>
                                 <address class="fs-sm">
                                     @if($contact->phone)
-                                        <i class="fa fa-phone mb-2"></i><a href="tel:{{ $contact->phone }}"></a>{{ $contact->phone }}<br>
+                                        <i class="fa fa-phone mb-3 me-2"></i><a href="tel:{{ $contact->phone }}"></a>{{ $contact->phone }}<br>
                                     @endif
                                     @if($contact->email)
-                                        <i class="far fa-envelope mb-2"></i> <a href="mailto:{{$contact->email}}">{{ $contact->email }}</a><br>
+                                        <i class="far fa-envelope mb-3 me-2"></i> <a href="mailto:{{$contact->email}}">{{ $contact->email }}</a><br>
                                     @endif
                                     @if($contact->company)
-                                        <i class="fa fa-building mb-2"></i> {{ $contact->company }}<br>
+                                        <i class="fa fa-building mb-3 me-2"></i> {{ $contact->company }}<br>
                                     @endif
                                     @if($contact->VAT)
-                                        <i class="far fa-bookmark mb-2"></i> {{ $contact->VAT }}<br>
+                                        <i class="far fa-bookmark mb-3 me-2"></i> {{ $contact->VAT }}<br>
                                     @endif
                                 </address>
                             </div>
