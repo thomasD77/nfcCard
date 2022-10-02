@@ -93,7 +93,7 @@
                             <td>
                                 @if($contact->contactStatus)
 
-                                    <span class="badge badge-pill
+                                    <span class="badge badge-pill w-100
 
                                             @if($contact->contactStatus->id == 1) bg-dark
                                             @elseif($contact->contactStatus->id == 2) bg-amethyst-lighter
