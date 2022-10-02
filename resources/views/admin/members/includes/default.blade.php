@@ -767,6 +767,12 @@
                     </div>
                 @endforeach
             @endif
+            <div class="alert alert-dark fs-sm">
+                <div class="mt-2">
+                    <p class="mb-0"><i class="fa fa-fw fa-info me-1 mb-0"></i>Don't try to upload .mp4 files larger then 200mb. </p>
+                    Also larger files can take a second to upload.
+                </div>
+            </div>
         </div>
     </div>
     <div class="d-flex justify-content-end">
