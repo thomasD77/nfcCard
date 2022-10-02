@@ -559,7 +559,7 @@ class AdminMembersController extends Controller
 
                 $member->video_id = $video->id;
             } else{
-                return redirect()->to(url()->previous() . "#videos")->withErrors(['video_error' => "Video is to big, you can only upload up to 200mb"]);
+                return redirect()->to(url()->previous() . "#videos")->withErrors(['video_error' => "Video is to large, you can only upload up to 200mb"]);
             }
         }
 
