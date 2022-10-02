@@ -746,6 +746,12 @@
             <div class="form-group mb-4">
                 <div class="form-check ps-0">
                     <div class="d-flex justify-content-between mb-2">
+                        @if(!$member->video)
+                            {!! Form::label('video_id', 'Video Attachment:', ['class'=>'form-label']) !!}
+                        @else
+                            {!! Form::label('video_id', 'Current Video Attachment:', ['class'=>'form-label']) !!}
+                            <input type="text" class="form-control" disabled value="{{ $member->video->file }}">
+                        @endif
                         {!! Form::label('video_id', 'Video Attachment:', ['class'=>'form-label']) !!}
                         <input class="form-check-input"
                                type="checkbox"
