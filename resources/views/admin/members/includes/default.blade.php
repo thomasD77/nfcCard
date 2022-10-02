@@ -746,13 +746,7 @@
             <div class="form-group mb-4">
                 <div class="form-check ps-0">
                     <div class="d-flex justify-content-between mb-2">
-                        @if($member->video != null)
-                            {!! Form::label('video_id', 'Current Video Attachment:', ['class'=>'form-label']) !!}
-                            <input type="text" class="form-control" disabled value="{{ $member->video->file }}">
-                        @else
-                            {!! Form::label('video_id', 'Video Attachment:', ['class'=>'form-label']) !!}
-                        @endif
-                        {!! Form::label('video_id', 'Video Attachment:', ['class'=>'form-label']) !!}
+                        {!! Form::label('video_id', 'Video attachment:', ['class'=>'form-label']) !!}
                         <input class="form-check-input"
                                type="checkbox"
                                name="check_video"
@@ -761,6 +755,10 @@
                     </div>
                 </div>
                 {!! Form::file('video_id',['class'=>'form-control', "accept"=>"video/mp4"]) !!}
+                @if($member->video != null)
+                    {!! Form::label('video_id', 'Current Video:', ['class'=>'form-label mt-3']) !!}
+                    <input type="text" class="form-control mt-2" disabled value="{{ $member->video->file }}">
+                @endif
             </div>
             @if(!$errors->isEmpty())
                 @foreach ($errors->all('<p>:message</p>') as $input_error)
