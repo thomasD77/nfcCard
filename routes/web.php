@@ -57,6 +57,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::get('archive/members', 'App\Http\Controllers\AdminMembersController@archive')->name('members.archive');
     Route::get('member/QRcode/show/{id}', 'App\Http\Controllers\QRcode\QRcodeController@fancyQRcode')->name('show.QRcode');
     Route::get('member/share', 'App\Http\Controllers\AdminMembersController@share')->name('share');
+    Route::patch('member/custom/{id}', 'App\Http\Controllers\AdminMembersController@customButton')->name('custom.button');
 
     //Routes for generating the URLS
     Route::POST('generate/member', 'App\Http\Controllers\AdminMembersController@generate')->name('members.generate');

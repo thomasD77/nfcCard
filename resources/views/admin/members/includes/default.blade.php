@@ -672,13 +672,6 @@
                 @enderror
             </div>
 
-            <div class="alert alert-dark fs-sm">
-                <div class="mt-2">
-                    <p class="mb-0"><i class="fa fa-fw fa-info me-1 mb-0"></i>Create your custom button. Insert the text
-                        and link.</p>
-                </div>
-            </div>
-
             <div class="form-group  my-4">
                 <div class="form-check ps-0">
                     <div class="d-flex justify-content-between mb-2">
@@ -700,8 +693,6 @@
                 <p class="text-danger mt-2"> {{ $message }}</p>
                 @enderror
             </div>
-
-            @livewire('button')
 
         </div>
     </div>
@@ -812,6 +803,11 @@
 </div>
 
 {!! Form::close() !!}
+
+@livewire('button', [ 'member' => $member ])
+
+
+
 
 <meta name="_token" content="{{ csrf_token() }}">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"

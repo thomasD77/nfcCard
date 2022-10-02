@@ -570,27 +570,6 @@ class AdminMembersController extends Controller
             $member->front_style = 'light';
         }
 
-
-        $buttons = Button::where('member_id', $member->id)->get();
-
-        foreach ($buttons as $button){
-            if(!$request->has('state_button_' . $button->id)){
-                $button->state = 0;
-            }else {
-                $button->state = 1;
-            }
-            if($request->has('multiple_button_name_' . $button->id)){
-                $var = 'multiple_button_name_' . $button->id;
-                $button->name = $request->$var;
-            }
-            if($request->has('multiple_button_link_' . $button->id)){
-                $var = 'multiple_button_link_' . $button->id;
-                $button->link = $request->$var;
-            }
-            $button->update();
-        }
-
-
         $member->update();
         $state->update();
 
@@ -688,6 +667,32 @@ class AdminMembersController extends Controller
     public function share()
     {
         return view ('admin.members.share');
+    }
+
+    public function customButton(Request $request, $id)
+    {
+        $member = Member::findOrFail($id);
+        $buttons = Button::where('member_id', $member->id)->get();
+
+        foreach ($buttons as $button){
+            if(!$request->has('state_button_' . $button->id)){
+                $button->state = 0;
+            }else {
+                $button->state = 1;
+            }
+            if($request->has('multiple_button_name_' . $button->id)){
+                $var = 'multiple_button_name_' . $button->id;
+                $button->name = $request->$var;
+            }
+            if($request->has('multiple_button_link_' . $button->id)){
+                $var = 'multiple_button_link_' . $button->id;
+                $button->link = $request->$var;
+            }
+            $button->update();
+        }
+
+        Session::flash('flash_message', 'Member Successfully Updated');
+        return redirect('/admin/');
     }
 
 }
