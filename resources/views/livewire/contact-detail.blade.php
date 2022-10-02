@@ -170,9 +170,8 @@
                             <div class="block-content">
                                 <div class="fs-4 mb-1">{{ $contact->name }}</div>
                                 <address class="fs-sm">
-
                                     @if($contact->phone)
-                                        <i class="fa fa-phone mb-2"></i> {{ $contact->phone }}<br>
+                                        <i class="fa fa-phone mb-2"></i><a href="tel:{{ $contact->phone }}"></a>{{ $contact->phone }}<br>
                                     @endif
                                     @if($contact->email)
                                         <i class="far fa-envelope mb-2"></i> <a href="mailto:{{$contact->email}}">{{ $contact->email }}</a><br>
