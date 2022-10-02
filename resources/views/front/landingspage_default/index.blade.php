@@ -384,8 +384,8 @@
 
 
                                     @if($member->video && $member->state->video)
-                                        <div class="col-12 d-flex justify-content-center my-3">
-                                            <video width="560" height="315" controls muted autoplay>
+                                        <div class="col-12 d-flex justify-content-center my-3 w-100">
+                                            <video width="auto" height="auto" controls muted autoplay>
                                                 <source src="{{asset('media/videos/' . $member->video->file)}}"
                                                         type="video/mp4">
                                                 Your browser does not support the video tag.
