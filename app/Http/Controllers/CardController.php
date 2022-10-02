@@ -160,8 +160,10 @@ class CardController extends Controller
         $contact = Contact::findOrFail($id);
         // define variables
 
-        if($contact->name != ""){
-            $lastname = $contact->lastname;
+        $lastname = '';
+
+        if($contact->name){
+            $lastname = $contact->name;
         }else {
             $lastname = "";
         }
