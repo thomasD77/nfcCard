@@ -414,6 +414,15 @@ input {
   margin-right: 0;
 }
 
+/** Place header box lower on smartphone */
+
+@media only screen and (max-width: 580px){
+    .box{
+        margin-top:30%;
+    }
+}
+
+
 /* -----------------------------------------------------------------
     - Testimonials
 ----------------------------------------------------------------- */

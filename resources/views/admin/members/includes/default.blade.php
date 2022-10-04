@@ -190,6 +190,35 @@
                 </div>
             </div>
             <!-- End Avatar -->
+            <div class="my-3">
+                <div class="mb-4 d-flex justify-content-center">
+                    <img class="rounded-circle logo-preview" width="160" height="160"
+                         src="{{$member->logo ? asset($member->logo->file) : asset('/assets/front/img/Avatar-4.svg')}}"
+                         alt="{{$member->logo->file}}">
+                </div>
+                <div class="d-flex justify-content-center">
+                    <div class="alert hide-message logo-message" role="alert">
+                        This is a danger alert—check it out!
+                    </div>
+                </div>
+                <div class="form-group mb-4">
+                    <div class="form-check ps-0">
+                        <div class="d-flex justify-content-between mb-2">
+                            {!! Form::label('logo_id', 'Logo:', ['class'=>'form-label']) !!}
+                            <input class="form-check-input"
+                                   type="checkbox"
+                                   name="check_logo"
+                                   style="width: 25px; height: 25px"
+                                   value="{{ 1 }}" @if($member->state->logo) checked @endif>
+                        </div>
+                    </div>
+                    {!! Form::file('logo_id',['class'=>'form-control crop-image']) !!}
+                </div>
+            </div>
+            <!-- Start Logo -->
+
+
+            <!-- End Logo -->
 
             <!-- Start Banner -->
             <div class="my-3">
@@ -216,7 +245,7 @@
                 </div>
             </div>
             <!-- End Banner -->
-            
+
 
 
             <!-- Frontend-style -->
@@ -835,6 +864,7 @@
         integrity="sha256-CgvH7sz3tHhkiVKh05kSUgG97YtzYNnWt6OXcmYzqHY=" crossorigin="anonymous"></script>
 <script>
 
+    /* Banner uploade */
     $("body").on("change", "#banner_id", function (e) {
         let target = $(e.target);
         let files = e.target.files;
@@ -894,6 +924,66 @@
         }
     });
 
+    /* Logo upload */
+
+    $("body").on("change", "#logo_id", function (e) {
+        let target = $(e.target);
+        let files = e.target.files;
+        let file = files[0];
+        let ext = file.name.split(".")[1];
+        let base = "media/logos/";
+        let type = "logo";
+        if (file.size <= 2097152) {
+            if (ext === "jpg" || ext === "jpeg" || ext === "png") {
+                let reader = new FileReader();
+                reader.onload = function (e) {
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        url: "/admin/image-cropper/upload",
+                        data: {
+                            '_token': $('meta[name="_token"]').attr('content'),
+                            'image': reader.result,
+                            'name': $("#logo_id").val(),
+                            "base": base,
+                            "type": type,
+                            'member_id': {{ $member->id }},
+                            "uploadType": 'member'
+                        },
+                        success: function (data) {
+                            if (data.success === "success") {
+                                $("." + type + "-message").removeClass("hide-message");
+                                $("." + type + "-message").removeClass("alert-danger");
+                                if (!$("." + type + "-message").hasClass('alert-success')) {
+                                    $("." + type + "-message").toggleClass("alert-success");
+                                }
+                                $("." + type + "-message").text("Successfully updated");
+                                $("." + type + "-preview").attr("src", "/" + base + data.name);
+                                $("#" + type + '_id').val('');
+                            }
+                        }
+                    });
+                };
+                reader.readAsDataURL(file);
+            } else {
+                $(target).val('');
+                $("." + type + "-message").removeClass("hide-message");
+                $("." + type + "-message").removeClass("alert-success");
+                if (!$("." + type + "-message").hasClass('alert-danger')) {
+                    $("." + type + "-message").toggleClass("alert-danger");
+                }
+                $("." + type + "-message").text("Valid types jpg, jpeg and png");
+            }
+        } else{
+            $(target).val('');
+            $("." + type + "-message").removeClass("hide-message");
+            $("." + type + "-message").removeClass("alert-success");
+            if (!$("." + type + "-message").hasClass('alert-danger')) {
+                $("." + type + "-message").toggleClass("alert-danger");
+            }
+            $("." + type + "-message").text("The image you want to upload is to big");
+        }
+    });
 
     /* AVATAR CROPPER */
 
