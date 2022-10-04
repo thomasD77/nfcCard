@@ -2,52 +2,62 @@
 <div>
     <!-- Dynamic Table Full -->
     <div class="block block-rounded">
-        <div class="block-header block-header-default row px-0 py-3 px-md-3">
+        <div class="block-header block-header-default row px-0 py-3 px-md-3" style="background-color: transparent">
+            <button class="btn btn-primary" style="background-color: #1F2A37; border: 1px solid #1F2A37" wire:ignore.self type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                <i class="fa fa-filter me-2"></i> Click for search/filter options
+            </button>
+            <div class="collapse" id="collapseExample" wire:ignore.self>
+                <div class="row card-body px-0">
+                    <!-- Search Form  -->
+                    <form class="col-md-6 px-0 py-2">
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control form-control-alt" placeholder="Search for name..." id="page-header-search-input2" wire:model="name">
+                        </div>
+                    </form>
+                    <!-- END Search Form -->
 
-            <!-- Search Form  -->
-            <form class="col-md-6">
-                <div class="input-group input-group-sm">
-                    <input type="text" class="form-control form-control-alt" placeholder="Search for name..." id="page-header-search-input2" wire:model="name">
+                    <!-- Datepicker  -->
+                    <div class="col-md-5 offset-md-1 my-4 my-md-0 px-0">
+                        <label class="d-flex py-2">
+                            <label class="d-flex align-items-center text-muted d-none d-md-block pt-2" style="font-size: 10px">DAY</label>
+                            <input style="width: 65px" wire:model="datepicker_day"  class="form-control" type="number" max="31" min="1">
+                            <label class="d-flex align-items-center text-muted ms-1 d-none d-md-block pt-2" style="font-size: 10px">MONTH/YEAR</label>
+                            <input wire:model="datepicker" id="datepicker" type="month" class="form-control" id="" name="" placeholder="Select date contact" data-inline="month" data-enable-time="false">
+                            <button wire:click="dateALL" class="btn btn-secondary rounded" type="button" data-bs-toggle="tooltip" title="Refresh"><i class="si si-refresh"></i></button>
+                        </label>
+                    </div>
+                    <!-- Datepicker  -->
+
+                    <div class="d-flex justify-content-start justify-content-md-end px-0">
+
+                        <a href="{{route('contact.archive-clients', Auth()->user() )}}">
+                            <button class="btn btn-secondary rounded me-2" data-bs-toggle="tooltip" title="Archive">
+                                <i class="fa fa-archive "></i>
+                            </button>
+                        </a>
+
+                        <a href="{{ route('print.scans.client') }}" class="btn btn-alt-success me-2">
+                            <i class="fa fa-print mx-1"></i>
+                        </a>
+
+                        <!-- Pagination Select-->
+                        <div class="d-flex justify-content-md-end">
+                            <select wire:model="pagination" style="width: 80px" class="form-select " aria-label="Default select example">
+                                <option value="5">5</option>
+                                <option value="20">20</option>
+                                <option selected value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                        </div>
+                        <!-- End Pagination -->
                 </div>
-            </form>
-            <!-- END Search Form -->
-
-            <!-- Datepicker  -->
-            <div class="d-none d-md-block col-md-4">
-                <label class="d-flex p-2 ">
-                    <input style="width: 65px" wire:model="datepicker_day"  class="form-control" type="number" max="31" min="1">
-                    <input wire:model="datepicker" id="datepicker" type="month" class="form-control" id="" name="" placeholder="Select date contact" data-inline="month" data-enable-time="false">
-                    <button wire:click="dateALL" class="btn btn-secondary rounded" type="button" data-bs-toggle="tooltip" title="Refresh"><i class="si si-refresh"></i></button>
-                </label>
             </div>
 
-            <!-- Datepicker  -->
-
-            <label class="d-flex p-2 justify-content-md-end col-md-2">
-                <a href="{{route('contact.archive-clients', Auth()->user() )}}">
-                    <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Archive">
-                        <i class="fa fa-archive "></i>
-                    </button>
-                </a>
-                <a href="{{ route('print.scans.client') }}" class="btn btn-alt-success">
-                    <i class="fa fa-print me-2"></i>
-                </a>
-            </label>
+            </div>
         </div>
 
         <div class="block-content block-content-full overflow-scroll px-1">
-            <!-- Pagination Select-->
-            <div class="d-flex justify-content-md-end">
-                <select wire:model="pagination" style="width: 80px" class="form-select " aria-label="Default select example">
-                    <option value="5">5</option>
-                    <option value="20">20</option>
-                    <option selected value="25">25</option>
-                    <option value="50">50</option>
-                    <option value="100">100</option>
-                </select>
-            </div>
-            <!-- End Pagination -->
-
             <!-- Session flash-->
             @if(Session::has('contact_message'))
                 <p class="alert alert-info my-3">{{session('contact_message')}}</p>
@@ -61,110 +71,29 @@
                 <thead>
                 <tr>
                     <th scope="col">Name</th>
-                    <th class="text-center" scope="col">Details</th>
                     <th scope="col">E-mail</th>
                     <th scope="col">phone</th>
                     <th scope="col">Status</th>
-                    <th scope="col">Registered</th>
+                    <th scope="col">Date</th>
                     <th scope="col">Actions</th>
-
                 </tr>
                 </thead>
                 <tbody>
                 @if($contacts)
                     @foreach($contacts as $contact)
                         <tr>
-                            <td>{{$contact->name ? $contact->name : 'No Name'}}</td>
+                            <td>
+                                <a style="color: black" href="{{ route('contact.detail', $contact->id) }}">{{$contact->name ? $contact->name : 'No Name'}}</a>
+                            </td>
 
-                            <td class="text-center"><!-- Button trigger modal -->
-                                <a type="button" class="" data-bs-toggle="modal" data-bs-target="#exampleModal2{{$contact->id}}">
-                                    <img src="{{ asset('images/content/swap_log.png') }}" alt="logo" class="img-fluid" width="120" height="120">
-                                </a>
+                            <td><a style="{{$contact->email ? '' : 'color:black'}}" href="mailto:{{$contact->email ? $contact->email : '#'}}"> {{$contact->email ? $contact->email : 'x'}}</a></td>
 
-                                <!-- Modal -->
-                                <div class="modal fade" wire:ignore.self id="exampleModal2{{$contact->id}}" wire:key="{{ $contact->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">SCAN DETAILS</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                @if($contact->name)
-                                                    <p class="text-start"><strong>Name:</strong></p>
-                                                    <p class="bg-light p-2">{{$contact->name ? $contact->name : 'No Name'}}</p>
-                                                @endif
-
-                                                @if($contact->email)
-                                                    <p class="text-start"><strong>Email:</strong></p>
-                                                    <p class="bg-light p-2">{{$contact->email ? $contact->email : 'No email'}}</p>
-                                                @endif
-
-                                                @if($contact->phone)
-                                                    <p class="text-start"><strong>Phone:</strong></p>
-                                                    <p class="bg-light p-2">{{$contact->phone ? $contact->phone : 'No Phone'}}</p>
-                                                @endif
-
-                                                @if($contact->company)
-                                                    <p class="text-start"><strong>Company:</strong></p>
-                                                    <p class="bg-light p-2">{{$contact->company ? $contact->company : ''}}</p>
-                                                @endif
-
-                                                @if($contact->VAT)
-                                                    <p class="text-start"><strong>VAT:</strong></p>
-                                                    <p class="bg-light p-2">{{$contact->VAT ? $contact->VAT : ''}}</p>
-                                                @endif
-
-                                                @if($contact->notes)
-                                                    <p><strong>Message:</strong></p>
-                                                    <p class="bg-light p-2">{{$contact->message ? $contact->message : 'No message'}}</p>
-                                                @endif
-
-                                                @if($contact->created_at)
-                                                    <p class="mb-2 mt-3 text-start"><strong>Created at:</strong></p>
-                                                    <p class="bg-light p-2">{{$contact->created_at ? $contact->created_at : 'No date'}}</p>
-                                                @endif
-
-                                                <p class="mb-2 text-start"><strong>Status</strong></p>
-                                                {{--                                                {!! Form::select('statusses',$statusses,null,['class'=>'form-control', 'placeholder' => 'Select here...'])!!}--}}
-
-                                                <select name="status" wire:model="status" wire:change="contact({{ $contact }})" class="form-control">
-                                                    <option value=''>choose status</option>
-                                                    @foreach($statusses as $status)
-                                                        <option value={{ $status->id }}>{{ $status->name }}</option>
-                                                    @endforeach
-                                                </select>
-
-                                                <hr>
-
-                                                <div class="d-flex justify-content-between mb-2">
-                                                    <p><strong>My notes:</strong></p> <button class="btn btn-sm btn-primary" wire:click="showNotes"> <i  class="fa fa-fw fa-pencil-alt"></i></button>
-                                                </div>
-                                                <p class="bg-light p-2">{{$contact->notes ? $contact->notes : 'No notes'}}</p>
-                                            </div>
-                                            @if($showNotes)
-                                                <div class="modal-body">
-                                                    <form wire:submit.prevent="saveNote({{ $contact }})">
-                                                        <textarea type="text" class="form-control form-control-alt" placeholder="Type your note..." id="page-header-search-input2" wire:model="notes"></textarea>
-                                                        <button class="btn btn-primary mt-1" type="submit" >SAVE</button>
-                                                    </form>
-                                                </div>
-                                            @endif
-                                            <div class="card-body d-flex justify-content-end">
-                                                <button type="button" class=" btn btn-primary p-2 m-3" data-bs-dismiss="modal" aria-label="Close">Thanks</button>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div></td>
-
-                            <td><a href="mailto:{{$contact->email}}"> {{$contact->email ? $contact->email : 'No Email'}}</a></td>
-                            <td>{{$contact->phone ? $contact->phone : 'No Phone'}}</td>
+                            <td><a style="{{$contact->phone ? '' : 'color:black'}}" href="tel:{{$contact->phone ? $contact->phone : '#'}}">{{$contact->phone ? $contact->phone : 'x'}}</a></td>
 
                             <td>
                                 @if($contact->contactStatus)
 
-                                    <span class="badge badge-pill
+                                    <span class="badge badge-pill w-100
 
                                             @if($contact->contactStatus->id == 1) bg-dark
                                             @elseif($contact->contactStatus->id == 2) bg-amethyst-lighter
@@ -181,16 +110,9 @@
 
                                 @endif
                             </td>
-                            <td>{{$contact->created_at ? \Carbon\Carbon::parse($contact->created_at)->format('Y-M-d') : 'No Date'}}</td>                                <td>
+                            <td>{{$contact->created_at ? \Carbon\Carbon::parse($contact->created_at)->format('d-M-Y') : 'x'}}</td>                                <td>
                                 <div class="btn-group">
-                                    <button class="btn btn-sm btn-alt-secondary" wire:click="archiveContact({{$contact->id}})"><i class="fa fa-archive "></i></button>
-                                </div>
-                                <div class="btn-group">
-                                    @if(in_array($contact->id, $ids))
-                                        <button class="btn btn-sm btn-alt-success"><i class="fa fa-check"></i></button>
-                                    @else
-                                        <button class="btn btn-sm btn-alt-info" wire:key="{{ $contact->id }}" wire:click="toggleToContact({{$contact->id}})"><i class="far fa-address-book "></i></button>
-                                    @endif
+                                    <a href="{{ route('contact.detail', $contact->id) }}" class="btn btn-sm btn-alt-secondary"><i class="fa fa-eye"></i></a>
                                 </div>
                             </td>
                         </tr>
@@ -206,16 +128,16 @@
         </div>
     </div>
     <!-- END Dynamic Table Full -->
-</div>
-@else
-    <div class="alert alert-dark fs-sm">
-        <div class="mt-2">
-            <p class="mb-0"><i class="fa fa-fw fa-info me-1 mb-0"></i>
-                To view this data you need a business account. <br>
-                When this is active you can make connections with your profile that you exchange. All data will be displayed here with a filter to search and find easily.
-            </p>
+    @else
+        <div class="alert alert-dark fs-sm">
+            <div class="mt-2">
+                <p class="mb-0"><i class="fa fa-fw fa-info me-1 mb-0"></i>
+                    To view this data you need a business account. <br>
+                    When this is active you can make connections with your profile that you exchange. All data will be displayed here with a filter to search and find easily.
+                </p>
+            </div>
         </div>
-    </div>
+    @endif
+</div>
 
-@endif
 

@@ -175,7 +175,7 @@
                                                                 <input type="text"
                                                                        class="form-control input_modal"
                                                                        name="name"
-                                                                       placeholder="Enter your name..."
+                                                                       placeholder="ex: John Doe"
                                                                        autocomplete="name"
                                                                 >
                                                                 @error('name')
@@ -381,15 +381,19 @@
 
                                 <div class="row">
 
-{{--                                    @if($member->video && $member->state->video)--}}
-{{--                                        <div class="col-12 d-flex justify-content-center my-3">--}}
-{{--                                            <video width="560" height="315" controls muted autoplay>--}}
-{{--                                                <source src="{{asset('media/videos/' . $member->video->file)}}"--}}
-{{--                                                        type="video/mp4">--}}
-{{--                                                Your browser does not support the video tag.--}}
-{{--                                            </video>--}}
-{{--                                        </div>--}}
-{{--                                    @endif--}}
+
+
+                                    @if($member->video && $member->state->video)
+                                        <div class="col-12 d-flex justify-content-center my-3">
+                                            <video style="width: 100%; height: auto;" controls autoplay muted>
+                                                <source src="{{asset('media/videos/' . $member->video->file)}}"
+                                                        type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
+{{--                                            <iframe type="video/mp4" src="{{ $member->video->file }}?rel=0&amp;autoplay=1&mute=1"--}}
+{{--                                                    width="560" height="315" frameborder="0" allowfullscreen></iframe>--}}
+                                        </div>
+                                    @endif
 
                                     @if($member->youtube_video && $member->state->youtube_video)
                                         <div class="col-12 d-flex justify-content-center my-3">

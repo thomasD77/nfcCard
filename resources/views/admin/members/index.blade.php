@@ -1,29 +1,5 @@
 @extends('layouts.backend')
 
-@section('css_before')
-    <!-- Page JS Plugins CSS -->
-    <link rel="stylesheet" href="{{ asset('js/plugins/datatables-bs5/dataTables.bootstrap5.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('js/plugins/datatables-buttons-bs5/buttons.bootstrap5.min.css') }}">
-@endsection
-
-@section('js_after')
-    <!-- jQuery (required for DataTables plugin) -->
-    <script src="{{ asset('js/lib/jquery.min.js') }}"></script>
-
-    <!-- Page JS Plugins -->
-    <script src="{{ asset('js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('js/plugins/datatables-bs5/dataTables.bootstrap5.min.js') }}"></script>
-    <script src="{{ asset('js/plugins/datatables-buttons/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('js/plugins/datatables-buttons/buttons.print.min.js') }}"></script>
-    <script src="{{ asset('js/plugins/datatables-buttons/buttons.html5.min.js') }}"></script>
-    <script src="{{ asset('js/plugins/datatables-buttons/buttons.flash.min.js') }}"></script>
-    <script src="{{ asset('js/plugins/datatables-buttons/buttons.colVis.min.js') }}"></script>
-
-    <!-- Page JS Code -->
-    <script src="{{ asset('js/pages/tables_datatables.js') }}"></script>
-
-@endsection
-
 @section('content')
     <!-- Hero -->
     <div class="bg-body-light">
@@ -34,11 +10,12 @@
                     <h1 class="h3 fw-bold mb-2">
                         ALL SWAP MEMBERS ({{ $count }})
                     </h1>
+                    <p class="text-muted">A clear overview from all your Swap team members.</p>
                 </div>
                 <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-alt">
                         <li class="breadcrumb-item">
-                            <a class="link-fx" href="javascript:void(0)">DataTable</a>
+                            <a class="link-fx" href="{{ asset('/admin') }}">Dashboard</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
                             Members
@@ -46,23 +23,7 @@
                     </ol>
                 </nav>
                 @endcanany
-                @can('is_client')
-                    <div class="flex-grow-1">
-                        <h1 class="h3 fw-bold mb-2">
-                            Account
-                        </h1>
-                    </div>
-                    <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
-                        <ol class="breadcrumb breadcrumb-alt">
-                            <li class="breadcrumb-item">
-                                <a class="link-fx" href="javascript:void(0)">DataTable</a>
-                            </li>
-                            <li class="breadcrumb-item" aria-current="page">
-                                settings
-                            </li>
-                        </ol>
-                    </nav>
-                @endcan
+
             </div>
         </div>
     </div>
@@ -74,10 +35,6 @@
             @if(Auth()->user()->roles->first()->name != 'client')
 
                 @livewire('members')
-
-            @else
-
-                @livewire('member-client')
 
             @endif
 

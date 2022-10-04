@@ -1,15 +1,5 @@
 @extends('layouts.backend')
 
-@section('css_before')
-    <!-- Page JS Plugins CSS -->
-    <link rel="stylesheet" href="{{ asset('js/plugins/datatables-bs5/dataTables.bootstrap5.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('js/plugins/datatables-buttons-bs5/buttons.bootstrap5.min.css') }}">
-@endsection
-
-@section('js_after')
-
-@endsection
-
 @section('content')
     <!-- Hero -->
     <div class="bg-body-light">
@@ -23,7 +13,7 @@
                 <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-alt">
                         <li class="breadcrumb-item">
-                            <a class="link-fx" href="javascript:void(0)">DataTable</a>
+                            <a class="link-fx" href="{{ asset('/admin') }}">Dashboard</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
                             Profile
@@ -38,7 +28,6 @@
     @can('is_member', $member)
     <!-- Page Content -->
     <div class="content content-boxed px-0">
-
         <!-- Page Content -->
         <div class="content content-boxed">
             <!-- member Profile -->
@@ -56,18 +45,17 @@
 
                     @elseif($member->package->package == "Custom")
                         @include('admin.members.includes.custom')
-
                     @endif
+
                 @else
                     <p class="p-2">Sorry, the admin blocked your account. Please contact him for this situation.</p>
                 @endif
             </div>
             <!-- END member Profile -->
         </div>
-
+    </div>
     <!-- END Page Content -->
     @endcan
-
 @endsection
 
 

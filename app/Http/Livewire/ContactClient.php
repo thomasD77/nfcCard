@@ -60,12 +60,7 @@ class ContactClient extends Component
         $this->contact = $contact;
     }
 
-    public function archiveContact($id)
-    {
-        $contact = \App\Models\Contact::findOrFail($id);
-        $contact->archived = 1;
-        $contact->update();
-    }
+
 
     public function dateALL()
     {

@@ -1,9 +1,6 @@
 @extends('layouts.backend')
 
 @section('css_before')
-    <!-- Page JS Plugins CSS -->
-    <link rel="stylesheet" href="{{ asset('js/plugins/datatables-bs5/dataTables.bootstrap5.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('js/plugins/datatables-buttons-bs5/buttons.bootstrap5.min.css') }}">
     <!-- Cropper css -->
     <style type="text/css">
         img {
@@ -35,27 +32,8 @@
         .hide-message{
             display:none;
         }
-
     </style>
     <!-- end cropper css -->
-@endsection
-
-@section('js_after')
-    <!-- jQuery (required for DataTables plugin) -->
-    <script src="{{ asset('js/lib/jquery.min.js') }}"></script>
-
-    <!-- Page JS Plugins -->
-    <script src="{{ asset('js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('js/plugins/datatables-bs5/dataTables.bootstrap5.min.js') }}"></script>
-    <script src="{{ asset('js/plugins/datatables-buttons/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('js/plugins/datatables-buttons/buttons.print.min.js') }}"></script>
-    <script src="{{ asset('js/plugins/datatables-buttons/buttons.html5.min.js') }}"></script>
-    <script src="{{ asset('js/plugins/datatables-buttons/buttons.flash.min.js') }}"></script>
-    <script src="{{ asset('js/plugins/datatables-buttons/buttons.colVis.min.js') }}"></script>
-
-    <!-- Page JS Code -->
-    <script src="{{ asset('js/pages/tables_datatables.js') }}"></script>
-    @livewireStyles
 @endsection
 
 @section('content')
@@ -82,8 +60,6 @@
                 </div>
             </div>
             <div class="modal-footer">
-                {{--                <button type="button" class="btn btn-alt-info" id="move-picture">Move picture</button>--}}
-                {{--                <button type="button" class="btn btn-alt-info" id="move-crop">Move Crop</button>--}}
                 <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-secondary" id="crop">Crop</button>
             </div>
@@ -104,10 +80,10 @@
                 <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-alt">
                         <li class="breadcrumb-item">
-                            <a class="link-fx" href="javascript:void(0)">DataTable</a>
+                            <a class="link-fx" href="{{ asset('/admin') }}">Dashboard</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            List
+                            Profile
                         </li>
                     </ol>
                 </nav>
@@ -175,6 +151,11 @@
                             @enderror
                         </div>
 
+                        <div class="form-group mb-4">
+                            {!! Form::label('one-profile-edit-name', 'E-mail:', ['class'=>'form-label']) !!}
+                            <input type="text" class="form-control" disabled value="{{ $user->email }}">
+                        </div>
+
                         @can('is_superAdmin')
                             <div class="form-group mb-4">
                                 {!! Form::label('one-profile-edit-email', 'E-mail:', ['class'=>'form-label']) !!}
@@ -185,12 +166,13 @@
                             </div>
                         @endcan
 
-                        @can('is_superAdmin')
+                        @canany(['is_superAdmin', 'is_admin'])
                             <div class="form-group mb-4">
                                 {!! Form::label('one-profile-edit-roles', 'Select Role:', ['class'=>'form-label']) !!}
                                 {!! Form::select('roles[]',$roles,$user->roles->pluck('id')->toArray(),['class'=>'form-control',])!!}
                             </div>
-                        @endcan
+                        @endcanany
+
 
                         @can('is_client')
                             <input type="hidden" name="roles" value="3">

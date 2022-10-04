@@ -11,6 +11,7 @@ class ScanListClientExport implements FromCollection
     /**
     * @return \Illuminate\Support\Collection
     */
+
     public function collection()
     {
         //
@@ -20,9 +21,9 @@ class ScanListClientExport implements FromCollection
         $contacts = \App\Models\Contact::with(['member'])
             ->where('member_id', $member->id)
             ->where('archived', 0)
+            ->select('id', 'name', 'email', 'phone')
             ->get();
 
         return $contacts;
-
     }
 }

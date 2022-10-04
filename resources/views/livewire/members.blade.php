@@ -34,7 +34,6 @@
                 <table class="table table-striped table-hover table-vcenter fs-sm">
                     <thead>
                     <tr>
-                        <th scope="col">#</th>
                         <th scope="col">avatar</th>
                         <th scope="col">name</th>
                         <th scope="col">Company</th>
@@ -51,7 +50,6 @@
                     @if($members)
                         @foreach($members as $member)
                             <tr>
-                                <td>{{ $loop->index + 1  }}</td>
                                 <td><img class="rounded-circle" height="62" width="62" src="{{$member->avatar ? asset('/card/avatars') . "/" . $member->avatar : asset('/assets/front/img/Avatar-4.svg') }}" alt="{{$member->name}}"></td>
                                 <td>{{$member->lastname ? $member->lastname : ""}} {{ $member->firstname ? $member->firstname : '' }}</td>
                                 <td>{{$member->company ? $member->company : ""}}</td>
@@ -59,7 +57,7 @@
                                 <td>{{$member->material ? $member->material->name : 'No Material'}}</td>
                                 <td>
                                     @if(isset($member->user))
-                                        <a class="btn btn-outline-primary" href="{{ route('users.edit', $member->user->id) }}">
+                                        <a class="btn btn-outline-primary w-100" href="{{ route('users.edit', $member->user->id) }}">
                                             {{$member->user ? $member->user->name : "unknown"}}
                                         </a>
                                     @else

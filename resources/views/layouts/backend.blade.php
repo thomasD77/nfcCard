@@ -39,8 +39,8 @@
 
         <!-- Scripts -->
         <script>window.Laravel = {!! json_encode(['csrfToken' => csrf_token(),]) !!};</script>
-        @livewireStyles
 
+        @livewireStyles
     </head>
     <body>
         <!-- Page Container -->
@@ -136,15 +136,11 @@
             -->
 
             @canany(['is_superAdmin', 'is_admin', 'is_employee'])
-
-                    @include('layouts.includes.sidebar')
-
+                @include('layouts.includes.sidebar')
             @endcanany
 
             @can('is_client')
-
-                    @include('layouts.includes.sidebarClient')
-
+                @include('layouts.includes.sidebarClient')
             @endcan
 
             <!-- Header -->
@@ -169,18 +165,6 @@
                             </button>
                             <!-- END Toggle Mini Sidebar -->
                             @endif
-
-
-
-                            <!-- Open Search Section (visible on smaller screens) -->
-                            <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-{{--                            <button type="button" class="btn btn-sm btn-alt-secondary d-md-none" data-toggle="layout" data-action="header_search_on">--}}
-{{--                                <i class="fa fa-fw fa-search"></i>--}}
-{{--                            </button>--}}
-                            <!-- END Open Search Section -->
-
-
-
                     </div>
                     <!-- END Left Section -->
 
@@ -189,8 +173,6 @@
                                 <img width="25px" height="25px" class="img-fluid" src="{{ asset('images/content/share-nodes.png') }}" alt="QRcode">
                         </a>
                     @endif
-
-
 
                     <!-- Right Section -->
                     <div class="d-flex align-items-center">
@@ -236,7 +218,6 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none bg-dark">
                                         @csrf
                                     </form>
-
                                 </div>
                             </div>
                         </div>
@@ -423,16 +404,17 @@
         <!-- Laravel Scaffolding JS -->
         <!-- <script src="{{ asset('/js/laravel.app.js') }}"></script> -->
 
-
         @yield('js_after')
 
         @livewireScripts
+
         <!-- Laravel Toastr -->
         <script src="https://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
         {!! Toastr::message() !!}
 
         <!-- Session Flash Timer -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
         <script>
             $('.alert-success').hide();
 
@@ -440,6 +422,7 @@
                 $('#flash_message').fadeOut('fast');
             }, 3000); // <-- time in milliseconds
         </script>
+
         <script>
             $('.alert-success').hide();
 

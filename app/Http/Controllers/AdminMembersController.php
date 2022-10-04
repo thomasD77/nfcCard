@@ -37,7 +37,7 @@ class AdminMembersController extends Controller
     public function index()
     {
         //
-        $count = Member::count();
+        $count = User::where('team_id', Auth::user()->team_id)->count();
         return view('admin.members.index', compact('count'));
     }
 
@@ -106,19 +106,6 @@ class AdminMembersController extends Controller
         \Brian2694\Toastr\Facades\Toastr::success('Member Successfully Saved');
 
         return redirect('/admin/members');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-        $member = Member::findOrFail($id);
-        return view('admin.members.show', compact('member'));
     }
 
     /**
@@ -572,7 +559,7 @@ class AdminMembersController extends Controller
 
                 $member->video_id = $video->id;
             } else{
-                return redirect()->to(url()->previous() . "#videos")->withErrors(['video_error' => "Video is to big, you can only upload up to 200mb"]);
+                return redirect()->to(url()->previous() . "#videos")->withErrors(['video_error' => "Video is to large, you can only upload up to 200mb"]);
             }
         }
 

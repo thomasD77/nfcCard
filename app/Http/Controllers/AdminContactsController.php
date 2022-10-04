@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateContactRequest;
 use App\Http\Requests\UpdateNoteContactRequest;
 use App\Models\Contact;
 use App\Models\Location;
+use App\Models\Member;
 use App\Models\Note;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -41,13 +42,26 @@ class AdminContactsController extends Controller
 
     public function archive()
     {
-        $contacts = Contact::where('archived', 1)
-            ->latest()
-            ->paginate(25);
+        $team = Auth()->user()->team;
+        $users = User::where('team_id', $team->id)->pluck('id');
+        $members = Member::whereIn('user_id', $users)->where('archived', 0)->pluck('id');
 
-        $count = Contact::where('archived', '=', 1)->count();
+        $count = \App\Models\Contact::with(['member', 'contactStatus'])
+            ->where('archived', 1)
+            ->whereIn('member_id', $members)
+            ->count();
 
-        return view('admin.contacts.archive', compact('contacts', 'count'));
+        return view('admin.contacts.archive', compact( 'count'));
+    }
+
+    public function archiveContact(Contact $contact)
+    {
+        $contact->archived = 1;
+        $contact->update();
+
+        \Brian2694\Toastr\Facades\Toastr::success('Contact Successfully Archived');
+
+        return view('admin.contacts.index');
     }
 
     public function archiveClients()
@@ -73,6 +87,9 @@ class AdminContactsController extends Controller
         }
         if($request->status) {
             $contact->status_id = $request->status;
+        }
+        if($request->notes) {
+            $contact->notes = $request->notes;
         }
 
         $contact->update();

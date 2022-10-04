@@ -3,12 +3,10 @@
     <!-- Side Header -->
     <div class="content-header">
         <!-- Logo -->
-        <a class="font-semibold text-dual" href="">
-                        <span class="smini-visible">
-                            <i class="fa fa-circle-notch text-primary"></i>
-                        </span>
-
-
+        <a class="font-semibold text-dual" href="{{ asset('/admin') }}">
+            <span class="smini-visible">
+                <i class="fa fa-circle-notch text-primary"></i>
+            </span>
             <span class="smini-hide fs-5 tracking-wider">SWAP</span>
         </a>
         <!-- END Logo -->
@@ -120,7 +118,7 @@
                     </a>
                 @endcan
 
-                <li class="nav-main-heading text-uppercase">Card Profiles</li>
+                <li class="nav-main-heading text-uppercase">Profiles</li>
                 <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
                     <a class="nav-main-link" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="{{route('members.index')}}">
                         <i class="nav-main-link-icon fa fa-people-carry"></i>
@@ -132,7 +130,7 @@
                 <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
                     <a class="nav-main-link" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="{{route('contacts.index')}}">
                         <i class="nav-main-link-icon fa fa-brain"></i>
-                        <span class="nav-main-link-name ">Scans</span>
+                        <span class="nav-main-link-name ">Swaps</span>
                     </a>
                 </li>
 

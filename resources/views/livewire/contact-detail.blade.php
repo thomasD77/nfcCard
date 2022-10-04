@@ -3,8 +3,7 @@
     <div class="content">
         <!-- Quick Actions -->
         <div class="row">
-
-            <div class="">
+            <div>
                 <a class="block block-rounded block-link-shadow text-center">
                     <div class="block-content block-content-full" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal{{$contact->id}}">
                         <div class="fs-2 fw-semibold text-dark py-1 py-md-0">
@@ -21,9 +20,9 @@
                     <div class="modal fade" wire:ignore.self id="exampleModal{{$contact->id}}" wire:key="{{ $contact->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">SCAN DETAILS</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <div class="modal-header" style="background-color: #1F2A37">
+                                    <h5 class="modal-title text-white" id="exampleModalLabel">CONTACT INFO</h5>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminContactsController@updateContact',$contact->id]]) !!}
@@ -57,7 +56,6 @@
                                         </div>
                                     @endif
 
-
                                     @if($contact->company)
                                         <p class="mb-2 mt-4" style="text-align: left"><strong>Company:</strong></p>
                                         <p class="bg-light p-2">{{$contact->company ? $contact->company : ''}}</p>
@@ -68,27 +66,30 @@
                                         <p class="bg-light p-2">{{$contact->VAT ? $contact->VAT : ''}}</p>
                                     @endif
 
-                                    @if($contact->notes)
-                                        <p class="mb-2 mt-4" style="text-align: left"><strong>Message:</strong></p>
-                                        <p class="bg-light p-2">{{$contact->message ? $contact->message : 'No message'}}</p>
-                                    @endif
-
                                     <p class="mb-2 mt-4" style="text-align: left"><strong>Status:</strong></p>
-
                                     <div class="form-group mb-4">
-                                        {!! Form::label('one-profile-edit-roles', 'choose status:', ['class'=>'form-label']) !!}
                                         {!! Form::select('status',$statusses,$contact->status_id,['class'=>'form-control',])!!}
                                     </div>
 
                                     <p class="mb-2 mt-4" style="text-align: left"><strong>Sector:</strong></p>
-
                                     <div class="form-group mb-4">
-                                        {!! Form::label('one-profile-edit-roles', 'choose sector:', ['class'=>'form-label']) !!}
                                         {!! Form::select('sector',$sectors,$contact->sector_id,['class'=>'form-control',])!!}
                                     </div>
 
-                                    <div class="card-body d-flex justify-content-end">
-                                        <button type="submit" class=" btn btn-primary p-2 m-3">Update</button>
+                                    <p class="mb-2 mt-4" style="text-align: left"><strong>Short note:</strong></p>
+                                    <textarea type="text"
+                                              class="form-control"
+                                              placeholder="Type your note..."
+                                              rows="4"
+                                              name="notes"
+                                    >{{ $contact->notes }}</textarea>
+                                    @error('notes')
+                                    <p class="text-danger mt-2"> {{ $message }}</p>
+                                    @enderror
+
+
+                                    <div class="card-body d-flex justify-content-end pe-0">
+                                        <button type="submit" style="background-color: #1F2A37; border: 1px solid #1F2A37" class="btn btn-primary p-2">Update</button>
                                     </div>
 
                                     {!! Form::close() !!}
@@ -163,24 +164,23 @@
                             <div class="block-header border-bottom">
                                 <h3 class="block-title">Contact information</h3>
                                 <a class="btn btn-sm btn-alt-secondary me-3" href="{{ route('contact.vCard', $contact->id) }}">
-                                    <i class="fa fa-fw fa-phone"></i>
+                                    <i class="fa fa-download"></i>
                                 </a>
                             </div>
                             <div class="block-content">
                                 <div class="fs-4 mb-1">{{ $contact->name }}</div>
                                 <address class="fs-sm">
-
                                     @if($contact->phone)
-                                        <i class="fa fa-phone mb-2"></i> {{ $contact->phone }}<br>
+                                        <i class="fa fa-phone mb-3 me-2"></i><a href="tel:{{ $contact->phone }}"></a>{{ $contact->phone }}<br>
                                     @endif
                                     @if($contact->email)
-                                        <i class="far fa-envelope mb-2"></i> <a href="mailto:{{$contact->email}}">{{ $contact->email }}</a><br>
+                                        <i class="far fa-envelope mb-3 me-2"></i> <a href="mailto:{{$contact->email}}">{{ $contact->email }}</a><br>
                                     @endif
                                     @if($contact->company)
-                                        <i class="fa fa-building mb-2"></i> {{ $contact->company }}<br>
+                                        <i class="fa fa-building mb-3 me-2"></i> {{ $contact->company }}<br>
                                     @endif
                                     @if($contact->VAT)
-                                        <i class="far fa-bookmark mb-2"></i> {{ $contact->VAT }}<br>
+                                        <i class="far fa-bookmark mb-3 me-2"></i> {{ $contact->VAT }}<br>
                                     @endif
                                 </address>
                             </div>
@@ -198,7 +198,7 @@
                                         </div>
                                         <div class="col-2 d-flex justify-content-end px-0">
                                             <a class="btn btn-sm btn-alt-secondary me-3" href="{{ route('members.vCard', $member->card_id) }}">
-                                                <i class="fa fa-fw fa-phone"></i>
+                                                <i class="fa fa-download"></i>
                                             </a>
                                             <a class="btn btn-sm btn-alt-secondary" target="_blank" href="{{ $member->memberURL }}" data-bs-toggle="tooltip" title="Profile">
                                                 <i class="fa fa-fw fa-eye"></i>
@@ -210,12 +210,12 @@
                                     <div class="fs-4 mb-1">{{ $member->firstname }} {{ $member->lastname }}</div>
                                     <address class="fs-sm">
                                         @if($member->mobile)
-                                            <i class="fa fa-phone mb-2"></i>{{ $member->mobile }}<br>
+                                            <i class="fa fa-phone mb-3 me-2"></i><a href="tel:{{ $member->mobile }}"></a>{{ $member->mobile }}<br>
                                         @endif
                                         @if($member->mobileWork)
-                                            <i class="fa fa-phone mb-2"></i>{{ $member->mobileWork }}<br>
+                                            <i class="fa fa-phone mb-3 me-2"></i><a href="tel:{{ $member->mobileWork }}"></a><br>
                                         @endif
-                                        <i class="far fa-envelope mb-2"></i> <a href="mailto:{{$member->email}}">{{ $member->email }}</a><br>
+                                        <i class="far fa-envelope mb-3 me-2"></i> <a href="mailto:{{$member->email}}">{{ $member->email }}</a><br>
 
                                         @if($member->addressLine1)
                                             {{ $member->addressLine1 }}<br>
@@ -238,20 +238,20 @@
         <!-- END Addresses -->
 
         <div class="row">
-            <div class="col-lg-6">
-                @if($contact->message)
-                <!-- Message -->
-                    <div class="block block-rounded">
-                        <div class="block-header block-header-default">
-                            <h3 class="block-title">Message</h3>
+            @if($contact->message)
+                <div class="col-lg-6">
+                    <!-- Message -->
+                        <div class="block block-rounded">
+                            <div class="block-header block-header-default">
+                                <h3 class="block-title">Message</h3>
+                            </div>
+                            <div class="block-content p-2 p-lg-4">
+                                {{ $contact->message }}
+                            </div>
                         </div>
-                        <div class="block-content p-2 p-lg-4">
-                            {{ $contact->message }}
-                        </div>
-                    </div>
                     <!-- END Message -->
-                @endif
-            </div>
+                </div>
+            @endif
 
             @if($contact->notes)
             <div class="col-lg-6">
@@ -298,42 +298,23 @@
         @endif
 
 
-    @livewire('contact-detail-reffered-members', [ 'contact' => $contact ])
+        @livewire('contact-detail-reffered-members', [ 'contact' => $contact ])
 
-    @livewire('contact-detail-events', [ 'contact' => $contact ])
+        @livewire('contact-detail-events', [ 'contact' => $contact ])
 
-    @livewire('contact-detail-notes', [ 'contact' => $contact ])
+        @livewire('contact-detail-notes', [ 'contact' => $contact ])
 
-    <div class="mt-3 mt-md-0">
-            <a class="block block-rounded block-link-shadow text-center" >
+        <div class="mt-3 mt-md-0">
+            <a href="{{ route('contact.archive.detail', $contact) }}" class="block block-rounded block-link-shadow text-center" >
                 <div class="block-content block-content-full" data-bs-toggle="modal" data-bs-target="#exampleModal" style="cursor: pointer">
-                    <div class="fs-2 fw-semibold text-danger">
-                        <i class="fa fa-times"></i>
+                    <div class="fs-2 fw-semibold text-dark">
+                        <i class="fa fa-archive"></i>
                     </div>
                 </div>
-                <div class="block-content py-2 bg-body-light" data-bs-toggle="modal" data-bs-target="#exampleModal" style="cursor: pointer">
-                    <p class="fw-medium fs-sm text-danger mb-0">
-                        Remove Contact
+                <div class="block-content py-2 bg-body-light" style="cursor: pointer">
+                    <p class="fw-medium fs-sm text-dark mb-0">
+                        Archive Contact
                     </p>
-                </div>
-
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Remove Contact</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                Are you sure you want to delete this contact account? All the information will be lost forever.
-                            </div>
-                            <div class="modal-footer" >
-                                <a type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</a>
-                                <a wire:click="deleteContact"  class="btn btn-danger">DELETE</a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </a>
         </div>
