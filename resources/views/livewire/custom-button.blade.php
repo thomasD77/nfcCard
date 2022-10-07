@@ -34,7 +34,7 @@
                                     </div>
                                 </div>
 
-                                <input wire:model="multiple_button_name.{{ $button->id }}" type="text" class="form-control mb-4" value="{{ $button->name ? $button->name : "ex: Webshop" }}">
+                                <input wire:model="multiple_button_name.{{ $button->id }}" type="text" class="form-control mb-4" placeholder="{{ $button->name ? $button->name : "ex: Webshop" }}">
 
                                 <label class="form-label">Button link:</label>
                                 <input wire:model="multiple_button_link.{{ $button->id }}" class="form-control" type="text" placeholder="{{ $button->link ?  $button->link : "ex: https://swap-nfc.be/shop" }}">
