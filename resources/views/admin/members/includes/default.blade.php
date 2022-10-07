@@ -194,7 +194,7 @@
                 <div class="mb-4 d-flex justify-content-center">
                     <img class="rounded-circle logo-preview" width="160" height="160"
                          src="{{$member->logo ? asset($member->logo->file) : asset('/assets/front/img/Avatar-4.svg')}}"
-                         alt="{{$member->logo->file}}">
+                         alt="{{$member->logo ? $member->logo->file : "logo"}}">
                 </div>
                 <div class="d-flex justify-content-center">
                     <div class="alert hide-message logo-message" role="alert">

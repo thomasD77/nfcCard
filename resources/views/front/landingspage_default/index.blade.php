@@ -92,7 +92,7 @@
                                      src=" {{ $member->avatar ? asset('card/avatars') . "/" . $member->avatar : asset('assets/front/img/main-photo.svg')}}"
                                      alt="avatar">
                                 @if($member->state->avatar && $member->logo)
-                                    <img style="position:absolute; bottom:0; width: 30px; height: 30px; right: 0; border-radius: 50%; border: 1px black solid;"
+                                    <img style="position:absolute; bottom:-5%; width: 40px; height: 40px; right: -10%; border-radius: 50%; border: 1px black solid;"
                                          src="{{asset($member->logo->file)}}" alt="logo"/>
                                 @endif
                             </div>
