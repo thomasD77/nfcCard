@@ -844,7 +844,7 @@
 
 {!! Form::close() !!}
 
-@livewire('button', [ 'member' => $member ])
+@livewire('custom-button', [ 'member' => $member ])
 
 
 
