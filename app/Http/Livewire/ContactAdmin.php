@@ -63,67 +63,28 @@ class ContactAdmin extends Component
         $member = "";
 
         if($this->scans) {
-            $member = Auth()->user()->member->id;
+            $member = Auth()->user()->member;
         } else {
             $team = Auth()->user()->team;
             $users = User::where('team_id', $team->id)->pluck('id');
             $members = Member::whereIn('user_id', $users)->where('archived', 0)->pluck('id');
         }
 
-
-
-        if(!$member){
+        //All the swap connections from the admin
+        if($member != ""){
+            //When there is no filter
             if($this->datepicker == "")
             {
                 $contacts = \App\Models\Contact::with(['member', 'contactStatus'])
                     ->where('archived', 0)
-                    ->where('member_id', Auth::user()->member->id)
+                    ->where('member_id', $member->id)
                     ->latest()
                     ->where('name', 'LIKE', '%' . $this->name . '%')
                     ->simplePaginate($this->pagination);
                 return view('livewire.contact-admin', compact('contacts'));
-            } else {
-                ['datepicker' => $this->datepicker];
-
-                $date = $this->datepicker;
-                $dateSub = Carbon::parse($date);
-
-                $year = $dateSub->year;
-                $month = $dateSub->month;
-                $day = $this->datepicker_day;
-
-                if ($day != "") {
-                    $contacts = \App\Models\Contact::with(['member', 'contactStatus'])
-                        ->where('archived', 0)
-                        ->whereIn('member_id', $members)
-                        ->whereMonth('created_at', $month)
-                        ->whereYear('created_at', $year)
-                        ->whereDay('created_at', $day)
-                        ->where('name', 'LIKE', '%' . $this->name . '%')
-                        ->simplePaginate($this->pagination);
-                    return view('livewire.contact-admin', compact('contacts'));
-                } else {
-                    $contacts = \App\Models\Contact::with(['member', 'contactStatus'])
-                        ->where('archived', 0)
-                        ->whereIn('member_id', $members)
-                        ->whereMonth('created_at', $month)
-                        ->whereYear('created_at', $year)
-                        ->where('name', 'LIKE', '%' . $this->name . '%')
-                        ->simplePaginate($this->pagination);
-                    return view('livewire.contact-admin', compact('contacts'));
-                }
             }
-        }else {
-            if($this->datepicker == "")
-            {
-                $contacts = \App\Models\Contact::with(['member', 'contactStatus'])
-                    ->where('archived', 0)
-                    ->where('member_id', Auth::user()->member->id)
-                    ->latest()
-                    ->where('name', 'LIKE', '%' . $this->name . '%')
-                    ->simplePaginate($this->pagination);
-                return view('livewire.contact-admin', compact('contacts'));
-            } else {
+            //When there is a filter
+            else {
                 ['datepicker' => $this->datepicker];
 
                 $date = $this->datepicker;
@@ -132,11 +93,11 @@ class ContactAdmin extends Component
                 $year = $dateSub->year;
                 $month = $dateSub->month;
                 $day = $this->datepicker_day;
-
+                //When we select a day
                 if ($day != "") {
                     $contacts = \App\Models\Contact::with(['member', 'contactStatus'])
                         ->where('archived', 0)
-                        ->where('member_id', Auth::user()->member->id)
+                        ->where('member_id', $member->id)
                         ->whereMonth('created_at', $month)
                         ->whereYear('created_at', $year)
                         ->whereDay('created_at', $day)
@@ -146,7 +107,7 @@ class ContactAdmin extends Component
                 } else {
                     $contacts = \App\Models\Contact::with(['member', 'contactStatus'])
                         ->where('archived', 0)
-                        ->where('member_id', Auth::user()->member->id)
+                        ->where('member_id', $member->id)
                         ->whereMonth('created_at', $month)
                         ->whereYear('created_at', $year)
                         ->where('name', 'LIKE', '%' . $this->name . '%')
@@ -155,87 +116,50 @@ class ContactAdmin extends Component
                 }
             }
         }
-        
+        //All the swap connections from the team
+        else {
+            //When there is no filter
+            if($this->datepicker == "")
+            {
+                $contacts = \App\Models\Contact::with(['member', 'contactStatus'])
+                    ->where('archived', 0)
+                    ->whereIn('member_id', $members)
+                    ->latest()
+                    ->where('name', 'LIKE', '%' . $this->name . '%')
+                    ->simplePaginate($this->pagination);
+                return view('livewire.contact-admin', compact('contacts'));
+            //When there is a filter
+            } else {
+                ['datepicker' => $this->datepicker];
 
-//        if($this->datepicker == "")
-//        {
-//            if(!$member){
-//                $contacts = \App\Models\Contact::with(['member', 'contactStatus'])
-//                    ->where('archived', 0)
-//                    ->whereIn('member_id', $members)
-//                    ->latest()
-//                    ->where('name', 'LIKE', '%' . $this->name . '%')
-//                    ->simplePaginate($this->pagination);
-//                    return view('livewire.contact-admin', compact('contacts'));
-//            }
-//            else {
-//                $contacts = \App\Models\Contact::with(['member', 'contactStatus'])
-//                    ->where('archived', 0)
-//                    ->where('member_id', Auth::user()->member->id)
-//                    ->latest()
-//                    ->where('name', 'LIKE', '%' . $this->name . '%')
-//                    ->simplePaginate($this->pagination);
-//                    return view('livewire.contact-admin', compact('contacts'));
-//            }
-//
-//        }
-//        else {
-//            ['datepicker' => $this->datepicker];
-//
-//            $date = $this->datepicker;
-//            $dateSub = Carbon::parse($date);
-//
-//            $year = $dateSub->year;
-//            $month = $dateSub->month;
-//            $day = $this->datepicker_day;
-//
-//            if ($day != "") {
-//                if(!$member){
-//                    $contacts = \App\Models\Contact::with(['member', 'contactStatus'])
-//                        ->where('archived', 0)
-//                        ->whereIn('member_id', $members)
-//                        ->whereMonth('created_at', $month)
-//                        ->whereYear('created_at', $year)
-//                        ->whereDay('created_at', $day)
-//                        ->where('name', 'LIKE', '%' . $this->name . '%')
-//                        ->simplePaginate($this->pagination);
-//                    return view('livewire.contact-admin', compact('contacts'));
-//                }
-//                else {
-//                    $contacts = \App\Models\Contact::with(['member', 'contactStatus'])
-//                        ->where('archived', 0)
-//                        ->where('member_id', Auth::user()->member->id)
-//                        ->whereMonth('created_at', $month)
-//                        ->whereYear('created_at', $year)
-//                        ->whereDay('created_at', $day)
-//                        ->where('name', 'LIKE', '%' . $this->name . '%')
-//                        ->simplePaginate($this->pagination);
-//                    return view('livewire.contact-admin', compact('contacts'));
-//                }
-//
-//            } else {
-//                if(!$member){
-//                    $contacts = \App\Models\Contact::with(['member', 'contactStatus'])
-//                        ->where('archived', 0)
-//                        ->whereIn('member_id', $members)
-//                        ->whereMonth('created_at', $month)
-//                        ->whereYear('created_at', $year)
-//                        ->where('name', 'LIKE', '%' . $this->name . '%')
-//                        ->simplePaginate($this->pagination);
-//                    return view('livewire.contact-admin', compact('contacts'));
-//                }
-//                else {
-//                    $contacts = \App\Models\Contact::with(['member', 'contactStatus'])
-//                        ->where('archived', 0)
-//                        ->where('member_id', Auth::user()->member->id)
-//                        ->whereMonth('created_at', $month)
-//                        ->whereYear('created_at', $year)
-//                        ->where('name', 'LIKE', '%' . $this->name . '%')
-//                        ->simplePaginate($this->pagination);
-//                    return view('livewire.contact-admin', compact('contacts'));
-//                }
-//            }
-//        }
+                $date = $this->datepicker;
+                $dateSub = Carbon::parse($date);
 
+                $year = $dateSub->year;
+                $month = $dateSub->month;
+                $day = $this->datepicker_day;
+                //When we select a day
+                if ($day != "") {
+                    $contacts = \App\Models\Contact::with(['member', 'contactStatus'])
+                        ->where('archived', 0)
+                        ->whereIn('member_id', $members)
+                        ->whereMonth('created_at', $month)
+                        ->whereYear('created_at', $year)
+                        ->whereDay('created_at', $day)
+                        ->where('name', 'LIKE', '%' . $this->name . '%')
+                        ->simplePaginate($this->pagination);
+                    return view('livewire.contact-admin', compact('contacts'));
+                } else {
+                    $contacts = \App\Models\Contact::with(['member', 'contactStatus'])
+                        ->where('archived', 0)
+                        ->whereIn('member_id', $members)
+                        ->whereMonth('created_at', $month)
+                        ->whereYear('created_at', $year)
+                        ->where('name', 'LIKE', '%' . $this->name . '%')
+                        ->simplePaginate($this->pagination);
+                    return view('livewire.contact-admin', compact('contacts'));
+                }
+            }
+        }
     }
 }
