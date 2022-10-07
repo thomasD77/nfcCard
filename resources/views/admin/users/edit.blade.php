@@ -499,7 +499,7 @@
                     $(".avatar-message").toggleClass("alert-danger");
                 }
                 $(".avatar-message").text("Image is to large");
-                //alert('The image you want to upload is to big');
+                //alert('The image you want to upload is to large');
             }
         }
     });

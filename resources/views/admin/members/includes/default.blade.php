@@ -920,7 +920,7 @@
             if (!$("." + type + "-message").hasClass('alert-danger')) {
                 $("." + type + "-message").toggleClass("alert-danger");
             }
-            $("." + type + "-message").text("The image you want to upload is to big");
+            $("." + type + "-message").text("The image you want to upload is to large");
         }
     });
 
@@ -981,7 +981,7 @@
             if (!$("." + type + "-message").hasClass('alert-danger')) {
                 $("." + type + "-message").toggleClass("alert-danger");
             }
-            $("." + type + "-message").text("The image you want to upload is to big");
+            $("." + type + "-message").text("The image you want to upload is to large");
         }
     });
 
@@ -1045,8 +1045,8 @@
                 if (!$("." + type + "-message").hasClass('alert-danger')) {
                     $("." + type + "-message").toggleClass("alert-danger");
                 }
-                $("." + type + "-message").text("The image you want to upload is to big");
-                //alert('The image you want to upload is to big');
+                $("." + type + "-message").text("The image you want to upload is to large");
+                //alert('The image you want to upload is to large');
             }
         }
     });
