@@ -1,6 +1,6 @@
 @include('admin.members.includes.default-components.css')
 
-<ul class="nav nav-tabs" id="pills-tab" role="tablist">
+<ul class="nav nav-tabs mb-3 mb-md-0" id="pills-tab" role="tablist">
 
     <li class="nav-item" role="presentation">
         <button class="nav-link active"

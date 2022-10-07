@@ -53,7 +53,7 @@
                     <div class="form-group mb-4">
                         <div class="form-check ps-0">
                             <div class="d-flex justify-content-between mb-2">
-                                {!! Form::label('avatar_id', 'Avatar:', ['class'=>'form-label']) !!}
+                                {!! Form::label('avatar_id', 'Avatar:', ['class'=>'form-label mt-2']) !!}
                                 <input class="form-check-input"
                                        type="checkbox"
                                        name="check_avatar"
@@ -81,7 +81,7 @@
                     <div class="form-group mb-4">
                         <div class="form-check ps-0">
                             <div class="d-flex justify-content-between mb-2">
-                                {!! Form::label('logo_id', 'Logo:', ['class'=>'form-label']) !!}
+                                {!! Form::label('logo_id', 'Logo:', ['class'=>'form-label mt-2']) !!}
                                 <input class="form-check-input"
                                        type="checkbox"
                                        name="check_logo"
@@ -107,7 +107,7 @@
                     <div class="form-group mb-4">
                         <div class="form-check ps-0">
                             <div class="d-flex justify-content-between mb-2">
-                                {!! Form::label('banner_id', 'Banner:', ['class'=>'form-label']) !!}
+                                {!! Form::label('banner_id', 'Banner:', ['class'=>'form-label mt-2']) !!}
                                 <input class="form-check-input"
                                        type="checkbox"
                                        name="check_banner"
