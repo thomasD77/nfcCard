@@ -45,48 +45,36 @@ class CustomButton extends Component
         $request = $this->validate();
 
         if(isset($request['state_button'])){
-            $keys = array_keys($request['state_button']);
-
-            foreach ($request['state_button'] as $item ){
-                foreach ($keys as $key){
-                    $button = Button::findOrFail($key);
-                    $button->state = $item;
-                    $button->update();
-                }
+            foreach ($request['state_button'] as $key => $item ){
+                $button = Button::findOrFail($key);
+                $button->state = $item;
+                $button->update();
             }
         }
 
         if(isset($request['multiple_button_name'])){
-            $keys = array_keys($request['multiple_button_name']);
-
-            foreach ($request['multiple_button_name'] as $item ){
-                foreach ($keys as $key){
-                    $button = Button::findOrFail($key);
-                    $button->name = $item;
-                    $button->update();
-                }
+            foreach ($request['multiple_button_name'] as $key => $item ){
+                $button = Button::findOrFail($key);
+                $button->name = $item;
+                $button->update();
             }
         }
 
         if(isset($request['multiple_button_link'])){
-            $keys = array_keys($request['multiple_button_link']);
-            foreach ($request['multiple_button_link'] as $item ){
-                foreach ($keys as $key){
-                    $button = Button::findOrFail($key);
-                    $button->link = $item;
-                    $button->update();
-                }
+            foreach ($request['multiple_button_link'] as $key => $item ){
+                $button = Button::findOrFail($key);
+                $button->link = $item;
+                $button->update();
             }
         }
 
-        Session::flash('flash_message', 'Profile Successfully Updated');
-
-        return redirect('/admin');
     }
 
     public function render()
     {
-        $buttons = \App\Models\Button::where('member_id', Auth::user()->member->id)->get();
+        $buttons = \App\Models\Button::where('member_id', Auth::user()->member->id)
+            ->latest()
+            ->get();
         return view('livewire.custom-button', compact('buttons'));
     }
 
