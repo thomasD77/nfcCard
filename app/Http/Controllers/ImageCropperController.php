@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Logo;
 use Illuminate\Http\Request;
 use App\Models\Member;
 use Illuminate\Support\Facades\File;
@@ -22,6 +23,7 @@ class ImageCropperController extends Controller
         }
 
         $folderPath = public_path($request->base);
+        $this->checkFolder($folderPath);
 
         $image_parts = explode(";base64,", $request->image);
         $image_type_aux = explode("image/", $image_parts[0]);
@@ -50,6 +52,16 @@ class ImageCropperController extends Controller
                 $member->banner_id = $banner->id;
                 $member->save();
             }
+            if($request->type === "logo"){
+                if($member->logo){
+                    File::delete(public_path($member->logo->file));
+                }
+                file_put_contents($file, $image_base64);
+                $logo = Logo::create(['file' => $name . "." .$ext]);
+                $member->logo_id = $logo->id;
+                $member->save();
+            }
+
         } else {
             $user = User::find($request->user_id);
             if ($user->avatar) {
@@ -61,6 +73,12 @@ class ImageCropperController extends Controller
             $user->save();
         }
         return response()->json(['success' => 'success', 'file' => $file, 'name' => $name . "." . $ext]);
+    }
+
+    public function checkFolder($path){
+        if(!file_exists($path)){
+            mkdir($path, 0777, true);
+        }
     }
 
     public function getNameAndExt($name)

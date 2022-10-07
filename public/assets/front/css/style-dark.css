@@ -264,6 +264,14 @@ select option,
   background-color: rgba(13, 134, 255, 0.7);
 }
 
+/** Place header box lower on smartphone */
+
+@media only screen and (max-width: 580px){
+    .box{
+        margin-top:30%;
+    }
+}
+
 /* -----------------------------------------------------------------
     - Header
 ----------------------------------------------------------------- */

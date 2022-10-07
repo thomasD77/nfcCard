@@ -87,10 +87,14 @@
                 <header class="header box">
                     <div class="header__left">
                         @if($member->state->avatar)
-                            <div class="header__photo">
-                                <img class="header__photo-img"
+                            <div class="header__photo" style="position:relative; overflow:inherit;">
+                                <img class="header__photo-img" style="border-radius: 50px;"
                                      src=" {{ $member->avatar ? asset('card/avatars') . "/" . $member->avatar : asset('assets/front/img/main-photo.svg')}}"
                                      alt="avatar">
+                                @if($member->state->avatar && $member->state->logo)
+                                    <img style="position:absolute; bottom:-5%; width: 40px; height: 40px; right: -10%; border-radius: 50%; border: 1px black solid;"
+                                         src="{{asset($member->logo->file)}}" alt="logo"/>
+                                @endif
                             </div>
                         @endif
                         <div class="header__base-info">
@@ -381,15 +385,18 @@
 
                                 <div class="row">
 
-{{--                                    @if($member->video && $member->state->video)--}}
-{{--                                        <div class="col-12 d-flex justify-content-center my-3">--}}
-{{--                                            <video width="560" height="315" controls muted autoplay>--}}
-{{--                                                <source src="{{asset('media/videos/' . $member->video->file)}}"--}}
-{{--                                                        type="video/mp4">--}}
-{{--                                                Your browser does not support the video tag.--}}
-{{--                                            </video>--}}
-{{--                                        </div>--}}
-{{--                                    @endif--}}
+
+                                    @if($member->video && $member->state->video)
+                                        <div class="col-12 d-flex justify-content-center my-3">
+                                            <video style="width: 100%; height: auto;" controls autoplay muted>
+                                                <source src="{{asset('media/videos/' . $member->video->file)}}"
+                                                        type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                            {{--                                            <iframe type="video/mp4" src="{{ $member->video->file }}?rel=0&amp;autoplay=1&mute=1"--}}
+                                            {{--                                                    width="560" height="315" frameborder="0" allowfullscreen></iframe>--}}
+                                        </div>
+                                    @endif
 
                                     @if($member->youtube_video && $member->state->youtube_video)
                                         <div class="col-12 d-flex justify-content-center my-3">

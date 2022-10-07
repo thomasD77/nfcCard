@@ -160,12 +160,13 @@ class CardController extends Controller
         $contact = Contact::findOrFail($id);
         // define variables
 
+        $lastname = '';
+
         if($contact->name){
-            $lastname = $contact->lastname;
+            $lastname = $contact->name;
         }else {
             $lastname = "";
         }
-
 
         $additional = '';
         $prefix = '';
@@ -180,7 +181,6 @@ class CardController extends Controller
         if($contact->company) {
             $vcard->addCompany($contact->company);
         }
-
 
         if($contact->email) {
             $vcard->addEmail($contact->email);

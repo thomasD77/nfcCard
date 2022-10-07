@@ -50,7 +50,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::patch('card-credentials-update-card', 'App\Http\Controllers\Cards\CardCredentialsController@updateCard')->name('card-credentials-update');
 
     //Cropper upload
-    Route::post('image-cropper/upload','App\Http\Controllers\ImageCropperController@upload');
+    Route::POST('image-cropper/upload','App\Http\Controllers\ImageCropperController@upload');
 
     //Routes for CRUD members
     Route::resource('members', App\Http\Controllers\AdminMembersController::class);

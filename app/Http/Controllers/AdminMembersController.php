@@ -570,6 +570,12 @@ class AdminMembersController extends Controller
             $member->front_style = 'light';
         }
 
+        if($request->check_logo !== NULL){
+            $state->logo = 1;
+        } else{
+            $state->logo = 0;
+        }
+
         $member->update();
         $state->update();
 

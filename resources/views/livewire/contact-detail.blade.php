@@ -170,18 +170,17 @@
                             <div class="block-content">
                                 <div class="fs-4 mb-1">{{ $contact->name }}</div>
                                 <address class="fs-sm">
-
                                     @if($contact->phone)
-                                        <i class="fa fa-phone mb-2"></i> {{ $contact->phone }}<br>
+                                        <i class="fa fa-phone mb-3 me-2"></i><a href="tel:{{ $contact->phone }}"></a>{{ $contact->phone }}<br>
                                     @endif
                                     @if($contact->email)
-                                        <i class="far fa-envelope mb-2"></i> <a href="mailto:{{$contact->email}}">{{ $contact->email }}</a><br>
+                                        <i class="far fa-envelope mb-3 me-2"></i> <a href="mailto:{{$contact->email}}">{{ $contact->email }}</a><br>
                                     @endif
                                     @if($contact->company)
-                                        <i class="fa fa-building mb-2"></i> {{ $contact->company }}<br>
+                                        <i class="fa fa-building mb-3 me-2"></i> {{ $contact->company }}<br>
                                     @endif
                                     @if($contact->VAT)
-                                        <i class="far fa-bookmark mb-2"></i> {{ $contact->VAT }}<br>
+                                        <i class="far fa-bookmark mb-3 me-2"></i> {{ $contact->VAT }}<br>
                                     @endif
                                 </address>
                             </div>
@@ -199,7 +198,7 @@
                                         </div>
                                         <div class="col-2 d-flex justify-content-end px-0">
                                             <a class="btn btn-sm btn-alt-secondary me-3" href="{{ route('members.vCard', $member->card_id) }}">
-                                                <i class="fa fa-fw fa-phone"></i>
+                                                <i class="fa fa-download"></i>
                                             </a>
                                             <a class="btn btn-sm btn-alt-secondary" target="_blank" href="{{ $member->memberURL }}" data-bs-toggle="tooltip" title="Profile">
                                                 <i class="fa fa-fw fa-eye"></i>
@@ -211,12 +210,12 @@
                                     <div class="fs-4 mb-1">{{ $member->firstname }} {{ $member->lastname }}</div>
                                     <address class="fs-sm">
                                         @if($member->mobile)
-                                            <i class="fa fa-phone mb-2"></i>{{ $member->mobile }}<br>
+                                            <i class="fa fa-phone mb-3 me-2"></i><a href="tel:{{ $member->mobile }}"></a>{{ $member->mobile }}<br>
                                         @endif
                                         @if($member->mobileWork)
-                                            <i class="fa fa-phone mb-2"></i>{{ $member->mobileWork }}<br>
+                                            <i class="fa fa-phone mb-3 me-2"></i><a href="tel:{{ $member->mobileWork }}"></a><br>
                                         @endif
-                                        <i class="far fa-envelope mb-2"></i> <a href="mailto:{{$member->email}}">{{ $member->email }}</a><br>
+                                        <i class="far fa-envelope mb-3 me-2"></i> <a href="mailto:{{$member->email}}">{{ $member->email }}</a><br>
 
                                         @if($member->addressLine1)
                                             {{ $member->addressLine1 }}<br>

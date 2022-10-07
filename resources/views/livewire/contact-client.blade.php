@@ -88,7 +88,7 @@
 
                             <td><a style="{{$contact->email ? '' : 'color:black'}}" href="mailto:{{$contact->email ? $contact->email : '#'}}"> {{$contact->email ? $contact->email : 'x'}}</a></td>
 
-                            <td><a style="{{$contact->phone ? '' : 'color:black'}}" href="{{$contact->phone ? $contact->phone : '#'}}">{{$contact->phone ? $contact->phone : 'x'}}</a></td>
+                            <td><a style="{{$contact->phone ? '' : 'color:black'}}" href="tel:{{$contact->phone ? $contact->phone : '#'}}">{{$contact->phone ? $contact->phone : 'x'}}</a></td>
 
                             <td>
                                 @if($contact->contactStatus)
