@@ -15,6 +15,7 @@ class ScanListClientExport implements FromCollection
     public function collection()
     {
         //
+        
         $user = Auth::user();
         $member = Member::findOrFail($user->member_id);
 
