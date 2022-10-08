@@ -35,6 +35,7 @@
                                        name="is_public"
                                        type="checkbox"
                                        id="flexSwitchCheckDefault"
+                                       @if($disabled) disabled @endif
                                        @if($scans) checked @endif
                                        wire:click="onlyMyScans"
                                 > Show your connections only

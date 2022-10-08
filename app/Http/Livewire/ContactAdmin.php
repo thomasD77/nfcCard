@@ -22,6 +22,7 @@ class ContactAdmin extends Component
     public $scans;
     public $members;
     public $selectMember;
+    public $disabled = false;
 
     public function mount()
     {
@@ -71,10 +72,14 @@ class ContactAdmin extends Component
     {
         $member = "";
 
+        if($this->selectMember == null){
+            $this->disabled = false;
+        }
         if($this->scans) {
             $member = Auth()->user()->member;
         }
         elseif ($this->selectMember) {
+            $this->disabled = true;
             $member = Member::where('id', $this->selectMember)->where('archived', 0)->first();
             //Extra team check
             if($member != null && !$member->user->team_id == Auth::user()->team_id){
