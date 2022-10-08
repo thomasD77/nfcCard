@@ -22,10 +22,11 @@ class ContactClient extends Component
     public $datepicker_day = "";
 
     public $name;
-
     public Member $member;
 
-    public function mount(User $user)
+    public $selected_members = [];
+
+    public function mount()
     {
         $this->member = Auth::user()->member;
     }
@@ -49,12 +50,30 @@ class ContactClient extends Component
     {
         $filter = new TogglePrint();
         $filterClient = new ToggleStatusClient();
+        $filterContacts = new FilterContactsClient();
         $member = Member::where('user_id', Auth::user()->id)->first();
-        $contacts = Contact::where('member_id', $member->id)->get();
 
         //Status select all checkbox
         if($member){
             $filterClient->toggleStatus($member);
+        }
+
+        //Declare all variables for dates
+        $date = $this->datepicker;
+        $dateSub = Carbon::parse($date);
+        $year = $dateSub->year;
+        $month = $dateSub->month;
+        $day = $this->datepicker_day;
+
+        //Select Contacts from filters
+        if (!$this->datepicker) {
+            $contacts = $filterContacts->filterNoDate($member, $this->name, $this->pagination);
+        } else {
+            if ($day) {
+                $contacts = $filterContacts->filterWithDateDay($member, $month, $year, $day, $this->pagination);
+            } else {
+                $contacts = $filterContacts->filterWithDate($member, $month, $year, $this->pagination);
+            }
         }
 
         //Status print checkboxes
@@ -69,24 +88,23 @@ class ContactClient extends Component
     {
         $filter = new FilterContactsClient();
 
-        if (!$this->datepicker) {
-            $contacts = $filter->filterNoDate($this->member->id, $this->name, $this->pagination);
+        //Declare all variables for dates
+        $date = $this->datepicker;
+        $dateSub = Carbon::parse($date);
+        $year = $dateSub->year;
+        $month = $dateSub->month;
+        $day = $this->datepicker_day;
 
+        if (!$this->datepicker) {
+            $contacts = $filter->filterNoDate($this->member, $this->name, $this->pagination);
             return view('livewire.contact-client', compact('contacts'));
 
         } else {
-            $date = $this->datepicker;
-            $dateSub = Carbon::parse($date);
-            $year = $dateSub->year;
-            $month = $dateSub->month;
-            $day = $this->datepicker_day;
-
             if ($day) {
                 $contacts = $filter->filterWithDateDay($this->member, $month, $year, $day, $this->pagination);
             } else {
                 $contacts = $filter->filterWithDate($this->member, $month, $year, $this->pagination);
             }
-
             return view('livewire.contact-client', compact('contacts'));
         }
     }

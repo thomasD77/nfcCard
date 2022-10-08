@@ -156,15 +156,15 @@ class CardController extends Controller
     {
         // define vcard
         $vcard = new VCard();
-
         $contact = Contact::findOrFail($id);
+
         // define variables
-
-        $lastname = '';
-
         if($contact->name){
-            $lastname = $contact->name;
+            $name = explode(" ", $contact->name);
+            $firstname = $name[0];
+            $lastname = $name[1];
         }else {
+            $firstname = "";
             $lastname = "";
         }
 
@@ -173,11 +173,9 @@ class CardController extends Controller
         $suffix = '';
 
         // add personal data
-
-        $vcard->addName($lastname, $additional, $prefix, $suffix);
+        $vcard->addName($lastname, $firstname, $additional, $prefix, $suffix);
 
         // add work data
-
         if($contact->company) {
             $vcard->addCompany($contact->company);
         }

@@ -5,6 +5,16 @@ use App\Models\Contact;
 
 class FilterContactsClient
 {
+    public function filterNoDate($member, $name, $pagination)
+    {
+        return Contact::with(['member', 'contactStatus'])
+            ->where('archived', 0)
+            ->where('member_id', $member->id)
+            ->where('name', 'LIKE', '%' . $name . '%')
+            ->latest()
+            ->simplePaginate($pagination);
+    }
+
     public function filterWithDate($member, $month, $year, $pagination)
     {
         return Contact::with(['member'])
@@ -23,16 +33,6 @@ class FilterContactsClient
             ->whereMonth('created_at', $month)
             ->whereYear('created_at', $year)
             ->whereDay('created_at', $day)
-            ->simplePaginate($pagination);
-    }
-
-    public function filterNoDate($member, $name, $pagination)
-    {
-        return Contact::with(['member', 'contactStatus'])
-            ->where('archived', 0)
-            ->where('member_id', $member)
-            ->where('name', 'LIKE', '%' . $name . '%')
-            ->latest()
             ->simplePaginate($pagination);
     }
 }
