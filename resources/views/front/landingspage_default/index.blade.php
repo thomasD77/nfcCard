@@ -322,7 +322,8 @@
                             </div>
 
                         </div>
-                        <div class="col-md-6 d-md-flex flex-md-column justify-content-md-end align-items-md-end align-items-md-center ">
+                        <div class="col-md-6 d-md-flex flex-md-column justify-content-md-end align-items-md-end align-items-md-center">
+
                             <ul class="pl-0" style="list-style: none">
                                 @if($member->email && $member->state->email)
                                     <li class="mb-2"><span class="overhead">Email</span>
@@ -342,6 +343,7 @@
                                     </li>
                                 @endif
                             </ul>
+
                             <ul class="pl-0" style="list-style: none">
                                 @if($member->age && $member->state->age)
                                     <li class="mb-2"><span class="overhead">Birthday</span>
@@ -352,9 +354,7 @@
                                 @if($member->state->addressLine1 || $member->state->postalCode || $member->state->city || $member->state->country  )
                                     <li><span class="overhead">Location</span>
                                         <span class="text-white">
-                                             @if($member->addressLine1 && $member->state->addressLine1){{ $member->addressLine1 }}
-                                            ,
-                                            @endif
+                                             @if($member->addressLine1 && $member->state->addressLine1){{ $member->addressLine1 }}, @endif
                                         </span>
                                         <br>
                                         <span class="text-white">@if($member->postalCode && $member->state->postalCode){{ $member->postalCode }}@endif</span>
