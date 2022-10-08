@@ -322,9 +322,8 @@
                             </div>
 
                         </div>
-                        <div class="col-md-6 d-md-flex flex-md-column justify-content-md-end align-items-md-end align-items-md-center">
-
-                            <ul class="pl-0" style="list-style: none">
+                        <div class="col-md-6 d-md-flex flex-md-column justify-content-md-end align-items-md-end">
+                            <ul class="pl-0 pr-lg-3" style="list-style: none">
                                 @if($member->email && $member->state->email)
                                     <li class="mb-2"><span class="overhead">Email</span>
                                         <a class="text-white" href="mailto:{{ $member->email }}">{{ $member->email }}</a>
@@ -344,7 +343,7 @@
                                 @endif
                             </ul>
 
-                            <ul class="pl-0" style="list-style: none">
+                            <ul class="pl-0 pr-lg-3" style="list-style: none">
                                 @if($member->age && $member->state->age)
                                     <li class="mb-2"><span class="overhead">Birthday</span>
                                         <span class="text-white">{{ \Carbon\Carbon::parse($member->age)->format('Y-M-d') }}</span>
