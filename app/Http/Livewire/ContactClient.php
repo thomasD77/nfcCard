@@ -6,6 +6,9 @@ use App\Models\Member;
 use App\Models\Contact;
 use App\Models\Status;
 use App\Models\User;
+use App\Swap\Filter\FilterContactsClient;
+use App\Swap\Filter\TogglePrint;
+use App\Swap\Filter\ToggleStatusClient;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -16,142 +19,78 @@ use phpDocumentor\Reflection\Types\Boolean;
 class ContactClient extends Component
 {
     use WithPagination;
+    public $pagination = 25;
 
     public $datepicker = "";
-    public $pagination = 25;
     public $datepicker_day = "";
-    public $name;
-    public $notes;
-    public $showNotes = false;
-    public User $user;
-    public $status;
-    public $contact;
 
-    protected $listeners = [
-        'toggleRender' => '$refresh',
-    ];
+    public $name;
+
+    public Member $member;
 
     public function mount(User $user)
     {
-        $this->user = $user;
+        $this->member = Auth::user()->member;
     }
-
-    public function toggleToContact(Contact $contact)
-    {
-        $user = Auth()->user();
-
-        $contacts = $user->contacts;
-
-        foreach ( $user->contacts as $item) {
-            if ($item->email == $contact->email) {
-                Session::flash('contact_message', $contact->name . " with " . $contact->email . " " . 'is already in your contacts.');
-                return redirect()->back();
-            }
-        }
-
-        $user->contacts()->sync($contact->id, false);
-        Session::flash('contact_message_success', $contact->name . " with " . $contact->email . " " . 'is added in your contacts.');
-        return redirect()->to('/admin/contacts');
-
-    }
-
-    public function contact(Contact $contact)
-    {
-        $this->contact = $contact;
-    }
-
-
 
     public function dateALL()
     {
         $this->datepicker = "";
         $this->datepicker_day = "";
+        $this->name = "";
     }
 
-    public function saveNote(Contact $contact)
+    //Select individual checkbox
+    public function select(Contact $contact)
     {
-        $contact->notes = $this->notes;
-        $contact->update();
-        $this->showNotes = false;
+        $filter = new TogglePrint();
+        $filter->togglePrintStatus($contact);
     }
 
-    public function showNotes()
+    //Select all checkboxes
+    public function selectAll()
     {
-        if($this->showNotes){
-            $this->showNotes = false;
-        }else {
-            $this->showNotes = true;
+        $filter = new TogglePrint();
+        $filterClient = new ToggleStatusClient();
+        $member = Member::where('user_id', Auth::user()->id)->first();
+        $contacts = Contact::where('member_id', $member->id)->get();
+
+        //Status select all checkbox
+        if($member){
+            $filterClient->toggleStatus($member);
+        }
+
+        //Status print checkboxes
+        if($contacts){
+            foreach ($contacts as $contact){
+                $filter->togglePrintStatus($contact);
+            }
         }
     }
-
 
     public function render()
     {
-        if($this->contact && $this->status){
-            $this->contact->status_id = $this->status;
-            $this->contact->update();
-        }
+        $filter = new FilterContactsClient();
 
-        $statusses = Status::pluck('name', 'id');
+        if (!$this->datepicker) {
+            $contacts = $filter->filterNoDate($this->member->id, $this->name, $this->pagination);
 
-        $ids = [];
-        $contacts = Auth()->user()->contacts;
+            return view('livewire.contact-client', compact('contacts'));
 
-        if($contacts) {
-            foreach ($contacts as $contact) {
-                $ids [] = $contact->id;
-            }
-        }
-
-        //Check if USER is given in URL request
-        if($this->user->member){
-            $member_id = $this->user->member->id;
         } else {
-            $member_id = Auth()->user()->member->id;
-        }
-
-        if ($this->datepicker == "") {
-            $contacts = \App\Models\Contact::with(['member', 'contactStatus'])
-                ->where('archived', 0)
-                ->where('member_id', $member_id)
-                ->where('name', 'LIKE', '%' . $this->name . '%')
-                ->latest()
-                ->simplePaginate($this->pagination);
-
-            $statusses = Status::all();
-
-            return view('livewire.contact-client', compact('contacts', 'statusses', 'ids'));
-        } else {
-            ['datepicker' => $this->datepicker];
-
             $date = $this->datepicker;
             $dateSub = Carbon::parse($date);
-
             $year = $dateSub->year;
             $month = $dateSub->month;
             $day = $this->datepicker_day;
 
-            if ($day != "") {
-                $contacts = \App\Models\Contact::with(['member', 'contactStatus'])
-                    ->where('archived', 0)
-                    ->where('member_id', $member_id)
-                    ->whereMonth('created_at', $month)
-                    ->whereYear('created_at', $year)
-                    ->whereDay('created_at', $day)
-                    ->simplePaginate($this->pagination);
+            if ($day) {
+                $contacts = $filter->filterWithDateDay($this->member, $month, $year, $day, $this->pagination);
             } else {
-                $contacts = \App\Models\Contact::with(['member'])
-                    ->where('archived', 0)
-                    ->where('member_id', $member_id)
-                    ->whereMonth('created_at', $month)
-                    ->whereYear('created_at', $year)
-                    ->simplePaginate($this->pagination);
+                $contacts = $filter->filterWithDate($this->member, $month, $year, $this->pagination);
             }
 
-            $statusses = Status::all();
-
-
-            return view('livewire.contact-client', compact('contacts', 'statusses', 'ids'));
+            return view('livewire.contact-client', compact('contacts'));
         }
     }
 }

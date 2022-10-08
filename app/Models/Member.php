@@ -51,7 +51,9 @@ class Member extends Model
             'youtube_video',
             'banner_id',
             'video_id',
-            'logo_id'
+            'logo_id',
+            'check_all_print_client',
+            'check_all_print_admin'
         ];
 
     public function user()

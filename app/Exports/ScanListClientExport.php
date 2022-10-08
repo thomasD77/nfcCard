@@ -15,13 +15,13 @@ class ScanListClientExport implements FromCollection
     public function collection()
     {
         //
-        
         $user = Auth::user();
         $member = Member::findOrFail($user->member_id);
 
         $contacts = \App\Models\Contact::with(['member'])
             ->where('member_id', $member->id)
             ->where('archived', 0)
+            ->where('print', 1)
             ->select('id', 'name', 'email', 'phone')
             ->get();
 

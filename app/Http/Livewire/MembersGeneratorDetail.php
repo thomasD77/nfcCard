@@ -52,24 +52,19 @@ class MembersGeneratorDetail extends Component
     {
 
         if($this->checkbox_active) {
-
             if($this->ids == []){
                 $urls = listUrl::where('team_id', $this->team->id)->select('id', 'print')->get();
             }else {
                 $urls = listUrl::whereIn('id', $this->ids)->where('team_id', $this->team->id)->select('id', 'print')->get();
                 $this->ids = [];
             }
-
             foreach ($urls as $url) {
                 $url->print = 0;
                 $url->update();
             }
-
             $this->checkbox_active = false;
             $this->ids = [];
-
         }else {
-
             if($this->ids == []){
                 $urls = listUrl::where('team_id', $this->team->id)->select('id', 'print')->get();
             }else {
@@ -81,9 +76,7 @@ class MembersGeneratorDetail extends Component
                 $url->print = 1;
                 $url->update();
             }
-
             $this->checkbox_active = true;
-
         }
     }
 

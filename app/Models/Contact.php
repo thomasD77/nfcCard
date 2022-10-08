@@ -15,9 +15,10 @@ class Contact extends Model
           'name',
           'email',
           'phone',
-            'message',
+          'message',
           'archived',
-            'notes'
+          'notes',
+          'print'
         ];
 
     public function member()
