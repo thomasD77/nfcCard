@@ -22,7 +22,7 @@ class ScanListClientExport implements FromCollection
             ->where('member_id', $member->id)
             ->where('archived', 0)
             ->where('print', 1)
-            ->select('id', 'name', 'email', 'phone')
+            ->select('id', 'name', 'email', 'phone', 'notes')
             ->get();
 
         //Reset the contact prints
