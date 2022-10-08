@@ -122,7 +122,7 @@
 
                         @include('admin.includes.flash')
 
-                        <div class="card shadow pt-4 col-md-6 offset-md-3 p-md-4 my-md-5" style="border: none">
+                        <div class="card shadow pt-4 col-md-6 offset-md-3 p-md-4 my-md-3" style="border: none; background-color: rgba(255,255,255,0.87)">
 
                             <div class="row">
                                 <div class="col-md-6">

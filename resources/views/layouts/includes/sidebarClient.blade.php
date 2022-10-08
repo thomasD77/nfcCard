@@ -106,15 +106,15 @@
                 <li class="nav-main-heading text-uppercase">Settings</li>
 
                 <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('members.edit', Auth()->user()->member->id)}}">
-                    <i class="nav-main-link-icon  far fa-calendar-alt"></i><span class="nav-main-link-name">Profile</span>
+                    <i class="fa fa-fw fa-pencil-alt me-2"></i><span class="nav-main-link-name">Profile</span>
                 </a>
 
                 @if(Auth::user()->archived == 0)
                     <li class="nav-main-heading text-uppercase">Connections</li>
                     <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
                         <a class="nav-main-link" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="{{route('contacts.index')}}">
-                            <i class="nav-main-link-icon far fa-list-alt"></i>
-                            <span class="nav-main-link-name ">Swaps</span>
+                            <i class="far fa-comments me-2"></i>
+                            <span class="nav-main-link-name">Swaps</span>
                         </a>
                     </li>
                 @endif
