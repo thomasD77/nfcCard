@@ -20,6 +20,15 @@ class ContactAdmin extends Component
     public $notes;
     public $showNotes = false;
     public $scans;
+    public $members;
+    public $selectMember;
+
+    public function mount()
+    {
+        $team = Auth()->user()->team;
+        $users = User::where('team_id', $team->id)->pluck('id');
+        $this->members = Member::whereIn('user_id', $users)->where('archived', 0)->get();
+    }
 
     public function onlyMyScans(){
         if($this->scans){
@@ -64,7 +73,15 @@ class ContactAdmin extends Component
 
         if($this->scans) {
             $member = Auth()->user()->member;
-        } else {
+        }
+        elseif ($this->selectMember) {
+            $member = Member::where('id', $this->selectMember)->where('archived', 0)->first();
+            //Extra team check
+            if($member != null && !$member->user->team_id == Auth::user()->team_id){
+                $member = "";
+            }
+        }
+        else {
             $team = Auth()->user()->team;
             $users = User::where('team_id', $team->id)->pluck('id');
             $members = Member::whereIn('user_id', $users)->where('archived', 0)->pluck('id');

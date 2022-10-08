@@ -9,11 +9,11 @@
                 <div class="collapse" id="collapseExample" wire:ignore.self >
                     <div class="row card-body px-0">
                         <!-- Search Form  -->
-                        <form class="col-md-6 px-0 py-2">
+                        <div class="col-md-6 py-2">
                             <div class="input-group input-group-sm">
                                 <input type="text" class="form-control form-control-alt" placeholder="Search for name..." id="page-header-search-input2" wire:model="name">
                             </div>
-                        </form>
+                        </div>
                         <!-- END Search Form -->
 
                         <!-- Datepicker  -->
@@ -29,7 +29,7 @@
                         <!-- Datepicker  -->
 
 
-                        <div class="mb-4 mb-md-0">
+                        <div class="col-md-6 mb-4 mb-md-0">
                             <div class="form-check form-switch">
                                 <input class="form-check-input" value="1"
                                        name="is_public"
@@ -37,12 +37,12 @@
                                        id="flexSwitchCheckDefault"
                                        @if($scans) checked @endif
                                        wire:click="onlyMyScans"
-                                > Show my scans only
+                                > Show your connections only
                             </div>
                         </div>
 
 
-                        <div class="d-flex justify-content-start justify-content-md-end px-0">
+                        <div class="col-md-6 d-flex justify-content-start justify-content-md-end px-0">
 
                             <a href="{{route('contact.archive', Auth()->user() )}}">
                                 <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Archive">
@@ -65,17 +65,20 @@
                                 </select>
                             </div>
                             <!-- End Pagination -->
+                        </div>
 
+                        <div class="col-md-6 mt-5 mt-md-0">
+                            <label>Search for your teammembers connections:</label>
+                            <select class="form-control" wire:model="selectMember" >
+                                <option value="{{ null }}">{{ __('Please select') }}</option>
+                                @foreach ($members as $member)
+                                    <option value="{{ $member->id }}" wire:key="member-{{ $member->id }}">{{ $member->firstname }} {{ $member->lastname }}</option>
+                                @endforeach
+                            </select>
+                        </div>
 
                     </div>
                 </div>
-
-
-
-
-
-
-
 
                 </div>
             </div>

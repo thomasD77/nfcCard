@@ -25,16 +25,19 @@
                     <input style="width: 62px" wire:model="datepicker_day"  class="form-control" type="number" max="31" min="1">
                     <input wire:model="datepicker" id="datepicker" type="month" class="form-control" id="" name="" placeholder="Select date contact" data-inline="month" data-enable-time="false">
                     <button wire:click="dateALL" class="btn btn-secondary rounded" type="button" data-bs-toggle="tooltip" title="Refresh"><i class="si si-refresh"></i></button>
-{{--                    <a href="{{route('contact.archive')}}">--}}
-{{--                        <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Archive">--}}
-{{--                            <i class="fa fa-archive "></i>--}}
-{{--                        </button>--}}
-{{--                    </a>--}}
-{{--                    <a href="{{ route('print.scans') }}" class="btn btn-alt-success">--}}
-{{--                        <i class="fa fa-print me-2"></i>--}}
-{{--                    </a>--}}
                 </label>
             </div>
+
+            <div class="col-md-6 mt-5 mt-md-0">
+                <label>Search for your teammembers connections:</label>
+                <select class="form-control" wire:model="selectMember" >
+                    <option value="{{ null }}">{{ __('Please select') }}</option>
+                    @foreach ($members as $member)
+                        <option value="{{ $member->id }}" wire:key="member-{{ $member->id }}">{{ $member->firstname }} {{ $member->lastname }}</option>
+                    @endforeach
+                </select>
+            </div>
+
             <div class="block-content block-content-full overflow-scroll">
                 <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
                 <table class="table table-striped table-hover table-vcenter fs-sm">
