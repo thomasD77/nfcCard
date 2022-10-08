@@ -10,7 +10,7 @@
             <div class="content content-full text-center">
                 <div class="row">
                     <div class="col-md-4 offset-md-4">
-                        <div class="card p-5 pb-0 shadow" style="border: none; ">
+                        <div class="card p-5 pb-0 shadow" style="border: none; background-color: rgba(255,255,255,0.65)">
                             <h1 class="fw-bold mb-4">
                                 Welcome to the world of SWAP!
                             </h1>
