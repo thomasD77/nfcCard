@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Member;
+use App\Models\Contact;
 use App\Models\User;
 use App\Swap\Filter\FilterContactsClient;
 use App\Swap\Filter\TogglePrint;
