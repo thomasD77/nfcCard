@@ -3,18 +3,14 @@
 namespace App\Http\Livewire;
 
 use App\Models\Member;
-use App\Models\Contact;
-use App\Models\Status;
 use App\Models\User;
 use App\Swap\Filter\FilterContactsClient;
 use App\Swap\Filter\TogglePrint;
 use App\Swap\Filter\ToggleStatusClient;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 use Livewire\WithPagination;
-use phpDocumentor\Reflection\Types\Boolean;
 
 class ContactClient extends Component
 {
