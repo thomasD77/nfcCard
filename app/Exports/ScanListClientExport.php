@@ -18,13 +18,32 @@ class ScanListClientExport implements FromCollection
         //
         $member = Member::findOrFail(Auth::user()->member_id);
 
-        $contacts = \App\Models\Contact::with(['member'])
+        $count = Contact::with(['member'])
             ->where('member_id', $member->id)
             ->where('archived', 0)
-            ->where('print', 1)
-            ->select('id', 'name', 'email', 'phone', 'notes')
-            ->get();
+            ->count();
 
+        $count_contacts = Contact::with(['member'])
+            ->where('member_id', $member->id)
+            ->where('archived', 0)
+            ->where('print', 0)
+            ->count();
+
+        if($count == $count_contacts){
+            $contacts = Contact::with(['member'])
+                ->where('member_id', $member->id)
+                ->where('archived', 0)
+                ->select('id', 'name', 'email', 'phone', 'notes')
+                ->get();
+        }else {
+            $contacts = Contact::with(['member'])
+                ->where('member_id', $member->id)
+                ->where('archived', 0)
+                ->where('print', 1)
+                ->select('id', 'name', 'email', 'phone', 'notes')
+                ->get();
+        }
+        
         //Reset the contact prints
         $reset_contacts = Contact::all();
         foreach ($reset_contacts as $contact){
