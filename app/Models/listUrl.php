@@ -21,6 +21,7 @@ class listUrl extends Model
         'image',
         'card_id',
         'role_id',
+        'trial_date'
     ];
 
     public function package()

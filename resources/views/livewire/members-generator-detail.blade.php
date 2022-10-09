@@ -93,6 +93,11 @@
                                 {!! Form::select('types',$types,null,['class'=>'form-control', 'placeholder' => 'Select here...'])!!}
                             </div>
 
+                            <div class="form-check m-4 px-0 col-md-5">
+                                {!! Form::label('date','Select end trial date:', ['class'=>'form-label']) !!}
+                                {!! Form::date('date', now(),['class'=>'form-control'])!!}
+                            </div>
+
                         </div>
 
 
@@ -209,7 +214,7 @@
 
                             <td class="my-2 ms-3
                                 @if($url->listType)
-                                    badge badge-pill
+                                    badge badge-pill w-75
                                 @if($url->listType->id == 1) bg-dark
                                             @elseif($url->listType->id == 2) bg-amethyst
                                             @elseif($url->listType->id == 3) bg-flat
@@ -285,7 +290,15 @@
                                                         {!! Form::select('type_id',$types,$url->type_id,['class'=>'form-control', 'placeholder' => 'Select here...'])!!}
                                                     </div>
 
-{{--                                                    If webshop--}}
+                                                    {{-- If Test card--}}
+                                                    @if($url->listType->id == 8 )
+                                                    <div class="form-check mt-4 px-0">
+                                                        {!! Form::label('date','Select end trial date:', ['class'=>'form-label']) !!}
+                                                        {!! Form::date('trial_date', $url->trial_date,['class'=>'form-control'])!!}
+                                                    </div>
+                                                    @endif
+
+                                                    {{-- If webshop--}}
                                                     @if($url->listType->id == 2 )
                                                     <div class="form-group my-4">
                                                         {!! Form::label('webshop_order_id', 'Webshop Order ID:', ['class'=>'form-label']) !!}

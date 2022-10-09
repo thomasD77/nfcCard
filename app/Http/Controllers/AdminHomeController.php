@@ -16,6 +16,7 @@ use App\Models\Team;
 use App\Models\URL;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class AdminHomeController extends Controller
@@ -50,8 +51,11 @@ class AdminHomeController extends Controller
 
         $teams = Team::count();
 
-
-        return view('admin.dashboard', compact('member', 'scans', 'users', 'teams', 'is_business'));
+        return view('admin.dashboard', compact('member', 'scans',
+            'users',
+            'teams',
+            'is_business'
+        ));
     }
 
 }

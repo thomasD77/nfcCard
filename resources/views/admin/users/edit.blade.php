@@ -164,6 +164,11 @@
                                 <p class="text-danger mt-2"> {{ $message }}</p>
                                 @enderror
                             </div>
+
+                            <div class="form-group mb-4">
+                                {!! Form::label('date','Select end trial date:', ['class'=>'form-label']) !!}
+                                {!! Form::date('trial_date', $user->member ? $user->member->listurl->trial_date : null,['class'=>'form-control'])!!}
+                            </div>
                         @endcan
 
                         @canany(['is_superAdmin', 'is_admin'])
@@ -203,7 +208,7 @@
                             </div>
                             <label class="form-label">Public account:</label>
                             <div class="form-check form-switch">
-                                <input class="form-check-input" value="1" name="is_public" type="checkbox" id="flexSwitchCheckDefault" @if($user->member->is_public) checked @endif>
+                                <input class="form-check-input" value="1" name="is_public" type="checkbox" id="flexSwitchCheckDefault" @if($user->member ? $user->member->is_public : "") checked @endif>
                             </div>
                         </div>
 

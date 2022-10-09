@@ -109,15 +109,13 @@
                     <i class="fa fa-fw fa-pencil-alt me-2"></i><span class="nav-main-link-name">Profile</span>
                 </a>
 
-                @if(Auth::user()->archived == 0)
-                    <li class="nav-main-heading text-uppercase">Connections</li>
-                    <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
-                        <a class="nav-main-link" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="{{route('contacts.index')}}">
-                            <i class="far fa-comments me-2"></i>
-                            <span class="nav-main-link-name">Swaps</span>
-                        </a>
-                    </li>
-                @endif
+                <li class="nav-main-heading text-uppercase">Connections</li>
+                <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
+                    <a class="nav-main-link" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="{{route('contacts.index')}}">
+                        <i class="far fa-comments me-2"></i>
+                        <span class="nav-main-link-name">Swaps</span>
+                    </a>
+                </li>
 
             </ul>
         </div>

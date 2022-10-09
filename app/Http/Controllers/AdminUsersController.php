@@ -8,6 +8,7 @@ use App\Models\AccountSettings;
 use App\Models\Avatar;
 use App\Models\Banner;
 use App\Models\Contact;
+use App\Models\listUrl;
 use App\Models\Member;
 use App\Models\Role;
 use App\Models\ServiceCategory;
@@ -137,6 +138,10 @@ class AdminUsersController extends Controller
         } else {
             $user->business = 1;
         }
+
+        $listurl = listUrl::where('member_id', Auth::user()->member->id)->first();
+        $listurl->trial_date = $request->trial_date;
+        $listurl->update();
 
         $user->update();
         if ($request->roles) {

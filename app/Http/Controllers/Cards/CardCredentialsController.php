@@ -58,6 +58,7 @@ class CardCredentialsController extends Controller
         $url->memberURL = $request->custom_url;
         $url->role_id = $request->role_id;
         $url->webshop_order_id = $request->webshop_order_id;
+        $url->trial_date = $request->trial_date;
 
         if($request->input_QR_url)
         {

@@ -115,9 +115,6 @@
              background-size: cover">
             <div class="block-content block-content-full ">
 
-            @if($member->user->archived == 0)
-
-
                     <div class="parent">
 
                         @include('admin.includes.flash')
@@ -254,22 +251,9 @@
                             </div>
 
                         </div>
-
                     </div>
-
-                @else
-
-                    <p class="p-2">Sorry, the admin blocked your account. Please contact him for this situation.</p>
-
-                @endif
-
             </div>
         </div>
+
     @endcanany
-
-
-
-
-
-
 @endsection
