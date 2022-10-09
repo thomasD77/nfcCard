@@ -139,7 +139,7 @@ class AdminUsersController extends Controller
             $user->business = 1;
         }
 
-        $listurl = listUrl::where('member_id', Auth::user()->member->id)->first();
+        $listurl = listUrl::where('member_id', $user->member->id)->first();
         $listurl->trial_date = $request->trial_date;
         $listurl->update();
 
