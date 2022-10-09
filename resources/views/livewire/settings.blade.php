@@ -41,7 +41,7 @@
                           type="checkbox"
                           id="flexSwitchCheckDefault"
                           class="my-3"
-                          @if(Auth()->user()->member->settings->name == 1) checked @endif
+                          @if(Auth()->user()->member->settings->phone == 1) checked @endif
                           wire:click="togglePhone">
                </div>
                <h5 class="mb-1 ms-3">Phone</h5>
