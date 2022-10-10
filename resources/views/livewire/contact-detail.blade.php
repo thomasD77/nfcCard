@@ -300,7 +300,7 @@
 
         @livewire('contact-detail-reffered-members', [ 'contact' => $contact ])
 
-        @livewire('contact-detail-events', [ 'contact' => $contact ])
+        {{--@livewire('contact-detail-events', [ 'contact' => $contact ]) --}}
 
         @livewire('contact-detail-notes', [ 'contact' => $contact ])
 
