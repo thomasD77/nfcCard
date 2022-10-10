@@ -111,4 +111,6 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::get('print/scans/team', 'App\Http\Controllers\CardController@printScansTeam')->name('print.scans.team');
     Route::post('password/{id}', 'App\Http\Controllers\AdminUsersController@updatePassword');
 
+    Route::get('filters/events','App\Http\Controllers\AdminUsersController@filterEvents')->name('filters.events');
+
 });

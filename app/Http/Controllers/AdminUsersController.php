@@ -277,4 +277,10 @@ class AdminUsersController extends Controller
         return view('admin.contacts-list.detail', compact('contact'));
     }
 
+    public function filterEvents()
+    {
+        $user = User::find(auth::id());
+        return view('admin.users.filter-events');
+    }
+
 }
