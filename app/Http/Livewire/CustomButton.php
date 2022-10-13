@@ -72,7 +72,7 @@ class CustomButton extends Component
 
     public function render()
     {
-        $buttons = \App\Models\Button::where('member_id', Auth::user()->member->id)
+        $buttons = \App\Models\Button::where('member_id', $this->member->id)
             ->latest()
             ->get();
         return view('livewire.custom-button', compact('buttons'));

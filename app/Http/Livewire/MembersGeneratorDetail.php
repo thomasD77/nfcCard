@@ -16,7 +16,8 @@ use Livewire\WithPagination;
 
 class MembersGeneratorDetail extends Component
 {
-    use WithPagination;
+    //use WithPagination;
+
     public $pagination = 25;
     public $checkbox_active = false;
     public $bulk = false;
