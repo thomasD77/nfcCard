@@ -15,7 +15,7 @@ class AddDateFieldToListurlsTable extends Migration
     {
         Schema::table('list_urls', function (Blueprint $table) {
             //
-            $table->date('trial_date')->nullable()->default(now()->addMonth());
+            $table->date('trial_date')->nullable();
         });
     }
 

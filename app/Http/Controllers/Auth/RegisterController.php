@@ -91,11 +91,18 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
+        //Demo cards -- no mail register needed
         if($listURL->team_id == 1) {
             if( $listURL->card_id >= 187 &&  $listURL->card_id <= 286){
                 $user->email_verified_at = now();
                 $user->update();
             }
+        }
+        
+        //When there is no trial date set, add date now + one month
+        if($listURL->type_id == 8 && $listURL->trial_date == null) {
+            $listURL->trial_date = now()->addMonth();
+            $listURL->update();
         }
 
         DB::table('user_role')->insert([
