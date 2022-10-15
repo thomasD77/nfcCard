@@ -234,7 +234,7 @@
 
                                     <td>
                                         <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal{{$url->id}}">
+                                        <button type="button" class="btn btn-sm btn-alt-secondary"  data-bs-toggle="modal" data-bs-target="#exampleModal{{$url->id}}">
                                             <i class="fa fa-fw fa-pencil-alt"></i>
                                         </button>
                                         <!-- Modal -->

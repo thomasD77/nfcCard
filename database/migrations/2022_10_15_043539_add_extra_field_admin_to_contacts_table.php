@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddDateFieldToListurlsTable extends Migration
+class AddExtraFieldAdminToContactsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class AddDateFieldToListurlsTable extends Migration
      */
     public function up()
     {
-        Schema::table('list_urls', function (Blueprint $table) {
+        Schema::table('contacts', function (Blueprint $table) {
             //
-            $table->date('trial_date')->nullable();
+            $table->integer('print_admin')->nullable()->default(0);
         });
     }
 
@@ -26,7 +26,7 @@ class AddDateFieldToListurlsTable extends Migration
      */
     public function down()
     {
-        Schema::table('listurls', function (Blueprint $table) {
+        Schema::table('contacts', function (Blueprint $table) {
             //
         });
     }
