@@ -35,7 +35,7 @@
                                    name="is_public"
                                    type="checkbox"
                                    id="flexSwitchCheckDefault"
-                                   @if($disabled) disabled @endif
+                                   @if($myScansDisabled) disabled @endif
                                    @if($scans) checked @endif
                                    wire:click="onlyMyScans"
                             > Show your connections only
@@ -70,7 +70,7 @@
 
                     <div class="col-md-6 mt-5 mt-md-0">
                         <label>Search for your teammembers connections:</label>
-                        <select class="form-control" wire:model="selectMember" >
+                        <select class="form-control" wire:model="selectMember"    @if($selectedMemberDisabled) disabled @endif>
                             <option value="{{ null }}">{{ __('Please select') }}</option>
                             @foreach ($members as $member)
                                 <option value="{{ $member->id }}" wire:key="member-{{ $member->id }}">{{ $member->firstname }} {{ $member->lastname }}</option>
@@ -147,7 +147,7 @@
                             </td>
                             <td>
                                 <input type="checkbox"
-                                       @if($contact->print_admin == $user->id)  checked @endif
+                                       @if($user->member->memberToContactPrint()->where('contact_id', $contact->id)->exists()) checked @endif
                                        class="btn btn-sm btn-alt-secondary"
                                        wire:click="select({{$contact}})">
                             </td>

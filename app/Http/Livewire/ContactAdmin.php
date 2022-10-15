@@ -5,7 +5,10 @@ namespace App\Http\Livewire;
 use App\Models\Contact;
 use App\Models\Member;
 use App\Models\User;
+use App\Swap\Filter\AllCleanPrintAdmin;
 use App\Swap\Filter\FilterContactsAdmin;
+use App\Swap\Filter\getIds;
+use App\Swap\Filter\ReloadContacts;
 use App\Swap\Filter\TogglePrintAdmin;
 use App\Swap\Filter\ToggleStatusAdmin;
 use App\Swap\Members\TeamMembers;
@@ -21,13 +24,13 @@ class ContactAdmin extends Component
     public int $pagination = 25;
     public string $datepicker_day = "";
     public $name;
-    public $notes;
-    public $showNotes = false;
     public $scans;
     public $members;
     public $selectMember;
-    public $disabled = false;
+    public $myScansDisabled = false;
+    public $selectedMemberDisabled = false;
     public $member_ids;
+    public $print_ids = [];
 
     public User $user;
 
@@ -43,13 +46,21 @@ class ContactAdmin extends Component
     {
         $this->datepicker = "";
         $this->datepicker_day = "";
+        $this->name = "";
+        $this->selectMember = "";
+        $this->scans = "";
+
+        $clean = new AllCleanPrintAdmin();
+        $clean->cleanPrint($this->user);
     }
 
     public function onlyMyScans(){
         if($this->scans){
             $this->scans = false;
+            $this->selectedMemberDisabled = false;
         }else {
             $this->scans = true;
+            $this->selectedMemberDisabled = true;
         }
     }
 
@@ -66,11 +77,9 @@ class ContactAdmin extends Component
         $filter = new TogglePrintAdmin();
         $filterAdmin = new ToggleStatusAdmin();
         $filterContacts = new FilterContactsAdmin();
-
-        //Status select all checkbox
-        if($this->user->member){
-            $filterAdmin->toggleStatus($this->user->member);
-        }
+        $clean = new AllCleanPrintAdmin();
+        $reload = new ReloadContacts();
+        $member = Member::where('id', $this->user->member_id)->first();
 
         //Declare all variables for dates
         $date = $this->datepicker;
@@ -78,22 +87,33 @@ class ContactAdmin extends Component
         $year = $dateSub->year;
         $month = $dateSub->month;
         $day = $this->datepicker_day;
+        $ids = new getIds();
+
+        //Search for your own scans
+//        if($this->scans && $this->user->member) {
+//            $filterAdmin->toggleStatus($this->user->member);
+//            $clean->cleanPrint($this->user);
+//        }
+//        elseif ($this->selectMember) {
+//            $this->disabled = true;
+//            $member = Member::where('id', $this->selectMember)->where('archived', 0)->first();
+//            //Extra team check
+//            if($member != null && !$member->user->team_id == Auth::user()->team_id){
+//                $member = "";
+//            }
+//        }
 
         //Select Contacts from filters
         if (!$this->datepicker) {
-            $contacts = $filterContacts->filterNoDate($this->member_ids, $this->name, $this->pagination);
+            $contacts = $filterContacts->filterNoDateArray($this->member_ids, $this->name);
+            $filterAdmin->toggleStatus($this->user->member, $contacts);
         } else {
             if ($day) {
-                $contacts = $filterContacts->filterWithDateDay($this->member_ids, $month, $year, $day, $this->pagination);
+                $contacts = $filterContacts->filterWithDateDayArray($this->member_ids, $month, $year, $day, $this->name);
+                $filterAdmin->toggleStatus($this->user->member, $contacts);
             } else {
-                $contacts = $filterContacts->filterWithDate($this->member_ids, $month, $year, $this->pagination);
-            }
-        }
-
-        //Status print checkboxes
-        if($contacts){
-            foreach ($contacts as $contact){
-                $filter->togglePrintAdminStatus($contact, $this->user);
+                $contacts = $filterContacts->filterWithDateArray($this->member_ids, $month, $year, $this->name);
+                $filterAdmin->toggleStatus($this->user->member, $contacts);
             }
         }
     }
@@ -102,15 +122,27 @@ class ContactAdmin extends Component
     public function render()
     {
         $member = "";
+        $filter = new FilterContactsAdmin();
 
+        //Declare all variables for dates
+        $date = $this->datepicker;
+        $dateSub = Carbon::parse($date);
+        $year = $dateSub->year;
+        $month = $dateSub->month;
+        $day = $this->datepicker_day;
+
+
+        //Search for swaps Teammember
         if($this->selectMember == null){
-            $this->disabled = false;
+            $this->myScansDisabled = false;
         }
+
+        //Search for your own scans
         if($this->scans) {
             $member = Auth()->user()->member;
         }
         elseif ($this->selectMember) {
-            $this->disabled = true;
+            $this->myScansDisabled = true;
             $member = Member::where('id', $this->selectMember)->where('archived', 0)->first();
             //Extra team check
             if($member != null && !$member->user->team_id == Auth::user()->team_id){
@@ -118,53 +150,26 @@ class ContactAdmin extends Component
             }
         }
         else {
-            $team = Auth()->user()->team;
-            $users = User::where('team_id', $team->id)->pluck('id');
-            $members = Member::whereIn('user_id', $users)->where('archived', 0)->pluck('id');
+            $members = new TeamMembers();
+            $members = $members->getTeamMembersInArrayPluckId($this->user);
         }
+
 
         //All the swap connections from the admin
         if($member != ""){
             //When there is no filter
-            if($this->datepicker == "")
+            if(!$this->datepicker)
             {
-                $contacts = \App\Models\Contact::with(['member', 'contactStatus'])
-                    ->where('archived', 0)
-                    ->where('member_id', $member->id)
-                    ->latest()
-                    ->where('name', 'LIKE', '%' . $this->name . '%')
-                    ->simplePaginate($this->pagination);
+                $contacts = $filter->filterNoDate($member, $this->name, $this->pagination);
                 return view('livewire.contact-admin', compact('contacts'));
             }
             //When there is a filter
             else {
-                ['datepicker' => $this->datepicker];
-
-                $date = $this->datepicker;
-                $dateSub = Carbon::parse($date);
-
-                $year = $dateSub->year;
-                $month = $dateSub->month;
-                $day = $this->datepicker_day;
-                //When we select a day
                 if ($day != "") {
-                    $contacts = \App\Models\Contact::with(['member', 'contactStatus'])
-                        ->where('archived', 0)
-                        ->where('member_id', $member->id)
-                        ->whereMonth('created_at', $month)
-                        ->whereYear('created_at', $year)
-                        ->whereDay('created_at', $day)
-                        ->where('name', 'LIKE', '%' . $this->name . '%')
-                        ->simplePaginate($this->pagination);
+                    $contacts = $filter->filterWithDateDay($this->user->member, $month, $year, $day, $this->pagination, $this->name);
                     return view('livewire.contact-admin', compact('contacts'));
                 } else {
-                    $contacts = \App\Models\Contact::with(['member', 'contactStatus'])
-                        ->where('archived', 0)
-                        ->where('member_id', $member->id)
-                        ->whereMonth('created_at', $month)
-                        ->whereYear('created_at', $year)
-                        ->where('name', 'LIKE', '%' . $this->name . '%')
-                        ->simplePaginate($this->pagination);
+                    $contacts = $filter->filterWithDate($this->user->member, $month, $year, $this->pagination, $this->name);
                     return view('livewire.contact-admin', compact('contacts'));
                 }
             }
@@ -172,44 +177,18 @@ class ContactAdmin extends Component
         //All the swap connections from the team
         else {
             //When there is no filter
-            if($this->datepicker == "")
+            if(!$this->datepicker)
             {
-                $contacts = \App\Models\Contact::with(['member', 'contactStatus'])
-                    ->where('archived', 0)
-                    ->whereIn('member_id', $members)
-                    ->latest()
-                    ->where('name', 'LIKE', '%' . $this->name . '%')
-                    ->simplePaginate($this->pagination);
+                $contacts = $filter->filterNoDatePaginate($members, $this->name, $this->pagination);
                 return view('livewire.contact-admin', compact('contacts'));
             //When there is a filter
             } else {
-                ['datepicker' => $this->datepicker];
-
-                $date = $this->datepicker;
-                $dateSub = Carbon::parse($date);
-
-                $year = $dateSub->year;
-                $month = $dateSub->month;
-                $day = $this->datepicker_day;
                 //When we select a day
                 if ($day != "") {
-                    $contacts = \App\Models\Contact::with(['member', 'contactStatus'])
-                        ->where('archived', 0)
-                        ->whereIn('member_id', $members)
-                        ->whereMonth('created_at', $month)
-                        ->whereYear('created_at', $year)
-                        ->whereDay('created_at', $day)
-                        ->where('name', 'LIKE', '%' . $this->name . '%')
-                        ->simplePaginate($this->pagination);
+                    $contacts = $filter->filterWithDateDayPaginate($members, $month, $year, $day, $this->pagination, $this->name);
                     return view('livewire.contact-admin', compact('contacts'));
                 } else {
-                    $contacts = \App\Models\Contact::with(['member', 'contactStatus'])
-                        ->where('archived', 0)
-                        ->whereIn('member_id', $members)
-                        ->whereMonth('created_at', $month)
-                        ->whereYear('created_at', $year)
-                        ->where('name', 'LIKE', '%' . $this->name . '%')
-                        ->simplePaginate($this->pagination);
+                    $contacts = $filter->filterWithDatePaginate($members, $month, $year, $this->pagination, $this->name);
                     return view('livewire.contact-admin', compact('contacts'));
                 }
             }

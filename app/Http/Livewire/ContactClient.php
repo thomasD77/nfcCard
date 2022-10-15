@@ -101,9 +101,9 @@ class ContactClient extends Component
 
         } else {
             if ($day) {
-                $contacts = $filter->filterWithDateDay($this->member, $month, $year, $day, $this->pagination);
+                $contacts = $filter->filterWithDateDay($this->member, $month, $year, $day, $this->pagination, $this->name);
             } else {
-                $contacts = $filter->filterWithDate($this->member, $month, $year, $this->pagination);
+                $contacts = $filter->filterWithDate($this->member, $month, $year, $this->pagination, $this->name);
             }
             return view('livewire.contact-client', compact('contacts'));
         }

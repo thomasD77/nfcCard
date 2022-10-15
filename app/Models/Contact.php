@@ -51,4 +51,8 @@ class Contact extends Model
         return $this->hasMany(Location::class, 'contact_id');
     }
 
+    public function ContactToMembersPrint(){
+        return $this->belongsToMany(Member::class, 'member_contact');
+    }
+
 }
