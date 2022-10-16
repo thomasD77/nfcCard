@@ -23,12 +23,14 @@ class ContactClient extends Component
 
     public $name;
     public Member $member;
+    public User $user;
 
     public $selected_members = [];
 
     public function mount()
     {
         $this->member = Auth::user()->member;
+        $this->user = Auth::user();
     }
 
     public function dateALL()
@@ -67,12 +69,12 @@ class ContactClient extends Component
 
         //Select Contacts from filters
         if (!$this->datepicker) {
-            $contacts = $filterContacts->filterNoDate($member, $this->name, $this->pagination);
+            $contacts = $filterContacts->filterNoDate($this->member, $this->name);
         } else {
             if ($day) {
-                $contacts = $filterContacts->filterWithDateDay($member, $month, $year, $day, $this->pagination);
+                $contacts = $filterContacts->filterWithDateDay($this->member, $month, $year, $day, $this->name);
             } else {
-                $contacts = $filterContacts->filterWithDate($member, $month, $year, $this->pagination);
+                $contacts = $filterContacts->filterWithDate($this->member, $month, $year, $this->name);
             }
         }
 
@@ -86,6 +88,7 @@ class ContactClient extends Component
 
     public function render()
     {
+        //Declare all classes
         $filter = new FilterContactsClient();
 
         //Declare all variables for dates
@@ -96,14 +99,14 @@ class ContactClient extends Component
         $day = $this->datepicker_day;
 
         if (!$this->datepicker) {
-            $contacts = $filter->filterNoDate($this->member, $this->name, $this->pagination);
+            $contacts = $filter->filterNoDatePaginate($this->member, $this->name, $this->pagination);
             return view('livewire.contact-client', compact('contacts'));
 
         } else {
             if ($day) {
-                $contacts = $filter->filterWithDateDay($this->member, $month, $year, $day, $this->pagination, $this->name);
+                $contacts = $filter->filterWithDateDayPaginate($this->member, $month, $year, $day, $this->pagination, $this->name);
             } else {
-                $contacts = $filter->filterWithDate($this->member, $month, $year, $this->pagination, $this->name);
+                $contacts = $filter->filterWithDatePaginate($this->member, $month, $year, $this->pagination, $this->name);
             }
             return view('livewire.contact-client', compact('contacts'));
         }
