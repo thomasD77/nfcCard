@@ -37,7 +37,7 @@
                         </a>
 
                         <a href="{{ route('print.scans.client') }}" class="btn btn-alt-success me-2">
-                            <i class="fa fa-print mx-1"></i>
+                            <i class="fa fa-file-export mx-1"></i>
                         </a>
 
                         <!-- Pagination Select-->
@@ -76,7 +76,7 @@
                     <th scope="col">Status</th>
                     <th scope="col">Date</th>
                     <th scope="col">Actions</th>
-                    <th scope="col"> <i class="fa fa-print me-2"></i>
+                    <th scope="col"> <i class="fa fa-file-export me-2"></i>
                     <input type="checkbox"
                            @if($user->member->check_all_print_client) checked @endif
                            class="btn btn-sm btn-alt-secondary"

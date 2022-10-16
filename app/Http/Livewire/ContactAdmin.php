@@ -124,11 +124,6 @@ class ContactAdmin extends Component
         $month = $dateSub->month;
         $day = $this->datepicker_day;
 
-        //Search for your own scans
-        if($this->scans) {
-            $this->member_ids = [ $this->user->member->id ];
-        }
-
         //Search for selected team member scans
         if($this->selectMember != null) {
             $this->myScansDisabled = true;
@@ -139,6 +134,11 @@ class ContactAdmin extends Component
             $this->member_ids =  $members->getTeamMembersInArrayPluckId($this->user);
         }
 
+        //Search for your own scans
+        if($this->scans) {
+            $this->member_ids = [ $this->user->member->id ];
+        }
+        
         //When there is no filter
         if(!$this->datepicker) {
             $contacts = $filterContacts->filterNoDatePaginate($this->member_ids, $this->name, $this->pagination);
