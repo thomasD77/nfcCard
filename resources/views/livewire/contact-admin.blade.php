@@ -51,9 +51,9 @@
                             </button>
                         </a>
 
-                        <a href="{{ route('print.scans') }}" class="btn btn-alt-success me-2">
-                            <i class="fa fa-file-export mx-1"></i>
-                        </a>
+{{--                        <a href="{{ route('print.scans') }}" class="btn btn-alt-success me-2">--}}
+{{--                            <i class="fa fa-file-export mx-1"></i>--}}
+{{--                        </a>--}}
 
                         <!-- Pagination Select-->
                         <div class="d-flex justify-content-md-end">
@@ -96,12 +96,12 @@
                     <th scope="col">Status</th>
                     <th scope="col">Date</th>
                     <th scope="col">Actions</th>
-                    <th scope="col"> <i class="fa fa-file-export me-2"></i>
-                        <input type="checkbox"
-                               @if(Auth()->user()->member->check_all_print_admin) checked @endif
-                               class="btn btn-sm btn-alt-secondary"
-                               wire:click="selectAll">
-                    </th>
+{{--                    <th scope="col"> <i class="fa fa-file-export me-2"></i>--}}
+{{--                        <input type="checkbox"--}}
+{{--                               @if(Auth()->user()->member->check_all_print_admin) checked @endif--}}
+{{--                               class="btn btn-sm btn-alt-secondary"--}}
+{{--                               wire:click="selectAll">--}}
+{{--                    </th>--}}
                 </tr>
                 </thead>
                 <tbody>
@@ -145,12 +145,12 @@
                                     <a href="{{ route('contact.detail', $contact->id) }}" class="btn btn-sm btn-alt-secondary"><i class="fa fa-eye"></i></a>
                                 </div>
                             </td>
-                            <td>
-                                <input type="checkbox"
-                                       @if($user->member->memberToContactPrint()->where('contact_id', $contact->id)->exists()) checked @endif
-                                       class="btn btn-sm btn-alt-secondary"
-                                       wire:click="select({{$contact}})">
-                            </td>
+{{--                            <td>--}}
+{{--                                <input type="checkbox"--}}
+{{--                                       @if($user->member->memberToContactPrint()->where('contact_id', $contact->id)->exists()) checked @endif--}}
+{{--                                       class="btn btn-sm btn-alt-secondary"--}}
+{{--                                       wire:click="select({{$contact}})">--}}
+{{--                            </td>--}}
                         </tr>
                     @endforeach
                 @endif
