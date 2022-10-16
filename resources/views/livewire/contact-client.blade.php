@@ -78,7 +78,7 @@
                     <th scope="col">Actions</th>
                     <th scope="col"> <i class="fa fa-file-export me-2"></i>
                         <input type="checkbox"
-                               @if($member->check_all_print_client == 1) checked @endif
+                               @if($user->member->check_all_print_client) checked @endif
                                class="btn btn-sm btn-alt-secondary"
                                wire:click="selectAll">
                     </th>
