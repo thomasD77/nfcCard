@@ -32,10 +32,10 @@ class FilterContactsAdmin
         return Contact::with(['member', 'contactStatus'])
             ->where('archived', 0)
             ->where('member_id', $member->id)
+            ->where('name', 'LIKE', '%' . $name . '%')
             ->whereMonth('created_at', $month)
             ->whereYear('created_at', $year)
             ->whereDay('created_at', $day)
-            ->where('name', 'LIKE', '%' . $name . '%')
             ->latest()
             ->simplePaginate($pagination);
     }
@@ -55,9 +55,9 @@ class FilterContactsAdmin
         return Contact::with(['member'])
             ->where('archived', 0)
             ->whereIn('member_id', $members)
+            ->where('name', 'LIKE', '%' . $name . '%')
             ->whereMonth('created_at', $month)
             ->whereYear('created_at', $year)
-            ->where('name', 'LIKE', '%' . $name . '%')
             ->latest()
             ->simplePaginate($pagination);
     }
@@ -67,10 +67,10 @@ class FilterContactsAdmin
         return Contact::with(['member', 'contactStatus'])
             ->where('archived', 0)
             ->whereIn('member_id', $members)
+            ->where('name', 'LIKE', '%' . $name . '%')
             ->whereMonth('created_at', $month)
             ->whereYear('created_at', $year)
             ->whereDay('created_at', $day)
-            ->where('name', 'LIKE', '%' . $name . '%')
             ->latest()
             ->simplePaginate($pagination);
     }
@@ -89,10 +89,10 @@ class FilterContactsAdmin
     {
         return Contact::with(['member'])
             ->where('archived', 0)
+            ->where('name', 'LIKE', '%' . $name . '%')
             ->whereIn('member_id', $members)
             ->whereMonth('created_at', $month)
             ->whereYear('created_at', $year)
-            ->where('name', 'LIKE', '%' . $name . '%')
             ->latest()
             ->get();
     }
@@ -102,10 +102,10 @@ class FilterContactsAdmin
         return Contact::with(['member', 'contactStatus'])
             ->where('archived', 0)
             ->whereIn('member_id', $members)
+            ->where('name', 'LIKE', '%' . $name . '%')
             ->whereMonth('created_at', $month)
             ->whereYear('created_at', $year)
             ->whereDay('created_at', $day)
-            ->where('name', 'LIKE', '%' . $name . '%')
             ->latest()
             ->get();
     }

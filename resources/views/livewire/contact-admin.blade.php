@@ -70,7 +70,7 @@
 
                     <div class="col-md-6 mt-5 mt-md-0">
                         <label>Search for your teammembers connections:</label>
-                        <select class="form-control" wire:model="selectMember"    @if($selectedMemberDisabled) disabled @endif>
+                        <select class="form-control" wire:model="selectMember" @if($selectedMemberDisabled) disabled @endif>
                             <option value="{{ null }}">{{ __('Please select') }}</option>
                             @foreach ($members as $member)
                                 <option value="{{ $member->id }}" wire:key="member-{{ $member->id }}">{{ $member->firstname }} {{ $member->lastname }}</option>
