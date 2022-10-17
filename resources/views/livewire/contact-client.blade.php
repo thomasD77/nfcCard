@@ -77,10 +77,10 @@
                     <th scope="col">Date</th>
                     <th scope="col">Actions</th>
                     <th scope="col"> <i class="fa fa-file-export me-2"></i>
-                        <input type="checkbox"
-                               @if($user->member->check_all_print_client) checked @endif
-                               class="btn btn-sm btn-alt-secondary"
-                               wire:click="selectAll">
+                    <input type="checkbox"
+                           @if($check_print) checked @endif
+                           class="btn btn-sm btn-alt-secondary"
+                           wire:click="selectAll">
                     </th>
                 </tr>
                 </thead>
