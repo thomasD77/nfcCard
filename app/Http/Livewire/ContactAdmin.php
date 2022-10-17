@@ -49,8 +49,8 @@ class ContactAdmin extends Component
         $this->selectMember = "";
         $this->scans = "";
 
-        $clean = new AllCleanPrintAdmin();
-        $clean->cleanPrint($this->user);
+//        $clean = new AllCleanPrintAdmin();
+//        $clean->cleanPrint($this->user);
     }
 
     public function onlyMyScans(){
@@ -138,7 +138,7 @@ class ContactAdmin extends Component
         if($this->scans) {
             $this->member_ids = [ $this->user->member->id ];
         }
-        
+
         //When there is no filter
         if(!$this->datepicker) {
             $contacts = $filterContacts->filterNoDatePaginate($this->member_ids, $this->name, $this->pagination);
