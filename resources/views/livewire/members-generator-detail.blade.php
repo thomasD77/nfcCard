@@ -93,7 +93,7 @@
                                     {!! Form::select('types',$types,null,['class'=>'form-control', 'placeholder' => 'Select here...'])!!}
                                 </div>
 
-                                @if($url->type_id == 8)
+                                @if($urls->first()->type_id == 8)
                                     <div class="form-check m-4 px-0 col-md-5">
                                         {!! Form::label('date','Select end trial date:', ['class'=>'form-label']) !!}
                                         {!! Form::date('date', now(),['class'=>'form-control'])!!}
