@@ -519,7 +519,7 @@
                     @guest
                         <a style="text-decoration: none; color: black"
                            class="badge badge-pill bg-white p-3 my-3 text-uppercase"
-                           href="{{ asset('/login') }}">Login</a>
+                           href="{{ asset('/') }}">Login</a>
                     @endguest
                     @auth
                         @if($member->front_style === "dark")
