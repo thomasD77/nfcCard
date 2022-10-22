@@ -92,7 +92,6 @@
     </div>
     <!-- END Hero -->
 
-    @can('is_user', $user)
     <!-- Page Content -->
     <div class="content content-boxed">
         <!-- Referral User  -->
@@ -445,7 +444,7 @@
         <!-- END Delete User -->
         @endcanany
     </div>
-    @endcan
+
 <!-- Cropper js -->
 <meta name="_token" content="{{ csrf_token() }}">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>

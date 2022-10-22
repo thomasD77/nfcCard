@@ -118,7 +118,7 @@
                             </td>
                             <td>{{$contact->created_at ? \Carbon\Carbon::parse($contact->created_at)->format('d-M-Y') : 'x'}}</td>                                <td>
                                 <div class="btn-group">
-                                    <a href="{{ route('contact.detail', $contact->id) }}" class="btn btn-sm btn-alt-secondary"><i class="fa fa-eye"></i></a>
+                                    <a href="{{ route('contact.detail', $contact) }}" class="btn btn-sm btn-alt-secondary"><i class="fa fa-eye"></i></a>
                                 </div>
                             </td>
                             <td>

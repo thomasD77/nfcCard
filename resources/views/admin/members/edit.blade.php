@@ -25,33 +25,15 @@
     </div>
     <!-- END Hero -->
 
-    @can('is_member', $member)
     <!-- Page Content -->
     <div class="content content-boxed px-0">
-        <!-- Page Content -->
         <div class="content content-boxed">
 
-                @if($member->user->archived == 0)
+             @include('admin.members.includes.default')
 
-                    @if($member->package->package == 'vCard')
-                        @include('admin.members.includes.vCard')
-
-                    @elseif($member->package->package == 'Default')
-                        @include('admin.members.includes.default')
-
-                    @elseif($member->package->package == "Custom")
-                        @include('admin.members.includes.custom')
-                    @endif
-
-                @else
-                    <p class="p-2">Sorry, the admin blocked your account. Please contact him for this situation.</p>
-                @endif
-
-            <!-- END member Profile -->
         </div>
     </div>
     <!-- END Page Content -->
-    @endcan
 @endsection
 
 
