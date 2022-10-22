@@ -190,6 +190,7 @@
                     </div>
                     <div class="col-lg-6 pb-4">
                     @if($member)
+                        @if($member->card_id !== 0)
                         <!-- Member-->
                             <div class="block block-rounded block-bordered" style="height: 100%">
                                 <div class="block-header border-bottom">
@@ -231,6 +232,7 @@
                                 </div>
                             </div>
                             <!-- END Member -->
+                            @endif
                         @endif
                     </div>
                 </div>

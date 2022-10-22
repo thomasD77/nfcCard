@@ -31,6 +31,7 @@ Auth::routes(['verify'=> true]);
 
 //Public Routes for member information
 Route::get('/', 'App\Http\Controllers\DirectionController@getDirection')->name('direction');
+Route::get('/test/{member}', 'App\Http\Controllers\DirectionController@getTestProfile')->name('direction.test');
 Route::get('vCard/{id}', 'App\Http\Controllers\CardController@vCard')->name('members.vCard');
 Route::get('vCard/contact/{id}', 'App\Http\Controllers\CardController@vCardContact')->name('contact.vCard');
 Route::post('save/{id}', 'App\Http\Controllers\CardController@saveInfo')->name('members.saveInfo');
@@ -82,6 +83,9 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::resource('users', App\Http\Controllers\AdminUsersController::class)->middleware('can:hasAccessCheckUser,user');;
     Route::PATCH('user/update/team/{user}', [App\Http\Controllers\AdminUsersController::class, 'updateTeam']);
     Route::get('user/delete/{id}', 'App\Http\Controllers\AdminUsersController@delete')->name('users.delete');
+    Route::get('user/keep/{user}', 'App\Http\Controllers\AdminUsersController@keep')->name('users.keep');
+    Route::get('keep/bulk', 'App\Http\Controllers\AdminUsersController@keepBulk')->name('keep.bulk');
+    Route::post('user/update/url/{user}', 'App\Http\Controllers\AdminUsersController@updateURL')->name('users.update.url');
     Route::post('user/search', 'App\Http\Controllers\AdminUsersController@searchUser')->name('users.search');
     Route::get('archive/users', 'App\Http\Controllers\AdminUsersController@archive')->name('users.archive');
 

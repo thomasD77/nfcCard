@@ -85,7 +85,9 @@ class AdminUsersController extends Controller
         $roles = Role::where('id', '!=', 1 )->pluck('name', 'id')
             ->all();
 
-        return view('admin.users.edit', compact('user', 'roles', 'role'));
+        $urls = listUrl::pluck('memberURL', 'id')->all();
+
+        return view('admin.users.edit', compact('user', 'roles', 'role', 'urls'));
     }
 
     /**
@@ -166,6 +168,73 @@ class AdminUsersController extends Controller
 
         return redirect('/admin/users');
 
+    }
+
+    public function keep(User $user)
+    {
+        //
+        $member = Member::where('user_id', $user->id)->first();
+
+        $url = listUrl::where('id', $member->card_id)->first();
+        $url->member_id = null;
+        $url->role_id = null;
+        $url->reservation = null;
+        $url->trial_date = null;
+        $url->update();
+
+        $member->card_id = 0;
+        $member->update();
+
+        return redirect('/admin/users');
+    }
+
+    public function keepBulk()
+    {
+
+        $urls = listUrl::where('print', 1 )->select('member_id','id')->get();
+        if(!$urls->isEmpty()){
+            foreach ($urls as $url){
+                $url->member_id = null;
+                $url->print = 0;
+                $url->update();
+            }
+
+            $url_ids = [];
+            foreach ($urls as $url){
+                $url_ids [] = $url->id;
+            }
+
+            $members = Member::whereIn('card_id', $url_ids)->get();
+
+            if($members){
+                foreach ($members as $member){
+                    $member->card_id = 0;
+                    $member->update();
+                }
+            }
+        }
+
+        return redirect('/admin/card-credentials');
+    }
+
+    public function updateURL(Request $request, User $user)
+    {
+        if($request->url){
+
+            $ex_member = Member::where('card_id', $request->url)->first();
+
+            if($ex_member){
+
+                Session::flash('ex_member', $ex_member->user->name . " " . 'has already this CARD ID');
+                return redirect()->back();
+            }
+
+            $member = Member::where('user_id', $user->id)->first();
+            $member->card_id = $request->url;
+            $member->update();
+
+            return redirect('/admin/users');
+        }
     }
 
     public function updatePassword(Request $request, $id)

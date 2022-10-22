@@ -113,6 +113,31 @@
 
                         @if($urls->first() != null )
                             <div class="form-check d-flex justify-content-end m-4">
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-info mx-3" data-bs-toggle="modal" data-bs-target="#exampleModalKeep">
+                                    KEEP/RESET
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModalKeep" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabelKeep">Keep User/ Reset Card</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Are you sure you want to delete the CARD ID on this member?
+                                                This way the URL with this card ID will be available again.
+                                                But the USER ACC will not be lost.
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <a href="{{ route('keep.bulk') }}" class="btn btn-info">RESET</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <a class="" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                                     <label style="cursor: pointer" class="form-label">Bulk delete user accounts?</label>
                                 </a>
@@ -192,7 +217,7 @@
                                         @if($url->member->user->archived == 1)
                                             <td><span class="rounded-pill btn-alt-warning p-2">archived</span></td>
                                         @else
-                                            <td>{{ $url->member->user->name }}</td>
+                                            <td><a href="{{ route('users.edit', $url->member->user->id) }}">{{ $url->member->user->name }}</a></td>
                                         @endif
                                     @else
                                         <td> {...} </td>

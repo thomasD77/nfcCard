@@ -130,6 +130,12 @@
                         </p>
                     </div>
                     <div class="col-lg-8 col-xl-5">
+
+                        @if(Session::has('ex_member'))
+                            <p class="alert alert-info my-3">{{session('ex_member')}}</p>
+                        @endif
+
+
                         {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminUsersController@update',$user->id],'files'=>true])!!}
                         @csrf
 
@@ -166,7 +172,7 @@
 
                             <div class="form-group mb-4">
                                 {!! Form::label('date','Select end trial date:', ['class'=>'form-label']) !!}
-                                {!! Form::date('trial_date', $user->member ? $user->member->listurl->trial_date : null,['class'=>'form-control'])!!}
+                                {!! Form::date('trial_date', $user->member->listurl ? $user->member->listurl->trial_date : null,['class'=>'form-control'])!!}
                             </div>
                         @endcan
 
@@ -441,6 +447,87 @@
             </div>
         </div>
         <!-- END Delete User -->
+        <!-- Keep User / Reset card  -->
+        <div class="block block-rounded">
+            <div class="block-header block-header-default">
+                <h3 class="block-title">Keep User/ Reset Card</h3>
+            </div>
+            <div class="block-content">
+                <div class="row push">
+                    <div class="col-lg-4">
+                        <p class="fs-sm text-muted">
+                            Here you can keep the user account but reset his CARD ID
+                        </p>
+                    </div>
+                    <div class="col-lg-8 col-xl-5">
+
+                        <p class="mb-1"><strong>Current user acc:</strong></p>
+                        <p class="mb-1">{{ $user->name }}</p>
+                        <p class="mb-1">{{ $user->email }}</p>
+                        <p class="mb-3">{{ $user->team->name }}</p>
+
+                        <p class="mb-1"><strong>Current member settings:</strong></p>
+                        <p class="mb-1"># {{ $user->member->id }}</p>
+                        <p class="mb-1">{{ $user->member->firstname }} {{ $user->member->lastname }}</p>
+                        <p class="mb-3">{{ $user->member->email }}</p>
+
+                        <p class="mb-1"><strong>Current URL settings:</strong></p>
+                        <p class="mb-1"># {{ $user->member->card_id }}</p>
+
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModalKeep">
+                            KEEP/RESET
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModalKeep" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabelKeep">Keep User/ Reset Card</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you want to delete the CARD ID on this member?
+                                        This way the URL with this card ID will be available again.
+                                        But the USER ACC will not be lost.
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <a href="{{ route('users.keep', $user) }}" class="btn btn-info">RESET</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="block-header block-header-default">
+                <h3 class="block-title">Set new CARD ID for User </h3>
+            </div>
+            <div class="block-content">
+                <div class="row push">
+                    <div class="col-lg-4">
+                        <p class="fs-sm text-muted">
+                            Here you update the user his CARD ID (for example, set demo to live acc)
+                        </p>
+                    </div>
+                    <div class="col-lg-8 col-xl-5">
+                        <div class="form-group mb-4">
+                            {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\AdminUsersController@updateURL',$user->id]]) !!}
+                            @csrf
+                            {!! Form::label('one-profile-edit-urls', 'Select URL:', ['class'=>'form-label']) !!}
+                            {!! Form::select('url',$urls, [$user->member->card_id] ? [$user->member->card_id] : null ,['class'=>'form-control', 'placeholder'=> 'NONE'])!!}
+                            <div class="form-group mr-1">
+                                {!! Form::submit('UPDATE',['class'=>'btn btn-alt-info mt-2']) !!}
+                            </div>
+                            {!! Form::close() !!}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Keep user / Reset card -->
         @endcanany
     </div>
 

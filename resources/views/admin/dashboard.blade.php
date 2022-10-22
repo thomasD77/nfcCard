@@ -194,7 +194,11 @@
                             </div>
 
                             <div class="row px-2">
-                                <a href="{{route('direction', $member->card_id)}}" target="_blank" class="bg-light">
+                               @if($member->card_id !== 0)
+                                    <a href="{{route('direction', $member->card_id)}}" target="_blank" class="bg-light">
+                                @else
+                                    <a href="{{route('direction.test', $member)}}" target="_blank" class="bg-light">
+                                @endif
                                     <div class="row py-3">
                                         <div class="col-4">
                                             <i class="far fa-eye text-dark" style="font-size: 45px"></i>

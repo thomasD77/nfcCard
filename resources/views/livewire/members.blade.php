@@ -72,10 +72,15 @@
                                             </button>
                                         </a>
 
-                                        <a href="{{route('direction', $member->card_id)}}" target="_blank">
-                                            <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Show member">
-                                                <i class="far fa-eye"></i>
-                                            </button>
+                                        @if($member->card_id !== 0)
+                                            <a href="{{route('direction', $member->card_id)}}" target="_blank">
+                                        @else
+                                            <a href="{{route('direction.test', $member)}}" target="_blank">
+                                        @endif
+
+                                        <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Show member">
+                                            <i class="far fa-eye"></i>
+                                        </button>
                                         </a>
 
                                     </div>
