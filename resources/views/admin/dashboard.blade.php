@@ -225,6 +225,7 @@
                                 </a>
                             </div>
 
+                            @if($member->card_id !== 0)
                             <div class="row px-2">
                                 <a href="{{route('show.QRcode', Auth()->user()->member->card_id)}}}" class="bg-light">
                                     <div class="row py-3">
@@ -238,6 +239,7 @@
                                     </div>
                                 </a>
                             </div>
+                            @endif
 
                             <div class="row px-2">
                                 <a href="{{route('settings')}}">

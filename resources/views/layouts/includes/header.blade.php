@@ -22,12 +22,11 @@
             @endif
         </div>
         <!-- END Left Section -->
-
-        @if(isset(Auth()->user()->member) && !Auth()->user()->archived)
+        @if(isset(Auth()->user()->member) && !Auth()->user()->archived && Auth()->user()->member->card_id !== 0)
             <a class="text-center nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('share')}}">
                 <img width="25px" height="25px" class="img-fluid" src="{{ asset('images/content/share-nodes.png') }}" alt="QRcode">
             </a>
-    @endif
+        @endif
 
     <!-- Right Section -->
         <div class="d-flex align-items-center">
