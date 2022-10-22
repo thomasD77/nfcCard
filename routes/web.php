@@ -63,6 +63,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::post('generate/bulk/cards', 'App\Http\Controllers\Dashboard\CardListGenerator@bulkSelectListUrl')->name('bulk.cards');
     Route::get('bulk/delete/{team}', 'App\Http\Controllers\Dashboard\CardListGenerator@bulkDelete')->name('bulk.delete');
     Route::get('members/print', 'App\Http\Controllers\CardController@print')->name('print');
+    Route::get('listurl/detail/{url}', 'App\Http\Controllers\Dashboard\CardListGenerator@getListurl')->name('listurl.detail');
 
     //Routes for CRUD teams
     Route::resource('teams', App\Http\Controllers\AdminTeamsController::class);
