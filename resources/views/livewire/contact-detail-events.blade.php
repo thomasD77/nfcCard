@@ -28,6 +28,7 @@
                                                 <div class="modal-content">
                                                     <div class="modal-body">
                                                         {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminContactsController@updateEventContact',$event->id]]) !!}
+                                                        @csrf
                                                         <div class="my-4 col-md-4">
                                                             <label for=""><strong>When?</strong></label>
                                                             <input type="date"
@@ -64,6 +65,7 @@
                                     </div>
                                     <div>
                                         {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\AdminContactsController@deleteEventContact',$event->id]]) !!}
+                                        @csrf
                                         <button type="submit" class="btn btn-sm btn-alt-danger"  data-bs-toggle="tooltip" title="Delete">
                                             <i class="fa fa-fw fa-times text-danger"></i>
                                         </button>
@@ -86,7 +88,7 @@
             </p>
 
             {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\AdminContactsController@createEventContact',$contact->id]]) !!}
-
+            @csrf
             <div class="my-4 col-md-4">
                 <label for=""><strong>When?</strong></label>
                 <input type="date"

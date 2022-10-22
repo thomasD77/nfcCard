@@ -1,10 +1,8 @@
 <div class="block-content">
     <div class="row push">
         <div class="col-lg-10">
-            {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminMembersController@update', $member->id],
-                'files'=>true])
-           !!}
-
+            {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminMembersController@update', $member->id],'files'=>true])!!}
+            @csrf
             <p class="badge badge-pill bg-dark p-2 text-white">General</p>
             <div class="mb-4">
                 <label class="form-label">Your Avatar</label>

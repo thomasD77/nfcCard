@@ -25,6 +25,7 @@
     <div class="content">
         <div class="row items-push justify-content-center">
             {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\HomePageController@update',$credential->id],'files'=>true])!!}
+            @csrf
             <div class="row">
 
                 <h2>Example for Title input</h2>

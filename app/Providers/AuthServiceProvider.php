@@ -50,60 +50,71 @@ class AuthServiceProvider extends ServiceProvider
         //Check if user has access to detail page
         Gate::define('hasAccessCheckMember', function ($user, $member){
 
-            $member = Member::findOrFail($member);
+            if($member){
+                $member = Member::findOrFail($member);
 
-            if($user->roles->first()->name == 'client')
-            {
-                if($member->id != Auth::user()->member_id){
-                    return false;
+                if($user->roles->first()->name == 'client')
+                {
+                    if($member->id != Auth::user()->member_id){
+                        return false;
+                    }
                 }
-            }
-            elseif ($user->roles->first()->name == 'admin')
-            {
-                if($member->user->team_id != $user->team_id){
-                    return false;
+                elseif ($user->roles->first()->name == 'admin')
+                {
+                    if($member->user->team_id != $user->team_id){
+                        return false;
+                    }
                 }
+                return true;
+            } else {
+                return true;
             }
-
-            return true;
         });
 
         Gate::define('hasAccessCheckContact', function ($user, $contact){
 
-            if($user->roles->first()->name == 'client')
-            {
-                if($contact->member_id != Auth::user()->member_id){
-                    return false;
+            if($contact){
+                if($user->roles->first()->name == 'client')
+                {
+                    if($contact->member_id != Auth::user()->member_id){
+                        return false;
+                    }
                 }
-            }
-            elseif ($user->roles->first()->name == 'admin')
-            {
-                if($contact->member->user->team_id != $user->team_id){
-                    return false;
+                elseif ($user->roles->first()->name == 'admin')
+                {
+                    if($contact->member->user->team_id != $user->team_id){
+                        return false;
+                    }
                 }
+                return true;
+            } else {
+                return true;
             }
 
-            return true;
         });
 
         Gate::define('hasAccessCheckUser', function ($user, $currentUser){
 
-            $currentUser = User::findOrFail($currentUser);
+            if($currentUser){
+                $currentUser = User::findOrFail($currentUser);
 
-            if($user->roles->first()->name == 'client')
-            {
-                if($currentUser->id != Auth::user()->id){
-                    return false;
+                if($user->roles->first()->name == 'client')
+                {
+                    if($currentUser->id != Auth::user()->id){
+                        return false;
+                    }
                 }
-            }
-            elseif ($user->roles->first()->name == 'admin')
-            {
-                if($currentUser->team_id != $user->team_id){
-                    return false;
+                elseif ($user->roles->first()->name == 'admin')
+                {
+                    if($currentUser->team_id != $user->team_id){
+                        return false;
+                    }
                 }
-            }
 
-            return true;
+                return true;
+            } else {
+                return true;
+            }
         });
 
     }

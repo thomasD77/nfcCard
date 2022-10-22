@@ -26,6 +26,7 @@
                                 </div>
                                 <div class="modal-body">
                                     {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminContactsController@updateContact',$contact->id]]) !!}
+                                    @csrf
                                     @if($contact->name)
                                         <div class="form-group mb-4">
                                             <p class="mb-2 mt-4" style="text-align: left"><strong>Name:</strong></p>
@@ -269,6 +270,7 @@
                                 <div class="modal-content">
                                     <div class="modal-body">
                                         {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminContactsController@updateShortNoteContact',$contact->id]]) !!}
+                                        @csrf
                                         <textarea type="text"
                                                   class="form-control"
                                                   placeholder="Type your note..."

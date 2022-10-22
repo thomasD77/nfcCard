@@ -248,8 +248,8 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\Cards\CardCredentialsController@updateCard', $url->id],
-                                                               'files'=>false]) !!}
+                                                        {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\Cards\CardCredentialsController@updateCard', $url->id], 'files'=>false]) !!}
+                                                        @csrf
                                                         <div class="form-group mb-4">
 
                                                             <div class="form-group mb-4">

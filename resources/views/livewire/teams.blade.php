@@ -35,8 +35,8 @@
                             </div>
                         </h3>
                         <!-- Modal -->
-                        {!! Form::open(['method'=>'PUT', 'action'=>['App\Http\Controllers\AdminTeamsController@update', $team->id],
-                        'files'=>false]) !!}
+                        {!! Form::open(['method'=>'PUT', 'action'=>['App\Http\Controllers\AdminTeamsController@update', $team->id],'files'=>false]) !!}
+                        @csrf
                         <div class="modal fade" id="exampleModal{{$team->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">

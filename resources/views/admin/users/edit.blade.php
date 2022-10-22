@@ -130,9 +130,9 @@
                         </p>
                     </div>
                     <div class="col-lg-8 col-xl-5">
-                        {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminUsersController@update',$user->id],
-                      'files'=>true])
-                       !!}
+                        {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminUsersController@update',$user->id],'files'=>true])!!}
+                        @csrf
+
                         @can('is_superAdmin')
                             <div class="form-group mb-4">
                                 <label class="form-label">Business account:</label>
@@ -239,10 +239,8 @@
                     </div>
                     <div class="col-lg-8 col-xl-5">
 
-                        {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminUsersController@updateTeam',$user],
-                       'files'=>true])
-                        !!}
-
+                        {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminUsersController@updateTeam',$user],'files'=>true])!!}
+                        @csrf
                         <div class="form-group mb-4">
                             {!! Form::label('one-profile-edit-email', 'Name:', ['class'=>'form-label']) !!}
                             @if($role == 'client')
@@ -366,6 +364,7 @@
                     </div>
                     <div class="col-lg-8 col-xl-5">
                         {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\AdminUsersController@updatePassword',$user->id]]) !!}
+                        @csrf
                         <div class="form-group mb-4">
                             {!! Form::label('one-profile-edit-password', 'Current Password:',['class'=>'form-label']) !!}
                             {!! Form::password('currentPassword',['class'=>'form-control']) !!}
