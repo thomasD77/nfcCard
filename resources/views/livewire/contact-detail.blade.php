@@ -25,7 +25,7 @@
                                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminContactsController@updateContact',$contact->id]]) !!}
+                                    {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\AdminContactsController@updateContact',$contact->id]]) !!}
                                     @if($contact->name)
                                         <div class="form-group mb-4">
                                             <p class="mb-2 mt-4" style="text-align: left"><strong>Name:</strong></p>
@@ -35,7 +35,6 @@
                                             @enderror
                                         </div>
                                     @endif
-
                                     @if($contact->email)
                                         <div class="form-group mb-4">
                                             <p class="mb-2 mt-4" style="text-align: left"><strong>Email:</strong></p>
@@ -74,6 +73,17 @@
                                     <p class="mb-2 mt-4" style="text-align: left"><strong>Sector:</strong></p>
                                     <div class="form-group mb-4">
                                         {!! Form::select('sector',$sectors,$contact->sector_id,['class'=>'form-control',])!!}
+                                    </div>
+
+                                    <p class="mb-2 mt-4" style="text-align: left"><strong>Event:</strong></p>
+                                    <div class="form-group mb-4">
+                                        <select class="form-control" name="event">
+                                            <option value="0">No event</option>
+
+                                            @foreach($events as $event)
+                                                <option value="{{$event->id}}" @if($eventId === $event->id) selected @endif>{{$event->name}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
 
                                     <p class="mb-2 mt-4" style="text-align: left"><strong>Short note:</strong></p>
@@ -144,7 +154,7 @@
                     </div>
                     <div class="col-md-3">
                         <div class="fw-semibold text-dark mb-1">Events</div>
-                        <a class="link-fx fs-3 text-primary" >{{ $events }}</a>
+                        <a class="link-fx fs-3 text-primary" >{{ $contactLocations }}</a>
                     </div>
                 </div>
             </div>

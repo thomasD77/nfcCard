@@ -26,8 +26,7 @@ class UpdateContactRequest extends FormRequest
         return [
             //
             'name'=>'required|max:90',
-            'email'=>'required|max:90',
-            'phone'=>'required|max:90',
+            'email'=>'required|max:90'
         ];
     }
 }

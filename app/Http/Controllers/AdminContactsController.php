@@ -7,11 +7,13 @@ use App\Http\Requests\CreateNoteContactRequest;
 use App\Http\Requests\UpdateContactRequest;
 use App\Http\Requests\UpdateNoteContactRequest;
 use App\Models\Contact;
+use App\Models\ContactLocation;
 use App\Models\Location;
 use App\Models\Member;
 use App\Models\Note;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminContactsController extends Controller
 {
@@ -51,7 +53,7 @@ class AdminContactsController extends Controller
             ->whereIn('member_id', $members)
             ->count();
 
-        return view('admin.contacts.archive', compact( 'count'));
+        return view('admin.contacts.archive', compact('count'));
     }
 
     public function archiveContact(Contact $contact)
@@ -75,31 +77,37 @@ class AdminContactsController extends Controller
         return view('admin.contacts.archive-teams-contacts');
     }
 
-    public function updateContact(UpdateContactRequest $request,  Contact $contact)
+    public function updateContact(UpdateContactRequest $request, Contact $contact)
     {
-
         $contact->name = $request->name;
         $contact->email = $request->email;
-        $contact->phone = $request->phone;
+        //$contact->phone = $request->phone;
 
-        if($request->sector) {
+        if ($request->sector) {
             $contact->sector_id = $request->sector;
         }
-        if($request->status) {
+        if ($request->status) {
             $contact->status_id = $request->status;
         }
-        if($request->notes) {
+        if ($request->notes) {
             $contact->notes = $request->notes;
+        }
+        ContactLocation::where("contact_id", $contact->id)->where("location_id", $request->event)->delete();
+        if ((int)$request->event !== 0) {
+            ContactLocation::insert([
+                'contact_id' => $contact->id,
+                'location_id' => $request->event
+            ]);
         }
 
         $contact->update();
 
-        \Brian2694\Toastr\Facades\Toastr::success('Contact Successfully Updated');
+        \Brian2694\Toastr\Facades\  Toastr::success('Contact Successfully Updated');
 
         return redirect()->back();
     }
 
-    public function createNoteContact(CreateNoteContactRequest $request,  Contact $contact)
+    public function createNoteContact(CreateNoteContactRequest $request, Contact $contact)
     {
         $note = new Note();
         $note->name = $request->notes;

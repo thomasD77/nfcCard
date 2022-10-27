@@ -2,12 +2,14 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\ContactLocation;
 use App\Models\JobFunction;
 use App\Models\Location;
 use App\Models\Member;
 use App\Models\Note;
 use App\Models\Status;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use \App\Models\Contact;
 use Livewire\WithPagination;
@@ -51,15 +53,35 @@ class ContactDetail extends Component
     public function render()
     {
         $notes = Note::where('contact_id', $this->contact->id)->count();
-        $events = Location::where('contact_id', $this->contact->id)->count();
+        //$events = Location::where('user_id', Auth::id())->count();
+        $contacts = ContactLocation::where('contact_id', $this->contact->id)->count();
+        $events = Location::where('user_id', Auth::id())->get();
         $statusses = Status::pluck('name', 'id');
         $sectors = JobFunction::pluck('name', 'id');
+        $contactLocations = ContactLocation::where("contact_id", $this->contact->id)->count();
+        $locations = Location::where("user_id", Auth::id())->get();
+        $contactLocation = "";
+        foreach ($locations as $location)
+        {
+            $contactLocation = ContactLocation::where('contact_id', $this->contact->id)->where('location_id', $location->id)->first();
+            if($contactLocation){
+                break;
+            }
+        }
+        if(!$contactLocation || $contactLocation === ""){
+            $eventId = 0;
+        } else{
+            $eventId = $contactLocation->location->id;
+        }
 
         return view('livewire.contact-detail', compact(
             'notes',
             'statusses',
             'sectors',
-            'events'
+            'contacts',
+            'events',
+            'eventId',
+            "contactLocations"
         ));
     }
 }

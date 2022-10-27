@@ -59,6 +59,9 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::get('member/share', 'App\Http\Controllers\AdminMembersController@share')->name('share');
     Route::patch('member/custom/{id}', 'App\Http\Controllers\AdminMembersController@customButton')->name('custom.button');
 
+    Route::post('update/contact/{contact}', "App\Http\Controllers\AdminContactsController@updateContact")->name("update.contact");
+    Route::get('filters/events/details/{location}', 'App\Http\Controllers\AdminUsersController@eventDetail')->name('event.detail');
+
     //Routes for generating the URLS
     Route::POST('generate/member', 'App\Http\Controllers\AdminMembersController@generate')->name('members.generate');
     Route::POST('search/member', 'App\Http\Controllers\AdminMembersController@searchMember')->name('members.search');
@@ -95,7 +98,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     //This route will display all CONTACTS from AUTH user ID
     Route::get('archive/contacts/client', 'App\Http\Controllers\AdminContactsController@archiveClients')->name('contact.archive-clients');
     Route::get('archive/team/contacts', 'App\Http\Controllers\AdminContactsController@archiveTeamContacts')->name('contact.archive-teams-contacts');
-    Route::PATCH('update/contact/{contact}', 'App\Http\Controllers\AdminContactsController@updateContact')->name('contact.update');
+    //Route::PATCH('update/contact/{contact}', 'App\Http\Controllers\AdminContactsController@updateContact')->name('contact.update');
     Route::PATCH('create/note/contact/{contact}', 'App\Http\Controllers\AdminContactsController@createNoteContact')->name('contact.note.create');
     Route::PATCH('update/note/contact/{contact}', 'App\Http\Controllers\AdminContactsController@updateNoteContact')->name('contact.note.update');
     Route::PATCH('update/shortnote/contact/{contact}', 'App\Http\Controllers\AdminContactsController@updateShortNoteContact')->name('contact.short.note.update');

@@ -9,6 +9,7 @@ use App\Models\Avatar;
 use App\Models\Banner;
 use App\Models\Contact;
 use App\Models\listUrl;
+use App\Models\Location;
 use App\Models\Member;
 use App\Models\Role;
 use App\Models\ServiceCategory;
@@ -281,6 +282,11 @@ class AdminUsersController extends Controller
     {
         $user = User::find(auth::id());
         return view('admin.users.filter-events');
+    }
+
+    public function eventDetail(Location $location)
+    {
+        return view('admin.users.event-detail', compact('location'));
     }
 
 }

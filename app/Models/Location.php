@@ -12,6 +12,12 @@ class Location extends Model
     protected $fillable = [
         'name',
         'date',
-        'remark'
+        'remark',
+        'user_id'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
