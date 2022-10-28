@@ -164,6 +164,9 @@ class AdminUsersController extends Controller
         $member->delete();
 
         $user = User::findOrFail($id);
+        $user->email = $user->email . "-" . now();
+        $user->update();
+
         $user->delete();
 
         return redirect('/admin/users');
