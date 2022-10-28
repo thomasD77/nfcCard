@@ -87,8 +87,8 @@
 </div>
 
 
-@component('mail::button', ['url' => 'https://portal.swap-nfc.be/login'])
-    <strong>SWAP APP</strong>
+@component('mail::button', ['url' => config('custom.GET_BASE_URL') . "/?" . $member->card_id])
+    <strong>Bekijk hier mijn Swap account</strong>
 @endcomponent
 
 
