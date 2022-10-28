@@ -107,15 +107,17 @@
     @endcan
 
     @canany([ 'is_client', 'is_admin'])
-        <div class="block block-rounded row mb-0"
+
+        <div class="row parent"
              style="background-image: url('images/content/background_4.png');
              background-repeat: no-repeat;
              height: 100%; width: 100%;
-             background-position: center;
+             background-position: center center;
              background-size: cover">
-            <div class="block-content block-content-full ">
 
-                    <div class="parent">
+
+            <div class="block-content mb-4" style="padding-left: 27px;">
+
 
                         @include('admin.includes.flash')
 
@@ -266,7 +268,7 @@
                             </div>
 
                         </div>
-                    </div>
+
             </div>
         </div>
 

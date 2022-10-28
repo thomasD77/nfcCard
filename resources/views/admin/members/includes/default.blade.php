@@ -15,28 +15,6 @@
 
     <li class="nav-item" role="presentation">
         <button class="nav-link"
-                id="pills-contact-tab"
-                data-toggle="pill"
-                data-target="#pills-contact"
-                type="button" role="tab"
-                aria-controls="pills-contact"
-                style="color: #334155"
-                aria-selected="false">Contact</button>
-    </li>
-
-    <li class="nav-item" role="presentation">
-        <button class="nav-link"
-                id="pills-buttons-tab"
-                data-toggle="pill"
-                data-target="#pills-buttons"
-                type="button" role="tab"
-                aria-controls="pills-buttons"
-                style="color: #334155"
-                aria-selected="false">Buttons</button>
-    </li>
-
-    <li class="nav-item" role="presentation">
-        <button class="nav-link"
                 id="pills-video-tab"
                 data-toggle="pill"
                 data-target="#pills-video"
@@ -77,13 +55,9 @@
 <div class="tab-content" id="pills-tabContent">
     <div class="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
         @include('admin.members.includes.default-components.profile')
-    </div>
 
-    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
         @include('admin.members.includes.default-components.contact')
-    </div>
 
-    <div class="tab-pane fade" id="pills-buttons" role="tabpanel" aria-labelledby="pills-buttons-tab">
         @include('admin.members.includes.default-components.buttons')
     </div>
 
