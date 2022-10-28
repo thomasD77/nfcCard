@@ -8,7 +8,7 @@
             <div class="block-content">
                 <div class="row items-push">
                     @foreach($referred_members as $member)
-                        @if($member->is_public)
+                        @if($member->is_public && $member->listurl->type_id != 8)
                             <div class="col-md-4">
                                 <!-- Referred User -->
                                 <a class="block block-rounded block-bordered block-link-shadow h-100 mb-0" href="{{ $member->memberURL }}" target="_blank">
