@@ -183,6 +183,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/honeybadger-io/honeybadger-php" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/honeybadger-io/honeybadger-laravel" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/sixlive/dotenv-editor" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/salfade/laravel-login-tracker" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

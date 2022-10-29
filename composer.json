@@ -26,6 +26,7 @@
         "livewire/livewire": "^2.5",
         "maatwebsite/excel": "^3.1",
         "mckenziearts/laravel-notify": "^2.2",
+        "salfade/laravel-login-tracker": "^0.0.7",
         "silviolleite/laravelpwa": "^2.0",
         "simplesoftwareio/simple-qrcode": "^4.2",
         "spatie/browsershot": "^3.52",

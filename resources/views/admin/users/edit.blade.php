@@ -94,6 +94,41 @@
 
     <!-- Page Content -->
     <div class="content content-boxed">
+        @canany(['is_superAdmin', 'is_admin'])
+        <!-- Login User  -->
+        <div class="block block-rounded">
+            <div class="block-header block-header-default">
+                <h3 class="block-title">Login information </h3>
+            </div>
+            <div class="block-content">
+                <div class="row push">
+                    <div class="col-lg-4">
+                        <p class="fs-sm text-muted">
+                            Here you can see the user his login information. <br>
+                            Count starting from (29/10/2022).
+                        </p>
+                    </div>
+                    <div class="col-lg-8 col-xl-5">
+                        <div class="form-group mb-4">
+                            {!! Form::label('one-profile-edit-name', 'Latest login time:', ['class'=>'form-label']) !!}
+                            {!! Form::text('name', $user->lastLoginDate() ? $user->lastLoginDate()->format('Y-m-d') : 0 ,['class'=>'form-control', 'disabled']) !!}
+                        </div>
+                        <div class="form-group mb-4">
+                            {!! Form::label('one-profile-edit-name', 'Number of logins:', ['class'=>'form-label']) !!}
+                            {!! Form::text('name', $user->loginAttempts()->count() ,['class'=>'form-control', 'disabled']) !!}
+                        </div>
+                        <div class="form-group mb-4">
+                            {!! Form::label('one-profile-edit-name', 'Number of SWAPS:', ['class'=>'form-label']) !!}
+                            {!! Form::text('name', $user->member->contacts->count() ,['class'=>'form-control', 'disabled']) !!}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END Login User -->
+        @endcanany
+
         <!-- Referral User  -->
         <div class="block block-rounded">
             <div class="block-header block-header-default">

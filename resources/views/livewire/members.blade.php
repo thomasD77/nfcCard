@@ -38,8 +38,8 @@
                         <th scope="col">name</th>
                         <th scope="col">Company</th>
                         <th scope="col"># Card ID</th>
-                        <th scope="col">Material</th>4
-                        <th scope="col">Swaps</th>4
+                        <th scope="col">Material</th>
+                        <th scope="col">Swaps</th>
                         <th scope="col">user account</th>
                         <th scope="col">Actions</th>
                         @can('is_superAdmin')

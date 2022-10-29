@@ -176,6 +176,7 @@
       <path value="$PROJECT_DIR$/vendor/honeybadger-io/honeybadger-php" />
       <path value="$PROJECT_DIR$/vendor/honeybadger-io/honeybadger-laravel" />
       <path value="$PROJECT_DIR$/vendor/sixlive/dotenv-editor" />
+      <path value="$PROJECT_DIR$/vendor/salfade/laravel-login-tracker" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.4" />
