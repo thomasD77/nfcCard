@@ -124,11 +124,13 @@
                         <div class="card shadow pt-4 col-md-6 offset-md-3 p-md-4 my-md-3" style="border: none; background-color: rgba(255,255,255,0.87)">
 
                             @if(Auth::user()->member)
-                                @if(Auth::user()->member->listurl->type_id == 8 )
-                                    <div class="card-header bg-dark">
-                                        <p class="text-white mb-0">This is a SWAP TEST card. </p>
-                                        <p class="text-white">You can use this card until:  <strong>{{ $member->listurl->trial_date }}</strong> </p>
-                                    </div>
+                                @if(isset(Auth::user()->member->listurl))
+                                    @if(Auth::user()->member->listurl->type_id == 8 )
+                                        <div class="card-header bg-dark">
+                                            <p class="text-white mb-0">This is a SWAP TEST card. </p>
+                                            <p class="text-white">You can use this card until:  <strong>{{ $member->listurl->trial_date }}</strong> </p>
+                                        </div>
+                                    @endif
                                 @endif
                             @endif
 
