@@ -35,7 +35,12 @@
                         <span class="rounded-pill bg-info-light text-info p-2">{{$role->name ? $role->name : 'No Role'}}</span>
                     @endforeach
                 </td>
-                <td>{{$user->member ? '# ' . $user->member->card_id : 'No Card ID'}}</td>
+                <td>@if($user->member)
+                        @if($user->member->card_id != 0) {{ $user->member->card_id }}
+                        @else <span class="badge badge-pill bg-warning">TEST MODE</span>
+                        @endif
+                    @endif
+                </td>
                 <td>
                     <div class="btn-group">
                         <a href="{{route('users.edit', $user->id)}}">
@@ -44,6 +49,11 @@
                             </button>
                         </a>
                         <button class="btn btn-sm btn-alt-secondary" wire:click="archiveUser({{$user->id}})"><i class="fa fa-archive"></i></button>
+                        <a href="{{route('members.edit', $user->member->id)}}">
+                            <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit Member">
+                                <i class="fa fa-bullseye"></i>
+                            </button>
+                        </a>
                     </div>
                 </td>
             </tr>

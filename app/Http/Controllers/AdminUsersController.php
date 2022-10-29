@@ -173,9 +173,12 @@ class AdminUsersController extends Controller
 
     }
 
-    public function keep(User $user)
+    public function keep(Request $request, User $user)
     {
         //
+        $user->reset_message = $request->reset_message;
+        $user->update();
+
         $member = Member::where('user_id', $user->id)->first();
 
         $url = listUrl::where('id', $member->card_id)->first();
@@ -191,10 +194,10 @@ class AdminUsersController extends Controller
         return redirect('/admin/users');
     }
 
-    public function keepBulk()
+    public function keepBulk(Request $request)
     {
-
         $urls = listUrl::where('print', 1 )->select('member_id','id')->get();
+
         if(!$urls->isEmpty()){
             foreach ($urls as $url){
                 $url->member_id = null;
@@ -208,12 +211,20 @@ class AdminUsersController extends Controller
             }
 
             $members = Member::whereIn('card_id', $url_ids)->get();
+            $member_ids = Member::whereIn('card_id', $url_ids)->pluck('id');
 
             if($members){
                 foreach ($members as $member){
                     $member->card_id = 0;
                     $member->update();
                 }
+            }
+
+            $users = User::whereIn('member_id', $member_ids)->get();
+
+            foreach ($users as $user){
+                $user->reset_message = $request->reset_message;
+                $user->update();
             }
         }
 

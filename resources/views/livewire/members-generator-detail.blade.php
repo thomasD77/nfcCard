@@ -1,7 +1,7 @@
 <div>
     <div class="block block-rounded row">
         <div class="block-content block-content-full overflow-scroll">
-            <div class="d-flex justify-content-between mb-5">
+            <div class="d-flex justify-content-between mb-1">
                 <div class="d-flex">
                     <!-- Pagination Select-->
                     <select wire:model="pagination" style="width: 80px" class="form-select mb-3 d-flex justify-content-end" aria-label="Default select example">
@@ -58,10 +58,49 @@
                             <i class="fab fa-mailchimp me-2"></i>
                         </a>
                     @endif
-
                 </div>
             </div>
+
+            <div class="d-flex justify-content-end mb-5">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModalKeep">
+                    KEEP/RESET
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalKeep" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabelKeep">Keep User/ Reset Card</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\AdminUsersController@keepBulk']]) !!}
+
+                                <p class="bg-danger-light p-2 mb-4"> Are you sure you want to delete the CARD ID on this member?
+                                    This way the URL with this card ID will be available again.
+                                    But the USER ACC will not be lost.</p>
+
+                                <div class="my-3">
+                                    {!! Form::label('one-profile-edit-email', 'Write down extra information for this user account:', ['class'=>'form-label']) !!}
+                                    {!! Form::textarea('reset_message',null,['class'=>'form-control', 'required']) !!}
+                                    @error('reset_message')
+                                    <p class="text-danger mt-2"> {{ $message }}</p>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                {!! Form::submit('RESET',['class'=>'btn btn-alt-primary']) !!}
+                            </div>
+                            {!! Form::close() !!}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="parent">
+
 
                 @include('admin.includes.flash')
 
@@ -103,12 +142,14 @@
                                 @if($urls->first()->type_id == 8)
                                     <div class="form-check m-4 px-0 col-md-5">
                                         {!! Form::label('date','Select end trial date:', ['class'=>'form-label']) !!}
-                                        {!! Form::date('date', now(),['class'=>'form-control'])!!}
+                                        <div class="mb-1">
+                                            <label><strong>Clear date</strong></label>
+                                            <input type="checkbox" value="1" name="clear">
+                                        </div>
+                                        {!! Form::date('date', null,['class'=>'form-control'])!!}
                                     </div>
                                 @endif
-
                             </div>
-
 
                             <!-- Button trigger modal -->
                             <button type="submit" class="btn btn-alt-primary m-4">
@@ -119,31 +160,6 @@
 
                         @if($urls->first() != null )
                             <div class="form-check d-flex justify-content-end m-4">
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-info mx-3" data-bs-toggle="modal" data-bs-target="#exampleModalKeep">
-                                    KEEP/RESET
-                                </button>
-
-                                <!-- Modal -->
-                                <div class="modal fade" id="exampleModalKeep" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabelKeep">Keep User/ Reset Card</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                Are you sure you want to delete the CARD ID on this member?
-                                                This way the URL with this card ID will be available again.
-                                                But the USER ACC will not be lost.
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <a href="{{ route('keep.bulk') }}" class="btn btn-info">RESET</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <a class="" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                                     <label style="cursor: pointer" class="form-label">Bulk delete user accounts?</label>
                                 </a>
@@ -193,6 +209,8 @@
                         <th scope="col">Design</th>
 
                         <th scope="col">Type</th>
+
+                        <th scope="col">Trial date</th>
 
                         <th scope="col">Reservation</th>
 
@@ -261,6 +279,8 @@
                                     @endif
                                         ">{{$url->listType ? $url->listType->name  : "..." }} <br> <span class="my-5">{{ $url->webshop_order_id }}</span>
                                     </td>
+
+                                    <td>{{$url->trial_date ? $url->trial_date : "*" }}</td>
 
                                     <td>{{$url->reservation ? $url->reservation : "*no reservation" }}</td>
 

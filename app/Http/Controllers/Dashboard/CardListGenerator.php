@@ -71,7 +71,10 @@ class CardListGenerator extends Controller
                 $url->type_id = $request->types;
             }
             if($request->date) {
-                $url->trial_date;
+                $url->trial_date = $request->date;
+            }
+            if($request->clear) {
+                $url->trial_date = null;
             }
 
             $url->print = 0;
@@ -79,6 +82,7 @@ class CardListGenerator extends Controller
             $url->update();
 
         }
+
 
         \Brian2694\Toastr\Facades\Toastr::success('List Successfully Updated');
         return redirect()->back();

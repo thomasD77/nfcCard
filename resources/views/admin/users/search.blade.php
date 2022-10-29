@@ -79,7 +79,15 @@
                                             <span class="rounded-pill bg-info-light text-info p-2">{{$role->name ? $role->name : 'No Role'}}</span>
                                         @endforeach
                                     </td>
-                                    <td>{{$user->member ? '# ' . $user->member->card_id : 'No Card ID'}}</td>
+                                    <td>
+                                        @if($user->member)
+                                            @if($user->member->card_id != 0)
+                                                <a target="_blank" href="{{ route('direction') . "?" . $user->member->card_id }}"><span class="badge badge-pill p-2 bg-dark">Profile {{ $user->member->card_id }}</span></a>
+                                            @else
+                                                <a target="_blank" href="{{ route('direction.test', $user->member) }}"><span class="badge badge-pill bg-warning p-2">TEST MODE</span></a>
+                                            @endif
+                                        @endif
+                                    </td>
                                     @canany(['is_superAdmin', 'is_admin'])
                                         <td>
                                             <div class="btn-group">
