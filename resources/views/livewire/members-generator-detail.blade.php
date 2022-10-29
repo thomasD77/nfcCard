@@ -53,6 +53,12 @@
                         </a>
                     @endif
 
+                    @if($urls->first() != null )
+                        <a href="{{ route('print.marketing')}}" class="btn btn-alt-warning" data-bs-toggle="tooltip" title="Teamleader">
+                            <i class="fab fa-mailchimp me-2"></i>
+                        </a>
+                    @endif
+
                 </div>
             </div>
             <div class="parent">

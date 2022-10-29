@@ -7,6 +7,7 @@ use App\Exports\MemberListExport;
 use App\Exports\MemberUrlExport;
 use App\Exports\ScanListClientExport;
 use App\Exports\ScanListExport;
+use App\Exports\ScanListMarketing;
 use App\Exports\ScanListTeamExport;
 use App\Exports\SubmissionExport;
 use App\Http\Requests\ContactRequest;
@@ -338,9 +339,10 @@ class CardController extends Controller
             return view( 'front.landingspage_default.index', compact('member', 'vCard'));
         }
 
+    }
 
-
-
+    public function printMarketing(){
+        return Excel::download(new ScanListMarketing(), 'swap-marketing.xlsx');
     }
 
 
