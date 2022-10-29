@@ -517,11 +517,6 @@
                             @endif
                         </div>
 
-                        @if($user->member->listurl->trial_date)
-                            <label class="form-label"><strong>Account time left: </strong></label>
-                            <textarea class="form-control" disabled> {{ $user->member->listurl->trial_date->format('Y-m-d') }}</textarea>
-                        @endif
-
                         @if($user->reset_message)
                             <label class="form-label"><strong>User reset information: </strong></label>
                             <textarea class="form-control" disabled> {{ $user->reset_message }}</textarea>
