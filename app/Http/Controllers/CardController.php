@@ -147,6 +147,8 @@ class CardController extends Controller
             $vcard->addNote($member->notes);
         }
 
+        $vcard->addPhoto(asset('images/innova_logo.png'));
+
         // return vcard as a download
         return $vcard->download();
     }
