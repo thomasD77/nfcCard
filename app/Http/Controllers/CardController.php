@@ -164,7 +164,12 @@ class CardController extends Controller
         if($contact->name){
             $name = explode(" ", $contact->name);
             $firstname = $name[0];
-            $lastname = $name[1];
+            if(isset($name[1])){
+                $lastname = $name[1];
+            }else {
+                $lastname = "";
+            }
+
         }else {
             $firstname = "";
             $lastname = "";
