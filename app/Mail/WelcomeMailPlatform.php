@@ -28,6 +28,7 @@ class WelcomeMailPlatform extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.WelcomeMailPlatform');
+        return $this->subject("Welkom bij SWAP.")
+        ->markdown('emails.WelcomeMailPlatform');
     }
 }
