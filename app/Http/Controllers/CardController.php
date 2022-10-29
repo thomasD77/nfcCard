@@ -147,7 +147,7 @@ class CardController extends Controller
             $vcard->addNote($member->notes);
         }
 
-        $vcard->addPhoto(asset('images/innova_logo.png'));
+        $vcard->addPhoto($member->avatar ? asset('/card/avatars'). "/" . $member->avatar : asset('images/content/swap_log.png'));
 
         // return vcard as a download
         return $vcard->download();
@@ -197,6 +197,8 @@ class CardController extends Controller
         if($contact->message) {
             $vcard->addNote($contact->message);
         }
+
+        $vcard->addPhoto( asset('images/content/swap_log.png'));
 
         // return vcard as a download
         return $vcard->download();
