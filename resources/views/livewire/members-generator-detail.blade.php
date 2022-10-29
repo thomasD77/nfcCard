@@ -54,7 +54,7 @@
                     @endif
 
                     @if($urls->first() != null )
-                        <a href="{{ route('print.marketing')}}" class="btn btn-alt-warning" data-bs-toggle="tooltip" title="Teamleader">
+                        <a href="{{ route('print.marketing')}}" class="btn btn-alt-warning" data-bs-toggle="tooltip" title="Mailchimp">
                             <i class="fab fa-mailchimp me-2"></i>
                         </a>
                     @endif
