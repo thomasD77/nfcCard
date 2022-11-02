@@ -11,9 +11,9 @@
                 <!-- Sign Up Block -->
                 <div class="block block-rounded mb-0">
                     <div class="block-header block-header-default">
-                        <h3 class="block-title">Create Account</h3>
+                        <h3 class="block-title">{{__('Create Account')}}</h3>
                         <div class="block-options">
-{{--                            <a class="btn-block-option fs-sm" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#one-signup-terms">View Terms</a>--}}
+{{--                            <a class="btn-block-option fs-sm" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#one-signup-terms">{{__('View Terms')}}</a>--}}
 {{--                            <a class="btn-block-option" href="{{ route('login') }}" data-bs-toggle="tooltip" data-bs-placement="left" title="Sign In">--}}
 {{--                                <i class="fa fa-sign-in-alt"></i>--}}
 {{--                            </a>--}}
@@ -23,7 +23,7 @@
                         <div class="p-sm-3 px-lg-4 px-xxl-5 py-lg-5">
                             <h1 class="h2 mb-1"><?php echo $one->name ; ?></h1>
                             <p class="fw-medium text-muted">
-                                Sorry, there is no Card with this ID
+                                {{__('Sorry, there is no Card with this ID')}}
                             </p>
                         </div>
                     </div>
@@ -51,9 +51,9 @@
                     <!-- Sign Up Block -->
                     <div class="block block-rounded mb-0">
                         <div class="block-header block-header-default">
-                            <h3 class="block-title">Create Account</h3>
+                            <h3 class="block-title">{{__('Create Account')}}</h3>
                             <div class="block-options">
-                                <a class="btn-block-option fs-sm" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#one-signup-terms">View Terms</a>
+                                <a class="btn-block-option fs-sm" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#one-signup-terms">{{__('View Terms')}}</a>
                                 <a class="btn-block-option" href="op_auth_signin.php" data-bs-toggle="tooltip" data-bs-placement="left" title="Sign In">
                                     <i class="fa fa-sign-in-alt"></i>
                                 </a>
@@ -61,9 +61,9 @@
                         </div>
                         <div class="block-content">
                             <div class="p-sm-3 px-lg-4 px-xxl-5 py-lg-5">
-                                <h1 class="h2 mb-1">OneUI</h1>
+                                <h1 class="h2 mb-1">{{__('OneUI')}}</h1>
                                 <p class="fw-medium text-muted">
-                                    Please fill the following details to create a new account.
+                                    {{__('Please fill in the following details to create a new account.')}}
                                 </p>
 
                                 <!-- Sign Up Form -->
@@ -105,14 +105,14 @@
                                         <div class="mb-4">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value="" id="signup-terms" name="signup-terms">
-                                                <label class="form-check-label" for="signup-terms">I agree to Terms &amp; Conditions</label>
+                                                <label class="form-check-label" for="signup-terms">{{__('I agree to Terms &amp; Conditions')}}</label>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mb-4">
                                         <div class="col-md-6 col-xl-5">
                                             <button type="submit" class="btn w-100 btn-alt-success">
-                                                <i class="fa fa-fw fa-plus me-1 opacity-50"></i> Sign Up
+                                                <i class="fa fa-fw fa-plus me-1 opacity-50"></i> {{__('Sign Up')}}
                                             </button>
                                         </div>
                                     </div>
@@ -135,7 +135,7 @@
                 <div class="modal-content">
                     <div class="block block-rounded block-transparent mb-0">
                         <div class="block-header block-header-default">
-                            <h3 class="block-title">Terms &amp; Conditions</h3>
+                            <h3 class="block-title">{{__('Terms &amp; Conditions')}}</h3>
                             <div class="block-options">
                                 <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
                                     <i class="fa fa-fw fa-times"></i>
@@ -146,8 +146,8 @@
                             <?php $one->get_text('small', 5); ?>
                         </div>
                         <div class="block-content block-content-full text-end bg-body">
-                            <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal">I Agree</button>
+                            <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">{{__('Close')}}</button>
+                            <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal">{{__('I Agree')}}</button>
                         </div>
                     </div>
                 </div>
@@ -174,7 +174,7 @@
     <div class="modal-content">
         <div class="block block-rounded block-transparent mb-0">
             <div class="block-header block-header-default">
-                <h3 class="block-title">Terms &amp; Conditions</h3>
+                <h3 class="block-title">{{__('Terms &amp; Conditions')}}</h3>
                 <div class="block-options">
                     <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
                         <i class="fa fa-fw fa-times"></i>
@@ -185,8 +185,8 @@
                 <?php $one->get_text('small', 5); ?>
             </div>
             <div class="block-content block-content-full text-end bg-body">
-                <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal">I Agree</button>
+                <button type="button" class="btn btn-sm btn-alt-secondary me-1" data-bs-dismiss="modal">{{__('Close')}}</button>
+                <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal">{{__('I Agree')}}</button>
             </div>
         </div>
     </div>

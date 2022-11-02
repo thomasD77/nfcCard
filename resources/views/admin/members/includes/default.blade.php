@@ -4,9 +4,9 @@
             {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminMembersController@update', $member->id],
                 'files'=>true])
            !!}
-            <p class="badge badge-pill bg-dark p-2 text-white">General:</p>
+            <p class="badge badge-pill bg-dark p-2 text-white">{{__('General')}}:</p>
             <div class="mb-4">
-                <label class="form-label">Your Avatar</label>
+                <label class="form-label">{{__('Your Avatar')}}</label>
                 <div class="mb-4">
                     <img class="rounded-circle" height="150" width="150" src="{{$member->avatar ? asset('/card/avatars'). "/" . $member->avatar : asset('/assets/front/img/Avatar-4.svg')}}" alt="{{$member->avatar}}">
                 </div>
@@ -101,7 +101,7 @@
                 @enderror
             </div>
 
-            <p class="badge badge-pill bg-dark p-2 text-white">Contact information:</p>
+            <p class="badge badge-pill bg-dark p-2 text-white">{{__('Contact information')}}:</p>
             <div class="form-group mb-4">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" name="check_mobileWork" value="{{ 1 }}" @if($member->state->mobileWork) checked @endif>
@@ -163,7 +163,7 @@
                 @enderror
             </div>
 
-            <p class="badge badge-pill bg-dark p-2 text-white">Thank you message:</p>
+            <p class="badge badge-pill bg-dark p-2 text-white">{{__('Thank you message')}}:</p>
             <div class="form-group mb-4">
                 {!! Form::label('titleMessage','Title',['class'=>'form-label']) !!}
                 {!! Form::text('titleMessage',$member->titleMessage ,['class'=>'form-control']) !!}
@@ -180,8 +180,8 @@
             </div>
 
 
-            <p class="badge badge-pill bg-dark p-2 text-white">Socials:</p>
-            <p class="bg-warning-light p-2 rounded text-center">!! For these socials you need to copy the full url from your account. You can find this easily in your desktop browser !!</p>
+            <p class="badge badge-pill bg-dark p-2 text-white">{{__('Socials')}}:</p>
+            <p class="bg-warning-light p-2 rounded text-center">!! {{__('For these socials you need to copy the full url from your account. You can find this easily in your desktop browser')}} !!</p>
 
             <div class="form-group mb-4">
                 <div class="form-check">
@@ -254,7 +254,7 @@
                 @enderror
             </div>
 
-            <p class="badge badge-pill bg-dark p-2 text-white">Create your own button here: </p>
+            <p class="badge badge-pill bg-dark p-2 text-white">{{__('Create your own button here')}}: </p>
             <div class="form-group mb-4">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" name="check_customField" value="{{ 1 }}" @if($member->state->customField) checked @endif>
@@ -272,7 +272,7 @@
             </div>
             <div class="d-flex justify-content-between">
                 <div class="form-group mr-1">
-                    <button type="submit" class="btn btn-alt-primary">Update</button>
+                    <button type="submit" class="btn btn-alt-primary">{{__('Update')}}</button>
                 </div>
                 {!! Form::close() !!}
             </div>

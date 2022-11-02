@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>vCard - About</title>
+    <title>{{__('vCard - About')}}</title>
 
     <!-- Meta Data -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -81,12 +81,12 @@
                 @endif
 
                 <a class="btn_cstm_download p-3 text-center my-5" style="color:white; text-decoration: none; list-style: none" href="{{ route('members.vCard', $member->card_id) }}">
-                    <strong>SAVE HERE</strong><br>
+                    <strong>{{__('SAVE HERE')}}</strong><br>
                     <i class="fa fa-2x fa-floppy-disk me-1 opacity-50"></i>
                 </a>
 
                 <a class="btn_cstm save p-3 text-center my-3" style="color:white; text-decoration: none; list-style: none" href="{{ route('direction', $member->card_id) }}">
-                    <i class="fa fa-rotate mr-2"></i> Back to profile
+                    <i class="fa fa-rotate mr-2"></i> {{__('Back to profile')}}
                 </a>
 
             </div>

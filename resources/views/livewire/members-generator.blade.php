@@ -25,16 +25,16 @@
                 <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Card URL</th>
-                    <th scope="col">#Card ID</th>
+                    <th scope="col">{{__('Card URL')}}</th>
+                    <th scope="col">#{{__('Card ID')}}</th>
                     @if($QRcode->status == 1)
-                        <th scope="col">QRCODE URL</th>
+                        <th scope="col">{{__('QRCODE URL')}}</th>
                     @endif
-                    <th scope="col">Reservation</th>
-                    <th scope="col">Design</th>
-                    <th scope="col">Material</th>
-                    <th scope="col">Member</th>
-                    <th scope="col">Edit</th>
+                    <th scope="col">{{__('Reservation')}}</th>
+                    <th scope="col">{{__('Design')}}</th>
+                    <th scope="col">{{__('Material')}}</th>
+                    <th scope="col">{{__('Member')}}</th>
+                    <th scope="col">{{__('Edit')}}</th>
                     @can('is_superAdmin')
                         <th scope="col"> <i class="fa fa-print me-2"></i></th>
                     @endcan
@@ -50,11 +50,11 @@
                             @if($QRcode->status == 1)
                                 @if($url->custom_QR_url != "")
                                     <td>
-                                        <span class="rounded-pill p-2 btn-success">CUSTOM</span>
+                                        <span class="rounded-pill p-2 btn-success">{{__('CUSTOM')}}</span>
                                     </td>
                                 @else
                                     <td>
-                                        <span class="rounded-pill p-2 btn-primary">Default</span>
+                                        <span class="rounded-pill p-2 btn-primary">{{__('Default')}}</span>
                                     </td>
                                 @endif
                             @endif
@@ -80,7 +80,7 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel"># CARD ID {{ $url->id }}</h5>
+                                                <h5 class="modal-title" id="exampleModalLabel"># {{__('CARD ID')}} {{ $url->id }}</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
@@ -89,7 +89,7 @@
                                                 <div class="form-group mb-4">
 
                                                     <div class="form-group mb-4">
-                                                        <label class="form-label">Business account:</label>
+                                                        <label class="form-label">{{__('Business account')}}:</label>
                                                         <div class="form-check form-switch">
                                                             <input class="form-check-input" value="1" name="business" type="checkbox" id="flexSwitchCheckDefault" @if($url->business) checked @endif>
                                                         </div>
@@ -119,7 +119,7 @@
                                                     </div>
                                                     <div class="d-flex flex-column mt-4">
                                                         <a class="form-label text-dark d-flex justify-content-between" data-bs-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">
-                                                            Custom Card url <i class="fa fa-arrow-down"></i>
+                                                            {{__('Custom Card url')}} <i class="fa fa-arrow-down"></i>
                                                         </a>
                                                         <div class="collapse" id="collapseExample2">
                                                             <input class="form-control" type="text" name="custom_url" value="{{ $url->memberURL }}">                                                                </div>
@@ -127,7 +127,7 @@
                                                     @if($QRcode->status == 1)
                                                         <div class="d-flex flex-column mt-4">
                                                             <a class="form-label text-dark d-flex justify-content-between" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                                                Custom QRCODE url <i class="fa fa-arrow-down"></i>
+                                                                {{__('Custom QRCODE url')}} <i class="fa fa-arrow-down"></i>
                                                             </a>
                                                             <div class="collapse" id="collapseExample">
                                                                 <input class="form-control" type="text" value="{{ $url->custom_QR_url  }}" name="input_QR_url">

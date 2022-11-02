@@ -8,10 +8,10 @@
 <div class="bg-primary-dark" style="background-image: url({{asset('images/general/banner6.png')}}); background-size: cover  ; background-repeat: no-repeat ">
     <div class="content content-full text-center">
 
-        <h1 class="h2 text-white mb-0">Edit Account</h1>
+        <h1 class="h2 text-white mb-0">{{__('Edit Account')}}</h1>
 
         <a class="btn btn-alt-secondary" href="{{ asset('/admin') }}">
-            <i class="fa fa-fw fa-arrow-left text-danger"></i> Back to Dashboard
+            <i class="fa fa-fw fa-arrow-left text-danger"></i> {{__('Back to Dashboard')}}
         </a>
     </div>
 </div>
@@ -22,13 +22,13 @@
     <!-- User Profile -->
     <div class="block block-rounded">
         <div class="block-header block-header-default">
-            <h3 class="block-title">User Profile</h3>
+            <h3 class="block-title">{{__('User Profile')}}</h3>
         </div>
         <div class="block-content">
             <div class="row push">
                 <div class="col-lg-4">
                     <p class="fs-sm text-muted">
-                        Here you can change your account information. This will not influence your card information.
+                        {{__('Here you can change your account information. This will not influence your card information.')}}
                     </p>
                 </div>
                 <div class="col-lg-8 col-xl-5">
@@ -95,13 +95,13 @@
     <!-- Change Password -->
     <div class="block block-rounded">
         <div class="block-header block-header-default">
-            <h3 class="block-title">Change Password</h3>
+            <h3 class="block-title">{{__('Change Password')}}</h3>
         </div>
         <div class="block-content">
             <div class="row push">
                 <div class="col-lg-4">
                     <p class="fs-sm text-muted">
-                        Changing your sign in password is an easy way to keep your account secure.
+                        {{__('Changing your sign in password is an easy way to keep your account secure.')}}
                     </p>
                 </div>
                 <div class="col-lg-8 col-xl-5">
@@ -141,13 +141,13 @@
             <!-- Billing Information -->
         {{--  <div class="block block-rounded">--}}
         {{--    <div class="block-header block-header-default">--}}
-        {{--      <h3 class="block-title">Billing Information</h3>--}}
+        {{--      <h3 class="block-title">{{__('Billing Information')}}</h3>--}}
         {{--    </div>--}}
         {{--    <div class="block-content">--}}
         {{--        <div class="row push">--}}
         {{--          <div class="col-lg-4">--}}
         {{--            <p class="fs-sm text-muted">--}}
-        {{--              Your billing information is never shown to other users and only used for creating your invoices.--}}
+        {{--              {{__('Your billing information is never shown to other users and only used for creating your invoices')}}.--}}
         {{--            </p>--}}
         {{--          </div>--}}
         {{--          <div class="col-lg-8 col-xl-5">--}}
@@ -310,13 +310,13 @@
         {{--      <!-- Account Settings -->--}}
         {{--          <div class="block block-rounded">--}}
         {{--              <div class="block-header block-header-default">--}}
-        {{--                  <h3 class="block-title">Account Settings</h3>--}}
+        {{--                  <h3 class="block-title">{{__('Account Settings')}}</h3>--}}
         {{--              </div>--}}
         {{--              <div class="block-content">--}}
         {{--                  <div class="row push">--}}
         {{--                      <div class="col-lg-4">--}}
         {{--                          <p class="fs-sm text-muted">--}}
-        {{--                              Here we can Change the Account settings.--}}
+        {{--                              {{__('Here we can Change the Account settings.')}}--}}
         {{--                          </p>--}}
         {{--                      </div>--}}
         {{--                      <div class="col-lg-8 col-xl-5">--}}

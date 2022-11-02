@@ -11,18 +11,18 @@
                 <!-- Sign In Block -->
                 <div class="block block-rounded mb-0">
                     <div class="block-header block-header-default">
-                        <h3 class="block-title">Sign In</h3>
+                        <h3 class="block-title">{{__('Sign In')}}</h3>
                         <div class="block-options">
                             @if (Route::has('password.request'))
-                                <a class="btn-block-option fs-sm" href="{{ route('password.request') }}">Forgot Password?</a>
+                                <a class="btn-block-option fs-sm" href="{{ route('password.request') }}">{{__('Forgot Password?')}}</a>
                             @endif
                         </div>
                     </div>
                     <div class="block-content">
                         <div class="p-sm-3 px-lg-4 px-xxl-5 py-lg-5">
-                            <h1 class="h2 mb-1">Hi there!</h1>
+                            <h1 class="h2 mb-1">{{__('Hi there!')}}</h1>
                             <p class="fw-medium text-muted">
-                                Welcome, please login.
+                                {{__('Welcome, please login.')}}
                             </p>
                             <!-- Sign In Form -->
                             <!-- jQuery Validation (.js-validation-signin class is initialized in js/pages/op_auth_signin.min.js which was auto compiled from _js/pages/op_auth_signin.js) -->
@@ -51,14 +51,14 @@
 {{--                                    <div class="mb-4">--}}
 {{--                                        <div class="form-check">--}}
 {{--                                            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>--}}
-{{--                                            <label class="form-check-label" for="login-remember">Remember Me</label>--}}
+{{--                                            <label class="form-check-label" for="login-remember">{{__('Remember Me')}}</label>--}}
 {{--                                        </div>--}}
 {{--                                    </div>--}}
                                 </div>
                                 <div class="row mb-4">
                                     <div class="col-md-6 col-xl-5">
                                         <button type="submit" class="btn w-100 btn-alt-primary">
-                                            <i class="fa fa-fw fa-sign-in-alt me-1 opacity-50"></i> Sign In
+                                            <i class="fa fa-fw fa-sign-in-alt me-1 opacity-50"></i> {{__('Sign In')}}
                                         </button>
                                     </div>
                                 </div>
@@ -71,7 +71,7 @@
 
                             <div class=" bg-gray-light text-dark p-2 rounded text-center">
                                 <p class="fw-medium text-muted">
-                                    Reminder: if you want to login on your desktop please use following login: <br>
+                                    {{__('Reminder: if you want to login on your desktop please use following login:')}} <br>
                                 </p>
                                 <a class="text-dark" href="{{ $url->url }}"><strong>{{ $url->url }}</strong></a>
                             </div>

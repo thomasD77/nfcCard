@@ -6,7 +6,7 @@
                         <span class="smini-visible">
                             <i class="fa fa-circle-notch text-primary"></i>
                         </span>
-            <span class="smini-hide fs-5 tracking-wider">SWAP</span>
+            <span class="smini-hide fs-5 tracking-wider">{{__('SWAP')}}</span>
         </a>
         <!-- END Logo -->
 
@@ -28,27 +28,27 @@
                     <!-- Color Themes -->
                     <!-- Layout API, functionality initialized in Template._uiHandleTheme() -->
                     <a class="dropdown-item d-flex align-items-center justify-content-between font-medium" data-toggle="theme" data-theme="default" href="#">
-                        <span>Default</span>
+                        <span>{{__('Default')}}</span>
                         <i class="fa fa-circle text-default"></i>
                     </a>
                     <a class="dropdown-item d-flex align-items-center justify-content-between font-medium" data-toggle="theme" data-theme="{{ asset('css/themes/amethyst.css') }}" href="#">
-                        <span>Amethyst</span>
+                        <span>{{__('Amethyst')}}</span>
                         <i class="fa fa-circle text-amethyst"></i>
                     </a>
                     <a class="dropdown-item d-flex align-items-center justify-content-between font-medium" data-toggle="theme" data-theme="{{ asset('css/themes/city.css') }}" href="#">
-                        <span>City</span>
+                        <span>{{__('City')}}</span>
                         <i class="fa fa-circle text-city"></i>
                     </a>
                     <a class="dropdown-item d-flex align-items-center justify-content-between font-medium" data-toggle="theme" data-theme="{{ asset('css/themes/flat.css') }}" href="#">
-                        <span>Flat</span>
+                        <span>{{__('Flat')}}</span>
                         <i class="fa fa-circle text-flat"></i>
                     </a>
                     <a class="dropdown-item d-flex align-items-center justify-content-between font-medium" data-toggle="theme" data-theme="{{ asset('css/themes/modern.css') }}" href="#">
-                        <span>Modern</span>
+                        <span>{{__('Modern')}}</span>
                         <i class="fa fa-circle text-modern"></i>
                     </a>
                     <a class="dropdown-item d-flex align-items-center justify-content-between font-medium" data-toggle="theme" data-theme="{{ asset('css/themes/smooth.css') }}" href="#">
-                        <span>Smooth</span>
+                        <span>{{__('Smooth')}}</span>
                         <i class="fa fa-circle text-smooth"></i>
                     </a>
                     <!-- END Color Themes -->
@@ -58,10 +58,10 @@
                     <!-- Sidebar Styles -->
                     <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
                     <a class="dropdown-item fw-medium" data-toggle="layout" data-action="sidebar_style_light" href="javascript:void(0)">
-                        <span>Sidebar Light</span>
+                        <span>{{__('Sidebar Light')}}</span>
                     </a>
                     <a class="dropdown-item fw-medium" data-toggle="layout" data-action="sidebar_style_dark" href="javascript:void(0)">
-                        <span>Sidebar Dark</span>
+                        <span>{{__('Sidebar Dark')}}</span>
                     </a>
                     <!-- END Sidebar Styles -->
 
@@ -70,10 +70,10 @@
                     <!-- Header Styles -->
                     <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
                     <a class="dropdown-item fw-medium" data-toggle="layout" data-action="header_style_light" href="javascript:void(0)">
-                        <span>Header Light</span>
+                        <span>{{__('Header Light')}}</span>
                     </a>
                     <a class="dropdown-item fw-medium" data-toggle="layout" data-action="header_style_dark" href="javascript:void(0)">
-                        <span>Header Dark</span>
+                        <span>{{__('Header Dark')}}</span>
                     </a>
                     <!-- END Header Styles -->
                 </div>
@@ -99,33 +99,33 @@
                 <li class="nav-main-item">
                     <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="{{ asset('/admin') }}">
                         <i class="nav-main-link-icon si si-cursor"></i>
-                        <span class="nav-main-link-name">Dashboard</span>
+                        <span class="nav-main-link-name">{{__('Dashboard')}}</span>
                     </a>
                 </li>
-                <li class="nav-main-heading text-uppercase">My Card</li>
+                <li class="nav-main-heading text-uppercase">{{__('My Card')}}</li>
 
                 <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('members.index')}}">
-                    <i class="nav-main-link-icon  far fa-calendar-alt"></i><span class="nav-main-link-name">ACCOUNT</span>
+                    <i class="nav-main-link-icon  far fa-calendar-alt"></i><span class="nav-main-link-name">{{__('ACCOUNT')}}</span>
                 </a>
 
                 @if(Auth::user()->archived == 0 && Auth::user()->business)
-                    <li class="nav-main-heading text-uppercase">SWAP SCANS</li>
+                    <li class="nav-main-heading text-uppercase">{{__('SWAP SCANS')}}</li>
                     <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
                         <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
                             <i class="nav-main-link-icon far fa-list-alt"></i>
-                            <span class="nav-main-link-name ">Scans</span>
+                            <span class="nav-main-link-name ">{{__('Scans')}}</span>
                         </a>
                         <ul class="nav-main-submenu">
                             <li class="nav-main-item">
                                 <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('contacts.index.client')}}">
-                                    <span class="nav-main-link-name">List</span>
+                                    <span class="nav-main-link-name">{{__('List')}}</span>
                                 </a>
                             </li>
                         </ul>
                     </li>
                 @endif
 
-                <li class="nav-main-heading text-uppercase">QRCODE</li>
+                <li class="nav-main-heading text-uppercase">{{__('QRCODE')}}</li>
 
                 <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('show.QRcode', Auth()->user()->member->card_id)}}">
                     <img width="80px" height="800px" class="img-fluid" src="{{ asset('images/content/QRcode.png') }}" alt="QRcode">

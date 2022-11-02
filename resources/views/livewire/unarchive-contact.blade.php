@@ -29,11 +29,11 @@
             <table class="table table-striped table-hover table-vcenter fs-sm">
                 <thead>
                 <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">E-mail</th>
-                    <th scope="col">phone</th>
-                    <th scope="col">Registered</th>
-                    <th scope="col">Actions</th>
+                    <th scope="col">{{__('Name')}}</th>
+                    <th scope="col">{{__('E-mail')}}</th>
+                    <th scope="col">{{__('Phone')}}</th>
+                    <th scope="col">{{__('Registered')}}</th>
+                    <th scope="col">{{__('Actions')}}</th>
                 </tr>
                 </thead>
                 <tbody>

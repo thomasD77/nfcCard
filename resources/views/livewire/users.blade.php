@@ -13,13 +13,13 @@
     <thead>
     <tr>
         <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col"># User ID</th>
-        <th scope="col">Avatar</th>
-        <th scope="col">Email</th>
-        <th scope="col">Role</th>
-        <th scope="col"># Card ID</th>
-        <th scope="col">Actions</th>
+        <th scope="col">{{__('Name')}}</th>
+        <th scope="col"># {{__('User ID')}}</th>
+        <th scope="col">{{__('Avatar')}}</th>
+        <th scope="col">{{__('Email')}}</th>
+        <th scope="col">{{__('Role')}}</th>
+        <th scope="col"># {{__('Card ID')}}</th>
+        <th scope="col">{{__('Actions')}}</th>
     </tr>
     </thead>
     <tbody>

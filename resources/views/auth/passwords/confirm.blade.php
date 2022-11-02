@@ -11,13 +11,13 @@
                 <!-- Sign Up Block -->
                 <div class="block block-rounded mb-0">
                     <div class="block-header block-header-default">
-                        <h3 class="block-title">Confirm Password</h3>
+                        <h3 class="block-title">{{__('Confirm Password')}}</h3>
                     </div>
                     <div class="block-content">
                         <div class="p-sm-3 px-lg-4 px-xxl-5 py-lg-5">
                             <h1 class="h2 mb-1"><?php echo $one->name ; ?></h1>
                             <p class="fw-medium text-muted">
-                                Please confirm your password before continuing.
+                                {{__('Please confirm your password before continuing.')}}
                             </p>
 
                             <!-- Sign Up Form -->
@@ -43,12 +43,12 @@
                                 <div class="row mb-4">
                                     <div class="col-md-6 col-xl-5">
                                         <button type="submit" class="btn w-100 btn-alt-success">
-                                            <i class="fa fa-fw fa-plus me-1 opacity-50"></i> Confirm Password
+                                            <i class="fa fa-fw fa-plus me-1 opacity-50"></i> {{__('Confirm Password')}}
                                         </button>
 
                                         @if (Route::has('password.request'))
                                             <a class="btn btn-link" href="{{ route('password.request') }}">
-                                                {{ __('Forgot Your Password?') }}
+                                                {{__('Forgot Your Password?')}}
                                             </a>
                                         @endif
 

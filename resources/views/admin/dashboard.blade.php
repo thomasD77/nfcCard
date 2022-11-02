@@ -27,19 +27,19 @@
             <div class="d-flex parent flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
                 <div class="flex-grow-1">
                     <h1 class="h3 fw-bold mb-2">
-                        Dashboard
+                        {{__('Dashboard')}}
                     </h1>
                     <h2 class="fs-base lh-base fw-medium text-muted mb-0">
-                        Welcome {{Auth::user()->name}}, everything looks great,
+                        {{__('Welcome') }} {{Auth::user()->name}}, {{ __('everything looks great')}},
                     </h2>
                 </div>
                 <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-alt">
                         <li class="breadcrumb-item">
-                            <a class="link-fx" href="javascript:void(0)">App</a>
+                            <a class="link-fx" href="javascript:void(0)">{{__('App')}}</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            Dashboard
+                            {{__('Dashboard')}}
                         </li>
                     </ol>
                 </nav>
@@ -59,10 +59,10 @@
             <div class="col-md-6 col-xl-4">
                 <div class="block block-rounded">
                     <div class="block-header block-header-default">
-                        <h3 class="block-title">Welcome</h3>
+                        <h3 class="block-title">{{__('Welcome')}}</h3>
                     </div>
                     <div class="block-content fs-sm text-muted ">
-                        <p style="font-weight: bold">Card status: </p>
+                        <p style="font-weight: bold">{{__('Card status')}}: </p>
                         @if($lock->status == 1)
                             <a href="{{ route('lock') }}"><button class="btn btn-success"><i class="fa fa-unlock"></i></button></a>
                         @else
@@ -76,11 +76,11 @@
             <div class="col-md-6 col-xl-4">
                 <div class="block block-rounded">
                     <div class="block-header block-header-default">
-                        <h3 class="block-title">STAP 1: OUR URL</h3>
+                        <h3 class="block-title">{{__('STEP 1: OUR URL')}}</h3>
                     </div>
                     <div class="block-content fs-sm text-muted">
                         <p style="font-weight: bold">
-                            Current URL:
+                            {{__('Current URL:')}}
                         </p>
                         <p>
                             {{ $currentURL->url }}
@@ -94,7 +94,7 @@
             <div class="col-md-6 col-xl-4">
                 <div class="block block-rounded">
                     <div class="block-header block-header-default">
-                        <h3 class="block-title">STAP 2: QRcode</h3>
+                        <h3 class="block-title">{{__('STEP 2: QRcode')}}</h3>
                         <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseQR" role="button" aria-expanded="false" aria-controls="collapseExample">
                             <i class="fa fa-arrow-down"></i>
                         </a>
@@ -119,19 +119,19 @@
                                     </div>
                                     <div class="my-4">
                                         <button type="submit" class="btn btn-alt-primary">
-                                            <i class="fa fa-paper-plane me-1 opacity-50"></i> Choose
+                                            <i class="fa fa-paper-plane me-1 opacity-50"></i> {{__('Choose')}}
                                         </button>
                                     </div>
                                 </form>
                             </div>
                         </div>
 
-                        <p style="font-weight: bold">QRcode status: </p>
+                        <p style="font-weight: bold">{{__('QRcode status:')}} </p>
                             @if($QRcode->status == 0)
-                                <p>Nee</p>
+                                <p>{{__('No')}}</p>
                             @endif
                             @if($QRcode->status == 1)
-                                <p>Ja</p>
+                                <p>{{__('Yes')}}</p>
                             @endif
                     </div>
                 </div>
@@ -143,7 +143,7 @@
             <div class="col-md-6 col-xl-4">
                 <div class="block block-rounded">
                     <div class="block-header block-header-default">
-                        <h3 class="block-title">STAP 3: How many Cards? </h3>
+                        <h3 class="block-title">{{__('STEP 3: How many Cards?')}} </h3>
                         @if($lock->status == 1)
                             <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseCards" role="button" aria-expanded="false" aria-controls="collapseExample">
                                 <i class="fa fa-arrow-down"></i>
@@ -158,19 +158,19 @@
                                     @csrf
                                     <div class="form-check my-4 px-0">
                                         <label class="form-check-label mb-1">
-                                            Set your Card number
+                                            {{__('Set your Card number')}}
                                         </label>
                                         <input class="form-control" type="number" name="card_number" value="card_number">
                                     </div>
                                     <!-- Button trigger modal -->
                                     <button type="submit" class="btn btn-alt-primary">
-                                        <i class="fa fa-paper-plane me-1 opacity-50"></i> Generate
+                                        <i class="fa fa-paper-plane me-1 opacity-50"></i> {{__('Generate')}}
                                     </button>
                                 </form>
                             </div>
                         </div>
                         <div class="py-2">
-                            <p style="font-weight: bold">Current Cards: </p>
+                            <p style="font-weight: bold">{{__('Current Cards')}}: </p>
                             <p> {{ $total_cards }} </p>
                             @if(Session::has('negative_number'))
                                 <p class="alert alert-danger my-2">{{session('negative_number')}}</p>
@@ -178,37 +178,37 @@
                         </div>
                         @if($total_custom > 0)
                             <div class="py-2">
-                                <p style="font-weight: bold">Custom Package(s): </p>
+                                <p style="font-weight: bold">{{__('Custom Package(s)')}}: </p>
                                 <p > {{ $total_custom }} </p>
                             </div>
                         @endif
                         @if($total_default > 0)
                             <div class="py-2">
-                                <p style="font-weight: bold">Default Package(s): </p>
+                                <p style="font-weight: bold">{{__('Default Package(s)')}}: </p>
                                 <p> {{ $total_default }} </p>
                             </div>
                         @endif
                         @if($total_vCard > 0 )
                             <div class="py-2">
-                                <p style="font-weight: bold">vCard Package(s): </p>
+                                <p style="font-weight: bold">{{__('vCard Package(s)')}}: </p>
                                 <p> {{ $total_vCard }} </p>
                             </div>
                         @endif
                         @if($total_pvc > 0 )
                             <div class="py-2">
-                                <p style="font-weight: bold">PVC Card(s): </p>
+                                <p style="font-weight: bold">{{__('PVC Card(s)')}}: </p>
                                 <p> {{ $total_pvc }} </p>
                             </div>
                         @endif
                         @if($total_metal > 0 )
                             <div class="py-2">
-                                <p style="font-weight: bold">Metal Card(s): </p>
+                                <p style="font-weight: bold">{{__('Metal Card(s)')}}: </p>
                                 <p> {{ $total_metal }} </p>
                             </div>
                         @endif
                         @if($total_wood > 0 )
                             <div class="py-2">
-                                <p style="font-weight: bold">Wood Card(s): </p>
+                                <p style="font-weight: bold">{{__('Wood Card(s)')}}: </p>
                                 <p> {{ $total_wood }} </p>
                             </div>
                         @endif
@@ -223,15 +223,15 @@
                 <div class="col-md-4 col-xl-4">
                     <div class="block block-rounded">
                         <div class="block-header block-header-default">
-                            <h3 class="block-title">STAP 4: Sheet Generator </h3>
+                            <h3 class="block-title">{{__('STEP 4: Sheet Generator')}} </h3>
                         </div>
                         <div class="block-content fs-sm text-muted pt-0">
                             <div class="py-4">
                                 @if($QRcode->status != 1)
-                                    <a href="{{ route('sheetGenerator') }}" class="btn btn-alt-success">EXCEL<i class="far fa-file-excel ms-2"></i></a>
+                                    <a href="{{ route('sheetGenerator') }}" class="btn btn-alt-success">{{__('EXCEL')}}<i class="far fa-file-excel ms-2"></i></a>
                                 @endif
                                 @if($QRcode->status == 1)
-                                    <a href="{{ route('sheet.QRcode') }}" class="btn btn-alt-warning">QRcode<i class="fa fa-list-ul ms-2"></i></a>
+                                    <a href="{{ route('sheet.QRcode') }}" class="btn btn-alt-warning">{{__('QRcode')}}<i class="fa fa-list-ul ms-2"></i></a>
                                 @endif
                             </div>
                         </div>
@@ -244,7 +244,7 @@
             <div class="col-md-4 col-xl-4">
                 <div class="block block-rounded">
                     <div class="block-header block-header-default">
-                        <h3 class="block-title">STAP 5: Orders </h3>
+                        <h3 class="block-title">{{__('STEP 5: Orders')}} </h3>
                     </div>
                     <div class="block-content fs-sm text-muted pt-3">
                         <form class="row mb-0" name="contactformulier"
@@ -257,7 +257,7 @@
                                     <input type="file" class="form-control" id="frontend-contact-tagline"
                                            name="order">
                                     <button type="submit" class="btn btn-alt-primary">
-                                        Save
+                                        {{__('Save')}}
                                     </button>
                                 </div>
                             </div>
@@ -288,9 +288,9 @@
             <!-- member Profile -->
             <div class="block block-rounded">
                 <div class="block-header block-header-default">
-                    <h3 class="block-title">Member Profile</h3>
+                    <h3 class="block-title">{{__('Member Profile')}}</h3>
                     <div>
-                        <p style="font-weight: bold">#Card ID: {{ $member->card_id }}</p>
+                        <p style="font-weight: bold">#{{__('Card ID')}}: {{ $member->card_id }}</p>
                     </div>
                 </div>
                 @if($member->user->archived == 0)
@@ -306,7 +306,7 @@
 
                     @endif
                 @else
-                    <p class="p-2">Sorry, the admin blocked your account. Please contact him for this situation.</p>
+                    <p class="p-2">{{__('Sorry, the admin blocked your account. Please contact him for this situation.')}}</p>
                 @endif
             </div>
             <!-- END member Profile -->

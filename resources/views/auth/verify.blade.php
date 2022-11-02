@@ -11,7 +11,7 @@
                 <!-- Reminder Block -->
                 <div class="block block-rounded mb-0">
                     <div class="block-header block-header-default">
-                        <h3 class="block-title">Verify Your Email Address</h3>
+                        <h3 class="block-title">{{__('Verify Your Email Address')}}</h3>
                     </div>
 
                     <div class="block-content">
@@ -19,18 +19,18 @@
                             <h1 class="h2 mb-1"><?php echo $one->name ; ?></h1>
                             @if (session('resent'))
                                 <div class="alert alert-success" role="alert">
-                                    {{ __('A fresh verification link has been sent to your email address.') }}
+                                    {{__('A fresh verification link has been sent to your email address.')}}
                                 </div>
                             @endif
 
-                            {{ __('Before proceeding, please check your email for a verification link.') }}
-                            {{ __('If you did not receive the email') }},
+                            {{__('Before proceeding, please check your email for a verification link.')}}
+                            {{__('If you did not receive the email')}},
                             <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                                 @csrf
-                                <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.
+                                <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{__('click here to request another')}}</button>.
                             </form>
                             <div class="mb-2 mt-4 d-flex justify-content-center">
-                                <span class="badge badge-pill bg-danger-light p-1"><p class="mb-0">Please check your SPAM inbox !!</p></span>
+                                <span class="badge badge-pill bg-danger-light p-1"><p class="mb-0">{{__('Please check your SPAM inbox !!')}}</p></span>
                             </div>
 
 

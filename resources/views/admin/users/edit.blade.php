@@ -31,16 +31,16 @@
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
                 <div class="flex-grow-1">
                     <h1 class="h3 fw-bold mb-2">
-                        Edit Profile
+                        {{__('Edit Profile')}}
                     </h1>
                 </div>
                 <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-alt">
                         <li class="breadcrumb-item">
-                            <a class="link-fx" href="javascript:void(0)">DataTable</a>
+                            <a class="link-fx" href="javascript:void(0)">{{__('DataTable')}}</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            List
+                            {{__('List')}}
                         </li>
                     </ol>
                 </nav>
@@ -55,13 +55,13 @@
         <!-- Referral User  -->
         <div class="block block-rounded">
             <div class="block-header block-header-default">
-                <h3 class="block-title">Referral code </h3>
+                <h3 class="block-title">{{__('Referral code')}} </h3>
             </div>
             <div class="block-content">
                 <div class="row push">
                     <div class="col-lg-4">
                         <p class="fs-sm text-muted">
-                            Here you can see your referral code. Give this to people you know who wants a SWAP Card and get your 1 free year SWAP membership!
+                            {{__('Here you can see your referral code. Give this to people you know who wants a SWAP Card and get your 1 free year SWAP membership!')}}
                         </p>
                     </div>
                     <div class="col-lg-8 col-xl-5">
@@ -78,13 +78,13 @@
         <!-- User Profile -->
         <div class="block block-rounded">
             <div class="block-header block-header-default">
-                <h3 class="block-title">User Profile</h3>
+                <h3 class="block-title">{{__('User Profile')}}</h3>
             </div>
             <div class="block-content">
                 <div class="row push">
                     <div class="col-lg-4">
                         <p class="fs-sm text-muted">
-                            Here you can change your account information. This will not influence your card information.
+                            {{__('Here you can change your account information. This will not influence your card information.')}}
                         </p>
                     </div>
                     <div class="col-lg-8 col-xl-5">
@@ -93,7 +93,7 @@
                        !!}
                         @can('is_superAdmin')
                             <div class="form-group mb-4">
-                                <label class="form-label">Business account:</label>
+                                <label class="form-label">{{__('Business account')}}:</label>
                                 <div class="form-check form-switch">
                                     <input class="form-check-input" value="1" name="business" type="checkbox" id="flexSwitchCheckDefault" @if($user->business) checked @endif>
                                 </div>
@@ -137,7 +137,7 @@
                         @endcan
 
                         <div class="mb-4">
-                            <label class="form-label">Your Avatar</label>
+                            <label class="form-label">{{__('Your Avatar')}}</label>
                             <div class="mb-4">
                                 <img class="rounded-circle" height="80" width="80" src="{{$user->avatar ? asset('/') . $user->avatar->file : asset('/assets/front/img/Avatar-4.svg')}}" alt="{{$user->name}}">
                             </div>
@@ -163,13 +163,13 @@
         <!-- Change Password -->
         <div class="block block-rounded">
             <div class="block-header block-header-default">
-                <h3 class="block-title">Change Password</h3>
+                <h3 class="block-title">{{__('Change Password')}}</h3>
             </div>
             <div class="block-content">
                 <div class="row push">
                     <div class="col-lg-4">
                         <p class="fs-sm text-muted">
-                            Changing your sign in password is an easy way to keep your account secure.
+                            {{__('Changing your sign in password is an easy way to keep your account secure.')}}
                         </p>
                     </div>
                     <div class="col-lg-8 col-xl-5">
@@ -211,19 +211,19 @@
         <!-- Delete User  -->
         <div class="block block-rounded">
             <div class="block-header block-header-default">
-                <h3 class="block-title">Delete User/ Reset Card</h3>
+                <h3 class="block-title">{{__('Delete User/ Reset Card')}}</h3>
             </div>
             <div class="block-content">
                 <div class="row push">
                     <div class="col-lg-4">
                         <p class="fs-sm text-muted">
-                            Here you can delete this user and reset the CARD
+                            {{__('Here you can delete this user and reset the CARD')}}
                         </p>
                     </div>
                     <div class="col-lg-8 col-xl-5">
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            DELETE/RESET
+                            {{__('DELETE/RESET')}}
                         </button>
 
                         <!-- Modal -->
@@ -231,16 +231,16 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Delete User/ Reset Card</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">{{__('Delete User/ Reset Card')}}</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        Are you sure you want to delete this user account? All the information will be lost forever.
-                                        The card data for this user will be deleted as well.
+                                        {{__('Are you sure you want to delete this user account? All the information will be lost forever.')}}
+                                        {{_('The card data for this user will be deleted as well.')}}
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <a href="{{ route('users.delete', $user->id) }}" class="btn btn-danger">DELETE</a>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{__('Close')}}</button>
+                                        <a href="{{ route('users.delete', $user->id) }}" class="btn btn-danger">{{__('DELETE')}}</a>
                                     </div>
                                 </div>
                             </div>

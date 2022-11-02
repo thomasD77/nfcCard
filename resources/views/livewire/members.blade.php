@@ -19,7 +19,7 @@
                 <div>
                     <!-- Member list  -->
                     <a class="btn btn-alt-warning" role="button" href="{{ route('members.credentials') }}">
-                        <i class="fa fa-print me-2"></i> Member List
+                        <i class="fa fa-print me-2"></i> {{__('Member List')}}
                     </a>
                     <!-- END Member list -->
                     @can('is_superAdmin')
@@ -35,13 +35,13 @@
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">avatar</th>
-                        <th scope="col">name</th>
-                        <th scope="col">Company</th>
-                        <th scope="col"># Card ID</th>
-                        <th scope="col">Material</th>
-                        <th scope="col">user account</th>
-                        <th scope="col">Actions</th>
+                        <th scope="col">{{__('Avatar')}}</th>
+                        <th scope="col">{{__('Name')}}</th>
+                        <th scope="col">{{__('Company')}}</th>
+                        <th scope="col"># {{__('Card ID')}}</th>
+                        <th scope="col">{{__('Material')}}</th>
+                        <th scope="col">{{__('User Account')}}</th>
+                        <th scope="col">{{__('Actions')}}</th>
                         @can('is_superAdmin')
                             <th scope="col"> <i class="fa fa-print me-2"></i></th>
                         @endcan
@@ -107,9 +107,9 @@
                 <table class="table table-striped table-hover table-vcenter fs-sm">
                     <thead>
                     <tr>
-                        <th scope="col">avatar</th>
-                        <th scope="col">name</th>
-                        <th scope="col">Actions</th>
+                        <th scope="col">{{__('Avatar')}}</th>
+                        <th scope="col">{{__('Name')}}</th>
+                        <th scope="col">{{__('Actions')}}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -139,7 +139,7 @@
 
             @else
 
-                <p class="p-2">Sorry, the admin blocked your account. Please contact him for this situation.</p>
+                <p class="p-2">{{__('Sorry, the admin blocked your account. Please contact him for this situation.')}}</p>
 
             @endif
 

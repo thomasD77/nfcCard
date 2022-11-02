@@ -1,8 +1,7 @@
 @component('mail::message')
 
 
-<h3>Leuke connectie! Bedankt om gegevens met mij uit te wisselen. Graag geef ik hier al mijn details in een mooi
-    overzicht.</h3>
+<h3>{{__('Nice connection! Thanks for exchanging data with me. Happy to provide all my details here in a nice overview.')}}</h3>
 
 @if($member['firstname'] != "")
 <h3>Voornaam:</h3>
@@ -96,8 +95,8 @@
 
 
 
-<h3 style="margin-top: 40px; margin-bottom: 5px">Aarzel niet om mij te contacteren! </h3>
-<h3>Graag tot binnenkort. </h3>
+<h3 style="margin-top: 40px; margin-bottom: 5px">{{__('Please do not hesitate to contact me!')}} </h3>
+<h3>{{__('Graag tot binnenkort.')}} </h3>
 
 
 @endcomponent

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>SWAP - Let's Connect</title>
+    <title>{{__("SWAP - Let's Connect")}}</title>
 
     <!-- Meta Data -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -95,16 +95,16 @@
 
                     @if($member->user->business)
                         <!-- Button trigger modal -->
-                        <button data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" class="btn_cstm save w-100 mt-3 p-3"><i class="fa fa-rotate mr-2 "></i>SWAP</button>
+                        <button data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" class="btn_cstm save w-100 mt-3 p-3"><i class="fa fa-rotate mr-2 "></i>{{__('SWAP')}}</button>
                         <!-- Modal -->
                     @endif
 
 
                     @error('name')
-                    <p class="text-danger mt-2 mb-0">Oops, something went wrong! </p>
+                    <p class="text-danger mt-2 mb-0">{{__('Oops, something went wrong!')}} </p>
                     @enderror
                     @error('email')
-                    <p class="text-danger">Please try again.</p>
+                    <p class="text-danger">{{__('Please try again.')}}</p>
                     @enderror
                     @if(Session::has('recaptcha_error'))
                         <p class="text-danger">{{session('recaptcha_error')}}</p>
@@ -122,15 +122,15 @@
                                     </div>
                                     <div class="modal-header pt-1">
                                         <div class="d-flex flex-column">
-                                            <h2 class="talk">Let's talk!</h2>
-                                            <p>Please fill in your information. I will send you a mail to talk later.</p>
+                                            <h2 class="talk">{{__('Let's talk!')}}</h2>
+                                            <p>{{__('Please fill in your information. I will send you a mail to talk later.')}}</p>
                                         </div>
                                     </div>
 
                                     <div class="modal-body">
                                         <div class="mb-4 d-flex justify-content-start flex-column">
                                             <label class="form-label"
-                                                   for="frontend-contact-firstname">Name</label>
+                                                   for="frontend-contact-firstname">{{(__'Name')}}</label>
                                             <input type="text"
                                                    class="form-control input_modal"
                                                    name="name"
@@ -142,7 +142,7 @@
                                             @enderror
                                         </div>
                                         <div class="mb-4">
-                                            <label class="form-label" for="frontend-contact-email">Email</label>
+                                            <label class="form-label" for="frontend-contact-email">{{__('Email')}}</label>
                                             <input type="email"
                                                    class="form-control input_modal"
                                                    name="email"
@@ -154,7 +154,7 @@
                                         </div>
                                         <div class="mb-4">
 
-                                            <label class="form-label" for="frontend-contact-email">Phone</label>
+                                            <label class="form-label" for="frontend-contact-email">{{__('Phone')}}</label>
 
                                             <input type="text" class="form-control input_modal"
                                                    name="phone"
@@ -166,7 +166,7 @@
 
                                         <div class="mb-4">
 
-                                            <label class="form-label" for="frontend-contact-email">Message</label>
+                                            <label class="form-label" for="frontend-contact-email">{{__('Message')}}</label>
 
                                             <textarea name="message" placeholder="Enter your message... " class="form-control input_modal" id="" cols="5" rows="5"></textarea>
 
@@ -177,21 +177,21 @@
                                         <button id="closemodal" type="submit" class="btn_cstm input_modal w-100">
                                             <i class="fa fa-paper-plane me-1 opacity-50"></i> SEND
                                         </button>
-                                        <small class="mb-3 pl-2">*I agree to the terms and conditions by clicking send</small>
+                                        <small class="mb-3 pl-2">*{{__('I agree to the terms and conditions by clicking send')}}</small>
 
                                         <div class="bodem mb-5 pt-4 mt-5">
 
 
                                             <div class="">
-                                                <strong>Only Save</strong>
-                                                <p>If you only want to save my contact download here.</p>
+                                                <strong>{{__('Only Save')}}</strong>
+                                                <p>{{__('If you only want to save my contact download here.')}}</p>
                                             </div>
 
                                             <a href="{{ route('members.vCard', $member->card_id) }}"
                                                id="closeNow"
                                                style="text-decoration: none; color: white"
                                                class="btn_cstm input_modal p-3">
-                                                 <i class="fa fa-floppy-disk me-1 opacity-50"></i> SAVE
+                                                 <i class="fa fa-floppy-disk me-1 opacity-50"></i> {{__('SAVE')}}
                                             </a>
 
 
@@ -208,24 +208,24 @@
             <div class="header__right">
                 <ul class="header__contact">
                     @if($member->email && $member->state->email)
-                        <li><span class="overhead">Email</span>{{ $member->email }}</li>
+                        <li><span class="overhead">{{__('Email')}}</span>{{ $member->email }}</li>
                     @endif
 
                     @if($member->mobileWork && $member->state->mobileWork)
-                        <li><span class="overhead">Work Phone</span>{{ $member->mobileWork }}</li>
+                        <li><span class="overhead">{{__('Work Phone')}}</span>{{ $member->mobileWork }}</li>
                     @endif
 
                     @if($member->mobile && $member->state->mobile)
-                        <li><span class="overhead">Personal Phone</span>{{ $member->mobile }}</li>
+                        <li><span class="overhead">{{__('Personal Phone')}}</span>{{ $member->mobile }}</li>
                     @endif
                 </ul>
                 <ul class="header__contact">
                     @if($member->age && $member->state->age)
-                        <li><span class="overhead">Birthday</span>{{ \Carbon\Carbon::parse($member->age)->format('Y-M-d') }}</li>
+                        <li><span class="overhead">{{__('Birthday')}}</span>{{ \Carbon\Carbon::parse($member->age)->format('Y-M-d') }}</li>
                     @endif
 
                     @if($member->state->addressLine1 || $member->state->postalCode || $member->state->city || $member->state->country  )
-                        <li><span class="overhead">Location</span>
+                        <li><span class="overhead">{{__('Location')}}</span>
                             @if($member->addressLine1 && $member->state->addressLine1){{ $member->addressLine1 }} @endif
                             @if($member->postalCode && $member->state->postalCode){{ $member->postalCode }}@endif
                             <br>
@@ -248,68 +248,68 @@
                         <div id="about-tab" class="tabcontent active">
                             @if($member->notes && $member->state->notes)
                                 <div class="pb-0 pb-sm-2">
-                                    <h1 class="title title--h1 first-title title__separate">About Me</h1>
+                                    <h1 class="title title--h1 first-title title__separate">{{__('About Me')}}</h1>
                                         <p> {{ $member->notes }}</p>
                                 </div>
                             @endif
 
                             <!-- What -->
                             <div class="mt-1">
-                                <h2 class="title title--h3">My Socials</h2>
+                                <h2 class="title title--h3">{{__('My Socials')}}</h2>
                                 <div class="row">
                                     @if($member->website && $member->state->website)
                                         <!-- Website -->
                                         <div class="col-12 d-flex justify-content-center">
-                                            <a class="w-100" target="_blank" href="https://{{$member->website }}"><button type="submit" class="btn_cstm website w-100 mt-2"><i class="fa-solid fa-earth-africa mx-2"></i>Website</button></a>
+                                            <a class="w-100" target="_blank" href="https://{{$member->website }}"><button type="submit" class="btn_cstm website w-100 mt-2"><i class="fa-solid fa-earth-africa mx-2"></i>{{__('Website')}}</button></a>
                                         </div>
                                     @endif
 
                                     @if($member->facebook && $member->state->facebook)
                                         <!-- Facebook -->
                                         <div class="col-12 d-flex justify-content-center">
-                                            <a class="w-100" target="_blank" href="{{ $member->facebook }}"><button type="submit" class="btn_cstm facebook w-100 mt-2"><i class="fa-brands fa-facebook mr-2"></i>Facebook</button></a>
+                                            <a class="w-100" target="_blank" href="{{ $member->facebook }}"><button type="submit" class="btn_cstm facebook w-100 mt-2"><i class="fa-brands fa-facebook mr-2"></i>{{__('Facebook')}}</button></a>
                                         </div>
                                     @endif
 
                                     @if($member->instagram && $member->state->instagram)
                                         <!-- Instagram -->
                                         <div class="col-12 d-flex justify-content-center">
-                                             <a class="w-100" target="_blank" href="{{ $member->instagram }}"><button type="submit" class="btn_cstm instagram w-100 mt-2"><i class="fa-brands  fa-instagram mx-2"></i>Instagram</button></a>
+                                             <a class="w-100" target="_blank" href="{{ $member->instagram }}"><button type="submit" class="btn_cstm instagram w-100 mt-2"><i class="fa-brands  fa-instagram mx-2"></i>{{__('Instagram')}}</button></a>
                                         </div>
                                     @endif
 
                                     @if($member->linkedIn && $member->state->linkedIn)
                                         <!-- LinkedIn -->
                                         <div class="col-12 d-flex justify-content-center">
-                                             <a class="w-100" target="_blank" href="{{ $member->linkedIn }}"><button type="submit" class="btn_cstm w-100 linkedIn mt-2"><i class="fa-brands  fa-linkedin-in mx-2"></i>LinkedIn</button></a>
+                                             <a class="w-100" target="_blank" href="{{ $member->linkedIn }}"><button type="submit" class="btn_cstm w-100 linkedIn mt-2"><i class="fa-brands  fa-linkedin-in mx-2"></i>{{__('LinkedIn')}}</button></a>
                                         </div>
                                     @endif
 
                                     @if($member->twitter && $member->state->twitter)
                                         <!-- Twitter -->
                                         <div class="col-12 d-flex justify-content-center">
-                                             <a class="w-100" target="_blank" href="{{ $member->twitter }}"><button type="submit" class="btn_cstm w-100 twitter mt-2"><i class="fa-brands  fa-twitter mx-2"></i>Twitter</button></a>
+                                             <a class="w-100" target="_blank" href="{{ $member->twitter }}"><button type="submit" class="btn_cstm w-100 twitter mt-2"><i class="fa-brands  fa-twitter mx-2"></i>{{__('Twitter')}}</button></a>
                                         </div>
                                     @endif
 
                                     @if($member->youTube && $member->state->youTube)
                                         <!-- YouTube -->
                                         <div class="col-12 d-flex justify-content-center">
-                                            <a class="w-100" target="_blank" href="{{ $member->youTube }}"> <button type="submit" class="w-100 btn_cstm youTube mt-2"><i class="fa-brands fa-youtube mx-2"></i>YouTube</button></a>
+                                            <a class="w-100" target="_blank" href="{{ $member->youTube }}"> <button type="submit" class="w-100 btn_cstm youTube mt-2"><i class="fa-brands fa-youtube mx-2"></i>{{__('YouTube')}}</button></a>
                                         </div>
                                     @endif
 
                                     @if($member->tikTok && $member->state->tikTok)
                                         <!-- TikTok -->
                                         <div class="col-12 d-flex justify-content-center">
-                                            <a class="w-100" target="_blank" href="{{ $member->tikTok }}"> <button type="submit" class="btn_cstm tikTok w-100 mt-2"><i class="fa-brands fa-tiktok mx-2"></i>TikTok</button></a>
+                                            <a class="w-100" target="_blank" href="{{ $member->tikTok }}"> <button type="submit" class="btn_cstm tikTok w-100 mt-2"><i class="fa-brands fa-tiktok mx-2"></i>{{__('TikTok')}}</button></a>
                                         </div>
                                     @endif
 
                                     @if($member->whatsApp && $member->state->whatsApp)
                                         <!-- WhatsApp -->
                                         <div class="col-12 d-flex justify-content-center">
-                                             <a class="w-100" target="_blank" href="https://wa.me/{{ $member->whatsApp }}"><button type="submit" class="btn_cstm whatsApp w-100 mt-2"><i class="fa-brands fa-whatsapp mx-2"></i>WhatsApp</button></a>
+                                             <a class="w-100" target="_blank" href="https://wa.me/{{ $member->whatsApp }}"><button type="submit" class="btn_cstm whatsApp w-100 mt-2"><i class="fa-brands fa-whatsapp mx-2"></i>{{__('WhatsApp')}}</button></a>
                                         </div>
                                     @endif
 
@@ -325,9 +325,9 @@
                     </div>
                 </div>
                 <!-- Footer -->
-                <footer class="footer"><a style="text-decoration: none; color: white" href="https://innova-webcreations.be">SWAP</a> © {{ now()->format('Y') }}</footer>
+                <footer class="footer"><a style="text-decoration: none; color: white" href="https://innova-webcreations.be">{{(__'SWAP')}}</a> © {{ now()->format('Y') }}</footer>
                 <footer class="footer">
-                    <a style="text-decoration: none; color: black" class="badge badge-pill bg-white px-3 py-2" href="{{ asset('/login') }}">Login</a>
+                    <a style="text-decoration: none; color: black" class="badge badge-pill bg-white px-3 py-2" href="{{ asset('/login') }}">{{__('Login')}}</a>
                 </footer>
             </div>
         </div>

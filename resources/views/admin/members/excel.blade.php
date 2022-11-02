@@ -4,7 +4,7 @@
     <div class="block block-rounded row">
         <div class="block-header block-header-default">
             <h3 class="block-title">
-                Card credentials
+                {{__('Card credentials')}}
             </h3>
         </div>
         <div class="block-content block-content-full overflow-scroll">
@@ -13,8 +13,8 @@
                 <table class="table table-striped table-hover table-vcenter fs-sm">
                     <thead>
                     <tr>
-                        <th scope="col">URL</th>
-                        <th scope="col">Material</th>
+                        <th scope="col">{{__('URL')}}</th>
+                        <th scope="col">{{__('Material')}}</th>
                     </tr>
                     </thead>
                     @if($members)

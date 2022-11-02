@@ -40,12 +40,12 @@
                 <table class="table table-striped table-hover table-vcenter fs-sm">
                     <thead>
                     <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">E-mail</th>
-                        <th scope="col">phone</th>
-                        <th scope="col">Details</th>
-                        <th scope="col">Registered</th>
-                        <th scope="col">Actions</th>
+                        <th scope="col">{{__('Name')}}</th>
+                        <th scope="col">{{__('E-mail')}}</th>
+                        <th scope="col">{{__('Phone')}}</th>
+                        <th scope="col">{{__('Details')}}</th>
+                        <th scope="col">{{__('Registered')}}</th>
+                        <th scope="col">{{__('Actions')}}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -57,7 +57,7 @@
                                 <td>{{$contact->phone ? $contact->phone : 'No Phone'}}</td>
                                 <td><!-- Button trigger modal -->
                                     <button type="button" class="btn btn-alt-warning" data-bs-toggle="modal" data-bs-target="#exampleModal{{$contact->id}}">
-                                        SWAP
+                                        {{__('SWAP')}}
                                     </button>
 
                                     <!-- Modal -->
@@ -69,17 +69,17 @@
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p><strong>Name:</strong></p>
+                                                    <p><strong>{{__('Name')}}:</strong></p>
                                                     <p class="bg-light p-2">{{$contact->name ? $contact->name : 'No Name'}}</p>
-                                                    <p><strong>Email:</strong></p>
+                                                    <p><strong>{{__('Email')}}:</strong></p>
                                                     <p class="bg-light p-2">{{$contact->email ? $contact->email : 'No email'}}</p>
-                                                    <p><strong>Phone:</strong></p>
+                                                    <p><strong>{{__('Phone')}}:</strong></p>
                                                     <p class="bg-light p-2">{{$contact->phone ? $contact->phone : 'No Phone'}}</p>
-                                                    <p><strong>Message:</strong></p>
+                                                    <p><strong>{{__('Message')}}:</strong></p>
                                                     <p class="bg-light p-2">{{$contact->message ? $contact->message : 'No message'}}</p>
                                                     <hr>
                                                     <div class="d-flex justify-content-between mb-2">
-                                                        <p><strong>My notes:</strong></p> <button class="btn btn-primary" wire:click="showNotes"> <i  class="fa fa-fw fa-pencil-alt"></i></button>
+                                                        <p><strong>{{__('My notes')}}:</strong></p> <button class="btn btn-primary" wire:click="showNotes"> <i  class="fa fa-fw fa-pencil-alt"></i></button>
                                                     </div>
                                                     <p class="bg-light p-2">{{$contact->notes ? $contact->notes : 'No notes'}}</p>
                                                 </div>
@@ -87,7 +87,7 @@
                                                     <div class="modal-body">
                                                         <form wire:submit.prevent="saveNote({{ $contact }})">
                                                             <textarea type="text" class="form-control form-control-alt" placeholder="Type your note..." id="page-header-search-input2" wire:model="notes"></textarea>
-                                                            <button class="btn btn-primary mt-1" type="submit" >SAVE</button>
+                                                            <button class="btn btn-primary mt-1" type="submit" >{{__('SAVE')}}</button>
                                                         </form>
                                                     </div>
                                                 @endif

@@ -31,16 +31,16 @@
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
                 <div class="flex-grow-1">
                     <h1 class="h3 fw-bold mb-2">
-                        Users
+                        {{__('Users')}}
                     </h1>
                 </div>
                 <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-alt">
                         <li class="breadcrumb-item">
-                            <a class="link-fx" href="javascript:void(0)">DataTable</a>
+                            <a class="link-fx" href="javascript:void(0)">{{__('DataTable')}}</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            Users
+                            {{__('Users')}}
                         </li>
                     </ol>
                 </nav>
@@ -55,7 +55,7 @@
         <div class="block block-rounded row">
             <div class="block-header block-header-default">
                 <h3 class="block-title">
-                    Users
+                    {{__('Users')}}
                 </h3>
                 <a href="{{route('users.index')}}">
                     <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Back to List">
@@ -79,12 +79,12 @@
                     <table class="table table-striped table-hover table-vcenter fs-sm">
                         <thead>
                         <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Avatar</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Role</th>
-                            <th scope="col">Card ID</th>
+                            <th scope="col">{{__('ID')}}</th>
+                            <th scope="col">{{__('Name')}}</th>
+                            <th scope="col">{{__('Avatar')}}</th>
+                            <th scope="col">{{__('Email')}}</th>
+                            <th scope="col">{{__('Role')}}</th>
+                            <th scope="col">{{__('Card ID')}}</th>
 
                             @canany(['is_superAdmin', 'is_admin'])
                                 <th scope="col">Actions</th>

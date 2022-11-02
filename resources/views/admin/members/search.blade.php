@@ -31,16 +31,16 @@
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
                 <div class="flex-grow-1">
                     <h1 class="h3 fw-bold mb-2">
-                        Members
+                        {{__('Members')}}
                     </h1>
                 </div>
                 <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-alt">
                         <li class="breadcrumb-item">
-                            <a class="link-fx" href="javascript:void(0)">DataTable</a>
+                            <a class="link-fx" href="javascript:void(0)">{{__('DataTable')}}</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            Members
+                            {{__('Members')}}
                         </li>
                     </ol>
                 </nav>
@@ -76,11 +76,11 @@
                         <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">name</th>
-                            <th scope="col">email</th>
-                            <th scope="col">user account</th>
-                            <th scope="col">role</th>
-                            <th scope="col">Actions</th>
+                            <th scope="col">{{__('name')}}</th>
+                            <th scope="col">{{__('email')}}</th>
+                            <th scope="col">{{__('user account')}}</th>
+                            <th scope="col">{{__('role')}}</th>
+                            <th scope="col">{{__('Actions')}}</th>
                         </tr>
                         </thead>
                         <tbody>

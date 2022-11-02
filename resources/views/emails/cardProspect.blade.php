@@ -1,6 +1,6 @@
 @component('mail::message')
 
-<h3>Bekijk hier met wie je een nieuwe connectie hebt gemaakt.</h3>
+<h3>{{__('See who you made a new connection with here.')}}</h3>
 
 @if($contact['name'] != "")
 <h3>Naam:</h3>

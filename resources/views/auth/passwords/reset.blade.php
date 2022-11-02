@@ -11,13 +11,13 @@
                 <!-- Sign Up Block -->
                 <div class="block block-rounded mb-0">
                     <div class="block-header block-header-default">
-                        <h3 class="block-title">Reset Password</h3>
+                        <h3 class="block-title">{{__('Reset Password')}}</h3>
                     </div>
                     <div class="block-content">
                         <div class="p-sm-3 px-lg-4 px-xxl-5 py-lg-5">
                             <h1 class="h2 mb-1"><?php echo $one->name ; ?></h1>
                             <p class="fw-medium text-muted">
-                                Please fill the following details to set new password.
+                                {{__('Please fill the following details to set new password.')}}
                             </p>
 
                             <!-- Sign Up Form -->
@@ -55,7 +55,7 @@
                                 <div class="row mb-4">
                                     <div class="col-md-6 col-xl-5">
                                         <button type="submit" class="btn w-100 btn-alt-success">
-                                            <i class="fa fa-fw fa-plus me-1 opacity-50"></i> Reset Password
+                                            <i class="fa fa-fw fa-plus me-1 opacity-50"></i> {{__('Reset Password')}}
                                         </button>
                                     </div>
                                 </div>

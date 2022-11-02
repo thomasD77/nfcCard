@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-        <title>SWAP</title>
+        <title>{{__('SWAP')}}</title>
 
         <meta name="description" content="SWAP - NFC">
         <meta name="author" content="SWAP">
@@ -193,7 +193,7 @@
                                 </div>
                                 <div class="p-2">
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{ route('admin.home') }}">
-                                        <span class="fs-sm fw-medium">Dashboard</span>
+                                        <span class="fs-sm fw-medium">{{__('Dashboard')}}</span>
                                         <i class="nav-main-link-icon si si-cursor"></i>
                                     </a>
                                 </div>
@@ -201,7 +201,7 @@
                                 <div class="p-2">
 
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{route('users.edit', Auth::user() ? Auth::user()->id : "")}}">
-                                        <span class="fs-sm fw-medium">Account</span>
+                                        <span class="fs-sm fw-medium">{{__('Account')}}</span>
                                         <i class="far fa-user"></i>
                                     </a>
                                 </div>
@@ -248,7 +248,7 @@
 {{--                            </button>--}}
 {{--                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0 border-0 fs-sm" aria-labelledby="page-header-notifications-dropdown">--}}
 {{--                                <div class="p-2 bg-body-light border-bottom text-center rounded-top">--}}
-{{--                                    <h5 class="dropdown-header text-uppercase">Notifications</h5>--}}
+{{--                                    <h5 class="dropdown-header text-uppercase">{{__('Notifications')}}</h5>--}}
 {{--                                </div>--}}
 {{--                                <ul class="nav-items mb-0">--}}
 {{--                                    <li>--}}
@@ -257,8 +257,8 @@
 {{--                                                <i class="fa fa-fw fa-check-circle text-success"></i>--}}
 {{--                                            </div>--}}
 {{--                                            <div class="flex-grow-1 pe-2">--}}
-{{--                                                <div class="fw-semibold">You have a new follower</div>--}}
-{{--                                                <span class="fw-medium text-muted">15 min ago</span>--}}
+{{--                                                <div class="fw-semibold">{{__('You have a new follower')}}</div>--}}
+{{--                                                <span class="fw-medium text-muted">{{__('15 min ago')}}</span>--}}
 {{--                                            </div>--}}
 {{--                                        </a>--}}
 {{--                                    </li>--}}
@@ -268,8 +268,8 @@
 {{--                                                <i class="fa fa-fw fa-plus-circle text-primary"></i>--}}
 {{--                                            </div>--}}
 {{--                                            <div class="flex-grow-1 pe-2">--}}
-{{--                                                <div class="fw-semibold">1 new sale, keep it up</div>--}}
-{{--                                                <span class="fw-medium text-muted">22 min ago</span>--}}
+{{--                                                <div class="fw-semibold">{{__('1 new sale, keep it up')}}</div>--}}
+{{--                                                <span class="fw-medium text-muted">{{__('22 min ago')}}</span>--}}
 {{--                                            </div>--}}
 {{--                                        </a>--}}
 {{--                                    </li>--}}
@@ -279,8 +279,8 @@
 {{--                                                <i class="fa fa-fw fa-times-circle text-danger"></i>--}}
 {{--                                            </div>--}}
 {{--                                            <div class="flex-grow-1 pe-2">--}}
-{{--                                                <div class="fw-semibold">Update failed, restart server</div>--}}
-{{--                                                <span class="fw-medium text-muted">26 min ago</span>--}}
+{{--                                                <div class="fw-semibold">{{__('Update failed, restart server')}}</div>--}}
+{{--                                                <span class="fw-medium text-muted">{{__('26 min ago')}}</span>--}}
 {{--                                            </div>--}}
 {{--                                        </a>--}}
 {{--                                    </li>--}}
@@ -290,8 +290,8 @@
 {{--                                                <i class="fa fa-fw fa-plus-circle text-primary"></i>--}}
 {{--                                            </div>--}}
 {{--                                            <div class="flex-grow-1 pe-2">--}}
-{{--                                                <div class="fw-semibold">2 new sales, keep it up</div>--}}
-{{--                                                <span class="fw-medium text-muted">33 min ago</span>--}}
+{{--                                                <div class="fw-semibold">{{__('2 new sales, keep it up')}}</div>--}}
+{{--                                                <span class="fw-medium text-muted">{{__('33 min ago')}}</span>--}}
 {{--                                            </div>--}}
 {{--                                        </a>--}}
 {{--                                    </li>--}}
@@ -301,8 +301,8 @@
 {{--                                                <i class="fa fa-fw fa-user-plus text-success"></i>--}}
 {{--                                            </div>--}}
 {{--                                            <div class="flex-grow-1 pe-2">--}}
-{{--                                                <div class="fw-semibold">You have a new subscriber</div>--}}
-{{--                                                <span class="fw-medium text-muted">41 min ago</span>--}}
+{{--                                                <div class="fw-semibold">{{__('You have a new subscriber')}}</div>--}}
+{{--                                                <span class="fw-medium text-muted">{{__('41 min ago')}}</span>--}}
 {{--                                            </div>--}}
 {{--                                        </a>--}}
 {{--                                    </li>--}}
@@ -312,7 +312,7 @@
 {{--                                                <i class="fa fa-fw fa-check-circle text-success"></i>--}}
 {{--                                            </div>--}}
 {{--                                            <div class="flex-grow-1 pe-2">--}}
-{{--                                                <div class="fw-semibold">You have a new follower</div>--}}
+{{--                                                <div class="fw-semibold">{{__('You have a new follower')}}</div>--}}
 {{--                                                <span class="fw-medium text-muted">42 min ago</span>--}}
 {{--                                            </div>--}}
 {{--                                        </a>--}}
@@ -320,7 +320,7 @@
 {{--                                </ul>--}}
 {{--                                <div class="p-2 border-top text-center">--}}
 {{--                                    <a class="d-inline-block fw-medium" href="javascript:void(0)">--}}
-{{--                                        <i class="fa fa-fw fa-arrow-down me-1 opacity-50"></i> Load More..--}}
+{{--                                        <i class="fa fa-fw fa-arrow-down me-1 opacity-50"></i> {{__('Load More..')}}--}}
 {{--                                    </a>--}}
 {{--                                </div>--}}
 {{--                            </div>--}}
@@ -381,10 +381,10 @@
                 <div class="content py-3">
                     <div class="row fs-sm">
                         <div class="col-sm-6 order-sm-2 py-1 text-center text-sm-end">
-                            Crafted with <i class="fa fa-heart text-danger"></i> by <a class="fw-semibold" href="https://innova-webcreations.be" target="_blank">INNOVA WEBCREATIONS</a>
+                            {{__('Crafted with')}} <i class="fa fa-heart text-danger"></i> {{__('by')}} <a class="fw-semibold" href="https://innova-webcreations.be" target="_blank">{{__('INNOVA WEBCREATIONS')}}</a>
                         </div>
                         <div class="col-sm-6 order-sm-1 py-1 text-center text-sm-start">
-                            <a class="fw-semibold" href="https://innova-webcreations.be" target="_blank">SWAP</a> &copy; <span data-toggle="year-copy"></span>
+                            <a class="fw-semibold" href="https://innova-webcreations.be" target="_blank">{{__('SWAP')}}</a> &copy; <span data-toggle="year-copy"></span>
                         </div>
                     </div>
                 </div>

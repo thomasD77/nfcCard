@@ -5,9 +5,9 @@
                 'files'=>true])
            !!}
 
-            <p class="badge badge-pill bg-dark p-2 text-white">General</p>
+            <p class="badge badge-pill bg-dark p-2 text-white">{{__('General')}}</p>
             <div class="mb-4">
-                <label class="form-label">Your Avatar</label>
+                <label class="form-label">{{__('Your Avatar')}}</label>
                 <div class="mb-4">
                     <img class="rounded-circle" height="150" width="150" src="{{$member->avatar ? asset('/card/avatars'). "/" . $member->avatar : asset('/assets/front/img/Avatar-4.svg')}}" alt="{{$member->avatar}}">
                 </div>
@@ -80,7 +80,7 @@
                 @enderror
             </div>
 
-            <p class="badge badge-pill bg-dark p-2 text-white">Contact information</p>
+            <p class="badge badge-pill bg-dark p-2 text-white">{{__('Contact information')}}</p>
             <div class="form-group mb-4">
                 {!! Form::label('mobileWork','Mobile work:',['class'=>'form-label']) !!}
                 {!! Form::text('mobileWork',$member->mobileWork ,['class'=>'form-control']) !!}
@@ -125,7 +125,7 @@
             </div>
 
 
-            <p class="badge badge-pill bg-dark p-2 text-white">Socials</p>
+            <p class="badge badge-pill bg-dark p-2 text-white">{{__('Socials')}}</p>
             <div class="form-group mb-4">
                 {!! Form::label('facebook','Facebook | ',['class'=>'form-label']) !!}
                 <span class="mb-2" style="font-style: italic">

@@ -2,12 +2,12 @@
     <table class="table table-striped table-hover table-vcenter fs-sm">
         <thead>
         <tr>
-            <th scope="col">ID</th>
-            <th scope="col">avatar</th>
-            <th scope="col">name</th>
-            <th scope="col">email</th>
-            <th scope="col">Registered</th>
-            <th scope="col">Actions</th>
+            <th scope="col">{{__('ID')}}</th>
+            <th scope="col">{{__('Avatar')}}</th>
+            <th scope="col">{{__('Name')}}</th>
+            <th scope="col">{{__('Email')}}</th>
+            <th scope="col">{{__('Registered')}}</th>
+            <th scope="col">{{__('Actions')}}</th>
         </tr>
         </thead>
         <tbody>

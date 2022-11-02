@@ -25,20 +25,20 @@
     <div class="block block-rounded row">
         <div class="block-header block-header-default">
             <h3 class="block-title">
-                Card credentials
+                {{__('Card credentials')}}
 
             </h3>
         </div>
         <table class="table table-striped table-hover table-vcenter fs-sm">
             <thead>
             <tr>
-                <th >URL <br> (printed in the NFC chip)</th>
+                <th >{{__('URL')}} <br> ({{__('printed in the NFC chip')}})</th>
 
-                <th >Card Material</th>
+                <th >{{__('Card Material')}}</th>
 
-                <th >Design FRONT <br> (printed or engraved)</th>
+                <th >{{__('Design FRONT')}} <br> ({{__('printed or engraved')}})</th>
 
-                <th >QR-code BACK <br> (printed or engraved)</th>
+                <th >{{__('QR-code BACK')}} <br> ({{__('printed or engraved')}})</th>
             </tr>
             </thead>
             <div class="spacing"></div>

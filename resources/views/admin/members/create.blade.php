@@ -10,12 +10,12 @@
             <div class="my-3">
                 <img class="rounded-circle border border-white border border-3" height="80" width="80" src="{{Auth::user()->avatar ? asset('/') . Auth::user()->avatar->file : 'http://placehold.it/62x62'}}" alt="{{Auth::user()->name}}">
             </div>
-            <h1 class="h2 text-white mb-0">Create Member</h1>
+            <h1 class="h2 text-white mb-0">{{__('Create Member')}}</h1>
             <h2 class="h4 fw-normal text-white-75">
                 <?php echo Auth::user()->name; ?>
             </h2>
             <a class="btn btn-alt-secondary" href="{{ asset('/dashboard') }}">
-                <i class="fa fa-fw fa-arrow-left text-danger"></i> Back to Dashboard
+                <i class="fa fa-fw fa-arrow-left text-danger"></i> {{__('Back to Dashboard')}}
             </a>
         </div>
 </div>
@@ -27,13 +27,13 @@
     <!-- member Profile -->
     <div class="block block-rounded">
         <div class="block-header block-header-default">
-            <h3 class="block-title">Member Profile</h3>
+            <h3 class="block-title">{{__('Member Profile')}}</h3>
         </div>
         <div class="block-content">
             <div class="row push">
                 <div class="col-lg-2">
                     <p class="fs-sm text-muted">
-                        Here you can create a new Happy member.
+                        {{__('Here you can create a new Happy member.')}}
                     </p>
                 </div>
                 <div class="col-lg-10">
@@ -106,7 +106,7 @@
                     </div>
 
 
-                    <p>Contact information</p>
+                    <p>{{__('Contact information')}}</p>
                     <div class="form-group mb-4">
                         {!! Form::label('mobileWork','Mobile work:',['class'=>'form-label']) !!}
                         {!! Form::text('mobileWork',null ,['class'=>'form-control']) !!}
@@ -159,7 +159,7 @@
 
 
 
-                    <p>Socials</p>
+                    <p>{{__('Socials')}}</p>
                     <div class="form-group mb-4">
                         {!! Form::label('facebook','Facebook:',['class'=>'form-label']) !!}
                         {!! Form::text('facebook',null ,['class'=>'form-control']) !!}
@@ -219,7 +219,7 @@
 
                     <div class="d-flex justify-content-between">
                         <div class="form-group mr-1">
-                            <button type="submit" class="btn btn-alt-primary">Save</button>
+                            <button type="submit" class="btn btn-alt-primary">{{__('Save')}}</button>
                         </div>
                         {!! Form::close() !!}
                     </div>
