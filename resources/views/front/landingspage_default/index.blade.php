@@ -490,7 +490,7 @@
                                         </div>
                                     @endif
 
-                                    @if($buttons)
+                                    @if(isset($buttons))
                                         @foreach($buttons as $button)
                                             @if($button->state)
                                                 @if($button->name && $button->link)
