@@ -102,7 +102,7 @@ class AdminContactsController extends Controller
 
         $contact->update();
 
-        \Brian2694\Toastr\Facades\  Toastr::success('Contact Successfully Updated');
+        \Brian2694\Toastr\Facades\Toastr::success('Contact Successfully Updated');
 
         return redirect()->back();
     }
