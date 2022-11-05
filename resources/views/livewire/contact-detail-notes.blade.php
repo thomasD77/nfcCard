@@ -31,6 +31,7 @@
                                                 <div class="modal-content">
                                                     <div class="modal-body">
                                                         {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminContactsController@updateNoteContact',$note->id]]) !!}
+                                                        @csrf
                                                         <textarea type="text"
                                                                   class="form-control"
                                                                   placeholder="Type your note..."
@@ -52,6 +53,7 @@
                                     </div>
                                     <div>
                                         {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\AdminContactsController@deleteNoteContact',$note->id]]) !!}
+                                        @csrf
                                         <button type="submit" class="btn btn-sm btn-alt-danger"  data-bs-toggle="tooltip" title="Delete">
                                             <i class="fa fa-fw fa-times text-danger"></i>
                                         </button>
@@ -73,7 +75,7 @@
             </p>
 
             {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminContactsController@createNoteContact',$contact->id]]) !!}
-
+            @csrf
             <div class="my-4">
                 <textarea type="text"
                           class="form-control"

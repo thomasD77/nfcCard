@@ -7,6 +7,7 @@ use App\Exports\MemberListExport;
 use App\Exports\MemberUrlExport;
 use App\Exports\ScanListClientExport;
 use App\Exports\ScanListExport;
+use App\Exports\ScanListMarketing;
 use App\Exports\ScanListTeamExport;
 use App\Exports\SubmissionExport;
 use App\Http\Requests\ContactRequest;
@@ -147,6 +148,8 @@ class CardController extends Controller
             $vcard->addNote($member->notes);
         }
 
+        $vcard->addPhoto($member->avatar ? asset('/card/avatars'). "/" . $member->avatar : asset('images/content/swap_log.png'));
+
         // return vcard as a download
         return $vcard->download();
     }
@@ -162,7 +165,12 @@ class CardController extends Controller
         if($contact->name){
             $name = explode(" ", $contact->name);
             $firstname = $name[0];
-            $lastname = $name[1];
+            if(isset($name[1])){
+                $lastname = $name[1];
+            }else {
+                $lastname = "";
+            }
+
         }else {
             $firstname = "";
             $lastname = "";
@@ -195,6 +203,8 @@ class CardController extends Controller
         if($contact->message) {
             $vcard->addNote($contact->message);
         }
+
+        $vcard->addPhoto( asset('images/content/swap_log.png'));
 
         // return vcard as a download
         return $vcard->download();
@@ -329,9 +339,10 @@ class CardController extends Controller
             return view( 'front.landingspage_default.index', compact('member', 'vCard'));
         }
 
+    }
 
-
-
+    public function printMarketing(){
+        return Excel::download(new ScanListMarketing(), 'swap-marketing.xlsx');
     }
 
 

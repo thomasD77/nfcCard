@@ -8,6 +8,7 @@ use App\Models\Member;
 use App\Models\Team;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class CardCredentialsController extends Controller
 {
@@ -81,7 +82,6 @@ class CardCredentialsController extends Controller
             $member->update();
         }
 
-        \Brian2694\Toastr\Facades\Toastr::success('Edit Card Successfully');
-        return redirect()->back();
+        return redirect()->route('card-credentials-details', $url->team_id);
     }
 }

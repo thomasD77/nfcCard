@@ -490,20 +490,22 @@
                                         </div>
                                     @endif
 
-                                    @if($buttons)
+                                    @if(isset($buttons))
                                         @foreach($buttons as $button)
                                             @if($button->state)
-                                                <!-- Multiple custom buttons -->
-                                                <div class="col-12 col-lg-6 d-flex justify-content-center">
-                                                    <a class="w-100" target="_blank" href="{{ $button->link }}">
-                                                        @php
-                                                            $color = '#' . substr(md5(rand()), 0, 6);
-                                                        @endphp
-                                                        <button style="background-color: {{ $color }}" type="submit" class="btn_cstm w-100 mt-2"><i
-                                                                class="fa fa-link mx-2"></i>{{ $button->name }}
-                                                        </button>
-                                                    </a>
-                                                </div>
+                                                @if($button->name && $button->link)
+                                                    <!-- Multiple custom buttons -->
+                                                    <div class="col-12 col-lg-6 d-flex justify-content-center">
+                                                        <a class="w-100" target="_blank" href="{{ $button->link }}">
+                                                            @php
+                                                                $color = '#' . substr(md5(rand()), 0, 6);
+                                                            @endphp
+                                                            <button style="background-color: {{ $color }}" type="submit" class="btn_cstm w-100 mt-2"><i
+                                                                    class="fa fa-link mx-2"></i>{{ $button->name }}
+                                                            </button>
+                                                        </a>
+                                                    </div>
+                                                @endif
                                             @endif
                                         @endforeach
                                     @endif
@@ -519,7 +521,7 @@
                     @guest
                         <a style="text-decoration: none; color: black"
                            class="badge badge-pill bg-white p-3 my-3 text-uppercase"
-                           href="{{ asset('/login') }}">Login</a>
+                           href="{{ asset('/') }}">Login</a>
                     @endguest
                     @auth
                         @if($member->front_style === "dark")
@@ -548,7 +550,7 @@
                 </footer>
                 <div class="d-flex justify-content-center">
                     <a class="footer text-white mb-1 d-flex align-items-center" target="_blank"
-                       style="text-decoration: none" href="https://swap-nfc.be/"><i class="fa fa-globe px-2 fa-2x"></i>
+                       style="text-decoration: none" href="https://swap-nfc.be/"><i class="fa fa-globe px-2"></i>
                         swap-nfc.be</a>
                 </div>
                 {{--                <footer class="footer"><a style="text-decoration: none; color: white" href="https://innova-webcreations.be">SWAP</a> © {{ now()->format('Y') }}</footer>--}}

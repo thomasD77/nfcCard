@@ -109,4 +109,8 @@ class Member extends Model
         return $this->hasMany(Button::class);
     }
 
+    public function memberToContactPrint(){
+        return $this->belongsToMany(Contact::class, 'member_contact');
+    }
+
 }

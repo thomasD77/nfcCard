@@ -35,7 +35,7 @@
                                    name="is_public"
                                    type="checkbox"
                                    id="flexSwitchCheckDefault"
-                                   @if($disabled) disabled @endif
+                                   @if($myScansDisabled) disabled @endif
                                    @if($scans) checked @endif
                                    wire:click="onlyMyScans"
                             > Show your connections only
@@ -52,7 +52,7 @@
                         </a>
 
                         <a href="{{ route('print.scans') }}" class="btn btn-alt-success me-2">
-                            <i class="fa fa-print mx-1"></i>
+                            <i class="fa fa-file-export mx-1"></i>
                         </a>
 
                         <!-- Pagination Select-->
@@ -70,7 +70,7 @@
 
                     <div class="col-md-6 mt-5 mt-md-0">
                         <label>Search for your teammembers connections:</label>
-                        <select class="form-control" wire:model="selectMember" >
+                        <select class="form-control" wire:model="selectMember" @if($selectedMemberDisabled) disabled @endif>
                             <option value="{{ null }}">{{ __('Please select') }}</option>
                             @foreach ($members as $member)
                                 <option value="{{ $member->id }}" wire:key="member-{{ $member->id }}">{{ $member->firstname }} {{ $member->lastname }}</option>
@@ -96,7 +96,7 @@
                     <th scope="col">Status</th>
                     <th scope="col">Date</th>
                     <th scope="col">Actions</th>
-                    <th scope="col"> <i class="fa fa-print me-2"></i>
+                    <th scope="col"> <i class="fa fa-file-export me-2"></i>
                         <input type="checkbox"
                                @if(Auth()->user()->member->check_all_print_admin) checked @endif
                                class="btn btn-sm btn-alt-secondary"
@@ -147,7 +147,7 @@
                             </td>
                             <td>
                                 <input type="checkbox"
-                                       @if($contact->print_admin == $user->id)  checked @endif
+                                       @if($user->member->memberToContactPrint()->where('contact_id', $contact->id)->exists()) checked @endif
                                        class="btn btn-sm btn-alt-secondary"
                                        wire:click="select({{$contact}})">
                             </td>

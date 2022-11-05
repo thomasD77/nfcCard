@@ -92,9 +92,43 @@
     </div>
     <!-- END Hero -->
 
-    @can('is_user', $user)
     <!-- Page Content -->
     <div class="content content-boxed">
+        @canany(['is_superAdmin', 'is_admin'])
+        <!-- Login User  -->
+        <div class="block block-rounded">
+            <div class="block-header block-header-default">
+                <h3 class="block-title">Login information </h3>
+            </div>
+            <div class="block-content">
+                <div class="row push">
+                    <div class="col-lg-4">
+                        <p class="fs-sm text-muted">
+                            Here you can see the user his login information. <br>
+                            Count starting from (29/10/2022).
+                        </p>
+                    </div>
+                    <div class="col-lg-8 col-xl-5">
+                        <div class="form-group mb-4">
+                            {!! Form::label('one-profile-edit-name', 'Latest login time:', ['class'=>'form-label']) !!}
+                            {!! Form::text('name', $user->lastLoginDate() ? $user->lastLoginDate()->format('Y-m-d') : 0 ,['class'=>'form-control', 'disabled']) !!}
+                        </div>
+                        <div class="form-group mb-4">
+                            {!! Form::label('one-profile-edit-name', 'Number of logins:', ['class'=>'form-label']) !!}
+                            {!! Form::text('name', $user->loginAttempts()->count() ,['class'=>'form-control', 'disabled']) !!}
+                        </div>
+                        <div class="form-group mb-4">
+                            {!! Form::label('one-profile-edit-name', 'Number of SWAPS:', ['class'=>'form-label']) !!}
+                            {!! Form::text('name', $user->member->contacts->count() ,['class'=>'form-control', 'disabled']) !!}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END Login User -->
+        @endcanany
+
         <!-- Referral User  -->
         <div class="block block-rounded">
             <div class="block-header block-header-default">
@@ -131,9 +165,15 @@
                         </p>
                     </div>
                     <div class="col-lg-8 col-xl-5">
-                        {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminUsersController@update',$user->id],
-                      'files'=>true])
-                       !!}
+
+                        @if(Session::has('ex_member'))
+                            <p class="alert alert-info my-3">{{session('ex_member')}}</p>
+                        @endif
+
+
+                        {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminUsersController@update',$user->id],'files'=>true])!!}
+                        @csrf
+
                         @can('is_superAdmin')
                             <div class="form-group mb-4">
                                 <label class="form-label">Business account:</label>
@@ -167,7 +207,7 @@
 
                             <div class="form-group mb-4">
                                 {!! Form::label('date','Select end trial date:', ['class'=>'form-label']) !!}
-                                {!! Form::date('trial_date', $user->member ? $user->member->listurl->trial_date : null,['class'=>'form-control'])!!}
+                                {!! Form::date('trial_date', $user->member->listurl ? $user->member->listurl->trial_date : null,['class'=>'form-control'])!!}
                             </div>
                         @endcan
 
@@ -240,10 +280,8 @@
                     </div>
                     <div class="col-lg-8 col-xl-5">
 
-                        {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminUsersController@updateTeam',$user],
-                       'files'=>true])
-                        !!}
-
+                        {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminUsersController@updateTeam',$user],'files'=>true])!!}
+                        @csrf
                         <div class="form-group mb-4">
                             {!! Form::label('one-profile-edit-email', 'Name:', ['class'=>'form-label']) !!}
                             @if($role == 'client')
@@ -367,6 +405,7 @@
                     </div>
                     <div class="col-lg-8 col-xl-5">
                         {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\AdminUsersController@updatePassword',$user->id]]) !!}
+                        @csrf
                         <div class="form-group mb-4">
                             {!! Form::label('one-profile-edit-password', 'Current Password:',['class'=>'form-label']) !!}
                             {!! Form::password('currentPassword',['class'=>'form-control']) !!}
@@ -443,9 +482,116 @@
             </div>
         </div>
         <!-- END Delete User -->
+        <!-- Keep User / Reset card  -->
+        <div class="block block-rounded">
+            <div class="block-header block-header-default">
+                <h3 class="block-title">Keep User/ Reset Card</h3>
+            </div>
+            <div class="block-content">
+                <div class="row push">
+                    <div class="col-lg-4">
+                        <p class="fs-sm text-muted">
+                            Here you can keep the user account but reset his CARD ID
+                        </p>
+                    </div>
+                    <div class="col-lg-8 col-xl-5">
+
+                        <p class="mb-1"><strong>Current user acc:</strong></p>
+                        <p class="mb-1"><span class="text-muted me-2" style="font-size: 10px">Name: </span>{{ $user->name }}</p>
+                        <p class="mb-1"><span class="text-muted me-2" style="font-size: 10px">Email: </span> {{ $user->email }}</p>
+                        <p class="mb-3"><span class="text-muted me-2" style="font-size: 10px">Team: </span>{{ $user->team->name }}</p>
+
+                        <p class="mb-1"><strong>Current member settings:</strong></p>
+                        <p class="mb-1"><span class="text-muted me-2" style="font-size: 10px">ID #: </span>{{ $user->member->id }}</p>
+                        <p class="mb-1"><span class="text-muted me-2" style="font-size: 10px">Name: </span>{{ $user->member->firstname }} {{ $user->member->lastname }}</p>
+                        <p class="mb-3"><span class="text-muted me-2" style="font-size: 10px">Email: </span>{{ $user->member->email }}</p>
+
+                        <p class="mb-1"><strong>Current URL settings (click to see profile):</strong></p>
+                        <div class="mb-3">
+                            @if($user->member)
+                                @if($user->member->card_id != 0)
+                                    <a target="_blank" href="{{ route('direction') . "?" . $user->member->card_id }}"><span class="badge badge-pill p-2 bg-dark">Profile {{ $user->member->card_id }}</span></a>
+                                @else
+                                    <a target="_blank" href="{{ route('direction.test', $user->member) }}"><span class="badge badge-pill bg-warning p-2">TEST MODE</span></a>
+                                @endif
+                            @endif
+                        </div>
+
+                        @if($user->reset_message)
+                            <label class="form-label"><strong>User reset information: </strong></label>
+                            <textarea class="form-control" disabled> {{ $user->reset_message }}</textarea>
+                        @endif
+
+                        @if($user->member->card_id != 0)
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModalKeep">
+                            KEEP/RESET
+                        </button>
+                        @endif
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModalKeep" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabelKeep">Keep User/ Reset Card</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\AdminUsersController@keep',$user->id]]) !!}
+
+                                        <p class="bg-danger-light p-2 mb-4"> Are you sure you want to delete the CARD ID on this member?
+                                        This way the URL with this card ID will be available again.
+                                        But the USER ACC will not be lost.</p>
+
+                                        <div class="my-3">
+                                            {!! Form::label('one-profile-edit-email', 'Write down extra information for this user account:', ['class'=>'form-label']) !!}
+                                            {!! Form::textarea('reset_message',$user->reset_message,['class'=>'form-control', 'required']) !!}
+                                            @error('description')
+                                            <p class="text-danger mt-2"> {{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        {!! Form::submit('RESET',['class'=>'btn btn-alt-primary']) !!}
+                                    </div>
+                                    {!! Form::close() !!}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="block-header block-header-default">
+                <h3 class="block-title">Set new CARD ID for User </h3>
+            </div>
+            <div class="block-content">
+                <div class="row push">
+                    <div class="col-lg-4">
+                        <p class="fs-sm text-muted">
+                            Here you update the user his CARD ID (for example, set demo to live acc)
+                        </p>
+                    </div>
+                    <div class="col-lg-8 col-xl-5">
+                        <div class="form-group mb-4">
+                            {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\AdminUsersController@updateURL',$user->id]]) !!}
+                            @csrf
+                            {!! Form::label('one-profile-edit-urls', 'Select URL:', ['class'=>'form-label']) !!}
+                            {!! Form::select('url',$urls, [$user->member->card_id] ? [$user->member->card_id] : null ,['class'=>'form-control', 'placeholder'=> 'NONE'])!!}
+                            <div class="form-group mr-1">
+                                {!! Form::submit('UPDATE',['class'=>'btn btn-alt-info mt-2']) !!}
+                            </div>
+                            {!! Form::close() !!}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Keep user / Reset card -->
         @endcanany
     </div>
-    @endcan
+
 <!-- Cropper js -->
 <meta name="_token" content="{{ csrf_token() }}">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
@@ -474,7 +620,7 @@
             file = files[0];
             if(file.size <= 2097152) {
                 let ext = file.name.split(".")[1];
-                if (ext === "jpg" || ext === "jpeg" || ext === "png") {
+                if (ext === "jpg" || ext === "JPG" || ext === "JPEG" || ext === "PNG" || ext === "jpeg" || ext === "png") {
                     if (URL) {
                         done(URL.createObjectURL(file));
                     } else if (FileReader) {

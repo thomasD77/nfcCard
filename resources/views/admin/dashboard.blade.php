@@ -107,26 +107,30 @@
     @endcan
 
     @canany([ 'is_client', 'is_admin'])
-        <div class="block block-rounded row mb-0"
+
+        <div class="row parent"
              style="background-image: url('images/content/background_4.png');
              background-repeat: no-repeat;
              height: 100%; width: 100%;
-             background-position: center;
+             background-position: center center;
              background-size: cover">
-            <div class="block-content block-content-full ">
 
-                    <div class="parent">
+
+            <div class="block-content mb-4" style="padding-left: 27px;">
+
 
                         @include('admin.includes.flash')
 
                         <div class="card shadow pt-4 col-md-6 offset-md-3 p-md-4 my-md-3" style="border: none; background-color: rgba(255,255,255,0.87)">
 
                             @if(Auth::user()->member)
-                                @if(Auth::user()->member->listurl->type_id == 8 )
-                                    <div class="card-header bg-dark">
-                                        <p class="text-white mb-0">This is a SWAP TEST card. </p>
-                                        <p class="text-white">You can use this card until:  <strong>{{ $member->listurl->trial_date }}</strong> </p>
-                                    </div>
+                                @if(isset(Auth::user()->member->listurl))
+                                    @if(Auth::user()->member->listurl->type_id == 8 )
+                                        <div class="card-header bg-dark">
+                                            <p class="text-white mb-0">This is a SWAP TEST card. </p>
+                                            <p class="text-white">You can use this card until:  <strong>{{ $member->listurl->trial_date }}</strong> </p>
+                                        </div>
+                                    @endif
                                 @endif
                             @endif
 
@@ -194,7 +198,11 @@
                             </div>
 
                             <div class="row px-2">
-                                <a href="{{route('direction', $member->card_id)}}" target="_blank" class="bg-light">
+                               @if($member->card_id !== 0)
+                                    <a href="{{route('direction', $member->card_id)}}" target="_blank" class="bg-light">
+                                @else
+                                    <a href="{{route('direction.test', $member)}}" target="_blank" class="bg-light">
+                                @endif
                                     <div class="row py-3">
                                         <div class="col-4">
                                             <i class="far fa-eye text-dark" style="font-size: 45px"></i>
@@ -221,6 +229,7 @@
                                 </a>
                             </div>
 
+                            @if($member->card_id !== 0)
                             <div class="row px-2">
                                 <a href="{{route('show.QRcode', Auth()->user()->member->card_id)}}}" class="bg-light">
                                     <div class="row py-3">
@@ -234,6 +243,7 @@
                                     </div>
                                 </a>
                             </div>
+                            @endif
 
                             <div class="row px-2">
                                 <a href="{{route('settings')}}">
@@ -260,7 +270,7 @@
                             </div>
 
                         </div>
-                    </div>
+
             </div>
         </div>
 

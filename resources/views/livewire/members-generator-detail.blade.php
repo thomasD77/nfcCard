@@ -1,7 +1,7 @@
 <div>
     <div class="block block-rounded row">
         <div class="block-content block-content-full overflow-scroll">
-            <div class="d-flex justify-content-between mb-5">
+            <div class="d-flex justify-content-between mb-1">
                 <div class="d-flex">
                     <!-- Pagination Select-->
                     <select wire:model="pagination" style="width: 80px" class="form-select mb-3 d-flex justify-content-end" aria-label="Default select example">
@@ -53,9 +53,55 @@
                         </a>
                     @endif
 
+                    @if($urls->first() != null )
+                        <a href="{{ route('print.marketing')}}" class="btn btn-alt-warning" data-bs-toggle="tooltip" title="Mailchimp">
+                            <i class="fab fa-mailchimp me-2"></i>
+                        </a>
+                    @endif
                 </div>
             </div>
+
+            <div class="d-flex justify-content-end mb-5">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModalKeep">
+                    KEEP/RESET
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalKeep" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabelKeep">Keep User/ Reset Card</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\AdminUsersController@keepBulk']]) !!}
+
+                                <p class="bg-danger-light p-2 mb-4"> Are you sure you want to delete the CARD ID on this member?
+                                    This way the URL with this card ID will be available again.
+                                    But the USER ACC will not be lost.</p>
+
+                                <div class="my-3">
+                                    {!! Form::label('one-profile-edit-email', 'Write down extra information for this user account:', ['class'=>'form-label']) !!}
+                                    {!! Form::textarea('reset_message',null,['class'=>'form-control', 'required']) !!}
+                                    @error('reset_message')
+                                    <p class="text-danger mt-2"> {{ $message }}</p>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                {!! Form::submit('RESET',['class'=>'btn btn-alt-primary']) !!}
+                            </div>
+                            {!! Form::close() !!}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="parent">
+
+
                 @include('admin.includes.flash')
 
                 @if($bulk)
@@ -93,13 +139,17 @@
                                     {!! Form::select('types',$types,null,['class'=>'form-control', 'placeholder' => 'Select here...'])!!}
                                 </div>
 
-                                <div class="form-check m-4 px-0 col-md-5">
-                                    {!! Form::label('date','Select end trial date:', ['class'=>'form-label']) !!}
-                                    {!! Form::date('date', now(),['class'=>'form-control'])!!}
-                                </div>
-
+                                @if($urls->first()->type_id == 8)
+                                    <div class="form-check m-4 px-0 col-md-5">
+                                        {!! Form::label('date','Select end trial date:', ['class'=>'form-label']) !!}
+                                        <div class="mb-1">
+                                            <label><strong>Clear date</strong></label>
+                                            <input type="checkbox" value="1" name="clear">
+                                        </div>
+                                        {!! Form::date('date', null,['class'=>'form-control'])!!}
+                                    </div>
+                                @endif
                             </div>
-
 
                             <!-- Button trigger modal -->
                             <button type="submit" class="btn btn-alt-primary m-4">
@@ -137,10 +187,10 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         @endif
+
                     </div>
                 @endif
 
@@ -159,6 +209,8 @@
                         <th scope="col">Design</th>
 
                         <th scope="col">Type</th>
+
+                        <th scope="col">Trial date</th>
 
                         <th scope="col">Reservation</th>
 
@@ -189,7 +241,7 @@
                                         @if($url->member->user->archived == 1)
                                             <td><span class="rounded-pill btn-alt-warning p-2">archived</span></td>
                                         @else
-                                            <td>{{ $url->member->user->name }}</td>
+                                            <td><a href="{{ route('users.edit', $url->member->user->id) }}">{{ $url->member->user->name }}</a></td>
                                         @endif
                                     @else
                                         <td> {...} </td>
@@ -213,9 +265,9 @@
 
 
                                     <td class="my-2 ms-3
-                                @if($url->listType)
+                                    @if($url->listType)
                                         badge badge-pill w-75
-@if($url->listType->id == 1) bg-dark
+                                    @if($url->listType->id == 1) bg-dark
                                             @elseif($url->listType->id == 2) bg-amethyst
                                             @elseif($url->listType->id == 3) bg-flat
                                             @elseif($url->listType->id == 4) bg-warning
@@ -228,115 +280,14 @@
                                         ">{{$url->listType ? $url->listType->name  : "..." }} <br> <span class="my-5">{{ $url->webshop_order_id }}</span>
                                     </td>
 
+                                    <td>{{$url->trial_date ? $url->trial_date : "*" }}</td>
+
                                     <td>{{$url->reservation ? $url->reservation : "*no reservation" }}</td>
 
                                     <td>{{$url->created_at ? $url->created_at->format('d-M-Y') : "*no reservation" }}</td>
 
                                     <td>
-                                        <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-sm btn-alt-secondary"  data-bs-toggle="modal" data-bs-target="#exampleModal{{$url->id}}">
-                                            <i class="fa fa-fw fa-pencil-alt"></i>
-                                        </button>
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal{{$url->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel"># CARD ID {{ $url->id }}</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\Cards\CardCredentialsController@updateCard', $url->id],
-                                                               'files'=>false]) !!}
-                                                        <div class="form-group mb-4">
-
-                                                            <div class="form-group mb-4">
-                                                                <label class="form-label">Business account:</label>
-                                                                <div class="form-check form-switch">
-                                                                    <input class="form-check-input" value="1" name="business" type="checkbox" id="flexSwitchCheckDefault" @if($url->business) checked @endif>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="form-group mb-4">
-                                                                {!! Form::label('one-profile-edit-email', 'Reservation for:', ['class'=>'form-label']) !!}
-                                                                {!! Form::text('reservation',$url->reservation,['class'=>'form-control']) !!}
-                                                                @error('reservation')
-                                                                <p class="text-danger mt-2"> {{ $message }}</p>
-                                                                @enderror
-                                                            </div>
-
-                                                            <div class="form-group mb-4">
-                                                                {!! Form::label('one-profile-edit-email', 'Image:', ['class'=>'form-label']) !!}
-                                                                {!! Form::text('image',$url->image,['class'=>'form-control']) !!}
-                                                                @error('image')
-                                                                <p class="text-danger mt-2"> {{ $message }}</p>
-                                                                @enderror
-                                                            </div>
-
-                                                            <div class="d-flex flex-column mt-4">
-                                                                {!! Form::label('role','Select Role:', ['class'=>'form-label']) !!}
-                                                                {!! Form::select('role_id',$roles,$url->role_id,['class'=>'form-control'])!!}
-                                                            </div>
-
-                                                            {!! Form::hidden('url_id',$url->card_id)!!}
-
-                                                            <div class="d-flex flex-column mt-4">
-                                                                {!! Form::label('material_id','Select Material:', ['class'=>'form-label']) !!}
-                                                                {!! Form::select('material_id',$materials,$url->material_id,['class'=>'form-control'])!!}
-                                                            </div>
-
-                                                            <div class="d-flex flex-column mt-4">
-                                                                {!! Form::label('type_id','Select type:', ['class'=>'form-label']) !!}
-                                                                {!! Form::select('type_id',$types,$url->type_id,['class'=>'form-control', 'placeholder' => 'Select here...'])!!}
-                                                            </div>
-
-                                                            {{-- If Test card--}}
-                                                            @if($url->listType->id == 8 )
-                                                                <div class="form-check mt-4 px-0">
-                                                                    {!! Form::label('date','Select end trial date:', ['class'=>'form-label']) !!}
-                                                                    {!! Form::date('trial_date', $url->trial_date,['class'=>'form-control'])!!}
-                                                                </div>
-                                                            @endif
-
-                                                            {{-- If webshop--}}
-                                                            @if($url->listType->id == 2 )
-                                                                <div class="form-group my-4">
-                                                                    {!! Form::label('webshop_order_id', 'Webshop Order ID:', ['class'=>'form-label']) !!}
-                                                                    {!! Form::text('webshop_order_id',$url->webshop_order_id,['class'=>'form-control']) !!}
-                                                                    @error('webshop_order_id')
-                                                                    <p class="text-danger mt-2"> {{ $message }}</p>
-                                                                    @enderror
-                                                                </div>
-                                                            @endif
-
-                                                            <div class="d-flex flex-column mt-4">
-                                                                <a class="form-label text-dark d-flex justify-content-between" data-bs-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">
-                                                                    Custom Card url <i class="fa fa-arrow-down"></i>
-                                                                </a>
-                                                                <div class="collapse" id="collapseExample2">
-                                                                    <input class="form-control" type="text" name="custom_url" value="{{ $url->memberURL }}">                                                                </div>
-                                                            </div>
-                                                            @if($QRcode->status == 1)
-                                                                <div class="d-flex flex-column mt-4">
-                                                                    <a class="form-label text-dark d-flex justify-content-between" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                                                        Custom QRCODE url <i class="fa fa-arrow-down"></i>
-                                                                    </a>
-                                                                    <div class="collapse" id="collapseExample">
-                                                                        <input class="form-control" type="text" value="{{ $url->custom_QR_url  }}" name="input_QR_url">
-                                                                    </div>
-                                                                </div>
-                                                            @endif
-
-                                                        </div>
-
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="submit" class="btn btn-primary">Save</button>
-                                                    </div>
-                                                    {!! Form::close() !!}
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <a href="{{ route('listurl.detail', $url) }}" class="btn btn-sm btn-alt-secondary"><i class="fa fa-eye"></i></a>
                                     </td>
                                     <td>
                                         <input type="checkbox"

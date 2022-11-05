@@ -23,19 +23,42 @@ class ContactClient extends Component
 
     public $name;
     public Member $member;
+    public User $user;
 
     public $selected_members = [];
+    public $set_contacts;
+
+    public $check_print = false;
 
     public function mount()
     {
         $this->member = Auth::user()->member;
+        $this->user = Auth::user();
+        $this->check_print = $this->member->check_all_print_client;
     }
 
     public function dateALL()
     {
+        $filter = new TogglePrint();
+        $filterClient = new ToggleStatusClient();
+
         $this->datepicker = "";
         $this->datepicker_day = "";
         $this->name = "";
+
+        //Status print checkboxes
+        if($this->set_contacts){
+            foreach ($this->set_contacts as $contact){
+                $filter->togglePrintStatus($contact);
+            }
+        }
+
+        //Status select all checkbox
+        if($this->member){
+            $filterClient->toggleStatus($this->member);
+        }
+
+        $this->check_print = $this->member->check_all_print_client;
     }
 
     //Select individual checkbox
@@ -51,12 +74,6 @@ class ContactClient extends Component
         $filter = new TogglePrint();
         $filterClient = new ToggleStatusClient();
         $filterContacts = new FilterContactsClient();
-        $member = Member::where('user_id', Auth::user()->id)->first();
-
-        //Status select all checkbox
-        if($member){
-            $filterClient->toggleStatus($member);
-        }
 
         //Declare all variables for dates
         $date = $this->datepicker;
@@ -67,25 +84,33 @@ class ContactClient extends Component
 
         //Select Contacts from filters
         if (!$this->datepicker) {
-            $contacts = $filterContacts->filterNoDate($member, $this->name, $this->pagination);
+            $this->set_contacts = $filterContacts->filterNoDate($this->member, $this->name);
         } else {
             if ($day) {
-                $contacts = $filterContacts->filterWithDateDay($member, $month, $year, $day, $this->pagination);
+                $this->set_contacts = $filterContacts->filterWithDateDay($this->member, $month, $year, $day, $this->name);
             } else {
-                $contacts = $filterContacts->filterWithDate($member, $month, $year, $this->pagination);
+                $this->set_contacts = $filterContacts->filterWithDate($this->member, $month, $year, $this->name);
             }
         }
 
         //Status print checkboxes
-        if($contacts){
-            foreach ($contacts as $contact){
+        if($this->set_contacts){
+            foreach ($this->set_contacts as $contact){
                 $filter->togglePrintStatus($contact);
             }
         }
+
+        //Status select all checkbox
+        if($this->member){
+            $filterClient->toggleStatus($this->member);
+        }
+
+        $this->check_print = $this->member->check_all_print_client;
     }
 
     public function render()
     {
+        //Declare all classes
         $filter = new FilterContactsClient();
 
         //Declare all variables for dates
@@ -95,15 +120,17 @@ class ContactClient extends Component
         $month = $dateSub->month;
         $day = $this->datepicker_day;
 
+        $this->check_print = $this->member->check_all_print_client;
+
         if (!$this->datepicker) {
-            $contacts = $filter->filterNoDate($this->member, $this->name, $this->pagination);
+            $contacts = $filter->filterNoDatePaginate($this->member, $this->name, $this->pagination);
             return view('livewire.contact-client', compact('contacts'));
 
         } else {
             if ($day) {
-                $contacts = $filter->filterWithDateDay($this->member, $month, $year, $day, $this->pagination);
+                $contacts = $filter->filterWithDateDayPaginate($this->member, $month, $year, $day, $this->pagination, $this->name);
             } else {
-                $contacts = $filter->filterWithDate($this->member, $month, $year, $this->pagination);
+                $contacts = $filter->filterWithDatePaginate($this->member, $month, $year, $this->pagination, $this->name);
             }
             return view('livewire.contact-client', compact('contacts'));
         }

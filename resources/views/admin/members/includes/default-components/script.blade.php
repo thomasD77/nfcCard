@@ -20,7 +20,7 @@
         let base = "media/banners/";
         let type = "banner";
         if (file.size <= 2097152) {
-            if (ext === "jpg" || ext === "jpeg" || ext === "png") {
+            if (ext === "jpg" || ext === "JPG" || ext === "JPEG" || ext === "PNG" || ext === "jpeg" || ext === "png") {
                 let reader = new FileReader();
                 reader.onload = function (e) {
                     $.ajax({
@@ -81,7 +81,7 @@
         let base = "media/logos/";
         let type = "logo";
         if (file.size <= 2097152) {
-            if (ext === "jpg" || ext === "jpeg" || ext === "png") {
+            if (ext === "jpg" || ext === "JPG" || ext === "JPEG" || ext === "PNG" || ext === "jpeg" || ext === "png") {
                 let reader = new FileReader();
                 reader.onload = function (e) {
                     $.ajax({
@@ -162,7 +162,7 @@
             file = files[0];
             if (file.size <= 2097152) {
                 let ext = file.name.split(".")[1];
-                if (ext === "jpg" || ext === "jpeg" || ext === "png") {
+                if (ext === "jpg" || ext === "JPG" || ext === "JPEG" || ext === "PNG" || ext === "jpeg" || ext === "png") {
                     if (URL) {
                         done(URL.createObjectURL(file));
                     } else if (FileReader) {
