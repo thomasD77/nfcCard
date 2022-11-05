@@ -56,7 +56,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::get('member/share', 'App\Http\Controllers\AdminMembersController@share')->name('share');
     Route::patch('member/custom/{id}', 'App\Http\Controllers\AdminMembersController@customButton')->name('custom.button');
 
-    Route::post('update/contact/{contact}', "App\Http\Controllers\AdminContactsController@updateContact")->name("update.contact");
+    Route::PATCH('update/contact/{contact}', "App\Http\Controllers\AdminContactsController@updateContact")->name("update.contact");
     Route::get('filters/events/details/{location}', 'App\Http\Controllers\AdminUsersController@eventDetail')->name('event.detail');
 
     //Routes for generating the URLS

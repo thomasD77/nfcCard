@@ -5,60 +5,76 @@ namespace App\Http\Livewire;
 use App\Models\ContactLocation;
 use App\Models\Location;
 use App\Models\Member;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class EventsContact extends Component
 {
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
+
     public $name;
     public int $pagination = 25;
     public $members;
     public $showNotes = false;
     public $selectMember;
 
+    public $ev_name;
+    public $date;
+    public $remark;
+
+
     public function mount()
     {
         $this->members = Member::where('archived', 0)->get();
     }
-    public function render()
-    {
-        $locations = \App\Models\Location::
-            latest();
-        $date = time();
-        $userId = Auth::id();
-        $locations = Location::latest()
-            ->where('user_id', $userId)
-            ->simplePaginate($this->pagination);
-        return view('livewire.events-contact', compact('locations', 'date'));
+
+    public function mountEvent(Location $location){
+        $this->ev_name = $location->name;
     }
 
-    public function addEvent($formData)
-    {
-        $userId = Auth::id();
-        Location::insert([
-            'name' => $formData['name'],
-            'date' => $formData['date'],
-            'remark' => $formData['remark'],
-            'user_id' => $userId
-        ]);
-        // $this->reset();
-        //$this->render();
-    }
-    public function deleteEvent($locationId)
-    {
-        Location::where('id', $locationId)->delete();
-        ContactLocation::where('location_id', $locationId)->delete();
-    }
-
-    public function updateEvent($locationId, $formData)
-    {
-        $location = Location::where('id', $locationId);
-        $location->update(['name'=> $formData['name'], 'date' => $formData['date'], 'remark' => $formData['remark']]);
-    }
+    protected $rules = [
+        'name' => 'required',
+    ];
 
     public function detail($locationId)
     {
         $location = Location::find($locationId);
         return view('livewire.event-contact-detail', compact('location'));
+    }
+
+    public function addEvent()
+    {
+        Location::create([
+            'name' => $this->ev_name,
+            'date' => $this->date,
+            'remark' => $this->remark,
+            'user_id' => Auth::user()->id
+        ]);
+
+        $this->reset();
+        $this->render();
+    }
+
+    public function render()
+    {
+        $date = time();
+        $userId = Auth::id();
+        if($this->name){
+            $locations = Location::latest()
+                ->where('user_id', $userId)
+                ->where('name', 'LIKE', '%' . $this->name . '%')
+                ->latest()
+                ->simplePaginate($this->pagination);
+        }else {
+            $locations = Location::latest()
+                ->where('user_id', $userId)
+                ->latest()
+                ->simplePaginate($this->pagination);
+        }
+
+        return view('livewire.events-contact', compact('locations', 'date'));
     }
 }

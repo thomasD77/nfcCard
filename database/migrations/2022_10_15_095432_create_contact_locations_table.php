@@ -15,9 +15,12 @@ class CreateContactLocationsTable extends Migration
     {
         Schema::create('contact_locations', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('location_id');
+            $table->unsignedBigInteger('contact_id');
             $table->timestamps();
-            $table->integer('contact_id')->index();
-            $table->integer('location_id')->index();
+
+            $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
+            $table->foreign('contact_id')->references('id')->on('contacts')->onDelete('cascade');
         });
     }
 

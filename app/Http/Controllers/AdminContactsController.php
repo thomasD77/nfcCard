@@ -81,7 +81,7 @@ class AdminContactsController extends Controller
     {
         $contact->name = $request->name;
         $contact->email = $request->email;
-        //$contact->phone = $request->phone;
+        $contact->phone = $request->phone;
 
         if ($request->sector) {
             $contact->sector_id = $request->sector;
@@ -91,13 +91,6 @@ class AdminContactsController extends Controller
         }
         if ($request->notes) {
             $contact->notes = $request->notes;
-        }
-        ContactLocation::where("contact_id", $contact->id)->where("location_id", $request->event)->delete();
-        if ((int)$request->event !== 0) {
-            ContactLocation::insert([
-                'contact_id' => $contact->id,
-                'location_id' => $request->event
-            ]);
         }
 
         $contact->update();
@@ -165,16 +158,23 @@ class AdminContactsController extends Controller
         return redirect()->back();
     }
 
-    public function updateEventContact(ContactEventRequest $request, $id)
+    public function updateEventContact(Request $request, $contact)
     {
-        $event = Location::findOrFail($id);
+        $events = $request->events;
+        $ex_events = ContactLocation::where('contact_id', $contact)->delete();
 
-        $event->date = $request->date;
-        $event->name = $request->event;
+        foreach ($events as $event){
+            if($event != null){
+                ContactLocation::insert([
+                    'contact_id' => $contact,
+                    'location_id' => $event,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
+        }
 
         \Brian2694\Toastr\Facades\Toastr::success('Event Successfully Updated');
-
-        $event->update();
 
         return redirect()->back();
     }
