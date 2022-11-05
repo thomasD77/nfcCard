@@ -117,5 +117,16 @@ class AuthServiceProvider extends ServiceProvider
             }
         });
 
+        Gate::define('hasAccessCheckLocation', function ($user, $location){
+
+            if($location) {
+                if($location->user_id == Auth::user()->id){
+                    return true;
+                }else {
+                    return false;
+                }
+            }
+        });
+
     }
 }
