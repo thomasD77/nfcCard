@@ -10,8 +10,8 @@
 
             <div class="row push">
                 <div class="col-lg-10 offset-lg-1">
-                    <div>
-                        <button wire:click="createButton" class="btn btn-secondary mb-2 mt-5">NEW <i class="fa fa-plus"></i></button>
+                    <div class="">
+                        <button wire:click="createButton" class="btn btn-secondary mb-2"><i class="fa fa-plus"></i></button>
                     </div>
 
                     @if($buttons)

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddExtraFieldAdminToContactsTable extends Migration
+class AddExtraFieldResetMessageToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class AddExtraFieldAdminToContactsTable extends Migration
      */
     public function up()
     {
-        Schema::table('contacts', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             //
-            $table->integer('print_admin')->nullable()->default(0);
+            $table->text('reset_message')->nullable();
         });
     }
 
@@ -26,7 +26,7 @@ class AddExtraFieldAdminToContactsTable extends Migration
      */
     public function down()
     {
-        Schema::table('contacts', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             //
         });
     }

@@ -39,6 +39,7 @@
                         <th scope="col">Company</th>
                         <th scope="col"># Card ID</th>
                         <th scope="col">Material</th>
+                        <th scope="col">Swaps</th>
                         <th scope="col">user account</th>
                         <th scope="col">Actions</th>
                         @can('is_superAdmin')
@@ -55,6 +56,7 @@
                                 <td>{{$member->company ? $member->company : ""}}</td>
                                 <td>{{$member->card_id ? $member->card_id : 'No Card ID'}}</td>
                                 <td>{{$member->material ? $member->material->name : 'No Material'}}</td>
+                                <td>{{$member->contacts ? $member->contacts->count() : '0'}}</td>
                                 <td>
                                     @if(isset($member->user))
                                         <a class="btn btn-outline-primary w-100" href="{{ route('users.edit', $member->user->id) }}">
@@ -72,10 +74,15 @@
                                             </button>
                                         </a>
 
-                                        <a href="{{route('direction', $member->card_id)}}" target="_blank">
-                                            <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Show member">
-                                                <i class="far fa-eye"></i>
-                                            </button>
+                                        @if($member->card_id !== 0)
+                                            <a href="{{route('direction', $member->card_id)}}" target="_blank">
+                                        @else
+                                            <a href="{{route('direction.test', $member)}}" target="_blank">
+                                        @endif
+
+                                        <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Show member">
+                                            <i class="far fa-eye"></i>
+                                        </button>
                                         </a>
 
                                     </div>

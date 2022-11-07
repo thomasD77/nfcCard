@@ -8,22 +8,24 @@
             <div class="block-content">
                 <div class="row items-push">
                     @foreach($referred_members as $member)
-                        @if($member->is_public)
-                            <div class="col-md-4">
-                                <!-- Referred User -->
-                                <a class="block block-rounded block-bordered block-link-shadow h-100 mb-0" href="{{ $member->memberURL }}" target="_blank">
-                                    <div class="block-content block-content-full d-flex align-items-center justify-content-between">
-                                        <div>
-                                            <div class="fw-semibold mb-1">{{ $member->firstname }} {{ $member->lastname }}</div>
-                                            <div class="fs-sm text-muted">{{ $member->jobTitle }}</div>
+                        @if(isset( $member->listurl->type_id))
+                            @if($member->is_public && $member->listurl->type_id != 8)
+                                <div class="col-md-4">
+                                    <!-- Referred User -->
+                                    <a class="block block-rounded block-bordered block-link-shadow h-100 mb-0" href="{{ $member->memberURL }}" target="_blank">
+                                        <div class="block-content block-content-full d-flex align-items-center justify-content-between">
+                                            <div>
+                                                <div class="fw-semibold mb-1">{{ $member->firstname }} {{ $member->lastname }}</div>
+                                                <div class="fs-sm text-muted">{{ $member->jobTitle }}</div>
+                                            </div>
+                                            <div class="ms-3">
+                                                <td><img class="rounded-circle" height="80" width="80" src="{{$member->avatar ? asset('/card/avatars') . "/" . $member->avatar : asset('/assets/front/img/Avatar-4.svg') }}" alt="{{$member->name}}"></td>
+                                            </div>
                                         </div>
-                                        <div class="ms-3">
-                                            <td><img class="rounded-circle" height="80" width="80" src="{{$member->avatar ? asset('/card/avatars') . "/" . $member->avatar : asset('/assets/front/img/Avatar-4.svg') }}" alt="{{$member->name}}"></td>
-                                        </div>
-                                    </div>
-                                </a>
-                                <!-- END Referred User -->
-                            </div>
+                                    </a>
+                                    <!-- END Referred User -->
+                                </div>
+                            @endif
                         @endif
                     @endforeach
                 </div>

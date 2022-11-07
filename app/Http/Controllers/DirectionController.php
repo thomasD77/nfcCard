@@ -19,7 +19,6 @@ class DirectionController extends Controller
         $url = url()->full();
         $parts = parse_url($url);
 
-
         //Get the ID from the URL
         if(isset($parts['query']) !== false)
         {
@@ -99,6 +98,14 @@ class DirectionController extends Controller
             $vCard->vCard($member->id);
             return $vCard;
         }
+    }
+
+
+    public function getTestProfile(Member $member)
+    {
+        $vCard = null;
+        $buttons = Button::where('member_id', $member->id)->get();
+        return view( 'front.landingspage_default.index', compact('member', 'vCard', 'buttons'));
     }
 
 }

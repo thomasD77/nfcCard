@@ -11,6 +11,7 @@
         "php": "^7.3",
         "barryvdh/laravel-dompdf": "^1.0",
         "brian2694/laravel-toastr": "^5.56",
+        "facade/ignition": "^2.17",
         "fakerphp/faker": "^1.19",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
@@ -26,6 +27,7 @@
         "livewire/livewire": "^2.5",
         "maatwebsite/excel": "^3.1",
         "mckenziearts/laravel-notify": "^2.2",
+        "salfade/laravel-login-tracker": "^0.0.7",
         "silviolleite/laravelpwa": "^2.0",
         "simplesoftwareio/simple-qrcode": "^4.2",
         "spatie/browsershot": "^3.52",
@@ -38,7 +40,6 @@
         "barryvdh/laravel-debugbar": "^3.6",
         "barryvdh/laravel-ide-helper": "^2.10",
         "beyondcode/laravel-query-detector": "^1.5",
-        "facade/ignition": "^2.3.6",
         "mockery/mockery": "^1.3.1",
         "nunomaduro/collision": "^5.0",
         "phpunit/phpunit": "^9.3"

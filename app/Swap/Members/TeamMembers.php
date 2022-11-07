@@ -7,7 +7,7 @@ use App\Models\User;
 
 class TeamMembers
 {
-    public function getTeamMembers($user)
+    public function getTeamMembers(User $user)
     {
         $team = $user->team;
         $users = User::where('team_id', $team->id)->pluck('id');
@@ -17,7 +17,7 @@ class TeamMembers
     }
 
 
-    public function getTeamMembersInArrayPluckId($user)
+    public function getTeamMembersInArrayPluckId(User $user)
     {
         $team = $user->team;
         $users = User::where('team_id', $team->id)->pluck('id');

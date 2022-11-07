@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\SendMailDemoCard;
 use App\Models\listUrl;
 use App\Models\Material;
 use App\Models\Member;
@@ -14,6 +15,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 
@@ -91,18 +93,20 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
+        //When there is no trial date set, add date now + one month
+        if($listURL->type_id == 8 && $listURL->trial_date == null) {
+            $listURL->trial_date = now()->addMonth();
+            $listURL->update();
+        }
+
         //Demo cards -- no mail register needed
         if($listURL->team_id == 1) {
             if( $listURL->card_id >= 187 &&  $listURL->card_id <= 286){
                 $user->email_verified_at = now();
                 $user->update();
+
+                Mail::to($user->email)->send(new SendMailDemoCard($user, $listURL));
             }
-        }
-        
-        //When there is no trial date set, add date now + one month
-        if($listURL->type_id == 8 && $listURL->trial_date == null) {
-            $listURL->trial_date = now()->addMonth();
-            $listURL->update();
         }
 
         DB::table('user_role')->insert([
@@ -113,6 +117,7 @@ class RegisterController extends Controller
 
         //Save member settings
         $member->user_id = $user->id;
+        $member->email = $user->email;
         $member->card_id = $data['card_id'];
         $member->memberURL = $url . '/?' . $data['card_id'];
         $member->memberQRcode = $url . '/QRcode'. '/' . $data['card_id'];

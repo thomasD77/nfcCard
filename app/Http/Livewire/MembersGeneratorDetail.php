@@ -151,7 +151,6 @@ class MembersGeneratorDetail extends Component
         }
 
 
-        $materials = Material::pluck('name', 'id');
         $QRcode = \App\Models\QRCODE::first();
 
         $roles = Role::where('id', '!=', 1)->pluck('name','id');

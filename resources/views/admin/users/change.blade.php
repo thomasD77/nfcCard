@@ -32,9 +32,8 @@
                     </p>
                 </div>
                 <div class="col-lg-8 col-xl-5">
-                    {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminUsersController@update',$user->id],
-                  'files'=>true])
-                   !!}
+                    {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminUsersController@update',$user->id],'files'=>true])!!}
+                    @csrf
                     <div class="form-group mb-4">
                         {!! Form::label('one-profile-edit-username', 'Username:',['class'=>'form-label']) !!}
                         {!! Form::text('username',$user->username ? $user->username : "" ,['class'=>'form-control']) !!}

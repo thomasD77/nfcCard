@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Salfade\LoginTracker\Traits\HasLoginAttempts;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasFactory, Notifiable, SoftDeletes;
+    use HasFactory, Notifiable, SoftDeletes, HasLoginAttempts;
 
     /**
      * The attributes that are mass assignable.
@@ -29,7 +30,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'source_id',
         'archived',
         'member_id',
-        'business'
+        'business',
+        'reset_message'
     ];
 
     /**

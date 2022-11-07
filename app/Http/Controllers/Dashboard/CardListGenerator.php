@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\listUrl;
+use App\Models\Material;
 use App\Models\Member;
+use App\Models\Role;
 use App\Models\Team;
+use App\Models\Type;
 use App\Models\URL;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -68,7 +71,10 @@ class CardListGenerator extends Controller
                 $url->type_id = $request->types;
             }
             if($request->date) {
-                $url->trial_date;
+                $url->trial_date = $request->date;
+            }
+            if($request->clear) {
+                $url->trial_date = null;
             }
 
             $url->print = 0;
@@ -76,6 +82,7 @@ class CardListGenerator extends Controller
             $url->update();
 
         }
+
 
         \Brian2694\Toastr\Facades\Toastr::success('List Successfully Updated');
         return redirect()->back();
@@ -103,5 +110,13 @@ class CardListGenerator extends Controller
         \Brian2694\Toastr\Facades\Toastr::success('User(s) Successfully Deleted');
         return redirect()->back();
 
+    }
+
+    public function getListurl(listUrl $url){
+        $roles = Role::where('id', '!=', 1)->pluck('name','id');
+        $materials = Material::pluck('name', 'id');
+        $types = Type::pluck('name', 'id');
+        $QRcode = \App\Models\QRCODE::first();
+        return view('admin/members/listurl', compact('url', 'roles', 'materials', 'types', 'QRcode'));
     }
 }

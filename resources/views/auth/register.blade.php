@@ -99,6 +99,16 @@
                                     </div>
 
                                     <div class="mb-4">
+                                        <p class="text-muted mb-1">Password rules:</p>
+                                        <ul>
+                                            <li class="text-muted"> At least one capital letter </li>
+                                            <li class="text-muted"> At least one letter</li>
+                                            <li class="text-muted"> At least one digit</li>
+                                            <li class="text-muted"> At least one symbol</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="mb-4">
                                         <input placeholder="confirm password"
                                                id="password-confirm"
                                                type="password"

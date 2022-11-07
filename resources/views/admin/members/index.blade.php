@@ -32,11 +32,7 @@
     <!-- Page Content -->
     <div class="content container-fluid">
 
-            @if(Auth()->user()->roles->first()->name != 'client')
-
-                @livewire('members')
-
-            @endif
+        @livewire('members')
 
     </div>
     <!-- END Page Content -->
