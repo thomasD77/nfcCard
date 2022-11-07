@@ -7,10 +7,9 @@
         <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
             <div class="flex-grow-1">
                 <h1 class="h3 fw-bold mb-2">
-                    SWAP CONNECTIONS PER EVENT
-
+                    YOUR EVENTS
                 </h1>
-                <p class="text-muted">Here you can filter all your contacts by event</p>
+                <p class="text-muted">Here you can create/update all your events</p>
             </div>
             <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumb-alt">
@@ -18,7 +17,7 @@
                         <a class="link-fx" href="{{ asset('/admin') }}">Dashboard</a>
                     </li>
                     <li class="breadcrumb-item" aria-current="page">
-                        Swaps
+                        Events
                     </li>
                 </ol>
             </nav>

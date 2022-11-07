@@ -25,7 +25,6 @@ class ContactDetail extends Component
     public $sector;
 
     use WithPagination;
-
     protected $paginationTheme = 'bootstrap';
 
     public function mount(Contact $contact)
@@ -49,39 +48,19 @@ class ContactDetail extends Component
         return redirect()->route('contacts.list');
     }
 
-
     public function render()
     {
         $notes = Note::where('contact_id', $this->contact->id)->count();
-        //$events = Location::where('user_id', Auth::id())->count();
-        $contacts = ContactLocation::where('contact_id', $this->contact->id)->count();
-        $events = Location::where('user_id', Auth::id())->get();
+        $events = ContactLocation::where('contact_id', $this->contact->id)->count();
+
         $statusses = Status::pluck('name', 'id');
         $sectors = JobFunction::pluck('name', 'id');
-        $contactLocations = ContactLocation::where("contact_id", $this->contact->id)->count();
-        $locations = Location::where("user_id", Auth::id())->get();
-        $contactLocation = "";
-        foreach ($locations as $location)
-        {
-            $contactLocation = ContactLocation::where('contact_id', $this->contact->id)->where('location_id', $location->id)->first();
-            if($contactLocation){
-                break;
-            }
-        }
-        if(!$contactLocation || $contactLocation === ""){
-            $eventId = 0;
-        } else{
-            $eventId = $contactLocation->location->id;
-        }
 
         return view('livewire.contact-detail', compact(
             'notes',
             'statusses',
             'sectors',
-            'contacts',
             'events',
-            'eventId',
-            "contactLocations"
         ));
     }
 }

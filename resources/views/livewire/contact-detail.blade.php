@@ -26,6 +26,7 @@
                                 </div>
                                 <div class="modal-body">
 <<<<<<< HEAD
+<<<<<<< HEAD
                                     {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\AdminContactsController@updateContact',$contact->id]]) !!}
 =======
                                     {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminContactsController@updateContact',$contact->id]]) !!}
@@ -49,16 +50,34 @@
                                             @enderror
                                         </div>
                                     @endif
+=======
+                                    {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminContactsController@updateContact',$contact->id]]) !!}
+                                    @csrf
+>>>>>>> 0cabd772d602e6f9d8d6d5cc4d98812c8db80a95
 
-                                    @if($contact->phone)
-                                        <div class="form-group mb-4">
-                                            <p class="mb-2 mt-4" style="text-align: left"><strong>Phone:</strong></p>
-                                            <input type="phone"  value="{{ $contact->phone }}" name="phone" class="form-control">
-                                            @error('phone')
-                                            <p class="text-danger mt-2"> {{ $message }}</p>
-                                            @enderror
-                                        </div>
-                                    @endif
+                                    <div class="form-group mb-4">
+                                        <p class="mb-2 mt-4" style="text-align: left"><strong>Name:</strong></p>
+                                        <input type="text"  value="{{ $contact->name }}" name="name" class="form-control">
+                                        @error('name')
+                                        <p class="text-danger mt-2"> {{ $message }}</p>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group mb-4">
+                                        <p class="mb-2 mt-4" style="text-align: left"><strong>Email:</strong></p>
+                                        <input type="email"  value="{{ $contact->email }}" name="email" class="form-control">
+                                        @error('email')
+                                        <p class="text-danger mt-2"> {{ $message }}</p>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group mb-4">
+                                        <p class="mb-2 mt-4" style="text-align: left"><strong>Phone:</strong></p>
+                                        <input type="phone"  value="{{ $contact->phone }}" name="phone" class="form-control">
+                                        @error('phone')
+                                        <p class="text-danger mt-2"> {{ $message }}</p>
+                                        @enderror
+                                    </div>
 
                                     @if($contact->company)
                                         <p class="mb-2 mt-4" style="text-align: left"><strong>Company:</strong></p>
@@ -78,17 +97,6 @@
                                     <p class="mb-2 mt-4" style="text-align: left"><strong>Sector:</strong></p>
                                     <div class="form-group mb-4">
                                         {!! Form::select('sector',$sectors,$contact->sector_id,['class'=>'form-control',])!!}
-                                    </div>
-
-                                    <p class="mb-2 mt-4" style="text-align: left"><strong>Event:</strong></p>
-                                    <div class="form-group mb-4">
-                                        <select class="form-control" name="event">
-                                            <option value="0">No event</option>
-
-                                            @foreach($events as $event)
-                                                <option value="{{$event->id}}" @if($eventId === $event->id) selected @endif>{{$event->name}}</option>
-                                            @endforeach
-                                        </select>
                                     </div>
 
                                     <p class="mb-2 mt-4" style="text-align: left"><strong>Short note:</strong></p>
@@ -159,10 +167,54 @@
                     </div>
                     <div class="col-md-3">
                         <div class="fw-semibold text-dark mb-1">Events</div>
-                        <a class="link-fx fs-3 text-primary" >{{ $contactLocations }}</a>
+                        <a class="link-fx fs-3 text-primary" >{{ $events }}</a>
                     </div>
                 </div>
             </div>
+        @if($contact->notes)
+            <!-- Short Note -->
+                <div class="block block-rounded">
+                    <div class="block-header px-lg-5 mt-md-3">
+                        <h3 class="block-title">Short Note</h3>
+                        <button type="submit" class="btn btn-sm btn-alt-secondary" data-bs-toggle="modal" data-bs-target="#exampleModalShortNotes{{$contact->id}}">
+                            <i class="si si-pencil"></i>
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModalShortNotes{{$contact->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminContactsController@updateShortNoteContact',$contact->id]]) !!}
+                                        @csrf
+                                        <textarea type="text"
+                                                  class="form-control"
+                                                  placeholder="Type your note..."
+                                                  rows="4"
+                                                  name="notes"
+                                        >{{ $contact->notes }}</textarea>
+                                        @error('notes')
+                                        <p class="text-danger mt-2"> {{ $message }}</p>
+                                        @enderror
+
+                                        <div class="my-4">
+                                            <button type="submit" class="btn btn-alt-primary">Update</button>
+                                        </div>
+                                        {!! Form::close() !!}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="block-content p-lg-5">
+                        {{ $contact->notes }}
+                    </div>
+                </div>
+                <!-- END Message -->
+
+            @endif
+
+
         </div>
         <!-- END User Info -->
 
@@ -198,6 +250,18 @@
                                         <i class="far fa-bookmark mb-3 me-2"></i> {{ $contact->VAT }}<br>
                                     @endif
                                 </address>
+                                @if($contact->message)
+                                    <!-- Message -->
+                                    <div class="block block-rounded">
+                                        <div class="block-header block-header-default">
+                                            <h3 class="block-title">Their message to you:</h3>
+                                        </div>
+                                        <div class="block-content p-2 p-lg-4">
+                                            {{ $contact->message }}
+                                        </div>
+                                    </div>
+                                    <!-- END Message -->
+                                @endif
                             </div>
                         </div>
                         <!-- END Contact information -->
@@ -254,71 +318,9 @@
         </div>
         <!-- END Addresses -->
 
-        <div class="row">
-            @if($contact->message)
-                <div class="col-lg-6">
-                    <!-- Message -->
-                        <div class="block block-rounded">
-                            <div class="block-header block-header-default">
-                                <h3 class="block-title">Message</h3>
-                            </div>
-                            <div class="block-content p-2 p-lg-4">
-                                {{ $contact->message }}
-                            </div>
-                        </div>
-                    <!-- END Message -->
-                </div>
-            @endif
-
-            @if($contact->notes)
-            <div class="col-lg-6">
-                <!-- Short Note -->
-                <div class="block block-rounded">
-                    <div class="block-header block-header-default">
-                        <h3 class="block-title">Short Note</h3>
-                        <button type="submit" class="btn btn-sm btn-alt-secondary" data-bs-toggle="modal" data-bs-target="#exampleModalShortNotes{{$contact->id}}">
-                            <i class="si si-pencil"></i>
-                        </button>
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModalShortNotes{{$contact->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-body">
-                                        {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminContactsController@updateShortNoteContact',$contact->id]]) !!}
-                                        @csrf
-                                        <textarea type="text"
-                                                  class="form-control"
-                                                  placeholder="Type your note..."
-                                                  rows="4"
-                                                  name="notes"
-                                        >{{ $contact->notes }}</textarea>
-                                        @error('notes')
-                                        <p class="text-danger mt-2"> {{ $message }}</p>
-                                        @enderror
-
-                                        <div class="my-4">
-                                            <button type="submit" class="btn btn-alt-primary">Update</button>
-                                        </div>
-                                        {!! Form::close() !!}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="block-content p-2 p-lg-4">
-                        {{ $contact->notes }}
-                    </div>
-                </div>
-                <!-- END Message -->
-            </div>
-        </div>
-        @endif
-
-
         @livewire('contact-detail-reffered-members', [ 'contact' => $contact ])
 
-        {{--@livewire('contact-detail-events', [ 'contact' => $contact ]) --}}
+        @livewire('contact-detail-events', [ 'contact' => $contact ])
 
         @livewire('contact-detail-notes', [ 'contact' => $contact ])
 
