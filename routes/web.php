@@ -57,7 +57,8 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::patch('member/custom/{id}', 'App\Http\Controllers\AdminMembersController@customButton')->name('custom.button');
 
     Route::PATCH('update/contact/{contact}', "App\Http\Controllers\AdminContactsController@updateContact")->name("update.contact");
-    Route::get('filters/events/details/{location}', 'App\Http\Controllers\AdminUsersController@eventDetail')->name('event.detail');
+    Route::get('filters/events/details/{location}', 'App\Http\Controllers\AdminUsersController@eventDetail')->name('event.detail')->middleware('can:hasAccessCheckLocation,location');
+    Route::get('filters/events','App\Http\Controllers\AdminUsersController@filterEvents')->name('filters.events');
 
     //Routes for generating the URLS
     Route::POST('generate/member', 'App\Http\Controllers\AdminMembersController@generate')->name('members.generate');
@@ -83,7 +84,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::get('/', [App\Http\Controllers\AdminHomeController::class, 'index'])->name('admin.home');
 
     //User Routes
-    Route::resource('users', App\Http\Controllers\AdminUsersController::class)->middleware('can:hasAccessCheckUser,user');;
+    Route::resource('users', App\Http\Controllers\AdminUsersController::class)->middleware('can:hasAccessCheckUser,user');
     Route::PATCH('user/update/team/{user}', [App\Http\Controllers\AdminUsersController::class, 'updateTeam']);
     Route::get('user/delete/{id}', 'App\Http\Controllers\AdminUsersController@delete')->name('users.delete');
     Route::post('user/keep/{user}', 'App\Http\Controllers\AdminUsersController@keep')->name('users.keep');
@@ -122,7 +123,4 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::get('print/scans/client', 'App\Http\Controllers\CardController@printScansClient')->name('print.scans.client');
     Route::get('print/scans/team', 'App\Http\Controllers\CardController@printScansTeam')->name('print.scans.team');
     Route::post('password/{id}', 'App\Http\Controllers\AdminUsersController@updatePassword');
-
-    Route::get('filters/events','App\Http\Controllers\AdminUsersController@filterEvents')->name('filters.events');
-
 });

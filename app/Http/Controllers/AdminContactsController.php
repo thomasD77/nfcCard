@@ -163,14 +163,16 @@ class AdminContactsController extends Controller
         $events = $request->events;
         $ex_events = ContactLocation::where('contact_id', $contact)->delete();
 
-        foreach ($events as $event){
-            if($event != null){
-                ContactLocation::insert([
-                    'contact_id' => $contact,
-                    'location_id' => $event,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ]);
+        if($events){
+            foreach ($events as $event){
+                if($event != null){
+                    ContactLocation::insert([
+                        'contact_id' => $contact,
+                        'location_id' => $event,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]);
+                }
             }
         }
 

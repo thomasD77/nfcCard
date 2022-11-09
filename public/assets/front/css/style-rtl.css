@@ -228,15 +228,19 @@
 }
 
 input {
-    text-align: center;
+    text-align: left !important;
+}
+
+textarea {
+    text-align: left !important;
 }
 
 ::-webkit-input-placeholder {
-    text-align: left;
+    text-align: start ;
 }
 
 :-moz-placeholder {
-    text-align: left;
+    text-align: start;
 }
 
 /* -----------------------------------------------------------------
