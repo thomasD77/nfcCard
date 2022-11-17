@@ -27,8 +27,8 @@
                             <tr>
                                 <td>{{ $member->lastname }} {{ $member->firstname }}</td>
                                 <td>{{ $member->email }}</td>
-                                <td>{{ $member->phone }}</td>
-                                <td>{{ $member->user->company }}</td>
+                                <td>{{ $member->mobile }}</td>
+                                <td>{{ $member->user->team->name }}</td>
                                 <td>{{ count($member->contacts) }}</td>
                                 <td>{{ $member->profile_views }}</td>
                             </tr>
