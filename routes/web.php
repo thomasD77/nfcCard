@@ -120,6 +120,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::get('print/scans', 'App\Http\Controllers\CardController@printScans')->name('print.scans');
     Route::get('print/list/{id}', 'App\Http\Controllers\CardController@print')->name('print.list');
     Route::get('print/marketing', 'App\Http\Controllers\CardController@printMarketing')->name('print.marketing');
+    Route::get('print/stats', 'App\Http\Controllers\CardController@printStats')->name('print.stats');
     Route::get('print/scans/client', 'App\Http\Controllers\CardController@printScansClient')->name('print.scans.client');
     Route::get('print/scans/team', 'App\Http\Controllers\CardController@printScansTeam')->name('print.scans.team');
     Route::post('password/{id}', 'App\Http\Controllers\AdminUsersController@updatePassword');

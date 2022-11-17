@@ -58,6 +58,12 @@
                             <i class="fab fa-mailchimp me-2"></i>
                         </a>
                     @endif
+
+                    @if($urls->first() != null )
+                        <a href="{{ route('print.stats')}}" class="btn btn-alt-info" data-bs-toggle="Stats" title="Stats">
+                            <i class="fa fa-chart-line me-2"></i>
+                        </a>
+                    @endif
                 </div>
             </div>
 
