@@ -21,15 +21,14 @@
             <!-- Main Container -->
             <!-- Check if user is archived -->
             @if(!Auth::user()->archived)
-
                 <!-- Check if user trial is expired -->
                 @if(Auth::user()->member)
-                    @php
-                    $date_member = date( 'Y-m-d', strtotime(Auth::user()->member->listurl->trial_date));
-                    $date_now = date( 'Y-m-d', strtotime(now()));
-                    @endphp
                     <!-- Check if user has test card -->
                     @if(Auth::user()->member->listurl->type_id == 8)
+                        @php
+                            $date_member = date( 'Y-m-d', strtotime(Auth::user()->member->listurl->trial_date));
+                            $date_now = date( 'Y-m-d', strtotime(now()));
+                        @endphp
                         <!-- Check if test card is expired -->
                         @if($date_member > $date_now)
                             <main id="main-container">
@@ -42,7 +41,7 @@
                                     <a href="https://swap-nfc.be/help-center"><span class="text-muted">click here </span>>>> SWAP NFC <span> <<< </span></a>
                                 </div>
                             </main>
-                        @endif
+                    @endif
                     <!-- No test card -->
                     @else
                         <main id="main-container">
