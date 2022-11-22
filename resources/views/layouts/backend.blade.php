@@ -42,9 +42,13 @@
                                         <a href="https://swap-nfc.be/help-center"><span class="text-muted">click here </span>>>> SWAP NFC <span> <<< </span></a>
                                     </div>
                                 </main>
+                            @endif
+                        <!-- No test card -->
+                        @else
+                            <main id="main-container">
+                                @yield('content')
+                            </main>
                         @endif
-                    @endif
-                    <!-- No test card -->
                     @else
                         <main id="main-container">
                             @yield('content')
