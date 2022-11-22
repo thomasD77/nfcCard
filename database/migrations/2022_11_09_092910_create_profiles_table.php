@@ -22,7 +22,7 @@ class CreateProfilesTable extends Migration
             $table->integer('video_id')->index()->nullable();
             $table->string('front_style')->default("dark");
             $table->integer('profile_views')->nullable();
-
+            $table->string("profile_name")->default("Standard");
             //General
             $table->string('firstname')->default("");
             $table->string('lastname')->default("");
@@ -52,6 +52,8 @@ class CreateProfilesTable extends Migration
             $table->string('youTube')->default("");
             $table->string('tikTok')->default("");
             $table->string('whatsApp')->default("");
+            $table->string('titleMessage')->default("");
+            $table->string('message')->default("");
 
             $table->integer('member_id')->index()->nullable(false);
             $table->boolean("active")->default(0);
