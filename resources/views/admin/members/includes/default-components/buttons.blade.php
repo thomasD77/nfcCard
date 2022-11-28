@@ -30,7 +30,7 @@
                                    type="checkbox"
                                    name="check_facebook"
                                    style="width: 25px; height: 25px"
-                                   value="{{ 1 }}" @if($member->state->facebook) checked @endif>
+                                   value="{{ 1 }}" @if($profile->state->facebook) checked @endif>
                         </div>
                     </div>
                     {!! Form::text('facebook',$profile->facebook ,['class'=>'form-control col-6', 'placeholder' => 'ex: https://www.facebook.com/Innova-Webcreations-107384388503435']) !!}
@@ -47,7 +47,7 @@
                                    type="checkbox"
                                    name="check_instagram"
                                    style="width: 25px; height: 25px"
-                                   value="{{ 1 }}" @if($member->state->instagram) checked @endif>
+                                   value="{{ 1 }}" @if($profile->state->instagram) checked @endif>
                         </div>
                     </div>
                     {!! Form::text('instagram',$profile->instagram ,['class'=>'form-control', 'placeholder' => 'ex: https://www.instagram.com/innovawebcreations/']) !!}
@@ -64,7 +64,7 @@
                                    type="checkbox"
                                    name="check_twitter"
                                    style="width: 25px; height: 25px"
-                                   value="{{ 1 }}" @if($member->state->twitter) checked @endif>
+                                   value="{{ 1 }}" @if($profile->state->twitter) checked @endif>
                         </div>
                     </div>
                     {!! Form::text('twitter',$profile->twitter ,['class'=>'form-control', 'placeholder' => 'ex: https://twitter.com/elonmusk']) !!}
@@ -81,7 +81,7 @@
                                    type="checkbox"
                                    name="check_youTube"
                                    style="width: 25px; height: 25px"
-                                   value="{{ 1 }}" @if($member->state->youTube) checked @endif>
+                                   value="{{ 1 }}" @if($profile->state->youTube) checked @endif>
                         </div>
                     </div>
                     {!! Form::text('youTube',$profile->youTube ,['class'=>'form-control' , 'placeholder' => 'ex: https://www.youtube.com/watch?v=fsDmW1o6ufA']) !!}
@@ -98,7 +98,7 @@
                                    type="checkbox"
                                    name="check_linkedIn"
                                    style="width: 25px; height: 25px"
-                                   value="{{ 1 }}" @if($member->state->linkedIn) checked @endif>
+                                   value="{{ 1 }}" @if($profile->state->linkedIn) checked @endif>
                         </div>
                     </div>
                     {!! Form::text('linkedIn',$profile->linkedIn ,['class'=>'form-control' , 'placeholder' => 'ex: https://www.linkedin.com/in/thomas-demeulenaere-39997662/']) !!}
@@ -115,7 +115,7 @@
                                    type="checkbox"
                                    name="check_tikTok"
                                    style="width: 25px; height: 25px"
-                                   value="{{ 1 }}" @if($member->state->tikTok) checked @endif>
+                                   value="{{ 1 }}" @if($profile->state->tikTok) checked @endif>
                         </div>
                     </div>
                     {!! Form::text('tikTok',$profile->tikTok ,['class'=>'form-control' , 'placeholder' => 'ex: https://www.tiktok.com/@elonxmusk']) !!}
@@ -132,7 +132,7 @@
                                    type="checkbox"
                                    name="check_whatsApp"
                                    style="width: 25px; height: 25px"
-                                   value="{{ 1 }}" @if($member->state->whatsApp) checked @endif>
+                                   value="{{ 1 }}" @if($profile->state->whatsApp) checked @endif>
                         </div>
                     </div>
                     {!! Form::text('whatsApp',$profile->whatsApp ,['class'=>'form-control' , 'placeholder' => 'ex: +32474411556']) !!}
@@ -149,7 +149,7 @@
                                    type="checkbox"
                                    name="check_customField"
                                    style="width: 25px; height: 25px"
-                                   value="{{ 1 }}" @if($member->state->customField) checked @endif>
+                                   value="{{ 1 }}" @if($profile->state->customField) checked @endif>
                         </div>
                     </div>
                     {!! Form::text('customText',$member->customText ,['class'=>'form-control']) !!}

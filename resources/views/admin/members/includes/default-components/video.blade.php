@@ -17,7 +17,7 @@
                                    type="checkbox"
                                    name="check_youtube_video"
                                    style="width: 25px; height: 25px"
-                                   value="{{ 1 }}" @if($member->state->youtube_video) checked @endif>
+                                   value="{{ 1 }}" @if($profile->state->youtube_video) checked @endif>
                         </div>
                     </div>
                     {!! Form::text('youtube_video',$profile->youtube_video ,['class'=>'form-control' , 'placeholder' => 'https://www.youtube.com/watch?v=gg8gjO5pLps']) !!}
@@ -37,7 +37,7 @@
                                    type="checkbox"
                                    name="check_video"
                                    style="width: 25px; height: 25px"
-                                   value="{{ 1 }}" @if($member->state->video) checked @endif>
+                                   value="{{ 1 }}" @if($profile->state->video) checked @endif>
                         </div>
                     </div>
                     {!! Form::file('video_id',['class'=>'form-control', "accept"=>"video/mp4"]) !!}

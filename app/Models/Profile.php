@@ -42,7 +42,7 @@ class Profile extends Model
             'logo_id',
         ];
 
-    protected $with = ['state'];
+    protected $with = ['state', 'logo', 'banner'];
 
     public function banner()
     {
