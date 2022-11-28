@@ -10,14 +10,14 @@
             <div class="col-lg-10 offset-lg-1">
                 <div class="form-group my-4">
                     {!! Form::label('titleMessage','Title:',['class'=>'form-label']) !!}
-                    {!! Form::text('titleMessage',$member->titleMessage ,['class'=>'form-control']) !!}
+                    {!! Form::text('titleMessage',$profile->titleMessage ,['class'=>'form-control']) !!}
                     @error('titleMessage')
                     <p class="text-danger mt-2"> {{ $message }}</p>
                     @enderror
                 </div>
                 <div class="form-group my-4">
                     {!! Form::label('message','Message:',['class'=>'form-label']) !!}
-                    {!! Form::textarea('message',$member->message ,['class'=>'form-control']) !!}
+                    {!! Form::textarea('message',$profile->message ,['class'=>'form-control']) !!}
                     @error('message')
                     <p class="text-danger mt-2"> {{ $message }}</p>
                     @enderror

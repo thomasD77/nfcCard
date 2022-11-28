@@ -51,6 +51,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
 
     //Routes for CRUD members
     Route::resource('members', App\Http\Controllers\AdminMembersController::class)->middleware('can:hasAccessCheckMember,member');
+    Route::resource('profiles', App\Http\Controllers\AdminProfilesController::class);
     Route::get('archive/members', 'App\Http\Controllers\AdminMembersController@archive')->name('members.archive');
     Route::get('member/QRcode/show/{card_id}', 'App\Http\Controllers\QRcode\QRcodeController@fancyQRcode')->name('show.QRcode');
     Route::get('member/share', 'App\Http\Controllers\AdminMembersController@share')->name('share');

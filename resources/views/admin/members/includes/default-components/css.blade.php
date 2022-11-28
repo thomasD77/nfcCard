@@ -16,7 +16,7 @@
         border: 1px solid red;
     }
 
-    .avatar_id .preview {
+    .modal-body .preview {
         border-radius: 50%;
     }
 
@@ -118,6 +118,87 @@
 
     .slider-checkbox:checked + .slider-label .slider-circle {
         background-color: white;
+        right: 0;
+    }
+
+    .slider-profile {
+        border: none;
+        position: relative;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        width: 125px;
+    }
+
+    .slider-checkbox-profile {
+        display: none;
+    }
+
+    .slider-label-profile {
+        border: 2px solid #666;
+        border-radius: 20px;
+        cursor: pointer;
+        display: block;
+        overflow: hidden;
+    }
+
+    .slider-inner-profile {
+        display: block;
+        margin-left: -100%;
+        transition: margin 0.3s ease-in 0s;
+        width: 200%;
+    }
+
+    .slider-inner-profile:before,
+    .slider-inner-profile:after {
+        box-sizing: border-box;
+        display: block;
+        float: left;
+        font-family: sans-serif;
+        font-size: 14px;
+        font-weight: bold;
+        height: 30px;
+        line-height: 30px;
+        padding: 0;
+        width: 50%;
+    }
+
+    .slider-inner-profile:before {
+        background-color: green;
+        color: #ffffff;
+        content: "ACTIVE";
+        padding-left: .75em;
+    }
+
+    .slider-inner-profile:after {
+        background-color: transparent;
+        color: black;
+        content: "UNACTIVE";
+        padding-right: .75em;
+        text-align: right;
+    }
+
+    .slider-circle-profile {
+        background-color: green;
+        border: 2px solid #666;
+        border-radius: 20px;
+        bottom: 0;
+        display: block;
+        margin: 5px;
+        position: absolute;
+        right: 91px;
+        top: 0;
+        transition: all 0.3s ease-in 0s;
+        width: 20px;
+    }
+
+    .slider-checkbox-profile:checked + .slider-label-profile .slider-inner-profile {
+        margin-left: 0;
+    }
+
+    .slider-checkbox-profile:checked + .slider-label-profile .slider-circle-profile {
+        background-color: #ffffff;
         right: 0;
     }
 </style>

@@ -20,7 +20,7 @@
                                    value="{{ 1 }}" @if($member->state->youtube_video) checked @endif>
                         </div>
                     </div>
-                    {!! Form::text('youtube_video',$member->youtube_video ,['class'=>'form-control' , 'placeholder' => 'https://www.youtube.com/watch?v=gg8gjO5pLps']) !!}
+                    {!! Form::text('youtube_video',$profile->youtube_video ,['class'=>'form-control' , 'placeholder' => 'https://www.youtube.com/watch?v=gg8gjO5pLps']) !!}
                     @error('Youtube_Video')
                     <p class="text-danger mt-2"> {{ $message }}</p>
                     @enderror
@@ -43,7 +43,7 @@
                     {!! Form::file('video_id',['class'=>'form-control', "accept"=>"video/mp4"]) !!}
                     @if($member->video != null)
                         {!! Form::label('video_id', 'Current Video:', ['class'=>'form-label mt-3']) !!}
-                        <input type="text" class="form-control mt-2" disabled value="{{ $member->video->file }}">
+                        <input type="text" class="form-control mt-2" disabled value="{{ $profile->video->file }}">
                     @endif
                 </div>
                 @if(!$errors->isEmpty())

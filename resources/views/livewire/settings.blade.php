@@ -13,6 +13,7 @@
                           type="checkbox"
                           id="flexSwitchCheckDefault"
                           class="my-3"
+                          disabled
                           @if(Auth()->user()->member->settings->name == 1) checked @endif
                           wire:click="toggleName">
                </div>
@@ -27,6 +28,7 @@
                           type="checkbox"
                           id="flexSwitchCheckDefault"
                           class="my-3"
+                          disabled
                           @if(Auth()->user()->member->settings->email == 1) checked @endif
                           wire:click="toggleEmail">
                </div>

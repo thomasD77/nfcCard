@@ -18,7 +18,7 @@
                                    value="{{ 1 }}" @if($member->state->mobileWork) checked @endif>
                         </div>
                     </div>
-                    {!! Form::text('mobileWork',$member->mobileWork ,['class'=>'form-control']) !!}
+                    {!! Form::text('mobileWork',$profile->mobileWork ,['class'=>'form-control']) !!}
                     @error('mobileWork')
                     <p class="text-danger mt-2"> {{ $message }}</p>
                     @enderror
@@ -35,7 +35,7 @@
                                    value="{{ 1 }}" @if($member->state->mobile) checked @endif>
                         </div>
                     </div>
-                    {!! Form::text('mobile',$member->mobile ,['class'=>'form-control']) !!}
+                    {!! Form::text('mobile',$profile->mobile ,['class'=>'form-control']) !!}
                     @error('mobile')
                     <p class="text-danger mt-2"> {{ $message }}</p>
                     @enderror
@@ -52,7 +52,7 @@
                                    value="{{ 1 }}" @if($member->state->addressLine1) checked @endif>
                         </div>
                     </div>
-                    {!! Form::text('addressLine1',$member->addressLine1 ,['class'=>'form-control']) !!}
+                    {!! Form::text('addressLine1',$profile->addressLine1 ,['class'=>'form-control']) !!}
                     @error('addressLine1')
                     <p class="text-danger mt-2"> {{ $message }}</p>
                     @enderror
@@ -69,7 +69,7 @@
                                    value="{{ 1 }}" @if($member->state->city) checked @endif>
                         </div>
                     </div>
-                    {!! Form::text('city',$member->city ,['class'=>'form-control']) !!}
+                    {!! Form::text('city',$profile->city ,['class'=>'form-control']) !!}
                     @error('city')
                     <p class="text-danger mt-2"> {{ $message }}</p>
                     @enderror
@@ -86,7 +86,7 @@
                                    value="{{ 1 }}" @if($member->state->postalCode) checked @endif>
                         </div>
                     </div>
-                    {!! Form::text('postalCode',$member->postalCode ,['class'=>'form-control']) !!}
+                    {!! Form::text('postalCode',$profile->postalCode ,['class'=>'form-control']) !!}
                     @error('postalCode')
                     <p class="text-danger mt-2"> {{ $message }}</p>
                     @enderror
@@ -103,7 +103,7 @@
                                    value="{{ 1 }}" @if($member->state->country) checked @endif>
                         </div>
                     </div>
-                    {!! Form::text('country',$member->country ,['class'=>'form-control']) !!}
+                    {!! Form::text('country',$profile->country ,['class'=>'form-control']) !!}
                     @error('country')
                     <p class="text-danger mt-2"> {{ $message }}</p>
                     @enderror
