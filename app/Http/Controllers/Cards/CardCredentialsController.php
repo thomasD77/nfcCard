@@ -72,6 +72,12 @@ class CardCredentialsController extends Controller
             $url->business = 1;
         }
 
+        if(!$request->is_company){
+            $url->is_company = 0;
+        }else {
+            $url->is_company = 1;
+        }
+
         $url->update();
 
 

@@ -177,11 +177,51 @@
                         @can('is_superAdmin')
                             <div class="form-group mb-4">
                                 <label class="form-label">Business account:</label>
+                                <div class="alert alert-dark fs-sm">
+                                    <div class="mt-2">
+                                        <p class="mb-0">
+                                            <i class="fa fa-fw fa-info me-1 mb-0"></i>
+                                            If you have a business account, then you can access all Swap functionalities!
+                                        </p>
+                                    </div>
+                                </div>
                                 <div class="form-check form-switch">
                                     <input class="form-check-input" value="1" name="business" type="checkbox" id="flexSwitchCheckDefault" @if($user->business) checked @endif>
                                 </div>
                             </div>
                         @endcan
+
+                        @can('is_superAdmin')
+                            <div class="form-group mb-4">
+                                <label class="form-label">Company account:</label>
+                                <div class="alert alert-dark fs-sm">
+                                    <div class="mt-2">
+                                        <p class="mb-0">
+                                            <i class="fa fa-fw fa-info me-1 mb-0"></i>
+                                            Company account is a general account dedicated to a company, not a user.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" value="1" name="is_company" type="checkbox" id="flexSwitchCheckDefault" @if($user->is_company) checked @endif>
+                                </div>
+                            </div>
+                        @endcan
+
+                        <div class="form-group mb-4">
+                            <label class="form-label">Public account:</label>
+                            <div class="alert alert-dark fs-sm">
+                                <div class="mt-2">
+                                    <p class="mb-0">
+                                        <i class="fa fa-fw fa-info me-1 mb-0"></i>
+                                        If you have a public account, other people can find your profile through your team members.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" value="1" name="is_public" type="checkbox" id="flexSwitchCheckDefault" @if($user->member ? $user->member->is_public : "") checked @endif>
+                            </div>
+                        </div>
 
                         <div class="form-group mb-4">
                             {!! Form::label('one-profile-edit-name', 'Name:', ['class'=>'form-label']) !!}
@@ -237,21 +277,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group mb-4">
-                            <div class="alert alert-dark fs-sm">
-                                <div class="mt-2">
-                                    <p class="mb-0">
-                                        <i class="fa fa-fw fa-info me-1 mb-0"></i>
-                                        If you have a public account, other people can find your profile through your team members.
-                                    </p>
-                                </div>
-                            </div>
-                            <label class="form-label">Public account:</label>
-                            <div class="form-check form-switch">
-                                <input class="form-check-input" value="1" name="is_public" type="checkbox" id="flexSwitchCheckDefault" @if($user->member ? $user->member->is_public : "") checked @endif>
-                            </div>
-                        </div>
-
                         <div class="d-flex justify-content-between">
                             <div class="form-group mr-1">
                                 {!! Form::submit('Update',['class'=>'btn btn-alt-primary']) !!}
@@ -287,7 +312,7 @@
                             @if($role == 'client')
                                 {!! Form::text('name',$user->team->name,['class'=>'form-control', 'disabled']) !!}
                             @else
-                                {!! Form::text('name',$user->team->name,['class'=>'form-control']) !!}
+                                {!! Form::text('name',$user->team->name,['class'=>'form-control', 'disabled']) !!}
                                 @error('name')
                                 <p class="text-danger mt-2"> {{ $message }}</p>
                                 @enderror

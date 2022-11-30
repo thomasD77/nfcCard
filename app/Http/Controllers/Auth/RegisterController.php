@@ -141,6 +141,7 @@ class RegisterController extends Controller
         $user->member_id = $member->id;
         $user->team_id = $listURL->team_id;
         $user->business = $listURL->business;
+        $user->is_company = $listURL->is_company;
         $user->save();
 
         //Connect ListURl with Member

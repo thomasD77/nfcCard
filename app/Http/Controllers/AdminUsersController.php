@@ -142,6 +142,12 @@ class AdminUsersController extends Controller
             $user->business = 1;
         }
 
+        if (!$request->is_company) {
+            $user->is_company = 0;
+        } else {
+            $user->is_company = 1;
+        }
+
         $listurl = listUrl::where('member_id', $user->member->id)->first();
         $listurl->trial_date = $request->trial_date;
         $listurl->update();

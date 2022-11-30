@@ -107,13 +107,22 @@
     @endcan
 
     @canany([ 'is_client', 'is_admin'])
-
+        @if(!Auth()->user()->is_company)
         <div class="row parent"
-             style="background-image: url('images/content/background_4.png');
-             background-repeat: no-repeat;
-             height: 100%; width: 100%;
-             background-position: center center;
-             background-size: cover">
+            style="background-image: url('images/content/background_4.png');
+            background-repeat: no-repeat;
+            height: 100%; width: 100%;
+            background-position: center center;
+            background-size: cover">
+        @else
+        <div class="row parent"
+            style="background-image: url('images/content/bg.jpeg');
+            background-repeat: no-repeat;
+            height: 100%; width: 100%;
+            background-position: center center;
+            background-size: cover">
+        @endif
+
 
 
             <div class="block-content mb-4" style="padding-left: 27px;">
@@ -138,7 +147,13 @@
                                 <div class="col-md-6">
                                     <div class="card-body">
 
-                                        <h4 class="card-title mb-4">{{ $member->firstname }} {{ $member->lastname }}</h4>
+                                        @if(Auth()->user()->is_company)
+                                            <h4 class="card-title mb-4">{{ $member->company }}</h4>
+                                        @else
+                                            <h4 class="card-title mb-4">{{ $member->firstname }} {{ $member->lastname }}</h4>
+                                        @endif
+
+
 
                                         @if($member->email)
                                             <div class="row">
@@ -147,11 +162,13 @@
                                             </div>
                                         @endif
 
-                                        @if($member->company)
-                                            <div class="row">
-                                                <i class="far fa-building col-1 pt-2"></i>
-                                                <p class="col-10">{{ $member->company }}</p>
-                                            </div>
+                                        @if(!Auth()->user()->is_company)
+                                            @if($member->company)
+                                                <div class="row">
+                                                    <i class="far fa-building col-1 pt-2"></i>
+                                                    <p class="col-10">{{ $member->company }}</p>
+                                                </div>
+                                            @endif
                                         @endif
 
                                         @if($member->jobTitle)
