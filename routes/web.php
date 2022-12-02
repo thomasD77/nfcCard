@@ -92,6 +92,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::post('user/update/url/{user}', 'App\Http\Controllers\AdminUsersController@updateURL')->name('users.update.url');
     Route::post('user/search', 'App\Http\Controllers\AdminUsersController@searchUser')->name('users.search');
     Route::get('archive/users', 'App\Http\Controllers\AdminUsersController@archive')->name('users.archive');
+    Route::get('import', 'App\Http\Controllers\AdminUsersController@importer')->name('importer');
 
     Route::resource('contacts', App\Http\Controllers\AdminContactsController::class);
     Route::get('list/detail/{contact}', 'App\Http\Controllers\AdminUsersController@contactDetail')

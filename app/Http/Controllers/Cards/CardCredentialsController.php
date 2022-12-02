@@ -66,6 +66,12 @@ class CardCredentialsController extends Controller
             $url->custom_QR_url = $request->input_QR_url;
         }
 
+        if(!$request->is_importer){
+            $url->is_importer = 0;
+        }else {
+            $url->is_importer = 1;
+        }
+
         if(!$request->business){
             $url->business = 0;
         }else {

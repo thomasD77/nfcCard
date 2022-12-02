@@ -151,6 +151,17 @@
                         <span class="nav-main-link-name">Events</span>
                     </a>
                 </li>
+
+
+                @if(Auth()->user()->roles->first()->name == 'superAdmin' || Auth()->user()->is_importer)
+                    <li class="nav-main-heading text-uppercase">Data Sync</li>
+                    <li class="nav-main-item">
+                        <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('importer')}}">
+                            <i class="nav-main-link-icon fa fa-file-import"></i>
+                            <span class="nav-main-link-name">Import</span>
+                        </a>
+                    </li>
+                @endif
             </ul>
 
             <ul class="nav-main" style="margin-top: 40%">
