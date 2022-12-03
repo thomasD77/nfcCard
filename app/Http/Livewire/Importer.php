@@ -11,6 +11,8 @@ use App\Models\Type;
 use App\Models\URL;
 use App\Models\User;
 use App\Swap\Filter\getIds;
+use App\Swap\Importer\ToggleImporter;
+use App\Swap\Importer\ToggleImporterBulk;
 use Faker\Factory;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -29,26 +31,19 @@ class Importer extends Component
     public $filter;
     public $ids = [];
 
-    public $email;
-    public $password;
-    public $password_confirmation;
-
     public string $datepicker = "";
     public string $datepicker_day = "";
 
     public Team $team;
+    public User $user;
 
-    public function mount(Team $team)
+    protected $listeners = ['renderImporter' => 'render'];
+
+    public function mount()
     {
         $this->team = Team::findOrFail(Auth()->user()->team_id);
+        $this->user = Auth()->user();
     }
-
-    protected $rules = [
-        'email' => ['required', 'string', 'email','unique:users', 'max:255','email:rfc,dns'],
-        'password' => ['required'],
-        'password_confirmation' => 'required|same:password'
-    ];
-
 
     public function dateALL()
     {
@@ -58,137 +53,18 @@ class Importer extends Component
 
     public function selectAll()
     {
-        $user = Auth()->user();
-
-        $ids = new getIds();
-
-        if($user->check_all_importer == true) {
-            $user->check_all_importer = 0;
-
-            $ids = $ids->getArrayIds($user->userToUrlImport);
-            foreach ($ids as $url) {
-                $user->userToUrlImport()->detach($url);
-            }
-        } else {
-            $user->check_all_importer = 1;
-
-            $urls = listUrl::where('team_id', $this->team->id)->get();
-
-            $ids = $ids->getArrayIds($urls);
-            foreach ($ids as $url) {
-                $user->userToUrlImport()->sync($url, false);
-            }
-        }
-
-        $user->update();
+        $importer = new ToggleImporterBulk();
+        $status = $importer->toggleImporterStatusBulk($this->user, $this->team);
+        $this->checkbox_active = $status;
     }
 
     public function select($id)
     {
         $url = listUrl::findOrFail($id);
-        $user = Auth()->user();
-
-        //Check if print connection exist in pivot table
-        $hasImport = $user->userToUrlImport()->where('listurl_id', $url->id)->exists();
-
-        if($hasImport) {
-            $user->userToUrlImport()->detach($url->id);
-        } else {
-            $user->userToUrlImport()->sync($url->id, false);
-        }
+        $importer = new ToggleImporter();
+        $importer->toggleImporterAdminStatus($url, $this->user);
     }
 
-    public function generateAccounts()
-    {
-        $this->validate();
-        $urls = listUrl::where('check_import', 1)
-            ->where('team_id', $this->team->id)
-            ->get();
-
-        if($urls->isEmpty()){
-            session()->flash('empty_message', 'Please select accounts in your list first. You can do this by clicking the checkbox next to the account name.');
-            return;
-        }
-
-        $explode_email = explode( '@', $this->email, 2);
-
-        foreach ($urls as $url){
-
-            $url_browser = URL::first()->url;
-
-            if(isset($explode_email[0]) && isset($explode_email[1]) ){
-                $email =  $explode_email[0] . $url->card_id . '@' . $explode_email[1];
-            } else {
-                $email =  'No valid email - ' . now();
-            }
-
-            $ex_email = User::where('team_id', $this->team->id)
-                ->where('email', $email)
-                ->first();
-
-            if($ex_email){
-                session()->flash('message', 'This e-mail is all ready generated');
-                return;
-            }
-
-            $user = User::create([
-                'name' => $this->team->name,
-                'email' => $email,
-                'password' => Hash::make($this->password),
-            ]);
-
-            DB::table('user_role')->insert([
-                'user_id' => $user->id,
-                'role_id' => $url->role_id,
-                'created_at'=>Carbon::now()->format('Y-m-d H:i:s'),
-                'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),]);
-
-            $member = new Member();
-            $faker = Factory::create();
-            //Save member settings
-            $member->user_id = $user->id;
-            $member->email = $user->email;
-            $member->card_id = $url->card_id;
-            $member->memberURL = $url_browser . '/?' . $url->card_id;
-            $member->memberQRcode = $url_browser . '/QRcode'. '/' . $url->card_id;
-            $member->material_id = $url->material_id;
-            $member->package_id = $url->package_id;
-            $member->titleMessage = "Thank you for this amazing SWAP";
-            $member->referral = '#' . $faker->unique()->numberBetween($min = 10, $max = 100) . '-' . $faker->unique()->numberBetween($min = 10000, $max = 100000);
-            $member->save();
-
-            //Make card state connection
-            DB::table('states')->insert([
-                'member_id'=> $member->id,
-            ]);
-
-            //Make card setting connection
-            DB::table('settings')->insert([
-                'member_id'=> $member->id,
-            ]);
-
-            //Connect User with member
-            $user->member_id = $member->id;
-            $user->team_id = $url->team_id;
-            $user->business = $url->business;
-            $user->is_company = $url->is_company;
-            $user->is_importer = $url->is_importer;
-            $user->email_verified_at = now();
-            $user->save();
-
-            //Connect ListURl with Member
-            $url->member_id = $member->id;
-            $url->check_import = 0;
-            $url->is_admin_generated = 1;
-            $url->save();
-
-            session()->flash('success_message', 'E-mail is generated successfully');
-
-            $this->email = "";
-            $this->password = "";
-            $this->password_confirmation = "";
-        }
-    }
 
     public function render()
     {
@@ -246,7 +122,6 @@ class Importer extends Component
                 ->latest()
                 ->simplePaginate($this->pagination);
         }
-
 
         return view('livewire.importer', compact('urls',  ));
     }
