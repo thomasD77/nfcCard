@@ -10,6 +10,7 @@ use App\Models\Team;
 use App\Models\Type;
 use App\Models\URL;
 use App\Models\User;
+use App\Swap\Filter\getIds;
 use Faker\Factory;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -43,7 +44,7 @@ class Importer extends Component
     }
 
     protected $rules = [
-        'email' => ['required', 'string', 'email', 'max:255', 'unique:users','email:rfc,dns'],
+        'email' => ['required', 'string', 'email','unique:users', 'max:255','email:rfc,dns'],
         'password' => ['required'],
         'password_confirmation' => 'required|same:password'
     ];
@@ -57,66 +58,82 @@ class Importer extends Component
 
     public function selectAll()
     {
-        if($this->checkbox_active) {
-            if($this->ids == []){
-                $urls = listUrl::where('team_id', $this->team->id)->select('id', 'check_import')->get();
-            }else {
-                $urls = listUrl::whereIn('id', $this->ids)->where('team_id', $this->team->id)->select('id', 'check_import')->get();
-                $this->ids = [];
-            }
-            foreach ($urls as $url) {
-                $url->check_import = 0;
-                $url->update();
-            }
-            $this->checkbox_active = false;
-            $this->ids = [];
-        }else {
-            if($this->ids == []){
-                $urls = listUrl::where('team_id', $this->team->id)->select('id', 'check_import')->get();
-            }else {
-                $urls = listUrl::whereIn('id', $this->ids)->where('team_id', $this->team->id)->select('id', 'check_import')->get();
-                $this->ids = [];
-            }
+        $user = Auth()->user();
 
-            foreach ($urls as $url) {
-                $url->check_import = 1;
-                $url->update();
+        $ids = new getIds();
+
+        if($user->check_all_importer == true) {
+            $user->check_all_importer = 0;
+
+            $ids = $ids->getArrayIds($user->userToUrlImport);
+            foreach ($ids as $url) {
+                $user->userToUrlImport()->detach($url);
             }
-            $this->checkbox_active = true;
+        } else {
+            $user->check_all_importer = 1;
+
+            $urls = listUrl::where('team_id', $this->team->id)->get();
+
+            $ids = $ids->getArrayIds($urls);
+            foreach ($ids as $url) {
+                $user->userToUrlImport()->sync($url, false);
+            }
         }
+
+        $user->update();
     }
 
     public function select($id)
     {
         $url = listUrl::findOrFail($id);
+        $user = Auth()->user();
 
-        if($url->check_import == 1)
-        {
-            $url->check_import = 0;
-            $url->update();
-        }
-        else
-        {
-            $url->check_import = 1;
-            $url->update();
+        //Check if print connection exist in pivot table
+        $hasImport = $user->userToUrlImport()->where('listurl_id', $url->id)->exists();
+
+        if($hasImport) {
+            $user->userToUrlImport()->detach($url->id);
+        } else {
+            $user->userToUrlImport()->sync($url->id, false);
         }
     }
 
     public function generateAccounts()
     {
-        //$this->validate();
+        $this->validate();
         $urls = listUrl::where('check_import', 1)
             ->where('team_id', $this->team->id)
-            ->whereNotNull('is_admin_generated')
             ->get();
+
+        if($urls->isEmpty()){
+            session()->flash('empty_message', 'Please select accounts in your list first. You can do this by clicking the checkbox next to the account name.');
+            return;
+        }
+
+        $explode_email = explode( '@', $this->email, 2);
 
         foreach ($urls as $url){
 
             $url_browser = URL::first()->url;
 
+            if(isset($explode_email[0]) && isset($explode_email[1]) ){
+                $email =  $explode_email[0] . $url->card_id . '@' . $explode_email[1];
+            } else {
+                $email =  'No valid email - ' . now();
+            }
+
+            $ex_email = User::where('team_id', $this->team->id)
+                ->where('email', $email)
+                ->first();
+
+            if($ex_email){
+                session()->flash('message', 'This e-mail is all ready generated');
+                return;
+            }
+
             $user = User::create([
                 'name' => $this->team->name,
-                'email' => $this->email,
+                'email' => $email,
                 'password' => Hash::make($this->password),
             ]);
 
@@ -165,25 +182,29 @@ class Importer extends Component
             $url->is_admin_generated = 1;
             $url->save();
 
+            session()->flash('success_message', 'E-mail is generated successfully');
 
-
+            $this->email = "";
+            $this->password = "";
+            $this->password_confirmation = "";
         }
     }
 
     public function render()
     {
         $value = $this->filter;
+
         if(isset($value)){
+            $member_ids = User::where(function ($q) use ($value) {
+                $q->where('name', 'LIKE', '%' . $value . '%')
+                    ->Orwhere('email', 'LIKE', '%' . $value . '%');
+            })->select('member_id')->get();
+
             $urls = listUrl::query()
                 ->with(['package', 'material', 'member', 'listRole', 'listType'])
                 ->where('team_id', $this->team->id)
-                ->where(function ($q) use ($value) {
-                    $q->where('webshop_order_id', 'LIKE', '%' . $value . '%')
-                        ->Orwhere('type_id', 'LIKE', '%' . $value . '%')
-                        ->Orwhere('reservation', 'LIKE', '%' . $value . '%')
-                        ->Orwhere('card_id', 'LIKE', '%' . $value . '%');
-                })->latest()->simplePaginate($this->pagination);
-
+                ->whereIn('member_id', $member_ids)
+                ->latest()->simplePaginate($this->pagination);
         } elseif($this->datepicker != "") {
             ['datepicker' => $this->datepicker];
 

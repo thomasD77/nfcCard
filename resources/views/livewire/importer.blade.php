@@ -19,7 +19,7 @@
                 </div>
                 <!-- Search Form (visible on larger screens) -->
                 <div class="d-none d-md-inline-block col-6">
-                    <input type="text" wire:model="filter" class="form-control form-control-alt" placeholder="Search for webshop id/user/reservation..." id="page-header-search-input2">
+                    <input type="text" wire:model="filter" class="form-control form-control-alt" placeholder="Search for name or email..." id="page-header-search-input2">
                 </div>
                 <!-- END Search Form -->
                 <div>
@@ -41,14 +41,20 @@
                         <tr>
                             <th scope="col">User ACC</th>
                             <th scope="col">Email</th>
-                            <th scope="col">Card ID</th>
+                            <th scope="col">Profile</th>
                             <th scope="col">Date</th>
                             <th scope="col">Profile</th>
-                            <th scope="col"> <i class="fa fa-print me-2"></i>
-                                <input type="checkbox"
-                                       @if($checkbox_active) checked @endif
-                                       class="btn btn-sm btn-alt-secondary"
-                                       wire:click="selectAll">
+                            <th scope="col">
+                                <div class="d-flex align-items-center">
+                                    <i class="fa fa-print me-2"></i>
+                                    <input type="checkbox"
+                                           @if(Auth()->user()->check_all_importer) checked @endif
+                                           class="btn btn-sm btn-alt-secondary"
+                                           wire:click="selectAll"  wire:loading.attr="disabled">
+                                    <div wire:loading wire:target="selectAll">
+                                        <i class="fa fa-sun fa-spin m-2"></i>
+                                    </div>
+                                </div>
                             </th>
                         </tr>
                         </thead>
@@ -75,9 +81,8 @@
                                             <td> [not-set] </td>
                                         @endif
 
-                                        <td>{{$url->card_id ? $url->card_id : 'No ID'}}</td>
+                                        <td><span class="badge btn-dark p-2 w-100">{{$url->card_id ? 'Profile ' . $url->card_id : '[not-set]'}}</span></td>
 
-                                        <td>{{$url->card_id ? $url->card_id : 'No ID'}}</td>
 
                                         <td>{{$url->created_at ? $url->created_at->format('d-M-Y') : "*no reservation" }}</td>
 
@@ -106,7 +111,7 @@
 
                                         <td>
                                             <input type="checkbox"
-                                                   @if($url->check_import)  checked @endif
+                                                   @if(Auth()->user()->userToUrlImport()->where('listurl_id', $url->id)->exists())  checked @endif
                                                    class="btn btn-sm btn-alt-secondary"
                                                    wire:click="select({{$url->id}})">
                                         </td>
@@ -187,8 +192,28 @@
                             </div>
                         </div>
                         <div class="row mb-4">
+                            <div class="col-12">
+                                @if (session()->has('message'))
+                                    <div class="alert alert-danger">
+                                        {{ session('message') }}
+                                    </div>
+                                @endif
+                                @if (session()->has('success_message'))
+                                    <div class="alert alert-success">
+                                        {{ session('success_message') }}
+                                    </div>
+                                @endif
+                                @if (session()->has('empty_message'))
+                                    <div class="alert alert-warning">
+                                        {{ session('empty_message') }}
+                                    </div>
+                                @endif
+                            </div>
                             <div class="col-md-6 col-xl-5">
-                                <button type="submit" class="btn w-100 btn-alt-success">
+                                <div wire:loading wire:target="generateAccounts">
+                                    <i class="fa fa-4x fa-cog fa-spin text-dark mb-2"></i>
+                                </div>
+                                <button type="submit" class="btn w-100 btn-dark text-white" wire:target="generateAccounts"  wire:loading.attr="disabled">
                                     <i class="fa fa-fw fa-plus me-1 opacity-50"></i> Generate accounts
                                 </button>
                             </div>

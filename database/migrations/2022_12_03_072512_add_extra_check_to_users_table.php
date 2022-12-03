@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddExtraFieldImporterToListUrlsTable extends Migration
+class AddExtraCheckToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class AddExtraFieldImporterToListUrlsTable extends Migration
      */
     public function up()
     {
-        Schema::table('list_urls', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             //
-            $table->boolean('check_import')->nullable();
+            $table->boolean('check_all_importer')->nullable();
         });
     }
 
@@ -26,7 +26,7 @@ class AddExtraFieldImporterToListUrlsTable extends Migration
      */
     public function down()
     {
-        Schema::table('list_urls', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             //
         });
     }
