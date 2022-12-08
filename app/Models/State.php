@@ -44,4 +44,9 @@ class State extends Model
         return $this->hasOne(Member::class);
     }
 
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+
 }

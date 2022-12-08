@@ -13,6 +13,7 @@ use App\Models\Member;
 use App\Models\Order;
 use App\Models\Package;
 use App\Models\Photo;
+use App\Models\Profile;
 use App\Models\State;
 use App\Models\URL;
 use App\Models\User;
@@ -119,7 +120,7 @@ class AdminMembersController extends Controller
     {
         //
         $member = Member::findOrFail($id);
-
+        $profiles = Profile::where('member_id', $id)->get();
         $package = Package::where('value', 1)->first();
 
         if(! isset($package)){
@@ -128,7 +129,7 @@ class AdminMembersController extends Controller
             $package = $package->package;
         }
 
-        return view('admin.members.edit', compact('member', 'package'));
+        return view('admin.members.edit', compact('member', 'package','profiles'));
     }
 
     /**

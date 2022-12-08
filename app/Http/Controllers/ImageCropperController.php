@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Logo;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 use App\Models\Member;
 use Illuminate\Support\Facades\File;
@@ -32,34 +33,34 @@ class ImageCropperController extends Controller
         $name = (new \App\Models\CheckFile)->getValidFilename($name);
         $name = time() . "_" . $name;
         $file = $folderPath . $name . '.' . $ext;
-        if ($request->uploadType === "member") {
-            $member = Member::find($request->member_id);
+        if ($request->uploadType === "profile") {
+            $profile = Profile::find($request->profile_id);
             if ($request->type === "avatar") {
-                if ($member->avatar) {
-                    File::delete(public_path($request->base . $member->avatar));
+                if ($profile->avatar) {
+                    File::delete(public_path($request->base . $profile->avatar));
                 }
                 file_put_contents($file, $image_base64);
                 $avatar = Avatar::create(['file' => $name . "." . $ext]);
-                $member->avatar = $name . "." . $ext;
-                $member->save();
+                $profile->avatar = $name . "." . $ext;
+                $profile->save();
             }
             if ($request->type === "banner") {
-                if ($member->banner) {
-                    File::delete(public_path($member->banner->file));
+                if ($profile->banner) {
+                    File::delete(public_path($profile->banner->file));
                 }
                 file_put_contents($file, $image_base64);
                 $banner = Banner::create(['file' => $name . "." . $ext]);
-                $member->banner_id = $banner->id;
-                $member->save();
+                $profile->banner_id = $banner->id;
+                $profile->save();
             }
             if($request->type === "logo"){
-                if($member->logo){
-                    File::delete(public_path($member->logo->file));
+                if($profile->logo){
+                    File::delete(public_path($profile->logo->file));
                 }
                 file_put_contents($file, $image_base64);
                 $logo = Logo::create(['file' => $name . "." .$ext]);
-                $member->logo_id = $logo->id;
-                $member->save();
+                $profile->logo_id = $logo->id;
+                $profile->save();
             }
 
         } else {

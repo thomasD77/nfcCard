@@ -8,7 +8,6 @@ use App\Exports\MemberUrlExport;
 use App\Exports\ScanListClientExport;
 use App\Exports\ScanListExport;
 use App\Exports\ScanListMarketing;
-use App\Exports\ScanListStats;
 use App\Exports\ScanListTeamExport;
 use App\Exports\SubmissionExport;
 use App\Http\Requests\ContactRequest;
@@ -344,10 +343,6 @@ class CardController extends Controller
 
     public function printMarketing(){
         return Excel::download(new ScanListMarketing(), 'swap-marketing.xlsx');
-    }
-
-    public function printStats(){
-        return Excel::download(new ScanListStats(), 'swap-stats.xlsx');
     }
 
 

@@ -25,8 +25,35 @@
                                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
+<<<<<<< HEAD
+<<<<<<< HEAD
+                                    {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\AdminContactsController@updateContact',$contact->id]]) !!}
+=======
                                     {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminContactsController@updateContact',$contact->id]]) !!}
                                     @csrf
+>>>>>>> OneApp
+                                    @if($contact->name)
+                                        <div class="form-group mb-4">
+                                            <p class="mb-2 mt-4" style="text-align: left"><strong>Name:</strong></p>
+                                            <input type="text"  value="{{ $contact->name }}" name="name" class="form-control">
+                                            @error('name')
+                                            <p class="text-danger mt-2"> {{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    @endif
+                                    @if($contact->email)
+                                        <div class="form-group mb-4">
+                                            <p class="mb-2 mt-4" style="text-align: left"><strong>Email:</strong></p>
+                                            <input type="email"  value="{{ $contact->email }}" name="email" class="form-control">
+                                            @error('email')
+                                            <p class="text-danger mt-2"> {{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    @endif
+=======
+                                    {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminContactsController@updateContact',$contact->id]]) !!}
+                                    @csrf
+>>>>>>> 0cabd772d602e6f9d8d6d5cc4d98812c8db80a95
 
                                     <div class="form-group mb-4">
                                         <p class="mb-2 mt-4" style="text-align: left"><strong>Name:</strong></p>

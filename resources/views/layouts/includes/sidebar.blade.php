@@ -163,16 +163,6 @@
                     </li>
                 @endif
             </ul>
-
-            <ul class="nav-main" style="margin-top: 40%">
-                <li class="nav-main-heading text-uppercase">Do you need help?</li>
-                <li class="nav-main-item">
-                    <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" target="_blank" href="https://swap-nfc.be/manual/">
-                        <i class="nav-main-link-icon fa fa-book"></i>
-                        <span class="nav-main-link-name">Our manual</span>
-                    </a>
-                </li>
-            </ul>
         </div>
         <!-- END Side Navigation -->
     </div>

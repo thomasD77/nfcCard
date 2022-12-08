@@ -21,10 +21,11 @@
             <!-- Main Container -->
             <!-- Check if user is archived -->
             @if(!Auth::user()->archived)
+
                 <!-- Check if user trial is expired -->
                 @if(Auth::user()->member)
-                    <!-- Check if user has test card -->
                     @if(Auth::user()->member->listurl)
+                    <!-- Check if user has test card -->
                         @if(Auth::user()->member->listurl->type_id == 8)
                             @php
                                 $date_member = date( 'Y-m-d', strtotime(Auth::user()->member->listurl->trial_date));
