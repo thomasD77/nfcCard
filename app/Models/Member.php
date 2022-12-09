@@ -113,6 +113,4 @@ class Member extends Model
         return $this->belongsToMany(Contact::class, 'member_contact');
     }
 
-
-
 }

@@ -42,7 +42,7 @@ class Profile extends Model
             'logo_id',
         ];
 
-    protected $with = ['state', 'logo', 'banner'];
+//    protected $with = ['state', 'logo', 'banner'];
 
     public function banner()
     {
@@ -56,8 +56,15 @@ class Profile extends Model
     {
         return $this->belongsTo(Video::class);
     }
+
+    public function member(){
+        return $this->belongsTo(Member::class);
+    }
+
     public function state()
     {
-        return $this->hasOne(State::class);
+        return $this->belongsTo(State::class, 'state_id');
     }
+
+
 }

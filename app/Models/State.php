@@ -39,14 +39,13 @@ class State extends Model
 
     ];
 
-    public function member()
-    {
-        return $this->hasOne(Member::class);
-    }
+//    public function member()
+//    {
+//        return $this->hasOne(Member::class);
+//    }
 
-    public function profile()
-    {
-        return $this->hasOne(Profile::class);
-    }
+
+
+
 
 }

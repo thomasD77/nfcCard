@@ -110,27 +110,27 @@ class AdminMembersController extends Controller
         return redirect('/admin/members');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-        $member = Member::findOrFail($id);
-        $profiles = Profile::where('member_id', $id)->get();
-        $package = Package::where('value', 1)->first();
-
-        if(! isset($package)){
-            $package = 'No package selected';
-        }else{
-            $package = $package->package;
-        }
-
-        return view('admin.members.edit', compact('member', 'package','profiles'));
-    }
+//    /**
+//     * Show the form for editing the specified resource.
+//     *
+//     * @param  int  $id
+//     * @return \Illuminate\Http\Response
+//     */
+//    public function edit($id)
+//    {
+//        //
+//        $member = Member::findOrFail($id);
+//        $profiles = Profile::with(['state', 'logo', 'banner'])->where('member_id', $id)->get();
+//        $package = Package::where('value', 1)->first();
+//
+//        if(! isset($package)){
+//            $package = 'No package selected';
+//        }else{
+//            $package = $package->package;
+//        }
+//
+//        return view('admin.members.edit', compact('member', 'package','profiles'));
+//    }
 
     /**
      * Update the specified resource in storage.

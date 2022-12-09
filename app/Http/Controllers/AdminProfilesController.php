@@ -25,7 +25,7 @@ class AdminProfilesController extends Controller
 
     public function edit($id){
         $member = Member::findOrFail($id);
-        $profiles = Profile::where('member_id', $id)->get();
+        $profiles = Profile::with(['state', 'logo', 'banner'])->where('member_id', $id)->get();
         $package = Package::where('value', 1)->first();
 
         if(! isset($package)){
@@ -42,10 +42,12 @@ class AdminProfilesController extends Controller
         $member = Member::findOrFail($profile->member_id);
         $profiles = Profile::where('member_id', $member->id)->get();
         $state = State::where('profile_id', $profileId)->first();
+
         // Profile
         if($request->profile_name){
             $profile->profile_name = $request->profile_name;
         }
+
         if($request->active){
             foreach($profiles as $p){
                 $p->active = 0;
@@ -275,6 +277,7 @@ class AdminProfilesController extends Controller
             $profile->message = $request->message;
         }
 
+        $state->update();
         $profile->update();
 
         Session::flash('flash_message', 'Member Successfully Updated');

@@ -89,7 +89,9 @@
                                        type="checkbox"
                                        name="check_avatar"
                                        style="width: 25px; height: 25px"
-                                       value="{{ 1 }}" @if($profile->state->avatar) checked @endif>
+
+                                       value="{{ 1 }}" @if($profile->state->avatar) checked @endif
+                                >
                             </div>
                         </div>
                         {{--{!! Form::file('avatar_id',['class'=>"form-control crop-image avatar_id-$profile->profile_name", 'data-profile'=> "$profile->profile_name"]) !!}--}}
@@ -118,7 +120,8 @@
                                        type="checkbox"
                                        name="check_logo"
                                        style="width: 25px; height: 25px"
-                                       value="{{ 1 }}" @if($profile->state->logo) checked @endif>
+                                       value="{{ 1 }}" @if($profile->state->logo) checked @endif
+                                >
                             </div>
                         </div>
                         {!! Form::file('logo_id',['class'=>'form-control crop-image logo_id', 'data-profile'=> "$profile->id"]) !!}
@@ -144,7 +147,8 @@
                                        type="checkbox"
                                        name="check_banner"
                                        style="width: 25px; height: 25px"
-                                       value="{{ 1 }}" @if($profile->state->banner) checked @endif>
+                                       value="{{ 1 }}" @if($profile->state->banner) checked @endif
+                                >
                             </div>
                         </div>
                         {!! Form::file('banner_id',['class'=>'form-control crop-image banner_id', 'data-profile'=> "$profile->id"]) !!}
@@ -178,7 +182,8 @@
                                    type="checkbox"
                                    name="check_firstname"
                                    style="width: 25px; height: 25px"
-                                   value="{{ 1 }}" @if($profile->state->firstname) checked @endif>
+                                   value="{{ 1 }}" @if($profile->state->firstname) checked @endif
+                            >
                         </div>
                     </div>
                     {!! Form::text('firstname',$profile->firstname ,['class'=>'form-control']) !!}
@@ -197,7 +202,8 @@
                                    type="checkbox"
                                    name="check_lastname"
                                    style="width: 25px; height: 25px"
-                                   value="{{ 1 }}" @if($profile->state->lastname) checked @endif>
+                                   value="{{ 1 }}" @if($profile->state->lastname) checked @endif
+                            >
                         </div>
                     </div>
                     {!! Form::text('lastname',$profile->lastname ,['class'=>'form-control']) !!}
@@ -216,7 +222,8 @@
                                    type="checkbox"
                                    name="check_email"
                                    style="width: 25px; height: 25px"
-                                   value="{{ 1 }}" @if($profile->state->email) checked @endif>
+                                   value="{{ 1 }}" @if($profile->state->email) checked @endif
+                            >
                         </div>
                     </div>
                     {!! Form::email('email',$profile->email ,['class'=>'form-control']) !!}
@@ -235,7 +242,8 @@
                                    type="checkbox"
                                    name="check_company"
                                    style="width: 25px; height: 25px"
-                                   value="{{ 1 }}" @if($profile->state->company) checked @endif>
+                                   value="{{ 1 }}" @if($profile->state->company) checked @endif
+                            >
                         </div>
                     </div>
                     {!! Form::text('company',$profile->company ,['class'=>'form-control']) !!}
@@ -254,7 +262,8 @@
                                    type="checkbox"
                                    name="check_jobTitle"
                                    style="width: 25px; height: 25px"
-                                   value="{{ 1 }}" @if($profile->state->jobTitle) checked @endif>
+                                   value="{{ 1 }}" @if($profile->state->jobTitle) checked @endif
+                            >
                         </div>
                     </div>
                     {!! Form::text('jobTitle',$profile->jobTitle ,['class'=>'form-control']) !!}
@@ -273,7 +282,8 @@
                                    type="checkbox"
                                    name="check_age"
                                    style="width: 25px; height: 25px"
-                                   value="{{ 1 }}" @if($profile->state->age) checked @endif>
+                                   value="{{ 1 }}" @if($profile->state->age) checked @endif
+                            >
                         </div>
                     </div>
                     {!! Form::date('age',$profile->age ,['class'=>'form-control']) !!}
@@ -292,7 +302,8 @@
                                    type="checkbox"
                                    name="check_website"
                                    style="width: 25px; height: 25px"
-                                   value="{{ 1 }}" @if($profile->state->website) checked @endif>
+                                   value="{{ 1 }}" @if($profile->state->website) checked @endif
+                            >
                         </div>
                     </div>
                     {!! Form::text('website',$profile->website ,['class'=>'form-control', 'placeholder' => 'ex: innova-webcreations.be']) !!}
@@ -311,7 +322,8 @@
                                    type="checkbox"
                                    name="check_notes"
                                    style="width: 25px; height: 25px"
-                                   value="{{ 1 }}" @if($profile->state->notes) checked @endif>
+                                   value="{{ 1 }}" @if($profile->state->notes) checked @endif
+                            >
                         </div>
                     </div>
                     {!! Form::textarea('notes',$profile->notes ,['class'=>'form-control']) !!}
