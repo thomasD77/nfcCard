@@ -4,13 +4,14 @@
             <div class="mt-2">
                 <p class="mb-0">
                     <i class="fa fa-fw fa-info me-1 mt-0"></i>
-                    Select all the fields you want to update.
-                    <br> <i class="fa fa-fw fa-info me-1 mt-0"></i>
-                    You can update the data and also the state, this way you choose whether you show the data on your profile
+                    ONLY select the fields you want to update. <br>
+                    <i class="fa fa-fw fa-info me-1 mt-0"></i>
+                    If you select a field and leave it blanc it will be overwritten.
                 </p>
             </div>
         </div>
 
+        <!-- Choose Input fields -->
         <div class="row mb-5">
             <!-- Firstname -->
             <div class="col-md-6">
@@ -141,226 +142,123 @@
             </div>
         </div>
 
-
-        @if($choose_firstname)
-        <!-- Firstname -->
-        <div class="form-group my-4">
-            <div class="form-check ps-0">
-                <div class="d-flex justify-content-between mb-2">
-                    <label class="form-label" for="">Firstname:</label>
-                    <div>
-                        <label class="form-label ms-1" for="">show on profile</label>
-                        <input class="form-check-input"
-                               type="checkbox"
-                               wire:model="check_firstname"
-                               style="width: 25px; height: 25px"
-                               @if($check_firstname) checked @endif
-                               value="{{ 1 }}"
-                        >
+        <!-- Input fields -->
+        <div class="row">
+            @if($choose_firstname)
+                <!-- Firstname -->
+                    <div class="form-group my-4">
+                        <label class="form-label" for="">Firstname:</label>
+                        <input type="text"
+                               class="form-control"
+                               wire:model="firstname">
+                        @error('firstname')
+                        <p class="text-danger mt-2"> {{ $message }}</p>
+                        @enderror
                     </div>
-                </div>
-            </div>
-            <input type="text"
-                   class="form-control"
-                   wire:model="firstname">
-            @error('firstname')
-            <p class="text-danger mt-2"> {{ $message }}</p>
-            @enderror
-        </div>
-        <!-- End Firstname -->
-        @endif
+                    <!-- End Firstname -->
+            @endif
 
-        @if($choose_lastname)
-        <!-- Lastname -->
-            <div class="form-group my-4">
-                <div class="form-check ps-0">
-                    <div class="d-flex justify-content-between mb-2">
+            @if($choose_lastname)
+                <!-- Lastname -->
+                    <div class="form-group my-4">
                         <label class="form-label" for="">Lastname:</label>
-                        <div>
-                            <label class="form-label ms-1" for="">show on profile</label>
-                            <input class="form-check-input"
-                                   type="checkbox"
-                                   wire:model="check_lastname"
-                                   style="width: 25px; height: 25px"
-                                   value="{{ 1 }}"
-                            >
-                        </div>
+                        <input type="text"
+                               class="form-control"
+                               wire:model="lastname">
+                        @error('lastname')
+                        <p class="text-danger mt-2"> {{ $message }}</p>
+                        @enderror
                     </div>
-                </div>
-                <input type="text"
-                       class="form-control"
-                       wire:model="lastname">
-                @error('lastname')
-                <p class="text-danger mt-2"> {{ $message }}</p>
-                @enderror
-            </div>
-            <!-- End Lastname -->
+                    <!-- End Lastname -->
             @endif
 
             @if($choose_email)
-            <!-- Email -->
-            <div class="form-group my-4">
-                <div class="form-check ps-0">
-                    <div class="d-flex justify-content-between mb-2">
+                <!-- Email -->
+                    <div class="form-group my-4">
                         <label class="form-label" for="">Email:</label>
-                        <div>
-                            <label class="form-label ms-1" for="">show on profile</label>
-                            <input class="form-check-input"
-                                   type="checkbox"
-                                   wire:model="check_email"
-                                   style="width: 25px; height: 25px"
-                                   value="{{ 1 }}"
-                            >
-                        </div>
+                        <input type="text"
+                               class="form-control"
+                               wire:model="email">
+                        @error('email')
+                        <p class="text-danger mt-2"> {{ $message }}</p>
+                        @enderror
                     </div>
-                </div>
-                <input type="text"
-                       class="form-control"
-                       wire:model="email">
-                @error('email')
-                <p class="text-danger mt-2"> {{ $message }}</p>
-                @enderror
-            </div>
-            <!-- End Email -->
+                    <!-- End Email -->
             @endif
 
             @if($choose_jobTitle)
-            <!-- Job Title -->
-            <div class="form-group my-4">
-                <div class="form-check ps-0">
-                    <div class="d-flex justify-content-between mb-2">
+                <!-- Job Title -->
+                    <div class="form-group my-4">
                         <label class="form-label" for="">Job Title:</label>
-                        <div>
-                            <label class="form-label ms-1" for="">show on profile</label>
-                            <input class="form-check-input"
-                                   type="checkbox"
-                                   wire:model="check_jobTitle"
-                                   style="width: 25px; height: 25px"
-                                   value="{{ 1 }}"
-                            >
-                        </div>
+                        <input type="text"
+                               class="form-control"
+                               wire:model="jobTitle">
+                        @error('jobTitle')
+                        <p class="text-danger mt-2"> {{ $message }}</p>
+                        @enderror
                     </div>
-                </div>
-                <input type="text"
-                       class="form-control"
-                       wire:model="jobTitle">
-                @error('jobTitle')
-                <p class="text-danger mt-2"> {{ $message }}</p>
-                @enderror
-            </div>
-            <!-- End Job Title -->
+                    <!-- End Job Title -->
             @endif
 
 
             @if($choose_website)
-            <!-- Website -->
-            <div class="form-group my-4">
-                <div class="form-check ps-0">
-                    <div class="d-flex justify-content-between mb-2">
+                <!-- Website -->
+                    <div class="form-group my-4">
                         <label class="form-label" for="">Website:</label>
-                        <div>
-                            <label class="form-label ms-1" for="">show on profile</label>
-                            <input class="form-check-input"
-                                   type="checkbox"
-                                   wire:model="check_website"
-                                   style="width: 25px; height: 25px"
-                                   value="{{ 1 }}"
-                            >
-                        </div>
+                        <input type="text"
+                               class="form-control"
+                               wire:model="website">
+                        @error('website')
+                        <p class="text-danger mt-2"> {{ $message }}</p>
+                        @enderror
                     </div>
-                </div>
-                <input type="text"
-                       class="form-control"
-                       wire:model="website">
-                @error('website')
-                <p class="text-danger mt-2"> {{ $message }}</p>
-                @enderror
-            </div>
-            <!-- End Website -->
+                    <!-- End Website -->
             @endif
 
             @if($choose_company)
-            <!-- Company -->
-            <div class="form-group my-4">
-                <div class="form-check ps-0">
-                    <div class="d-flex justify-content-between mb-2">
+                <!-- Company -->
+                    <div class="form-group my-4">
                         <label class="form-label" for="">Company:</label>
-                        <div>
-                            <label class="form-label ms-1" for="">show on profile</label>
-                            <input class="form-check-input"
-                                   type="checkbox"
-                                   wire:model="check_company"
-                                   style="width: 25px; height: 25px"
-                                   value="{{ 1 }}"
-                            >
-                        </div>
+                        <input type="text"
+                               class="form-control"
+                               wire:model="company">
+                        @error('company')
+                        <p class="text-danger mt-2"> {{ $message }}</p>
+                        @enderror
                     </div>
-                </div>
-                <input type="text"
-                       class="form-control"
-                       wire:model="company">
-                @error('company')
-                <p class="text-danger mt-2"> {{ $message }}</p>
-                @enderror
-            </div>
-            <!-- End Company -->
+                    <!-- End Company -->
             @endif
 
             @if($choose_age)
-            <!-- Age -->
-            <div class="form-group my-4">
-                <div class="form-check ps-0">
-                    <div class="d-flex justify-content-between mb-2">
+                <!-- Age -->
+                    <div class="form-group my-4">
                         <label class="form-label" for="">Age:</label>
-                        <div>
-                            <label class="form-label ms-1" for="">show on profile</label>
-                            <input class="form-check-input"
-                                   type="checkbox"
-                                   wire:model="check_age"
-                                   style="width: 25px; height: 25px"
-                                   value="{{ 1 }}"
-                            >
-                        </div>
+                        <input type="date"
+                               class="form-control"
+                               wire:model="age">
+                        @error('age')
+                        <p class="text-danger mt-2"> {{ $message }}</p>
+                        @enderror
                     </div>
-                </div>
-                <input type="text"
-                       class="form-control"
-                       wire:model="age">
-                @error('age')
-                <p class="text-danger mt-2"> {{ $message }}</p>
-                @enderror
-            </div>
-            <!-- End Age -->
+                    <!-- End Age -->
             @endif
 
             @if($choose_notes)
-            <!-- Notes -->
-            <div class="form-group my-4">
-                <div class="form-check ps-0">
-                    <div class="d-flex justify-content-between mb-2">
+                <!-- Notes -->
+                    <div class="form-group my-4">
                         <label class="form-label" for="">Notes:</label>
-                        <div>
-                            <label class="form-label ms-1" for="">show on profile</label>
-                            <input class="form-check-input"
-                                   type="checkbox"
-                                   wire:model="check_notes"
-                                   style="width: 25px; height: 25px"
-                                   value="{{ 1 }}"
-                            >
-                        </div>
+                        <textarea type="text"
+                               class="form-control"
+                               wire:model="notes"></textarea>
+                        @error('notes')
+                        <p class="text-danger mt-2"> {{ $message }}</p>
+                        @enderror
                     </div>
-                </div>
-                <input type="text"
-                       class="form-control"
-                       wire:model="notes">
-                @error('notes')
-                <p class="text-danger mt-2"> {{ $message }}</p>
-                @enderror
-            </div>
-            <!-- End Notes -->
+                    <!-- End Notes -->
             @endif
+        </div>
 
-        <div>
+        <div class="">
             @if (session()->has('empty_message'))
                 <div class="alert alert-warning">
                     {{ session('empty_message') }}

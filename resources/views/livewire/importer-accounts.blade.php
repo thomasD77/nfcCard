@@ -107,7 +107,7 @@
                     </div>
                 @endif
             </div>
-            <div class="col-md-6 col-xl-5">
+            <div class="col-md-6 col-xl-5 text-end">
                 <div wire:loading wire:target="generateAccounts">
                     <i class="fa fa-4x fa-cog fa-spin text-dark mb-2"></i>
                 </div>
