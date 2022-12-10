@@ -40,22 +40,27 @@ class DirectionController extends Controller
 
         //Search Member with this Card ID
         $member = Member::where('card_id', $url_card_id)->first();
-        $profile = Profile::where('member_id', $member->id)->where('active', 1)->first();
 
         if(!$member)
         {
             return view( 'auth.register', compact('url_card_id', 'url'));
         }
 
-        if(!$member->user->is_company)
+        if(!$member->user)
         {
+            return view( 'auth.register-now', compact('url_card_id', 'url'));
+        }
+
+        if(!$member->user->is_company && $member->user)
+        {
+            $profile = Profile::where('member_id', $member->id)->where('active', 1)->first();
             $count = $profile->profile_views + 1;
             $profile->profile_views = $count;
             $profile->update();
             $buttons = Button::where('member_id', $member->id)->get();
             return view( 'front.landingspage_default.index', compact('profile', 'buttons', 'member'));
         } else {
-            $vCard = null;
+            $profile = Profile::where('member_id', $member->id)->where('active', 1)->first();
             $count = $profile->profile_views + 1;
             $profile->profile_views = $count;
             $profile->update();

@@ -15,8 +15,8 @@
                                 Welcome to the world of SWAP!
                             </h1>
                             <p class="fs-lg  text-muted mb-4">
-                                There is no active card registered for this ID. <br>
-                                Please contact SWAP if something is wrong.
+                                Your account needs to be verified.
+                                Please check your e-mail to make your registration complete.
                             </p>
                             <div class="pt-5">
                                 <p class="text-muted">SWAP &copy; {{ now()->format('Y') }}</p>

@@ -39,13 +39,4 @@ class State extends Model
 
     ];
 
-//    public function member()
-//    {
-//        return $this->hasOne(Member::class);
-//    }
-
-
-
-
-
 }
