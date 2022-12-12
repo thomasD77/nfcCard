@@ -15,7 +15,8 @@
                                    type="checkbox"
                                    name="check_mobileWork"
                                    style="width: 25px; height: 25px"
-                                   value="{{ 1 }}" @if($profile->state->mobileWork) checked @endif>
+                                   value="{{ 1 }}" @if($profile->state->mobileWork) checked @endif
+                            >
                         </div>
                     </div>
                     {!! Form::text('mobileWork',$profile->mobileWork ,['class'=>'form-control']) !!}
@@ -32,7 +33,8 @@
                                    type="checkbox"
                                    name="check_mobile"
                                    style="width: 25px; height: 25px"
-                                   value="{{ 1 }}" @if($profile->state->mobile) checked @endif>
+                                   value="{{ 1 }}" @if($profile->state->mobile) checked @endif
+                            >
                         </div>
                     </div>
                     {!! Form::text('mobile',$profile->mobile ,['class'=>'form-control']) !!}
@@ -49,7 +51,8 @@
                                    type="checkbox"
                                    name="check_addressLine1"
                                    style="width: 25px; height: 25px"
-                                   value="{{ 1 }}" @if($profile->state->addressLine1) checked @endif>
+                                   value="{{ 1 }}" @if($profile->state->addressLine1) checked @endif
+                            >
                         </div>
                     </div>
                     {!! Form::text('addressLine1',$profile->addressLine1 ,['class'=>'form-control']) !!}
@@ -66,7 +69,8 @@
                                    type="checkbox"
                                    name="check_city"
                                    style="width: 25px; height: 25px"
-                                   value="{{ 1 }}" @if($profile->state->city) checked @endif>
+                                   value="{{ 1 }}" @if($profile->state->city) checked @endif
+                            >
                         </div>
                     </div>
                     {!! Form::text('city',$profile->city ,['class'=>'form-control']) !!}
@@ -83,7 +87,8 @@
                                    type="checkbox"
                                    name="check_postalCode"
                                    style="width: 25px; height: 25px"
-                                   value="{{ 1 }}" @if($profile->state->postalCode) checked @endif>
+                                   value="{{ 1 }}" @if($profile->state->postalCode) checked @endif
+                            >
                         </div>
                     </div>
                     {!! Form::text('postalCode',$profile->postalCode ,['class'=>'form-control']) !!}
@@ -100,7 +105,8 @@
                                    type="checkbox"
                                    name="check_country"
                                    style="width: 25px; height: 25px"
-                                   value="{{ 1 }}" @if($profile->state->country) checked @endif>
+                                   value="{{ 1 }}" @if($profile->state->country) checked @endif
+                            >
                         </div>
                     </div>
                     {!! Form::text('country',$profile->country ,['class'=>'form-control']) !!}

@@ -1,9 +1,9 @@
 <?php
 // AAN TE PASSEN WANNEER LIVE
-$servername = "127.0.0.1";
-$username = "woodcenter";
-$password = "internal123";
-$dbname = "swap";
+$servername = "ID368008_tester.db.webhosting.be";
+$username = "ID368008_tester";
+$password = "@Skatemovies777";
+$dbname = "ID368008_tester";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

@@ -148,6 +148,12 @@ class AdminUsersController extends Controller
             $user->is_company = 1;
         }
 
+        if (!$request->is_importer) {
+            $user->is_importer = 0;
+        } else {
+            $user->is_importer = 1;
+        }
+
         $listurl = listUrl::where('member_id', $user->member->id)->first();
         $listurl->trial_date = $request->trial_date;
         $listurl->update();
@@ -328,6 +334,11 @@ class AdminUsersController extends Controller
 
         return view('admin.users.search', compact('users'));
 
+    }
+
+    public function importer(Request $request)
+    {
+        return view('admin.users.importer');
     }
 
     public function updateTeam(TeamRequest $request, User $user)

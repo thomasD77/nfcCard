@@ -6,6 +6,7 @@ use App\Models\Button;
 use App\Models\listUrl;
 use App\Models\Member;
 use App\Models\Package;
+use App\Models\Profile;
 use App\Models\User;
 use App\Models\vCard;
 use Illuminate\Http\Request;
@@ -39,27 +40,32 @@ class DirectionController extends Controller
 
         //Search Member with this Card ID
         $member = Member::where('card_id', $url_card_id)->first();
+
         if(!$member)
         {
             return view( 'auth.register', compact('url_card_id', 'url'));
         }
 
-
-        if(!$member->user->is_company)
+        if(!$member->user)
         {
-            $vCard = null;
-            $count = $member->profile_views + 1;
-            $member->profile_views = $count;
-            $member->update();
+            return view( 'auth.register-now', compact('url_card_id', 'url'));
+        }
+
+        if(!$member->user->is_company && $member->user)
+        {
+            $profile = Profile::where('member_id', $member->id)->where('active', 1)->first();
+            $count = $profile->profile_views + 1;
+            $profile->profile_views = $count;
+            $profile->update();
             $buttons = Button::where('member_id', $member->id)->get();
-            return view( 'front.landingspage_default.index', compact('member', 'vCard', 'buttons'));
+            return view( 'front.landingspage_default.index', compact('profile', 'buttons', 'member'));
         } else {
-            $vCard = null;
-            $count = $member->profile_views + 1;
-            $member->profile_views = $count;
-            $member->update();
+            $profile = Profile::where('member_id', $member->id)->where('active', 1)->first();
+            $count = $profile->profile_views + 1;
+            $profile->profile_views = $count;
+            $profile->update();
             $buttons = Button::where('member_id', $member->id)->get();
-            return view( 'front.landingspage_default.company', compact('member', 'vCard', 'buttons'));
+            return view( 'front.landingspage_default.company', compact('profile', 'buttons', 'member'));
         }
 
     }

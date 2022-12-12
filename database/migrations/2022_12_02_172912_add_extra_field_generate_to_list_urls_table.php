@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddProfileIdToStatesTable extends Migration
+class AddExtraFieldGenerateToListUrlsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddProfileIdToStatesTable extends Migration
      */
     public function up()
     {
-        Schema::table('states', function (Blueprint $table) {
-            $table->integer('profile_id')->index()->default(1);
+        Schema::table('list_urls', function (Blueprint $table) {
+            //
+            $table->boolean('is_admin_generated')->nullable();
         });
     }
 
@@ -25,7 +26,7 @@ class AddProfileIdToStatesTable extends Migration
      */
     public function down()
     {
-        Schema::table('states', function (Blueprint $table) {
+        Schema::table('list_urls', function (Blueprint $table) {
             //
         });
     }

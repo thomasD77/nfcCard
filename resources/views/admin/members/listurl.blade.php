@@ -37,6 +37,13 @@
                 <div class="form-group mb-4">
 
                     <div class="form-group mb-4">
+                        <label class="form-label">Importer:</label>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" value="1" name="is_importer" type="checkbox" id="flexSwitchCheckDefault" @if($url->is_importer) checked @endif>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-4">
                         <label class="form-label">Company account:</label>
                         <div class="form-check form-switch">
                             <input class="form-check-input" value="1" name="is_company" type="checkbox" id="flexSwitchCheckDefault" @if($url->is_company) checked @endif>

@@ -7,6 +7,8 @@ use App\Mail\SendMailDemoCard;
 use App\Models\listUrl;
 use App\Models\Material;
 use App\Models\Member;
+use App\Models\Profile;
+use App\Models\State;
 use App\Models\URL;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
@@ -83,7 +85,6 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $url = URL::first()->url;
-        $member = new Member();
         $listURL = listUrl::where('card_id', $data['card_id'])->first();
         $faker = Factory::create();
 
@@ -115,7 +116,9 @@ class RegisterController extends Controller
             'created_at'=>Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),]);
 
+
         //Save member settings
+        $member = new Member();
         $member->user_id = $user->id;
         $member->email = $user->email;
         $member->card_id = $data['card_id'];
@@ -128,9 +131,19 @@ class RegisterController extends Controller
         $member->save();
 
         //Make card state connection
-        DB::table('states')->insert([
-            'member_id'=> $member->id,
-        ]);
+        $state = new State();
+        $state->member_id = $member->id;
+        $state->save();
+
+        //Save Profile settings
+        $profile = new Profile();
+        $profile->default = 1;
+        $profile->active = 1;
+        $profile->profile_name = 'Default';
+        $profile->email = $user->email;
+        $profile->member_id = $member->id;
+        $profile->state_id = $state->id;
+        $profile->save();
 
         //Make card setting connection
         DB::table('settings')->insert([
@@ -142,6 +155,7 @@ class RegisterController extends Controller
         $user->team_id = $listURL->team_id;
         $user->business = $listURL->business;
         $user->is_company = $listURL->is_company;
+        $user->is_importer = $listURL->is_importer;
         $user->save();
 
         //Connect ListURl with Member

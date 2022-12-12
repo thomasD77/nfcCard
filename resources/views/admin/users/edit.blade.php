@@ -176,6 +176,23 @@
 
                         @can('is_superAdmin')
                             <div class="form-group mb-4">
+                                <label class="form-label">Importer:</label>
+                                <div class="alert alert-dark fs-sm">
+                                    <div class="mt-2">
+                                        <p class="mb-0">
+                                            <i class="fa fa-fw fa-info me-1 mb-0"></i>
+                                         If you are an importer you can sync data with your team
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" value="1" name="is_importer" type="checkbox" id="flexSwitchCheckDefault" @if($user->is_importer) checked @endif>
+                                </div>
+                            </div>
+                        @endcan
+
+                        @can('is_superAdmin')
+                            <div class="form-group mb-4">
                                 <label class="form-label">Business account:</label>
                                 <div class="alert alert-dark fs-sm">
                                     <div class="mt-2">

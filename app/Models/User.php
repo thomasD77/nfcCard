@@ -98,4 +98,8 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo(Team::class);
     }
 
+    public function userToUrlImport(){
+        return $this->belongsToMany(listUrl::class, 'user_listurl', 'user_id', 'listurl_id');
+    }
+
 }

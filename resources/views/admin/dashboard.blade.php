@@ -201,7 +201,7 @@
                             </div>
 
                             <div class="row px-2">
-                                <a href="{{route('members.edit', $member->id)}}">
+                                <a href="{{route('profiles.edit', $member->id)}}">
                                     <div class="row py-3">
                                         <div class="col-4">
                                             <i class="fa fa-fw fa-pencil-alt text-dark" style="font-size: 45px"></i>
