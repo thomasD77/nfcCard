@@ -28,9 +28,11 @@
     <!-- Page Content -->
     <div class="content content-boxed px-0">
         <div class="content content-boxed">
-
-             @include('admin.members.includes.default')
-
+            @if(Auth()->user()->is_company)
+                @include('admin.members.includes.company')
+            @else
+                @include('admin.members.includes.default')
+            @endif
         </div>
     </div>
     <!-- END Page Content -->

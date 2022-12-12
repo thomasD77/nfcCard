@@ -43,7 +43,9 @@ class DirectionController extends Controller
         {
             return view( 'auth.register', compact('url_card_id', 'url'));
         }
-        if($member->package->package == 'Default')
+
+
+        if(!$member->user->is_company)
         {
             $vCard = null;
             $count = $member->profile_views + 1;
@@ -51,17 +53,15 @@ class DirectionController extends Controller
             $member->update();
             $buttons = Button::where('member_id', $member->id)->get();
             return view( 'front.landingspage_default.index', compact('member', 'vCard', 'buttons'));
+        } else {
+            $vCard = null;
+            $count = $member->profile_views + 1;
+            $member->profile_views = $count;
+            $member->update();
+            $buttons = Button::where('member_id', $member->id)->get();
+            return view( 'front.landingspage_default.company', compact('member', 'vCard', 'buttons'));
         }
-        elseif ($member->package->package == 'Custom')
-        {
-            return view('front.members.show', compact('member'));
-        }
-        elseif ($member->package->package == 'vCard')
-        {
-            $vCard = new vCard();
-            $vCard->vCard($member->id);
-            return $vCard;
-        }
+
     }
 
     public function getDirectionFromId($id)
