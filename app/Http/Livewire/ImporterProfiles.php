@@ -89,28 +89,28 @@ class ImporterProfiles extends Component
                     $profile->update();
                 }
             }
+            //Detach
+            Auth()->user()->userToUrlImport()->detach($url->id);
         }
 
         //Form Reset
         $this->choose_firstname = "";
-        $this->check_firstname = "";
+        $this->firstname = "";
         $this->choose_lastname = "";
-        $this->check_lastname = "";
+        $this->lastname = "";
         $this->choose_email = "";
-        $this->check_email = "";
+        $this->email = "";
         $this->choose_website = "";
-        $this->check_website = "";
+        $this->website = "";
         $this->choose_jobTitle = "";
-        $this->check_jobTitle = "";
+        $this->jobTitle = "";
         $this->choose_company = "";
-        $this->check_company = "";
+        $this->company = "";
         $this->choose_age = "";
-        $this->check_age = "";
+        $this->age = "";
         $this->choose_notes = "";
-        $this->check_notes = "";
+        $this->notes = "";
 
-        //Detach
-        Auth()->user()->userToUrlImport()->detach($url->id);
 
         $this->emit('renderImporter');
         session()->flash('success_update_message', 'Data is updated successfully');
