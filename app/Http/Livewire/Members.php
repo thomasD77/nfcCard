@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Member;
+use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -53,36 +54,39 @@ class Members extends Component
                         ->Orwhere('lastname', 'LIKE', '%' . $value . '%')
                         ->Orwhere('referral', 'LIKE', '%' . $value . '%')
                         ->where('archived', 0);
-
-                })->simplePaginate($this->pagination);
+                    })->select('id')
+                    ->get();
             }else {
-                $members = Member::where(function($q) use($value) {
-
-                    $team_id = Auth::user()->team->id;
-                    $teamUsers = User::where('team_id', $team_id)->pluck('id');
-
-                    $q->where('firstname', 'LIKE', '%' . $value . '%')
-                        ->Orwhere('lastname', 'LIKE', '%' . $value . '%')
-                        ->Orwhere('referral', 'LIKE', '%' . $value . '%')
-                        ->whereIn('user_id', $teamUsers)
-                        ->where('archived', 0);
-
-                })->simplePaginate($this->pagination);
+                $members = Member::with(['user', 'contacts'])->where(function($q) use($value) {
+                $team_id = Auth::user()->team->id;
+                $teamUsers = User::where('team_id', $team_id)->pluck('id');
+                $q->where('firstname', 'LIKE', '%' . $value . '%')
+                    ->Orwhere('lastname', 'LIKE', '%' . $value . '%')
+                    ->Orwhere('referral', 'LIKE', '%' . $value . '%')
+                    ->whereIn('user_id', $teamUsers)
+                    ->where('archived', 0);})
+                ->select('id')
+                ->get();
             }
-
         }elseif(Auth()->user()->roles->first()->name == 'superAdmin'){
             $members = Member::with(['user', 'package', 'material'])
                 ->where('archived', 0)
-                ->simplePaginate($this->pagination);
+                ->select('id')
+                ->get();
         }else {
             $team_id = Auth::user()->team->id;
             $teamUsers = User::where('team_id', $team_id)->pluck('id');
-            $members = Member::with(['user', 'package', 'material'])
+            $members = Member::with(['user', 'package', 'material', 'contacts'])
                 ->whereIn('user_id', $teamUsers)
                 ->where('archived', 0)
-                ->simplePaginate($this->pagination);
+                ->select('id')
+                ->get();
         }
+        $profiles = Profile::with(['member'])
+            ->where('active', 1)
+            ->whereIn('member_id', $members)
+            ->simplePaginate($this->pagination);
 
-        return view('livewire.members', compact('members'));
+        return view('livewire.members', compact( 'profiles'));
     }
 }

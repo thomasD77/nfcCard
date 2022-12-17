@@ -39,8 +39,7 @@ class AdminMembersController extends Controller
     public function index()
     {
         //
-        $count = User::where('team_id', Auth::user()->team_id)->count();
-        return view('admin.members.index', compact('count'));
+        return view('admin.members.index');
     }
 
 

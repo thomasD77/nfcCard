@@ -48,19 +48,19 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @if($members)
-                        @foreach($members as $member)
+                    @if($profiles)
+                        @foreach($profiles as $profile)
                             <tr>
-                                <td><img class="rounded-circle" height="62" width="62" src="{{$member->avatar ? asset('/card/avatars') . "/" . $member->avatar : asset('/assets/front/img/Avatar-4.svg') }}" alt="{{$member->name}}"></td>
-                                <td>{{$member->lastname ? $member->lastname : ""}} {{ $member->firstname ? $member->firstname : '' }}</td>
-                                <td>{{$member->company ? $member->company : ""}}</td>
-                                <td>{{$member->card_id ? $member->card_id : 'No Card ID'}}</td>
-                                <td>{{$member->material ? $member->material->name : 'No Material'}}</td>
-                                <td>{{$member->contacts ? $member->contacts->count() : '0'}}</td>
+                                <td><img class="rounded-circle" height="62" width="62" src="{{$profile->avatar ? asset('/card/avatars') . "/" . $profile->avatar : asset('/assets/front/img/Avatar-4.svg') }}" alt="{{$profile->name}}"></td>
+                                <td>{{$profile->lastname ? $profile->lastname : ""}} {{ $profile->firstname ? $profile->firstname : '' }}</td>
+                                <td>{{$profile->company ? $profile->company : ""}}</td>
+                                <td>{{$profile->card_id ? $profile->card_id : 'No Card ID'}}</td>
+                                <td>{{$profile->material ? $profile->material->name : 'No Material'}}</td>
+                                <td>{{$profile->member->contacts ? $profile->member->contacts->count() : '0'}}</td>
                                 <td>
-                                    @if(isset($member->user))
-                                        <a class="btn btn-outline-primary w-100" href="{{ route('users.edit', $member->user->id) }}">
-                                            {{$member->user ? $member->user->name : "unknown"}}
+                                    @if(isset($profile->member->user))
+                                        <a class="btn btn-outline-primary w-100" href="{{ route('users.edit', $profile->member->user->id) }}">
+                                            {{$profile->member->user ? $profile->member->user->name : "unknown"}}
                                         </a>
                                     @else
                                         unknown
@@ -68,16 +68,16 @@
                                 </td>
                                 <td>
                                     <div class="btn-group">
-                                        <a href="{{route('members.edit', $member->id)}}">
+                                        <a href="{{route('profiles.edit', $profile->member->id)}}">
                                             <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit member">
                                                 <i class="fa fa-fw fa-pencil-alt"></i>
                                             </button>
                                         </a>
 
-                                        @if($member->card_id !== 0)
-                                            <a href="{{route('direction', $member->card_id)}}" target="_blank">
+                                        @if($profile->member->card_id !== 0)
+                                            <a href="{{route('direction', $profile->member->card_id)}}" target="_blank">
                                         @else
-                                            <a href="{{route('direction.test', $member)}}" target="_blank">
+                                            <a href="{{route('direction.test', $profile->member)}}" target="_blank">
                                         @endif
 
                                         <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Show member">
@@ -90,9 +90,9 @@
                                 @can('is_superAdmin')
                                         <td>
                                             <input type="checkbox"
-                                                   @if($member->print == 1)  checked @endif
+                                                   @if($profile->member->print == 1)  checked @endif
                                                    class="btn btn-sm btn-alt-secondary"
-                                                   wire:click="select({{$member->id}})">
+                                                   wire:click="select({{$profile->member->id}})">
                                         </td>
                                 @endcan
                             </tr>
@@ -102,7 +102,7 @@
                 </table>
             </div>
             <div class="d-flex justify-content-center">
-                {!! $members->links()  !!}
+                {!! $profiles->links()  !!}
             </div>
         </div>
     </div>

@@ -86,6 +86,11 @@ function getFields(){
         "youTube",
         "tikTok",
         "whatsApp",
-        "id"
+        "id",
+        'youtube_video',
+        'titleMessage',
+        'message',
+        'customField',
+        'customText'
     );
 }

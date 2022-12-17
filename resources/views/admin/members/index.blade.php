@@ -8,7 +8,7 @@
                 @canany(['is_superAdmin', 'is_admin'])
                 <div class="flex-grow-1">
                     <h1 class="h3 fw-bold mb-2">
-                        ALL SWAP MEMBERS ({{ $count }})
+                        ALL SWAP MEMBERS
                     </h1>
                     <p class="text-muted">A clear overview from all your Swap team members.</p>
                 </div>
