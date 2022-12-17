@@ -10,6 +10,7 @@ use App\Models\Member;
 use App\Models\Order;
 use App\Models\Package;
 use App\Models\Photo;
+use App\Models\Profile;
 use App\Models\QRCODE;
 use App\Models\Role;
 use App\Models\Team;
@@ -51,10 +52,15 @@ class AdminHomeController extends Controller
 
         $teams = Team::count();
 
-        return view('admin.dashboard', compact('member', 'scans',
+        $profile = Profile::where('member_id', $member->id)->where('active', 1)->first();
+
+        return view('admin.dashboard', compact(
+            'member',
+            'scans',
             'users',
             'teams',
-            'is_business'
+            'is_business',
+            'profile'
         ));
     }
 

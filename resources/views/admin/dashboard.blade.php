@@ -148,33 +148,40 @@
                                     <div class="card-body">
 
                                         @if(Auth()->user()->is_company)
-                                            <h4 class="card-title mb-4">{{ $member->company }}</h4>
+                                            <h4 class="card-title mb-4">{{ $profile->company }}</h4>
                                         @else
-                                            <h4 class="card-title mb-4">{{ $member->firstname }} {{ $member->lastname }}</h4>
+                                            <h4 class="card-title mb-4">{{ $profile->firstname }} {{ $profile->lastname }}</h4>
                                         @endif
 
 
 
-                                        @if($member->email)
+                                        @if($profile->email)
                                             <div class="row">
                                                 <i class="far fa-envelope col-1 pt-2"></i>
-                                                <p class="col-10">{{ $member->email }}</p>
+                                                <p class="col-10">{{ $profile->email }}</p>
                                             </div>
                                         @endif
 
                                         @if(!Auth()->user()->is_company)
-                                            @if($member->company)
+                                            @if($profile->company)
                                                 <div class="row">
                                                     <i class="far fa-building col-1 pt-2"></i>
-                                                    <p class="col-10">{{ $member->company }}</p>
+                                                    <p class="col-10">{{ $profile->company }}</p>
                                                 </div>
                                             @endif
                                         @endif
 
-                                        @if($member->jobTitle)
+                                        @if($profile->jobTitle)
                                             <div class="row">
                                                 <i class="far fa-compass col-1 pt-2"></i>
-                                                <p class="col-10">{{ $member->jobTitle }}</p>
+                                                <p class="col-10">{{ $profile->jobTitle }}</p>
+                                            </div>
+                                        @endif
+
+                                        @if($profile->profile_name)
+                                            <div class="row">
+                                                <i class="far fa-compass col-1 pt-2"></i>
+                                                <p class="col-10">{{ $profile->profile_name }}</p>
                                             </div>
                                         @endif
 
