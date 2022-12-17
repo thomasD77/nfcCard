@@ -364,6 +364,22 @@
                 </div>
             </div>
 
+            <!-- Youtube link -->
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-10">
+                        <label for="" class="me-2">Youtube video</label>
+                    </div>
+                    <div class="col-md-2">
+                        <input class="form-check-input"
+                               type="checkbox"
+                               wire:model="choose_youtubeVideo"
+                               style="width: 25px; height: 25px"
+                               value="{{ 1 }}">
+                    </div>
+                </div>
+            </div>
+
 
 
 
@@ -1054,6 +1070,37 @@
                     </div>
                     <!-- End customField -->
                 @endif
+
+                @if($choose_youtubeVideo)
+                    <!-- customField -->
+                        <div class="form-group my-4">
+                            <div class="form-check ps-0">
+                                <div class="row">
+                                    <label class="form-label col-md-4" for="">Youtube video:</label>
+                                    <div class="col-md-1">
+                                        <label class="form-label ms-1" for="">Yes</label>
+                                        <input class="form-check-input"
+                                               type="checkbox"
+                                               wire:model="check_youtubeVideo"
+                                               style="width: 25px; height: 25px"
+                                               @if($check_youtubeVideo) checked @endif
+                                               value="{{ 1 }}">
+                                    </div>
+                                    <div class="col-md-1">
+                                        <label class="form-label ms-1" for="">No</label>
+                                        <input class="form-check-input"
+                                               type="checkbox"
+                                               wire:model="check_youtubeVideo_neg"
+                                               style="width: 25px; height: 25px"
+                                               @if($check_youtubeVideo_neg) checked @endif
+                                               value="{{ 1 }}">
+                                    </div>
+                                    <div class="col-md-6"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End customField -->
+                    @endif
 
         </div>
 

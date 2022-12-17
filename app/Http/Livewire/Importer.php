@@ -30,12 +30,23 @@ class Importer extends Component
     public $bulk = false;
     public $filter;
     public $ids = [];
+    public $loading = false;
 
     public string $datepicker = "";
     public string $datepicker_day = "";
 
     public Team $team;
     public User $user;
+
+    public $info = false;
+    public $accounts = true;
+    public $profiles = false;
+    public $contacts = false;
+    public $buttons = false;
+    public $message = false;
+    public $videos = false;
+    public $states = false;
+
 
     protected $listeners = ['renderImporter' => 'render'];
 
@@ -44,6 +55,100 @@ class Importer extends Component
         $this->team = Team::findOrFail(Auth()->user()->team_id);
         $this->user = Auth()->user();
     }
+
+    public function info(){
+        $this->info = true;
+
+        $this->accounts = false;
+        $this->profiles = false;
+        $this->contacts = false;
+        $this->buttons = false;
+        $this->message = false;
+        $this->videos = false;
+        $this->states = false;
+    }
+
+    public function accounts(){
+        $this->accounts = true;
+        $this->info = false;
+        $this->profiles = false;
+        $this->contacts = false;
+        $this->buttons = false;
+        $this->message = false;
+        $this->videos = false;
+        $this->states = false;
+    }
+
+    public function profiles(){
+        $this->info = false;
+        $this->accounts = false;
+        $this->profiles = true;
+        $this->contacts = false;
+        $this->buttons = false;
+        $this->message = false;
+        $this->videos = false;
+        $this->states = false;
+    }
+
+    public function contacts()
+    {
+        $this->info = false;
+        $this->accounts = false;
+        $this->profiles = false;
+        $this->contacts = true;
+        $this->buttons = false;
+        $this->message = false;
+        $this->videos = false;
+        $this->states = false;
+    }
+
+    public function buttons(){
+        $this->info = false;
+        $this->accounts = false;
+        $this->profiles = false;
+        $this->contacts = false;
+        $this->buttons = true;
+        $this->message = false;
+        $this->videos = false;
+        $this->states = false;
+    }
+
+    public function message(){
+        $this->info = false;
+        $this->accounts = false;
+        $this->profiles = false;
+        $this->contacts = false;
+        $this->buttons = false;
+        $this->message = true;
+        $this->videos = false;
+        $this->states = false;
+    }
+
+    public function videos()
+    {
+        $this->info = false;
+        $this->accounts = false;
+        $this->profiles = false;
+        $this->contacts = false;
+        $this->buttons = false;
+        $this->message = false;
+        $this->videos = true;
+        $this->states = false;
+    }
+
+    public function states()
+    {
+        $this->info = false;
+        $this->accounts = false;
+        $this->profiles = false;
+        $this->contacts = false;
+        $this->buttons = false;
+        $this->message = false;
+        $this->videos = false;
+        $this->states = true;
+    }
+
+
 
     public function dateALL()
     {

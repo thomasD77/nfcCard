@@ -125,33 +125,78 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-
                     <nav>
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                            <button wire:ignore.self class="nav-link text-dark" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Accounts</button>
-                            <button wire:ignore.self class="nav-link text-dark active" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
-                            <button wire:ignore.self class="nav-link text-dark" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</button>
-                            <button wire:ignore.self class="nav-link text-dark" id="nav-buttons-tab" data-bs-toggle="tab" data-bs-target="#nav-buttons" type="button" role="tab" aria-controls="nav-buttons" aria-selected="false">Buttons</button>
-                            <button wire:ignore.self class="nav-link text-dark" id="nav-state-tab" data-bs-toggle="tab" data-bs-target="#nav-state" type="button" role="tab" aria-controls="nav-state" aria-selected="false">States</button>
+{{--                            <button wire:click="infoToggle" class="nav-link text-dark @if($info) active @endif">Info</button>--}}
+                            <button wire:click="accounts" class="nav-link text-dark @if($accounts) active @endif">Accounts</button>
+                            <button wire:click="profiles" class="nav-link text-dark @if($profiles) active @endif">Profiles</button>
+                            <button wire:click="contacts" class="nav-link text-dark @if($contacts) active @endif">Contact</button>
+                            <button wire:click="buttons" class="nav-link text-dark @if($buttons) active @endif">Buttons</button>
+                            <button wire:click="message" class="nav-link text-dark @if($message) active @endif">Message</button>
+                            <button wire:click="videos" class="nav-link text-dark @if($videos) active @endif">Videos</button>
+                            <button wire:click="states" class="nav-link text-dark @if($states) active @endif">States</button>
+
                         </div>
                     </nav>
                     <div class="tab-content" id="nav-tabContent">
-                        <div class="tab-pane fade" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                            @livewire('importer-accounts')
-                        </div>
-                        <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                            @livewire('importer-profiles')
-                        </div>
-                        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-                            @livewire('importer-contact')
-                        </div>
-                        <div class="tab-pane fade" id="nav-buttons" role="tabpanel" aria-labelledby="nav-buttons-tab">
-                            @livewire('importer-buttons')
-                        </div>
-                        <div class="tab-pane fade" id="nav-state" role="tabpanel" aria-labelledby="nav-state-tab">
-                            @livewire('importer-states')
-                        </div>
+{{--                        @if($info)--}}
+{{--                            <div class="tab-pane fade show active">--}}
+{{--                                <h3 class="mt-2">General info</h3>--}}
+{{--                                <p>--}}
+{{--                                    With this data functionality you can import data for your company profile and members.--}}
+{{--                                    The first step is always to select the accounts that you want to generate or update.--}}
+{{--                                    Only select the records you want to edit, when you leave it blanco they will be--}}
+{{--                                    overwritten.--}}
+{{--                                </p>--}}
+{{--                                <p>Thanks, <br> SWAP NFC</p>--}}
+{{--                            </div>--}}
+{{--                        @endif--}}
+
+                        @if($accounts)
+                            <div class="tab-pane fade show active">
+                                @livewire('importer-accounts')
+                            </div>
+                        @endif
+
+                        @if($profiles)
+                            <div class="tab-pane fade show active">
+                                @livewire('importer-profiles')
+                            </div>
+                        @endif
+
+                        @if($contacts)
+                            <div class="tab-pane fade show active">
+                                @livewire('importer-contact')
+                            </div>
+                        @endif
+
+                        @if($buttons)
+                            <div class="tab-pane fade show active">
+                                @livewire('importer-buttons')
+                            </div>
+                        @endif
+
+                        @if($message)
+                            <div class="tab-pane fade show active">
+                                @livewire('importer-message')
+                            </div>
+                        @endif
+
+                        @if($videos)
+                            <div class="tab-pane fade show active">
+                                @livewire('importer-videos')
+                            </div>
+                        @endif
+
+
+                    @if($states)
+                            <div class="tab-pane fade show active">
+                                @livewire('importer-states')
+                            </div>
+                        @endif
+
                     </div>
+
                 </div>
             </div>
         </div>

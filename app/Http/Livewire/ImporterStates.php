@@ -80,6 +80,9 @@ class ImporterStates extends Component
     public $check_customField = false;
     public $check_customField_neg = false;
 
+    public $check_youtubeVideo = false;
+    public $check_youtubeVideo_neg = false;
+
     public $choose_firstname = false;
     public $choose_lastname = false;
     public $choose_email = false;
@@ -102,6 +105,7 @@ class ImporterStates extends Component
     public $choose_whatsApp = false;
     public $choose_tikTok = false;
     public $choose_customField = false;
+    public $choose_youtubeVideo = false;
 
     public function mount()
     {
@@ -161,6 +165,7 @@ class ImporterStates extends Component
                         $state_class->profileState($state, 'linkedIn', $this->check_linkedIn, $this->check_linkedIn_neg);
                         $state_class->profileState($state, 'youTube', $this->check_youTube, $this->check_youTube_neg);
                         $state_class->profileState($state, 'customField', $this->check_customField, $this->check_customField_neg);
+                        $state_class->profileState($state, 'youtube_video', $this->check_youtubeVideo, $this->check_youtubeVideo_neg);
 
                         $state->update();
                     }
@@ -193,6 +198,7 @@ class ImporterStates extends Component
         $this->choose_whatsApp = "";
         $this->choose_tikTok = "";
         $this->choose_customField = "";
+        $this->choose_youtubeVideo = "";
 
         $this->check_firstname = "";
         $this->check_firstname_neg = "";
@@ -259,6 +265,9 @@ class ImporterStates extends Component
 
         $this->check_customField = "";
         $this->check_customField_neg = "";
+
+        $this->check_youtubeVideo = "";
+        $this->check_youTube_neg = "";
 
 
         $this->emit('renderImporter');
