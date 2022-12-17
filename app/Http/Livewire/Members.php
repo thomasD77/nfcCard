@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Member;
 use App\Models\Profile;
 use App\Models\User;
+use App\Swap\General\getIds;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\Request;
@@ -16,7 +17,6 @@ class Members extends Component
     use WithPagination;
     public int $pagination = 25;
     public $member_value;
-
 
     public function select($id)
     {
@@ -49,7 +49,7 @@ class Members extends Component
 
             //If superAdmin
             if(Auth()->user()->roles->first()->name == 'superAdmin'){
-                $members = Member::where(function($q) use($value) {
+                $members = Member::with(['user', 'contacts'])->where(function($q) use($value) {
                     $q->where('firstname', 'LIKE', '%' . $value . '%')
                         ->Orwhere('lastname', 'LIKE', '%' . $value . '%')
                         ->Orwhere('referral', 'LIKE', '%' . $value . '%')
@@ -82,9 +82,18 @@ class Members extends Component
                 ->select('id')
                 ->get();
         }
-        $profiles = Profile::with(['member'])
-            ->where('active', 1)
-            ->whereIn('member_id', $members)
+
+        $ids = new getIds();
+        $ids = $ids->idArray($members, 'id');
+
+        $profiles = Profile::with([
+            'member',
+            'member.contacts',
+            'member.user',
+            'member.material'
+        ])
+            ->where('default', 1)
+            ->whereIn('member_id', $ids)
             ->simplePaginate($this->pagination);
 
         return view('livewire.members', compact( 'profiles'));

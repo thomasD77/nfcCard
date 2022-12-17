@@ -73,7 +73,7 @@
                         <select class="form-control" wire:model="selectMember" @if($selectedMemberDisabled) disabled @endif>
                             <option value="{{ null }}">{{ __('Please select') }}</option>
                             @foreach ($members as $member)
-                                <option value="{{ $member->id }}" wire:key="member-{{ $member->id }}">{{ $member->firstname }} {{ $member->lastname }}</option>
+                                <option value="{{ $member->id }}" wire:key="member-{{ $member->id }}">{{ $member->profile->where('default', 1)->first()->firstname }} {{ $member->profile->where('default', 1)->first()->lastname }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -107,9 +107,14 @@
                 <tbody>
                 @if($contacts)
                     @foreach($contacts as $contact)
+                        @php
+                            if($contact->member){
+                                $profile = $contact->member->profile->where('default', 1)->first();
+                            }
+                        @endphp
                         <tr>
                             @if(!$scans)
-                                <td><strong>{{$contact->member ? $contact->member->lastname : ''}} {{$contact->member ? $contact->member->firstname : ''}}</strong></td>
+                                <td><strong>{{$profile ? $profile->lastname : ''}} {{$profile ? $profile->firstname : ''}}</strong></td>
                             @endif
 
                             <td>

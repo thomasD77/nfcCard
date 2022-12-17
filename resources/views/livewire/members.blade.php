@@ -54,8 +54,8 @@
                                 <td><img class="rounded-circle" height="62" width="62" src="{{$profile->avatar ? asset('/card/avatars') . "/" . $profile->avatar : asset('/assets/front/img/Avatar-4.svg') }}" alt="{{$profile->name}}"></td>
                                 <td>{{$profile->lastname ? $profile->lastname : ""}} {{ $profile->firstname ? $profile->firstname : '' }}</td>
                                 <td>{{$profile->company ? $profile->company : ""}}</td>
-                                <td>{{$profile->card_id ? $profile->card_id : 'No Card ID'}}</td>
-                                <td>{{$profile->material ? $profile->material->name : 'No Material'}}</td>
+                                <td>{{$profile->member->card_id ? $profile->member->card_id : 'No Card ID'}}</td>
+                                <td>{{$profile->member->material ? $profile->member->material->name : 'No Material'}}</td>
                                 <td>{{$profile->member->contacts ? $profile->member->contacts->count() : '0'}}</td>
                                 <td>
                                     @if(isset($profile->member->user))

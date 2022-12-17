@@ -104,6 +104,15 @@ class Member extends Model
         return $this->hasMany(Button::class);
     }
 
+    public function profile()
+    {
+        return $this->hasMany(Profile::class);
+    }
+
+    public function defaultProfile($data){
+        return $data->where('default', 1)->first();
+    }
+
     public function memberToContactPrint(){
         return $this->belongsToMany(Contact::class, 'member_contact');
     }

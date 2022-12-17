@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Contact;
 use App\Models\Member;
+use App\Models\Profile;
 use App\Models\User;
 use App\Swap\Filter\AllCleanPrintAdmin;
 use App\Swap\Filter\FilterContactsAdmin;
@@ -116,6 +117,7 @@ class ContactAdmin extends Component
     {
         $filterContacts = new FilterContactsAdmin();
         $members = new TeamMembers();
+        $member_ids = new \App\Swap\General\getIds();
 
         //Declare all variables for dates
         $date = $this->datepicker;
@@ -142,7 +144,17 @@ class ContactAdmin extends Component
         //When there is no filter
         if(!$this->datepicker) {
             $contacts = $filterContacts->filterNoDatePaginate($this->member_ids, $this->name, $this->pagination);
-            return view('livewire.contact-admin', compact('contacts'));
+
+            $ids = $member_ids->idArray($contacts, 'member_id');
+
+            $profiles = Profile::with([
+                'member',
+            ])
+                ->where('default', 1)
+                ->whereIn('member_id', $ids)
+                ->simplePaginate($this->pagination);
+
+            return view('livewire.contact-admin', compact('contacts', 'profiles'));
         //When there is a filter
         } else {
             //When we select a day

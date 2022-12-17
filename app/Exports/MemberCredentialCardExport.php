@@ -27,13 +27,13 @@ class MemberCredentialCardExport implements FromCollection
         ];
 
         $users = User::query()
-            ->whereNull('archived')
+            ->where('archived',0)
             ->where('team_id', Auth()->user()->team_id)
             ->select('id')
             ->get();
 
         $members = Member::query()
-            ->whereNull('archived')
+            ->where('archived', 0)
             ->whereIn('user_id', $users)
             ->select('id')
             ->get();
