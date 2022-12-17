@@ -269,7 +269,10 @@
                     {{ session('success_update_message') }}
                 </div>
             @endif
-            <button class="btn btn-dark" type="submit">Update</button>
+            <div wire:loading wire:target="generateLoading">
+                <i class="fa fa-4x fa-cog fa-spin text-dark mb-2"></i>
+            </div>
+            <button class="btn btn-dark" wire:target="generateLoading" type="submit">Update</button>
         </div>
     </form>
 </div>

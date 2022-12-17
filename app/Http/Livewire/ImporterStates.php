@@ -38,6 +38,48 @@ class ImporterStates extends Component
     public $check_notes = false;
     public $check_notes_neg = false;
 
+    public $check_mobile = false;
+    public $check_mobile_neg = false;
+
+    public $check_mobileWork = false;
+    public $check_mobileWork_neg = false;
+
+    public $check_addressLine1 = false;
+    public $check_addressLine1_neg = false;
+
+    public $check_country = false;
+    public $check_country_neg = false;
+
+    public $check_city = false;
+    public $check_city_neg = false;
+
+    public $check_postalCode = false;
+    public $check_postalCode_neg = false;
+
+    public $check_facebook = false;
+    public $check_facebook_neg = false;
+
+    public $check_instagram = false;
+    public $check_instagram_neg = false;
+
+    public $check_twitter = false;
+    public $check_twitter_neg = false;
+
+    public $check_linkedIn = false;
+    public $check_linkedIn_neg = false;
+
+    public $check_tikTok = false;
+    public $check_tikTok_neg = false;
+
+    public $check_youTube = false;
+    public $check_youTube_neg = false;
+
+    public $check_whatsApp = false;
+    public $check_whatsApp_neg = false;
+
+    public $check_customField = false;
+    public $check_customField_neg = false;
+
     public $choose_firstname = false;
     public $choose_lastname = false;
     public $choose_email = false;
@@ -46,6 +88,20 @@ class ImporterStates extends Component
     public $choose_age = false;
     public $choose_website = false;
     public $choose_notes = false;
+    public $choose_mobile = false;
+    public $choose_mobileWork = false;
+    public $choose_addressLine1 = false;
+    public $choose_city = false;
+    public $choose_postalCode = false;
+    public $choose_country = false;
+    public $choose_facebook = false;
+    public $choose_instagram = false;
+    public $choose_linkedIn = false;
+    public $choose_twitter = false;
+    public $choose_youTube = false;
+    public $choose_whatsApp = false;
+    public $choose_tikTok = false;
+    public $choose_customField = false;
 
     public function mount()
     {
@@ -91,41 +147,119 @@ class ImporterStates extends Component
                         $state_class->profileState($state, 'company', $this->check_company, $this->check_company_neg);
                         $state_class->profileState($state, 'age', $this->check_age, $this->check_age_neg);
                         $state_class->profileState($state, 'notes', $this->check_notes, $this->check_notes_neg);
+                        $state_class->profileState($state, 'mobile', $this->check_mobile, $this->check_mobile_neg);
+                        $state_class->profileState($state, 'mobileWork', $this->check_mobileWork, $this->check_mobileWork_neg);
+                        $state_class->profileState($state, 'addressLine1', $this->check_addressLine1, $this->check_addressLine1_neg);
+                        $state_class->profileState($state, 'city', $this->check_city, $this->check_city_neg);
+                        $state_class->profileState($state, 'country', $this->check_country, $this->check_country_neg);
+                        $state_class->profileState($state, 'postalCode', $this->check_postalCode, $this->check_postalCode_neg);
+                        $state_class->profileState($state, 'facebook', $this->check_facebook, $this->check_facebook_neg);
+                        $state_class->profileState($state, 'instagram', $this->check_instagram, $this->check_instagram_neg);
+                        $state_class->profileState($state, 'twitter', $this->check_twitter, $this->check_twitter_neg);
+                        $state_class->profileState($state, 'tikTok', $this->check_tikTok, $this->check_tikTok_neg);
+                        $state_class->profileState($state, 'whatsApp', $this->check_whatsApp, $this->check_whatsApp_neg);
+                        $state_class->profileState($state, 'linkedIn', $this->check_linkedIn, $this->check_linkedIn_neg);
+                        $state_class->profileState($state, 'youTube', $this->check_youTube, $this->check_youTube_neg);
+                        $state_class->profileState($state, 'customField', $this->check_customField, $this->check_customField_neg);
 
                         $state->update();
                     }
                 }
             }
+            //Detach
+            Auth()->user()->userToUrlImport()->detach($url->id);
         }
 
         //Form Reset
         $this->choose_firstname = "";
+        $this->choose_lastname = "";
+        $this->choose_email = "";
+        $this->choose_company = "";
+        $this->choose_jobTitle = "";
+        $this->choose_age = "";
+        $this->choose_website = "";
+        $this->choose_notes = "";
+        $this->choose_mobile = "";
+        $this->choose_mobileWork = "";
+        $this->choose_addressLine1 = "";
+        $this->choose_city = "";
+        $this->choose_postalCode = "";
+        $this->choose_country = "";
+        $this->choose_facebook = "";
+        $this->choose_instagram = "";
+        $this->choose_linkedIn = "";
+        $this->choose_twitter = "";
+        $this->choose_youTube = "";
+        $this->choose_whatsApp = "";
+        $this->choose_tikTok = "";
+        $this->choose_customField = "";
+
         $this->check_firstname = "";
         $this->check_firstname_neg = "";
-        $this->choose_lastname = "";
+
         $this->check_lastname = "";
         $this->check_lastname_neg = "";
-        $this->choose_email = "";
+
         $this->check_email = "";
         $this->check_email_neg = "";
-        $this->choose_website = "";
-        $this->check_website = "";
-        $this->check_website_neg = "";
-        $this->choose_jobTitle = "";
-        $this->check_jobTitle = "";
-        $this->check_jobTitle_neg = "";
-        $this->choose_company = "";
+
         $this->check_company = "";
         $this->check_company_neg = "";
-        $this->choose_age = "";
+
+        $this->check_jobTitle = "";
+        $this->check_jobTitle_neg = "";
+
         $this->check_age = "";
         $this->check_age_neg = "";
-        $this->choose_notes = "";
+
+        $this->check_website = "";
+        $this->check_website_neg = "";
+
         $this->check_notes = "";
         $this->check_notes_neg = "";
 
-        //Detach
-        Auth()->user()->userToUrlImport()->detach($url->id);
+        $this->check_mobile = "";
+        $this->check_mobile_neg = "";
+
+        $this->check_mobileWork = "";
+        $this->check_mobileWork_neg = "";
+
+        $this->check_addressLine1 = "";
+        $this->check_addressLine1_neg = "";
+
+        $this->check_country = "";
+        $this->check_country_neg = "";
+
+        $this->check_city = "";
+        $this->check_city_neg = "";
+
+        $this->check_postalCode = "";
+        $this->check_postalCode_neg = "";
+
+        $this->check_facebook = "";
+        $this->check_facebook_neg = "";
+
+        $this->check_instagram = "";
+        $this->check_instagram_neg = "";
+
+        $this->check_twitter = "";
+        $this->check_twitter_neg = "";
+
+        $this->check_linkedIn = "";
+        $this->check_linkedIn_neg = "";
+
+        $this->check_tikTok = "";
+        $this->check_tikTok_neg = "";
+
+        $this->check_youTube = "";
+        $this->check_youTube_neg = "";
+
+        $this->check_whatsApp = "";
+        $this->check_whatsApp_neg = "";
+
+        $this->check_customField = "";
+        $this->check_customField_neg = "";
+
 
         $this->emit('renderImporter');
         session()->flash('success_update_message', 'Data is updated successfully');

@@ -7,9 +7,11 @@ class DataImporter
     public function profile($profile, $choose, $var, $data)
     {
         if($choose){
-            $profile->$var = $data;
+            if($var != ""){
+                $profile->$var = $data;
+            } else {
+                $profile->$var = "";
+            }
         }
     }
-
-
 }
