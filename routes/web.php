@@ -49,6 +49,10 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     //Cropper upload
     Route::POST('image-cropper/upload','App\Http\Controllers\ImageCropperController@upload');
 
+    // Routes for Profiles
+    Route::get('profile/edit/{id}','App\Http\Controllers\AdminProfilesController@edit')->name('profile.edit');
+    Route::get('profile/add', 'App\Http\Controllers\AdminProfilesController@add')->name("profile.add");
+    Route::post('profile/delete/{id}', 'App\Http\Controllers\AdminProfilesController@delete')->name("profile.delete");
     //Routes for CRUD members
     Route::resource('members', App\Http\Controllers\AdminMembersController::class)->middleware('can:hasAccessCheckMember,member');
     Route::resource('profiles', App\Http\Controllers\AdminProfilesController::class);

@@ -25,7 +25,7 @@ class MemberRequest extends FormRequest
     {
         return [
             //
-            'firstname'=>'max:90',
+            /*'firstname'=>'max:90',
             'lastname'=>'max:90',
             'company'=>'max:90',
             'jobTitle'=>'max:90',
@@ -46,8 +46,7 @@ class MemberRequest extends FormRequest
             'email'=>'max:90',
             'customField'=>'max:90',
             'customText'=>'max:30',
-            'shortDescription'=>'max:390',
-
+            'shortDescription'=>'max:390',*/
         ];
     }
 }

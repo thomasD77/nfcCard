@@ -42,7 +42,7 @@ class Profile extends Model
             'logo_id',
         ];
 
-//    protected $with = ['state', 'logo', 'banner'];
+    //protected $with = ['state', 'logo', 'banner'];
 
     public function banner()
     {
@@ -63,7 +63,7 @@ class Profile extends Model
 
     public function state()
     {
-        return $this->belongsTo(State::class, 'state_id');
+        return $this->belongsTo(State::class);
     }
 
 

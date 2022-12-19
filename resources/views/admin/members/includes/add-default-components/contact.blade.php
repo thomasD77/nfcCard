@@ -15,11 +15,11 @@
                                    type="checkbox"
                                    name="check_mobileWork"
                                    style="width: 25px; height: 25px"
-                                   value="{{ 1 }}" @if($state->mobileWork) checked @endif
+                                   value="{{ 1 }}" checked
                             >
                         </div>
                     </div>
-                    {!! Form::text('mobileWork',$profile->mobileWork ,['class'=>'form-control']) !!}
+                    {!! Form::text('mobileWork',"" ,['class'=>'form-control']) !!}
                     @error('mobileWork')
                     <p class="text-danger mt-2"> {{ $message }}</p>
                     @enderror
@@ -33,11 +33,11 @@
                                    type="checkbox"
                                    name="check_mobile"
                                    style="width: 25px; height: 25px"
-                                   value="{{ 1 }}" @if($state->mobile) checked @endif
+                                   value="{{ 1 }}" checked
                             >
                         </div>
                     </div>
-                    {!! Form::text('mobile',$profile->mobile ,['class'=>'form-control']) !!}
+                    {!! Form::text('mobile',"",['class'=>'form-control']) !!}
                     @error('mobile')
                     <p class="text-danger mt-2"> {{ $message }}</p>
                     @enderror
@@ -51,11 +51,11 @@
                                    type="checkbox"
                                    name="check_addressLine1"
                                    style="width: 25px; height: 25px"
-                                   value="{{ 1 }}" @if($state->addressLine1) checked @endif
+                                   value="{{ 1 }}" checked
                             >
                         </div>
                     </div>
-                    {!! Form::text('addressLine1',$profile->addressLine1 ,['class'=>'form-control']) !!}
+                    {!! Form::text('addressLine1',"" ,['class'=>'form-control']) !!}
                     @error('addressLine1')
                     <p class="text-danger mt-2"> {{ $message }}</p>
                     @enderror
@@ -69,11 +69,11 @@
                                    type="checkbox"
                                    name="check_city"
                                    style="width: 25px; height: 25px"
-                                   value="{{ 1 }}" @if($state->city) checked @endif
+                                   value="{{ 1 }}" checked
                             >
                         </div>
                     </div>
-                    {!! Form::text('city',$profile->city ,['class'=>'form-control']) !!}
+                    {!! Form::text('city',"" ,['class'=>'form-control']) !!}
                     @error('city')
                     <p class="text-danger mt-2"> {{ $message }}</p>
                     @enderror
@@ -87,11 +87,11 @@
                                    type="checkbox"
                                    name="check_postalCode"
                                    style="width: 25px; height: 25px"
-                                   value="{{ 1 }}" @if($state->postalCode) checked @endif
+                                   value="{{ 1 }}" checked
                             >
                         </div>
                     </div>
-                    {!! Form::text('postalCode',$profile->postalCode ,['class'=>'form-control']) !!}
+                    {!! Form::text('postalCode',"" ,['class'=>'form-control']) !!}
                     @error('postalCode')
                     <p class="text-danger mt-2"> {{ $message }}</p>
                     @enderror
@@ -105,11 +105,11 @@
                                    type="checkbox"
                                    name="check_country"
                                    style="width: 25px; height: 25px"
-                                   value="{{ 1 }}" @if($state->country) checked @endif
+                                   value="{{ 1 }}" checked
                             >
                         </div>
                     </div>
-                    {!! Form::text('country',$profile->country ,['class'=>'form-control']) !!}
+                    {!! Form::text('country',"" ,['class'=>'form-control']) !!}
                     @error('country')
                     <p class="text-danger mt-2"> {{ $message }}</p>
                     @enderror
@@ -119,7 +119,7 @@
         </div>
         <div class="d-flex justify-content-end">
             <div class="form-group m-4">
-                <button type="submit" class="btn btn-alt-primary">Update</button>
+                <button type="submit" class="btn btn-alt-primary">Save</button>
             </div>
         </div>
     </div>

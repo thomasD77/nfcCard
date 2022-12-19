@@ -31,7 +31,7 @@
             @if(Auth()->user()->is_company)
                 @include('admin.members.includes.company')
             @else
-                @include('admin.members.includes.edit')
+                @include('admin.members.includes.default')
             @endif
         </div>
     </div>

@@ -1,5 +1,95 @@
 @include('admin.members.includes.default-components.css')
+    <div class="block-content block-content-full overflow-scroll">
+        <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
+        <table class="table table-striped table-hover table-vcenter fs-sm">
+            <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">active</th>
+                <th scope="col">
+                    <a href="{{route("profile.add")}}" type="button" class="btn btn-secondary rounded">
+                        <i class="fa fa-plus"></i>
+                    </a>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            @if($profiles)
+                @foreach($profiles as $profile)
+                    <tr>
+                        <td>{{$profile->profile_name}}</td>
+                        <td>
+                            <!-- Active -->
+                            <div class="form-group my-4">
+                                <div class="slider-profile">
+                                    <input type="checkbox" name="active" class="slider-checkbox-profile" id="sliderSwitch-profile-{{$profile->id}}" value="{{ 1 }}"
+                                           @if($profile->active === 1) checked @endif disabled="disabled">
+                                    <label class="slider-label-profile" for="sliderSwitch-profile-{{$profile->id}}">
+                                        <span class="slider-inner-profile"></span>
+                                        <span class="slider-circle-profile"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <!-- End Active -->
+                        </td>
+                        <td>
+                            <div class="btn-group">
+                                <!-- view Event button -->
+                                    <a href="{{route("profile.edit",$profile->id)}}">
+                                        <button type="button" class="btn btn-sm btn-alt-secondary js-bs-tooltip-enabled">
+                                            <i class="fa fa-fw fa-pencil-alt"></i>
+                                        </button>
+                                    </a>
+                                    <button type="button"
+                                            class="btn btn-sm btn-alt-secondary js-bs-tooltip-enabled"
+                                            data-bs-toggle="modal" title=""
+                                            data-bs-target="#deleteProfile-{{$profile->id}}"
+                                            data-bs-original-title="Delete">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                            </div>
+                            <div class="modal fade" wire:ignore.self id="deleteProfile-{{$profile->id}}"
+                                 tabindex="-1"
+                                 aria-labelledby="deleteEventModal" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content" style="margin-top: 30%;">
+                                        <form action="{{route('profile.delete', $profile->id)}}" method="post"
+                                              id="deleteEventForm{{$profile->id}}"
+                                              class="d-flex align-center justify-content-center flex-column">
+                                            @csrf
+                                            <div class="modal-header" style="background-color: #1F2A37">
+                                                <h5 class="modal-title text-white" id="DeleteEventLabel">DELETE
+                                                    EVENT</h5>
+                                                <button type="button" class="btn-close btn-close-white"
+                                                        id="btn-event-close-delete"
+                                                        data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                        </form>
+                                        <div class="modal-body">
+                                            <p>Are you sure you want to delete this event?</p>
+                                            <div class="delete-event-buttons">
+                                                <button id="delete-button" form="deleteEventForm{{$profile->id}}" class="btn btn-danger" data-bs-toggle="modal"
+                                                        data-bs-target="#deleteEvent{{$profile->id}}">Yes
+                                                </button>
+                                                <button id="delete-decline-button"
+                                                        class="btn btn-primary" style="background-color: #1F2A37" data-bs-toggle="modal"
+                                                        data-bs-target="#deleteEvent{{$profile->id}}">No
+                                                </button>
+                                            </div>
+                                        </div>
 
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+            @endif
+            </tbody>
+        </table>
+    </div>
+
+{{--
 <ul class="nav nav-tabs mb-3 mb-md-0" id="pills-tab" role="tablist">
     @foreach($profiles as $profile)
         <li class="nav-item" role="presentation">
@@ -124,15 +214,16 @@
                 </div>
 
                 {!! Form::close() !!}
+                --}}
 
 {{--                <div class="tab-pane fade" id="pills-extra-{{ $profile->id }}" role="tabpanel"--}}
 {{--                     aria-labelledby="pills-extra-tab-{{ $profile->id }}">--}}
 {{--                    @livewire('custom-button', [ 'member' => $member ])--}}
 {{--                </div>--}}
-            </div>
+ {{--           </div>
         </div>
     @endforeach
-</div>
+</div>--}}
 
 @include('admin.members.includes.default-components.script')
 @foreach($profiles as $profile)

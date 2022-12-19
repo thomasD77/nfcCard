@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileRequest;
+use App\Models\Logo;
 use App\Models\Member;
 use App\Models\Package;
 use App\Models\Profile;
@@ -24,8 +25,95 @@ class AdminProfilesController extends Controller
     }
 
     public function edit($id){
-        $member = Member::findOrFail($id);
-        $profiles = Profile::with(['state', 'logo', 'banner'])->where('member_id', $id)->get();
+        $profile = Profile::findOrFail($id);
+        $state = State::where('profile_id', $id)->first();
+        $member = Member::find($profile->member_id);
+        //$profiles = Profile::with(['state', 'logo', 'banner'])->where('member_id', $id)->get();
+        //$package = Package::where('value', 1)->first();
+
+        /*if(! isset($package)){
+            $package = 'No package selected';
+        }else{
+            $package = $package->package;
+        }*/
+        return view('admin.members.edit', compact('profile', 'state', 'member'));
+    }
+
+    public function add(){
+        $userId = Auth::id();
+        $member = Member::where('user_id', 3)->first();
+        return view('admin.members.add', compact('member'));
+    }
+    public function store(ProfileRequest $request){
+        //$memberId = $request->member_id; // pushen
+        $memberId = 1; // Lokaal Glenn
+        $profile = new Profile();
+        // Profile
+        $profile->profile_name = $request->profile_name;
+        $profile->front_style = $request->front_style;
+        $profile->firstname = $request->firstname;
+        $profile->lastname = $request->lastname;
+        $profile->email = $request->email;
+        $profile->company = $request->company;
+        $profile->jobTitle = $request->jobTitle;
+        $profile->age = $request->age;
+        $profile->website = $request->website;
+        $profile->notes = $request->notes;
+        /*if($logo = $request->file('logo_id')){
+            $name = time() . $logo->getClientOriginalName();
+            $logo->move('media/logos', $name);
+            $logo = Logo::create(['file' => $name]);
+            $profile->logo_id = $logo->id;
+        }
+        if($banner = $request->file('banner_id')){
+            $name = time() . $banner->getClientOriginalName();
+            $banner->move('media/banners', $name);
+            $banner = Logo::create(['file' => $name]);
+            $profile->banner_id = $banner->id;
+        }*/
+        // Contact
+        $profile->mobileWork = $request->mobileWork;
+        $profile->mobile = $request->mobile;
+        $profile->addressLine1 = $request->addressLine1;
+        $profile->city = $request->city;
+        $profile->postalCode = $request->postalCode;
+        $profile->country = $request->country;
+        // Buttons
+        $profile->facebook = $request->facebook;
+        $profile->instagram = $request->instagram;
+        $profile->twitter = $request->twitter;
+        $profile->youTube = $request->youTube;
+        $profile->linkedIn = $request->linkedIn;
+        $profile->tikTok = $request->tikTok;
+        $profile->whatsApp = $request->whatsApp;
+        // Video
+        $profile->whatsApp = $request->whatsApp;
+        if($file = $request->file('video_id')){
+            if($file->getSize() <= 200000000) {
+                $name = time() . $file->getClientOriginalName() ;
+                $file->move('media/videos', $name);
+                $video = Video::create(['file' => $name]);
+
+                $profile->video_id = $video->id;
+            } else{
+                return redirect()->to(url()->previous() . "#videos")->withErrors(['video_error' => "Video is to large, you can only upload up to 200mb"]);
+            }
+        }
+        // Message
+        $profile->titleMessage = $request->titleMessage;
+        $profile->message = $request->message;
+        $profile->member_id = $memberId;
+        $profile->profile_views = 0;
+        $profile->archived = 0;
+        $profile->save();
+
+        $state = new State();
+        $state->member_id = $memberId;
+        $state->profile_id = $profile->id;
+        $state->save();
+
+        $member = Member::findOrFail($memberId);
+        $profiles = Profile::with(['state', 'logo', 'banner'])->where('member_id', $memberId)->get();
         $package = Package::where('value', 1)->first();
 
         if(! isset($package)){
@@ -37,22 +125,44 @@ class AdminProfilesController extends Controller
         return view('admin.members.edit', compact('member', 'package','profiles'));
     }
 
+    public function delete($profileId){
+        $profile = Profile::find($profileId);
+        $member = Member::find($profile->member_id);
+        $state = State::where('profile_id', $profileId)->first();
+        $state->delete();
+        $profile->delete();
+
+        $profiles = Profile::with(['state', 'logo', 'banner'])->where('member_id', $member->id)->get();
+        $package = Package::where('value', 1)->first();
+
+        if(! isset($package)){
+            $package = 'No package selected';
+        }else{
+            $package = $package->package;
+        }
+
+        return view('admin.members.edit', compact('member', 'package','profiles'));
+    }
+
+
+
     public function update(ProfileRequest $request, $profileId){
         $profile = Profile::findOrFail($profileId);
         $member = Member::findOrFail($profile->member_id);
         $profiles = Profile::where('member_id', $member->id)->get();
         $state = State::where('profile_id', $profileId)->first();
+        $returnUrl = "/admin/members/". $profile->member_id . "/edit";
 
         // Profile
         if($request->profile_name){
             $profile->profile_name = $request->profile_name;
         }
 
-        if($request->active){
-            foreach($profiles as $p){
+        if($request->active === "1"){
+            /*foreach($profiles as $p){
                 $p->active = 0;
                 $p->update();
-            }
+            }*/
             $profile->active = 1;
         }
 
@@ -281,6 +391,6 @@ class AdminProfilesController extends Controller
         $profile->update();
 
         Session::flash('flash_message', 'Member Successfully Updated');
-        return redirect('/admin/');
+        return redirect($returnUrl);
     }
 }

@@ -17,10 +17,10 @@
                                    type="checkbox"
                                    name="check_youtube_video"
                                    style="width: 25px; height: 25px"
-                                   value="{{ 1 }}" @if($state->youtube_video) checked @endif>
+                                   value="{{ 1 }}" checked>
                         </div>
                     </div>
-                    {!! Form::text('youtube_video',$profile->youtube_video ,['class'=>'form-control' , 'placeholder' => 'https://www.youtube.com/watch?v=gg8gjO5pLps']) !!}
+                    {!! Form::text('youtube_video',"" ,['class'=>'form-control' , 'placeholder' => 'https://www.youtube.com/watch?v=gg8gjO5pLps']) !!}
                     @error('Youtube_Video')
                     <p class="text-danger mt-2"> {{ $message }}</p>
                     @enderror
@@ -37,14 +37,10 @@
                                    type="checkbox"
                                    name="check_video"
                                    style="width: 25px; height: 25px"
-                                   value="{{ 1 }}" @if($state->video) checked @endif>
+                                   value="{{ 1 }}" checked>
                         </div>
                     </div>
                     {!! Form::file('video_id',['class'=>'form-control', "accept"=>"video/mp4"]) !!}
-                    @if($member->video != null)
-                        {!! Form::label('video_id', 'Current Video:', ['class'=>'form-label mt-3']) !!}
-                        <input type="text" class="form-control mt-2" disabled value="{{ $profile->video->file }}">
-                    @endif
                 </div>
                 @if(!$errors->isEmpty())
                     @foreach ($errors->all('<p>:message</p>') as $input_error)
@@ -63,7 +59,7 @@
         </div>
         <div class="d-flex justify-content-end">
             <div class="form-group m-4">
-                <button type="submit" class="btn btn-alt-primary">Update</button>
+                <button type="submit" class="btn btn-alt-primary">Save</button>
             </div>
         </div>
     </div>
