@@ -348,6 +348,14 @@
                                     </li>
                                 @endif
                             </ul>
+
+                            <div class="mt-4 mb-3">
+                                <a href="{{ route('members.vCard', $member->card_id) }}"
+                                   style="background-color: #383737"
+                                   class="btn_cstm facebook p-3 w-100 d-flex justify-content-center align-items-center">
+                                    <i class="fa fa-floppy-disk mx-1 opacity-50"></i> SAVE
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </header>
