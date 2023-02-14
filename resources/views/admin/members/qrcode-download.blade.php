@@ -32,12 +32,9 @@
             <div class="d-flex justify-content-center">
                 <div class="card shadow my-5 p-3" style="border: none">
                     <div class="card-body">
-                        {{$QRcode}}
+                        <img class="QRcode" src="{{ $member->memberQRcode }}" alt="QRcode">
                     </div>
                 </div>
-            </div>
-            <div class="text-center">
-                <a href="{{ route('download.QRcode', $Card_id)}}" class="btn btn-dark">Download</a>
             </div>
         </div>
     </div>

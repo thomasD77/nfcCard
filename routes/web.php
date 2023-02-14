@@ -53,6 +53,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::resource('members', App\Http\Controllers\AdminMembersController::class)->middleware('can:hasAccessCheckMember,member');
     Route::get('archive/members', 'App\Http\Controllers\AdminMembersController@archive')->name('members.archive');
     Route::get('member/QRcode/show/{card_id}', 'App\Http\Controllers\QRcode\QRcodeController@fancyQRcode')->name('show.QRcode');
+    Route::get('member/QRcode/download/{card_id}', 'App\Http\Controllers\QRcode\QRcodeController@downloadQR')->name('download.QRcode');
     Route::get('member/share', 'App\Http\Controllers\AdminMembersController@share')->name('share');
     Route::patch('member/custom/{id}', 'App\Http\Controllers\AdminMembersController@customButton')->name('custom.button');
 

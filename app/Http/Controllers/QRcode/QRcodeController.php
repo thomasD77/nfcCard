@@ -5,6 +5,7 @@ namespace App\Http\Controllers\QRcode;
 use App\Http\Controllers\Controller;
 use App\Models\listUrl;
 use App\Models\URL;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
@@ -51,8 +52,15 @@ class QRcodeController extends Controller
             $QRcode_url = $currentURL . '/?' . $id;
             $QRcode = QrCode::size(200)->backgroundColor(235,238,242)->generate($QRcode_url);
 
-            return view ('admin.members.qrcode', compact('QRcode'));
+            return view ('admin.members.qrcode', compact('QRcode', 'Card_id'));
         }
+    }
+
+    public function downloadQR($member)
+    {
+        $member = listUrl::find($member);
+        $pdf = PDF::loadView('admin.members.qrcode-download', compact('member'));
+        return $pdf->stream('test.pdf');
     }
 
 
