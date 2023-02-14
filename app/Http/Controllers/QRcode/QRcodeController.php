@@ -60,7 +60,7 @@ class QRcodeController extends Controller
     {
         $member = listUrl::find($member);
         $pdf = PDF::loadView('admin.members.qrcode-download', compact('member'));
-        return $pdf->stream('test.pdf');
+        return $pdf->download('QR-code.pdf');
     }
 
 
