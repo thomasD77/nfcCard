@@ -263,7 +263,7 @@ class CardController extends Controller
 
         if ($resultJson->success != true) {
 
-            //Session::flash('recaptcha_error', 'ReCaptcha is blocking request. Please try again. ');
+            Session::flash('recaptcha_error', 'Request is not safe. Please try again. ');
             return view( 'front.landingspage_default.index', compact('member', 'vCard'));
 
         }
