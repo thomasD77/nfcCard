@@ -36,8 +36,8 @@
                     </div>
                 </div>
             </div>
-            <div class="text-center">
-                <a href="{{ route('download.QRcode', $Card_id)}}" class="btn btn-dark">Download</a>
+            <div class="text-center mb-5">
+                <a href="{{ route('download.QRcode', $Card_id)}}" class="btn btn-dark"><i class="fa fa-download"></i> Download</a>
             </div>
         </div>
     </div>
