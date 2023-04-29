@@ -29,6 +29,7 @@ class AdminContactsController extends Controller
         return view('admin.contacts.index', compact('count'));
     }
 
+    
     public function indexClient(User $user)
     {
         //
