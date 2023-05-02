@@ -1,7 +1,7 @@
 <div class="parent">
     @include('admin.includes.flash')
     <!-- Search Form (visible on larger screens) -->
-        <form class="d-none d-md-inline-block col-6" action="{{action('App\Http\Controllers\AdminUsersController@searchUser')}}" method="POST">
+        <form class="col-md-6" action="{{action('App\Http\Controllers\AdminUsersController@searchUser')}}" method="POST">
             @csrf
             <div class="input-group input-group-sm">
                 <input type="text" class="form-control form-control-alt" placeholder="Search for name..." id="page-header-search-input2" name="user">

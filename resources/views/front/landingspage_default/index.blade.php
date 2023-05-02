@@ -180,6 +180,7 @@
                                                                     <input type="text"
                                                                            class="form-control input_modal"
                                                                            name="name"
+                                                                           value="{{old('name')}}"
                                                                            placeholder="ex: John Doe"
                                                                            autocomplete="name"
                                                                     >
@@ -197,6 +198,7 @@
                                                                     <input type="email"
                                                                            class="form-control input_modal"
                                                                            name="email"
+                                                                           value="{{old('email')}}"
                                                                            autocomplete="email"
                                                                            placeholder="Enter your email...">
                                                                     @error('email')
@@ -213,6 +215,7 @@
                                                                 <div class="mb-4">
                                                                     <input type="text" class="form-control input_modal"
                                                                            name="phone"
+                                                                           value="{{old('phone')}}"
                                                                            placeholder="ex: +32474413669"
                                                                            autocomplete="phone">
                                                                 </div>
@@ -227,6 +230,7 @@
                                                                     <input type="text"
                                                                            class="form-control input_modal"
                                                                            name="company"
+                                                                           value="{{old('company')}}"
                                                                            placeholder="Enter your company..."
                                                                            autocomplete="name"
                                                                     >
@@ -245,6 +249,7 @@
                                                                     <input type="text"
                                                                            class="form-control input_modal"
                                                                            name="VAT"
+                                                                           value="{{old('VAT')}}"
                                                                            placeholder="Enter your VAT..."
                                                                            autocomplete="VAT"
                                                                     >

@@ -26,14 +26,14 @@ class TeamRequest extends FormRequest
         return [
             //
             'name'=>'required|max:90',
-            'phone'=>'required|max:90',
-            'VAT'=>'required|max:90',
+            'phone'=>'max:90',
+            'VAT'=>'max:90',
 
-            'street'=>'required|max:90',
-            'number'=>'required|max:90',
-            'city'=>'required|max:90',
-            'zip'=>'required|max:90',
-            'country'=>'required|max:90',
+            'street'=>'max:90',
+            'number'=>'max:90',
+            'city'=>'max:90',
+            'zip'=>'max:90',
+            'country'=>'max:90',
 
             'description'=>'max:700',
         ];

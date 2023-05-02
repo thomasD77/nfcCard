@@ -28,7 +28,13 @@
 {{--                        </a>--}}
 {{--                    @endcan--}}
                 </div>
+                
             </div>
+            <!-- Search Form (visible on larger screens) -->
+            <div class="d-md-none">
+                <input type="text" wire:model="member_value" class="form-control form-control-alt" placeholder="Search for member credentials..." id="page-header-search-input2" name="member">
+            </div>
+            <!-- END Search Form -->
             <div class="parent">
                 @include('admin.includes.flash')
                 <table class="table table-striped table-hover table-vcenter fs-sm">
