@@ -223,6 +223,7 @@ class AdminUsersController extends Controller
             if($members){
                 foreach ($members as $member){
                     $member->card_id = 0;
+                    $member->trial_date = null;
                     $member->update();
                 }
             }
