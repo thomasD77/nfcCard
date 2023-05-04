@@ -209,6 +209,7 @@ class AdminUsersController extends Controller
             foreach ($urls as $url){
                 $url->member_id = null;
                 $url->print = 0;
+                $url->trial_date = null;
                 $url->update();
             }
 
@@ -223,7 +224,6 @@ class AdminUsersController extends Controller
             if($members){
                 foreach ($members as $member){
                     $member->card_id = 0;
-                    $member->trial_date = null;
                     $member->update();
                 }
             }
