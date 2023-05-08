@@ -97,17 +97,24 @@ class RegisterController extends Controller
         if($listURL->type_id == 8 && $listURL->trial_date == null) {
             $listURL->trial_date = now()->addMonth();
             $listURL->update();
-        }
 
-        //Demo cards -- no mail register needed
-        if($listURL->team_id == 1) {
-            if( $listURL->card_id >= 187 &&  $listURL->card_id <= 286){
+            if($listURL->team_id == 1) {
                 $user->email_verified_at = now();
                 $user->update();
 
                 Mail::to($user->email)->send(new SendMailDemoCard($user, $listURL));
             }
         }
+
+        //Demo cards -- no mail register needed
+//        if($listURL->team_id == 1) {
+//            if( $listURL->card_id >= 187 &&  $listURL->card_id <= 286){
+//                $user->email_verified_at = now();
+//                $user->update();
+//
+//                Mail::to($user->email)->send(new SendMailDemoCard($user, $listURL));
+//            }
+//        }
 
         DB::table('user_role')->insert([
             'user_id' => $user->id,
